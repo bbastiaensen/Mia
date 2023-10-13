@@ -1,6 +1,7 @@
 ﻿using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
@@ -17,7 +18,35 @@ namespace MiaLogic.Manager
         {
             List<GebruiksLog> gebruiksLogs = null;
 
-            throw new NotImplementedException();
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from GebruiksLog order by TijdstipActie desc;";
+
+                    objCn.Open();
+
+                    SqlDataReader reader = objCmd.ExecuteReader();
+
+                    while (reader.Read()) { 
+                        if(gebruiksLogs == null)
+                        {
+                            gebruiksLogs = new List<GebruiksLog>();
+                        }
+
+                        GebruiksLog gebruiksLog = new GebruiksLog();
+                        gebruiksLog.Id = Convert.ToInt32(reader["Id"]);
+                        gebruiksLog.Gebruiker = reader["Gebruiker"].ToString();
+                        gebruiksLog.TijdstipActie = Convert.ToDateTime(reader["TijdstipActie"]);
+                        gebruiksLog.OmschrijvingActie = reader["OmschrijvingActie"].ToString();
+
+                        gebruiksLogs.Add(gebruiksLog);
+                    }
+                }
+            }
 
             return gebruiksLogs;
         }
@@ -26,19 +55,85 @@ namespace MiaLogic.Manager
         {
             GebruiksLog gebruiksLog = null;
 
-            throw new NotImplementedException();
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
 
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from GebruiksLog where Id = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", gebruiksLogId);
+
+                    objCn.Open();
+
+                    SqlDataReader reader = objCmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        gebruiksLog = new GebruiksLog();
+                        gebruiksLog.Id = Convert.ToInt32(reader["Id"]);
+                        gebruiksLog.Gebruiker = reader["Gebruiker"].ToString();
+                        gebruiksLog.TijdstipActie = Convert.ToDateTime(reader["TijdstipActie"]);
+                        gebruiksLog.OmschrijvingActie = reader["OmschrijvingActie"].ToString();
+                    }
+                }
+            }
             return gebruiksLog;
         }
 
         public static void SaveGebruiksLog(GebruiksLog gebruiksLog, bool insert)
         {
-            throw new NotImplementedException();
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    string sql;
+                    if(insert)
+                    {
+                        sql = "insert into GebruiksLog(Gebruiker, TijdstipActie, OmschrijvingActie) values(@Gebruiker, @TijdstipActie, @OmschrijvingActie);";
+                    }
+                    else
+                    {
+                        sql = "update GebruiksLog set Gebruiker=@Gebruiker, TijdstipActie=@TijdstipActie, OmschrijvingActie=@OmschrijvingActie where Id = @Id";
+                    }
+
+                    objCmd.Parameters.AddWithValue("@Gebruiker", gebruiksLog.Gebruiker);
+                    objCmd.Parameters.AddWithValue("@TijdstipActie", gebruiksLog.TijdstipActie);
+                    objCmd.Parameters.AddWithValue("@OmschrijvingActie", gebruiksLog.OmschrijvingActie);
+                    if(!insert)
+                    {
+                        objCmd.Parameters.AddWithValue("@Id", gebruiksLog.Id);
+                    }
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public static void DeleteGebruiksLog(GebruiksLog gebruiksLog)
         {
-            throw new NotImplementedException();
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "delete from GebruiksLog where Id = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", gebruiksLog.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
