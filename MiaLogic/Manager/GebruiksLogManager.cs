@@ -92,7 +92,7 @@ namespace MiaLogic.Manager
                 {
                     objCmd.Connection = objCn;
 
-                    string sql;
+                    string sql = string.Empty;
                     if(insert)
                     {
                         sql = "insert into GebruiksLog(Gebruiker, TijdstipActie, OmschrijvingActie) values(@Gebruiker, @TijdstipActie, @OmschrijvingActie);";
