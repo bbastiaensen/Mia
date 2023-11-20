@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\GebruikerManager.cs" />
     <Compile Include="Manager\GebruiksLogManager.cs" />
+    <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
