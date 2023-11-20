@@ -8,6 +8,15 @@ namespace MiaClient
 {
     internal static class Program
     {
+        //Globale variabelen die gebruikt worden in de volledige toepassing
+        public static string Gebruiker { get; set; }
+        public static bool IsAanvrager { get; set; }
+        public static bool IsAankoper { get; set; }
+        public static bool IsGoedkeurder { get; set; }
+        public static bool IsSysteem { get; set; }
+
+
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +25,7 @@ namespace MiaClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new mdiMia());
         }
     }
 }
