@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MiaLogic.Object
 {
-    public class Gebruiker
+    public class Rol
     {
         public int id {  get; set; }
-        public string Gebruikersnaam { get; set;}
-        public bool Actief {  get; set; }
+        public string Naam { get; set; }
+  
     }
 }

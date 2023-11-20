@@ -13,6 +13,8 @@ namespace MiaClient
     public partial class mdiMia : Form
     {
         private int childFormNumber = 0;
+        //Hier roep ik de windows username op
+        public string Username=Environment.UserName;
 
         public mdiMia()
         {
