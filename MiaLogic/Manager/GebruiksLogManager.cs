@@ -31,8 +31,9 @@ namespace MiaLogic.Manager
 
                     SqlDataReader reader = objCmd.ExecuteReader();
 
-                    while (reader.Read()) { 
-                        if(gebruiksLogs == null)
+                    while (reader.Read())
+                    {
+                        if (gebruiksLogs == null)
                         {
                             gebruiksLogs = new List<GebruiksLog>();
                         }
@@ -93,7 +94,7 @@ namespace MiaLogic.Manager
                     objCmd.Connection = objCn;
 
                     string sql = string.Empty;
-                    if(insert)
+                    if (insert)
                     {
                         sql = "insert into GebruiksLog(Gebruiker, TijdstipActie, OmschrijvingActie) values(@Gebruiker, @TijdstipActie, @OmschrijvingActie);";
                     }
@@ -105,7 +106,7 @@ namespace MiaLogic.Manager
                     objCmd.Parameters.AddWithValue("@Gebruiker", gebruiksLog.Gebruiker);
                     objCmd.Parameters.AddWithValue("@TijdstipActie", gebruiksLog.TijdstipActie);
                     objCmd.Parameters.AddWithValue("@OmschrijvingActie", gebruiksLog.OmschrijvingActie);
-                    if(!insert)
+                    if (!insert)
                     {
                         objCmd.Parameters.AddWithValue("@Id", gebruiksLog.Id);
                     }

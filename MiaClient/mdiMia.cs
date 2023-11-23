@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -19,6 +21,8 @@ namespace MiaClient
         public mdiMia()
         {
             InitializeComponent();
+            GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
