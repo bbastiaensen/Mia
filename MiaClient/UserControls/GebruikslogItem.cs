@@ -19,6 +19,8 @@ namespace MiaClient.UserControls
 
         public Boolean Even { get; set; }
 
+        public event EventHandler GebruiksLogItemSelected;
+
         public GebruikslogItem()
         {
             InitializeComponent();
@@ -56,7 +58,10 @@ namespace MiaClient.UserControls
 
         private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            if (GebruiksLogItemSelected != null)
+            {
+                GebruiksLogItemSelected(this, null);
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace MiaClient
         public mdiMia()
         {
             InitializeComponent();
+
         }
 
         private void ShowNewForm(object sender, EventArgs e)
