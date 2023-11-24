@@ -54,6 +54,12 @@
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParameter.Designer.cs">
+      <DependentUpon>frmParameter.cs</DependentUpon>
+    </Compile>
     <Compile Include="mdiMia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,8 +74,17 @@
     <Compile Include="UserControls\GebruikslogItem.Designer.cs">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ParameterItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ParameterItem.Designer.cs">
+      <DependentUpon>ParameterItem.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmGebruiksLog.resx">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParameter.resx">
+      <DependentUpon>frmParameter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiMia.resx">
       <DependentUpon>mdiMia.cs</DependentUpon>
@@ -85,6 +100,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\GebruikslogItem.resx">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ParameterItem.resx">
+      <DependentUpon>ParameterItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

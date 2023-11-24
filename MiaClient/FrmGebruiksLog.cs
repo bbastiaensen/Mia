@@ -94,6 +94,12 @@ namespace MiaClient
                 }
             }
 
+            //Leegmaken detailvelden
+            txtIdDetail.Text = string.Empty;
+            txtGebruikerDetail.Text = string.Empty;
+            txtTijdstipActieDetail.Text = string.Empty;
+            txtOmschrijvingDetail.Text = string.Empty;
+
             return items;
         }
 
