@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiaClient.UserControls
@@ -18,6 +12,8 @@ namespace MiaClient.UserControls
         public string OmschrijvingActie { get; set; }
 
         public Boolean Even { get; set; }
+
+        public event EventHandler GebruiksLogItemSelected;
 
         public GebruikslogItem()
         {
@@ -56,7 +52,10 @@ namespace MiaClient.UserControls
 
         private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            if (GebruiksLogItemSelected != null)
+            {
+                GebruiksLogItemSelected(this, null);
+            }
         }
     }
 }
