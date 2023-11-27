@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.grpbxFilter = new System.Windows.Forms.GroupBox();
+            this.lblCode = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.lblEenheid = new System.Windows.Forms.Label();
             this.lblWaarde = new System.Windows.Forms.Label();
             this.txtEenheid = new System.Windows.Forms.TextBox();
             this.txtWaarde = new System.Windows.Forms.TextBox();
             this.lblParameterTitel = new System.Windows.Forms.Label();
-            this.pnlGebruiksLogItems = new System.Windows.Forms.Panel();
+            this.pnlParameters = new System.Windows.Forms.Panel();
             this.txtCodeDetail = new System.Windows.Forms.TextBox();
             this.txtWaardeDetail = new System.Windows.Forms.TextBox();
             this.txtEenheidDetail = new System.Windows.Forms.TextBox();
@@ -51,6 +53,8 @@
             // 
             // grpbxFilter
             // 
+            this.grpbxFilter.Controls.Add(this.lblCode);
+            this.grpbxFilter.Controls.Add(this.txtCode);
             this.grpbxFilter.Controls.Add(this.lblEenheid);
             this.grpbxFilter.Controls.Add(this.lblWaarde);
             this.grpbxFilter.Controls.Add(this.txtEenheid);
@@ -59,14 +63,31 @@
             this.grpbxFilter.Location = new System.Drawing.Point(13, 37);
             this.grpbxFilter.Name = "grpbxFilter";
             this.grpbxFilter.Size = new System.Drawing.Size(885, 100);
-            this.grpbxFilter.TabIndex = 5;
+            this.grpbxFilter.TabIndex = 0;
             this.grpbxFilter.TabStop = false;
             this.grpbxFilter.Text = "Filteren";
+            // 
+            // lblCode
+            // 
+            this.lblCode.AutoSize = true;
+            this.lblCode.Location = new System.Drawing.Point(74, 25);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(46, 21);
+            this.lblCode.TabIndex = 8;
+            this.lblCode.Text = "Code";
+            // 
+            // txtCode
+            // 
+            this.txtCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.Location = new System.Drawing.Point(78, 54);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(198, 29);
+            this.txtCode.TabIndex = 0;
             // 
             // lblEenheid
             // 
             this.lblEenheid.AutoSize = true;
-            this.lblEenheid.Location = new System.Drawing.Point(417, 25);
+            this.lblEenheid.Location = new System.Drawing.Point(526, 25);
             this.lblEenheid.Name = "lblEenheid";
             this.lblEenheid.Size = new System.Drawing.Size(65, 21);
             this.lblEenheid.TabIndex = 6;
@@ -75,7 +96,7 @@
             // lblWaarde
             // 
             this.lblWaarde.AutoSize = true;
-            this.lblWaarde.Location = new System.Drawing.Point(259, 25);
+            this.lblWaarde.Location = new System.Drawing.Point(278, 25);
             this.lblWaarde.Name = "lblWaarde";
             this.lblWaarde.Size = new System.Drawing.Size(63, 21);
             this.lblWaarde.TabIndex = 5;
@@ -84,18 +105,18 @@
             // txtEenheid
             // 
             this.txtEenheid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEenheid.Location = new System.Drawing.Point(411, 54);
+            this.txtEenheid.Location = new System.Drawing.Point(530, 54);
             this.txtEenheid.Name = "txtEenheid";
-            this.txtEenheid.Size = new System.Drawing.Size(468, 29);
-            this.txtEenheid.TabIndex = 4;
+            this.txtEenheid.Size = new System.Drawing.Size(349, 29);
+            this.txtEenheid.TabIndex = 2;
             // 
             // txtWaarde
             // 
             this.txtWaarde.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWaarde.Location = new System.Drawing.Point(259, 54);
+            this.txtWaarde.Location = new System.Drawing.Point(282, 54);
             this.txtWaarde.Name = "txtWaarde";
-            this.txtWaarde.Size = new System.Drawing.Size(146, 29);
-            this.txtWaarde.TabIndex = 3;
+            this.txtWaarde.Size = new System.Drawing.Size(242, 29);
+            this.txtWaarde.TabIndex = 1;
             // 
             // lblParameterTitel
             // 
@@ -108,13 +129,13 @@
             this.lblParameterTitel.Text = "MIA - Parameters";
             this.lblParameterTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnlGebruiksLogItems
+            // pnlParameters
             // 
-            this.pnlGebruiksLogItems.AutoScroll = true;
-            this.pnlGebruiksLogItems.Location = new System.Drawing.Point(12, 143);
-            this.pnlGebruiksLogItems.Name = "pnlGebruiksLogItems";
-            this.pnlGebruiksLogItems.Size = new System.Drawing.Size(886, 226);
-            this.pnlGebruiksLogItems.TabIndex = 6;
+            this.pnlParameters.AutoScroll = true;
+            this.pnlParameters.Location = new System.Drawing.Point(12, 143);
+            this.pnlParameters.Name = "pnlParameters";
+            this.pnlParameters.Size = new System.Drawing.Size(886, 226);
+            this.pnlParameters.TabIndex = 1;
             // 
             // txtCodeDetail
             // 
@@ -122,7 +143,8 @@
             this.txtCodeDetail.Location = new System.Drawing.Point(149, 418);
             this.txtCodeDetail.Name = "txtCodeDetail";
             this.txtCodeDetail.Size = new System.Drawing.Size(743, 29);
-            this.txtCodeDetail.TabIndex = 19;
+            this.txtCodeDetail.TabIndex = 2;
+            this.txtCodeDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeDetail_KeyPress);
             // 
             // txtWaardeDetail
             // 
@@ -130,7 +152,7 @@
             this.txtWaardeDetail.Location = new System.Drawing.Point(148, 453);
             this.txtWaardeDetail.Name = "txtWaardeDetail";
             this.txtWaardeDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtWaardeDetail.TabIndex = 18;
+            this.txtWaardeDetail.TabIndex = 3;
             // 
             // txtEenheidDetail
             // 
@@ -138,7 +160,7 @@
             this.txtEenheidDetail.Location = new System.Drawing.Point(148, 488);
             this.txtEenheidDetail.Name = "txtEenheidDetail";
             this.txtEenheidDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtEenheidDetail.TabIndex = 17;
+            this.txtEenheidDetail.TabIndex = 4;
             // 
             // txtIdDetail
             // 
@@ -148,6 +170,7 @@
             this.txtIdDetail.ReadOnly = true;
             this.txtIdDetail.Size = new System.Drawing.Size(744, 29);
             this.txtIdDetail.TabIndex = 16;
+            this.txtIdDetail.TabStop = false;
             // 
             // lblEenheidDetail
             // 
@@ -194,27 +217,30 @@
             this.btnNieuw.Location = new System.Drawing.Point(75, 534);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(251, 41);
-            this.btnNieuw.TabIndex = 20;
+            this.btnNieuw.TabIndex = 5;
             this.btnNieuw.Text = "Nieuw";
             this.btnNieuw.UseVisualStyleBackColor = true;
+            this.btnNieuw.Click += new System.EventHandler(this.btnNieuw_Click);
             // 
             // btnVerwijderen
             // 
             this.btnVerwijderen.Location = new System.Drawing.Point(589, 534);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(251, 41);
-            this.btnVerwijderen.TabIndex = 21;
+            this.btnVerwijderen.TabIndex = 7;
             this.btnVerwijderen.Text = "Verwijderen";
             this.btnVerwijderen.UseVisualStyleBackColor = true;
+            this.btnVerwijderen.Click += new System.EventHandler(this.btnVerwijderen_Click);
             // 
             // btnBewaren
             // 
             this.btnBewaren.Location = new System.Drawing.Point(332, 534);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(251, 41);
-            this.btnBewaren.TabIndex = 22;
+            this.btnBewaren.TabIndex = 6;
             this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
+            this.btnBewaren.Click += new System.EventHandler(this.btnBewaren_Click);
             // 
             // frmParameter
             // 
@@ -234,13 +260,15 @@
             this.Controls.Add(this.lblIdDetail);
             this.Controls.Add(this.grpbxFilter);
             this.Controls.Add(this.lblParameterTitel);
-            this.Controls.Add(this.pnlGebruiksLogItems);
+            this.Controls.Add(this.pnlParameters);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmParameter";
             this.Text = "Parameter";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParameter_FormClosing);
+            this.Load += new System.EventHandler(this.frmParameter_Load);
             this.grpbxFilter.ResumeLayout(false);
             this.grpbxFilter.PerformLayout();
             this.ResumeLayout(false);
@@ -256,7 +284,7 @@
         private System.Windows.Forms.TextBox txtEenheid;
         private System.Windows.Forms.TextBox txtWaarde;
         private System.Windows.Forms.Label lblParameterTitel;
-        private System.Windows.Forms.Panel pnlGebruiksLogItems;
+        private System.Windows.Forms.Panel pnlParameters;
         private System.Windows.Forms.TextBox txtCodeDetail;
         private System.Windows.Forms.TextBox txtWaardeDetail;
         private System.Windows.Forms.TextBox txtEenheidDetail;
@@ -268,5 +296,7 @@
         private System.Windows.Forms.Button btnNieuw;
         private System.Windows.Forms.Button btnVerwijderen;
         private System.Windows.Forms.Button btnBewaren;
+        private System.Windows.Forms.Label lblCode;
+        private System.Windows.Forms.TextBox txtCode;
     }
 }

@@ -260,6 +260,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmGebruiksLog";
             this.Text = "Gebruikslog";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGebruiksLog_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruiksLogDemo_Load);
             this.grpbxFilter.ResumeLayout(false);
             this.grpbxFilter.PerformLayout();

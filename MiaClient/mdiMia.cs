@@ -14,6 +14,8 @@ namespace MiaClient
     {
         private int childFormNumber = 0;
 
+        FrmGebruiksLog frmGebruiksLog;
+        frmParameter frmParameter;
         public mdiMia()
         {
             InitializeComponent();
@@ -107,9 +109,22 @@ namespace MiaClient
 
         private void gebruikslogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmGebruiksLog frmGebruiksLog = new FrmGebruiksLog();
-            frmGebruiksLog.MdiParent = this;
+            if (frmGebruiksLog == null)
+            {
+                frmGebruiksLog = new FrmGebruiksLog();
+                frmGebruiksLog.MdiParent = this;
+            }
             frmGebruiksLog.Show();
+        }
+
+        private void parametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmParameter == null)
+            {
+                frmParameter = new frmParameter();
+                frmParameter.MdiParent = this;
+            }
+            frmParameter.Show();
         }
     }
 }

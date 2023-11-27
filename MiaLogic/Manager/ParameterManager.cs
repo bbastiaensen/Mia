@@ -81,8 +81,13 @@ namespace MiaLogic.Manager
             return parameter;
         }
 
-        public static void SaveParameter(Parameter parameter, bool insert)
+        public static int SaveParameter(Parameter parameter, bool insert)
         {
+            if (parameter.Id == 0 && insert == false)
+            {
+                throw new ArgumentNullException("De parameter die je wil bewaren is onbestaande.");
+            } 
+
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
@@ -101,6 +106,7 @@ namespace MiaLogic.Manager
                         sql = "update Parameter set Code=@Code, Waarde=@Waarde, Eenheid=@Eenheid where Id = @Id";
                     }
 
+                    objCmd.CommandText = sql;
                     objCmd.Parameters.AddWithValue("@Code", parameter.Code);
                     objCmd.Parameters.AddWithValue("@Waarde", parameter.Waarde);
                     objCmd.Parameters.AddWithValue("@Eenheid", parameter.Eenheid);
@@ -114,10 +120,24 @@ namespace MiaLogic.Manager
                     objCmd.ExecuteNonQuery();
                 }
             }
+
+            if (insert)
+            {
+                return HoogsteId();
+            }
+            else
+            {
+                return parameter.Id;
+            }
         }
 
         public static void DeleteParameter(Parameter parameter)
         {
+            if (parameter.Id == 0)
+            {
+                throw new ArgumentNullException("De parameter die je wil verwijderen is onbestaande.");
+            }
+
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
@@ -135,5 +155,31 @@ namespace MiaLogic.Manager
             }
         }
 
+        private static int HoogsteId()
+        {
+            int hoogste = 0;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Hoogste from Parameter";
+
+                    objCn.Open();
+
+                    SqlDataReader reader = objCmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        hoogste = Convert.ToInt32(reader["Hoogste"]);
+                    }
+                }
+            }
+
+            return hoogste;
+        }
     }
 }

@@ -119,38 +119,84 @@ namespace MiaClient
 
         private void txtGebruiker_TextChanged(object sender, EventArgs e)
         {
-            filterGebruiker = true;
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            try
+            {
+                filterGebruiker = true;
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtOmschrijving_TextChanged(object sender, EventArgs e)
         {
-            filterOmschrijving = true;
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            try
+            {
+                filterOmschrijving = true;
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void chkVan_CheckedChanged(object sender, EventArgs e)
         {
-            filterVan = chkVan.Checked;
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            try
+            {
+                filterVan = chkVan.Checked;
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void chkTot_CheckedChanged(object sender, EventArgs e)
         {
-            filterTot = chkTot.Checked;
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-
+            try
+            {
+                filterTot = chkTot.Checked;
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dtpVan_ValueChanged(object sender, EventArgs e)
         {
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            try
+            {
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dtpTot_ValueChanged(object sender, EventArgs e)
         {
-            BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            try
+            {
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
     }
 }
