@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGebruiksLog));
             this.lblGebruiksLogTitel = new System.Windows.Forms.Label();
             this.dtpVan = new System.Windows.Forms.DateTimePicker();
             this.grpbxFilter = new System.Windows.Forms.GroupBox();
@@ -257,6 +258,7 @@
             this.Controls.Add(this.grpbxFilter);
             this.Controls.Add(this.lblGebruiksLogTitel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmGebruiksLog";
             this.Text = "Gebruikslog";

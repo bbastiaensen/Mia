@@ -191,5 +191,72 @@ namespace MiaClient
             //Voorkomt dat er spaties in code worden gebruikt.
             e.Handled = (e.KeyChar == (char)Keys.Space);
         }
+        private List<Parameter> FilteredParameters(List<Parameter> items, bool code, bool waarde, bool eenheid)
+        {
+            if (items != null)
+            {
+                if (code)
+                {
+                    items = items.Where(p => p.Code.ToLower().Contains(txtCode.Text.ToLower())).ToList();
+                }
+
+                if (waarde)
+                {
+                    items = items.Where(p => p.Waarde.ToLower().Contains(txtWaarde.Text.ToLower())).ToList();
+                }
+
+                if (eenheid)
+                {
+                    items = items.Where(p => p.Eenheid.ToLower().Contains(txtEenheid.Text.ToLower())).ToList();
+                }
+            }
+
+            //Leegmaken detailvelden
+            txtIdDetail.Text = string.Empty;
+            txtCodeDetail.Text = string.Empty;
+            txtWaardeDetail.Text = string.Empty;
+            txtEenheidDetail.Text = string.Empty;
+
+            return items;
+        }
+
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterCode = true;
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtWaarde_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterWaarde = true;
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtEenheid_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterEenheid = true;
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
