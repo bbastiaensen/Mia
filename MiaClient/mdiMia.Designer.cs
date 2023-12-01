@@ -134,14 +134,14 @@
             // 
             // toolStrip
             // 
-            this.toolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gebruiksLogToolStripButton,
             this.parameterToolStripButton,
             this.toolStripSeparator1});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1173, 47);
+            this.toolStrip.Size = new System.Drawing.Size(1173, 37);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "Knoppenbalk";
             // 
@@ -151,7 +151,7 @@
             this.gebruiksLogToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("gebruiksLogToolStripButton.Image")));
             this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
-            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(44, 44);
+            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(34, 34);
             this.gebruiksLogToolStripButton.Text = "GebruiksLog";
             this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
             // 
@@ -161,14 +161,14 @@
             this.parameterToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("parameterToolStripButton.Image")));
             this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.parameterToolStripButton.Name = "parameterToolStripButton";
-            this.parameterToolStripButton.Size = new System.Drawing.Size(44, 44);
+            this.parameterToolStripButton.Size = new System.Drawing.Size(34, 34);
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 47);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // mdiMia
             // 
