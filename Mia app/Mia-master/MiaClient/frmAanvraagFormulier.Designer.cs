@@ -345,11 +345,11 @@
             // 
             // txtAanvraagId
             // 
-            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAanvraagId.Location = new System.Drawing.Point(189, 55);
             this.txtAanvraagId.Name = "txtAanvraagId";
             this.txtAanvraagId.ReadOnly = true;
-            this.txtAanvraagId.Size = new System.Drawing.Size(71, 27);
+            this.txtAanvraagId.Size = new System.Drawing.Size(71, 34);
             this.txtAanvraagId.TabIndex = 12;
             // 
             // lblAanvraagId
