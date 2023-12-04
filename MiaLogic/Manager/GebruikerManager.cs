@@ -55,6 +55,7 @@ namespace MiaLogic.Manager
 
                 using (SqlCommand objcmd = new SqlCommand())
                 {
+
                     objcmd.Connection = objcn;
                     objcmd.CommandText = "select * from Gebruiker where Gebruikersnaam = @gebruikersnaam;"; //query om een gebruiker op te halen op basis van gebruikersnaam
                     objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruikersnaam);
