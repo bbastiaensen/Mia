@@ -15,6 +15,8 @@ namespace MiaClient
     {
         private int childFormNumber = 0;
 
+
+
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAbout frmAbout;
@@ -74,6 +76,11 @@ namespace MiaClient
                 frmParameter.MdiParent = this;
             }
             frmParameter.Show();
+        }
+
+        private void mdiMia_Load(object sender, EventArgs e)
+        {
+            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {Program.Rol}";
         }
     }
 }

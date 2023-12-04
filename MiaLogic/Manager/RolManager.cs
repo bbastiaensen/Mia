@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Manager
 {
-    internal class RolManager
+    public class RolManager
     {
         public static string ConnectionString { get; set; } // Connection met databank leggen
 
@@ -41,7 +41,7 @@ namespace MiaLogic.Manager
             return rollen; // Returnt de list met rollen
         }
 
-        public static List<Rol> GetRollen(Gebruiker gebruiker)
+        public static List<Rol> GetRollenByUser(Gebruiker gebruiker)
         {
             List<Rol> rollen = new List<Rol>(); //List om de rollen van een specifieke gebruiker op te slaan
 

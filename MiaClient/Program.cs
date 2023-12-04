@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace MiaClient
     {
         //Globale variabelen die gebruikt worden in de volledige toepassing
         public static string Gebruiker { get; set; }
+        public static string Rol { get; set; }
         public static bool IsAanvrager { get; set; }
         public static bool IsAankoper { get; set; }
         public static bool IsGoedkeurder { get; set; }
@@ -30,13 +32,25 @@ namespace MiaClient
         static void Main()
         {
             GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
 
             string gebruikersnaam = Environment.UserName; //haalt de lokale gebruikersnaam op
             Gebruiker IsExisting = GebruikerManager.GetGebruikerByGebruikersnaam(gebruikersnaam);//Kijkt of de gebruiker bestaat in de gebruikermanager
 
             if (IsExisting != null)
             {
+
                 Gebruiker = IsExisting.Gebruikersnaam; //als hij bestaat ( of != null is) slaagt het op in Gebruiker
+
+                if (IsExisting.IsActief) //Als IsExisting==True && IsActief == True
+                {
+                    //TODO: Wat te doen met welke rol
+                }
+                else
+                {
+                    //MessageBox.Show("Error");
+                    //Application.Exit();
+                }
             }
 
             else

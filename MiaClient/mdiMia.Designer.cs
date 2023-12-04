@@ -53,12 +53,13 @@
             // menuStrip
             // 
             this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.beheerToolStripMenuItem,
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1173, 29);
+            this.menuStrip.Size = new System.Drawing.Size(1564, 36);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -68,20 +69,20 @@
             this.gebruikslogToolStripMenuItem,
             this.parametersToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
-            this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
+            this.beheerToolStripMenuItem.Size = new System.Drawing.Size(85, 32);
             this.beheerToolStripMenuItem.Text = "&Beheer";
             // 
             // gebruikslogToolStripMenuItem
             // 
             this.gebruikslogToolStripMenuItem.Name = "gebruikslogToolStripMenuItem";
-            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(204, 32);
             this.gebruikslogToolStripMenuItem.Text = "Gebruikslog";
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             // 
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(204, 32);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
             // 
@@ -92,7 +93,7 @@
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(54, 25);
+            this.helpMenu.Size = new System.Drawing.Size(67, 32);
             this.helpMenu.Text = "&Help";
             // 
             // indexToolStripMenuItem
@@ -100,36 +101,38 @@
             this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
             this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(181, 32);
             this.indexToolStripMenuItem.Text = "&Index";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(178, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 32);
             this.aboutToolStripMenuItem.Text = "&Over MIA";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
             this.statusStrip.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 635);
+            this.statusStrip.Location = new System.Drawing.Point(0, 780);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1173, 22);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1564, 29);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(43, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(56, 23);
             this.toolStripStatusLabel.Text = "Status";
             // 
             // toolStrip
@@ -139,9 +142,9 @@
             this.gebruiksLogToolStripButton,
             this.parameterToolStripButton,
             this.toolStripSeparator1});
-            this.toolStrip.Location = new System.Drawing.Point(0, 29);
+            this.toolStrip.Location = new System.Drawing.Point(0, 36);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1173, 37);
+            this.toolStrip.Size = new System.Drawing.Size(1564, 37);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "Knoppenbalk";
             // 
@@ -172,19 +175,21 @@
             // 
             // mdiMia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 657);
+            this.ClientSize = new System.Drawing.Size(1564, 809);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "mdiMia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MIA";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.mdiMia_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);

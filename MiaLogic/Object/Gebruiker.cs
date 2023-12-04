@@ -10,6 +10,6 @@ namespace MiaLogic.Object
     {
         public int Id { get; set; }
         public string Gebruikersnaam { get; set; }
-        public bool Actief { get; set; }
+        public bool IsActief { get; set; }
     }
 }
