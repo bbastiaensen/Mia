@@ -17,6 +17,7 @@ namespace MiaClient
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAbout frmAbout;
+        frmAanvraagFormulier frmAanvraagFormulier;
 
         public mdiMia()
         {
@@ -72,6 +73,16 @@ namespace MiaClient
                 frmParameter.MdiParent = this;
             }
             frmParameter.Show();
+        }
+
+        private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmAanvraagFormulier == null)
+            {
+                frmAanvraagFormulier = new frmAanvraagFormulier();
+                frmAanvraagFormulier.MdiParent = this;  
+            }
+            frmAanvraagFormulier.Show();
         }
     }
 }
