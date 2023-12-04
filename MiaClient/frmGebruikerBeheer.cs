@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MiaLogic.Manager;
 
 namespace MiaClient
 {
@@ -15,6 +16,21 @@ namespace MiaClient
         public frmGebruikerBeheer()
         {
             InitializeComponent();
+        }
+
+        private void LstGebruikers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmGebruikerBeheer_Load(object sender, EventArgs e)
+        {
+            if (RadAlle.Checked == true)
+            {
+                
+                LstGebruikers.Items.Add(GebruikerManager.GetGebruikers());
+            }
+            
         }
     }
 }

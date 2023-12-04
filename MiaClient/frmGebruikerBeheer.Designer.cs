@@ -46,6 +46,7 @@
             this.LstGebruikers.Name = "LstGebruikers";
             this.LstGebruikers.Size = new System.Drawing.Size(507, 356);
             this.LstGebruikers.TabIndex = 0;
+            this.LstGebruikers.SelectedIndexChanged += new System.EventHandler(this.LstGebruikers_SelectedIndexChanged);
             // 
             // BtnPasaan
             // 
@@ -121,6 +122,7 @@
             this.Controls.Add(this.LstGebruikers);
             this.Name = "frmGebruikerBeheer";
             this.Text = "frmGebruikerBeheer";
+            this.Load += new System.EventHandler(this.frmGebruikerBeheer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
