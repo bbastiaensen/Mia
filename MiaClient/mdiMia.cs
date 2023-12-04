@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,7 @@ namespace MiaClient
         public mdiMia()
         {
             InitializeComponent();
+
 
         }
 
