@@ -19,6 +19,7 @@ namespace MiaClient
         frmParameter frmParameter;
         frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
+        public FrmAanvragen frmAanvragen;
 
         public mdiMia()
         {
@@ -79,12 +80,12 @@ namespace MiaClient
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmAanvraagFormulier == null)
+            if (frmAanvragen == null)
             {
-                frmAanvraagFormulier = new frmAanvraagFormulier();
-                frmAanvraagFormulier.MdiParent = this;  
+                frmAanvragen = new FrmAanvragen();
+                frmAanvragen.MdiParent = this;  
             }
-            frmAanvraagFormulier.Show();
+            frmAanvragen.Show();
         }
     }
 }

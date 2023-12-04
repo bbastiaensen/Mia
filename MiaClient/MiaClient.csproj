@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAanvragen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAanvragen.Designer.cs">
+      <DependentUpon>FrmAanvragen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAanvraagFormulier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     <Compile Include="UserControls\ParameterItem.Designer.cs">
       <DependentUpon>ParameterItem.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmAanvragen.resx">
+      <DependentUpon>FrmAanvragen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAanvraagFormulier.resx">
       <DependentUpon>frmAanvraagFormulier.cs</DependentUpon>
     </EmbeddedResource>
