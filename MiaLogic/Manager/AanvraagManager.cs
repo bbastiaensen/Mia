@@ -53,10 +53,8 @@ namespace MiaLogic.Manager
                         returnlist.Add(a);
                     }
                 }
-            }
-
-            //MOET NOG AANGEPAST WORDEN
-            return null;
+            }           
+            return returnlist;
         }
     }
 }
