@@ -82,8 +82,13 @@ namespace MiaLogic.Manager
             return gebruiksLog;
         }
 
-        public static void SaveGebruiksLog(GebruiksLog gebruiksLog, bool insert)
+        public static int SaveGebruiksLog(GebruiksLog gebruiksLog, bool insert)
         {
+            if (gebruiksLog.Id == 0 && insert == false)
+            {
+                throw new ArgumentNullException("Het gebruikslogitem dat je wilt bewaren is onbestaande.");
+            }
+
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
@@ -102,6 +107,7 @@ namespace MiaLogic.Manager
                         sql = "update GebruiksLog set Gebruiker=@Gebruiker, TijdstipActie=@TijdstipActie, OmschrijvingActie=@OmschrijvingActie where Id = @Id";
                     }
 
+                    objCmd.CommandText = sql;
                     objCmd.Parameters.AddWithValue("@Gebruiker", gebruiksLog.Gebruiker);
                     objCmd.Parameters.AddWithValue("@TijdstipActie", gebruiksLog.TijdstipActie);
                     objCmd.Parameters.AddWithValue("@OmschrijvingActie", gebruiksLog.OmschrijvingActie);
@@ -115,10 +121,24 @@ namespace MiaLogic.Manager
                     objCmd.ExecuteNonQuery();
                 }
             }
+
+            if (insert)
+            {
+                return HoogsteId();
+            }
+            else
+            {
+                return gebruiksLog.Id;
+            }
         }
 
         public static void DeleteGebruiksLog(GebruiksLog gebruiksLog)
         {
+            if (gebruiksLog.Id == 0)
+            {
+                throw new ArgumentNullException("Het gebruikslogitem dat je wilt verwijderen is onbestaande.");
+            }
+
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
@@ -134,6 +154,33 @@ namespace MiaLogic.Manager
                     objCmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        private static int HoogsteId()
+        {
+            int hoogste = 0;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Hoogste from GebruiksLog";
+
+                    objCn.Open();
+
+                    SqlDataReader reader = objCmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        hoogste = Convert.ToInt32(reader["Hoogste"]);
+                    }
+                }
+            }
+
+            return hoogste;
         }
     }
 }
