@@ -16,5 +16,20 @@ namespace MiaClient
         {
             InitializeComponent();
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage_Voorstellen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage_Offertes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

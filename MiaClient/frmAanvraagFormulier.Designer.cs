@@ -44,6 +44,13 @@
             this.tabPage_Identificatie = new System.Windows.Forms.TabPage();
             this.tabPage_Investering = new System.Windows.Forms.TabPage();
             this.gboxInvestering = new System.Windows.Forms.GroupBox();
+            this.gboxPlanning = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.gboxTitel = new System.Windows.Forms.GroupBox();
             this.ddlPrioriteit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,22 +68,31 @@
             this.lblOmschrijving = new System.Windows.Forms.Label();
             this.txtTitel = new System.Windows.Forms.TextBox();
             this.lblTitel = new System.Windows.Forms.Label();
+            this.tabPage_Voorstellen = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage_Links = new System.Windows.Forms.TabPage();
+            this.tabPage_Fotos = new System.Windows.Forms.TabPage();
+            this.tabPage_Offertes = new System.Windows.Forms.TabPage();
             this.gboxIdentificatie.SuspendLayout();
             this.tabControl_Aanvraagformulier.SuspendLayout();
             this.tabPage_Identificatie.SuspendLayout();
             this.tabPage_Investering.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
+            this.gboxPlanning.SuspendLayout();
             this.gboxTitel.SuspendLayout();
+            this.tabPage_Voorstellen.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtAanvraagId
             // 
-            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAanvraagId.Location = new System.Drawing.Point(191, 55);
             this.txtAanvraagId.Name = "txtAanvraagId";
             this.txtAanvraagId.ReadOnly = true;
-            this.txtAanvraagId.Size = new System.Drawing.Size(71, 27);
+            this.txtAanvraagId.Size = new System.Drawing.Size(71, 34);
             this.txtAanvraagId.TabIndex = 12;
             // 
             // lblAanvraagId
@@ -196,10 +212,11 @@
             // 
             this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Identificatie);
             this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Investering);
-            this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 104);
+            this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Voorstellen);
+            this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
             this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
             this.tabControl_Aanvraagformulier.SelectedIndex = 0;
-            this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(778, 703);
+            this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 741);
             this.tabControl_Aanvraagformulier.TabIndex = 14;
             // 
             // tabPage_Identificatie
@@ -208,7 +225,7 @@
             this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Identificatie.Name = "tabPage_Identificatie";
             this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(770, 662);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 700);
             this.tabPage_Identificatie.TabIndex = 0;
             this.tabPage_Identificatie.Text = "Identificatie";
             this.tabPage_Identificatie.UseVisualStyleBackColor = true;
@@ -219,22 +236,95 @@
             this.tabPage_Investering.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Investering.Name = "tabPage_Investering";
             this.tabPage_Investering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Investering.Size = new System.Drawing.Size(770, 662);
+            this.tabPage_Investering.Size = new System.Drawing.Size(791, 700);
             this.tabPage_Investering.TabIndex = 1;
             this.tabPage_Investering.Text = "Investering";
             this.tabPage_Investering.UseVisualStyleBackColor = true;
             // 
             // gboxInvestering
             // 
-            this.gboxInvestering.Controls.Add(this.groupBox1);
+            this.gboxInvestering.Controls.Add(this.gboxPlanning);
             this.gboxInvestering.Controls.Add(this.gboxTitel);
             this.gboxInvestering.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gboxInvestering.Location = new System.Drawing.Point(5, 5);
             this.gboxInvestering.Name = "gboxInvestering";
-            this.gboxInvestering.Size = new System.Drawing.Size(764, 592);
+            this.gboxInvestering.Size = new System.Drawing.Size(780, 686);
             this.gboxInvestering.TabIndex = 20;
             this.gboxInvestering.TabStop = false;
             this.gboxInvestering.Text = "Investering";
+            // 
+            // gboxPlanning
+            // 
+            this.gboxPlanning.Controls.Add(this.comboBox3);
+            this.gboxPlanning.Controls.Add(this.comboBox2);
+            this.gboxPlanning.Controls.Add(this.comboBox1);
+            this.gboxPlanning.Controls.Add(this.label4);
+            this.gboxPlanning.Controls.Add(this.label3);
+            this.gboxPlanning.Controls.Add(this.label2);
+            this.gboxPlanning.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gboxPlanning.Location = new System.Drawing.Point(20, 475);
+            this.gboxPlanning.Name = "gboxPlanning";
+            this.gboxPlanning.Size = new System.Drawing.Size(742, 194);
+            this.gboxPlanning.TabIndex = 3;
+            this.gboxPlanning.TabStop = false;
+            this.gboxPlanning.Text = "Planning";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(190, 137);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(282, 36);
+            this.comboBox3.TabIndex = 21;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(190, 82);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(282, 36);
+            this.comboBox2.TabIndex = 20;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(190, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(282, 36);
+            this.comboBox1.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(30, 30);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(154, 28);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "financieringsjaar";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(30, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 28);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Kostenplaats";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(30, 146);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 28);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Wie koopt het";
             // 
             // gboxTitel
             // 
@@ -255,7 +345,7 @@
             this.gboxTitel.Controls.Add(this.txtTitel);
             this.gboxTitel.Controls.Add(this.lblTitel);
             this.gboxTitel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gboxTitel.Location = new System.Drawing.Point(20, 30);
+            this.gboxTitel.Location = new System.Drawing.Point(20, 31);
             this.gboxTitel.Name = "gboxTitel";
             this.gboxTitel.Size = new System.Drawing.Size(742, 438);
             this.gboxTitel.TabIndex = 0;
@@ -266,7 +356,7 @@
             // 
             this.ddlPrioriteit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlPrioriteit.FormattingEnabled = true;
-            this.ddlPrioriteit.Location = new System.Drawing.Point(150, 195);
+            this.ddlPrioriteit.Location = new System.Drawing.Point(150, 194);
             this.ddlPrioriteit.Name = "ddlPrioriteit";
             this.ddlPrioriteit.Size = new System.Drawing.Size(282, 36);
             this.ddlPrioriteit.TabIndex = 19;
@@ -285,7 +375,7 @@
             // 
             this.ddlInvestering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlInvestering.FormattingEnabled = true;
-            this.ddlInvestering.Location = new System.Drawing.Point(150, 385);
+            this.ddlInvestering.Location = new System.Drawing.Point(150, 383);
             this.ddlInvestering.Name = "ddlInvestering";
             this.ddlInvestering.Size = new System.Drawing.Size(282, 36);
             this.ddlInvestering.TabIndex = 17;
@@ -294,7 +384,7 @@
             // 
             this.ddlFinanciering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlFinanciering.FormattingEnabled = true;
-            this.ddlFinanciering.Location = new System.Drawing.Point(150, 338);
+            this.ddlFinanciering.Location = new System.Drawing.Point(150, 333);
             this.ddlFinanciering.Name = "ddlFinanciering";
             this.ddlFinanciering.Size = new System.Drawing.Size(282, 36);
             this.ddlFinanciering.TabIndex = 16;
@@ -303,7 +393,7 @@
             // 
             this.lblInvestering.AutoSize = true;
             this.lblInvestering.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInvestering.Location = new System.Drawing.Point(30, 388);
+            this.lblInvestering.Location = new System.Drawing.Point(30, 387);
             this.lblInvestering.Name = "lblInvestering";
             this.lblInvestering.Size = new System.Drawing.Size(108, 28);
             this.lblInvestering.TabIndex = 15;
@@ -313,7 +403,7 @@
             // 
             this.lblFinaciering.AutoSize = true;
             this.lblFinaciering.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFinaciering.Location = new System.Drawing.Point(30, 338);
+            this.lblFinaciering.Location = new System.Drawing.Point(30, 339);
             this.lblFinaciering.Name = "lblFinaciering";
             this.lblFinaciering.Size = new System.Drawing.Size(118, 28);
             this.lblFinaciering.TabIndex = 14;
@@ -322,7 +412,7 @@
             // txtTotaal
             // 
             this.txtTotaal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotaal.Location = new System.Drawing.Point(137, 290);
+            this.txtTotaal.Location = new System.Drawing.Point(150, 285);
             this.txtTotaal.Name = "txtTotaal";
             this.txtTotaal.ReadOnly = true;
             this.txtTotaal.Size = new System.Drawing.Size(151, 34);
@@ -332,7 +422,7 @@
             // 
             this.lblTotaal.AutoSize = true;
             this.lblTotaal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotaal.Location = new System.Drawing.Point(30, 290);
+            this.lblTotaal.Location = new System.Drawing.Point(30, 291);
             this.lblTotaal.Name = "lblTotaal";
             this.lblTotaal.Size = new System.Drawing.Size(101, 28);
             this.lblTotaal.TabIndex = 12;
@@ -341,7 +431,7 @@
             // txtAantalStuks
             // 
             this.txtAantalStuks.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAantalStuks.Location = new System.Drawing.Point(543, 248);
+            this.txtAantalStuks.Location = new System.Drawing.Point(543, 244);
             this.txtAantalStuks.Name = "txtAantalStuks";
             this.txtAantalStuks.Size = new System.Drawing.Size(172, 27);
             this.txtAantalStuks.TabIndex = 11;
@@ -350,7 +440,7 @@
             // 
             this.lblAantalStuks.AutoSize = true;
             this.lblAantalStuks.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblAantalStuks.Location = new System.Drawing.Point(420, 247);
+            this.lblAantalStuks.Location = new System.Drawing.Point(420, 243);
             this.lblAantalStuks.Name = "lblAantalStuks";
             this.lblAantalStuks.Size = new System.Drawing.Size(117, 28);
             this.lblAantalStuks.TabIndex = 10;
@@ -359,7 +449,7 @@
             // txtPrijsindicatie
             // 
             this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPrijsindicatie.Location = new System.Drawing.Point(233, 248);
+            this.txtPrijsindicatie.Location = new System.Drawing.Point(233, 244);
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 27);
             this.txtPrijsindicatie.TabIndex = 9;
@@ -368,7 +458,7 @@
             // 
             this.lblPrijsindicatie.AutoSize = true;
             this.lblPrijsindicatie.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPrijsindicatie.Location = new System.Drawing.Point(30, 244);
+            this.lblPrijsindicatie.Location = new System.Drawing.Point(30, 243);
             this.lblPrijsindicatie.Name = "lblPrijsindicatie";
             this.lblPrijsindicatie.Size = new System.Drawing.Size(197, 28);
             this.lblPrijsindicatie.TabIndex = 8;
@@ -377,7 +467,7 @@
             // rtxtOmschrijving
             // 
             this.rtxtOmschrijving.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtxtOmschrijving.Location = new System.Drawing.Point(170, 80);
+            this.rtxtOmschrijving.Location = new System.Drawing.Point(170, 71);
             this.rtxtOmschrijving.Name = "rtxtOmschrijving";
             this.rtxtOmschrijving.Size = new System.Drawing.Size(545, 109);
             this.rtxtOmschrijving.TabIndex = 7;
@@ -396,9 +486,9 @@
             // txtTitel
             // 
             this.txtTitel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTitel.Location = new System.Drawing.Point(100, 30);
+            this.txtTitel.Location = new System.Drawing.Point(85, 30);
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(615, 27);
+            this.txtTitel.Size = new System.Drawing.Size(630, 27);
             this.txtTitel.TabIndex = 5;
             // 
             // lblTitel
@@ -411,14 +501,68 @@
             this.lblTitel.TabIndex = 4;
             this.lblTitel.Text = "Titel";
             // 
+            // tabPage_Voorstellen
+            // 
+            this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
+            this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
+            this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
+            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 700);
+            this.tabPage_Voorstellen.TabIndex = 2;
+            this.tabPage_Voorstellen.Text = "Voorstellen";
+            this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
+            this.tabPage_Voorstellen.Click += new System.EventHandler(this.tabPage_Voorstellen_Click);
+            // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(20, 474);
+            this.groupBox1.Controls.Add(this.tabControl);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(783, 445);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "gbox_";
+            this.groupBox1.Text = "Voorstellen";
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabPage_Links);
+            this.tabControl.Controls.Add(this.tabPage_Fotos);
+            this.tabControl.Controls.Add(this.tabPage_Offertes);
+            this.tabControl.Location = new System.Drawing.Point(30, 30);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(747, 405);
+            this.tabControl.TabIndex = 0;
+            // 
+            // tabPage_Links
+            // 
+            this.tabPage_Links.Location = new System.Drawing.Point(4, 37);
+            this.tabPage_Links.Name = "tabPage_Links";
+            this.tabPage_Links.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Links.Size = new System.Drawing.Size(739, 364);
+            this.tabPage_Links.TabIndex = 0;
+            this.tabPage_Links.Text = "Links";
+            this.tabPage_Links.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Fotos
+            // 
+            this.tabPage_Fotos.Location = new System.Drawing.Point(4, 37);
+            this.tabPage_Fotos.Name = "tabPage_Fotos";
+            this.tabPage_Fotos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Fotos.Size = new System.Drawing.Size(739, 364);
+            this.tabPage_Fotos.TabIndex = 1;
+            this.tabPage_Fotos.Text = "Foto\'s";
+            this.tabPage_Fotos.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Offertes
+            // 
+            this.tabPage_Offertes.Location = new System.Drawing.Point(4, 37);
+            this.tabPage_Offertes.Name = "tabPage_Offertes";
+            this.tabPage_Offertes.Size = new System.Drawing.Size(739, 364);
+            this.tabPage_Offertes.TabIndex = 2;
+            this.tabPage_Offertes.Text = "Offertes";
+            this.tabPage_Offertes.UseVisualStyleBackColor = true;
+            this.tabPage_Offertes.Click += new System.EventHandler(this.tabPage_Offertes_Click);
             // 
             // frmAanvraagFormulier
             // 
@@ -426,7 +570,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(812, 1055);
+            this.ClientSize = new System.Drawing.Size(832, 851);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
             this.Controls.Add(this.txtAanvraagId);
             this.Controls.Add(this.lblAanvraagId);
@@ -441,8 +585,13 @@
             this.tabPage_Identificatie.ResumeLayout(false);
             this.tabPage_Investering.ResumeLayout(false);
             this.gboxInvestering.ResumeLayout(false);
+            this.gboxPlanning.ResumeLayout(false);
+            this.gboxPlanning.PerformLayout();
             this.gboxTitel.ResumeLayout(false);
             this.gboxTitel.PerformLayout();
+            this.tabPage_Voorstellen.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,6 +631,18 @@
         private System.Windows.Forms.Label lblOmschrijving;
         private System.Windows.Forms.TextBox txtTitel;
         private System.Windows.Forms.Label lblTitel;
+        private System.Windows.Forms.GroupBox gboxPlanning;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage_Voorstellen;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage_Links;
+        private System.Windows.Forms.TabPage tabPage_Fotos;
+        private System.Windows.Forms.TabPage tabPage_Offertes;
     }
 }
