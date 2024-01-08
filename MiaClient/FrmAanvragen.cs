@@ -1,4 +1,5 @@
-﻿using MiaLogic.Manager;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace MiaClient
 {
     public partial class FrmAanvragen : Form
     {
+        
         public FrmAanvragen()
         {
             InitializeComponent();
-            BindAanvraag();
+            //BindAanvraag();
+            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
@@ -30,25 +33,42 @@ namespace MiaClient
             //}
             //frmAanvraagFormulier.Show();
         }
-        private void BindAanvraag()
+        private void BindAanvraag(List<Aanvraag> items)
         {
-            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            this.pnlAanvragen.Controls.Clear();
 
-            cmbGebruiker.ValueMember = "Gebruiker";
-            cmbGebruiker.DisplayMember = "Gebruiker";
-            cmbGebruiker.DataSource = AanvraagManager.GetAanvraag();
-            //cmbTitel.DisplayMember = "Titel";
-            //cmbTitel.DataSource = AanvraagManager.GetAanvraag();
-            //cmbFinancieringsjaar.DisplayMember = "Financieringsjaar";
-            //cmbFinancieringsjaar.DataSource = AanvraagManager.GetAanvraag();
-            //cmbxStatusAanvraag.DisplayMember = "StatusAanvraag";
-            //cmbxStatusAanvraag.DataSource = AanvraagManager.GetAanvraag();
-            //cmbKostenplaats.DisplayMember = "Kostenplaats";
-            //cmbKostenplaats.DataSource = AanvraagManager.GetAanvraag();
-            //cmbBedrag.DisplayMember = "Bedrag";
-            //cmbBedrag.DataSource = AanvraagManager.GetAanvraag();
-            //cmbPlanningsdatum.DisplayMember = "Planningsdatum";
-            //cmbPlanningsdatum.DataSource = AanvraagManager.GetAanvraag();
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                string titel = av.Titel;
+                string substring = titel.Substring(0, 20);
+
+                AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, substring, av.Financieringsjaar, av.StatusAanvraag, av.Kostenplaats, av.Bedrag, av.Planningsdatum, t % 2 == 0);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "aanvraagSelection" + t;
+                avi.Size = new System.Drawing.Size(881, 33);
+                avi.TabIndex = t + 8;
+                avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                this.pnlAanvragen.Controls.Add(avi);
+
+                t++;
+                if(t < 10)
+                {
+                    yPos += 30;
+                }
+            }
+        }
+        private void Gli_AanvraagItemSelected(object sender, EventArgs e)
+        {
+            //AanvraagItem geselecteerd = (AanvraagItem)sender;
+
+            //txtIdDetail.Text = geselecteerd.Id.ToString();
+            //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
+            //txtGebruikerDetail.Text = geselecteerd.Gebruiker;
+            //txtOmschrijvingDetail.Text = geselecteerd.OmschrijvingActie.ToString();
         }
         private void cmbGebruiker_SelectedIndexChanged(object sender, EventArgs e)
         {
