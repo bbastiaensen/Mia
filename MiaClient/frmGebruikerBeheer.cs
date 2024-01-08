@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using System.Configuration;
 
 namespace MiaClient
 {
@@ -20,25 +21,43 @@ namespace MiaClient
         public frmGebruikerBeheer()
         {
             InitializeComponent();
+            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+
+        }
+
+        public void vullijst()
+        {
+            //vult de lijst van gebruikers
+            gebruikers = GebruikerManager.GetGebruikers();
+            LstGebruikers.DisplayMember = "Gebruikersnaam";
+            LstGebruikers.ValueMember = "Id";
+            LstGebruikers.DataSource = gebruikers;
         }
 
         private void LstGebruikers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Gebruiker gebruiker1 = new Gebruiker();
+            Gebruiker gebruiker2 = new Gebruiker();
+            gebruiker1 = (Gebruiker)LstGebruikers.SelectedItem;
+
             
+             gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
+             bool actief = gebruiker2.Actief;
+                if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
+                {
+                    checkActief.Checked = true;
+                }
+
+                else
+                {
+                    checkActief.Checked = false;
+                }
+             TxtGebruikersnaam.Text = gebruiker1.Gebruikersnaam;
         }
 
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
         {
-            gebruikers = GebruikerManager.GetGebruikers();
-            
-            LstGebruikers.DisplayMember = "Gebruikersnaam";
-            LstGebruikers.ValueMember = "Id";
-            LstGebruikers.DataSource = gebruikers;
-           
-
-
-
-
+            vullijst();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -69,17 +88,47 @@ namespace MiaClient
                 LstGebruikers.DataSource = gebruikers;
             }
         }
-
-        private void BtnPasaan_Click(object sender, EventArgs e)
+        private void BtnOpslaan_Click(object sender, EventArgs e)
         {
-            BtnOpslaan.Visible = true;
-            TxtGebruikersnaam.Text = LstGebruikers.SelectedIndex.ToString();
-           Gebruiker gebruiker1 = GebruikerManager.GetGebruikerByGebruikersnaam(TxtGebruikersnaam.Text);
-           bool actief = gebruiker1.Actief;
-            if (actief == true)
+            Gebruiker gebruiker1 = new Gebruiker();
+            gebruiker1.Id = Convert.ToInt32(LstGebruikers.SelectedValue);
+            gebruiker1.Gebruikersnaam = TxtGebruikersnaam.Text;
+            if (checkActief.Checked == true)
             {
-                
+                gebruiker1.Actief = true;
             }
+
+            else
+            {
+                gebruiker1.Actief = false;
+            }
+
+            GebruikerManager.SaveGebruiker(gebruiker1, false);
+            
+            vullijst();
+            RadAlle.Checked = true;
+            MessageBox.Show("Succesvol Bewaart.");
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            if (gebruiker1.Actief == true)
+            {
+                gebruiksLog1.OmschrijvingActie = "Gebruiker "+ gebruiker1.Gebruikersnaam.ToString() +" werd geactiveerd.";
+            }
+
+            if (gebruiker1.Actief == false)
+            {
+                gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd gedeactiveerd.";
+            }
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+        }
+
+        private void frmGebruikerBeheer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
     }
+
 }
