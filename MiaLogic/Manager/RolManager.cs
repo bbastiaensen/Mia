@@ -93,6 +93,35 @@ namespace MiaLogic.Manager
 
 
         }
+        public static Rol GetRolByName(string rolNaam)
+        {
+            Rol rol = null;
+
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandText = "SELECT * FROM Rol WHERE Naam = @rolNaam;";
+                    objcmd.Parameters.AddWithValue("@rolNaam", rolNaam);
+
+                    objcn.Open();
+
+                    SqlDataReader reader = objcmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        rol = new Rol
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Naam = reader["Naam"].ToString()
+                        };
+                    }
+                }
+            }
+            return rol;
+        }
 
     }
 }
