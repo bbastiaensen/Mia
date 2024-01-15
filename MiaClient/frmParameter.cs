@@ -119,7 +119,7 @@ namespace MiaClient
                 //Controle op verplichte velden
                 if (string.IsNullOrWhiteSpace(txtCodeDetail.Text))
                 {
-                    MessageBox.Show("Het veld 'Code' moet ingevuld zijn.","",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Het veld 'Code' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 

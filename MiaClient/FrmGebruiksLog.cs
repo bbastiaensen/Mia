@@ -83,12 +83,12 @@ namespace MiaClient
                     items = items.Where(gl => gl.TijdstipActie <= Convert.ToDateTime(dtpTot.Text)).ToList();
                 }
 
-                if(gebruiker)
+                if (gebruiker)
                 {
                     items = items.Where(gl => gl.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
                 }
 
-                if(omschrijving)
+                if (omschrijving)
                 {
                     items = items.Where(gl => gl.OmschrijvingActie.ToLower().Contains(txtOmschrijving.Text.ToLower())).ToList();
                 }
@@ -122,7 +122,7 @@ namespace MiaClient
             try
             {
                 filterGebruiker = true;
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));           
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
             }
             catch (Exception ex)
             {

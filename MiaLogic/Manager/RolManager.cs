@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Manager
 {
-    internal class RolManager
+    public class RolManager
     {
         public static string ConnectionString { get; set; } // Connection met databank leggen
 
@@ -41,7 +41,7 @@ namespace MiaLogic.Manager
             return rollen; // Returnt de list met rollen
         }
 
-        public static List<Rol> GetRollen(Gebruiker gebruiker)
+        public static List<Rol> GetRollenByUser(Gebruiker gebruiker)
         {
             List<Rol> rollen = new List<Rol>(); //List om de rollen van een specifieke gebruiker op te slaan
 
@@ -92,6 +92,35 @@ namespace MiaLogic.Manager
 
 
 
+        }
+        public static Rol GetRolByName(string rolNaam)
+        {
+            Rol rol = null;
+
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandText = "SELECT * FROM Rol WHERE Naam = @rolNaam;";
+                    objcmd.Parameters.AddWithValue("@rolNaam", rolNaam);
+
+                    objcn.Open();
+
+                    SqlDataReader reader = objcmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        rol = new Rol
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Naam = reader["Naam"].ToString()
+                        };
+                    }
+                }
+            }
+            return rol;
         }
 
     }
