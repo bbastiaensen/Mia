@@ -16,7 +16,8 @@ namespace MiaClient
 {
     public partial class FrmAanvragen : Form
     {
-        
+        frmAanvraagFormulier frmAanvraagFormulier;
+
         public FrmAanvragen()
         {
             InitializeComponent();
@@ -26,12 +27,12 @@ namespace MiaClient
 
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
-            //if (mdiMia. == null)
-            //{
-            //    frmAanvraagFormulier = new frmAanvraagFormulier();
-            //    frmAanvraagFormulier.MdiParent = this;
-            //}
-            //frmAanvraagFormulier.Show();
+            if (frmAanvraagFormulier == null)
+            {
+                frmAanvraagFormulier = new frmAanvraagFormulier();
+                frmAanvraagFormulier.MdiParent = MdiParent;
+            }
+            frmAanvraagFormulier.Show();
         }
         private void BindAanvraag(List<Aanvraag> items)
         {

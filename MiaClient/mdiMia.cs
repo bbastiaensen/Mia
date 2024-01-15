@@ -20,6 +20,7 @@ namespace MiaClient
         frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
         public FrmAanvragen frmAanvragen;
+        frmGebruikerBeheer frmGebruikerBeheer;
 
         public mdiMia()
         {
@@ -86,6 +87,16 @@ namespace MiaClient
                 frmAanvragen.MdiParent = this;  
             }
             frmAanvragen.Show();
+        }
+
+        private void gebruikersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGebruikerBeheer ==  null)
+            {
+                frmGebruikerBeheer = new frmGebruikerBeheer();
+                frmGebruikerBeheer.MdiParent = this;    
+            }
+            frmGebruikerBeheer.Show();
         }
     }
 }

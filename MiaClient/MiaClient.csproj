@@ -69,6 +69,12 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGebruikerBeheer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGebruikerBeheer.Designer.cs">
+      <DependentUpon>frmGebruikerBeheer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGebruiksLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,18 @@
     <Compile Include="UserControls\GebruikslogItem.Designer.cs">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\HyperlinksAanvraagFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\HyperlinksAanvraagFrm.Designer.cs">
+      <DependentUpon>HyperlinksAanvraagFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OffertesAanvraagFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OffertesAanvraagFrm.Designer.cs">
+      <DependentUpon>OffertesAanvraagFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ParameterItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGebruikerBeheer.resx">
+      <DependentUpon>frmGebruikerBeheer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGebruiksLog.resx">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
@@ -139,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GebruikslogItem.resx">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\HyperlinksAanvraagFrm.resx">
+      <DependentUpon>HyperlinksAanvraagFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OffertesAanvraagFrm.resx">
+      <DependentUpon>OffertesAanvraagFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ParameterItem.resx">
       <DependentUpon>ParameterItem.cs</DependentUpon>
