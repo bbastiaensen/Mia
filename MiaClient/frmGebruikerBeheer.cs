@@ -32,5 +32,10 @@ namespace MiaClient
             }
             
         }
+
+        private void frmGebruikerBeheer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }

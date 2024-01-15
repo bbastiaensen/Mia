@@ -41,27 +41,29 @@
             // LstGebruikers
             // 
             this.LstGebruikers.FormattingEnabled = true;
-            this.LstGebruikers.ItemHeight = 16;
-            this.LstGebruikers.Location = new System.Drawing.Point(12, 12);
+            this.LstGebruikers.Location = new System.Drawing.Point(9, 10);
+            this.LstGebruikers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.LstGebruikers.Name = "LstGebruikers";
-            this.LstGebruikers.Size = new System.Drawing.Size(507, 356);
+            this.LstGebruikers.Size = new System.Drawing.Size(381, 290);
             this.LstGebruikers.TabIndex = 0;
             this.LstGebruikers.SelectedIndexChanged += new System.EventHandler(this.LstGebruikers_SelectedIndexChanged);
             // 
             // BtnPasaan
             // 
-            this.BtnPasaan.Location = new System.Drawing.Point(198, 374);
+            this.BtnPasaan.Location = new System.Drawing.Point(148, 304);
+            this.BtnPasaan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnPasaan.Name = "BtnPasaan";
-            this.BtnPasaan.Size = new System.Drawing.Size(180, 43);
+            this.BtnPasaan.Size = new System.Drawing.Size(135, 35);
             this.BtnPasaan.TabIndex = 1;
             this.BtnPasaan.Text = "Aanpassen";
             this.BtnPasaan.UseVisualStyleBackColor = true;
             // 
             // BtnVerwijder
             // 
-            this.BtnVerwijder.Location = new System.Drawing.Point(12, 374);
+            this.BtnVerwijder.Location = new System.Drawing.Point(9, 304);
+            this.BtnVerwijder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnVerwijder.Name = "BtnVerwijder";
-            this.BtnVerwijder.Size = new System.Drawing.Size(180, 43);
+            this.BtnVerwijder.Size = new System.Drawing.Size(135, 35);
             this.BtnVerwijder.TabIndex = 2;
             this.BtnVerwijder.Text = "Verwijderen";
             this.BtnVerwijder.UseVisualStyleBackColor = true;
@@ -69,9 +71,10 @@
             // RadActief
             // 
             this.RadActief.AutoSize = true;
-            this.RadActief.Location = new System.Drawing.Point(21, 21);
+            this.RadActief.Location = new System.Drawing.Point(16, 17);
+            this.RadActief.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RadActief.Name = "RadActief";
-            this.RadActief.Size = new System.Drawing.Size(61, 20);
+            this.RadActief.Size = new System.Drawing.Size(52, 17);
             this.RadActief.TabIndex = 3;
             this.RadActief.Text = "Actief";
             this.RadActief.UseVisualStyleBackColor = true;
@@ -80,9 +83,10 @@
             // 
             this.RadAlle.AutoSize = true;
             this.RadAlle.Checked = true;
-            this.RadAlle.Location = new System.Drawing.Point(21, 73);
+            this.RadAlle.Location = new System.Drawing.Point(16, 59);
+            this.RadAlle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RadAlle.Name = "RadAlle";
-            this.RadAlle.Size = new System.Drawing.Size(51, 20);
+            this.RadAlle.Size = new System.Drawing.Size(42, 17);
             this.RadAlle.TabIndex = 4;
             this.RadAlle.TabStop = true;
             this.RadAlle.Text = "Alle";
@@ -91,9 +95,10 @@
             // RadNonActief
             // 
             this.RadNonActief.AutoSize = true;
-            this.RadNonActief.Location = new System.Drawing.Point(21, 47);
+            this.RadNonActief.Location = new System.Drawing.Point(16, 38);
+            this.RadNonActief.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RadNonActief.Name = "RadNonActief";
-            this.RadNonActief.Size = new System.Drawing.Size(88, 20);
+            this.RadNonActief.Size = new System.Drawing.Size(74, 17);
             this.RadNonActief.TabIndex = 5;
             this.RadNonActief.Text = "Niet Actief";
             this.RadNonActief.UseVisualStyleBackColor = true;
@@ -104,24 +109,28 @@
             this.groupBox1.Controls.Add(this.RadAlle);
             this.groupBox1.Controls.Add(this.RadNonActief);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.groupBox1.Location = new System.Drawing.Point(525, 12);
+            this.groupBox1.Location = new System.Drawing.Point(394, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(142, 110);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(106, 89);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
             // 
             // frmGebruikerBeheer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnVerwijder);
             this.Controls.Add(this.BtnPasaan);
             this.Controls.Add(this.LstGebruikers);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmGebruikerBeheer";
             this.Text = "frmGebruikerBeheer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGebruikerBeheer_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruikerBeheer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
