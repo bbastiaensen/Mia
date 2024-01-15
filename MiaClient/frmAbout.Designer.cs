@@ -77,11 +77,10 @@
             this.lblOntwikkeldVoor.AutoSize = true;
             this.lblOntwikkeldVoor.Location = new System.Drawing.Point(165, 67);
             this.lblOntwikkeldVoor.Name = "lblOntwikkeldVoor";
-            this.lblOntwikkeldVoor.Size = new System.Drawing.Size(233, 147);
+            this.lblOntwikkeldVoor.Size = new System.Drawing.Size(233, 126);
             this.lblOntwikkeldVoor.TabIndex = 3;
             this.lblOntwikkeldVoor.Text = "Ontwikkeld in opdracht van:\r\n     KMSL (vzw) \r\n     Korte Begijnenstraat 22 \r\n   " +
-    "  2300 Turnhout\r\n\r\n    Product owner: Hild Van Rooy\r\n    Ondersteuning Davy Vueg" +
-    "hs";
+    "  2300 Turnhout\r\n\r\n    Product owner: Hild Van Rooy\r\n";
             // 
             // lblOntwikkeldDoor
             // 
@@ -95,7 +94,7 @@
             // llblMuylenberg
             // 
             this.llblMuylenberg.AutoSize = true;
-            this.llblMuylenberg.Location = new System.Drawing.Point(165, 239);
+            this.llblMuylenberg.Location = new System.Drawing.Point(182, 209);
             this.llblMuylenberg.Name = "llblMuylenberg";
             this.llblMuylenberg.Size = new System.Drawing.Size(153, 21);
             this.llblMuylenberg.TabIndex = 5;
@@ -106,7 +105,7 @@
             // llblTaTu
             // 
             this.llblTaTu.AutoSize = true;
-            this.llblTaTu.Location = new System.Drawing.Point(496, 353);
+            this.llblTaTu.Location = new System.Drawing.Point(516, 353);
             this.llblTaTu.Name = "llblTaTu";
             this.llblTaTu.Size = new System.Drawing.Size(231, 21);
             this.llblTaTu.TabIndex = 6;

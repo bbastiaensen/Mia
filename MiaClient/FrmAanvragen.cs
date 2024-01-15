@@ -47,13 +47,13 @@ namespace MiaClient
                 string titel = av.Titel;
                 string substring = titel.Substring(0, 20);
 
-                AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, substring, av.Financieringsjaar, av.StatusAanvraag, av.Kostenplaats, av.Bedrag, av.Planningsdatum, t % 2 == 0);
-                avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "aanvraagSelection" + t;
-                avi.Size = new System.Drawing.Size(881, 33);
-                avi.TabIndex = t + 8;
-                avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                this.pnlAanvragen.Controls.Add(avi);
+                //AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, substring, av.Financieringsjaar, av.StatusAanvraag, av.Kostenplaats, av.Bedrag, av.Planningsdatum, t % 2 == 0);
+                //avi.Location = new System.Drawing.Point(xPos, yPos);
+                //avi.Name = "aanvraagSelection" + t;
+                //avi.Size = new System.Drawing.Size(881, 33);
+                //avi.TabIndex = t + 8;
+                //avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                //this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
                 if(t < 10)

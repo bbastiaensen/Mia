@@ -23,11 +23,6 @@ namespace MiaClient
         public static bool IsSysteem { get; set; }
 
 
-
-
-
-
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -38,6 +33,7 @@ namespace MiaClient
         {
             GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
 
             string gebruikersnaam = Environment.UserName; //haalt de lokale gebruikersnaam op
 
@@ -83,7 +79,7 @@ namespace MiaClient
                 }
                 else
                 {
-                    MessageBox.Show("U bent niet gerechtigd voor deze toepassing !");
+                    MessageBox.Show("U bent niet gerechtigd voor deze toepassing !", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {

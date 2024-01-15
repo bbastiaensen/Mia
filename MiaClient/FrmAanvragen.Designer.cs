@@ -64,7 +64,7 @@
             this.lblPlanningsdatum.AutoSize = true;
             this.lblPlanningsdatum.Location = new System.Drawing.Point(655, 87);
             this.lblPlanningsdatum.Name = "lblPlanningsdatum";
-            this.lblPlanningsdatum.Size = new System.Drawing.Size(153, 28);
+            this.lblPlanningsdatum.Size = new System.Drawing.Size(123, 21);
             this.lblPlanningsdatum.TabIndex = 11;
             this.lblPlanningsdatum.Text = "Planningsdatum";
             // 
@@ -73,7 +73,7 @@
             this.lblStatusAanvraag.AutoSize = true;
             this.lblStatusAanvraag.Location = new System.Drawing.Point(14, 87);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
-            this.lblStatusAanvraag.Size = new System.Drawing.Size(153, 28);
+            this.lblStatusAanvraag.Size = new System.Drawing.Size(122, 21);
             this.lblStatusAanvraag.TabIndex = 10;
             this.lblStatusAanvraag.Text = "Status Aanvraag";
             // 
@@ -82,7 +82,7 @@
             this.lblTitel.AutoSize = true;
             this.lblTitel.Location = new System.Drawing.Point(453, 24);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(49, 28);
+            this.lblTitel.Size = new System.Drawing.Size(39, 21);
             this.lblTitel.TabIndex = 9;
             this.lblTitel.Text = "Titel";
             // 
@@ -91,7 +91,7 @@
             this.lblBedrag.AutoSize = true;
             this.lblBedrag.Location = new System.Drawing.Point(453, 86);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(74, 28);
+            this.lblBedrag.Size = new System.Drawing.Size(59, 21);
             this.lblBedrag.TabIndex = 8;
             this.lblBedrag.Text = "Bedrag";
             // 
@@ -100,7 +100,7 @@
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(650, 24);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(158, 28);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(128, 21);
             this.lblFinancieringsjaar.TabIndex = 7;
             this.lblFinancieringsjaar.Text = "Financieringsjaar";
             // 
@@ -109,7 +109,7 @@
             this.lblKostenplaats.AutoSize = true;
             this.lblKostenplaats.Location = new System.Drawing.Point(222, 87);
             this.lblKostenplaats.Name = "lblKostenplaats";
-            this.lblKostenplaats.Size = new System.Drawing.Size(124, 28);
+            this.lblKostenplaats.Size = new System.Drawing.Size(98, 21);
             this.lblKostenplaats.TabIndex = 5;
             this.lblKostenplaats.Text = "Kostenplaats";
             // 
@@ -118,7 +118,7 @@
             this.chbxAanvraagmoment.AutoSize = true;
             this.chbxAanvraagmoment.Location = new System.Drawing.Point(225, 26);
             this.chbxAanvraagmoment.Name = "chbxAanvraagmoment";
-            this.chbxAanvraagmoment.Size = new System.Drawing.Size(191, 32);
+            this.chbxAanvraagmoment.Size = new System.Drawing.Size(154, 25);
             this.chbxAanvraagmoment.TabIndex = 3;
             this.chbxAanvraagmoment.Text = "Aanvraagmoment";
             this.chbxAanvraagmoment.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@
             this.lblGebruiker.AutoSize = true;
             this.lblGebruiker.Location = new System.Drawing.Point(14, 27);
             this.lblGebruiker.Name = "lblGebruiker";
-            this.lblGebruiker.Size = new System.Drawing.Size(98, 28);
+            this.lblGebruiker.Size = new System.Drawing.Size(79, 21);
             this.lblGebruiker.TabIndex = 1;
             this.lblGebruiker.Text = "Gebruiker";
             // 
@@ -151,7 +151,7 @@
             // 
             // FrmAanvragen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 702);
             this.Controls.Add(this.pnlAanvragen);
@@ -159,7 +159,7 @@
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmAanvragen";
-            this.Text = "FrmAanvraagen";
+            this.Text = "Aanvragen";
             this.grbxFilterAanvraag.ResumeLayout(false);
             this.grbxFilterAanvraag.PerformLayout();
             this.ResumeLayout(false);

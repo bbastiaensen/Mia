@@ -42,7 +42,7 @@ namespace MiaClient
 
             
              gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
-             bool actief = gebruiker2.Actief;
+             bool actief = gebruiker2.IsActief;
                 if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
                 {
                     checkActief.Checked = true;
@@ -69,7 +69,7 @@ namespace MiaClient
         {
             if (RadNonActief.Checked == true)
             {
-                LstGebruikers.DataSource = gebruikers.Where(g => g.Actief == false).ToList();
+                LstGebruikers.DataSource = gebruikers.Where(g => g.IsActief == false).ToList();
             }
         }
 
@@ -77,7 +77,7 @@ namespace MiaClient
         {
             if (RadActief.Checked == true)
             {
-                LstGebruikers.DataSource = gebruikers.Where(g => g.Actief == true).ToList();
+                LstGebruikers.DataSource = gebruikers.Where(g => g.IsActief == true).ToList();
             }
         }
 
@@ -95,12 +95,12 @@ namespace MiaClient
             gebruiker1.Gebruikersnaam = TxtGebruikersnaam.Text;
             if (checkActief.Checked == true)
             {
-                gebruiker1.Actief = true;
+                gebruiker1.IsActief = true;
             }
 
             else
             {
-                gebruiker1.Actief = false;
+                gebruiker1.IsActief = false;
             }
 
             GebruikerManager.SaveGebruiker(gebruiker1, false);
@@ -111,12 +111,12 @@ namespace MiaClient
             GebruiksLog gebruiksLog1 = new GebruiksLog();
             gebruiksLog1.Gebruiker = Program.Gebruiker;
             gebruiksLog1.TijdstipActie = DateTime.Now;
-            if (gebruiker1.Actief == true)
+            if (gebruiker1.IsActief == true)
             {
                 gebruiksLog1.OmschrijvingActie = "Gebruiker "+ gebruiker1.Gebruikersnaam.ToString() +" werd geactiveerd.";
             }
 
-            if (gebruiker1.Actief == false)
+            if (gebruiker1.IsActief == false)
             {
                 gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd gedeactiveerd.";
             }
@@ -130,10 +130,6 @@ namespace MiaClient
             this.Hide();
         }
 
-        private void frmGebruikerBeheer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
     }
 
 }

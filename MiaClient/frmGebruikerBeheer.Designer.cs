@@ -51,26 +51,6 @@
             this.LstGebruikers.TabIndex = 0;
             this.LstGebruikers.SelectedIndexChanged += new System.EventHandler(this.LstGebruikers_SelectedIndexChanged);
             // 
-            // BtnPasaan
-            // 
-            this.BtnPasaan.Location = new System.Drawing.Point(148, 304);
-            this.BtnPasaan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.BtnPasaan.Name = "BtnPasaan";
-            this.BtnPasaan.Size = new System.Drawing.Size(135, 35);
-            this.BtnPasaan.TabIndex = 1;
-            this.BtnPasaan.Text = "Aanpassen";
-            this.BtnPasaan.UseVisualStyleBackColor = true;
-            // 
-            // BtnVerwijder
-            // 
-            this.BtnVerwijder.Location = new System.Drawing.Point(9, 304);
-            this.BtnVerwijder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.BtnVerwijder.Name = "BtnVerwijder";
-            this.BtnVerwijder.Size = new System.Drawing.Size(135, 35);
-            this.BtnVerwijder.TabIndex = 2;
-            this.BtnVerwijder.Text = "Verwijderen";
-            this.BtnVerwijder.UseVisualStyleBackColor = true;
-            // 
             // RadActief
             // 
             this.RadActief.AutoSize = true;
