@@ -95,6 +95,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\AanvraagItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AanvraagItem.Designer.cs">
+      <DependentUpon>AanvraagItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GebruikslogItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +155,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\AanvraagItem.resx">
+      <DependentUpon>AanvraagItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GebruikslogItem.resx">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>
     </EmbeddedResource>
