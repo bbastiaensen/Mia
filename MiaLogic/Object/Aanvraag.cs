@@ -12,9 +12,10 @@ namespace MiaLogic.Object
         public string Aanvraagmoment { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
-        public string Planningsdatum { get; set; }
+        public DateTime Planningsdatum { get; set; }
         public string StatusAanvraag { get; set; }
-        public string Bedrag { get; set; }
         public string Kostenplaats { get; set; }
+        public decimal PrijsIndicatieStuk { get; set; }
+        public int AantalStuk { get; set; }
     }
 }
