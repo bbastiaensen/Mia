@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mdiMia));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.aanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +46,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -55,6 +57,7 @@
             this.menuStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aanvragenToolStripMenuItem,
             this.beheerToolStripMenuItem,
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -63,9 +66,17 @@
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
+            // aanvragenToolStripMenuItem
+            // 
+            this.aanvragenToolStripMenuItem.Name = "aanvragenToolStripMenuItem";
+            this.aanvragenToolStripMenuItem.Size = new System.Drawing.Size(97, 25);
+            this.aanvragenToolStripMenuItem.Text = "&Aanvragen";
+            this.aanvragenToolStripMenuItem.Click += new System.EventHandler(this.aanvragenToolStripMenuItem_Click);
+            // 
             // beheerToolStripMenuItem
             // 
             this.beheerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gebruikersToolStripMenuItem,
             this.gebruikslogToolStripMenuItem,
             this.parametersToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
@@ -173,6 +184,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
+            // gebruikersToolStripMenuItem
+            // 
+            this.gebruikersToolStripMenuItem.Name = "gebruikersToolStripMenuItem";
+            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.gebruikersToolStripMenuItem.Text = "Gebruikers";
+            this.gebruikersToolStripMenuItem.Click += new System.EventHandler(this.gebruikersToolStripMenuItem_Click);
+            // 
             // mdiMia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -218,6 +236,8 @@
         private System.Windows.Forms.ToolStripButton gebruiksLogToolStripButton;
         private System.Windows.Forms.ToolStripButton parameterToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem aanvragenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gebruikersToolStripMenuItem;
     }
 }
 

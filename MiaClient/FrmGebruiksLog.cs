@@ -198,5 +198,10 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
+
+        private void pnlGebruiksLogItems_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

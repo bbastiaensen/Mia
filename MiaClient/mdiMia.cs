@@ -20,6 +20,9 @@ namespace MiaClient
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAbout frmAbout;
+        frmAanvraagFormulier frmAanvraagFormulier;
+        public FrmAanvragen frmAanvragen;
+        frmGebruikerBeheer frmGebruikerBeheer;
 
         public mdiMia()
         {
@@ -81,6 +84,26 @@ namespace MiaClient
         private void mdiMia_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {Program.Rol}";
+        }     
+
+        private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmAanvragen == null)
+            {
+                frmAanvragen = new FrmAanvragen();
+                frmAanvragen.MdiParent = this;  
+            }
+            frmAanvragen.Show();
+        }
+
+        private void gebruikersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGebruikerBeheer ==  null)
+            {
+                frmGebruikerBeheer = new frmGebruikerBeheer();
+                frmGebruikerBeheer.MdiParent = this;    
+            }
+            frmGebruikerBeheer.Show();
         }
     }
 }
