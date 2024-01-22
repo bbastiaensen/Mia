@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAanvragen));
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
             this.lblPlanningsdatum = new System.Windows.Forms.Label();
             this.lblStatusAanvraag = new System.Windows.Forms.Label();
@@ -158,6 +159,7 @@
             this.Controls.Add(this.btnNieuweAanvraag);
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAanvragen";
             this.Text = "Aanvragen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAanvragen_FormClosing);
