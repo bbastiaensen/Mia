@@ -80,7 +80,7 @@ namespace MiaClient
 
                 if (tot)
                 {
-                    items = items.Where(gl => gl.TijdstipActie <= Convert.ToDateTime(dtpTot.Text)).ToList();
+                    items = items.Where(gl => gl.TijdstipActie <= (Convert.ToDateTime(dtpTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
                 }
 
                 if (gebruiker)

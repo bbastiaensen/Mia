@@ -160,6 +160,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmAanvragen";
             this.Text = "Aanvragen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAanvragen_FormClosing);
             this.grbxFilterAanvraag.ResumeLayout(false);
             this.grbxFilterAanvraag.PerformLayout();
             this.ResumeLayout(false);
