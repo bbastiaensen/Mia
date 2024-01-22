@@ -27,8 +27,6 @@ namespace MiaClient
         public mdiMia()
         {
             InitializeComponent();
-
-
         }
 
         private void gebruikslogToolStripMenuItem_Click(object sender, EventArgs e)
