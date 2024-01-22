@@ -1,15 +1,15 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MiaLogic.Manager;
-using MiaLogic.Object;
-using System.Configuration;
 
 namespace MiaClient
 {
@@ -40,19 +40,19 @@ namespace MiaClient
             Gebruiker gebruiker2 = new Gebruiker();
             gebruiker1 = (Gebruiker)LstGebruikers.SelectedItem;
 
-            
-             gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
-             bool actief = gebruiker2.IsActief;
-                if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
-                {
-                    checkActief.Checked = true;
-                }
 
-                else
-                {
-                    checkActief.Checked = false;
-                }
-             TxtGebruikersnaam.Text = gebruiker1.Gebruikersnaam;
+            gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
+            bool actief = gebruiker2.IsActief;
+            if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
+            {
+                checkActief.Checked = true;
+            }
+
+            else
+            {
+                checkActief.Checked = false;
+            }
+            TxtGebruikersnaam.Text = gebruiker1.Gebruikersnaam;
         }
 
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
@@ -104,16 +104,16 @@ namespace MiaClient
             }
 
             GebruikerManager.SaveGebruiker(gebruiker1, false);
-            
+
             vullijst();
             RadAlle.Checked = true;
-            MessageBox.Show("Succesvol Bewaart.");
+            MessageBox.Show($"De gebruiker {gebruiker1} is successvol opgeslagen.");
             GebruiksLog gebruiksLog1 = new GebruiksLog();
             gebruiksLog1.Gebruiker = Program.Gebruiker;
             gebruiksLog1.TijdstipActie = DateTime.Now;
             if (gebruiker1.IsActief == true)
             {
-                gebruiksLog1.OmschrijvingActie = "Gebruiker "+ gebruiker1.Gebruikersnaam.ToString() +" werd geactiveerd.";
+                gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd geactiveerd.";
             }
 
             if (gebruiker1.IsActief == false)

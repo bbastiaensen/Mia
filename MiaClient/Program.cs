@@ -103,7 +103,7 @@ namespace MiaClient
 
                 if (aanvragerRol != null)
                 {
-                    RolManager.SaveRolToGebruiker(aanvragerRol, NieuweGebruiker);
+                    //RolManager.SaveRolToGebruiker(aanvragerRol, NieuweGebruiker);// in nieuwegebruiker wordt geen id teruggegeven dus de rol wordt niet gegeven
                     IsAanvrager = true;
                 }
                 else

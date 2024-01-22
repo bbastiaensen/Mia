@@ -81,9 +81,9 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     //query om een rol voor een specifieke gebruiker in de GebruikerRol-tabel in te voegen
-                    objcmd.CommandText = "insert into GebruikerRol (GebruikerId, RolId) values(@gebruikerId, @rolId); ";
-                    objcmd.Parameters.AddWithValue("@gebruikerId", gebruiker.Id);
-                    objcmd.Parameters.AddWithValue("@rolId", rol.Id);
+                    objcmd.CommandText = "insert into GebruikerRol (GebruikerId, RolId) values(@GebruikerId, @RolId); ";
+                    objcmd.Parameters.AddWithValue("@GebruikerId", gebruiker.Id);
+                    objcmd.Parameters.AddWithValue("@RolId", rol.Id);
 
                     objcn.Open();//Open de connectie met de databank
                     objcmd.ExecuteNonQuery();//Voer de query uit
