@@ -37,17 +37,18 @@
             this.TxtGebruikersnaam = new System.Windows.Forms.TextBox();
             this.BtnOpslaan = new System.Windows.Forms.Button();
             this.checkActief = new System.Windows.Forms.CheckBox();
+            this.lblActief = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LstGebruikers
             // 
             this.LstGebruikers.FormattingEnabled = true;
-            this.LstGebruikers.ItemHeight = 28;
+            this.LstGebruikers.ItemHeight = 21;
             this.LstGebruikers.Location = new System.Drawing.Point(16, 21);
             this.LstGebruikers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LstGebruikers.Name = "LstGebruikers";
-            this.LstGebruikers.Size = new System.Drawing.Size(424, 172);
+            this.LstGebruikers.Size = new System.Drawing.Size(424, 130);
             this.LstGebruikers.TabIndex = 0;
             this.LstGebruikers.SelectedIndexChanged += new System.EventHandler(this.LstGebruikers_SelectedIndexChanged);
             // 
@@ -55,9 +56,9 @@
             // 
             this.RadActief.AutoSize = true;
             this.RadActief.Location = new System.Drawing.Point(16, 17);
-            this.RadActief.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RadActief.Margin = new System.Windows.Forms.Padding(2);
             this.RadActief.Name = "RadActief";
-            this.RadActief.Size = new System.Drawing.Size(52, 17);
+            this.RadActief.Size = new System.Drawing.Size(67, 25);
             this.RadActief.TabIndex = 3;
             this.RadActief.Text = "Actief";
             this.RadActief.UseVisualStyleBackColor = true;
@@ -67,10 +68,10 @@
             // 
             this.RadAlle.AutoSize = true;
             this.RadAlle.Checked = true;
-            this.RadAlle.Location = new System.Drawing.Point(29, 128);
+            this.RadAlle.Location = new System.Drawing.Point(16, 84);
             this.RadAlle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadAlle.Name = "RadAlle";
-            this.RadAlle.Size = new System.Drawing.Size(66, 32);
+            this.RadAlle.Size = new System.Drawing.Size(54, 25);
             this.RadAlle.TabIndex = 4;
             this.RadAlle.TabStop = true;
             this.RadAlle.Text = "Alle";
@@ -80,10 +81,10 @@
             // RadNonActief
             // 
             this.RadNonActief.AutoSize = true;
-            this.RadNonActief.Location = new System.Drawing.Point(29, 82);
+            this.RadNonActief.Location = new System.Drawing.Point(16, 49);
             this.RadNonActief.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RadNonActief.Name = "RadNonActief";
-            this.RadNonActief.Size = new System.Drawing.Size(125, 32);
+            this.RadNonActief.Size = new System.Drawing.Size(100, 25);
             this.RadNonActief.TabIndex = 5;
             this.RadNonActief.Text = "Niet Actief";
             this.RadNonActief.UseVisualStyleBackColor = true;
@@ -99,7 +100,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(195, 172);
+            this.groupBox1.Size = new System.Drawing.Size(195, 137);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -108,23 +109,23 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 245);
+            this.label2.Location = new System.Drawing.Point(12, 177);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 28);
+            this.label2.Size = new System.Drawing.Size(132, 21);
             this.label2.TabIndex = 9;
             this.label2.Text = "Gebruikersnaam: ";
             // 
             // TxtGebruikersnaam
             // 
-            this.TxtGebruikersnaam.Location = new System.Drawing.Point(17, 276);
+            this.TxtGebruikersnaam.Location = new System.Drawing.Point(150, 174);
             this.TxtGebruikersnaam.Name = "TxtGebruikersnaam";
             this.TxtGebruikersnaam.ReadOnly = true;
-            this.TxtGebruikersnaam.Size = new System.Drawing.Size(423, 34);
+            this.TxtGebruikersnaam.Size = new System.Drawing.Size(493, 29);
             this.TxtGebruikersnaam.TabIndex = 12;
             // 
             // BtnOpslaan
             // 
-            this.BtnOpslaan.Location = new System.Drawing.Point(17, 454);
+            this.BtnOpslaan.Location = new System.Drawing.Point(223, 461);
             this.BtnOpslaan.Name = "BtnOpslaan";
             this.BtnOpslaan.Size = new System.Drawing.Size(208, 57);
             this.BtnOpslaan.TabIndex = 14;
@@ -135,18 +136,28 @@
             // checkActief
             // 
             this.checkActief.AutoSize = true;
-            this.checkActief.Location = new System.Drawing.Point(17, 316);
+            this.checkActief.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkActief.Location = new System.Drawing.Point(150, 209);
             this.checkActief.Name = "checkActief";
-            this.checkActief.Size = new System.Drawing.Size(84, 32);
+            this.checkActief.Size = new System.Drawing.Size(15, 14);
             this.checkActief.TabIndex = 15;
-            this.checkActief.Text = "Actief";
             this.checkActief.UseVisualStyleBackColor = true;
+            // 
+            // lblActief
+            // 
+            this.lblActief.AutoSize = true;
+            this.lblActief.Location = new System.Drawing.Point(12, 205);
+            this.lblActief.Name = "lblActief";
+            this.lblActief.Size = new System.Drawing.Size(52, 21);
+            this.lblActief.TabIndex = 16;
+            this.lblActief.Text = "Actief:";
             // 
             // frmGebruikerBeheer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 530);
+            this.ClientSize = new System.Drawing.Size(661, 530);
+            this.Controls.Add(this.lblActief);
             this.Controls.Add(this.checkActief);
             this.Controls.Add(this.BtnOpslaan);
             this.Controls.Add(this.TxtGebruikersnaam);
@@ -156,7 +167,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGebruikerBeheer";
-            this.Text = "frmGebruikerBeheer";
+            this.Text = "Beheer gebruikers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGebruikerBeheer_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruikerBeheer_Load);
             this.groupBox1.ResumeLayout(false);
@@ -177,5 +188,6 @@
         private System.Windows.Forms.TextBox TxtGebruikersnaam;
         private System.Windows.Forms.Button BtnOpslaan;
         private System.Windows.Forms.CheckBox checkActief;
+        private System.Windows.Forms.Label lblActief;
     }
 }

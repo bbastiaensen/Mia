@@ -75,5 +75,13 @@ namespace MiaClient
         {
 
         }
+
+        private void FrmAanvragen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
+            //keren naast elkaar kan geopend worden.
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
     }
 }
