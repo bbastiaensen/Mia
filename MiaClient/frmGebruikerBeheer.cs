@@ -91,7 +91,7 @@ namespace MiaClient
             List<Rol> rollenlijst = RolManager.GetRollen();
             foreach (Rol rol in rollenlijst)
             {
-                CheckBox chkRol = (CheckBox)(this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault());
+                CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
                 chkRol.Checked = false;
             }
 
@@ -100,7 +100,7 @@ namespace MiaClient
 
             foreach (Rol rol in rollen)
             {
-                CheckBox chkRol = (CheckBox)(this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault());
+                CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
                 chkRol.Checked = true;
             }
         }
@@ -153,41 +153,54 @@ namespace MiaClient
 
         private void BtnOpslaan_Click(object sender, EventArgs e)
         {
-            Gebruiker gebruiker1 = new Gebruiker();
-            gebruiker1.Id = Convert.ToInt32(LstGebruikers.SelectedValue);
-            gebruiker1.Gebruikersnaam = TxtGebruikersnaam.Text;
-            if (checkActief.Checked == true)
+            try
             {
-                gebruiker1.IsActief = true;
-            }
+                Gebruiker gebruiker = new Gebruiker();
+                gebruiker.Id = Convert.ToInt32(LstGebruikers.SelectedValue);
+                gebruiker.Gebruikersnaam = TxtGebruikersnaam.Text;
+                gebruiker.IsActief = checkActief.Checked;
 
-            else
+                GebruikerManager.SaveGebruiker(gebruiker, false);
+
+                //Bewaren van de rollen voor deze gebruiker. In 2 stappen:
+                //Eerst alle bestaande rollen verwijderen.
+                RolManager.DeleteRollenFromGebruiker(gebruiker);
+                //Nadien alle geselecteerde rollen (opnieuw) toevoegen.
+                List<Rol> rollenlijst = RolManager.GetRollen();
+                foreach (Rol rol in rollenlijst)
+                {
+                    CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
+                    if (chkRol.Checked)
+                    {
+                        RolManager.SaveRolToGebruiker(rol, gebruiker);
+                    }
+                }
+
+                BindLstGebruikers();
+                LstGebruikers.SelectedValue = gebruiker.Id;
+                RadAlle.Checked = true;
+
+                MessageBox.Show("Succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GebruiksLog gebruiksLog1 = new GebruiksLog();
+                gebruiksLog1.Gebruiker = Program.Gebruiker;
+                gebruiksLog1.TijdstipActie = DateTime.Now;
+                if (gebruiker.IsActief == true)
+                {
+                    gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker.Gebruikersnaam.ToString() + " werd geactiveerd en/of rollen geupdate.";
+                }
+
+                if (gebruiker.IsActief == false)
+                {
+                    gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker.Gebruikersnaam.ToString() + " werd gedeactiveerd en/of rollen geupdate.";
+                }
+
+                GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+
+            }
+            catch (Exception ex)
             {
-                gebruiker1.IsActief = false;
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            GebruikerManager.SaveGebruiker(gebruiker1, false);
-            
-            BindLstGebruikers();
-            RadAlle.Checked = true;
-
-            //TODO: Bewaren van de rollen voor deze gebruiker
-
-            MessageBox.Show("Succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            GebruiksLog gebruiksLog1 = new GebruiksLog();
-            gebruiksLog1.Gebruiker = Program.Gebruiker;
-            gebruiksLog1.TijdstipActie = DateTime.Now;
-            if (gebruiker1.IsActief == true)
-            {
-                gebruiksLog1.OmschrijvingActie = "Gebruiker "+ gebruiker1.Gebruikersnaam.ToString() +" werd geactiveerd.";
-            }
-
-            if (gebruiker1.IsActief == false)
-            {
-                gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd gedeactiveerd.";
-            }
-
-            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
 
         private void frmGebruikerBeheer_FormClosing(object sender, FormClosingEventArgs e)

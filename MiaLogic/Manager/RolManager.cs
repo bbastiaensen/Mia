@@ -89,10 +89,8 @@ namespace MiaLogic.Manager
                     objcmd.ExecuteNonQuery();//Voer de query uit
                 }
             }
-
-
-
         }
+        
         public static Rol GetRolByName(string rolNaam)
         {
             Rol rol = null;
@@ -121,6 +119,25 @@ namespace MiaLogic.Manager
                 }
             }
             return rol;
+        }
+
+        public static void DeleteRollenFromGebruiker(Gebruiker gebruiker)
+        {
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString; //Initialiseer de connectionstring
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    //query om een rol voor een specifieke gebruiker in de GebruikerRol-tabel in te voegen
+                    objcmd.CommandText = "delete from GebruikerRol where GebruikerId = @GebruikerId;";
+                    objcmd.Parameters.AddWithValue("@gebruikerId", gebruiker.Id);
+
+                    objcn.Open();//Open de connectie met de databank
+                    objcmd.ExecuteNonQuery();//Voer de query uit
+                }
+            }
         }
 
     }
