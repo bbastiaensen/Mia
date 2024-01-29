@@ -53,8 +53,8 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     //query om rollen voor een specifieke gebruiker op te halen op basis van gebruikers-id
-                    objcmd.CommandText = "select * from Rol r" + " inner join GebruikerRol Gr on r.Id = Gr.RolId" + " where Gr.gebruikerId = @gebruikerId;";
-                    objcmd.Parameters.AddWithValue("@gebruikerId", gebruiker.Id);
+                    objcmd.CommandText = "select * from Rol r" + " inner join GebruikerRol Gr on r.Id = Gr.RolId" + " where Gr.GebruikerId = @GebruikerId;";
+                    objcmd.Parameters.AddWithValue("GebruikerId", gebruiker.Id);
 
                     objcn.Open(); //Open de connectie met de databank
 
