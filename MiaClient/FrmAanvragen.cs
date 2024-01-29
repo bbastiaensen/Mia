@@ -21,7 +21,7 @@ namespace MiaClient
         public FrmAanvragen()
         {
             InitializeComponent();
-            //BindAanvraag();
+            
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
@@ -44,16 +44,14 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                string titel = av.Titel;
-                string substring = titel.Substring(0, 20);
 
-                //AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, substring, av.Financieringsjaar, av.StatusAanvraag, av.Kostenplaats, av.Bedrag, av.Planningsdatum, t % 2 == 0);
-                //avi.Location = new System.Drawing.Point(xPos, yPos);
-                //avi.Name = "aanvraagSelection" + t;
-                //avi.Size = new System.Drawing.Size(881, 33);
-                //avi.TabIndex = t + 8;
-                //avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                //this.pnlAanvragen.Controls.Add(avi);
+                AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, av.Bedrag, t % 2 == 0);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "aanvraagSelection" + t;
+                avi.Size = new System.Drawing.Size(881, 33);
+                avi.TabIndex = t + 8;
+                avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
                 if(t < 10)
@@ -64,7 +62,7 @@ namespace MiaClient
         }
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
-            //AanvraagItem geselecteerd = (AanvraagItem)sender;
+            AanvraagItem geselecteerd = (AanvraagItem)sender;
 
             //txtIdDetail.Text = geselecteerd.Id.ToString();
             //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
