@@ -85,31 +85,41 @@ namespace MiaClient
             this.Size = new System.Drawing.Size(574, frmHeight);
         }
 
+        private void BindRollenToGebruiker(Gebruiker gebruiker)
+        {
+            //Stap 1 - Eventueel geselecteerde rollen van vorige gebruiker wissen
+            List<Rol> rollenlijst = RolManager.GetRollen();
+            foreach (Rol rol in rollenlijst)
+            {
+                CheckBox chkRol = (CheckBox)(this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault());
+                chkRol.Checked = false;
+            }
+
+            //Stap 2 - Rollen van huidige gebruiker selecteren
+            List<Rol> rollen = RolManager.GetRollenByUser(gebruiker);
+
+            foreach (Rol rol in rollen)
+            {
+                CheckBox chkRol = (CheckBox)(this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault());
+                chkRol.Checked = true;
+            }
+        }
+
         private void LstGebruikers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Gebruiker gebruiker1 = new Gebruiker();
-            Gebruiker gebruiker2 = new Gebruiker();
-            gebruiker1 = (Gebruiker)LstGebruikers.SelectedItem;
+            Gebruiker gebruiker = (Gebruiker)LstGebruikers.SelectedItem;
 
-            
-             gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
-             bool actief = gebruiker2.IsActief;
-                if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
-                {
-                    checkActief.Checked = true;
-                }
+            checkActief.Checked = gebruiker.IsActief;
+            TxtGebruikersnaam.Text = gebruiker.Gebruikersnaam;
 
-                else
-                {
-                    checkActief.Checked = false;
-                }
-             TxtGebruikersnaam.Text = gebruiker1.Gebruikersnaam;
+            BindRollenToGebruiker(gebruiker);
         }
 
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
         {
-            BindLstGebruikers();
             CreateUI();
+            BindLstGebruikers();
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -160,6 +170,9 @@ namespace MiaClient
             
             BindLstGebruikers();
             RadAlle.Checked = true;
+
+            //TODO: Bewaren van de rollen voor deze gebruiker
+
             MessageBox.Show("Succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GebruiksLog gebruiksLog1 = new GebruiksLog();
             gebruiksLog1.Gebruiker = Program.Gebruiker;
