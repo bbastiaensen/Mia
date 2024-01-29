@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MiaLogic.Manager;
 using MiaLogic.Object;
 using System.Configuration;
+using MiaClient.UserControls;
 
 namespace MiaClient
 {
@@ -17,6 +18,9 @@ namespace MiaClient
     {
         List<Gebruiker> gebruikers;
 
+        int xPos = 10;
+        int yPos = 20;
+        int grpHeight = 26;
 
         public frmGebruikerBeheer()
         {
@@ -25,13 +29,60 @@ namespace MiaClient
 
         }
 
-        public void vullijst()
+        public void BindLstGebruikers()
         {
             //vult de lijst van gebruikers
             gebruikers = GebruikerManager.GetGebruikers();
             LstGebruikers.DisplayMember = "Gebruikersnaam";
             LstGebruikers.ValueMember = "Id";
             LstGebruikers.DataSource = gebruikers;
+        }
+
+        /// <summary>
+        /// Haalt alle rollen uit de databank op en toont deze op het scherm.
+        /// Het instellen van de juiste rollen voor de huidige gebruiker is de
+        /// verantwoordelijkheid van een ander stuk code.
+        /// </summary>
+        private void BindRollen()
+        {
+            List<Rol> rollen = RolManager.GetRollen();
+
+            
+            int t = 0;
+
+            this.grpRollen.Controls.Clear();
+
+            foreach (Rol rol in rollen)
+            {
+                CheckBox chk = new CheckBox();
+                chk.Location = new System.Drawing.Point(xPos, yPos);
+                chk.Name = "chkRol" + rol.Id;
+                chk.Text = rol.Naam;
+                chk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                chk.Size = new System.Drawing.Size(150, 33);
+                chk.TabIndex = t + 8;
+                this.grpRollen.Controls.Add(chk);
+
+                //Voorbereiden voor de volgende control
+                t++;
+                yPos += 30;
+                grpHeight += 30;
+                this.grpRollen.Size = new System.Drawing.Size(528, grpHeight);
+            }
+        }
+
+        private void CreateUI()
+        {
+            //Deel 1 is hard-coded
+            //Deel 2 is het tonen van de rollen
+            BindRollen();
+
+            //Deel 3 is de "Bewaren" button positioneren en de finale grootte van het formulier instellen.
+            int yPosBtn = grpRollen.Location.Y + grpHeight + 10;
+            BtnOpslaan.Location = new System.Drawing.Point(177, yPosBtn);
+
+            int frmHeight = yPosBtn + BtnOpslaan.Size.Height + 45;
+            this.Size = new System.Drawing.Size(574, frmHeight);
         }
 
         private void LstGebruikers_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,7 +108,8 @@ namespace MiaClient
 
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
         {
-            vullijst();
+            BindLstGebruikers();
+            CreateUI();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -88,6 +140,7 @@ namespace MiaClient
                 LstGebruikers.DataSource = gebruikers;
             }
         }
+
         private void BtnOpslaan_Click(object sender, EventArgs e)
         {
             Gebruiker gebruiker1 = new Gebruiker();
@@ -105,9 +158,9 @@ namespace MiaClient
 
             GebruikerManager.SaveGebruiker(gebruiker1, false);
             
-            vullijst();
+            BindLstGebruikers();
             RadAlle.Checked = true;
-            MessageBox.Show("Succesvol Bewaart.");
+            MessageBox.Show("Succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GebruiksLog gebruiksLog1 = new GebruiksLog();
             gebruiksLog1.Gebruiker = Program.Gebruiker;
             gebruiksLog1.TijdstipActie = DateTime.Now;

@@ -24,7 +24,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objcmd = new SqlCommand())
                 {
                     objcmd.Connection = objcn;
-                    objcmd.CommandText = "Select * from Rol;";//Een query dat alle rollen ophaald
+                    objcmd.CommandText = "Select * from Rol order by Naam asc;";//Een query dat alle rollen ophaald
 
                     objcn.Open(); //Open de verbinding met de databank
 
