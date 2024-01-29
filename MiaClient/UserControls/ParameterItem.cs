@@ -14,6 +14,8 @@ namespace MiaClient.UserControls
 
         public event EventHandler ParameterSelected;
 
+        public event EventHandler ParameterDeleted;
+
         public ParameterItem()
         {
             InitializeComponent();
@@ -42,11 +44,22 @@ namespace MiaClient.UserControls
             }
         }
 
-        private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             if (ParameterSelected != null)
             {
                 ParameterSelected(this, null);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Ben je zeker dat je deze parameter wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (ParameterDeleted != null)
+                {
+                    ParameterDeleted(this, null);
+                }
             }
         }
     }

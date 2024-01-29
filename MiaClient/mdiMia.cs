@@ -103,5 +103,15 @@ namespace MiaClient
             }
             frmGebruikerBeheer.Show();
         }
+
+        private void aanvragenToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmAanvragen == null)
+            {
+                frmAanvragen = new FrmAanvragen();
+                frmAanvragen.MdiParent = this;
+            }
+            frmAanvragen.Show();
+        }
     }
 }

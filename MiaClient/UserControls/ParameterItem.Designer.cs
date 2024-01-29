@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.llblDetails = new System.Windows.Forms.LinkLabel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParameterItem));
             this.lblCode = new System.Windows.Forms.Label();
             this.lblWaarde = new System.Windows.Forms.Label();
             this.lblEenheid = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // llblDetails
-            // 
-            this.llblDetails.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblDetails.Location = new System.Drawing.Point(3, 2);
-            this.llblDetails.Name = "llblDetails";
-            this.llblDetails.Size = new System.Drawing.Size(71, 23);
-            this.llblDetails.TabIndex = 3;
-            this.llblDetails.TabStop = true;
-            this.llblDetails.Text = "Details";
-            this.llblDetails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblDetails_LinkClicked);
             // 
             // lblCode
             // 
@@ -79,15 +70,48 @@
             this.lblId.TabIndex = 7;
             this.lblId.Visible = false;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(3, 0);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnEdit.TabIndex = 8;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(36, 0);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(27, 27);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ParameterItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblEenheid);
             this.Controls.Add(this.lblWaarde);
             this.Controls.Add(this.lblCode);
-            this.Controls.Add(this.llblDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ParameterItem";
@@ -98,11 +122,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.LinkLabel llblDetails;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.Label lblWaarde;
         private System.Windows.Forms.Label lblEenheid;
         private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
