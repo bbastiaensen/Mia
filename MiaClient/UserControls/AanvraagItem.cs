@@ -21,6 +21,7 @@ namespace MiaClient.UserControls
         public string Kostenplaats { get; set; }
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
+        public double Bedrag { get; set; }
         public AanvraagItem()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace MiaClient.UserControls
             StatusAanvraag = statuaaanvraag;
             Kostenplaats = kostenplaats;
             PrijsIndicatieStuk = prijsindicatiestuk;
-            AantalStuk = AantalStuk;
+            AantalStuk = aantalstuk;
 
             SetAanvraagLogItemWaarden();
         }
@@ -67,6 +68,11 @@ namespace MiaClient.UserControls
             //{
             //    Aanvraag6LogItemSelected(this, null);
             //}
+        }
+
+        private void AanvraagItem_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
