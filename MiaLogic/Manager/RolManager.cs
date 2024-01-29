@@ -73,6 +73,7 @@ namespace MiaLogic.Manager
 
         public static void SaveRolToGebruiker(Rol rol, Gebruiker gebruiker)
         {
+
             using (SqlConnection objcn = new SqlConnection())
             {
                 objcn.ConnectionString = ConnectionString; //Initialiseer de connectionstring
@@ -81,9 +82,9 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     //query om een rol voor een specifieke gebruiker in de GebruikerRol-tabel in te voegen
-                    objcmd.CommandText = "insert into GebruikerRol (GebruikerId, RolId) values(@GebruikerId, @RolId); ";
-                    objcmd.Parameters.AddWithValue("@GebruikerId", gebruiker.Id);
-                    objcmd.Parameters.AddWithValue("@RolId", rol.Id);
+                    objcmd.CommandText = "insert into GebruikerRol (GebruikerId, RolId) values(@gebruikerid, @rolid); ";
+                    objcmd.Parameters.AddWithValue("@gebruikerid", gebruiker.Id);
+                    objcmd.Parameters.AddWithValue("@rolid", rol.Id);
 
                     objcn.Open();//Open de connectie met de databank
                     objcmd.ExecuteNonQuery();//Voer de query uit

@@ -55,9 +55,6 @@ namespace MiaClient
         {
             try
             {
-
-
-
                 string gebruikersnaam = Environment.UserName;
                 Gebruiker gebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(gebruikersnaam);
 
@@ -152,6 +149,8 @@ namespace MiaClient
                 GebruikerManager.SaveGebruiker(nieuweGebruiker, true);
 
                 Gebruiker = nieuweGebruiker.Gebruikersnaam;
+
+                nieuweGebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(nieuweGebruiker.Gebruikersnaam);
 
                 Rol aanvragerRol = RolManager.GetRolByName("Aanvrager");
 

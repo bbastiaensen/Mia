@@ -35,7 +35,7 @@ namespace MiaLogic.Manager
 
                     while (objRea.Read())
                     {
-                        if(returnlist == null)
+                        if (returnlist == null)
                         {
                             returnlist = new List<Aanvraag>();
                         }
@@ -51,11 +51,11 @@ namespace MiaLogic.Manager
                         a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
 
-                        
+
                         returnlist.Add(a);
                     }
                 }
-            }           
+            }
             return returnlist;
         }
     }

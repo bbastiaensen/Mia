@@ -102,8 +102,10 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
+#if DEBUG
             string rol = GetRol();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {rol}";
+#endif
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
