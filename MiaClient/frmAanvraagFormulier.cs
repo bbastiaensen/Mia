@@ -15,26 +15,14 @@ namespace MiaClient
         public frmAanvraagFormulier()
         {
             InitializeComponent();
+            vulFormulier();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        public void vulFormulier()
         {
-
+            txtGebruiker.Text = Program.Gebruiker;
+            txtAanvraagmoment.Text = System.DateTime.Now.Date.ToString();
         }
 
-        private void tabPage_Voorstellen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage_Offertes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

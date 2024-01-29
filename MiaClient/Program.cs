@@ -93,7 +93,7 @@ namespace MiaClient
             else
             {//De nieuwe gebruiker moet nog toegevoegd worden als log
                 Gebruiker NieuweGebruiker = new Gebruiker();
-                NieuweGebruiker.Gebruikersnaam = gebruikersnaam; //Als die niet bestaat word die aangemaakt
+                NieuweGebruiker.Gebruikersnaam = gebruikersnaam; //Als die niet bestaat wordt die aangemaakt
 
                 GebruikerManager.SaveGebruiker(NieuweGebruiker, true);
 
