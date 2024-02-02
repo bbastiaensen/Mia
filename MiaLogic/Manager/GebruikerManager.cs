@@ -24,7 +24,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objcmd = new SqlCommand())
                 {
                     objcmd.Connection = objcn;
-                    objcmd.CommandText = "Select * from Gebruiker;"; //Haal alle info van alle gebruikers op
+                    objcmd.CommandText = "Select * from Gebruiker order by Gebruikersnaam asc;"; //Haal alle info van alle gebruikers op
 
                     objcn.Open(); //Open de connectie met de databank
 

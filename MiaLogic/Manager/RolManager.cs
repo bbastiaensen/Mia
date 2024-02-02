@@ -24,7 +24,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objcmd = new SqlCommand())
                 {
                     objcmd.Connection = objcn;
-                    objcmd.CommandText = "Select * from Rol;";//Een query dat alle rollen ophaald
+                    objcmd.CommandText = "Select * from Rol order by Naam asc;";//Een query dat alle rollen ophaald
 
                     objcn.Open(); //Open de verbinding met de databank
 
@@ -43,7 +43,7 @@ namespace MiaLogic.Manager
 
         public static List<Rol> GetRollenByUser(Gebruiker gebruiker)
         {
-            List<Rol> rollen = new List<Rol>(); //List om de rollen van een specifieke gebruiker op te slaan
+            List<Rol> rollen = new List<Rol>();
 
             using (SqlConnection objcn = new SqlConnection())
             {
@@ -53,8 +53,8 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     //query om rollen voor een specifieke gebruiker op te halen op basis van gebruikers-id
-                    objcmd.CommandText = "select * from Rol r" + " inner join GebruikerRol Gr on r.Id = Gr.RolId" + " where Gr.GebruikerId = @GebruikerId;";
-                    objcmd.Parameters.AddWithValue("GebruikerId", gebruiker.Id);
+                    objcmd.CommandText = "select * from Rol r inner join GebruikerRol Gr on r.Id = Gr.RolId" + " where Gr.gebruikerId = @gebruikerId;";
+                    objcmd.Parameters.AddWithValue("@gebruikerId", gebruiker.Id);
 
                     objcn.Open(); //Open de connectie met de databank
 
@@ -90,10 +90,8 @@ namespace MiaLogic.Manager
                     objcmd.ExecuteNonQuery();//Voer de query uit
                 }
             }
-
-
-
         }
+        
         public static Rol GetRolByName(string rolNaam)
         {
             Rol rol = null;
@@ -122,6 +120,25 @@ namespace MiaLogic.Manager
                 }
             }
             return rol;
+        }
+
+        public static void DeleteRollenFromGebruiker(Gebruiker gebruiker)
+        {
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString; //Initialiseer de connectionstring
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    //query om een rol voor een specifieke gebruiker in de GebruikerRol-tabel in te voegen
+                    objcmd.CommandText = "delete from GebruikerRol where GebruikerId = @GebruikerId;";
+                    objcmd.Parameters.AddWithValue("@gebruikerId", gebruiker.Id);
+
+                    objcn.Open();//Open de connectie met de databank
+                    objcmd.ExecuteNonQuery();//Voer de query uit
+                }
+            }
         }
 
     }

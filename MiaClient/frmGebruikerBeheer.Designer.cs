@@ -38,6 +38,7 @@
             this.BtnOpslaan = new System.Windows.Forms.Button();
             this.checkActief = new System.Windows.Forms.CheckBox();
             this.lblActief = new System.Windows.Forms.Label();
+            this.grpRollen = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.LstGebruikers.Location = new System.Drawing.Point(16, 21);
             this.LstGebruikers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LstGebruikers.Name = "LstGebruikers";
-            this.LstGebruikers.Size = new System.Drawing.Size(424, 130);
+            this.LstGebruikers.Size = new System.Drawing.Size(325, 130);
             this.LstGebruikers.TabIndex = 0;
             this.LstGebruikers.SelectedIndexChanged += new System.EventHandler(this.LstGebruikers_SelectedIndexChanged);
             // 
@@ -73,7 +74,6 @@
             this.RadAlle.Name = "RadAlle";
             this.RadAlle.Size = new System.Drawing.Size(54, 25);
             this.RadAlle.TabIndex = 4;
-            this.RadAlle.TabStop = true;
             this.RadAlle.Text = "Alle";
             this.RadAlle.UseVisualStyleBackColor = true;
             this.RadAlle.CheckedChanged += new System.EventHandler(this.RadAlle_CheckedChanged);
@@ -96,7 +96,7 @@
             this.groupBox1.Controls.Add(this.RadAlle);
             this.groupBox1.Controls.Add(this.RadNonActief);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(448, 14);
+            this.groupBox1.Location = new System.Drawing.Point(349, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -112,7 +112,7 @@
             this.label2.Location = new System.Drawing.Point(12, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 21);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Gebruikersnaam: ";
             // 
             // TxtGebruikersnaam
@@ -120,14 +120,15 @@
             this.TxtGebruikersnaam.Location = new System.Drawing.Point(150, 174);
             this.TxtGebruikersnaam.Name = "TxtGebruikersnaam";
             this.TxtGebruikersnaam.ReadOnly = true;
-            this.TxtGebruikersnaam.Size = new System.Drawing.Size(493, 29);
+            this.TxtGebruikersnaam.Size = new System.Drawing.Size(394, 29);
             this.TxtGebruikersnaam.TabIndex = 12;
+            this.TxtGebruikersnaam.TabStop = false;
             // 
             // BtnOpslaan
             // 
-            this.BtnOpslaan.Location = new System.Drawing.Point(223, 461);
+            this.BtnOpslaan.Location = new System.Drawing.Point(177, 461);
             this.BtnOpslaan.Name = "BtnOpslaan";
-            this.BtnOpslaan.Size = new System.Drawing.Size(208, 57);
+            this.BtnOpslaan.Size = new System.Drawing.Size(204, 57);
             this.BtnOpslaan.TabIndex = 14;
             this.BtnOpslaan.Text = "Bewaren";
             this.BtnOpslaan.UseVisualStyleBackColor = true;
@@ -140,7 +141,7 @@
             this.checkActief.Location = new System.Drawing.Point(150, 209);
             this.checkActief.Name = "checkActief";
             this.checkActief.Size = new System.Drawing.Size(15, 14);
-            this.checkActief.TabIndex = 15;
+            this.checkActief.TabIndex = 1;
             this.checkActief.UseVisualStyleBackColor = true;
             // 
             // lblActief
@@ -152,11 +153,21 @@
             this.lblActief.TabIndex = 16;
             this.lblActief.Text = "Actief:";
             // 
+            // grpRollen
+            // 
+            this.grpRollen.Location = new System.Drawing.Point(16, 230);
+            this.grpRollen.Name = "grpRollen";
+            this.grpRollen.Size = new System.Drawing.Size(528, 26);
+            this.grpRollen.TabIndex = 17;
+            this.grpRollen.TabStop = false;
+            this.grpRollen.Text = "Rollen";
+            // 
             // frmGebruikerBeheer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 530);
+            this.ClientSize = new System.Drawing.Size(558, 530);
+            this.Controls.Add(this.grpRollen);
             this.Controls.Add(this.lblActief);
             this.Controls.Add(this.checkActief);
             this.Controls.Add(this.BtnOpslaan);
@@ -166,6 +177,7 @@
             this.Controls.Add(this.LstGebruikers);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "frmGebruikerBeheer";
             this.Text = "Beheer gebruikers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGebruikerBeheer_FormClosing);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Button BtnOpslaan;
         private System.Windows.Forms.CheckBox checkActief;
         private System.Windows.Forms.Label lblActief;
+        private System.Windows.Forms.GroupBox grpRollen;
     }
 }
