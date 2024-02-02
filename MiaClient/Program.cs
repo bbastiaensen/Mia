@@ -10,6 +10,7 @@ namespace MiaClient
 {
     internal static class Program
     {
+        //De globale variabelen
         public static string Gebruiker { get; set; }
         public static bool IsAanvrager { get; set; }
         public static bool IsAankoper { get; set; }
@@ -37,8 +38,7 @@ namespace MiaClient
         {
             try
             {
-
-
+                //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
                 GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
@@ -55,25 +55,25 @@ namespace MiaClient
         {
             try
             {
-                string gebruikersnaam = Environment.UserName;
+                string gebruikersnaam = Environment.UserName;//Haalt de windows gebruikersnaam op
                 Gebruiker gebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(gebruikersnaam);
 
-                if (gebruiker != null)
+                if (gebruiker != null)//Zoekt of de gebruiker bestaat
                 {
                     Gebruiker = gebruiker.Gebruikersnaam;
 
-                    if (gebruiker.IsActief)
+                    if (gebruiker.IsActief)//als de gebruiker al bestaat : kijk volgende comment
                     {
-                        SetUserRoles(gebruiker);
+                        SetUserRoles(gebruiker);//legt de rollen van de gebruiker
                     }
                     else
                     {
-                        HandleInactiveUser(gebruikersnaam);
+                        HandleInactiveUser(gebruikersnaam);//Als deze inactief roept het het deelprobleem op voor inactieve gebruikers
                     }
                 }
                 else
                 {
-                    CreateNewUser(gebruikersnaam);
+                    CreateNewUser(gebruikersnaam);//Als de gebruiker nog niet bestaat roept het het deelprobleem op om een nieuwe gebruiker aan te maken
                 }
             }
             catch (Exception ex)
@@ -90,11 +90,11 @@ namespace MiaClient
             {
                 List<Rol> rollenVanGebruiker = RolManager.GetRollenByUser(gebruiker);
 
-                if (rollenVanGebruiker.Count > 0)
+                if (rollenVanGebruiker.Count > 0)//Als de gebruiker meer als 0 rollen heeft
                 {
                     foreach (var rol in rollenVanGebruiker)
                     {
-                        switch (rol.Naam)
+                        switch (rol.Naam)//Deze cycled door de rollen en kijkt of de gebruiker ze heeft, als dat zo is wordt de rol op true gezet
                         {
                             case "Aanvrager":
                                 IsAanvrager = true;
@@ -111,10 +111,10 @@ namespace MiaClient
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Error");
-                }
+                //else
+                //{
+                //    MessageBox.Show("Error");
+                //}
             }
             catch (Exception ex)
             { MessageBox.Show($"Error in SetuserRoles : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -126,13 +126,13 @@ namespace MiaClient
             {
                 MessageBox.Show("U bent niet gerechtigd voor deze toepassing !", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
                 {
                     Gebruiker = gebruikersnaam,
                     TijdstipActie = DateTime.Now,
                     OmschrijvingActie = $"Deze niet-actieve gebruiker: {gebruikersnaam} probeerde aan te melden."
                 }, true);
-                Environment.Exit(0);
+                Environment.Exit(0);//het programma wordt afgesloten
             }
             catch (Exception ex)
             {
@@ -145,20 +145,20 @@ namespace MiaClient
         {
             try
             {
-                Gebruiker nieuweGebruiker = new Gebruiker { Gebruikersnaam = gebruikersnaam };
-                GebruikerManager.SaveGebruiker(nieuweGebruiker, true);
+                Gebruiker nieuweGebruiker = new Gebruiker { Gebruikersnaam = gebruikersnaam }; //De naam van de nnieuwe gebruiker wordt de windows naam
+                GebruikerManager.SaveGebruiker(nieuweGebruiker, true); //de gebruiker wordt aangemaakt en IsActive wordt op true gezet
 
-                Gebruiker = nieuweGebruiker.Gebruikersnaam;
+                Gebruiker = nieuweGebruiker.Gebruikersnaam; //De gebruikersnaam wordt in een nieuwe variable gezet
 
-                nieuweGebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(nieuweGebruiker.Gebruikersnaam);
+                nieuweGebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(nieuweGebruiker.Gebruikersnaam); //De gebruiker wordt gezocht in de databank
 
-                Rol aanvragerRol = RolManager.GetRolByName("Aanvrager");
+                Rol aanvragerRol = RolManager.GetRolByName("Aanvrager"); //De rol wordt uit de databank gezocht
 
                 if (aanvragerRol != null)
                 {
                     IsAanvrager = true;
 
-                    // Use SaveRolToGebruiker to associate the role with the new user
+                    //Het deelprobleem wordt opgeroepen om de rol aan de gebruiker te geven
                     RolManager.SaveRolToGebruiker(aanvragerRol, nieuweGebruiker);
                 }
 
