@@ -1,4 +1,5 @@
-﻿using MiaLogic.Manager;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MiaLogic.Manager;
-using MiaLogic.Object;
-using System.Configuration;
-using MiaClient.UserControls;
 
 namespace MiaClient
 {
@@ -50,8 +47,7 @@ namespace MiaClient
         {
             List<Rol> rollen = RolManager.GetRollen();
 
-
-            gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
+            Gebruiker gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
             bool actief = gebruiker2.IsActief;
             if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
             {
@@ -62,16 +58,15 @@ namespace MiaClient
             {
                 checkActief.Checked = false;
             }
-            
-            }
-        int t = 0;
+
+            int t = 0;
 
             this.grpRollen.Controls.Clear();
 
             foreach (Rol rol in rollen)
             {
                 CheckBox chk = new CheckBox();
-        chk.Location = new System.Drawing.Point(xPos, yPos);
+                chk.Location = new System.Drawing.Point(xPos, yPos);
                 chk.Name = "chkRol" + rol.Id;
                 chk.Text = rol.Naam;
                 chk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,10 +79,14 @@ namespace MiaClient
                 yPos += 30;
                 grpHeight += 30;
                 this.grpRollen.Size = new System.Drawing.Size(528, grpHeight);
-        
+
+            }
+        }
+
 
         private void CreateUI()
         {
+
             //Deel 1 is hard-coded
             //Deel 2 is het tonen van de rollen
             BindRollen();
@@ -108,14 +107,14 @@ namespace MiaClient
             {
                 CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
                 chkRol.Checked = false;
-             TxtGebruikersnaam.Text = gebruiker1.Gebruikersnaam;
+                TxtGebruikersnaam.Text = gebruiker2.Gebruikersnaam;
+            }
         }
-
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
         {
             CreateUI();
             BindLstGebruikers();
-            
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -146,28 +145,28 @@ namespace MiaClient
                 LstGebruikers.DataSource = gebruikers;
 
             else
-            {
-                gebruiker1.IsActief = false;
+                {
+                    gebruiker1.IsActief = false;
+                }
+
+                GebruikerManager.SaveGebruiker(gebruiker1, false);
+
+                vullijst();
+                RadAlle.Checked = true;
+                MessageBox.Show($"De gebruiker {gebruiker1} is successvol opgeslagen.");
+                GebruiksLog gebruiksLog1 = new GebruiksLog();
             }
 
-            GebruikerManager.SaveGebruiker(gebruiker1, false);
-
-            vullijst();
-            RadAlle.Checked = true;
-            MessageBox.Show($"De gebruiker {gebruiker1} is successvol opgeslagen.");
-            GebruiksLog gebruiksLog1 = new GebruiksLog();
-        }
-
-        private void RadActief_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadActief.Checked == true)
+            private void RadActief_CheckedChanged(object sender, EventArgs e)
             {
-                LstGebruikers.DataSource = gebruikers.Where(g => g.IsActief == true).ToList();
+                if (RadActief.Checked == true)
+                {
+                    LstGebruikers.DataSource = gebruikers.Where(g => g.IsActief == true).ToList();
+                }
             }
-        }
 
-        private void RadAlle_CheckedChanged(object sender, EventArgs e)
-        {
+            private void RadAlle_CheckedChanged(object sender, EventArgs e)
+            {
                 GebruikerManager.SaveGebruiker(gebruiker, false);
 
                 //Bewaren van de rollen voor deze gebruiker. In 2 stappen:
@@ -184,18 +183,18 @@ namespace MiaClient
                     }
                 }
 
-            GebruikerManager.SaveGebruiker(gebruiker1, false);
-            
-            vullijst();
-            RadAlle.Checked = true;
-            MessageBox.Show("Succesvol Bewaart.");
-            GebruiksLog gebruiksLog1 = new GebruiksLog();
-            gebruiksLog1.Gebruiker = Program.Gebruiker;
-            gebruiksLog1.TijdstipActie = DateTime.Now;
-            if (gebruiker1.IsActief == true)
-            {
-                gebruiksLog1.OmschrijvingActie = "Gebruiker "+ gebruiker1.Gebruikersnaam.ToString() +" werd geactiveerd.";
-            }
+                GebruikerManager.SaveGebruiker(gebruiker1, false);
+
+                vullijst();
+                RadAlle.Checked = true;
+                MessageBox.Show("Succesvol Bewaart.");
+                GebruiksLog gebruiksLog1 = new GebruiksLog();
+                gebruiksLog1.Gebruiker = Program.Gebruiker;
+                gebruiksLog1.TijdstipActie = DateTime.Now;
+                if (gebruiker1.IsActief == true)
+                {
+                    gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd geactiveerd.";
+                }
 
                 if (gebruiker.IsActief == false)
                 {
@@ -220,3 +219,4 @@ namespace MiaClient
     }
 
 }
+
