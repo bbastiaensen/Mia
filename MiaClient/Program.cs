@@ -161,6 +161,14 @@ namespace MiaClient
                     //Het deelprobleem wordt opgeroepen om de rol aan de gebruiker te geven
                     RolManager.SaveRolToGebruiker(aanvragerRol, nieuweGebruiker);
                 }
+                Rol SysteemRol = RolManager.GetRolByName("Systeem");
+                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
+                {
+                    Gebruiker = SysteemRol.ToString(),
+                    TijdstipActie = DateTime.Now,
+                    OmschrijvingActie = $"Gebruiker {nieuweGebruiker} werd aangemaakt door het Systeem."
+
+                }, true);
 
             }
             catch (Exception ex)
