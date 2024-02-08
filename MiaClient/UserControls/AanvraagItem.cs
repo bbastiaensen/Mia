@@ -19,9 +19,9 @@ namespace MiaClient.UserControls
         public DateTime Planningsdatum { get; set; }
         public string StatusAanvraag { get; set; }
         public string Kostenplaats { get; set; }
-        public double PrijsIndicatieStuk { get; set; }
+        public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
-        public double Bedrag { get; set; }
+        public decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
         public event EventHandler AanvraagItemSelected;
@@ -31,7 +31,7 @@ namespace MiaClient.UserControls
             InitializeComponent();
         }
 
-        public AanvraagItem(int aantalstuk, DateTime planingsdatum, string gebruiker, string aanvraagmoment, string titel, string financieringsjaar, string statuaaanvraag, string kostenplaats, double prijsindicatiestuk, Boolean even)
+        public AanvraagItem(string gebruiker, string aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
             Gebruiker = gebruiker;

@@ -45,7 +45,7 @@ namespace MiaClient
             foreach (var av in items)
             {
 
-                AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, av.Bedrag, t % 2 == 0);
+                AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "aanvraagSelection" + t;
                 avi.Size = new System.Drawing.Size(881, 33);
@@ -80,6 +80,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+        }
+
+        private void pnlAanvragen_ControlAdded(object sender, ControlEventArgs e)
+        {
+
         }
     }
 }
