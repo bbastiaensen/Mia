@@ -27,8 +27,6 @@ namespace MiaClient
         public mdiMia()
         {
             InitializeComponent();
-
-
         }
 
         private void gebruikslogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,6 +102,16 @@ namespace MiaClient
                 frmGebruikerBeheer.MdiParent = this;    
             }
             frmGebruikerBeheer.Show();
+        }
+
+        private void aanvragenToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmAanvragen == null)
+            {
+                frmAanvragen = new FrmAanvragen();
+                frmAanvragen.MdiParent = this;
+            }
+            frmAanvragen.Show();
         }
     }
 }

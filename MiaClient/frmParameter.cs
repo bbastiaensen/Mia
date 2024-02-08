@@ -45,8 +45,6 @@ namespace MiaClient
                 parameters = ParameterManager.GetParameters();
 
                 BindParameters(parameters);
-
-                btnVerwijderen.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -71,6 +69,7 @@ namespace MiaClient
                 pi.Size = new System.Drawing.Size(881, 33);
                 pi.TabIndex = t + 8;
                 pi.ParameterSelected += Pi_ParameterSelected;
+                pi.ParameterDeleted += Pi_ParameterDeleted;
                 this.pnlParameters.Controls.Add(pi);
 
                 //Voorbereiden voor de volgende control
@@ -79,6 +78,31 @@ namespace MiaClient
                 {
                     yPos += 30;
                 }
+            }
+        }
+
+        private void Pi_ParameterDeleted(object sender, EventArgs e)
+        {
+            try
+            {
+                ParameterItem geselecteerd = (ParameterItem)sender;
+
+                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
+                Parameter p = new Parameter();
+                p.Id = geselecteerd.Id;
+ 
+                ParameterManager.DeleteParameter(p);
+
+                parameters = ParameterManager.GetParameters();
+                BindParameters(parameters);
+
+                detailsWissen();
+
+                MessageBox.Show("De parameter is verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -92,7 +116,6 @@ namespace MiaClient
             txtEenheidDetail.Text = geselecteerd.Eenheid;
 
             isNieuw = false;
-            btnVerwijderen.Enabled = true;
         }
 
         private void detailsWissen()
@@ -103,13 +126,13 @@ namespace MiaClient
             txtEenheidDetail.Text = string.Empty;
 
             isNieuw = true;
-            btnVerwijderen.Enabled = false;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             //Detailformulier leegmaken voor nieuwe invoer.
             detailsWissen();
+            txtCodeDetail.Focus();
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -148,7 +171,6 @@ namespace MiaClient
                 txtIdDetail.Text = p.Id.ToString();
 
                 isNieuw = false;
-                btnVerwijderen.Enabled = true;
 
                 parameters = ParameterManager.GetParameters();
                 BindParameters(parameters);
