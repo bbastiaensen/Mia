@@ -47,7 +47,7 @@ namespace MiaClient
         {
             List<Rol> rollen = RolManager.GetRollen();
 
-            
+
             int t = 0;
 
             this.grpRollen.Controls.Clear();

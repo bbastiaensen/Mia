@@ -111,10 +111,7 @@ namespace MiaClient
                         }
                     }
                 }
-                //else
-                //{
-                //    MessageBox.Show("Error");
-                //}
+
             }
             catch (Exception ex)
             { MessageBox.Show($"Error in SetuserRoles : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -128,9 +125,9 @@ namespace MiaClient
 
                 GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
                 {
-                    Gebruiker = gebruikersnaam,
+                    Gebruiker = Program.Gebruiker,
                     TijdstipActie = DateTime.Now,
-                    OmschrijvingActie = $"Deze niet-actieve gebruiker: {gebruikersnaam} probeerde aan te melden."
+                    OmschrijvingActie = $"De niet-actieve gebruiker: {Gebruiker} probeerde aan te melden."
                 }, true);
                 Environment.Exit(0);//het programma wordt afgesloten
             }
@@ -164,9 +161,9 @@ namespace MiaClient
                 Rol SysteemRol = RolManager.GetRolByName("Systeem");
                 GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
                 {
-                    Gebruiker = SysteemRol.ToString(),
+                    Gebruiker = Program.Gebruiker,
                     TijdstipActie = DateTime.Now,
-                    OmschrijvingActie = $"Gebruiker {nieuweGebruiker} werd aangemaakt door het Systeem."
+                    OmschrijvingActie = $"Gebruiker {Gebruiker} werd aangemaakt door het Systeem."
 
                 }, true);
 
