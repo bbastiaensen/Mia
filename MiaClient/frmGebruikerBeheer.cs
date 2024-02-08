@@ -47,18 +47,7 @@ namespace MiaClient
         {
             List<Rol> rollen = RolManager.GetRollen();
 
-            Gebruiker gebruiker2 = GebruikerManager.GetGebruikerByGebruikersnaam(gebruiker1.Gebruikersnaam);//haalt de gebruiker op
-            bool actief = gebruiker2.IsActief;
-            if (actief == true) //checkt of de gebruiker actief is of niet en stelt de checkbox in op het resultaat
-            {
-                checkActief.Checked = true;
-            }
-
-            else
-            {
-                checkActief.Checked = false;
-            }
-
+            
             int t = 0;
 
             this.grpRollen.Controls.Clear();
@@ -107,9 +96,28 @@ namespace MiaClient
             {
                 CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
                 chkRol.Checked = false;
-                TxtGebruikersnaam.Text = gebruiker2.Gebruikersnaam;
+            }
+
+            //Stap 2 - Rollen van huidige gebruiker selecteren
+            List<Rol> rollen = RolManager.GetRollenByUser(gebruiker);
+
+            foreach (Rol rol in rollen)
+            {
+                CheckBox chkRol = (CheckBox)this.Controls.Find("chkRol" + rol.Id, true).FirstOrDefault();
+                chkRol.Checked = true;
             }
         }
+
+        private void LstGebruikers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Gebruiker gebruiker = (Gebruiker)LstGebruikers.SelectedItem;
+
+            checkActief.Checked = gebruiker.IsActief;
+            TxtGebruikersnaam.Text = gebruiker.Gebruikersnaam;
+
+            BindRollenToGebruiker(gebruiker);
+        }
+
         private void frmGebruikerBeheer_Load(object sender, EventArgs e)
         {
             CreateUI();
@@ -143,30 +151,18 @@ namespace MiaClient
             if (RadAlle.Checked == true)
             {
                 LstGebruikers.DataSource = gebruikers;
-
-            else
-                {
-                    gebruiker1.IsActief = false;
-                }
-
-                GebruikerManager.SaveGebruiker(gebruiker1, false);
-
-                vullijst();
-                RadAlle.Checked = true;
-                MessageBox.Show($"De gebruiker {gebruiker1} is successvol opgeslagen.");
-                GebruiksLog gebruiksLog1 = new GebruiksLog();
             }
+        }
 
-            private void RadActief_CheckedChanged(object sender, EventArgs e)
+        private void BtnOpslaan_Click(object sender, EventArgs e)
+        {
+            try
             {
-                if (RadActief.Checked == true)
-                {
-                    LstGebruikers.DataSource = gebruikers.Where(g => g.IsActief == true).ToList();
-                }
-            }
+                Gebruiker gebruiker = new Gebruiker();
+                gebruiker.Id = Convert.ToInt32(LstGebruikers.SelectedValue);
+                gebruiker.Gebruikersnaam = TxtGebruikersnaam.Text;
+                gebruiker.IsActief = checkActief.Checked;
 
-            private void RadAlle_CheckedChanged(object sender, EventArgs e)
-            {
                 GebruikerManager.SaveGebruiker(gebruiker, false);
 
                 //Bewaren van de rollen voor deze gebruiker. In 2 stappen:
@@ -183,17 +179,17 @@ namespace MiaClient
                     }
                 }
 
-                GebruikerManager.SaveGebruiker(gebruiker1, false);
-
-                vullijst();
+                BindLstGebruikers();
+                LstGebruikers.SelectedValue = gebruiker.Id;
                 RadAlle.Checked = true;
-                MessageBox.Show("Succesvol Bewaart.");
+
+                MessageBox.Show("Succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GebruiksLog gebruiksLog1 = new GebruiksLog();
                 gebruiksLog1.Gebruiker = Program.Gebruiker;
                 gebruiksLog1.TijdstipActie = DateTime.Now;
-                if (gebruiker1.IsActief == true)
+                if (gebruiker.IsActief == true)
                 {
-                    gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker1.Gebruikersnaam.ToString() + " werd geactiveerd.";
+                    gebruiksLog1.OmschrijvingActie = "Gebruiker " + gebruiker.Gebruikersnaam.ToString() + " werd geactiveerd en/of rollen geupdate.";
                 }
 
                 if (gebruiker.IsActief == false)
@@ -219,4 +215,3 @@ namespace MiaClient
     }
 
 }
-
