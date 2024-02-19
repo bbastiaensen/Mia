@@ -50,14 +50,22 @@ namespace MiaClient.UserControls
 
         private void SetAanvraagLogItemWaarden()
         {
+            DateTime Datum = new DateTime(2000, 1, 1);
+
             lblGebruiker.Text = Gebruiker.ToString();
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
-            
-            lblFinancieringsjaar.Text = Financieringsjaar.ToString();
+            if(Financieringsjaar != null)
+            {
+                lblFinancieringsjaar.Text = Financieringsjaar.ToString();
+            }
             lblKostenplaats.Text = Kostenplaats.ToString();
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
             lblStatusAanvraag.Text = StatusAanvraag.ToString();
-            lblPlaningsDatum.Text = lblPlaningsDatum.ToString();
+            if (Planningsdatum > Datum)
+            {
+                lblPlaningsDatum.Text = Planningsdatum.ToString();
+            }
+
             if (Titel.Length >= 20)
             {
                 lblTitel.Text = Titel.Substring(0, 20) + "...";
@@ -79,8 +87,41 @@ namespace MiaClient.UserControls
                 AanvraagItemSelected(this, null);
             }
         }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (AanvraagItemSelected != null)
+            {
+                AanvraagItemSelected(this, null);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (AanvraagItemSelected != null)
+                {
+                    AanvraagItemSelected(this, null);
+                }
+            }
+        }
 
         private void AanvraagItem_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFinancieringsjaar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStatusAanvraag_Click(object sender, EventArgs e)
         {
 
         }

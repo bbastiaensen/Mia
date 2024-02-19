@@ -17,12 +17,14 @@ namespace MiaClient
     public partial class FrmAanvragen : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
+        List<Aanvraag> aanvragen;
 
         public FrmAanvragen()
         {
             InitializeComponent();
             
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+
         }
 
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace MiaClient
                 AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "aanvraagSelection" + t;
-                avi.Size = new System.Drawing.Size(881, 33);
+                avi.Size = new System.Drawing.Size(1300, 33);
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                 this.pnlAanvragen.Controls.Add(avi);
@@ -58,6 +60,19 @@ namespace MiaClient
                 {
                     yPos += 30;
                 }
+            }
+        }
+        private void frmAanvragen_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                aanvragen = AanvraagManager.GetAanvragen();
+
+                BindAanvraag(aanvragen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
@@ -83,6 +98,16 @@ namespace MiaClient
         }
 
         private void pnlAanvragen_ControlAdded(object sender, ControlEventArgs e)
+        {
+
+        }
+
+        private void pnlAanvragen_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
