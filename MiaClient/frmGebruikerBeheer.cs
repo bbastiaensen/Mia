@@ -1,16 +1,16 @@
-﻿using System;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MiaLogic.Manager;
-using MiaLogic.Object;
-using System.Configuration;
-using MiaClient.UserControls;
 
 namespace MiaClient
 {
@@ -47,7 +47,7 @@ namespace MiaClient
         {
             List<Rol> rollen = RolManager.GetRollen();
 
-            
+
             int t = 0;
 
             this.grpRollen.Controls.Clear();
@@ -68,11 +68,14 @@ namespace MiaClient
                 yPos += 30;
                 grpHeight += 30;
                 this.grpRollen.Size = new System.Drawing.Size(528, grpHeight);
+
             }
         }
 
+
         private void CreateUI()
         {
+
             //Deel 1 is hard-coded
             //Deel 2 is het tonen van de rollen
             BindRollen();
@@ -119,7 +122,7 @@ namespace MiaClient
         {
             CreateUI();
             BindLstGebruikers();
-            
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

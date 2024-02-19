@@ -1,4 +1,5 @@
-﻿using MiaLogic.Object;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,27 @@ namespace MiaClient
 
         public mdiMia()
         {
+            GetRol();
             InitializeComponent();
+        }
+        private string GetRol()
+        {
+            List<string> rollen = new List<string>();
+
+            if (Program.IsAanvrager)
+                return "Aanvrager";
+
+            if (Program.IsAankoper)
+                return "Aankoper";
+
+            if (Program.IsGoedkeurder)
+                return "Goedkeurder";
+
+            if (Program.IsSysteem)
+                return "Systeem";
+
+            return "Geen rol toegewezen";
+
         }
 
         private void gebruikslogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,25 +102,28 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {Program.Rol}";
-        }     
+#if DEBUG
+            string rol = GetRol();
+            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {rol}";
+#endif
+        }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (frmAanvragen == null)
             {
                 frmAanvragen = new FrmAanvragen();
-                frmAanvragen.MdiParent = this;  
+                frmAanvragen.MdiParent = this;
             }
             frmAanvragen.Show();
         }
 
         private void gebruikersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmGebruikerBeheer ==  null)
+            if (frmGebruikerBeheer == null)
             {
                 frmGebruikerBeheer = new frmGebruikerBeheer();
-                frmGebruikerBeheer.MdiParent = this;    
+                frmGebruikerBeheer.MdiParent = this;
             }
             frmGebruikerBeheer.Show();
         }
