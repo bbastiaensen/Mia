@@ -1,3 +1,4 @@
+﻿using MiaLogic.Object;
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,16 +19,24 @@ namespace MiaClient
             vulFormulier();
         }
 
+            List<Afdeling> afdelingen = MiaLogic.Manager.AanvraagManager.GetAfdelingen();
         public void vulFormulier()
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = System.DateTime.Now.Date.ToString();
+            VulAfdelingDropDown(ddlAfdeling);
         }
 
-        private void label2_Click(object sender, EventArgs e)
+
+        private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
-
+            txtTotaal.Text = BerekenTotaalprijs().ToString();
         }
+        private void txtAantalStuks_Leave(object sender, EventArgs e)
+        {
+            txtTotaal.Text = BerekenTotaalprijs().ToString();
+        }
+
 
         private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
         {
