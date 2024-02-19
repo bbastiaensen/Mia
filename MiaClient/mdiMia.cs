@@ -16,8 +16,6 @@ namespace MiaClient
     {
         private int childFormNumber = 0;
 
-
-
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAbout frmAbout;
@@ -32,8 +30,6 @@ namespace MiaClient
         }
         private string GetRol()
         {
-            List<string> rollen = new List<string>();
-
             if (Program.IsAanvrager)
                 return "Aanvrager";
 
@@ -48,6 +44,40 @@ namespace MiaClient
 
             return "Geen rol toegewezen";
 
+        }
+
+        private void MenubalkSamenstellen()
+        {
+            //Aanvrager - enkel items voor aanvrager worden getoond
+            if (Program.IsAanvrager)
+            {
+                aanvragenToolStripMenuItem.Visible = true;
+                aanvragenToolStripButton.Visible = true;
+                beheerToolStripMenuItem.Visible = false;
+                gebruiksLogToolStripButton.Visible = false;
+                parameterToolStripButton.Visible = false;
+                helpMenu.Visible = true;
+            }
+
+            //Aankoper - items voor aankoper worden extra bij aangezet
+            if (Program.IsAankoper)
+            {
+
+            }
+
+            //Goedkeurder - items voor goedkeurder worden extra bij aangezet
+            if (Program.IsGoedkeurder)
+            {
+
+            }
+
+            //Systeem - items voor systeem worden extra bij aangezet
+            if (Program.IsSysteem)
+            {
+                beheerToolStripMenuItem.Visible = true;
+                gebruiksLogToolStripButton.Visible = true;
+                parameterToolStripButton.Visible = true;
+            }
         }
 
         private void gebruikslogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,10 +132,9 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
-#if DEBUG
             string rol = GetRol();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {rol}";
-#endif
+            MenubalkSamenstellen();
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)

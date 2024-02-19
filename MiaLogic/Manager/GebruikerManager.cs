@@ -87,25 +87,21 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
 
+                    //OPGELET: momenteel kunnen gebruikersgegevens niet aangepast worden. Als dit wel moet kunnen
+                    //moet deze code goed gereviseerd worden.
                     if (insert)
                     {
                         //Alle gebruikers worden nu automatish op actief gezet
                         gebruiker.IsActief = true;
 
                         objcmd.CommandText = "INSERT INTO Gebruiker (Gebruikersnaam, Actief) VALUES (@gebruikersnaam, @actief);"; // query voor het invoegen van een nieuwe gebruiker
-                    }
 
-                    //else
-                    //{
-                    //    objcmd.CommandText = "UPDATE Gebruiker SET Gebruikersnaam = @gebruikersnaam, Actief = @actief WHERE Id = @id;"; // query voor het bijwerken van een bestaande gebruiker
-                    //    objcmd.Parameters.AddWithValue("@id", gebruiker.Id);
-                    //}
+                        objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruiker.Gebruikersnaam);
+                        objcmd.Parameters.AddWithValue("@actief", gebruiker.IsActief);
 
-                    objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruiker.Gebruikersnaam);
-                    objcmd.Parameters.AddWithValue("@actief", gebruiker.IsActief);
-
-                    objcn.Open(); // open de connectie met de databank
-                    objcmd.ExecuteNonQuery(); // Voer de query uit
+                        objcn.Open(); // open de connectie met de databank
+                        objcmd.ExecuteNonQuery(); // Voer de query uit
+                    }  
                 }
             }
         }
