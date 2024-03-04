@@ -40,6 +40,7 @@
             this.lblPlaningsDatum = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.lblId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // llblDetails
@@ -55,7 +56,7 @@
             // 
             // lblGebruiker
             // 
-            this.lblGebruiker.Location = new System.Drawing.Point(147, 0);
+            this.lblGebruiker.Location = new System.Drawing.Point(254, 3);
             this.lblGebruiker.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGebruiker.Name = "lblGebruiker";
             this.lblGebruiker.Size = new System.Drawing.Size(150, 28);
@@ -63,15 +64,16 @@
             // 
             // lblAanvraagmoment
             // 
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(325, 3);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(414, 5);
             this.lblAanvraagmoment.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(150, 28);
             this.lblAanvraagmoment.TabIndex = 2;
+            this.lblAanvraagmoment.Click += new System.EventHandler(this.lblAanvraagmoment_Click);
             // 
             // lblTitel
             // 
-            this.lblTitel.Location = new System.Drawing.Point(494, 3);
+            this.lblTitel.Location = new System.Drawing.Point(574, 5);
             this.lblTitel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(150, 28);
@@ -80,7 +82,7 @@
             // 
             // lblFinancieringsjaar
             // 
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(654, 3);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(734, 2);
             this.lblFinancieringsjaar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(60, 28);
@@ -89,7 +91,7 @@
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(898, 2);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(964, 1);
             this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
             this.lblStatusAanvraag.Size = new System.Drawing.Size(100, 28);
@@ -98,15 +100,16 @@
             // 
             // lblKostenplaats
             // 
-            this.lblKostenplaats.Location = new System.Drawing.Point(738, 3);
+            this.lblKostenplaats.Location = new System.Drawing.Point(1074, 2);
             this.lblKostenplaats.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblKostenplaats.Name = "lblKostenplaats";
             this.lblKostenplaats.Size = new System.Drawing.Size(150, 28);
             this.lblKostenplaats.TabIndex = 6;
+            this.lblKostenplaats.Click += new System.EventHandler(this.lblKostenplaats_Click);
             // 
             // lblBedrag
             // 
-            this.lblBedrag.Location = new System.Drawing.Point(1222, 3);
+            this.lblBedrag.Location = new System.Drawing.Point(1234, 5);
             this.lblBedrag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(61, 28);
@@ -114,11 +117,12 @@
             // 
             // lblPlaningsDatum
             // 
-            this.lblPlaningsDatum.Location = new System.Drawing.Point(1019, 5);
+            this.lblPlaningsDatum.Location = new System.Drawing.Point(804, 1);
             this.lblPlaningsDatum.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPlaningsDatum.Name = "lblPlaningsDatum";
             this.lblPlaningsDatum.Size = new System.Drawing.Size(150, 28);
             this.lblPlaningsDatum.TabIndex = 8;
+            this.lblPlaningsDatum.Click += new System.EventHandler(this.lblPlaningsDatum_Click);
             // 
             // btnEdit
             // 
@@ -152,10 +156,19 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // lblId
+            // 
+            this.lblId.Location = new System.Drawing.Point(165, 2);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(44, 28);
+            this.lblId.TabIndex = 11;
+            this.lblId.Visible = false;
+            // 
             // AanvraagItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblId);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblPlaningsDatum);
@@ -190,5 +203,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblAanvraagmoment;
+        private System.Windows.Forms.Label lblId;
     }
 }

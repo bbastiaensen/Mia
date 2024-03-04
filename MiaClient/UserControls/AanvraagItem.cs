@@ -12,8 +12,9 @@ namespace MiaClient.UserControls
 {
     public partial class AanvraagItem : UserControl
     {
+        public int Id { get; set; }
         public string Gebruiker { get; set; }
-        public string Aanvraagmoment { get; set; }
+        public DateTime Aanvraagmoment { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
         public DateTime Planningsdatum { get; set; }
@@ -31,9 +32,10 @@ namespace MiaClient.UserControls
             InitializeComponent();
         }
 
-        public AanvraagItem(string gebruiker, string aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
+        public AanvraagItem(int id,string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
+            Id = id;    
             Gebruiker = gebruiker;
             Aanvraagmoment = aanvraagmoment;
             Titel = titel;
@@ -45,6 +47,7 @@ namespace MiaClient.UserControls
             AantalStuk = aantalstuk;
             Even = even;
             Bedrag = aantalstuk * prijsindicatiestuk;
+            
             SetAanvraagLogItemWaarden();
         }
 
@@ -52,6 +55,7 @@ namespace MiaClient.UserControls
         {
             DateTime Datum = new DateTime(2000, 1, 1);
 
+            lblId.Text = Id.ToString();
             lblGebruiker.Text = Gebruiker.ToString();
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
             if(Financieringsjaar != null)
@@ -122,6 +126,21 @@ namespace MiaClient.UserControls
         }
 
         private void lblStatusAanvraag_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPlaningsDatum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKostenplaats_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAanvraagmoment_Click(object sender, EventArgs e)
         {
 
         }
