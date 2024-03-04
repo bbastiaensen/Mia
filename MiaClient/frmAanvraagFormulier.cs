@@ -1,4 +1,5 @@
-﻿using MiaLogic.Object;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace MiaClient
         }
 
 
-        // Vullen van de dropdownlists
+        // Ophalen van de data voor de dropdownlists
         public void VulAanvraagId()
         {
             int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
@@ -114,6 +115,8 @@ namespace MiaClient
             decimal totaalprijs = prijsIndicatie * aantalStuks;
             return totaalprijs;
         }
+
+        // Vullen van dropdownlists
         public void vulFormulier()
         {
             txtGebruiker.Text = Program.Gebruiker;
@@ -131,7 +134,6 @@ namespace MiaClient
             VulAankoperDropDown(ddlWieKooptHet);
         }
 
-
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -142,6 +144,9 @@ namespace MiaClient
         }
 
 
+
+
+
         private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
@@ -149,5 +154,42 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-    }
+
+        public void btn_Indienen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Aanvraag nieuweAanvraag = new Aanvraag
+                {
+                    Gebruiker = txtGebruiker.Text,
+                    AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue),
+                    DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue),
+                    Aanvraagmoment = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    Titel = txtTitel.Text,
+                    Omschrijving = rtxtOmschrijving.Text,
+                    FinancieringsTypeId = ddlFinanciering.SelectedValue.ToString(),
+                    InvesteringsTypeId = ddlInvesterings.SelectedValue.ToString(),
+                    PrioriteitId = ddlPrioriteit.SelectedValue.ToString(),
+                    Financieringsjaar = txtFinancieringsjaar.Text,
+                    Planningsdatum = DateTime.Parse(dtpPlanningsdatum.Text),
+                    StatusAanvraag = txtStatusAanvraag.Text,
+                    KostenplaatsId = ddlKostenplaats.SelectedValue.ToString(),
+                    PrijsIndicatieStuk = decimal.Parse(txtPrijsIndicatieStuk.Text),
+                    AantalStuk = int.Parse(txtAantalStuk.Text),
+                    AankoperId = GetAankoperIdFromFullName(txtAankoperFullName.Text)))
+                };
+
+               AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
+
+                MessageBox.Show("Aanvraag saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // You can also reset the form or perform other actions as needed
+                ResetForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }    
 }

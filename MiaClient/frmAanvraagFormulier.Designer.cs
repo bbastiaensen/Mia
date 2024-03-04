@@ -930,16 +930,17 @@ namespace MiaClient
             // 
             this.btn_Indienen.Location = new System.Drawing.Point(714, 55);
             this.btn_Indienen.Name = "btn_Indienen";
-            this.btn_Indienen.Size = new System.Drawing.Size(103, 34);
+            this.btn_Indienen.Size = new System.Drawing.Size(103, 37);
             this.btn_Indienen.TabIndex = 15;
             this.btn_Indienen.Text = "Indienen";
             this.btn_Indienen.UseVisualStyleBackColor = true;
+            this.btn_Indienen.Click += new System.EventHandler(this.btn_Indienen_Click);
             // 
             // btn_Nieuw
             // 
-            this.btn_Nieuw.Location = new System.Drawing.Point(605, 58);
+            this.btn_Nieuw.Location = new System.Drawing.Point(605, 55);
             this.btn_Nieuw.Name = "btn_Nieuw";
-            this.btn_Nieuw.Size = new System.Drawing.Size(103, 34);
+            this.btn_Nieuw.Size = new System.Drawing.Size(103, 37);
             this.btn_Nieuw.TabIndex = 16;
             this.btn_Nieuw.Text = "Nieuw";
             this.btn_Nieuw.UseVisualStyleBackColor = true;
