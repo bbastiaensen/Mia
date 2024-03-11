@@ -42,13 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager\AanvraagManager.cs" />
+    <Compile Include="Manager\FotoManager.cs" />
     <Compile Include="Manager\GebruikerManager.cs" />
     <Compile Include="Manager\GebruiksLogManager.cs" />
+    <Compile Include="Manager\LinkManager.cs" />
+    <Compile Include="Manager\OfferteManager.cs" />
     <Compile Include="Manager\ParameterManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Object\Aanvraag.cs" />
+    <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
+    <Compile Include="Object\Link.cs" />
+    <Compile Include="Object\Offerte.cs" />
     <Compile Include="Object\Parameter.cs" />
     <Compile Include="Object\Rol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

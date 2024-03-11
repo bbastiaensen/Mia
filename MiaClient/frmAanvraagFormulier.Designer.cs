@@ -264,7 +264,7 @@ namespace MiaClient
             this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Identificatie.Name = "tabPage_Identificatie";
             this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 558);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 700);
             this.tabPage_Identificatie.TabIndex = 0;
             this.tabPage_Identificatie.Text = "Identificatie";
             this.tabPage_Identificatie.UseVisualStyleBackColor = true;
@@ -275,7 +275,7 @@ namespace MiaClient
             this.tabPage_Investering.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Investering.Name = "tabPage_Investering";
             this.tabPage_Investering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Investering.Size = new System.Drawing.Size(791, 558);
+            this.tabPage_Investering.Size = new System.Drawing.Size(791, 700);
             this.tabPage_Investering.TabIndex = 1;
             this.tabPage_Investering.Text = "Investering";
             this.tabPage_Investering.UseVisualStyleBackColor = true;
@@ -319,30 +319,57 @@ namespace MiaClient
             // 
             // ddlWieKooptHet
             // 
+
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(190, 137);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(282, 36);
+            this.comboBox3.TabIndex = 21;
+
             this.ddlWieKooptHet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlWieKooptHet.FormattingEnabled = true;
             this.ddlWieKooptHet.Location = new System.Drawing.Point(190, 137);
             this.ddlWieKooptHet.Name = "ddlWieKooptHet";
             this.ddlWieKooptHet.Size = new System.Drawing.Size(282, 36);
             this.ddlWieKooptHet.TabIndex = 21;
+
             // 
             // ddlKostenplaats
             // 
+
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(190, 82);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(282, 36);
+            this.comboBox2.TabIndex = 20;
+
             this.ddlKostenplaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlKostenplaats.FormattingEnabled = true;
             this.ddlKostenplaats.Location = new System.Drawing.Point(190, 82);
             this.ddlKostenplaats.Name = "ddlKostenplaats";
             this.ddlKostenplaats.Size = new System.Drawing.Size(282, 36);
             this.ddlKostenplaats.TabIndex = 20;
+
             // 
             // ddlFinancieringsjaar
             // 
+
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(190, 27);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(282, 36);
+            this.comboBox1.TabIndex = 19;
+
             this.ddlFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlFinancieringsjaar.FormattingEnabled = true;
             this.ddlFinancieringsjaar.Location = new System.Drawing.Point(190, 27);
             this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
             this.ddlFinancieringsjaar.Size = new System.Drawing.Size(282, 36);
             this.ddlFinancieringsjaar.TabIndex = 19;
+
             // 
             // lblFinancieringsjaar
             // 
@@ -582,6 +609,7 @@ namespace MiaClient
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(747, 475);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage_Links
             // 
@@ -609,6 +637,7 @@ namespace MiaClient
             this.btn_bewaarLink.TabIndex = 10;
             this.btn_bewaarLink.Text = "Bewaren";
             this.btn_bewaarLink.UseVisualStyleBackColor = true;
+            this.btn_bewaarLink.Click += new System.EventHandler(this.btn_bewaarLink_Click);
             // 
             // btn_verwijderLink
             // 
@@ -618,6 +647,7 @@ namespace MiaClient
             this.btn_verwijderLink.TabIndex = 9;
             this.btn_verwijderLink.Text = "Verwijder";
             this.btn_verwijderLink.UseVisualStyleBackColor = true;
+            this.btn_verwijderLink.Click += new System.EventHandler(this.btn_verwijderLink_Click);
             // 
             // btn_nieuweLink
             // 
@@ -627,6 +657,7 @@ namespace MiaClient
             this.btn_nieuweLink.TabIndex = 8;
             this.btn_nieuweLink.Text = "Nieuw";
             this.btn_nieuweLink.UseVisualStyleBackColor = true;
+            this.btn_nieuweLink.Click += new System.EventHandler(this.btn_nieuweLink_Click);
             // 
             // txt_hyperlinkInput
             // 
@@ -698,6 +729,7 @@ namespace MiaClient
             this.btn_bewaarFoto.TabIndex = 21;
             this.btn_bewaarFoto.Text = "Bewaren";
             this.btn_bewaarFoto.UseVisualStyleBackColor = true;
+            this.btn_bewaarFoto.Click += new System.EventHandler(this.btn_bewaarFoto_Click);
             // 
             // btn_verwijderFoto
             // 
@@ -707,6 +739,7 @@ namespace MiaClient
             this.btn_verwijderFoto.TabIndex = 20;
             this.btn_verwijderFoto.Text = "Verwijder";
             this.btn_verwijderFoto.UseVisualStyleBackColor = true;
+            this.btn_verwijderFoto.Click += new System.EventHandler(this.btn_verwijderFoto_Click);
             // 
             // btn_nieuweFoto
             // 
@@ -716,6 +749,7 @@ namespace MiaClient
             this.btn_nieuweFoto.TabIndex = 19;
             this.btn_nieuweFoto.Text = "Nieuw";
             this.btn_nieuweFoto.UseVisualStyleBackColor = true;
+            this.btn_nieuweFoto.Click += new System.EventHandler(this.btn_nieuweFoto_Click);
             // 
             // btn_kiesFoto
             // 
@@ -725,6 +759,7 @@ namespace MiaClient
             this.btn_kiesFoto.TabIndex = 18;
             this.btn_kiesFoto.Text = "...";
             this.btn_kiesFoto.UseVisualStyleBackColor = true;
+            this.btn_kiesFoto.Click += new System.EventHandler(this.btn_kiesFoto_Click);
             // 
             // txt_FotoId
             // 
@@ -752,6 +787,7 @@ namespace MiaClient
             this.txt_fotoURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_fotoURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_fotoURLInput.Name = "txt_fotoURLInput";
+            this.txt_fotoURLInput.ReadOnly = true;
             this.txt_fotoURLInput.Size = new System.Drawing.Size(572, 34);
             this.txt_fotoURLInput.TabIndex = 12;
             // 
@@ -827,6 +863,7 @@ namespace MiaClient
             this.btn_bewaarOfferte.TabIndex = 30;
             this.btn_bewaarOfferte.Text = "Bewaren";
             this.btn_bewaarOfferte.UseVisualStyleBackColor = true;
+            this.btn_bewaarOfferte.Click += new System.EventHandler(this.btn_bewaarOfferte_Click);
             // 
             // btn_verwijderOfferte
             // 
@@ -836,6 +873,7 @@ namespace MiaClient
             this.btn_verwijderOfferte.TabIndex = 29;
             this.btn_verwijderOfferte.Text = "Verwijder";
             this.btn_verwijderOfferte.UseVisualStyleBackColor = true;
+            this.btn_verwijderOfferte.Click += new System.EventHandler(this.btn_verwijderOfferte_Click);
             // 
             // btn_nieuweOfferte
             // 
@@ -845,6 +883,7 @@ namespace MiaClient
             this.btn_nieuweOfferte.TabIndex = 28;
             this.btn_nieuweOfferte.Text = "Nieuw";
             this.btn_nieuweOfferte.UseVisualStyleBackColor = true;
+            this.btn_nieuweOfferte.Click += new System.EventHandler(this.btn_nieuweOfferte_Click);
             // 
             // btn_kiesOfferte
             // 
@@ -854,6 +893,7 @@ namespace MiaClient
             this.btn_kiesOfferte.TabIndex = 27;
             this.btn_kiesOfferte.Text = "...";
             this.btn_kiesOfferte.UseVisualStyleBackColor = true;
+            this.btn_kiesOfferte.Click += new System.EventHandler(this.btn_kiesOfferte_Click);
             // 
             // txt_offerteId
             // 
@@ -881,6 +921,7 @@ namespace MiaClient
             this.txt_offerteURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_offerteURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_offerteURLInput.Name = "txt_offerteURLInput";
+            this.txt_offerteURLInput.ReadOnly = true;
             this.txt_offerteURLInput.Size = new System.Drawing.Size(572, 34);
             this.txt_offerteURLInput.TabIndex = 24;
             // 
