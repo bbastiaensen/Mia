@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AanvraagItem));
             this.llblDetails = new System.Windows.Forms.LinkLabel();
             this.lblGebruiker = new System.Windows.Forms.Label();
             this.lblAanvraagmoment = new System.Windows.Forms.Label();
@@ -37,94 +38,139 @@
             this.lblKostenplaats = new System.Windows.Forms.Label();
             this.lblBedrag = new System.Windows.Forms.Label();
             this.lblPlaningsDatum = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.lblId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // llblDetails
             // 
             this.llblDetails.AutoSize = true;
-            this.llblDetails.Location = new System.Drawing.Point(17, 18);
+            this.llblDetails.Location = new System.Drawing.Point(67, 1);
+            this.llblDetails.Margin = new System.Windows.Forms.Padding(4);
             this.llblDetails.Name = "llblDetails";
-            this.llblDetails.Size = new System.Drawing.Size(49, 16);
+            this.llblDetails.Size = new System.Drawing.Size(71, 28);
             this.llblDetails.TabIndex = 0;
             this.llblDetails.TabStop = true;
             this.llblDetails.Text = "Details";
             // 
             // lblGebruiker
             // 
-            this.lblGebruiker.AutoSize = true;
-            this.lblGebruiker.Location = new System.Drawing.Point(125, 18);
+            this.lblGebruiker.Location = new System.Drawing.Point(254, 3);
+            this.lblGebruiker.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGebruiker.Name = "lblGebruiker";
-            this.lblGebruiker.Size = new System.Drawing.Size(66, 16);
+            this.lblGebruiker.Size = new System.Drawing.Size(150, 28);
             this.lblGebruiker.TabIndex = 1;
-            this.lblGebruiker.Text = "Gebruiker";
             // 
             // lblAanvraagmoment
             // 
-            this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(208, 18);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(414, 5);
+            this.lblAanvraagmoment.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(113, 16);
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(150, 28);
             this.lblAanvraagmoment.TabIndex = 2;
-            this.lblAanvraagmoment.Text = "aanvraagmoment";
+            this.lblAanvraagmoment.Click += new System.EventHandler(this.lblAanvraagmoment_Click);
             // 
             // lblTitel
             // 
-            this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(336, 18);
+            this.lblTitel.Location = new System.Drawing.Point(574, 5);
+            this.lblTitel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(27, 16);
+            this.lblTitel.Size = new System.Drawing.Size(150, 28);
             this.lblTitel.TabIndex = 3;
-            this.lblTitel.Text = "titel";
+            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // lblFinancieringsjaar
             // 
-            this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(380, 18);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(734, 2);
+            this.lblFinancieringsjaar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(105, 16);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(60, 28);
             this.lblFinancieringsjaar.TabIndex = 4;
-            this.lblFinancieringsjaar.Text = "financieringsjaar";
+            this.lblFinancieringsjaar.Click += new System.EventHandler(this.lblFinancieringsjaar_Click);
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.AutoSize = true;
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(507, 18);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(964, 1);
+            this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
-            this.lblStatusAanvraag.Size = new System.Drawing.Size(103, 16);
+            this.lblStatusAanvraag.Size = new System.Drawing.Size(100, 28);
             this.lblStatusAanvraag.TabIndex = 5;
-            this.lblStatusAanvraag.Text = "status aanvraag";
+            this.lblStatusAanvraag.Click += new System.EventHandler(this.lblStatusAanvraag_Click);
             // 
             // lblKostenplaats
             // 
-            this.lblKostenplaats.AutoSize = true;
-            this.lblKostenplaats.Location = new System.Drawing.Point(632, 18);
+            this.lblKostenplaats.Location = new System.Drawing.Point(1074, 2);
+            this.lblKostenplaats.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblKostenplaats.Name = "lblKostenplaats";
-            this.lblKostenplaats.Size = new System.Drawing.Size(84, 16);
+            this.lblKostenplaats.Size = new System.Drawing.Size(150, 28);
             this.lblKostenplaats.TabIndex = 6;
-            this.lblKostenplaats.Text = "kostenplaats";
+            this.lblKostenplaats.Click += new System.EventHandler(this.lblKostenplaats_Click);
             // 
             // lblBedrag
             // 
-            this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(743, 18);
+            this.lblBedrag.Location = new System.Drawing.Point(1234, 5);
+            this.lblBedrag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(51, 16);
+            this.lblBedrag.Size = new System.Drawing.Size(61, 28);
             this.lblBedrag.TabIndex = 7;
-            this.lblBedrag.Text = "bedrag";
             // 
             // lblPlaningsDatum
             // 
-            this.lblPlaningsDatum.AutoSize = true;
-            this.lblPlaningsDatum.Location = new System.Drawing.Point(839, 18);
+            this.lblPlaningsDatum.Location = new System.Drawing.Point(804, 1);
+            this.lblPlaningsDatum.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPlaningsDatum.Name = "lblPlaningsDatum";
-            this.lblPlaningsDatum.Size = new System.Drawing.Size(102, 16);
+            this.lblPlaningsDatum.Size = new System.Drawing.Size(150, 28);
             this.lblPlaningsDatum.TabIndex = 8;
-            this.lblPlaningsDatum.Text = "planningsdatum";
+            this.lblPlaningsDatum.Click += new System.EventHandler(this.lblPlaningsDatum_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(0, 3);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnEdit.TabIndex = 9;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(33, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(27, 27);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // lblId
+            // 
+            this.lblId.Location = new System.Drawing.Point(165, 2);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(44, 28);
+            this.lblId.TabIndex = 11;
+            this.lblId.Visible = false;
             // 
             // AanvraagItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblId);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblPlaningsDatum);
             this.Controls.Add(this.lblBedrag);
             this.Controls.Add(this.lblKostenplaats);
@@ -134,9 +180,11 @@
             this.Controls.Add(this.lblAanvraagmoment);
             this.Controls.Add(this.lblGebruiker);
             this.Controls.Add(this.llblDetails);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
-            this.Size = new System.Drawing.Size(1241, 54);
+            this.Size = new System.Drawing.Size(1300, 33);
+            this.Load += new System.EventHandler(this.AanvraagItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,12 +194,15 @@
 
         private System.Windows.Forms.LinkLabel llblDetails;
         private System.Windows.Forms.Label lblGebruiker;
-        private System.Windows.Forms.Label lblAanvraagmoment;
         private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label lblFinancieringsjaar;
         private System.Windows.Forms.Label lblStatusAanvraag;
         private System.Windows.Forms.Label lblKostenplaats;
         private System.Windows.Forms.Label lblBedrag;
         private System.Windows.Forms.Label lblPlaningsDatum;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblAanvraagmoment;
+        private System.Windows.Forms.Label lblId;
     }
 }

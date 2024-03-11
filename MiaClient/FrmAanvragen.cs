@@ -17,12 +17,28 @@ namespace MiaClient
     public partial class FrmAanvragen : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
+        List<Aanvraag> aanvragen;
+
+        bool filterAanvraagmomentVan = false;
+        bool filterAanvraagmomentTot = false;
+        bool filterPlanningsdatumVan = false;
+        bool filterPlanningsdatumTot = false;
+        bool filterGebruiker = false;
+        bool filterTitel = false;
+        bool filterStatusAanvraag = false;
+        bool filterFinancieringsjaar = false;
+        bool filterBedrag = false;
+        bool filterKostenPlaats = false;
+
+
+
 
         public FrmAanvragen()
         {
             InitializeComponent();
-            //BindAanvraag();
+            
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+
         }
 
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
@@ -44,16 +60,14 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                string titel = av.Titel;
-                string substring = titel.Substring(0, 20);
 
-                //AanvraagItem avi = new AanvraagItem(av.Gebruiker, av.Aanvraagmoment, substring, av.Financieringsjaar, av.StatusAanvraag, av.Kostenplaats, av.Bedrag, av.Planningsdatum, t % 2 == 0);
-                //avi.Location = new System.Drawing.Point(xPos, yPos);
-                //avi.Name = "aanvraagSelection" + t;
-                //avi.Size = new System.Drawing.Size(881, 33);
-                //avi.TabIndex = t + 8;
-                //avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                //this.pnlAanvragen.Controls.Add(avi);
+                AanvraagItem avi = new AanvraagItem(av.Id,av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "aanvraagSelection" + t;
+                avi.Size = new System.Drawing.Size(1300, 33);
+                avi.TabIndex = t + 8;
+                avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
                 if(t < 10)
@@ -62,9 +76,22 @@ namespace MiaClient
                 }
             }
         }
+        private void frmAanvragen_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                aanvragen = AanvraagManager.GetAanvragen();
+
+                BindAanvraag(aanvragen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
-            //AanvraagItem geselecteerd = (AanvraagItem)sender;
+            AanvraagItem geselecteerd = (AanvraagItem)sender;
 
             //txtIdDetail.Text = geselecteerd.Id.ToString();
             //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
@@ -75,6 +102,71 @@ namespace MiaClient
         {
 
         }
+        private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedrag, bool kostenPlaats)
+        {
+            if (items != null)
+            {
+                if (aanvraagmomentVan)
+                {
+                    items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
+                }
+
+                if (aanvraagmomentTot)
+                {
+                    items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                }
+
+                if (planningsdatumVan)
+                {
+                    items = items.Where(av => av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                }
+
+                if (planningsdatumTot)
+                {
+                    items = items.Where(av => av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                }
+
+                if (gebruiker)
+                {
+                    items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
+                }
+
+                if (titel)
+                {
+                    items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
+                }
+
+                if (statusAanvraag)
+                {
+                    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
+                }
+
+                if (financieringsjaar)
+                {
+                    items = items.Where(av => av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
+                }
+
+                //if (bedrag)
+                //{
+                //    items = items.Where(av => av.Bedrag.ToString().Contains(txtBedrag.Text.ToLower())).ToList();
+                //}
+
+                if (kostenPlaats)
+                {
+                    items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
+                }
+
+            }
+
+            ////Leegmaken detailvelden
+            //txtBedrag.Text = string.Empty;
+            //txtFinancieringsjaar.Text = string.Empty;
+            //txtGebruiker.Text = string.Empty;
+            //txtKostenPlaats.Text = string.Empty;
+            //txtStatusAanvraag.Text = string.Empty;
+            //txtTitel.Text = string.Empty;
+            return items;
+        }
 
         private void FrmAanvragen_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -82,6 +174,151 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+        }
+
+        private void pnlAanvragen_ControlAdded(object sender, ControlEventArgs e)
+        {
+
+        }
+
+        private void pnlAanvragen_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtTitel_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterTitel = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtStatusAanvraag_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterStatusAanvraag = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtFinancieringsjaar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterFinancieringsjaar = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtBedrag_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterBedrag = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtKostenPlaats_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterKostenPlaats = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxAanvraagmomentVan_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxAanvraagmomentTot_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxPlaningsdatumVan_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterPlanningsdatumVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterPlanningsdatumTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtGebruiker_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterGebruiker = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedrag, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
