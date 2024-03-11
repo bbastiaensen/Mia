@@ -1,6 +1,7 @@
 ﻿using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MiaLogic.Manager
     {
         public static string ConnectionString { get; set; }
 
-        public static List<Foto> GetOffertes()
+        public static List<Foto> GetFotos()
         {
             List<Foto> fotos = new List<Foto>();
 
@@ -70,6 +71,35 @@ namespace MiaLogic.Manager
                     }
                 }
                 return fotos;
+            }
+        }
+
+        public static void SaveFoto(Foto foto)
+        {
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandType = CommandType.Text;
+
+                    objcmd.CommandText = "insert into Foto (AanvraagID, Url) VALUES (@AanvraagId, @Url)";
+
+
+                    objcmd.Parameters.AddWithValue("@AanvraagId", foto.AanvraagId);
+                    objcmd.Parameters.AddWithValue("@Url", foto.Url);
+
+                    try
+                    {
+                        objcn.Open();
+                        objcmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
             }
         }
         public static void DeleteFoto(Foto foto)

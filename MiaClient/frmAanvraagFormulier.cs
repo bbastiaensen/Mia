@@ -1,4 +1,5 @@
-﻿using MiaLogic.Object;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,13 @@ namespace MiaClient
     public partial class frmAanvraagFormulier : Form
     {
         private string selectedPath;
-        string Mainpath = "C:\\Users\\TimMeeus\\Downloads"; // De folder voor het opslagen, dit wordt de parameter
+        private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string link = string.Empty;
 
         public frmAanvraagFormulier()
         {
             InitializeComponent();
+            Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -53,7 +55,7 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-        public void RefreshBoxes(TabControl tabControl) //Dit is het deelprobleem om alle textoxes etc leeg te maken
+        public void RefreshBoxes(TabControl tabControl) //Dit is het deelprobleem om alle textboxes etc leeg te maken
         {
             switch (tabControl.SelectedIndex)
             {
@@ -112,6 +114,7 @@ namespace MiaClient
             {
                 string FileName = Path.GetFileName(selectedPath);//Hier haal ik de bestandsnaam op
                 string DestinationPath = Path.Combine(Mainpath, FileName); //OM het volledige pad te vinden moet ik deze 2 samen plakken
+                SaveFoto(DestinationPath);
 
                 try
                 {
@@ -126,7 +129,7 @@ namespace MiaClient
             }
             else
             {
-                MessageBox.Show("Selecteer eers een afbeelding aub", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Als de string == Null is geef hij deze error
+                MessageBox.Show("Selecteer eerst een afbeelding aub", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Als de string == Null is geef hij deze error
             }
 
 
@@ -146,7 +149,80 @@ namespace MiaClient
         private void btn_bewaarOfferte_Click(object sender, EventArgs e)
         {
             //De link is het pad en moet alleen read only zijn
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                string fileName = Path.GetFileName(selectedPath);
+                string destinationPath = Path.Combine(Mainpath, fileName);
+                try
+                {
+                    File.Copy(selectedPath, destinationPath, true);
+                    MessageBox.Show("De offerte is succesvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    SaveOfferte(destinationPath);
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void SaveOfferte(string filepath)
+        {
+            try
+            {
+                Offerte offerte = new Offerte
+                {
+                    Url = filepath
+                };
+
+                OfferteManager.SaveOfferte(offerte);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SaveFoto(string filepath)
+        {
+            try
+            {
+                Foto foto = new Foto
+                { Url = filepath };
+                FotoManager.SaveFoto(foto);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de foto in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SaveLink(string filepath)
+        {
+            try
+            {
+                Link link = new Link
+                {
+                    Url = filepath
+                };
+                LinkManager.SaveLinken(link);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de link in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_verwijderOfferte_Click(object sender, EventArgs e)
@@ -156,7 +232,20 @@ namespace MiaClient
 
         private void btn_kiesOfferte_Click(object sender, EventArgs e)
         {
-            //Hier opent de filedialog voor een foto / word /exel file te selecteren
+            //Hier opent de filedialog voor een word /exel file te selecteren
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Text files (*.doc, *.docx, *.xls, *.xlsx)|*.doc;*.docx;*.xls;*.xlsx|All files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    selectedPath = openFileDialog.FileName;
+                    MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                }
+            }
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)

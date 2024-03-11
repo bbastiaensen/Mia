@@ -1,6 +1,7 @@
 ﻿using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,33 @@ namespace MiaLogic.Manager
                 return offertes;
             }
         }
+        public static void SaveOfferte(Offerte offerte)
+        {
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandType = CommandType.Text;
+
+                    objcmd.CommandText = "insert into Offerte (AanvraagID, Url) VALUES (@AanvraagId, @Url)";
+
+                    objcmd.Parameters.AddWithValue("@AanvraagId", offerte.AanvraagId);
+                    objcmd.Parameters.AddWithValue("@Url", offerte.Url);
+                    try
+                    {
+                        objcn.Open();
+                        objcmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+        }
+
         public static void DeleteOfferte(Offerte offerte)
         {
             using (SqlConnection objcn = new SqlConnection())
