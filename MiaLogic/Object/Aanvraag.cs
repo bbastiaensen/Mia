@@ -8,8 +8,9 @@ namespace MiaLogic.Object
 {
     public class Aanvraag
     {
+        public int Id { get; set; }
         public string Gebruiker { get; set; }
-        public string Aanvraagmoment { get; set; }
+        public DateTime Aanvraagmoment { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
         public DateTime Planningsdatum { get; set; }

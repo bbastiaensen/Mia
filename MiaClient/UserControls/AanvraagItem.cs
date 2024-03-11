@@ -12,8 +12,9 @@ namespace MiaClient.UserControls
 {
     public partial class AanvraagItem : UserControl
     {
+        public int Id { get; set; }
         public string Gebruiker { get; set; }
-        public string Aanvraagmoment { get; set; }
+        public DateTime Aanvraagmoment { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
         public DateTime Planningsdatum { get; set; }
@@ -21,14 +22,20 @@ namespace MiaClient.UserControls
         public string Kostenplaats { get; set; }
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
+        public decimal Bedrag { get; set; }
+        public Boolean Even { get; set; }
+
+        public event EventHandler AanvraagItemSelected;
+
         public AanvraagItem()
         {
             InitializeComponent();
         }
 
-        public AanvraagItem(int aantalstuk, DateTime planingsdatum, string gebruiker, string aanvraagmoment, string titel, string financieringsjaar, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk)
+        public AanvraagItem(int id,string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
+            Id = id;    
             Gebruiker = gebruiker;
             Aanvraagmoment = aanvraagmoment;
             Titel = titel;
@@ -37,36 +44,105 @@ namespace MiaClient.UserControls
             StatusAanvraag = statuaaanvraag;
             Kostenplaats = kostenplaats;
             PrijsIndicatieStuk = prijsindicatiestuk;
-            AantalStuk = AantalStuk;
-
+            AantalStuk = aantalstuk;
+            Even = even;
+            Bedrag = aantalstuk * prijsindicatiestuk;
+            
             SetAanvraagLogItemWaarden();
         }
 
         private void SetAanvraagLogItemWaarden()
         {
-            //lblId.Text = Id.ToString();
-            //lblTijdstipActie.Text = TijdstipActie.ToString();
-            //lblGebruiker.Text = Gebruiker;
-            //if (OmschrijvingActie.Length >= 47)
-            //{
-            //    lblOmschrijvingActieKort.Text = OmschrijvingActie.Substring(0, 47) + "...";
-            //}
-            //else
-            //{
-            //    lblOmschrijvingActieKort.Text = OmschrijvingActie.ToString();
-            //}
-            //if (Even)
-            //{
-            //    this.BackColor = Color.White;
-            //}
+            DateTime Datum = new DateTime(2000, 1, 1);
+
+            lblId.Text = Id.ToString();
+            lblGebruiker.Text = Gebruiker.ToString();
+            lblAanvraagmoment.Text = Aanvraagmoment.ToString();
+            if(Financieringsjaar != null)
+            {
+                lblFinancieringsjaar.Text = Financieringsjaar.ToString();
+            }
+            lblKostenplaats.Text = Kostenplaats.ToString();
+            lblAanvraagmoment.Text = Aanvraagmoment.ToString();
+            lblStatusAanvraag.Text = StatusAanvraag.ToString();
+            if (Planningsdatum > Datum)
+            {
+                lblPlaningsDatum.Text = Planningsdatum.ToString();
+            }
+
+            if (Titel.Length >= 20)
+            {
+                lblTitel.Text = Titel.Substring(0, 20) + "...";
+            }
+            else
+            {
+                lblTitel.Text = Titel.ToString();
+            }
+            if (Even)
+            {
+                this.BackColor = Color.White;
+            }
         }
 
         private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //if (AanvraagLogItemSelected != null)
-            //{
-            //    Aanvraag6LogItemSelected(this, null);
-            //}
+            if (AanvraagItemSelected != null)
+            {
+                AanvraagItemSelected(this, null);
+            }
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (AanvraagItemSelected != null)
+            {
+                AanvraagItemSelected(this, null);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (AanvraagItemSelected != null)
+                {
+                    AanvraagItemSelected(this, null);
+                }
+            }
+        }
+
+        private void AanvraagItem_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFinancieringsjaar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStatusAanvraag_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPlaningsDatum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKostenplaats_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAanvraagmoment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
