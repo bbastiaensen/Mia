@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,10 +144,6 @@ namespace MiaClient
             txtTotaal.Text = BerekenTotaalprijs().ToString();
         }
 
-
-
-
-
         private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
@@ -162,29 +159,25 @@ namespace MiaClient
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue),
-                    DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue),
+                    AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
+                    DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
                     Aanvraagmoment = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = ddlFinanciering.SelectedValue.ToString(),
-                    InvesteringsTypeId = ddlInvesterings.SelectedValue.ToString(),
-                    PrioriteitId = ddlPrioriteit.SelectedValue.ToString(),
-                    Financieringsjaar = txtFinancieringsjaar.Text,
-                    Planningsdatum = DateTime.Parse(dtpPlanningsdatum.Text),
-                    StatusAanvraag = txtStatusAanvraag.Text,
-                    KostenplaatsId = ddlKostenplaats.SelectedValue.ToString(),
-                    PrijsIndicatieStuk = decimal.Parse(txtPrijsIndicatieStuk.Text),
-                    AantalStuk = int.Parse(txtAantalStuk.Text),
-                    AankoperId = GetAankoperIdFromFullName(txtAankoperFullName.Text)))
+                    FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    InvesteringsTypeId = AanvraagManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    PrioriteitId = AanvraagManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                    Financieringsjaar = ddlFinancieringsjaar.Text,
+                    StatusAanvraag = 1.ToString(),
+                    KostenplaatsId = AanvraagManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                    PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
+                    AantalStuk = int.Parse(txtAantalStuks.Text),
+                    AankoperId = AanvraagManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
                 };
 
-               AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
+                AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
 
-                MessageBox.Show("Aanvraag saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // You can also reset the form or perform other actions as needed
-                ResetForm();
+                MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

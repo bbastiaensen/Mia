@@ -305,6 +305,7 @@ namespace MiaLogic.Manager
         }
 
         // Get...ById
+
         public static Afdeling GetAfdelingById(int id)
         {
             Afdeling afdeling = null;
@@ -337,50 +338,50 @@ namespace MiaLogic.Manager
             }
             catch (Exception)
             {
-                Console.WriteLine($"Het systeem kon de Afdeling niet vinden, probeer het nog eens.");
+                Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
                 throw;
             }
 
             return afdeling;
         }
         public static Dienst GetDienstById(int id)
+    {
+        Dienst dienst = null;
+
+        try
         {
-            Dienst dienst = null;
-
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Dienst WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
+                    command.Parameters.AddWithValue("@Id", id);
 
-                    string query = "SELECT Id, Naam FROM Dienst WHERE Id = @Id";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+                            dienst = new Dienst
                             {
-                                dienst = new Dienst
-                                {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    Naam = reader["Naam"].ToString()
-                                };
-                            }
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
                         }
                     }
                 }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
-                throw;
-            }
-
-            return dienst;
         }
+        catch (Exception)
+        {
+            Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
+            throw;
+        }
+
+        return dienst;
+    }
         public static Prioriteit GetPrioriteitById(int id)
         {
             Prioriteit prioriteit = null;
@@ -533,7 +534,7 @@ namespace MiaLogic.Manager
 
             return kostenplaats;
         }
-        public static WieKooptHet GetAankoperByFullName(string fullName)
+        public static WieKooptHet GetAankoperById(int id)
         {
             WieKooptHet aankoper = null;
 
@@ -543,11 +544,11 @@ namespace MiaLogic.Manager
                 {
                     connection.Open();
 
-                    string query = "SELECT Id, Voornaam, Achternaam FROM Aankoper WHERE Voornaam + ' ' + Achternaam = @FullName";
+                    string query = "SELECT Id, Voornaam, Achternaam FROM Aankoper WHERE Id = @Id";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@FullName", fullName);
+                        command.Parameters.AddWithValue("@Id", id);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -589,11 +590,11 @@ namespace MiaLogic.Manager
                         // Insert query
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
-                        FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar, Planningsdatum,
+                        FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
                         StatusAanvraag, Kostenplaats, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
-                        @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar, @Planningsdatum,
-                        @StatusAanvraag, @Kostenplaats, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);"
+                        @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
+                        @StatusAanvraag, @Kostenplaats, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
                     }
                     else
                     {
@@ -604,7 +605,7 @@ namespace MiaLogic.Manager
                         Aanvraagmoment = @Aanvraagmoment, Titel = @Titel, Omschrijving = @Omschrijving,
                         FinancieringsTypeId = @FinancieringsTypeId, InvesteringsTypeId = @InvesteringsTypeId,
                         PrioriteitId = @PrioriteitId, Financieringsjaar = @Financieringsjaar,
-                        Planningsdatum = @Planningsdatum, StatusAanvraag = @StatusAanvraag,
+                        StatusAanvraag = @StatusAanvraag,
                         Kostenplaats = @Kostenplaats, KostenplaatsId = @KostenplaatsId,
                         PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId
                     WHERE Id = @Id;";
