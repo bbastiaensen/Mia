@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiaClient", "MiaClient\MiaC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiaLogic", "MiaLogic\MiaLogic.csproj", "{065CAA4E-F584-4ACA-8A20-704315168841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProofOfConceptDesign", "ProofOfConceptDesign\ProofOfConceptDesign.csproj", "{08191AE0-118E-4040-8A1F-C14A9DBB19E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProofOfConceptDesign", "..\ProofOfconceptMIA\ProofOfConceptDesign\ProofOfConceptDesign.csproj", "{08191AE0-118E-4040-8A1F-C14A9DBB19E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
