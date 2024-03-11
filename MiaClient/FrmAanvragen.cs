@@ -143,7 +143,10 @@ namespace MiaClient
 
                 if (financieringsjaar)
                 {
-                    items = items.Where(av => av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
+                    if (txtFinancieringsjaar.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
+                    }
                 }
 
                 //if (bedrag)

@@ -377,9 +377,8 @@ namespace MiaClient
 
 
         }
-    }
 
-        public void btn_Indienen_Click(object sender, EventArgs e)
+        private void btn_Indienen_Click(object sender, EventArgs e)
         {
             try
             {
@@ -388,7 +387,7 @@ namespace MiaClient
                     Gebruiker = txtGebruiker.Text,
                     AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
                     DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
-                    Aanvraagmoment = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
                     FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
@@ -410,6 +409,7 @@ namespace MiaClient
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }    
 }
