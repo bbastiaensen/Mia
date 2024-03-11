@@ -13,9 +13,11 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-
-    //Moeten de bestandsnamen specifiek zijn of niet
-    //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of
+    //Mensen dat verwijderd worden moeten ook gelogd zijn.
+    // soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
+    //Moeten de bestandsnamen specifiek zijn of niet : Id + uploaddatum+fotoId
+    //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
+    //Submappen voor offertes en fotos investeringen/afbeeldingen - / offertess
     public partial class frmAanvraagFormulier : Form
     {
         private string selectedPath;
@@ -25,7 +27,7 @@ namespace MiaClient
         public frmAanvraagFormulier()
         {
             InitializeComponent();
-            Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
+            //Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
