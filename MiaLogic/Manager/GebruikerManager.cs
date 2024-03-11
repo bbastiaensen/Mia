@@ -94,11 +94,12 @@ namespace MiaLogic.Manager
 
                         objcmd.CommandText = "INSERT INTO Gebruiker (Gebruikersnaam, Actief) VALUES (@gebruikersnaam, @actief);"; // query voor het invoegen van een nieuwe gebruiker
                     }
-                    else
-                    {
-                        objcmd.CommandText = "UPDATE Gebruiker SET Gebruikersnaam = @gebruikersnaam, Actief = @actief WHERE Id = @id;"; // query voor het bijwerken van een bestaande gebruiker
-                        objcmd.Parameters.AddWithValue("@id", gebruiker.Id);
-                    }
+
+                    //else
+                    //{
+                    //    objcmd.CommandText = "UPDATE Gebruiker SET Gebruikersnaam = @gebruikersnaam, Actief = @actief WHERE Id = @id;"; // query voor het bijwerken van een bestaande gebruiker
+                    //    objcmd.Parameters.AddWithValue("@id", gebruiker.Id);
+                    //}
 
                     objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruiker.Gebruikersnaam);
                     objcmd.Parameters.AddWithValue("@actief", gebruiker.IsActief);
