@@ -47,7 +47,6 @@
             this.lblWaardeDetail = new System.Windows.Forms.Label();
             this.lblIdDetail = new System.Windows.Forms.Label();
             this.btnNieuw = new System.Windows.Forms.Button();
-            this.btnVerwijderen = new System.Windows.Forms.Button();
             this.btnBewaren = new System.Windows.Forms.Button();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
@@ -218,7 +217,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(75, 534);
+            this.btnNieuw.Location = new System.Drawing.Point(216, 534);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(251, 41);
             this.btnNieuw.TabIndex = 5;
@@ -226,19 +225,9 @@
             this.btnNieuw.UseVisualStyleBackColor = true;
             this.btnNieuw.Click += new System.EventHandler(this.btnNieuw_Click);
             // 
-            // btnVerwijderen
-            // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(589, 534);
-            this.btnVerwijderen.Name = "btnVerwijderen";
-            this.btnVerwijderen.Size = new System.Drawing.Size(251, 41);
-            this.btnVerwijderen.TabIndex = 7;
-            this.btnVerwijderen.Text = "Verwijderen";
-            this.btnVerwijderen.UseVisualStyleBackColor = true;
-            this.btnVerwijderen.Click += new System.EventHandler(this.btnVerwijderen_Click);
-            // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(332, 534);
+            this.btnBewaren.Location = new System.Drawing.Point(473, 534);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(251, 41);
             this.btnBewaren.TabIndex = 6;
@@ -252,7 +241,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 592);
             this.Controls.Add(this.btnBewaren);
-            this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
             this.Controls.Add(this.txtCodeDetail);
             this.Controls.Add(this.txtWaardeDetail);
@@ -299,7 +287,6 @@
         private System.Windows.Forms.Label lblWaardeDetail;
         private System.Windows.Forms.Label lblIdDetail;
         private System.Windows.Forms.Button btnNieuw;
-        private System.Windows.Forms.Button btnVerwijderen;
         private System.Windows.Forms.Button btnBewaren;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.TextBox txtCode;

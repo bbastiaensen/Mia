@@ -3,117 +3,176 @@ using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace MiaClient
 {
     internal static class Program
     {
-        //Globale variabelen die gebruikt worden in de volledige toepassing
+        //De globale variabelen
         public static string Gebruiker { get; set; }
-        public static string Rol { get; set; }
         public static bool IsAanvrager { get; set; }
         public static bool IsAankoper { get; set; }
         public static bool IsGoedkeurder { get; set; }
         public static bool IsSysteem { get; set; }
 
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
-
-
         static void Main()
         {
-            GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            try
+            {
+                InitializeConnections();
+                AuthenticateUser();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new mdiMia());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout opgetreden: {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            string gebruikersnaam = Environment.UserName; //haalt de lokale gebruikersnaam op
+        private static void InitializeConnections()
+        {
+            try
+            {
+                //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
+                GebruikerManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                RolManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            }
 
-            //Kijkt of de gebruiker bestaat in de gebruikermanager
-
-            Gebruiker gebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(gebruikersnaam);
-
-
-            if (gebruiker != null)
+            catch (SqlException ex)
             {
 
-                Gebruiker = gebruiker.Gebruikersnaam; //als hij bestaat ( of != null is) slaagt het op in Gebruiker
+                MessageBox.Show($"Error, {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                if (gebruiker.IsActief) //Als IsExisting==True && IsActief == True
+        private static void AuthenticateUser()
+        {
+            try
+            {
+                string gebruikersnaam = Environment.UserName;//Haalt de windows gebruikersnaam op
+                Gebruiker gebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(gebruikersnaam);
+
+                if (gebruiker != null)//Zoekt of de gebruiker bestaat
                 {
-                    List<Rol> RollenVanGebruiker = RolManager.GetRollenByUser(gebruiker);
+                    Gebruiker = gebruiker.Gebruikersnaam;
 
-                    if (RollenVanGebruiker.Count > 0)
+                    if (gebruiker.IsActief)//als de gebruiker al bestaat : kijk volgende comment
                     {
-                        foreach (var rol in RollenVanGebruiker)
-                        {
-                            switch (rol.Naam)
-                            {
-                                case "Aanvrager":
-                                    IsAanvrager = true;
-                                    break;
-                                case "Aankoper":
-                                    IsAankoper = true;
-                                    break;
-                                case "Goedkeurder":
-                                    IsGoedkeurder = true;
-                                    break;
-                                case "Systeem":
-                                    IsSysteem = true;
-                                    break;
-                            }
-                        }
+                        SetUserRoles(gebruiker);//legt de rollen van de gebruiker
                     }
                     else
                     {
-                        //MessageBox.Show("Er is een fout in het behandelen van de rollen per gebruiker");
+                        HandleInactiveUser(gebruikersnaam);//Als deze inactief roept het het deelprobleem op voor inactieve gebruikers
                     }
                 }
                 else
                 {
-                    MessageBox.Show("U bent niet gerechtigd voor deze toepassing !", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
-                    {
-                        Gebruiker = gebruikersnaam,
-                        TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Deze niet-actieve gebruiker: {gebruikersnaam} probeerde aan te melden."
-                    }, true);
-                    Environment.Exit(0);
+                    CreateNewUser(gebruikersnaam);//Als de gebruiker nog niet bestaat roept het het deelprobleem op om een nieuwe gebruiker aan te maken
                 }
             }
-            else
-            {//De nieuwe gebruiker moet nog toegevoegd worden als log
-                Gebruiker NieuweGebruiker = new Gebruiker();
-                NieuweGebruiker.Gebruikersnaam = gebruikersnaam; //Als die niet bestaat word die aangemaakt
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout gebeurt in Authenticate user :{ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                GebruikerManager.SaveGebruiker(NieuweGebruiker, true);
+            }
+        }
 
-                Gebruiker = NieuweGebruiker.Gebruikersnaam;
-                //maak in rolmanager getrolbyname
-                Rol aanvragerRol = RolManager.GetRolByName("Aanvrager");
+
+        private static void SetUserRoles(Gebruiker gebruiker)
+        {
+            try
+            {
+                List<Rol> rollenVanGebruiker = RolManager.GetRollenByUser(gebruiker);
+
+                if (rollenVanGebruiker.Count > 0)//Als de gebruiker meer als 0 rollen heeft
+                {
+                    foreach (var rol in rollenVanGebruiker)
+                    {
+                        switch (rol.Naam)//Deze cycled door de rollen en kijkt of de gebruiker ze heeft, als dat zo is wordt de rol op true gezet
+                        {
+                            case "Aanvrager":
+                                IsAanvrager = true;
+                                break;
+                            case "Aankoper":
+                                IsAankoper = true;
+                                break;
+                            case "Goedkeurder":
+                                IsGoedkeurder = true;
+                                break;
+                            case "Systeem":
+                                IsSysteem = true;
+                                break;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show($"Error in SetuserRoles : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private static void HandleInactiveUser(string gebruikersnaam)
+        {
+            try
+            {
+                MessageBox.Show("U bent niet gerechtigd voor deze toepassing !", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
+                {
+                    Gebruiker = Program.Gebruiker,
+                    TijdstipActie = DateTime.Now,
+                    OmschrijvingActie = $"De niet-actieve gebruiker: {Gebruiker} probeerde aan te melden."
+                }, true);
+                Environment.Exit(0);//het programma wordt afgesloten
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in HandleInactiveUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private static void CreateNewUser(string gebruikersnaam)
+        {
+            try
+            {
+                Gebruiker nieuweGebruiker = new Gebruiker { Gebruikersnaam = gebruikersnaam }; //De naam van de nnieuwe gebruiker wordt de windows naam
+                GebruikerManager.SaveGebruiker(nieuweGebruiker, true); //de gebruiker wordt aangemaakt en IsActive wordt op true gezet
+
+                Gebruiker = nieuweGebruiker.Gebruikersnaam; //De gebruikersnaam wordt in een nieuwe variable gezet
+
+                nieuweGebruiker = GebruikerManager.GetGebruikerByGebruikersnaam(nieuweGebruiker.Gebruikersnaam); //De gebruiker wordt gezocht in de databank
+
+                Rol aanvragerRol = RolManager.GetRolByName("Aanvrager"); //De rol wordt uit de databank gezocht
 
                 if (aanvragerRol != null)
                 {
-                    RolManager.SaveRolToGebruiker(aanvragerRol, NieuweGebruiker);
                     IsAanvrager = true;
+
+                    //Het deelprobleem wordt opgeroepen om de rol aan de gebruiker te geven
+                    RolManager.SaveRolToGebruiker(aanvragerRol, nieuweGebruiker);
                 }
-                else
+                Rol SysteemRol = RolManager.GetRolByName("Systeem");
+                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
                 {
-                    MessageBox.Show("Er is een fout in het toewijzen van de rol 'Aanvrager' aan de nieuwe gebruiker.");
-                }
+                    Gebruiker = Program.Gebruiker,
+                    TijdstipActie = DateTime.Now,
+                    OmschrijvingActie = $"Gebruiker {Gebruiker} werd aangemaakt door het Systeem."
+
+                }, true);
+
             }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mdiMia());
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error in CreateNewUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
     }
 }

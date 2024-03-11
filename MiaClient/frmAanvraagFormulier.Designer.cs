@@ -1,4 +1,6 @@
-﻿namespace MiaClient
+﻿using System;
+
+namespace MiaClient
 {
     partial class frmAanvraagFormulier
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAanvraagFormulier));
             this.txtAanvraagId = new System.Windows.Forms.TextBox();
             this.lblAanvraagId = new System.Windows.Forms.Label();
             this.lblAanvraagformulier = new System.Windows.Forms.Label();
@@ -46,9 +49,9 @@
             this.pnl_Investeringen = new System.Windows.Forms.Panel();
             this.gboxInvestering = new System.Windows.Forms.GroupBox();
             this.gboxPlanning = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ddlWieKooptHet = new System.Windows.Forms.ComboBox();
+            this.ddlKostenplaats = new System.Windows.Forms.ComboBox();
+            this.ddlFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.lblKostenplaats = new System.Windows.Forms.Label();
             this.lblWieKooptHet = new System.Windows.Forms.Label();
@@ -104,6 +107,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnl_Offertes = new System.Windows.Forms.Panel();
+            this.btn_Indienen = new System.Windows.Forms.Button();
+            this.btn_Nieuw = new System.Windows.Forms.Button();
             this.gboxIdentificatie.SuspendLayout();
             this.tabControl_Aanvraagformulier.SuspendLayout();
             this.tabPage_Identificatie.SuspendLayout();
@@ -250,7 +255,7 @@
             this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
             this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
             this.tabControl_Aanvraagformulier.SelectedIndex = 0;
-            this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 741);
+            this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
             this.tabControl_Aanvraagformulier.TabIndex = 14;
             // 
             // tabPage_Identificatie
@@ -259,7 +264,7 @@
             this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Identificatie.Name = "tabPage_Identificatie";
             this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 707);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 565);
             this.tabPage_Identificatie.TabIndex = 0;
             this.tabPage_Identificatie.Text = "Identificatie";
             this.tabPage_Identificatie.UseVisualStyleBackColor = true;
@@ -270,7 +275,7 @@
             this.tabPage_Investering.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Investering.Name = "tabPage_Investering";
             this.tabPage_Investering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Investering.Size = new System.Drawing.Size(791, 707);
+            this.tabPage_Investering.Size = new System.Drawing.Size(791, 565);
             this.tabPage_Investering.TabIndex = 1;
             this.tabPage_Investering.Text = "Investering";
             this.tabPage_Investering.UseVisualStyleBackColor = true;
@@ -298,9 +303,9 @@
             // 
             // gboxPlanning
             // 
-            this.gboxPlanning.Controls.Add(this.comboBox3);
-            this.gboxPlanning.Controls.Add(this.comboBox2);
-            this.gboxPlanning.Controls.Add(this.comboBox1);
+            this.gboxPlanning.Controls.Add(this.ddlWieKooptHet);
+            this.gboxPlanning.Controls.Add(this.ddlKostenplaats);
+            this.gboxPlanning.Controls.Add(this.ddlFinancieringsjaar);
             this.gboxPlanning.Controls.Add(this.lblFinancieringsjaar);
             this.gboxPlanning.Controls.Add(this.lblKostenplaats);
             this.gboxPlanning.Controls.Add(this.lblWieKooptHet);
@@ -312,32 +317,32 @@
             this.gboxPlanning.TabStop = false;
             this.gboxPlanning.Text = "Planning";
             // 
-            // comboBox3
+            // ddlWieKooptHet
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(190, 137);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(282, 29);
-            this.comboBox3.TabIndex = 21;
+            this.ddlWieKooptHet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlWieKooptHet.FormattingEnabled = true;
+            this.ddlWieKooptHet.Location = new System.Drawing.Point(190, 137);
+            this.ddlWieKooptHet.Name = "ddlWieKooptHet";
+            this.ddlWieKooptHet.Size = new System.Drawing.Size(282, 29);
+            this.ddlWieKooptHet.TabIndex = 21;
             // 
-            // comboBox2
+            // ddlKostenplaats
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(190, 82);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(282, 29);
-            this.comboBox2.TabIndex = 20;
+            this.ddlKostenplaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlKostenplaats.FormattingEnabled = true;
+            this.ddlKostenplaats.Location = new System.Drawing.Point(190, 82);
+            this.ddlKostenplaats.Name = "ddlKostenplaats";
+            this.ddlKostenplaats.Size = new System.Drawing.Size(282, 29);
+            this.ddlKostenplaats.TabIndex = 20;
             // 
-            // comboBox1
+            // ddlFinancieringsjaar
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(190, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(282, 29);
-            this.comboBox1.TabIndex = 19;
+            this.ddlFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlFinancieringsjaar.FormattingEnabled = true;
+            this.ddlFinancieringsjaar.Location = new System.Drawing.Point(190, 27);
+            this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
+            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(282, 29);
+            this.ddlFinancieringsjaar.TabIndex = 19;
             // 
             // lblFinancieringsjaar
             // 
@@ -368,7 +373,6 @@
             this.lblWieKooptHet.Size = new System.Drawing.Size(107, 21);
             this.lblWieKooptHet.TabIndex = 16;
             this.lblWieKooptHet.Text = "Wie koopt het";
-            this.lblWieKooptHet.Click += new System.EventHandler(this.label2_Click);
             // 
             // gboxTitel
             // 
@@ -474,11 +478,12 @@
             // 
             // txtAantalStuks
             // 
-            this.txtAantalStuks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAantalStuks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAantalStuks.Location = new System.Drawing.Point(543, 244);
             this.txtAantalStuks.Name = "txtAantalStuks";
-            this.txtAantalStuks.Size = new System.Drawing.Size(172, 22);
+            this.txtAantalStuks.Size = new System.Drawing.Size(172, 29);
             this.txtAantalStuks.TabIndex = 11;
+            this.txtAantalStuks.Leave += new System.EventHandler(this.txtAantalStuks_Leave);
             // 
             // lblAantalStuks
             // 
@@ -492,11 +497,12 @@
             // 
             // txtPrijsindicatie
             // 
-            this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrijsindicatie.Location = new System.Drawing.Point(233, 244);
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
-            this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 22);
+            this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 29);
             this.txtPrijsindicatie.TabIndex = 9;
+            this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
             // lblPrijsindicatie
             // 
@@ -510,7 +516,7 @@
             // 
             // rtxtOmschrijving
             // 
-            this.rtxtOmschrijving.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtxtOmschrijving.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtxtOmschrijving.Location = new System.Drawing.Point(170, 71);
             this.rtxtOmschrijving.Name = "rtxtOmschrijving";
             this.rtxtOmschrijving.Size = new System.Drawing.Size(545, 109);
@@ -529,10 +535,10 @@
             // 
             // txtTitel
             // 
-            this.txtTitel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTitel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitel.Location = new System.Drawing.Point(85, 30);
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(630, 22);
+            this.txtTitel.Size = new System.Drawing.Size(630, 29);
             this.txtTitel.TabIndex = 5;
             // 
             // lblTitel
@@ -550,11 +556,10 @@
             this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
             this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
-            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 707);
+            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 565);
             this.tabPage_Voorstellen.TabIndex = 2;
             this.tabPage_Voorstellen.Text = "Voorstellen";
             this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
-            this.tabPage_Voorstellen.Click += new System.EventHandler(this.tabPage_Voorstellen_Click);
             // 
             // groupBox1
             // 
@@ -577,6 +582,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(747, 475);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage_Links
             // 
@@ -604,6 +610,7 @@
             this.btn_bewaarLink.TabIndex = 10;
             this.btn_bewaarLink.Text = "Bewaren";
             this.btn_bewaarLink.UseVisualStyleBackColor = true;
+            this.btn_bewaarLink.Click += new System.EventHandler(this.btn_bewaarLink_Click);
             // 
             // btn_verwijderLink
             // 
@@ -613,6 +620,7 @@
             this.btn_verwijderLink.TabIndex = 9;
             this.btn_verwijderLink.Text = "Verwijder";
             this.btn_verwijderLink.UseVisualStyleBackColor = true;
+            this.btn_verwijderLink.Click += new System.EventHandler(this.btn_verwijderLink_Click);
             // 
             // btn_nieuweLink
             // 
@@ -622,6 +630,7 @@
             this.btn_nieuweLink.TabIndex = 8;
             this.btn_nieuweLink.Text = "Nieuw";
             this.btn_nieuweLink.UseVisualStyleBackColor = true;
+            this.btn_nieuweLink.Click += new System.EventHandler(this.btn_nieuweLink_Click);
             // 
             // txt_hyperlinkInput
             // 
@@ -693,6 +702,7 @@
             this.btn_bewaarFoto.TabIndex = 21;
             this.btn_bewaarFoto.Text = "Bewaren";
             this.btn_bewaarFoto.UseVisualStyleBackColor = true;
+            this.btn_bewaarFoto.Click += new System.EventHandler(this.btn_bewaarFoto_Click);
             // 
             // btn_verwijderFoto
             // 
@@ -702,6 +712,7 @@
             this.btn_verwijderFoto.TabIndex = 20;
             this.btn_verwijderFoto.Text = "Verwijder";
             this.btn_verwijderFoto.UseVisualStyleBackColor = true;
+            this.btn_verwijderFoto.Click += new System.EventHandler(this.btn_verwijderFoto_Click);
             // 
             // btn_nieuweFoto
             // 
@@ -711,6 +722,7 @@
             this.btn_nieuweFoto.TabIndex = 19;
             this.btn_nieuweFoto.Text = "Nieuw";
             this.btn_nieuweFoto.UseVisualStyleBackColor = true;
+            this.btn_nieuweFoto.Click += new System.EventHandler(this.btn_nieuweFoto_Click);
             // 
             // btn_kiesFoto
             // 
@@ -720,6 +732,7 @@
             this.btn_kiesFoto.TabIndex = 18;
             this.btn_kiesFoto.Text = "...";
             this.btn_kiesFoto.UseVisualStyleBackColor = true;
+            this.btn_kiesFoto.Click += new System.EventHandler(this.btn_kiesFoto_Click);
             // 
             // txt_FotoId
             // 
@@ -747,6 +760,7 @@
             this.txt_fotoURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_fotoURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_fotoURLInput.Name = "txt_fotoURLInput";
+            this.txt_fotoURLInput.ReadOnly = true;
             this.txt_fotoURLInput.Size = new System.Drawing.Size(572, 29);
             this.txt_fotoURLInput.TabIndex = 12;
             // 
@@ -813,7 +827,6 @@
             this.tabPage_Offertes.TabIndex = 2;
             this.tabPage_Offertes.Text = "Offertes";
             this.tabPage_Offertes.UseVisualStyleBackColor = true;
-            this.tabPage_Offertes.Click += new System.EventHandler(this.tabPage_Offertes_Click);
             // 
             // btn_bewaarOfferte
             // 
@@ -823,6 +836,7 @@
             this.btn_bewaarOfferte.TabIndex = 30;
             this.btn_bewaarOfferte.Text = "Bewaren";
             this.btn_bewaarOfferte.UseVisualStyleBackColor = true;
+            this.btn_bewaarOfferte.Click += new System.EventHandler(this.btn_bewaarOfferte_Click);
             // 
             // btn_verwijderOfferte
             // 
@@ -832,6 +846,7 @@
             this.btn_verwijderOfferte.TabIndex = 29;
             this.btn_verwijderOfferte.Text = "Verwijder";
             this.btn_verwijderOfferte.UseVisualStyleBackColor = true;
+            this.btn_verwijderOfferte.Click += new System.EventHandler(this.btn_verwijderOfferte_Click);
             // 
             // btn_nieuweOfferte
             // 
@@ -841,6 +856,7 @@
             this.btn_nieuweOfferte.TabIndex = 28;
             this.btn_nieuweOfferte.Text = "Nieuw";
             this.btn_nieuweOfferte.UseVisualStyleBackColor = true;
+            this.btn_nieuweOfferte.Click += new System.EventHandler(this.btn_nieuweOfferte_Click);
             // 
             // btn_kiesOfferte
             // 
@@ -850,6 +866,7 @@
             this.btn_kiesOfferte.TabIndex = 27;
             this.btn_kiesOfferte.Text = "...";
             this.btn_kiesOfferte.UseVisualStyleBackColor = true;
+            this.btn_kiesOfferte.Click += new System.EventHandler(this.btn_kiesOfferte_Click);
             // 
             // txt_offerteId
             // 
@@ -877,6 +894,7 @@
             this.txt_offerteURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_offerteURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_offerteURLInput.Name = "txt_offerteURLInput";
+            this.txt_offerteURLInput.ReadOnly = true;
             this.txt_offerteURLInput.Size = new System.Drawing.Size(572, 29);
             this.txt_offerteURLInput.TabIndex = 24;
             // 
@@ -922,18 +940,40 @@
             this.pnl_Offertes.Size = new System.Drawing.Size(715, 230);
             this.pnl_Offertes.TabIndex = 11;
             // 
+            // btn_Indienen
+            // 
+            this.btn_Indienen.Location = new System.Drawing.Point(714, 55);
+            this.btn_Indienen.Name = "btn_Indienen";
+            this.btn_Indienen.Size = new System.Drawing.Size(103, 37);
+            this.btn_Indienen.TabIndex = 15;
+            this.btn_Indienen.Text = "Indienen";
+            this.btn_Indienen.UseVisualStyleBackColor = true;
+            this.btn_Indienen.Click += new System.EventHandler(this.btn_Indienen_Click);
+            // 
+            // btn_Nieuw
+            // 
+            this.btn_Nieuw.Location = new System.Drawing.Point(605, 55);
+            this.btn_Nieuw.Name = "btn_Nieuw";
+            this.btn_Nieuw.Size = new System.Drawing.Size(103, 37);
+            this.btn_Nieuw.TabIndex = 16;
+            this.btn_Nieuw.Text = "Nieuw";
+            this.btn_Nieuw.UseVisualStyleBackColor = true;
+            // 
             // frmAanvraagFormulier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(832, 847);
+            this.ClientSize = new System.Drawing.Size(832, 717);
+            this.Controls.Add(this.btn_Nieuw);
+            this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
             this.Controls.Add(this.txtAanvraagId);
             this.Controls.Add(this.lblAanvraagId);
             this.Controls.Add(this.lblAanvraagformulier);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAanvraagFormulier";
             this.Text = "frmAanvraagFormulier";
@@ -962,6 +1002,8 @@
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
         private System.Windows.Forms.TextBox txtAanvraagId;
@@ -1017,9 +1059,9 @@
         private System.Windows.Forms.Panel pnl_Investeringen;
         private System.Windows.Forms.GroupBox gboxInvestering;
         private System.Windows.Forms.GroupBox gboxPlanning;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ddlWieKooptHet;
+        private System.Windows.Forms.ComboBox ddlKostenplaats;
+        private System.Windows.Forms.ComboBox ddlFinancieringsjaar;
         private System.Windows.Forms.Label lblFinancieringsjaar;
         private System.Windows.Forms.Label lblKostenplaats;
         private System.Windows.Forms.Label lblWieKooptHet;
@@ -1040,5 +1082,7 @@
         private System.Windows.Forms.Label lblOmschrijving;
         private System.Windows.Forms.TextBox txtTitel;
         private System.Windows.Forms.Label lblTitel;
+        private System.Windows.Forms.Button btn_Indienen;
+        private System.Windows.Forms.Button btn_Nieuw;
     }
 }

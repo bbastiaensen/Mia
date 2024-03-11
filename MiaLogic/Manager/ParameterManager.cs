@@ -86,7 +86,7 @@ namespace MiaLogic.Manager
             if (parameter.Id == 0 && insert == false)
             {
                 throw new ArgumentNullException("De parameter die je wil bewaren is onbestaande.");
-            } 
+            }
 
             using (SqlConnection objCn = new SqlConnection())
             {
