@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAanvragen));
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
+            this.cbBedragTot = new System.Windows.Forms.CheckBox();
+            this.txtBedragTot = new System.Windows.Forms.TextBox();
+            this.cbBedragVan = new System.Windows.Forms.CheckBox();
             this.txtGebruiker = new System.Windows.Forms.TextBox();
             this.txtKostenPlaats = new System.Windows.Forms.TextBox();
             this.txtBedragVan = new System.Windows.Forms.TextBox();
@@ -54,17 +57,14 @@
             this.lblGebruiker = new System.Windows.Forms.Label();
             this.btnNieuweAanvraag = new System.Windows.Forms.Button();
             this.pnlAanvragen = new System.Windows.Forms.Panel();
-            this.txtBedragTot = new System.Windows.Forms.TextBox();
-            this.cbVan = new System.Windows.Forms.CheckBox();
-            this.cbTot = new System.Windows.Forms.CheckBox();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbxFilterAanvraag
             // 
-            this.grbxFilterAanvraag.Controls.Add(this.cbTot);
+            this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
-            this.grbxFilterAanvraag.Controls.Add(this.cbVan);
+            this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
             this.grbxFilterAanvraag.Controls.Add(this.txtGebruiker);
             this.grbxFilterAanvraag.Controls.Add(this.txtKostenPlaats);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragVan);
@@ -93,6 +93,35 @@
             this.grbxFilterAanvraag.TabIndex = 0;
             this.grbxFilterAanvraag.TabStop = false;
             this.grbxFilterAanvraag.Text = "Filter";
+            // 
+            // cbBedragTot
+            // 
+            this.cbBedragTot.AutoSize = true;
+            this.cbBedragTot.Location = new System.Drawing.Point(651, 208);
+            this.cbBedragTot.Name = "cbBedragTot";
+            this.cbBedragTot.Size = new System.Drawing.Size(61, 32);
+            this.cbBedragTot.TabIndex = 21;
+            this.cbBedragTot.Text = "Tot";
+            this.cbBedragTot.UseVisualStyleBackColor = true;
+            this.cbBedragTot.CheckedChanged += new System.EventHandler(this.cbBedragTot_CheckedChanged);
+            // 
+            // txtBedragTot
+            // 
+            this.txtBedragTot.Location = new System.Drawing.Point(723, 206);
+            this.txtBedragTot.Name = "txtBedragTot";
+            this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
+            this.txtBedragTot.TabIndex = 26;
+            // 
+            // cbBedragVan
+            // 
+            this.cbBedragVan.AutoSize = true;
+            this.cbBedragVan.Location = new System.Drawing.Point(651, 170);
+            this.cbBedragVan.Name = "cbBedragVan";
+            this.cbBedragVan.Size = new System.Drawing.Size(66, 32);
+            this.cbBedragVan.TabIndex = 5;
+            this.cbBedragVan.Text = "Van";
+            this.cbBedragVan.UseVisualStyleBackColor = true;
+            this.cbBedragVan.CheckedChanged += new System.EventHandler(this.cbBedragVan_CheckedChanged);
             // 
             // txtGebruiker
             // 
@@ -305,33 +334,6 @@
             this.pnlAanvragen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnlAanvragen_ControlAdded);
             this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
-            // txtBedragTot
-            // 
-            this.txtBedragTot.Location = new System.Drawing.Point(723, 206);
-            this.txtBedragTot.Name = "txtBedragTot";
-            this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
-            this.txtBedragTot.TabIndex = 26;
-            // 
-            // cbVan
-            // 
-            this.cbVan.AutoSize = true;
-            this.cbVan.Location = new System.Drawing.Point(651, 170);
-            this.cbVan.Name = "cbVan";
-            this.cbVan.Size = new System.Drawing.Size(66, 32);
-            this.cbVan.TabIndex = 5;
-            this.cbVan.Text = "Van";
-            this.cbVan.UseVisualStyleBackColor = true;
-            // 
-            // cbTot
-            // 
-            this.cbTot.AutoSize = true;
-            this.cbTot.Location = new System.Drawing.Point(651, 208);
-            this.cbTot.Name = "cbTot";
-            this.cbTot.Size = new System.Drawing.Size(61, 32);
-            this.cbTot.TabIndex = 21;
-            this.cbTot.Text = "Tot";
-            this.cbTot.UseVisualStyleBackColor = true;
-            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
@@ -380,8 +382,8 @@
         private System.Windows.Forms.CheckBox chbxPlaningsdatumTot;
         private System.Windows.Forms.CheckBox chbxAanvraagmomentTot;
         private System.Windows.Forms.TextBox txtGebruiker;
-        private System.Windows.Forms.CheckBox cbTot;
+        private System.Windows.Forms.CheckBox cbBedragTot;
         private System.Windows.Forms.TextBox txtBedragTot;
-        private System.Windows.Forms.CheckBox cbVan;
+        private System.Windows.Forms.CheckBox cbBedragVan;
     }
 }

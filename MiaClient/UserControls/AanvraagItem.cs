@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,13 +27,12 @@ namespace MiaClient.UserControls
         public decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
+        public event EventHandler AanvraagDeleted;
         public event EventHandler AanvraagItemSelected;
-
         public AanvraagItem()
         {
             InitializeComponent();
         }
-
         public AanvraagItem(int id,string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
@@ -50,7 +51,6 @@ namespace MiaClient.UserControls
             
             SetAanvraagItemWaarden();
         }
-
         private void SetAanvraagItemWaarden()
         {
             DateTime Datum = new DateTime(2000, 1, 1);
@@ -69,7 +69,6 @@ namespace MiaClient.UserControls
             {
                 lblPlaningsDatum.Text = Planningsdatum.ToString();
             }
-
             if (Titel.Length >= 20)
             {
                 lblTitel.Text = Titel.Substring(0, 20) + "...";
@@ -84,13 +83,8 @@ namespace MiaClient.UserControls
                 this.BackColor = Color.White;
             }
         }
-
         private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (AanvraagItemSelected != null)
-            {
-                AanvraagItemSelected(this, null);
-            }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -99,51 +93,43 @@ namespace MiaClient.UserControls
                 AanvraagItemSelected(this, null);
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (AanvraagItemSelected != null)
-                {
-                    AanvraagItemSelected(this, null);
-                }
+                //if ( )
+                //{
+                //    if (AanvraagDeleted != null)
+                //    {
+                //        AanvraagDeleted(this, null);
+                //    }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.");
+                //}
             }
         }
-
         private void AanvraagItem_Load(object sender, EventArgs e)
         {
-
         }
-
         private void lblFinancieringsjaar_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblTitel_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblStatusAanvraag_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblPlaningsDatum_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblKostenplaats_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblAanvraagmoment_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
