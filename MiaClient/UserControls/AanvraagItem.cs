@@ -48,10 +48,10 @@ namespace MiaClient.UserControls
             Even = even;
             Bedrag = aantalstuk * prijsindicatiestuk;
             
-            SetAanvraagLogItemWaarden();
+            SetAanvraagItemWaarden();
         }
 
-        private void SetAanvraagLogItemWaarden()
+        private void SetAanvraagItemWaarden()
         {
             DateTime Datum = new DateTime(2000, 1, 1);
 

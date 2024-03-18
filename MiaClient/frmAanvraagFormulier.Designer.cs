@@ -946,7 +946,7 @@ namespace MiaClient
             this.btn_Indienen.Name = "btn_Indienen";
             this.btn_Indienen.Size = new System.Drawing.Size(103, 37);
             this.btn_Indienen.TabIndex = 15;
-            this.btn_Indienen.Text = "Indienen";
+            this.btn_Indienen.Text = "Bewaren";
             this.btn_Indienen.UseVisualStyleBackColor = true;
             this.btn_Indienen.Click += new System.EventHandler(this.btn_Indienen_Click);
             // 
