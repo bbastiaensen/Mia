@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Manager
 {
-    public class WieKooptHetManager
+    public class AankoperManager
     {
         public static string ConnectionString { get; set; }
-        public static List<string> GetWieKooptHet()
+        public static List<string> GetAankoper()
         {
             List<string> aankoper = new List<string>();
 
@@ -39,15 +39,9 @@ namespace MiaLogic.Manager
 
         // Get...ById
 
-
-
-
-
-
-
-        public static WieKooptHet GetAankoperById(int id)
+        public static Aankoper GetAankoperById(int id)
         {
-            WieKooptHet aankoper = null;
+            Aankoper aankoper = null;
 
             try
             {
@@ -65,7 +59,7 @@ namespace MiaLogic.Manager
                         {
                             if (reader.Read())
                             {
-                                aankoper = new WieKooptHet
+                                aankoper = new Aankoper
                                 {
                                     Id = Convert.ToInt32(reader["Id"]),
                                     Voornaam = reader["Voornaam"].ToString(),
