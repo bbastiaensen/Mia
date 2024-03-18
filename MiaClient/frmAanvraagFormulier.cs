@@ -3,10 +3,12 @@ using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ using System.Windows.Forms;
 namespace MiaClient
 {
     //Mensen dat verwijderd worden moeten ook gelogd zijn.
-    // soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
+    //Soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
     //Moeten de bestandsnamen specifiek zijn of niet : Id + uploaddatum+fotoId
     //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
     //Submappen voor offertes en fotos investeringen/afbeeldingen - / offertess
@@ -27,9 +29,22 @@ namespace MiaClient
 
         public frmAanvraagFormulier()
         {
-            InitializeComponent();
-            //Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
-            vulFormulier();
+            try
+            {
+                //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
+                ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                InitializeComponent();
+                Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
+                vulFormulier();
+            }
+
+            catch (SqlException ex)
+            {
+
+                MessageBox.Show($"Error, {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
 
@@ -382,28 +397,39 @@ namespace MiaClient
         {
             try
             {
-                Aanvraag nieuweAanvraag = new Aanvraag
+                if (Checks())
                 {
-                    Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                    DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
-                    Aanvraagmoment = DateTime.Now,
-                    Titel = txtTitel.Text,
-                    Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    InvesteringsTypeId = AanvraagManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    PrioriteitId = AanvraagManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
-                    Financieringsjaar = ddlFinancieringsjaar.Text,
-                    StatusAanvraag = 1.ToString(),
-                    KostenplaatsId = AanvraagManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
-                    PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
-                    AantalStuk = int.Parse(txtAantalStuks.Text),
-                    AankoperId = AanvraagManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
-                };
+                    Aanvraag nieuweAanvraag = new Aanvraag
+                    {
 
-                AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
+                        Gebruiker = txtGebruiker.Text,
+                        AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
+                        DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                        Aanvraagmoment = DateTime.Now,
+                        Titel = txtTitel.Text,
+                        Omschrijving = rtxtOmschrijving.Text,
+                        FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                        InvesteringsTypeId = AanvraagManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                        PrioriteitId = AanvraagManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                        Financieringsjaar = ddlFinancieringsjaar.Text,
+                        StatusAanvraag = 1.ToString(),
+                        KostenplaatsId = AanvraagManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                        PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
+                        AantalStuk = int.Parse(txtAantalStuks.Text),
+                        AankoperId = AanvraagManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    };
 
-                MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
+                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
+                    {
+                        Gebruiker = Program.Gebruiker,
+                        Id = Convert.ToInt32(txtAanvraagId.Text),
+                        TijdstipActie = DateTime.Now,
+                        OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
+                    }, true);
+
+                    MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -411,5 +437,59 @@ namespace MiaClient
             }
 
         }
-    }    
+        private bool Checks()
+        {
+
+            if (string.IsNullOrWhiteSpace(txtGebruiker.Text))
+            {
+                MessageBox.Show("Gebruiker is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlAfdeling.SelectedItem == null)
+            {
+                MessageBox.Show("Afdeling is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlDienst.SelectedItem == null)
+            {
+                MessageBox.Show("Dienst is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtTitel.Text))
+            {
+                MessageBox.Show("Titel is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlFinanciering.SelectedItem == null)
+            {
+                MessageBox.Show("Financiering is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlInvestering.SelectedItem == null)
+            {
+                MessageBox.Show("Investering is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlPrioriteit.SelectedItem == null)
+            {
+                MessageBox.Show("Prioriteit is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlKostenplaats.SelectedItem == null)
+            {
+                MessageBox.Show("Kostenplaats is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (ddlWieKooptHet.SelectedItem == null)
+            {
+                MessageBox.Show("Aankoper is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+
+            return true;
+        }
+
+    }
 }

@@ -358,43 +358,43 @@ namespace MiaLogic.Manager
             return afdeling;
         }
         public static Dienst GetDienstById(int id)
-    {
-        Dienst dienst = null;
-
-        try
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            Dienst dienst = null;
+
+            try
             {
-                connection.Open();
-
-                string query = "SELECT Id, Naam FROM Dienst WHERE Id = @Id";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    connection.Open();
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    string query = "SELECT Id, Naam FROM Dienst WHERE Id = @Id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            dienst = new Dienst
+                            if (reader.Read())
                             {
-                                Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
-                            };
+                                dienst = new Dienst
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Naam = reader["Naam"].ToString()
+                                };
+                            }
                         }
                     }
                 }
             }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
-            throw;
-        }
+            catch (Exception)
+            {
+                Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
+                throw;
+            }
 
-        return dienst;
-    }
+            return dienst;
+        }
         public static Prioriteit GetPrioriteitById(int id)
         {
             Prioriteit prioriteit = null;
