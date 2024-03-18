@@ -78,6 +78,7 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
+            lblBedrag.Text = Bedrag.ToString();
             if (Even)
             {
                 this.BackColor = Color.White;

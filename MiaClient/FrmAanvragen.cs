@@ -102,7 +102,7 @@ namespace MiaClient
         {
 
         }
-        private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedrag, bool kostenPlaats)
+        private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
         {
             if (items != null)
             {
@@ -118,12 +118,18 @@ namespace MiaClient
 
                 if (planningsdatumVan)
                 {
-                    items = items.Where(av => av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                    if (dtpPlanningsdatumVan.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                    }
                 }
 
                 if (planningsdatumTot)
                 {
-                    items = items.Where(av => av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    if (dtpPlanningsdatumVan.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }
                 }
 
                 if (gebruiker)
@@ -149,10 +155,22 @@ namespace MiaClient
                     }
                 }
 
-                //if (bedrag)
-                //{
-                //    items = items.Where(av => av.Bedrag.ToString().Contains(txtBedrag.Text.ToLower())).ToList();
-                //}
+                if (bedragVan)
+                {
+                    if (txtBedragVan.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Bedrag != null && av.Bedrag.ToString().Contains(txtBedragVan.Text.ToLower())).ToList();
+                    }
+                    
+                }
+                if (bedragTot)
+                {
+                    if (txtBedragVan.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Bedrag != null && av.Bedrag.ToString().Contains(txtBedragTot.Text.ToLower())).ToList();
+                    }
+
+                }
 
                 if (kostenPlaats)
                 {
