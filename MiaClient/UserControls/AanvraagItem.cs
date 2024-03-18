@@ -48,10 +48,10 @@ namespace MiaClient.UserControls
             Even = even;
             Bedrag = aantalstuk * prijsindicatiestuk;
             
-            SetAanvraagLogItemWaarden();
+            SetAanvraagItemWaarden();
         }
 
-        private void SetAanvraagLogItemWaarden()
+        private void SetAanvraagItemWaarden()
         {
             DateTime Datum = new DateTime(2000, 1, 1);
 
@@ -78,6 +78,7 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
+            lblBedrag.Text = Bedrag.ToString();
             if (Even)
             {
                 this.BackColor = Color.White;

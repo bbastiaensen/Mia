@@ -57,7 +57,7 @@ namespace MiaClient
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
-            List<Afdeling> afdelingen = MiaLogic.Manager.AanvraagManager.GetAfdelingen();
+            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
 
             cmbAfdeling.DataSource = afdelingen;
             cmbAfdeling.DisplayMember = "Naam";
@@ -66,7 +66,7 @@ namespace MiaClient
         }
         public void VulDienstDropDown(ComboBox cmbDienst)
         {
-            List<Dienst> diensten = MiaLogic.Manager.AanvraagManager.GetDiensten();
+            List<Dienst> diensten = MiaLogic.Manager.DienstenManager.GetDiensten();
 
             cmbDienst.DataSource = diensten;
             cmbDienst.DisplayMember = "Naam";
@@ -75,7 +75,7 @@ namespace MiaClient
         }
         public void VulPrioriteitDropDown(ComboBox cmbPrioriteit)
         {
-            List<Prioriteit> prioriteiten = MiaLogic.Manager.AanvraagManager.GetPrioriteiten();
+            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetPrioriteiten();
 
             cmbPrioriteit.DataSource = prioriteiten;
             cmbPrioriteit.DisplayMember = "Naam";
@@ -84,7 +84,7 @@ namespace MiaClient
         }
         public void VulFinancieringDropDown(ComboBox cmbFinanciering)
         {
-            List<Financiering> financieringen = MiaLogic.Manager.AanvraagManager.GetFinancieringen();
+            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetFinancieringen();
 
             cmbFinanciering.DataSource = financieringen;
             cmbFinanciering.DisplayMember = "Naam";
@@ -93,7 +93,7 @@ namespace MiaClient
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
-            List<Investering> investeringen = MiaLogic.Manager.AanvraagManager.GetInvesteringen();
+            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetInvesteringen();
 
             cmbInvestering.DataSource = investeringen;
             cmbInvestering.DisplayMember = "Naam";
@@ -102,14 +102,14 @@ namespace MiaClient
         }
         public void VulFinancieringsjaarDropDown(ComboBox cmbFinancieringsjaar)
         {
-            List<string> financieringsjaren = MiaLogic.Manager.AanvraagManager.GetFinancieringsjaren();
+            List<string> financieringsjaren = MiaLogic.Manager.FinancieringsjaarManager.GetFinancieringsjaren();
 
             cmbFinancieringsjaar.DataSource = financieringsjaren;
             cmbFinancieringsjaar.SelectedIndex = -1;
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)
         {
-            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.AanvraagManager.GetKostenplaatsen();
+            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.KostenplaatsManager.GetKostenplaatsen();
 
             cmbKostenplaats.DataSource = kostenplaatsen;
             cmbKostenplaats.DisplayMember = "Naam";
@@ -118,7 +118,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.AanvraagManager.GetWieKooptHet();
+            List<string> aankoper = MiaLogic.Manager.WieKooptHetManager.GetWieKooptHet();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.SelectedIndex = -1;

@@ -27,45 +27,4 @@ namespace MiaLogic.Object
         public int AantalStuk { get; set; }
         public int AankoperId { get; set; }
     }
-
-    public class Afdeling
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-
-    public class Dienst
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-
-    public class Prioriteit
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-    public class Financiering
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-
-    public class Investering
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-
-    public class Kostenplaats
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
-    public class WieKooptHet
-    {
-        public int Id { get; set; }
-        public string Voornaam { get; set; }
-        public string Achternaam { get; set; }
-    }
 }
