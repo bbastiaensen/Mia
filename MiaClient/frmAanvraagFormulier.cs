@@ -42,7 +42,7 @@ namespace MiaClient
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
-            List<Afdeling> afdelingen = MiaLogic.Manager.AanvraagManager.GetAfdelingen();
+            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
 
             cmbAfdeling.DataSource = afdelingen;
             cmbAfdeling.DisplayMember = "Naam";
@@ -51,7 +51,7 @@ namespace MiaClient
         }
         public void VulDienstDropDown(ComboBox cmbDienst)
         {
-            List<Dienst> diensten = MiaLogic.Manager.AanvraagManager.GetDiensten();
+            List<Dienst> diensten = MiaLogic.Manager.DienstenManager.GetDiensten();
 
             cmbDienst.DataSource = diensten;
             cmbDienst.DisplayMember = "Naam";
@@ -60,7 +60,7 @@ namespace MiaClient
         }
         public void VulPrioriteitDropDown(ComboBox cmbPrioriteit)
         {
-            List<Prioriteit> prioriteiten = MiaLogic.Manager.AanvraagManager.GetPrioriteiten();
+            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetPrioriteiten();
 
             cmbPrioriteit.DataSource = prioriteiten;
             cmbPrioriteit.DisplayMember = "Naam";
@@ -69,7 +69,7 @@ namespace MiaClient
         }
         public void VulFinancieringDropDown(ComboBox cmbFinanciering)
         {
-            List<Financiering> financieringen = MiaLogic.Manager.AanvraagManager.GetFinancieringen();
+            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetFinancieringen();
 
             cmbFinanciering.DataSource = financieringen;
             cmbFinanciering.DisplayMember = "Naam";
@@ -78,7 +78,7 @@ namespace MiaClient
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
-            List<Investering> investeringen = MiaLogic.Manager.AanvraagManager.GetInvesteringen();
+            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetInvesteringen();
 
             cmbInvestering.DataSource = investeringen;
             cmbInvestering.DisplayMember = "Naam";
@@ -87,14 +87,14 @@ namespace MiaClient
         }
         public void VulFinancieringsjaarDropDown(ComboBox cmbFinancieringsjaar)
         {
-            List<string> financieringsjaren = MiaLogic.Manager.AanvraagManager.GetFinancieringsjaren();
+            List<string> financieringsjaren = MiaLogic.Manager.FinancieringsjaarManager.GetFinancieringsjaren();
 
             cmbFinancieringsjaar.DataSource = financieringsjaren;
             cmbFinancieringsjaar.SelectedIndex = -1;
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)
         {
-            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.AanvraagManager.GetKostenplaatsen();
+            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.KostenplaatsManager.GetKostenplaatsen();
 
             cmbKostenplaats.DataSource = kostenplaatsen;
             cmbKostenplaats.DisplayMember = "Naam";
@@ -103,7 +103,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.AanvraagManager.GetWieKooptHet();
+            List<string> aankoper = MiaLogic.Manager.WieKooptHetManager.GetWieKooptHet();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.SelectedIndex = -1;
@@ -385,20 +385,20 @@ namespace MiaClient
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                    DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                    AfdelingId = AfdelingenManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
+                    DienstId = DienstenManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
                     Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    InvesteringsTypeId = AanvraagManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    PrioriteitId = AanvraagManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                    FinancieringsTypeId = FinancieringenManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
                     Financieringsjaar = ddlFinancieringsjaar.Text,
                     StatusAanvraag = 1.ToString(),
-                    KostenplaatsId = AanvraagManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                    KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
                     PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
                     AantalStuk = int.Parse(txtAantalStuks.Text),
-                    AankoperId = AanvraagManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    AankoperId = WieKooptHetManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
                 };
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
