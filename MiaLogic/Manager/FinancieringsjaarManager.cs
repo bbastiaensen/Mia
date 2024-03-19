@@ -20,7 +20,6 @@ namespace MiaLogic.Manager
                 string startingYear = (currentYear + i).ToString();
                 financieringsjaren.Add(startingYear);
             }
-
             return financieringsjaren;
         }
     }

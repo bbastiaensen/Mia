@@ -38,7 +38,6 @@ namespace MiaLogic.Manager
                     }
                 }
             }
-
             return afdelingen;
         }
         public static Afdeling GetAfdelingById(int id)
@@ -76,7 +75,6 @@ namespace MiaLogic.Manager
                 Console.WriteLine("Het systeem kon de Dienst niet vinden, probeer het nog eens.");
                 throw;
             }
-
             return afdeling;
         }
     }
