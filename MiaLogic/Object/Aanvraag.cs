@@ -20,6 +20,7 @@ namespace MiaLogic.Object
         public int PrioriteitId { get; set; }
         public string Financieringsjaar { get; set; }
         public DateTime Planningsdatum { get; set; }
+        public int StatusAanvraagId { get; set; }   
         public string StatusAanvraag { get; set; }
         public int StatusAanvraagId { get; set; }
         public string Kostenplaats { get; set; }

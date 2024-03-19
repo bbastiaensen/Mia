@@ -133,9 +133,12 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            //List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
 
             cmbAankoper.DataSource = aankoper;
+            cmbAankoper.DisplayMember = "FullName";
+            cmbAankoper.ValueMember = "Id";
             cmbAankoper.SelectedIndex = -1;
         }
         private decimal BerekenTotaalprijs()
@@ -388,28 +391,24 @@ namespace MiaClient
         {
             try
             {
-                if (Checks())
+                Aanvraag nieuweAanvraag = new Aanvraag
                 {
-                    Aanvraag nieuweAanvraag = new Aanvraag
-                    {
-                        Gebruiker = txtGebruiker.Text,
-                        AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
-                        DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
-                        Aanvraagmoment = DateTime.Now,
-                        Titel = txtTitel.Text,
-                        Omschrijving = rtxtOmschrijving.Text,
-                        FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-                        InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-                        PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
-                        Financieringsjaar = ddlFinancieringsjaar.Text,
-                        StatusAanvraagId = 1,
-                        Planningsdatum = Convert.ToDateTime(gboxPlanning.Text),
-
-                        KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
-                        PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
-                        AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                        AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
-                    };
+                    Gebruiker = txtGebruiker.Text,
+                    AfdelingId = AfdelingenManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
+                    DienstId = DienstenManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                    Aanvraagmoment = DateTime.Now,
+                    Titel = txtTitel.Text,
+                    Omschrijving = rtxtOmschrijving.Text,
+                    FinancieringsTypeId = FinancieringenManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                    Financieringsjaar = ddlFinancieringsjaar.Text,
+                    StatusAanvraagId = Convert.ToInt32(1),
+                    KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                    PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                    AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                    AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                };
 
                     AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
