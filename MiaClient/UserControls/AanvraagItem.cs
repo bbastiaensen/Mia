@@ -97,17 +97,22 @@ namespace MiaClient.UserControls
         {
             if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //if ( )
-                //{
-                //    if (AanvraagDeleted != null)
-                //    {
-                //        AanvraagDeleted(this, null);
-                //    }
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.");
-                //}
+                if (AanvraagDeleted != null)
+                {
+                    if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
+                    {
+                        Aanvraag aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(lblId.Text);
+                        AanvraagManager.DeleteAanvraag(aanvraag);
+                        AanvraagDeleted(this, null);
+                        MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
         private void AanvraagItem_Load(object sender, EventArgs e)

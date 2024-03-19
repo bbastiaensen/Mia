@@ -69,15 +69,22 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(1300, 33);
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                avi.AanvraagDeleted += Avi_AanvraagDeleted;
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
-                if(t < 10)
-                {
+                //if(t < 10)
+                //{
                     yPos += 30;
-                }
+                //}
             }
         }
+
+        private void Avi_AanvraagDeleted(object sender, EventArgs e)
+        {
+            //BindAanvraag()
+        }
+
         private void frmAanvragen_Load(object sender, EventArgs e)
         {
             try

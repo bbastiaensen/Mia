@@ -33,12 +33,12 @@ namespace MiaClient
         }
 
         // Ophalen van de data voor de dropdownlists
-        //public void VulAanvraagId()
-        //{
-        //    int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
+        public void VulAanvraagId()
+        {
+            int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
 
-        //    txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
-        //}
+            txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
+        }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
             List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
@@ -130,7 +130,7 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            //VulAanvraagId();
+            VulAanvraagId();
             // Identificatie
             VulAfdelingDropDown(ddlAfdeling);
             VulDienstDropDown(ddlDienst);

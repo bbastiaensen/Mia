@@ -327,6 +327,7 @@
             // 
             // pnlAanvragen
             // 
+            this.pnlAanvragen.AutoScroll = true;
             this.pnlAanvragen.Location = new System.Drawing.Point(15, 310);
             this.pnlAanvragen.Name = "pnlAanvragen";
             this.pnlAanvragen.Size = new System.Drawing.Size(1300, 270);

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AanvraagItem));
-            this.llblDetails = new System.Windows.Forms.LinkLabel();
             this.lblGebruiker = new System.Windows.Forms.Label();
             this.lblAanvraagmoment = new System.Windows.Forms.Label();
             this.lblTitel = new System.Windows.Forms.Label();
@@ -43,20 +42,9 @@
             this.lblId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // llblDetails
-            // 
-            this.llblDetails.AutoSize = true;
-            this.llblDetails.Location = new System.Drawing.Point(67, 1);
-            this.llblDetails.Margin = new System.Windows.Forms.Padding(4);
-            this.llblDetails.Name = "llblDetails";
-            this.llblDetails.Size = new System.Drawing.Size(71, 28);
-            this.llblDetails.TabIndex = 0;
-            this.llblDetails.TabStop = true;
-            this.llblDetails.Text = "Details";
-            // 
             // lblGebruiker
             // 
-            this.lblGebruiker.Location = new System.Drawing.Point(254, 3);
+            this.lblGebruiker.Location = new System.Drawing.Point(118, 2);
             this.lblGebruiker.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGebruiker.Name = "lblGebruiker";
             this.lblGebruiker.Size = new System.Drawing.Size(150, 28);
@@ -64,7 +52,7 @@
             // 
             // lblAanvraagmoment
             // 
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(414, 5);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(278, 2);
             this.lblAanvraagmoment.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(150, 28);
@@ -73,7 +61,7 @@
             // 
             // lblTitel
             // 
-            this.lblTitel.Location = new System.Drawing.Point(574, 5);
+            this.lblTitel.Location = new System.Drawing.Point(438, 5);
             this.lblTitel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(150, 28);
@@ -91,10 +79,10 @@
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(964, 1);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(804, 5);
             this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
-            this.lblStatusAanvraag.Size = new System.Drawing.Size(100, 28);
+            this.lblStatusAanvraag.Size = new System.Drawing.Size(260, 28);
             this.lblStatusAanvraag.TabIndex = 5;
             this.lblStatusAanvraag.Click += new System.EventHandler(this.lblStatusAanvraag_Click);
             // 
@@ -117,7 +105,7 @@
             // 
             // lblPlaningsDatum
             // 
-            this.lblPlaningsDatum.Location = new System.Drawing.Point(804, 1);
+            this.lblPlaningsDatum.Location = new System.Drawing.Point(598, 5);
             this.lblPlaningsDatum.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPlaningsDatum.Name = "lblPlaningsDatum";
             this.lblPlaningsDatum.Size = new System.Drawing.Size(150, 28);
@@ -158,7 +146,7 @@
             // 
             // lblId
             // 
-            this.lblId.Location = new System.Drawing.Point(165, 2);
+            this.lblId.Location = new System.Drawing.Point(66, 5);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(44, 28);
             this.lblId.TabIndex = 11;
@@ -179,20 +167,16 @@
             this.Controls.Add(this.lblTitel);
             this.Controls.Add(this.lblAanvraagmoment);
             this.Controls.Add(this.lblGebruiker);
-            this.Controls.Add(this.llblDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
             this.Size = new System.Drawing.Size(1300, 33);
             this.Load += new System.EventHandler(this.AanvraagItem_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.LinkLabel llblDetails;
         private System.Windows.Forms.Label lblGebruiker;
         private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label lblFinancieringsjaar;

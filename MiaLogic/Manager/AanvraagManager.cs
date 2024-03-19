@@ -171,6 +171,10 @@ namespace MiaLogic.Manager
         }
         public static void DeleteAanvraag(Aanvraag aanvraag)
         {
+            if (aanvraag.Id == 0)
+            {
+                throw new ArgumentNullException("De parameter die je wil verwijderen is onbestaande.");
+            }
             using (SqlConnection objCn = new SqlConnection())
             {
 
