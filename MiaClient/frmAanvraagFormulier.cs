@@ -410,22 +410,22 @@ namespace MiaClient
                     AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
                 };
 
-                    AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
-                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
-                    {
-                        Gebruiker = Program.Gebruiker,
-                        Id = Convert.ToInt32(txtAanvraagId.Text),
-                        TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
-                    }, true);
+                AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
+                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
+                {
+                    Gebruiker = Program.Gebruiker,
+                    Id = Convert.ToInt32(txtAanvraagId.Text),
+                    TijdstipActie = DateTime.Now,
+                    OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
+                }, true);
 
-                    DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
-                    {
-                        MessageBox.Show("Dit moet nog verder af gemaakt worden");
+                DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    MessageBox.Show("Dit moet nog verder af gemaakt worden");
 
-                    }
                 }
+
             }
             catch (FormatException ex)
             {

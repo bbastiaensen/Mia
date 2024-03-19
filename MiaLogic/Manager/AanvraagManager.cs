@@ -145,7 +145,7 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@InvesteringsTypeId", aanvraag.InvesteringsTypeId);
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
-                        command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
+                        //command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
                         command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraag);
                         command.Parameters.AddWithValue("@Kostenplaats", aanvraag.Kostenplaats);
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
