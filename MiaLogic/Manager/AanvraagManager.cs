@@ -71,6 +71,64 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
+        public static Aanvraag GetAanvraagById(int id)
+        {
+            Aanvraag aanvraag = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from Aanvraag where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("@Id", id);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                
+                    if (objRea.Read())
+                    {
+
+                        aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
+                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            aanvraag.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        aanvraag.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        aanvraag.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        aanvraag.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                    }
+
+                }
+            }
+
+            return aanvraag;
+        }
         // Data uit databank halen
         public static int GetHighestAanvraagId()
         {

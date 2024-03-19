@@ -24,6 +24,7 @@ namespace MiaClient
         private string selectedPath;
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string link = string.Empty;
+        public FrmAanvragen frmAanvragen;
 
         public frmAanvraagFormulier()
         {
@@ -364,11 +365,11 @@ namespace MiaClient
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (MessageBox.Show("Wil je nog iets wijzigen aan deze aanvraag?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-
+                    
                 }
                 else
                 {
-
+                    RefreshBoxes(tabControl);
                 }
             }
             catch (Exception ex)

@@ -119,6 +119,7 @@
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
             this.txtBedragTot.TabIndex = 26;
+            this.txtBedragTot.TextChanged += new System.EventHandler(this.txtBedragTot_TextChanged);
             // 
             // cbBedragVan
             // 
@@ -161,6 +162,7 @@
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
             this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumTot.TabIndex = 24;
+            this.dtpPlanningsdatumTot.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumTot_ValueChanged);
             // 
             // dtpPlanningsdatumVan
             // 
@@ -168,6 +170,7 @@
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
             this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumVan.TabIndex = 23;
+            this.dtpPlanningsdatumVan.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumVan_ValueChanged);
             // 
             // lblKostenplaats
             // 
@@ -184,6 +187,7 @@
             this.dtpAanvraagmomentTot.Name = "dtpAanvraagmomentTot";
             this.dtpAanvraagmomentTot.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentTot.TabIndex = 22;
+            this.dtpAanvraagmomentTot.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentTot_ValueChanged);
             // 
             // lblBedrag
             // 
@@ -217,6 +221,7 @@
             this.dtpAanvraagmomentVan.Name = "dtpAanvraagmomentVan";
             this.dtpAanvraagmomentVan.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentVan.TabIndex = 21;
+            this.dtpAanvraagmomentVan.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentVan_ValueChanged);
             // 
             // chbxPlaningsdatumVan
             // 
@@ -433,6 +438,7 @@
             this.Controls.Add(this.btnNieuweAanvraag);
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAanvragen";
             this.Text = "Aanvragen";
