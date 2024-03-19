@@ -237,9 +237,9 @@ namespace MiaClient
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
 
-                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_FotoId.Text}-{DateTime.Now:yyyyMMddHHmmss}{fileExtension}";
+                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_FotoId.Text}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
-                    string destinationFolder = Path.Combine(Mainpath, "fotos");
+                    string destinationFolder = Path.Combine(Mainpath + @"\fotos");
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
@@ -277,9 +277,9 @@ namespace MiaClient
                     string fileExtension = Path.GetExtension(selectedPath);
 
 
-                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmmss}-{fileExtension}";
+                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
-                    string destinationFolder = Path.Combine(Mainpath, "\\offertes"); // Hier mpet nog de hardocded map naam voor (test)
+                    string destinationFolder = Path.Combine(Mainpath + @"\offertes"); // Hier mpet nog de hardocded map naam voor (test)
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
@@ -363,7 +363,7 @@ namespace MiaClient
                     MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            txt_offerteId.Text = selectedPath;
+            txt_offerteURLInput.Text = selectedPath;
         }
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -382,7 +382,7 @@ namespace MiaClient
                     MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            txt_FotoId.Text = selectedPath;
+            txt_fotoURLInput.Text = selectedPath;
         }
         private void btn_Indienen_Click(object sender, EventArgs e)
         {
