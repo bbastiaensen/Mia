@@ -420,8 +420,12 @@ namespace MiaClient
                         OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
                     }, true);
 
+                    DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Dit moet nog verder af gemaakt worden");
 
-                    MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (FormatException ex)
