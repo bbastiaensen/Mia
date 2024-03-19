@@ -31,7 +31,26 @@ namespace MiaClient
             //Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
             vulFormulier();
         }
+        public frmAanvraagFormulier(int id, string action)
+        {
+            Aanvraag aanvraag = null;
+            if (action == "edit")
+            {
+               aanvraag =  AanvraagManager.GetAanvraagById(id);
 
+                txtAanvraagId.Text = aanvraag.Id.ToString();
+                txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
+                txtAanvraagmoment.Text = aanvraag.Aanvraagmoment.ToString();
+                txtGebruiker.Text = aanvraag.Gebruiker.ToString();
+                txtPrijsindicatie.Text = aanvraag.PrijsIndicatieStuk.ToString();
+                txtTitel.Text = aanvraag.Titel.ToString();
+                txtTotaal.Text = (aanvraag.PrijsIndicatieStuk * aanvraag.AantalStuk).ToString();
+                rtxtOmschrijving.Text = aanvraag.Omschrijving.ToString();
+            }
+
+           
+            
+        }
 
         // Ophalen van de data voor de dropdownlists
         public void VulAanvraagId()

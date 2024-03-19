@@ -13,6 +13,64 @@ namespace MiaLogic.Manager
     public static class AanvraagManager
     {
         public static string ConnectionString { get; set; }
+
+        public static Aanvraag GetAanvraagById(int id)
+        {
+            Aanvraag aanvraag = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from Aanvraag where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("@Id", id);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+
+
+
+                    if (objRea.Read())
+                    {
+
+                        aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
+                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            aanvraag.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        aanvraag.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        aanvraag.Kostenplaats = objRea["Kostenplaats"].ToString();
+                       
+                    }
+
+                }
+            }
+
+            return aanvraag;
+        }
         public static List<Aanvraag> GetAanvragen()
         {
             List<Aanvraag> returnlist = null;
@@ -433,6 +491,10 @@ namespace MiaLogic.Manager
 
             return prioriteit;
         }
+
+
+
+
         public static Financiering GetFinancieringById(int id)
         {
             Financiering financieringsType = null;
