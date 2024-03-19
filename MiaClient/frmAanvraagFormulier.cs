@@ -424,21 +424,21 @@ namespace MiaClient
                     Aanvraag nieuweAanvraag = new Aanvraag
                     {
                         Gebruiker = txtGebruiker.Text,
-                        //AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
-                        //DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
-                        //Aanvraagmoment = DateTime.Now,
-                        //Titel = txtTitel.Text,
-                        //Omschrijving = rtxtOmschrijving.Text,
-                        //FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-                        //InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-                        //PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
-                        //Financieringsjaar = ddlFinancieringsjaar.Text,
-                        //StatusAanvraagId = 1,
+                        AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                        DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+                        Aanvraagmoment = DateTime.Now,
+                        Titel = txtTitel.Text,
+                        Omschrijving = rtxtOmschrijving.Text,
+                        FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                        InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                        PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+                        Financieringsjaar = ddlFinancieringsjaar.Text,
+                        StatusAanvraagId = 1,
 
-                        //KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
-                        //PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
-                        //AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                        //AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                        KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+                        PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                        AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                        AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
                     };
 
                     AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
