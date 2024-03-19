@@ -403,6 +403,7 @@ namespace MiaClient
                         PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                         Financieringsjaar = ddlFinancieringsjaar.Text,
                         StatusAanvraagId = 1,
+                        Planningsdatum = Convert.ToDateTime(gboxPlanning.Text),
 
                         KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                         PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),

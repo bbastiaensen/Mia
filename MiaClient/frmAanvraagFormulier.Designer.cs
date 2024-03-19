@@ -131,7 +131,7 @@ namespace MiaClient
             this.txtAanvraagId.Location = new System.Drawing.Point(191, 55);
             this.txtAanvraagId.Name = "txtAanvraagId";
             this.txtAanvraagId.ReadOnly = true;
-            this.txtAanvraagId.Size = new System.Drawing.Size(71, 29);
+            this.txtAanvraagId.Size = new System.Drawing.Size(71, 34);
             this.txtAanvraagId.TabIndex = 12;
             // 
             // lblAanvraagId
@@ -139,7 +139,7 @@ namespace MiaClient
             this.lblAanvraagId.AutoSize = true;
             this.lblAanvraagId.Location = new System.Drawing.Point(17, 58);
             this.lblAanvraagId.Name = "lblAanvraagId";
-            this.lblAanvraagId.Size = new System.Drawing.Size(136, 21);
+            this.lblAanvraagId.Size = new System.Drawing.Size(168, 28);
             this.lblAanvraagId.TabIndex = 11;
             this.lblAanvraagId.Text = "Aanvraagnummer";
             // 
@@ -149,7 +149,7 @@ namespace MiaClient
             this.lblAanvraagformulier.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAanvraagformulier.Location = new System.Drawing.Point(14, 9);
             this.lblAanvraagformulier.Name = "lblAanvraagformulier";
-            this.lblAanvraagformulier.Size = new System.Drawing.Size(261, 37);
+            this.lblAanvraagformulier.Size = new System.Drawing.Size(313, 45);
             this.lblAanvraagformulier.TabIndex = 10;
             this.lblAanvraagformulier.Text = "Aanvraagformulier";
             // 
@@ -159,7 +159,7 @@ namespace MiaClient
             this.lblGebruikersNaam.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGebruikersNaam.Location = new System.Drawing.Point(30, 30);
             this.lblGebruikersNaam.Name = "lblGebruikersNaam";
-            this.lblGebruikersNaam.Size = new System.Drawing.Size(125, 21);
+            this.lblGebruikersNaam.Size = new System.Drawing.Size(154, 28);
             this.lblGebruikersNaam.TabIndex = 3;
             this.lblGebruikersNaam.Text = "Gebruikersnaam";
             // 
@@ -169,7 +169,7 @@ namespace MiaClient
             this.lblAanvraagmoment.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblAanvraagmoment.Location = new System.Drawing.Point(480, 30);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(57, 21);
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(71, 28);
             this.lblAanvraagmoment.TabIndex = 4;
             this.lblAanvraagmoment.Text = "Datum";
             // 
@@ -179,7 +179,7 @@ namespace MiaClient
             this.lblAfdeling.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblAfdeling.Location = new System.Drawing.Point(30, 80);
             this.lblAfdeling.Name = "lblAfdeling";
-            this.lblAfdeling.Size = new System.Drawing.Size(68, 21);
+            this.lblAfdeling.Size = new System.Drawing.Size(86, 28);
             this.lblAfdeling.TabIndex = 5;
             this.lblAfdeling.Text = "Afdeling";
             // 
@@ -189,7 +189,7 @@ namespace MiaClient
             this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDienst.Location = new System.Drawing.Point(30, 130);
             this.lblDienst.Name = "lblDienst";
-            this.lblDienst.Size = new System.Drawing.Size(54, 21);
+            this.lblDienst.Size = new System.Drawing.Size(67, 28);
             this.lblDienst.TabIndex = 6;
             this.lblDienst.Text = "Dienst";
             // 
@@ -199,7 +199,7 @@ namespace MiaClient
             this.txtGebruiker.Location = new System.Drawing.Point(190, 30);
             this.txtGebruiker.Name = "txtGebruiker";
             this.txtGebruiker.ReadOnly = true;
-            this.txtGebruiker.Size = new System.Drawing.Size(247, 29);
+            this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
             this.txtGebruiker.TabIndex = 7;
             // 
             // txtAanvraagmoment
@@ -208,7 +208,7 @@ namespace MiaClient
             this.txtAanvraagmoment.Location = new System.Drawing.Point(560, 30);
             this.txtAanvraagmoment.Name = "txtAanvraagmoment";
             this.txtAanvraagmoment.ReadOnly = true;
-            this.txtAanvraagmoment.Size = new System.Drawing.Size(177, 29);
+            this.txtAanvraagmoment.Size = new System.Drawing.Size(177, 34);
             this.txtAanvraagmoment.TabIndex = 8;
             // 
             // ddlAfdeling
@@ -217,7 +217,7 @@ namespace MiaClient
             this.ddlAfdeling.FormattingEnabled = true;
             this.ddlAfdeling.Location = new System.Drawing.Point(122, 80);
             this.ddlAfdeling.Name = "ddlAfdeling";
-            this.ddlAfdeling.Size = new System.Drawing.Size(282, 29);
+            this.ddlAfdeling.Size = new System.Drawing.Size(282, 36);
             this.ddlAfdeling.TabIndex = 9;
             // 
             // ddlDienst
@@ -226,7 +226,7 @@ namespace MiaClient
             this.ddlDienst.FormattingEnabled = true;
             this.ddlDienst.Location = new System.Drawing.Point(122, 127);
             this.ddlDienst.Name = "ddlDienst";
-            this.ddlDienst.Size = new System.Drawing.Size(282, 29);
+            this.ddlDienst.Size = new System.Drawing.Size(282, 36);
             this.ddlDienst.TabIndex = 10;
             // 
             // gboxIdentificatie
@@ -261,10 +261,10 @@ namespace MiaClient
             // tabPage_Identificatie
             // 
             this.tabPage_Identificatie.Controls.Add(this.gboxIdentificatie);
-            this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Identificatie.Name = "tabPage_Identificatie";
             this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 565);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 558);
             this.tabPage_Identificatie.TabIndex = 0;
             this.tabPage_Identificatie.Text = "Identificatie";
             this.tabPage_Identificatie.UseVisualStyleBackColor = true;
@@ -272,10 +272,10 @@ namespace MiaClient
             // tabPage_Investering
             // 
             this.tabPage_Investering.Controls.Add(this.pnl_Investeringen);
-            this.tabPage_Investering.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Investering.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Investering.Name = "tabPage_Investering";
             this.tabPage_Investering.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Investering.Size = new System.Drawing.Size(791, 565);
+            this.tabPage_Investering.Size = new System.Drawing.Size(791, 558);
             this.tabPage_Investering.TabIndex = 1;
             this.tabPage_Investering.Text = "Investering";
             this.tabPage_Investering.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@ namespace MiaClient
             this.ddlWieKooptHet.FormattingEnabled = true;
             this.ddlWieKooptHet.Location = new System.Drawing.Point(190, 137);
             this.ddlWieKooptHet.Name = "ddlWieKooptHet";
-            this.ddlWieKooptHet.Size = new System.Drawing.Size(282, 29);
+            this.ddlWieKooptHet.Size = new System.Drawing.Size(282, 36);
             this.ddlWieKooptHet.TabIndex = 21;
             // 
             // ddlKostenplaats
@@ -332,7 +332,7 @@ namespace MiaClient
             this.ddlKostenplaats.FormattingEnabled = true;
             this.ddlKostenplaats.Location = new System.Drawing.Point(190, 82);
             this.ddlKostenplaats.Name = "ddlKostenplaats";
-            this.ddlKostenplaats.Size = new System.Drawing.Size(282, 29);
+            this.ddlKostenplaats.Size = new System.Drawing.Size(282, 36);
             this.ddlKostenplaats.TabIndex = 20;
             // 
             // ddlFinancieringsjaar
@@ -341,7 +341,7 @@ namespace MiaClient
             this.ddlFinancieringsjaar.FormattingEnabled = true;
             this.ddlFinancieringsjaar.Location = new System.Drawing.Point(190, 27);
             this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
-            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(282, 29);
+            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(282, 36);
             this.ddlFinancieringsjaar.TabIndex = 19;
             // 
             // lblFinancieringsjaar
@@ -350,7 +350,7 @@ namespace MiaClient
             this.lblFinancieringsjaar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(30, 30);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(128, 21);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(158, 28);
             this.lblFinancieringsjaar.TabIndex = 18;
             this.lblFinancieringsjaar.Text = "Financieringsjaar";
             // 
@@ -360,7 +360,7 @@ namespace MiaClient
             this.lblKostenplaats.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblKostenplaats.Location = new System.Drawing.Point(30, 88);
             this.lblKostenplaats.Name = "lblKostenplaats";
-            this.lblKostenplaats.Size = new System.Drawing.Size(98, 21);
+            this.lblKostenplaats.Size = new System.Drawing.Size(124, 28);
             this.lblKostenplaats.TabIndex = 17;
             this.lblKostenplaats.Text = "Kostenplaats";
             // 
@@ -370,7 +370,7 @@ namespace MiaClient
             this.lblWieKooptHet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblWieKooptHet.Location = new System.Drawing.Point(30, 146);
             this.lblWieKooptHet.Name = "lblWieKooptHet";
-            this.lblWieKooptHet.Size = new System.Drawing.Size(107, 21);
+            this.lblWieKooptHet.Size = new System.Drawing.Size(137, 28);
             this.lblWieKooptHet.TabIndex = 16;
             this.lblWieKooptHet.Text = "Wie koopt het";
             // 
@@ -406,7 +406,7 @@ namespace MiaClient
             this.ddlPrioriteit.FormattingEnabled = true;
             this.ddlPrioriteit.Location = new System.Drawing.Point(150, 194);
             this.ddlPrioriteit.Name = "ddlPrioriteit";
-            this.ddlPrioriteit.Size = new System.Drawing.Size(282, 29);
+            this.ddlPrioriteit.Size = new System.Drawing.Size(282, 36);
             this.ddlPrioriteit.TabIndex = 19;
             // 
             // lblPrioriteit
@@ -415,7 +415,7 @@ namespace MiaClient
             this.lblPrioriteit.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblPrioriteit.Location = new System.Drawing.Point(30, 195);
             this.lblPrioriteit.Name = "lblPrioriteit";
-            this.lblPrioriteit.Size = new System.Drawing.Size(64, 21);
+            this.lblPrioriteit.Size = new System.Drawing.Size(81, 28);
             this.lblPrioriteit.TabIndex = 18;
             this.lblPrioriteit.Text = "Pioriteit";
             // 
@@ -425,7 +425,7 @@ namespace MiaClient
             this.ddlInvestering.FormattingEnabled = true;
             this.ddlInvestering.Location = new System.Drawing.Point(150, 383);
             this.ddlInvestering.Name = "ddlInvestering";
-            this.ddlInvestering.Size = new System.Drawing.Size(282, 29);
+            this.ddlInvestering.Size = new System.Drawing.Size(282, 36);
             this.ddlInvestering.TabIndex = 17;
             // 
             // ddlFinanciering
@@ -434,7 +434,7 @@ namespace MiaClient
             this.ddlFinanciering.FormattingEnabled = true;
             this.ddlFinanciering.Location = new System.Drawing.Point(150, 333);
             this.ddlFinanciering.Name = "ddlFinanciering";
-            this.ddlFinanciering.Size = new System.Drawing.Size(282, 29);
+            this.ddlFinanciering.Size = new System.Drawing.Size(282, 36);
             this.ddlFinanciering.TabIndex = 16;
             // 
             // lblInvestering
@@ -443,7 +443,7 @@ namespace MiaClient
             this.lblInvestering.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblInvestering.Location = new System.Drawing.Point(30, 387);
             this.lblInvestering.Name = "lblInvestering";
-            this.lblInvestering.Size = new System.Drawing.Size(87, 21);
+            this.lblInvestering.Size = new System.Drawing.Size(108, 28);
             this.lblInvestering.TabIndex = 15;
             this.lblInvestering.Text = "Investering";
             // 
@@ -453,7 +453,7 @@ namespace MiaClient
             this.lblFinaciering.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblFinaciering.Location = new System.Drawing.Point(30, 339);
             this.lblFinaciering.Name = "lblFinaciering";
-            this.lblFinaciering.Size = new System.Drawing.Size(95, 21);
+            this.lblFinaciering.Size = new System.Drawing.Size(118, 28);
             this.lblFinaciering.TabIndex = 14;
             this.lblFinaciering.Text = "Financiering";
             // 
@@ -463,7 +463,7 @@ namespace MiaClient
             this.txtTotaal.Location = new System.Drawing.Point(150, 285);
             this.txtTotaal.Name = "txtTotaal";
             this.txtTotaal.ReadOnly = true;
-            this.txtTotaal.Size = new System.Drawing.Size(151, 29);
+            this.txtTotaal.Size = new System.Drawing.Size(151, 34);
             this.txtTotaal.TabIndex = 13;
             // 
             // lblTotaal
@@ -472,7 +472,7 @@ namespace MiaClient
             this.lblTotaal.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblTotaal.Location = new System.Drawing.Point(30, 291);
             this.lblTotaal.Name = "lblTotaal";
-            this.lblTotaal.Size = new System.Drawing.Size(80, 21);
+            this.lblTotaal.Size = new System.Drawing.Size(101, 28);
             this.lblTotaal.TabIndex = 12;
             this.lblTotaal.Text = "Totaalprijs";
             // 
@@ -481,7 +481,7 @@ namespace MiaClient
             this.txtAantalStuks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAantalStuks.Location = new System.Drawing.Point(543, 244);
             this.txtAantalStuks.Name = "txtAantalStuks";
-            this.txtAantalStuks.Size = new System.Drawing.Size(172, 29);
+            this.txtAantalStuks.Size = new System.Drawing.Size(172, 34);
             this.txtAantalStuks.TabIndex = 11;
             this.txtAantalStuks.Leave += new System.EventHandler(this.txtAantalStuks_Leave);
             // 
@@ -491,7 +491,7 @@ namespace MiaClient
             this.lblAantalStuks.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblAantalStuks.Location = new System.Drawing.Point(420, 243);
             this.lblAantalStuks.Name = "lblAantalStuks";
-            this.lblAantalStuks.Size = new System.Drawing.Size(94, 21);
+            this.lblAantalStuks.Size = new System.Drawing.Size(117, 28);
             this.lblAantalStuks.TabIndex = 10;
             this.lblAantalStuks.Text = "Aantal stuks";
             // 
@@ -500,7 +500,7 @@ namespace MiaClient
             this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrijsindicatie.Location = new System.Drawing.Point(233, 244);
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
-            this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 29);
+            this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 34);
             this.txtPrijsindicatie.TabIndex = 9;
             this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
@@ -510,7 +510,7 @@ namespace MiaClient
             this.lblPrijsindicatie.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblPrijsindicatie.Location = new System.Drawing.Point(30, 243);
             this.lblPrijsindicatie.Name = "lblPrijsindicatie";
-            this.lblPrijsindicatie.Size = new System.Drawing.Size(158, 21);
+            this.lblPrijsindicatie.Size = new System.Drawing.Size(197, 28);
             this.lblPrijsindicatie.TabIndex = 8;
             this.lblPrijsindicatie.Text = "Prijsindicatie per stuk";
             // 
@@ -529,7 +529,7 @@ namespace MiaClient
             this.lblOmschrijving.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblOmschrijving.Location = new System.Drawing.Point(30, 80);
             this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(103, 21);
+            this.lblOmschrijving.Size = new System.Drawing.Size(127, 28);
             this.lblOmschrijving.TabIndex = 6;
             this.lblOmschrijving.Text = "Omschrijving";
             // 
@@ -538,7 +538,7 @@ namespace MiaClient
             this.txtTitel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitel.Location = new System.Drawing.Point(85, 30);
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(630, 29);
+            this.txtTitel.Size = new System.Drawing.Size(630, 34);
             this.txtTitel.TabIndex = 5;
             // 
             // lblTitel
@@ -547,16 +547,16 @@ namespace MiaClient
             this.lblTitel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblTitel.Location = new System.Drawing.Point(30, 30);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(39, 21);
+            this.lblTitel.Size = new System.Drawing.Size(49, 28);
             this.lblTitel.TabIndex = 4;
             this.lblTitel.Text = "Titel";
             // 
             // tabPage_Voorstellen
             // 
             this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
-            this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
-            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 565);
+            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 558);
             this.tabPage_Voorstellen.TabIndex = 2;
             this.tabPage_Voorstellen.Text = "Voorstellen";
             this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
@@ -594,10 +594,10 @@ namespace MiaClient
             this.tabPage_Links.Controls.Add(this.lbl_linksTitel);
             this.tabPage_Links.Controls.Add(this.pnl_Links);
             this.tabPage_Links.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabPage_Links.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Links.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Links.Name = "tabPage_Links";
             this.tabPage_Links.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Links.Size = new System.Drawing.Size(739, 441);
+            this.tabPage_Links.Size = new System.Drawing.Size(739, 434);
             this.tabPage_Links.TabIndex = 0;
             this.tabPage_Links.Text = "Links";
             this.tabPage_Links.UseVisualStyleBackColor = true;
@@ -637,7 +637,7 @@ namespace MiaClient
             this.txt_hyperlinkInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_hyperlinkInput.Location = new System.Drawing.Point(119, 295);
             this.txt_hyperlinkInput.Name = "txt_hyperlinkInput";
-            this.txt_hyperlinkInput.Size = new System.Drawing.Size(606, 29);
+            this.txt_hyperlinkInput.Size = new System.Drawing.Size(606, 34);
             this.txt_hyperlinkInput.TabIndex = 7;
             // 
             // lbl_hyperlinkDetail
@@ -647,7 +647,7 @@ namespace MiaClient
             this.lbl_hyperlinkDetail.Location = new System.Drawing.Point(12, 298);
             this.lbl_hyperlinkDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_hyperlinkDetail.Name = "lbl_hyperlinkDetail";
-            this.lbl_hyperlinkDetail.Size = new System.Drawing.Size(80, 21);
+            this.lbl_hyperlinkDetail.Size = new System.Drawing.Size(100, 28);
             this.lbl_hyperlinkDetail.TabIndex = 6;
             this.lbl_hyperlinkDetail.Text = "Hyperlink:";
             this.lbl_hyperlinkDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -686,10 +686,10 @@ namespace MiaClient
             this.tabPage_Fotos.Controls.Add(this.pnl_Fotos);
             this.tabPage_Fotos.Controls.Add(this.lbl_fotosTitel);
             this.tabPage_Fotos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabPage_Fotos.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Fotos.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Fotos.Name = "tabPage_Fotos";
             this.tabPage_Fotos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Fotos.Size = new System.Drawing.Size(739, 441);
+            this.tabPage_Fotos.Size = new System.Drawing.Size(739, 434);
             this.tabPage_Fotos.TabIndex = 1;
             this.tabPage_Fotos.Text = "Foto\'s";
             this.tabPage_Fotos.UseVisualStyleBackColor = true;
@@ -740,7 +740,7 @@ namespace MiaClient
             this.txt_FotoId.Location = new System.Drawing.Point(74, 290);
             this.txt_FotoId.Name = "txt_FotoId";
             this.txt_FotoId.ReadOnly = true;
-            this.txt_FotoId.Size = new System.Drawing.Size(93, 29);
+            this.txt_FotoId.Size = new System.Drawing.Size(93, 34);
             this.txt_FotoId.TabIndex = 17;
             // 
             // lbl_fotoIdDetail
@@ -750,7 +750,7 @@ namespace MiaClient
             this.lbl_fotoIdDetail.Location = new System.Drawing.Point(12, 294);
             this.lbl_fotoIdDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_fotoIdDetail.Name = "lbl_fotoIdDetail";
-            this.lbl_fotoIdDetail.Size = new System.Drawing.Size(26, 21);
+            this.lbl_fotoIdDetail.Size = new System.Drawing.Size(33, 28);
             this.lbl_fotoIdDetail.TabIndex = 16;
             this.lbl_fotoIdDetail.Text = "Id:";
             this.lbl_fotoIdDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -761,7 +761,7 @@ namespace MiaClient
             this.txt_fotoURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_fotoURLInput.Name = "txt_fotoURLInput";
             this.txt_fotoURLInput.ReadOnly = true;
-            this.txt_fotoURLInput.Size = new System.Drawing.Size(572, 29);
+            this.txt_fotoURLInput.Size = new System.Drawing.Size(572, 34);
             this.txt_fotoURLInput.TabIndex = 12;
             // 
             // lbl_fotoUrlDetail
@@ -771,7 +771,7 @@ namespace MiaClient
             this.lbl_fotoUrlDetail.Location = new System.Drawing.Point(12, 335);
             this.lbl_fotoUrlDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_fotoUrlDetail.Name = "lbl_fotoUrlDetail";
-            this.lbl_fotoUrlDetail.Size = new System.Drawing.Size(42, 21);
+            this.lbl_fotoUrlDetail.Size = new System.Drawing.Size(51, 28);
             this.lbl_fotoUrlDetail.TabIndex = 11;
             this.lbl_fotoUrlDetail.Text = "URL:";
             this.lbl_fotoUrlDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -783,7 +783,7 @@ namespace MiaClient
             this.label5.Location = new System.Drawing.Point(12, 284);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 21);
+            this.label5.Size = new System.Drawing.Size(0, 28);
             this.label5.TabIndex = 8;
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -821,9 +821,9 @@ namespace MiaClient
             this.tabPage_Offertes.Controls.Add(this.lbl_offertesTitel);
             this.tabPage_Offertes.Controls.Add(this.pnl_Offertes);
             this.tabPage_Offertes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabPage_Offertes.Location = new System.Drawing.Point(4, 30);
+            this.tabPage_Offertes.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Offertes.Name = "tabPage_Offertes";
-            this.tabPage_Offertes.Size = new System.Drawing.Size(739, 441);
+            this.tabPage_Offertes.Size = new System.Drawing.Size(739, 434);
             this.tabPage_Offertes.TabIndex = 2;
             this.tabPage_Offertes.Text = "Offertes";
             this.tabPage_Offertes.UseVisualStyleBackColor = true;
@@ -874,7 +874,7 @@ namespace MiaClient
             this.txt_offerteId.Location = new System.Drawing.Point(74, 290);
             this.txt_offerteId.Name = "txt_offerteId";
             this.txt_offerteId.ReadOnly = true;
-            this.txt_offerteId.Size = new System.Drawing.Size(93, 29);
+            this.txt_offerteId.Size = new System.Drawing.Size(93, 34);
             this.txt_offerteId.TabIndex = 26;
             // 
             // lbl_offerteIdDetail
@@ -884,7 +884,7 @@ namespace MiaClient
             this.lbl_offerteIdDetail.Location = new System.Drawing.Point(12, 294);
             this.lbl_offerteIdDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offerteIdDetail.Name = "lbl_offerteIdDetail";
-            this.lbl_offerteIdDetail.Size = new System.Drawing.Size(26, 21);
+            this.lbl_offerteIdDetail.Size = new System.Drawing.Size(33, 28);
             this.lbl_offerteIdDetail.TabIndex = 25;
             this.lbl_offerteIdDetail.Text = "Id:";
             this.lbl_offerteIdDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -895,7 +895,7 @@ namespace MiaClient
             this.txt_offerteURLInput.Location = new System.Drawing.Point(74, 333);
             this.txt_offerteURLInput.Name = "txt_offerteURLInput";
             this.txt_offerteURLInput.ReadOnly = true;
-            this.txt_offerteURLInput.Size = new System.Drawing.Size(572, 29);
+            this.txt_offerteURLInput.Size = new System.Drawing.Size(572, 34);
             this.txt_offerteURLInput.TabIndex = 24;
             // 
             // lbl_offerteURLDetail
@@ -905,7 +905,7 @@ namespace MiaClient
             this.lbl_offerteURLDetail.Location = new System.Drawing.Point(12, 335);
             this.lbl_offerteURLDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offerteURLDetail.Name = "lbl_offerteURLDetail";
-            this.lbl_offerteURLDetail.Size = new System.Drawing.Size(42, 21);
+            this.lbl_offerteURLDetail.Size = new System.Drawing.Size(51, 28);
             this.lbl_offerteURLDetail.TabIndex = 23;
             this.lbl_offerteURLDetail.Text = "URL:";
             this.lbl_offerteURLDetail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -917,7 +917,7 @@ namespace MiaClient
             this.label9.Location = new System.Drawing.Point(12, 284);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 21);
+            this.label9.Size = new System.Drawing.Size(0, 28);
             this.label9.TabIndex = 22;
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -961,7 +961,7 @@ namespace MiaClient
             // 
             // frmAanvraagFormulier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
@@ -973,6 +973,7 @@ namespace MiaClient
             this.Controls.Add(this.lblAanvraagId);
             this.Controls.Add(this.lblAanvraagformulier);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAanvraagFormulier";

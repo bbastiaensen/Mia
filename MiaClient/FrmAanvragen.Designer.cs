@@ -344,6 +344,7 @@
             this.Controls.Add(this.btnNieuweAanvraag);
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAanvragen";
             this.Text = "Aanvragen";
