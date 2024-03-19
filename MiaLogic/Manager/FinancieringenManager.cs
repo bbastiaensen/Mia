@@ -38,7 +38,6 @@ namespace MiaLogic.Manager
                     }
                 }
             }
-
             return financieringen;
         }
         public static Financiering GetFinancieringById(int id)
@@ -76,7 +75,6 @@ namespace MiaLogic.Manager
                 Console.WriteLine("Het systeem kon de Financiering niet vinden, probeer het nog eens.");
                 throw;
             }
-
             return financieringsType;
         }
     }
