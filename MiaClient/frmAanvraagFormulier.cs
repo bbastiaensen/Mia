@@ -32,7 +32,6 @@ namespace MiaClient
             vulFormulier();
         }
 
-
         // Ophalen van de data voor de dropdownlists
         public void VulAanvraagId()
         {
@@ -103,7 +102,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.WieKooptHetManager.GetWieKooptHet();
+            List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.SelectedIndex = -1;
@@ -117,7 +116,6 @@ namespace MiaClient
             }
 
             // Controleer of tekstvak aantalstuks niet leeg is en de waarde is numeriek.
-
             if (string.IsNullOrEmpty(txtAantalStuks.Text) || !int.TryParse(txtAantalStuks.Text, out int aantalStuks))
             {
                 return 0;
@@ -127,7 +125,6 @@ namespace MiaClient
             decimal totaalprijs = prijsIndicatie * aantalStuks;
             return totaalprijs;
         }
-
         // Vullen van dropdownlists
         public void vulFormulier()
         {
@@ -145,7 +142,6 @@ namespace MiaClient
             VulKostenplaatsDropDown(ddlKostenplaats);
             VulAankoperDropDown(ddlWieKooptHet);
         }
-
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -154,7 +150,6 @@ namespace MiaClient
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
         }
-
         private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
@@ -162,7 +157,6 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
         public void RefreshBoxes(TabControl tabControl) //Dit is het deelprobleem om alle textboxes etc leeg te maken
         {
             switch (tabControl.SelectedIndex)
@@ -177,46 +171,33 @@ namespace MiaClient
                     txt_offerteURLInput.Clear();
                     break;
             }
-
         }
-
-
         public static void Delete() //het deelrpobleem om de hyperlink/foto/offerte te verwijderen
         {
 
         }
-
-
         private void btn_bewaarLink_Click(object sender, EventArgs e)
         {
             //Hier moet ik de link naar de databank sturen in de tabel linken
-
         }
-
         private void btn_nieuweLink_Click(object sender, EventArgs e)
         {
             RefreshBoxes(tabControl);
-
         }
-
         private void btn_verwijderLink_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btn_nieuweFoto_Click(object sender, EventArgs e)
         {
             RefreshBoxes(tabControl);
-
         }
-
         private void btn_bewaarFoto_Click(object sender, EventArgs e)
         {
             if (txt_fotoURLInput != null)
             {
                 link = txt_fotoURLInput.Text;
                 //De link is het pad en moet alleen read only zijn
-
             }
             if (!string.IsNullOrEmpty(selectedPath)) // als de string != null is
             {
@@ -228,7 +209,6 @@ namespace MiaClient
                 {
                     File.Copy(selectedPath, DestinationPath, true);//Hier slaag ik de afbeelding op
                     MessageBox.Show("De foto is succesvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 catch (Exception ex)
                 {
@@ -239,21 +219,15 @@ namespace MiaClient
             {
                 MessageBox.Show("Selecteer eerst een afbeelding aub", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Als de string == Null is geef hij deze error
             }
-
-
         }
-
         private void btn_verwijderFoto_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btn_nieuweOfferte_Click(object sender, EventArgs e)
         {
             RefreshBoxes(tabControl);
-
         }
-
         private void btn_bewaarOfferte_Click(object sender, EventArgs e)
         {
             //De link is het pad en moet alleen read only zijn
@@ -267,11 +241,9 @@ namespace MiaClient
                     MessageBox.Show("De offerte is succesvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     SaveOfferte(destinationPath);
-
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -279,10 +251,7 @@ namespace MiaClient
             {
                 MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
-
         private void SaveOfferte(string filepath)
         {
             try
@@ -293,11 +262,9 @@ namespace MiaClient
                 };
 
                 OfferteManager.SaveOfferte(offerte);
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -308,11 +275,9 @@ namespace MiaClient
                 Foto foto = new Foto
                 { Url = filepath };
                 FotoManager.SaveFoto(foto);
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de foto in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -325,19 +290,16 @@ namespace MiaClient
                     Url = filepath
                 };
                 LinkManager.SaveLinken(link);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de link in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_verwijderOfferte_Click(object sender, EventArgs e)
         {
 
         }
-
         private void btn_kiesOfferte_Click(object sender, EventArgs e)
         {
             //Hier opent de filedialog voor een word /exel file te selecteren
@@ -350,17 +312,13 @@ namespace MiaClient
                 {
                     selectedPath = openFileDialog.FileName;
                     MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
                 }
             }
         }
-
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void btn_kiesFoto_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -374,10 +332,7 @@ namespace MiaClient
                     MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-
         }
-
         private void btn_Indienen_Click(object sender, EventArgs e)
         {
             try
@@ -398,7 +353,7 @@ namespace MiaClient
                     KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
                     PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
                     AantalStuk = int.Parse(txtAantalStuks.Text),
-                    AankoperId = WieKooptHetManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
                 };
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
@@ -409,7 +364,6 @@ namespace MiaClient
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }    
 }

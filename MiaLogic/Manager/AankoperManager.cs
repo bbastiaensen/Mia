@@ -33,12 +33,10 @@ namespace MiaLogic.Manager
                     }
                 }
             }
-
             return aankoper;
         }
 
         // Get...ById
-
         public static Aankoper GetAankoperById(int id)
         {
             Aankoper aankoper = null;
@@ -75,7 +73,6 @@ namespace MiaLogic.Manager
                 Console.WriteLine("Het systeem kon de Aankoper niet vinden, probeer het nog eens.");
                 throw;
             }
-
             return aankoper;
         }
     }
