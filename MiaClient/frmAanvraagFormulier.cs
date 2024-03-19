@@ -16,15 +16,14 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    //Mensen dat verwijderd worden moeten ook gelogd zijn.
     //Soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
-    //Moeten de bestandsnamen specifiek zijn of niet : Id + uploaddatum+fotoId
     //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
-    //Submappen voor offertes en fotos investeringen/afbeeldingen - / offertess
+
     public partial class frmAanvraagFormulier : Form
     {
         private string selectedPath;
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
+        private string hyperlink;
 
         public frmAanvraagFormulier()
         {
@@ -35,10 +34,8 @@ namespace MiaClient
                 Mainpath = ParameterManager.GetParameterByCode("Testmap").Waarde;
                 vulFormulier();
             }
-
             catch (SqlException ex)
             {
-
                 MessageBox.Show($"Error, {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -58,6 +55,7 @@ namespace MiaClient
             AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            LinkManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
 
 
         }
@@ -176,6 +174,29 @@ namespace MiaClient
             VulKostenplaatsDropDown(ddlKostenplaats);
             VulAankoperDropDown(ddlWieKooptHet);
         }
+
+        public void LeegFormulier()
+        {
+            txtGebruiker.Text = Program.Gebruiker;
+            txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            VulAanvraagId();
+            ddlAfdeling.SelectedItem = null;
+            ddlDienst.SelectedItem = null;
+            ddlPrioriteit.SelectedItem = null;
+            ddlFinanciering.SelectedItem = null;
+            ddlFinancieringsjaar.SelectedItem = null;
+            ddlKostenplaats.SelectedItem = null;
+            ddlWieKooptHet.SelectedItem = null;
+            //Andere tablat
+            txtTitel.Text = string.Empty;
+            txtTotaal.Text = string.Empty;
+            txtAantalStuks.Text = string.Empty;
+            rtxtOmschrijving.Text = string.Empty;
+            txtPrijsindicatie.Text = string.Empty;
+            ddlInvestering.SelectedItem = null;
+
+
+        }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -197,12 +218,15 @@ namespace MiaClient
             {
                 case 0:
                     txt_hyperlinkInput.Clear();
+
                     break;
                 case 1:
                     txt_fotoURLInput.Clear();
+                    selectedPath = string.Empty;
                     break;
                 case 2:
                     txt_offerteURLInput.Clear();
+                    selectedPath = string.Empty;
                     break;
             }
         }
@@ -212,6 +236,16 @@ namespace MiaClient
         }
         private void btn_bewaarLink_Click(object sender, EventArgs e)
         {
+            try
+            {
+                hyperlink = txt_hyperlinkInput.Text;
+                SaveLink(hyperlink);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout opgetreden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             //Hier moet ik de link naar de databank sturen in de tabel linken
         }
         private void btn_nieuweLink_Click(object sender, EventArgs e)
@@ -333,13 +367,14 @@ namespace MiaClient
                 MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de foto in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void SaveLink(string filepath)
+        private void SaveLink(string hyperlink)
         {
             try
             {
                 Link link = new Link
                 {
-                    Url = filepath
+                    // AanvraagId = 
+                    Url = hyperlink
                 };
                 LinkManager.SaveLinken(link);
             }
@@ -394,21 +429,23 @@ namespace MiaClient
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AfdelingenManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                    DienstId = DienstenManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                    AfdelingId = /*AfdelingenManager.GetAfdelingById*/(Convert.ToInt32(ddlAfdeling.SelectedValue))/*.Id*/,
+                    DienstId = /*DienstenManager.GetDienstById(*/Convert.ToInt32(ddlDienst.SelectedValue)/*).Id*/,
                     Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = FinancieringenManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                    FinancieringsTypeId = /*FinancieringenManager.GetFinancieringById*/(Convert.ToInt32(ddlFinanciering.SelectedValue))/*.Id*/,
+                    InvesteringsTypeId = /*InvesteringenManager.GetInvesteringById(*/Convert.ToInt32(ddlFinanciering.SelectedValue)/*).Id*/,
+                    PrioriteitId =/* PrioriteitManager.GetPrioriteitById(*/Convert.ToInt32(ddlPrioriteit.SelectedValue)/*).Id*/,
                     Financieringsjaar = ddlFinancieringsjaar.Text,
                     StatusAanvraagId = Convert.ToInt32(1),
-                    KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                    KostenplaatsId = /*KostenplaatsManager.GetKostenplaatsById(*/Convert.ToInt32(ddlKostenplaats.SelectedValue)/*).Id*/,
+                    Kostenplaats = ddlKostenplaats.SelectedValue.ToString(),
                     PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                     AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                    AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    AankoperId = /*AankoperManager.GetAankoperById(*/Convert.ToInt32(ddlWieKooptHet.SelectedValue)/*).Id*/
                 };
+
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
                 GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
@@ -492,5 +529,9 @@ namespace MiaClient
             return true;
         }
 
+        private void btn_Nieuw_Click(object sender, EventArgs e)
+        {
+            LeegFormulier();
+        }
     }
 }

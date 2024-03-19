@@ -958,6 +958,7 @@ namespace MiaClient
             this.btn_Nieuw.TabIndex = 16;
             this.btn_Nieuw.Text = "Nieuw";
             this.btn_Nieuw.UseVisualStyleBackColor = true;
+            this.btn_Nieuw.Click += new System.EventHandler(this.btn_Nieuw_Click);
             // 
             // frmAanvraagFormulier
             // 

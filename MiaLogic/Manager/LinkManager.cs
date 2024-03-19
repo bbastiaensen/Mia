@@ -52,10 +52,10 @@ namespace MiaLogic.Manager
                     objcmd.CommandType = CommandType.Text;
 
 
-                    objcmd.CommandText = "insert into Linken (AanvraagID, Url) VALUES (@AanvraagId, @Url)";
+                    objcmd.CommandText = "insert into Linken (AanvraagID, Url) VALUES (@AanvraagID, @Url)";
 
 
-                    objcmd.Parameters.AddWithValue("@AanvraagId", link.AanvraagId);
+                    objcmd.Parameters.AddWithValue("@AanvraagID", link.AanvraagId);
                     objcmd.Parameters.AddWithValue("@Url", link.Url);
 
                     try

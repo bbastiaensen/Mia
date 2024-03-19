@@ -145,17 +145,25 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@InvesteringsTypeId", aanvraag.InvesteringsTypeId);
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
-                        //command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
-                        command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraag);
+                        command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraagId);
                         command.Parameters.AddWithValue("@Kostenplaats", aanvraag.Kostenplaats);
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);
                         command.Parameters.AddWithValue("@AankoperId", aanvraag.AankoperId);
+                        if (aanvraag.Planningsdatum >= SqlDateTime.MinValue.Value && aanvraag.Planningsdatum <= SqlDateTime.MaxValue.Value)
+                        {
+                            command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@Planningsdatum", DBNull.Value);
+                        }
 
                         if (insert)
                         {
                             aanvraag.Id = Convert.ToInt32(command.ExecuteScalar());
+
                         }
                         else
                         {
