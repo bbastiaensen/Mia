@@ -24,7 +24,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -52,6 +52,7 @@ namespace MiaLogic.Manager
                             a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
                         }
                         a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
                         if (objRea["AantalStuk"] != DBNull.Value)
                         {
                             a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
@@ -125,10 +126,10 @@ namespace MiaLogic.Manager
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
                         FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
-                        StatusAanvraag, Kostenplaats, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
+                        StatusAanvraagId, Kostenplaats, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId, PlanningsDatum)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraag, @Kostenplaats, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
+                        @StatusAanvraagId, @Kostenplaats, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @PlanningsDatum);";
                     }
                     else
                     {
@@ -139,7 +140,7 @@ namespace MiaLogic.Manager
                         Aanvraagmoment = @Aanvraagmoment, Titel = @Titel, Omschrijving = @Omschrijving,
                         FinancieringsTypeId = @FinancieringsTypeId, InvesteringsTypeId = @InvesteringsTypeId,
                         PrioriteitId = @PrioriteitId, Financieringsjaar = @Financieringsjaar,
-                        StatusAanvraag = @StatusAanvraag,
+                        StatusAanvraagId = @StatusAanvraagId,
                         Kostenplaats = @Kostenplaats, KostenplaatsId = @KostenplaatsId,
                         PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId
                     WHERE Id = @Id;";
@@ -159,7 +160,7 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
                         command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
-                        command.Parameters.AddWithValue("@StatusAanvraag", aanvraag.StatusAanvraag);
+                        command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraag);
                         command.Parameters.AddWithValue("@Kostenplaats", aanvraag.Kostenplaats);
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);

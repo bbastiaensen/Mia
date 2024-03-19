@@ -8,6 +8,7 @@ namespace MiaLogic.Manager
 {
     public class FinancieringsjaarManager
     {
+        public static string ConnectionString { get; set; }
         public static List<string> GetFinancieringsjaren()
         {
             List<string> financieringsjaren = new List<string>();
