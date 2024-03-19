@@ -11,31 +11,68 @@ namespace MiaLogic.Manager
     public class AankoperManager
     {
         public static string ConnectionString { get; set; }
-        public static List<string> GetAankoper()
+        //public static List<Aankoper> GetAankoper()
+        //{
+        //    List<Aankoper> aankoper = new List<Aankoper>();
+
+        //    using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //    {
+        //        connection.Open();
+
+        //        string query = "SELECT Voornaam + ' ' + Achternaam AS FullName FROM Aankoper ORDER BY FullName ASC";
+
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            using (SqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    string fullName = reader["FullName"].ToString();
+        //                    aankoper.Add(fullName);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return aankoper;
+        //}
+        public static List<Aankoper> GetAankoper()
         {
-            List<string> aankoper = new List<string>();
+            List<Aankoper> returnlist = null;
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlConnection objCn = new SqlConnection())
             {
-                connection.Open();
+                objCn.ConnectionString = ConnectionString;
 
-                string query = "SELECT Voornaam + ' ' + Achternaam AS FullName FROM Aankoper ORDER BY FullName ASC";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand objCmd = new SqlCommand())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "SELECT Id,Voornaam, Achternaam, Voornaam + ' ' + Achternaam AS FullName FROM Aankoper ORDER BY FullName ASC";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aankoper ak;
+
+                    while (objRea.Read())
                     {
-                        while (reader.Read())
+                        if (returnlist == null)
                         {
-                            string fullName = reader["FullName"].ToString();
-                            aankoper.Add(fullName);
+                            returnlist = new List<Aankoper>();
                         }
+
+                        ak = new Aankoper();
+                        ak.Id = Convert.ToInt32(objRea["Id"]);
+                        ak.Voornaam = objRea["Voornaam"].ToString();
+                        ak.Achternaam = objRea["Achternaam"].ToString();
+                        ak.FullName = objRea["FullName"].ToString();
+
+                        returnlist.Add(ak);
                     }
                 }
             }
-            return aankoper;
+            return returnlist;
         }
-
         // Get...ById
         public static Aankoper GetAankoperById(int id)
         {

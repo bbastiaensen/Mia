@@ -102,9 +102,12 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            //List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
 
             cmbAankoper.DataSource = aankoper;
+            cmbAankoper.DisplayMember = "FullName";
+            cmbAankoper.ValueMember = "Id";
             cmbAankoper.SelectedIndex = -1;
         }
         private decimal BerekenTotaalprijs()
@@ -349,16 +352,24 @@ namespace MiaClient
                     InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
                     PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
                     Financieringsjaar = ddlFinancieringsjaar.Text,
-                    StatusAanvraag = 1.ToString(),
+                    StatusAanvraagId = Convert.ToInt32(1),
                     KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
-                    PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
-                    AantalStuk = int.Parse(txtAantalStuks.Text),
+                    PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                    AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                     AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
                 };
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
 
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("Wil je nog iets wijzigen aan deze aanvraag?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
