@@ -36,7 +36,7 @@ namespace MiaClient
         public FrmAanvragen()
         {
             InitializeComponent();
-            
+
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
 
         }
@@ -61,7 +61,7 @@ namespace MiaClient
             foreach (var av in items)
             {
 
-                AanvraagItem avi = new AanvraagItem(av.Id,av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
+                AanvraagItem avi = new AanvraagItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats, av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "aanvraagSelection" + t;
                 avi.Size = new System.Drawing.Size(1300, 33);
@@ -70,7 +70,7 @@ namespace MiaClient
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
-                if(t < 10)
+                if (t < 10)
                 {
                     yPos += 30;
                 }
@@ -191,7 +191,7 @@ namespace MiaClient
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtTitel_TextChanged(object sender, EventArgs e)

@@ -97,16 +97,16 @@ namespace MiaLogic.Manager
 
             return highestAanvraagId;
         }
-        
-       
-        
-        
-        
-        
-        
 
-            
-        
+
+
+
+
+
+
+
+
+
 
         // Aanvragen opslaan
         public static void SaveAanvraag(Aanvraag aanvraag, bool insert)

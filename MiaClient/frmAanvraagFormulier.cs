@@ -25,17 +25,14 @@ namespace MiaClient
     {
         private string selectedPath;
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
-        private string link = string.Empty;
 
         public frmAanvraagFormulier()
         {
             try
             {
-                //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
-                ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-                GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                Connections();
                 InitializeComponent();
-                Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
+                Mainpath = ParameterManager.GetParameterByCode("Testmap").Waarde;
                 vulFormulier();
             }
 
@@ -44,6 +41,24 @@ namespace MiaClient
 
                 MessageBox.Show($"Error, {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        private void Connections()
+        {
+            //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
+            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+
 
         }
 
@@ -118,7 +133,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<string> aankoper = MiaLogic.Manager.WieKooptHetManager.GetWieKooptHet();
+            List<string> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.SelectedIndex = -1;
@@ -224,39 +239,43 @@ namespace MiaClient
             RefreshBoxes(tabControl);
 
         }
+        private void SaveFile(string sourcePath, string destinationPath)
+        {
+            File.Copy(sourcePath, destinationPath, true);
+        }
 
         private void btn_bewaarFoto_Click(object sender, EventArgs e)
         {
-            if (txt_fotoURLInput != null)
+            try
             {
-                link = txt_fotoURLInput.Text;
-                //De link is het pad en moet alleen read only zijn
-
-            }
-            if (!string.IsNullOrEmpty(selectedPath)) // als de string != null is
-            {
-                string FileName = Path.GetFileName(selectedPath);//Hier haal ik de bestandsnaam op
-                string DestinationPath = Path.Combine(Mainpath, FileName); //OM het volledige pad te vinden moet ik deze 2 samen plakken
-                SaveFoto(DestinationPath);
-
-                try
+                if (!string.IsNullOrEmpty(selectedPath))
                 {
-                    File.Copy(selectedPath, DestinationPath, true);//Hier slaag ik de afbeelding op
-                    MessageBox.Show("De foto is succesvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string fileName = Path.GetFileName(selectedPath);
+                    string fileExtension = Path.GetExtension(selectedPath);
 
+                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_FotoId.Text}-{DateTime.Now:yyyyMMddHHmmss}{fileExtension}";
+
+                    string destinationFolder = Path.Combine(Mainpath, "fotos");
+                    string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
+
+                    SaveFile(selectedPath, destinationPath);
+
+                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    SaveFoto(destinationPath);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de foto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Selecteer eerst een foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Selecteer eerst een afbeelding aub", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Als de string == Null is geef hij deze error
+                MessageBox.Show($"Er is een error gebeurt tijdens het opslaan van de foto: {ex.Message}");
             }
-
-
         }
+
 
         private void btn_verwijderFoto_Click(object sender, EventArgs e)
         {
@@ -271,32 +290,37 @@ namespace MiaClient
 
         private void btn_bewaarOfferte_Click(object sender, EventArgs e)
         {
-            //De link is het pad en moet alleen read only zijn
-            if (!string.IsNullOrEmpty(selectedPath))
+            try
             {
-                string fileName = Path.GetFileName(selectedPath);
-                string destinationPath = Path.Combine(Mainpath, fileName);
-                try
+                if (!string.IsNullOrEmpty(selectedPath))
                 {
-                    File.Copy(selectedPath, destinationPath, true);
-                    MessageBox.Show("De offerte is succesvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string fileName = Path.GetFileName(selectedPath);
+                    string fileExtension = Path.GetExtension(selectedPath);
 
-                    SaveOfferte(destinationPath);
 
+                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmmss}-{fileExtension}";
+
+                    string destinationFolder = Path.Combine(Mainpath, "\\offertes"); // Hier mpet nog de hardocded map naam voor (test)
+                    string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
+
+                    SaveFile(selectedPath, destinationPath);
+
+                    MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    string relativeUrl = Path.Combine("offertes", uniqueFileName);
+                    SaveOfferte(relativeUrl);
                 }
-                catch (Exception ex)
+                else
                 {
-
-                    MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Er is een fout gebeurt tijdens het opslaan van de offerte: {ex.Message}");
             }
-
-
         }
+
 
         private void SaveOfferte(string filepath)
         {
@@ -365,10 +389,9 @@ namespace MiaClient
                 {
                     selectedPath = openFileDialog.FileName;
                     MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
                 }
             }
+            txt_offerteId.Text = selectedPath;
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -389,8 +412,7 @@ namespace MiaClient
                     MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-
+            txt_FotoId.Text = selectedPath;
         }
 
         private void btn_Indienen_Click(object sender, EventArgs e)
@@ -401,25 +423,25 @@ namespace MiaClient
                 {
                     Aanvraag nieuweAanvraag = new Aanvraag
                     {
-
                         Gebruiker = txtGebruiker.Text,
-                        AfdelingId = AanvraagManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                        DienstId = AanvraagManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
-                        Aanvraagmoment = DateTime.Now,
-                        Titel = txtTitel.Text,
-                        Omschrijving = rtxtOmschrijving.Text,
-                        FinancieringsTypeId = AanvraagManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                        InvesteringsTypeId = AanvraagManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                        PrioriteitId = AanvraagManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
-                        Financieringsjaar = ddlFinancieringsjaar.Text,
-                        StatusAanvraag = 1.ToString(),
-                        KostenplaatsId = AanvraagManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
-                        PrijsIndicatieStuk = decimal.Parse(txtPrijsindicatie.Text),
-                        AantalStuk = int.Parse(txtAantalStuks.Text),
-                        AankoperId = AanvraagManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                        //AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                        //DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+                        //Aanvraagmoment = DateTime.Now,
+                        //Titel = txtTitel.Text,
+                        //Omschrijving = rtxtOmschrijving.Text,
+                        //FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                        //InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                        //PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+                        //Financieringsjaar = ddlFinancieringsjaar.Text,
+                        //StatusAanvraagId = 1,
+
+                        //KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+                        //PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                        //AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                        //AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
                     };
 
-                    AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
+                    AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
                     {
                         Gebruiker = Program.Gebruiker,
@@ -428,13 +450,19 @@ namespace MiaClient
                         OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
                     }, true);
 
+
                     MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Format Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
         private bool Checks()
