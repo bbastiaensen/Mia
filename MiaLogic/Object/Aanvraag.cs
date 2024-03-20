@@ -30,11 +30,8 @@ namespace MiaLogic.Object
 
     }
 
-    public class Prioriteit
-    {
-        public int Id { get; set; }
-        public string Naam { get; set; }
-    }
+    
+    
 
     public class WieKooptHet
     {
