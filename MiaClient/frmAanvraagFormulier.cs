@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +36,7 @@ namespace MiaClient
             Aanvraag aanvraag = null;
             if (action == "edit")
             {
-               aanvraag =  AanvraagManager.GetAanvraagById(id);
+                aanvraag = AanvraagManager.GetAanvraagById(id);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -48,8 +48,8 @@ namespace MiaClient
                 rtxtOmschrijving.Text = aanvraag.Omschrijving.ToString();
             }
 
-           
-            
+
+
         }
 
         // Ophalen van de data voor de dropdownlists
@@ -363,20 +363,20 @@ namespace MiaClient
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AfdelingenManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                    DienstId = DienstenManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                    AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                    DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
                     Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = FinancieringenManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
+                    FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                    InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                    PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                     Financieringsjaar = ddlFinancieringsjaar.Text,
                     StatusAanvraagId = Convert.ToInt32(1),
-                    KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
+                    KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                     PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                     AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                    AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
                 };
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
@@ -396,5 +396,5 @@ namespace MiaClient
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }    
+    }
 }
