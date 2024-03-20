@@ -155,20 +155,8 @@ namespace MiaClient
                         items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
                     }
                 }
-                if (bedragVan)
-                {
-                    if (cbBedragVan.Checked == true)
-                    {
-                        items = items.Where(av => av.Bedrag >= Convert.ToInt32(txtBedragVan.Text)).ToList();
-                    } 
-                }
-                if (bedragTot)
-                {
-                    if (cbBedragTot.Checked == true)
-                    {
-                        items = items.Where(av => av.Bedrag <= Convert.ToInt32(txtBedragTot.Text)).ToList();
-                    }
-                }
+               
+                
                 if (kostenPlaats)
                 {
                     items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
