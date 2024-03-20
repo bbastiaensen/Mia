@@ -10,7 +10,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,20 +21,19 @@ namespace MiaClient
 
     public partial class frmAanvraagFormulier : Form
     {
-        private string selectedPath;
-        private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
-        private string hyperlink;
+
+        private TabPage _voorstellenTabpage;
+        private FrmBestanden FrmBestanden;
 
 
         public frmAanvraagFormulier()
         {
+
             try
             {
                 Connections();
                 InitializeComponent();
-                Mainpath = ParameterManager.GetParameterByCode("Testmap").Waarde;
                 vulFormulier();
-
             }
             catch (SqlException ex)
             {
@@ -43,24 +41,24 @@ namespace MiaClient
             }
 
         }
+
         private void Connections()
         {
             //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             LinkManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-
-
+            OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
 
@@ -215,45 +213,15 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-        public void RefreshBoxes(TabControl tabControl) //Dit is het deelprobleem om alle textboxes etc leeg te maken
-        {
-            switch (tabControl.SelectedIndex)
-            {
-                case 0:
-                    txt_hyperlinkInput.Clear();
 
-                    break;
-                case 1:
-                    txt_fotoURLInput.Clear();
-                    selectedPath = string.Empty;
-                    break;
-                case 2:
-                    txt_offerteURLInput.Clear();
-                    selectedPath = string.Empty;
-                    break;
-            }
-        }
-        public static void Delete() //het deelrpobleem om de hyperlink/foto/offerte te verwijderen
-        {
 
-        }
         private void btn_bewaarLink_Click(object sender, EventArgs e)
         {
-            try
-            {
-                hyperlink = txt_hyperlinkInput.Text;
-                SaveLink(hyperlink);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een fout opgetreden: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-            //Hier moet ik de link naar de databank sturen in de tabel linken
         }
         private void btn_nieuweLink_Click(object sender, EventArgs e)
         {
-            RefreshBoxes(tabControl);
+
         }
         private void btn_verwijderLink_Click(object sender, EventArgs e)
         {
@@ -261,43 +229,12 @@ namespace MiaClient
         }
         private void btn_nieuweFoto_Click(object sender, EventArgs e)
         {
-            RefreshBoxes(tabControl);
-        }
-        private void SaveFile(string sourcePath, string destinationPath)
-        {
-            File.Copy(sourcePath, destinationPath, true);
+
         }
 
         private void btn_bewaarFoto_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!string.IsNullOrEmpty(selectedPath))
-                {
-                    string fileName = Path.GetFileName(selectedPath);
-                    string fileExtension = Path.GetExtension(selectedPath);
 
-                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_FotoId.Text}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
-
-                    string destinationFolder = Path.Combine(Mainpath + @"\fotos");
-                    string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
-
-                    SaveFile(selectedPath, destinationPath);
-
-                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    SaveFoto(destinationPath);
-                }
-                else
-                {
-                    MessageBox.Show("Selecteer eerst een foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een error gebeurt tijdens het opslaan van de foto: {ex.Message}");
-            }
         }
         private void btn_verwijderFoto_Click(object sender, EventArgs e)
         {
@@ -305,106 +242,20 @@ namespace MiaClient
         }
         private void btn_nieuweOfferte_Click(object sender, EventArgs e)
         {
-            RefreshBoxes(tabControl);
+
         }
         private void btn_bewaarOfferte_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!string.IsNullOrEmpty(selectedPath))
-                {
-                    string fileName = Path.GetFileName(selectedPath);
-                    string fileExtension = Path.GetExtension(selectedPath);
 
-
-                    string uniqueFileName = $"{txtAanvraagId.Text}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
-
-                    string destinationFolder = Path.Combine(Mainpath + @"\offertes"); // Hier mpet nog de hardocded map naam voor (test)
-                    string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
-
-                    SaveFile(selectedPath, destinationPath);
-
-                    MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    string relativeUrl = Path.Combine("offertes", uniqueFileName);
-                    SaveOfferte(relativeUrl);
-                }
-                else
-                {
-                    MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een fout gebeurt tijdens het opslaan van de offerte: {ex.Message}");
-            }
         }
 
-
-        private void SaveOfferte(string filepath)
-        {
-            try
-            {
-                Offerte offerte = new Offerte
-                {
-                    Url = filepath
-                };
-
-                OfferteManager.SaveOfferte(offerte);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de offerte in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void SaveFoto(string filepath)
-        {
-            try
-            {
-                Foto foto = new Foto
-                { Url = filepath };
-                FotoManager.SaveFoto(foto);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de foto in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void SaveLink(string hyperlink)
-        {
-            try
-            {
-                Link link = new Link
-                {
-                    // AanvraagId = 
-                    Url = hyperlink
-                };
-                LinkManager.SaveLinken(link);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Er is een fout opgetreden bij het opslaan van de link in de database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void btn_verwijderOfferte_Click(object sender, EventArgs e)
         {
 
         }
         private void btn_kiesOfferte_Click(object sender, EventArgs e)
         {
-            //Hier opent de filedialog voor een word /exel file te selecteren
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "C:\\";
-                openFileDialog.Filter = "Text files (*.doc, *.docx, *.xls, *.xlsx)|*.doc;*.docx;*.xls;*.xlsx|All files (*.*)|*.*";
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    selectedPath = openFileDialog.FileName;
-                    MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            txt_offerteURLInput.Text = selectedPath;
         }
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -412,45 +263,39 @@ namespace MiaClient
         }
         private void btn_kiesFoto_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "C:\\";//Dit is de originele directory
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";//Dit is de filter die alleen maar foto-extenties laat zien
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    selectedPath = openFileDialog.FileName;
-                    MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            txt_fotoURLInput.Text = selectedPath;
         }
         private void btn_Indienen_Click(object sender, EventArgs e)
         {
-
             try
             {
-                Aanvraag nieuweAanvraag = new Aanvraag
+                if (Checks())
                 {
-                    Gebruiker = txtGebruiker.Text,
-                    AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
-                    DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
-                    Aanvraagmoment = DateTime.Now,
-                    Titel = txtTitel.Text,
-                    Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
-                    InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-                    PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
-                    Financieringsjaar = ddlFinancieringsjaar.Text,
-                    StatusAanvraagId = Convert.ToInt32(1),
-                    KostenplaatsId = /*KostenplaatsManager.GetKostenplaatsById(*/Convert.ToInt32(ddlKostenplaats.SelectedValue)/*).Id*/,
-                    PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
-                    AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                    AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
-                };
 
 
-                AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
+                    Aanvraag nieuweAanvraag = new Aanvraag
+                    {
+                        Gebruiker = txtGebruiker.Text,
+                        AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                        DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+                        Aanvraagmoment = DateTime.Now,
+                        Titel = txtTitel.Text,
+                        Omschrijving = rtxtOmschrijving.Text,
+                        FinancieringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
+                        InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                        PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+                        Financieringsjaar = ddlFinancieringsjaar.Text,
+                        StatusAanvraagId = Convert.ToInt32(1),
+                        KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+                        PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                        AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                        AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                    };
+
+
+
+                    AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
+                }
                 GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
                 {
                     Gebruiker = Program.Gebruiker,
@@ -458,15 +303,20 @@ namespace MiaClient
                     TijdstipActie = DateTime.Now,
                     OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
                 }, true);
-                //Moet nog verder afgemaakt
                 DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    tabPage_Voorstellen.Show();
+                    if (FrmBestanden == null)
+                    {
+                        FrmBestanden = new FrmBestanden(Convert.ToInt32(txtAanvraagId.Text));
+                        FrmBestanden.MdiParent = MdiParent;
+                    }
+                    FrmBestanden.Show();
+                    this.Hide();
                 }
                 else
                 {
-
+                    //Ga terug naar de mainform
                 }
 
             }
