@@ -25,7 +25,7 @@ namespace MiaClient
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string link = string.Empty;
         public FrmAanvragen frmAanvragen;
-
+        List<Aanvraag> aanvragen;
         public frmAanvraagFormulier()
         {
             InitializeComponent();
@@ -363,20 +363,23 @@ namespace MiaClient
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
 
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    RefreshBoxes(tabControl);
+                LeegmakenFormulier();
                 
-                if (frmAanvragen == null)
-                {
-                    frmAanvragen = new FrmAanvragen();
-                    List<Aanvraag> aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
-                    frmAanvragen.BindAanvraag(aanvragen);
-                }
-                   
+                frmAanvragen = new FrmAanvragen();
+                aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
+                frmAanvragen.BindAanvraag(aanvragen);
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        public void LeegmakenFormulier()
+        {
+            txtAantalStuks.Clear();
+            txtPrijsindicatie.Clear();
 
         }
     }    
