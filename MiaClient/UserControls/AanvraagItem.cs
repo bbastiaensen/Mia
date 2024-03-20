@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,13 +27,12 @@ namespace MiaClient.UserControls
         public decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
+        public event EventHandler AanvraagDeleted;
         public event EventHandler AanvraagItemSelected;
-
         public AanvraagItem()
         {
             InitializeComponent();
         }
-
         public AanvraagItem(int id,string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
@@ -48,10 +49,9 @@ namespace MiaClient.UserControls
             Even = even;
             Bedrag = aantalstuk * prijsindicatiestuk;
             
-            SetAanvraagLogItemWaarden();
+            SetAanvraagItemWaarden();
         }
-
-        private void SetAanvraagLogItemWaarden()
+        private void SetAanvraagItemWaarden()
         {
             DateTime Datum = new DateTime(2000, 1, 1);
 
@@ -69,7 +69,6 @@ namespace MiaClient.UserControls
             {
                 lblPlaningsDatum.Text = Planningsdatum.ToString();
             }
-
             if (Titel.Length >= 20)
             {
                 lblTitel.Text = Titel.Substring(0, 20) + "...";
@@ -78,18 +77,14 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
+            lblBedrag.Text = Bedrag.ToString();
             if (Even)
             {
                 this.BackColor = Color.White;
             }
         }
-
         private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (AanvraagItemSelected != null)
-            {
-                AanvraagItemSelected(this, null);
-            }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -99,14 +94,25 @@ namespace MiaClient.UserControls
                 aanvraagFormulier.Show();
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (AanvraagItemSelected != null)
+                if (AanvraagDeleted != null)
                 {
-                    AanvraagItemSelected(this, null);
+                    if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
+                    {
+                        Aanvraag aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(lblId.Text);
+                        AanvraagManager.DeleteAanvraag(aanvraag);
+                        AanvraagDeleted(this, null);
+                        MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -115,32 +121,21 @@ namespace MiaClient.UserControls
 
         private void lblFinancieringsjaar_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblTitel_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblStatusAanvraag_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblPlaningsDatum_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblKostenplaats_Click(object sender, EventArgs e)
         {
-
         }
-
         private void lblAanvraagmoment_Click(object sender, EventArgs e)
         {
-
         }
 
         
