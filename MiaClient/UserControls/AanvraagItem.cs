@@ -95,7 +95,8 @@ namespace MiaClient.UserControls
         {
             if (AanvraagItemSelected != null)
             {
-                AanvraagItemSelected(this, null);
+                frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id,"edit");
+                aanvraagFormulier.Show();
             }
         }
 
@@ -110,10 +111,7 @@ namespace MiaClient.UserControls
             }
         }
 
-        private void AanvraagItem_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void lblFinancieringsjaar_Click(object sender, EventArgs e)
         {
@@ -144,5 +142,7 @@ namespace MiaClient.UserControls
         {
 
         }
+
+        
     }
 }
