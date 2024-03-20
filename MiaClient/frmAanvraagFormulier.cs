@@ -350,10 +350,10 @@ namespace MiaClient
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
                     FinancieringsTypeId = FinancieringenManager.GetFinancieringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
-                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlFinanciering.SelectedValue)).Id,
+                    InvesteringsTypeId = InvesteringenManager.GetInvesteringById(Convert.ToInt32(ddlInvestering.SelectedValue)).Id,
                     PrioriteitId = PrioriteitManager.GetPrioriteitById(Convert.ToInt32(ddlPrioriteit.SelectedValue)).Id,
                     Financieringsjaar = ddlFinancieringsjaar.Text,
-                    StatusAanvraagId = Convert.ToInt32(1),
+                    StatusAanvraagId = Convert.ToInt32(1.ToString()),
                     KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
                     PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                     AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
@@ -371,11 +371,15 @@ namespace MiaClient
                 {
                     RefreshBoxes(tabControl);
                 }
+                frmAanvragen = new FrmAanvragen();
+                List<Aanvraag> aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
+                frmAanvragen.BindAanvraag(aanvragen);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }    
 }

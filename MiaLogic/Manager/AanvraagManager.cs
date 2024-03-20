@@ -171,10 +171,10 @@ namespace MiaLogic.Manager
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
                         FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
-                        StatusAanvraagId, Kostenplaats, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId, PlanningsDatum)
+                        StatusAanvraagId,  KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId, @Kostenplaats, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @PlanningsDatum);";
+                        @StatusAanvraagId, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
                     }
                     else
                     {
@@ -186,7 +186,7 @@ namespace MiaLogic.Manager
                         FinancieringsTypeId = @FinancieringsTypeId, InvesteringsTypeId = @InvesteringsTypeId,
                         PrioriteitId = @PrioriteitId, Financieringsjaar = @Financieringsjaar,
                         StatusAanvraagId = @StatusAanvraagId,
-                        Kostenplaats = @Kostenplaats, KostenplaatsId = @KostenplaatsId,
+                        KostenplaatsId = @KostenplaatsId,
                         PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId
                     WHERE Id = @Id;";
                     }
@@ -202,9 +202,9 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@InvesteringsTypeId", aanvraag.InvesteringsTypeId);
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
-                        command.Parameters.AddWithValue("@Planningsdatum", aanvraag.Planningsdatum);
-                        command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraag);
-                        command.Parameters.AddWithValue("@Kostenplaats", aanvraag.Kostenplaats);
+                        
+                        command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraagId);
+                        
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);

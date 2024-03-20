@@ -53,7 +53,7 @@ namespace MiaClient
             }
             frmAanvraagFormulier.Show();
         }
-        private void BindAanvraag(List<Aanvraag> items)
+        public void BindAanvraag(List<Aanvraag> items)
         {
             this.pnlAanvragen.Controls.Clear();
 
@@ -107,8 +107,8 @@ namespace MiaClient
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
             AanvraagItem geselecteerd = (AanvraagItem)sender;
-
-            //txtIdDetail.Text = geselecteerd.Id.ToString();
+            
+            //txtDetail.Text = geselecteerd.Id.ToString();
             //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
             //txtGebruikerDetail.Text = geselecteerd.Gebruiker;
             //txtOmschrijvingDetail.Text = geselecteerd.OmschrijvingActie.ToString();
