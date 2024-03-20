@@ -25,6 +25,7 @@ namespace MiaClient
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string hyperlink;
 
+
         public frmAanvraagFormulier()
         {
             try
@@ -33,6 +34,7 @@ namespace MiaClient
                 InitializeComponent();
                 Mainpath = ParameterManager.GetParameterByCode("Testmap").Waarde;
                 vulFormulier();
+
             }
             catch (SqlException ex)
             {
@@ -424,26 +426,26 @@ namespace MiaClient
         }
         private void btn_Indienen_Click(object sender, EventArgs e)
         {
+
             try
             {
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = /*AfdelingenManager.GetAfdelingById*/(Convert.ToInt32(ddlAfdeling.SelectedValue))/*.Id*/,
-                    DienstId = /*DienstenManager.GetDienstById(*/Convert.ToInt32(ddlDienst.SelectedValue)/*).Id*/,
+                    AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                    DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
                     Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
-                    FinancieringsTypeId = /*FinancieringenManager.GetFinancieringById*/(Convert.ToInt32(ddlFinanciering.SelectedValue))/*.Id*/,
-                    InvesteringsTypeId = /*InvesteringenManager.GetInvesteringById(*/Convert.ToInt32(ddlFinanciering.SelectedValue)/*).Id*/,
-                    PrioriteitId =/* PrioriteitManager.GetPrioriteitById(*/Convert.ToInt32(ddlPrioriteit.SelectedValue)/*).Id*/,
+                    FinancieringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
+                    InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                    PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                     Financieringsjaar = ddlFinancieringsjaar.Text,
                     StatusAanvraagId = Convert.ToInt32(1),
                     KostenplaatsId = /*KostenplaatsManager.GetKostenplaatsById(*/Convert.ToInt32(ddlKostenplaats.SelectedValue)/*).Id*/,
-                    Kostenplaats = ddlKostenplaats.SelectedValue.ToString(),
                     PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                     AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                    AankoperId = /*AankoperManager.GetAankoperById(*/Convert.ToInt32(ddlWieKooptHet.SelectedValue)/*).Id*/
+                    AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
                 };
 
 
@@ -455,11 +457,14 @@ namespace MiaClient
                     TijdstipActie = DateTime.Now,
                     OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
                 }, true);
-
+                //Moet nog verder afgemaakt
                 DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
-                    MessageBox.Show("Dit moet nog verder af gemaakt worden");
+                    tabPage_Voorstellen.Show();
+                }
+                else
+                {
 
                 }
 

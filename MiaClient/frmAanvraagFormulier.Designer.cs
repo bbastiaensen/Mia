@@ -257,6 +257,7 @@ namespace MiaClient
             this.tabControl_Aanvraagformulier.SelectedIndex = 0;
             this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
             this.tabControl_Aanvraagformulier.TabIndex = 14;
+            this.tabControl_Aanvraagformulier.Visible = false;
             // 
             // tabPage_Identificatie
             // 

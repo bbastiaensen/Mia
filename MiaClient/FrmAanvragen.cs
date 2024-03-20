@@ -52,6 +52,7 @@ namespace MiaClient
                 frmAanvraagFormulier.MdiParent = MdiParent;
             }
             frmAanvraagFormulier.Show();
+
         }
         private void BindAanvraag(List<Aanvraag> items)
         {
