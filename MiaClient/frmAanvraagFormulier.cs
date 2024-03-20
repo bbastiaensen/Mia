@@ -271,8 +271,6 @@ namespace MiaClient
             {
                 if (Checks())
                 {
-
-
                     Aanvraag nieuweAanvraag = new Aanvraag
                     {
                         Gebruiker = txtGebruiker.Text,
@@ -295,30 +293,29 @@ namespace MiaClient
 
 
                     AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
-                }
-                GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
-                {
-                    Gebruiker = Program.Gebruiker,
-                    Id = Convert.ToInt32(txtAanvraagId.Text),
-                    TijdstipActie = DateTime.Now,
-                    OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
-                }, true);
-                DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
-                {
-                    if (FrmBestanden == null)
+                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //Wanneer de aanvraag wordt opgeslagen logt deze code dit
                     {
-                        FrmBestanden = new FrmBestanden(Convert.ToInt32(txtAanvraagId.Text));
-                        FrmBestanden.MdiParent = MdiParent;
+                        Gebruiker = Program.Gebruiker,
+                        Id = Convert.ToInt32(txtAanvraagId.Text),
+                        TijdstipActie = DateTime.Now,
+                        OmschrijvingActie = $"Aanvraag {txtAanvraagId.Text} werd aangemaakt door gebruiker {Program.Gebruiker}."
+                    }, true);
+                    DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (FrmBestanden == null)
+                        {
+                            FrmBestanden = new FrmBestanden(Convert.ToInt32(txtAanvraagId.Text));
+                            FrmBestanden.MdiParent = MdiParent;
+                        }
+                        FrmBestanden.Show();
+                        this.Hide();
                     }
-                    FrmBestanden.Show();
-                    this.Hide();
+                    else
+                    {
+                        this.Close();
+                    }
                 }
-                else
-                {
-                    //Ga terug naar de mainform
-                }
-
             }
             catch (FormatException ex)
             {
