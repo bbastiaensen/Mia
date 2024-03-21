@@ -37,7 +37,7 @@ namespace MiaClient
             }
             catch (SqlException ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "FrmAanvraagFormulier");
             }
         }
         private void Initialize()
@@ -48,9 +48,9 @@ namespace MiaClient
             DisableForm();
         }
 
-        private void ErrorHandler(Exception ex)
+        private void ErrorHandler(Exception ex, string location)
         {
-            MessageBox.Show($"Error: {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"Error: {ex.Message}, in location {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void Connections()
@@ -314,7 +314,7 @@ namespace MiaClient
 
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "SaveFile");
             }
         }
         private Offerte SaveOfferte(string filepath)
@@ -332,7 +332,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "SaveOfferte");
                 return null;
             }
         }
@@ -351,7 +351,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "SaveFoto");
                 return null;
             }
         }
@@ -369,7 +369,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "SaveLinken");
                 return null;
             }
         }
@@ -424,6 +424,8 @@ namespace MiaClient
                 MessageBox.Show("Aankoper is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+
             return true;
         }
         private void SaveAanvraag()
@@ -484,11 +486,11 @@ namespace MiaClient
             }
             catch (FormatException ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "IndienenAanvraag: Formatexeption");
             }
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "IndienenAanvraag: exeption");
             }
         }
         private void btn_Nieuw_Click(object sender, EventArgs e)
@@ -522,7 +524,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "BewaarLink");
             }
 
         }
@@ -587,7 +589,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Er is een error gebeurt tijdens het opslaan van de foto: {ex.Message}");
+                ErrorHandler(ex, "BewaarFoto");
             }
 
         }

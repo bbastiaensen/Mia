@@ -31,7 +31,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Er is een fout opgetreden: {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandler(ex, "Main");
             }
         }
 
@@ -48,9 +48,14 @@ namespace MiaClient
             catch (SqlException ex)
             {
 
-                MessageBox.Show($"Error, {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandler(ex, "InitializeConnections");
             }
         }
+        private static void ErrorHandler(Exception ex, string location)
+        {
+            MessageBox.Show($"Error: {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
 
         private static void AuthenticateUser()
         {
@@ -79,7 +84,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Er is een fout gebeurt in Authenticate user :{ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandler(ex, "AuthenticateUser");
 
             }
         }
@@ -115,7 +120,7 @@ namespace MiaClient
 
             }
             catch (Exception ex)
-            { MessageBox.Show($"Error in SetuserRoles : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            { ErrorHandler(ex, "SetUserRoles"); }
         }
 
         private static void HandleInactiveUser(string gebruikersnaam)
@@ -134,7 +139,7 @@ namespace MiaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error in HandleInactiveUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorHandler(ex, "HandleInactiveUser");
 
             }
         }
