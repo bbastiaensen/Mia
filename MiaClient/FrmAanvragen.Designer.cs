@@ -105,13 +105,12 @@
             // cbBedragTot
             // 
             this.cbBedragTot.AutoSize = true;
-            this.cbBedragTot.Location = new System.Drawing.Point(651, 170);
+            this.cbBedragTot.Location = new System.Drawing.Point(646, 169);
             this.cbBedragTot.Name = "cbBedragTot";
             this.cbBedragTot.Size = new System.Drawing.Size(61, 32);
             this.cbBedragTot.TabIndex = 21;
             this.cbBedragTot.Text = "Tot";
             this.cbBedragTot.UseVisualStyleBackColor = true;
-            this.cbBedragTot.CheckedChanged += new System.EventHandler(this.cbBedragTot_CheckedChanged);
             // 
             // txtBedragTot
             // 
@@ -130,7 +129,6 @@
             this.cbBedragVan.TabIndex = 5;
             this.cbBedragVan.Text = "Van";
             this.cbBedragVan.UseVisualStyleBackColor = true;
-            this.cbBedragVan.CheckedChanged += new System.EventHandler(this.cbBedragVan_CheckedChanged);
             // 
             // txtGebruiker
             // 
@@ -232,18 +230,16 @@
             this.chbxPlaningsdatumVan.TabIndex = 4;
             this.chbxPlaningsdatumVan.Text = "Van";
             this.chbxPlaningsdatumVan.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumVan.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumVan_CheckedChanged);
             // 
             // chbxPlaningsdatumTot
             // 
             this.chbxPlaningsdatumTot.AutoSize = true;
-            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(325, 174);
+            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(320, 175);
             this.chbxPlaningsdatumTot.Name = "chbxPlaningsdatumTot";
             this.chbxPlaningsdatumTot.Size = new System.Drawing.Size(61, 32);
             this.chbxPlaningsdatumTot.TabIndex = 20;
             this.chbxPlaningsdatumTot.Text = "Tot";
             this.chbxPlaningsdatumTot.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumTot.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumTot_CheckedChanged);
             // 
             // chbxAanvraagmomentTot
             // 
@@ -254,7 +250,6 @@
             this.chbxAanvraagmomentTot.TabIndex = 19;
             this.chbxAanvraagmomentTot.Text = "Tot";
             this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentTot.CheckedChanged += new System.EventHandler(this.chbxAanvraagmomentTot_CheckedChanged);
             // 
             // lblAanvraagmoment
             // 
@@ -317,7 +312,6 @@
             this.chbxAanvraagmomentVan.TabIndex = 3;
             this.chbxAanvraagmomentVan.Text = "Van";
             this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentVan.CheckedChanged += new System.EventHandler(this.chbxAanvraagmomentVan_CheckedChanged);
             // 
             // lblGebruiker
             // 
@@ -345,8 +339,6 @@
             this.pnlAanvragen.Name = "pnlAanvragen";
             this.pnlAanvragen.Size = new System.Drawing.Size(1300, 380);
             this.pnlAanvragen.TabIndex = 18;
-            this.pnlAanvragen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnlAanvragen_ControlAdded);
-            this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
             // label1
             // 
@@ -392,7 +384,6 @@
             this.label5.Size = new System.Drawing.Size(153, 28);
             this.label5.TabIndex = 23;
             this.label5.Text = "Status Aanvraag";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 

@@ -96,7 +96,6 @@ namespace MiaClient
             try
             { 
                 aanvragen = AanvraagManager.GetAanvragen();
-
                 BindAanvraag(aanvragen);
             }
             catch (Exception ex)
@@ -104,7 +103,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void FrmAanvraagFormulier_AanvraagBewaard(object sender, EventArgs e)
         {
             aanvragen = AanvraagManager.GetAanvragen();
@@ -119,9 +117,6 @@ namespace MiaClient
             //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
             //txtGebruikerDetail.Text = geselecteerd.Gebruiker;
             //txtOmschrijvingDetail.Text = geselecteerd.OmschrijvingActie.ToString();
-        }
-        private void cmbGebruiker_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
         private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
         {
@@ -210,15 +205,6 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-        private void pnlAanvragen_ControlAdded(object sender, ControlEventArgs e)
-        {
-        }
-        private void pnlAanvragen_Paint(object sender, PaintEventArgs e)
-        {
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        { 
-        }
         private void txtTitel_TextChanged(object sender, EventArgs e)
         {
             try
@@ -267,14 +253,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void cbBedragVan_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-        private void cbBedragTot_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
         private void txtKostenPlaats_TextChanged(object sender, EventArgs e)
         {
             try
@@ -286,22 +264,6 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void chbxAanvraagmomentVan_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-        private void chbxAanvraagmomentTot_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-        private void chbxPlaningsdatumVan_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-        private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
-        {
-            
         }
         private void txtGebruiker_TextChanged(object sender, EventArgs e)
         {
@@ -315,12 +277,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtBedragTot_TextChanged(object sender, EventArgs e)
         {
             try
@@ -333,7 +289,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dtpPlanningsdatumTot_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -346,7 +301,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dtpPlanningsdatumVan_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -359,7 +313,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dtpAanvraagmomentVan_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -372,7 +325,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dtpAanvraagmomentTot_ValueChanged(object sender, EventArgs e)
         {
             try
