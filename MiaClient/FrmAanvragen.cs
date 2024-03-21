@@ -53,6 +53,7 @@ namespace MiaClient
                 frmAanvraagFormulier.AanvraagBewaard += FrmAanvraagFormulier_AanvraagBewaard;
             }
             frmAanvraagFormulier.Show();
+
         }
         public void BindAanvraag(List<Aanvraag> items)
         {
@@ -64,7 +65,7 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                AanvraagItem avi = new AanvraagItem(av.Id,av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
+                AanvraagItem avi = new AanvraagItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats, av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "aanvraagSelection" + t;
                 avi.Size = new System.Drawing.Size(1210, 33);
@@ -75,8 +76,7 @@ namespace MiaClient
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
-               
-                    yPos += 30;
+                yPos += 30;
             }
         }
         private void Avi_AanvraagDeleted(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace MiaClient
         {
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
-        { 
+        {
         }
         private void txtTitel_TextChanged(object sender, EventArgs e)
         {

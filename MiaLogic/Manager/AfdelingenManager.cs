@@ -10,7 +10,7 @@ namespace MiaLogic.Manager
 {
     public class AfdelingenManager
     {
-        public static string ConnectionString;
+        public static string ConnectionString { get; set; }
         public static List<Afdeling> GetAfdelingen()
         {
             List<Afdeling> afdelingen = new List<Afdeling>();

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
@@ -723,7 +724,7 @@ namespace MiaLogic.Manager
                         StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
                     }
                     else
                     {
@@ -751,9 +752,7 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@InvesteringsTypeId", aanvraag.InvesteringsTypeId);
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
-                        
                         command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraagId);
-                        
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);
@@ -762,6 +761,7 @@ namespace MiaLogic.Manager
                         if (insert)
                         {
                             aanvraag.Id = Convert.ToInt32(command.ExecuteScalar());
+
                         }
                         else
                         {
