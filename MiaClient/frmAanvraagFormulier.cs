@@ -363,23 +363,16 @@ namespace MiaClient
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
 
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LeegmakenFormulier();
-                
-                frmAanvragen = new FrmAanvragen();
-                aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
-                frmAanvragen.BindAanvraag(aanvragen);
+
+                //frmAanvragen = new FrmAanvragen();
+                //aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
+                //frmAanvragen.BindAanvraag(aanvragen);
                 
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-        public void LeegmakenFormulier()
-        {
-            txtAantalStuks.Clear();
-            txtPrijsindicatie.Clear();
 
         }
     }    
