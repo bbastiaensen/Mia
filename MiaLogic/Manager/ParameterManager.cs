@@ -111,37 +111,6 @@ namespace MiaLogic.Manager
             return parameter;
         }
 
-        public static Parameter GetParameterByCode(String Code)
-        {
-            Parameter parameter = null;
-
-            using (SqlConnection objCn = new SqlConnection())
-            {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "select * from Parameter where Code = @Code";
-                    objCmd.Parameters.AddWithValue("@Code", Code);
-
-                    objCn.Open();
-
-                    SqlDataReader reader = objCmd.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        parameter = new Parameter();
-                        parameter.Id = Convert.ToInt32(reader["Id"]);
-                        parameter.Code = reader["Code"].ToString();
-                        parameter.Waarde = reader["Waarde"].ToString();
-                        parameter.Eenheid = reader["Eenheid"].ToString();
-                    }
-                }
-            }
-            return parameter;
-        }
-
         public static int SaveParameter(Parameter parameter, bool insert)
         {
             if (parameter.Id == 0 && insert == false)
