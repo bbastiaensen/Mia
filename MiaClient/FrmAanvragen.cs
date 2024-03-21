@@ -50,6 +50,7 @@ namespace MiaClient
             {
                 frmAanvraagFormulier = new frmAanvraagFormulier();
                 frmAanvraagFormulier.MdiParent = MdiParent;
+                frmAanvraagFormulier.AanvraagBewaard += FrmAanvraagFormulier_AanvraagBewaard;
             }
             frmAanvraagFormulier.Show();
         }
@@ -70,6 +71,7 @@ namespace MiaClient
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                 avi.AanvraagDeleted += Avi_AanvraagDeleted;
+
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
@@ -82,7 +84,7 @@ namespace MiaClient
             try
             {
                 aanvragen = AanvraagManager.GetAanvragen();
-
+                FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
                 BindAanvraag(aanvragen);
             }
             catch (Exception ex)
@@ -95,6 +97,7 @@ namespace MiaClient
         {
             try
             {
+                
                 aanvragen = AanvraagManager.GetAanvragen();
 
                 BindAanvraag(aanvragen);
@@ -104,6 +107,13 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void FrmAanvraagFormulier_AanvraagBewaard(object sender, EventArgs e)
+        {
+            aanvragen = AanvraagManager.GetAanvragen();
+            BindAanvraag(aanvragen);
+        }
+
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
             AanvraagItem geselecteerd = (AanvraagItem)sender;
