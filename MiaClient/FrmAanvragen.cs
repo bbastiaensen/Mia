@@ -71,7 +71,6 @@ namespace MiaClient
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                 avi.AanvraagDeleted += Avi_AanvraagDeleted;
-
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
@@ -92,12 +91,10 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void frmAanvragen_Load(object sender, EventArgs e)
         {
             try
-            {
-                
+            { 
                 aanvragen = AanvraagManager.GetAanvragen();
 
                 BindAanvraag(aanvragen);

@@ -57,7 +57,6 @@
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(150, 28);
             this.lblAanvraagmoment.TabIndex = 2;
-            this.lblAanvraagmoment.Click += new System.EventHandler(this.lblAanvraagmoment_Click);
             // 
             // lblTitel
             // 
@@ -66,7 +65,6 @@
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(150, 28);
             this.lblTitel.TabIndex = 3;
-            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // lblFinancieringsjaar
             // 
@@ -75,16 +73,14 @@
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(60, 28);
             this.lblFinancieringsjaar.TabIndex = 4;
-            this.lblFinancieringsjaar.Click += new System.EventHandler(this.lblFinancieringsjaar_Click);
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(737, 2);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(666, 3);
             this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
             this.lblStatusAanvraag.Size = new System.Drawing.Size(182, 28);
             this.lblStatusAanvraag.TabIndex = 5;
-            this.lblStatusAanvraag.Click += new System.EventHandler(this.lblStatusAanvraag_Click);
             // 
             // lblKostenplaats
             // 
@@ -93,14 +89,13 @@
             this.lblKostenplaats.Name = "lblKostenplaats";
             this.lblKostenplaats.Size = new System.Drawing.Size(150, 28);
             this.lblKostenplaats.TabIndex = 6;
-            this.lblKostenplaats.Click += new System.EventHandler(this.lblKostenplaats_Click);
             // 
             // lblBedrag
             // 
-            this.lblBedrag.Location = new System.Drawing.Point(858, 5);
+            this.lblBedrag.Location = new System.Drawing.Point(821, 5);
             this.lblBedrag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(61, 28);
+            this.lblBedrag.Size = new System.Drawing.Size(98, 28);
             this.lblBedrag.TabIndex = 7;
             // 
             // lblPlaningsDatum
@@ -110,7 +105,6 @@
             this.lblPlaningsDatum.Name = "lblPlaningsDatum";
             this.lblPlaningsDatum.Size = new System.Drawing.Size(116, 28);
             this.lblPlaningsDatum.TabIndex = 8;
-            this.lblPlaningsDatum.Click += new System.EventHandler(this.lblPlaningsDatum_Click);
             // 
             // btnEdit
             // 

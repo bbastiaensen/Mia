@@ -78,8 +78,7 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
-            lblBedrag.Text = "\u20AC " + Bedrag.ToString("c", CultureInfo.CurrentCulture);
-            //lblBedrag.Text = Bedrag.ToString();
+            lblBedrag.Text = Bedrag.ToString("c", CultureInfo.CurrentCulture);
             if (Even)
             {
                 this.BackColor = Color.White;
@@ -106,7 +105,6 @@ namespace MiaClient.UserControls
                         AanvraagDeleted(this, null);
                         MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLog gebruiksLog1 = new GebruiksLog();
@@ -121,24 +119,6 @@ namespace MiaClient.UserControls
                     MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-        private void lblFinancieringsjaar_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblTitel_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblStatusAanvraag_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblPlaningsDatum_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblKostenplaats_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblAanvraagmoment_Click(object sender, EventArgs e)
-        {
         }
     }
 }
