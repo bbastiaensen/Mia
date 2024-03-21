@@ -261,14 +261,14 @@ namespace MiaClient
             // 
             // tabControl_Aanvraagformulier
             // 
-            this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Identificatie);
-            this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Investering);
-            this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Voorstellen);
-            this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
-            this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
-            this.tabControl_Aanvraagformulier.SelectedIndex = 0;
-            this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
-            this.tabControl_Aanvraagformulier.TabIndex = 14;
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Identificatie);
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Investering);
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Voorstellen);
+            //this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
+            //this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
+            //this.tabControl_Aanvraagformulier.SelectedIndex = 0;
+            //this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
+            //this.tabControl_Aanvraagformulier.TabIndex = 14;
             // 
             // tabPage_Identificatie
             // 
@@ -629,13 +629,13 @@ namespace MiaClient
             this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
             this.txtGebruiker.TabIndex = 7;
             // 
-            this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
-            this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
-            this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
-            this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 558);
-            this.tabPage_Voorstellen.TabIndex = 2;
-            this.tabPage_Voorstellen.Text = "Voorstellen";
-            this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
+            //this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
+            //this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
+            //this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
+            //this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 558);
+            //this.tabPage_Voorstellen.TabIndex = 2;
+            //this.tabPage_Voorstellen.Text = "Voorstellen";
+            //this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
             // 
             this.lblDienst.AutoSize = true;
             this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;

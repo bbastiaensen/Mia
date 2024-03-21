@@ -120,8 +120,6 @@ namespace MiaClient.UserControls
                     MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        
+        }  
     }
 }
