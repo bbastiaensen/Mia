@@ -25,7 +25,7 @@ namespace MiaClient
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string link = string.Empty;
         public FrmAanvragen frmAanvragen;
-        List<Aanvraag> aanvragen;
+        public event EventHandler AanvraagBewaard;
         public frmAanvraagFormulier()
         {
             InitializeComponent();
@@ -364,10 +364,12 @@ namespace MiaClient
 
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //frmAanvragen = new FrmAanvragen();
-                //aanvragen = MiaLogic.Manager.AanvraagManager.GetAanvragen();
-                //frmAanvragen.BindAanvraag(aanvragen);
                 
+                if (AanvraagBewaard != null)
+                {
+                    AanvraagBewaard(this, null);
+                }
+
             }
             catch (Exception ex)
             {
