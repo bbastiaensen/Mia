@@ -367,11 +367,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(373, 279);
+            this.label3.Location = new System.Drawing.Point(359, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 28);
+            this.label3.Size = new System.Drawing.Size(169, 28);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Aanvraagmment";
+            this.label3.Text = "Aanvraagmoment";
             // 
             // label4
             // 
