@@ -57,6 +57,14 @@
             this.lblGebruiker = new System.Windows.Forms.Label();
             this.btnNieuweAanvraag = new System.Windows.Forms.Button();
             this.pnlAanvragen = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +97,7 @@
             this.grbxFilterAanvraag.Controls.Add(this.lblGebruiker);
             this.grbxFilterAanvraag.Location = new System.Drawing.Point(15, 54);
             this.grbxFilterAanvraag.Name = "grbxFilterAanvraag";
-            this.grbxFilterAanvraag.Size = new System.Drawing.Size(1300, 250);
+            this.grbxFilterAanvraag.Size = new System.Drawing.Size(1300, 213);
             this.grbxFilterAanvraag.TabIndex = 0;
             this.grbxFilterAanvraag.TabStop = false;
             this.grbxFilterAanvraag.Text = "Filter";
@@ -97,7 +105,7 @@
             // cbBedragTot
             // 
             this.cbBedragTot.AutoSize = true;
-            this.cbBedragTot.Location = new System.Drawing.Point(651, 208);
+            this.cbBedragTot.Location = new System.Drawing.Point(651, 170);
             this.cbBedragTot.Name = "cbBedragTot";
             this.cbBedragTot.Size = new System.Drawing.Size(61, 32);
             this.cbBedragTot.TabIndex = 21;
@@ -107,15 +115,16 @@
             // 
             // txtBedragTot
             // 
-            this.txtBedragTot.Location = new System.Drawing.Point(723, 206);
+            this.txtBedragTot.Location = new System.Drawing.Point(718, 168);
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
             this.txtBedragTot.TabIndex = 26;
+            this.txtBedragTot.TextChanged += new System.EventHandler(this.txtBedragTot_TextChanged);
             // 
             // cbBedragVan
             // 
             this.cbBedragVan.AutoSize = true;
-            this.cbBedragVan.Location = new System.Drawing.Point(651, 170);
+            this.cbBedragVan.Location = new System.Drawing.Point(646, 131);
             this.cbBedragVan.Name = "cbBedragVan";
             this.cbBedragVan.Size = new System.Drawing.Size(66, 32);
             this.cbBedragVan.TabIndex = 5;
@@ -125,7 +134,7 @@
             // 
             // txtGebruiker
             // 
-            this.txtGebruiker.Location = new System.Drawing.Point(12, 61);
+            this.txtGebruiker.Location = new System.Drawing.Point(11, 58);
             this.txtGebruiker.Name = "txtGebruiker";
             this.txtGebruiker.Size = new System.Drawing.Size(272, 34);
             this.txtGebruiker.TabIndex = 25;
@@ -133,7 +142,7 @@
             // 
             // txtKostenPlaats
             // 
-            this.txtKostenPlaats.Location = new System.Drawing.Point(967, 166);
+            this.txtKostenPlaats.Location = new System.Drawing.Point(967, 129);
             this.txtKostenPlaats.Name = "txtKostenPlaats";
             this.txtKostenPlaats.Size = new System.Drawing.Size(272, 34);
             this.txtKostenPlaats.TabIndex = 16;
@@ -141,7 +150,7 @@
             // 
             // txtBedragVan
             // 
-            this.txtBedragVan.Location = new System.Drawing.Point(723, 168);
+            this.txtBedragVan.Location = new System.Drawing.Point(718, 129);
             this.txtBedragVan.Name = "txtBedragVan";
             this.txtBedragVan.Size = new System.Drawing.Size(200, 34);
             this.txtBedragVan.TabIndex = 17;
@@ -149,22 +158,24 @@
             // 
             // dtpPlanningsdatumTot
             // 
-            this.dtpPlanningsdatumTot.Location = new System.Drawing.Point(397, 204);
+            this.dtpPlanningsdatumTot.Location = new System.Drawing.Point(397, 170);
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
             this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumTot.TabIndex = 24;
+            this.dtpPlanningsdatumTot.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumTot_ValueChanged);
             // 
             // dtpPlanningsdatumVan
             // 
-            this.dtpPlanningsdatumVan.Location = new System.Drawing.Point(397, 166);
+            this.dtpPlanningsdatumVan.Location = new System.Drawing.Point(397, 129);
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
             this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumVan.TabIndex = 23;
+            this.dtpPlanningsdatumVan.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumVan_ValueChanged);
             // 
             // lblKostenplaats
             // 
             this.lblKostenplaats.AutoSize = true;
-            this.lblKostenplaats.Location = new System.Drawing.Point(962, 128);
+            this.lblKostenplaats.Location = new System.Drawing.Point(962, 98);
             this.lblKostenplaats.Name = "lblKostenplaats";
             this.lblKostenplaats.Size = new System.Drawing.Size(124, 28);
             this.lblKostenplaats.TabIndex = 5;
@@ -172,15 +183,16 @@
             // 
             // dtpAanvraagmomentTot
             // 
-            this.dtpAanvraagmomentTot.Location = new System.Drawing.Point(84, 204);
+            this.dtpAanvraagmomentTot.Location = new System.Drawing.Point(83, 170);
             this.dtpAanvraagmomentTot.Name = "dtpAanvraagmomentTot";
             this.dtpAanvraagmomentTot.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentTot.TabIndex = 22;
+            this.dtpAanvraagmomentTot.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentTot_ValueChanged);
             // 
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(646, 128);
+            this.lblBedrag.Location = new System.Drawing.Point(646, 98);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(74, 28);
             this.lblBedrag.TabIndex = 8;
@@ -188,7 +200,7 @@
             // 
             // txtFinancieringsjaar
             // 
-            this.txtFinancieringsjaar.Location = new System.Drawing.Point(967, 61);
+            this.txtFinancieringsjaar.Location = new System.Drawing.Point(967, 58);
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(272, 34);
             this.txtFinancieringsjaar.TabIndex = 15;
@@ -205,15 +217,16 @@
             // 
             // dtpAanvraagmomentVan
             // 
-            this.dtpAanvraagmomentVan.Location = new System.Drawing.Point(84, 166);
+            this.dtpAanvraagmomentVan.Location = new System.Drawing.Point(83, 129);
             this.dtpAanvraagmomentVan.Name = "dtpAanvraagmomentVan";
             this.dtpAanvraagmomentVan.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentVan.TabIndex = 21;
+            this.dtpAanvraagmomentVan.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentVan_ValueChanged);
             // 
             // chbxPlaningsdatumVan
             // 
             this.chbxPlaningsdatumVan.AutoSize = true;
-            this.chbxPlaningsdatumVan.Location = new System.Drawing.Point(325, 170);
+            this.chbxPlaningsdatumVan.Location = new System.Drawing.Point(320, 133);
             this.chbxPlaningsdatumVan.Name = "chbxPlaningsdatumVan";
             this.chbxPlaningsdatumVan.Size = new System.Drawing.Size(66, 32);
             this.chbxPlaningsdatumVan.TabIndex = 4;
@@ -224,7 +237,7 @@
             // chbxPlaningsdatumTot
             // 
             this.chbxPlaningsdatumTot.AutoSize = true;
-            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(325, 208);
+            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(325, 174);
             this.chbxPlaningsdatumTot.Name = "chbxPlaningsdatumTot";
             this.chbxPlaningsdatumTot.Size = new System.Drawing.Size(61, 32);
             this.chbxPlaningsdatumTot.TabIndex = 20;
@@ -235,7 +248,7 @@
             // chbxAanvraagmomentTot
             // 
             this.chbxAanvraagmomentTot.AutoSize = true;
-            this.chbxAanvraagmomentTot.Location = new System.Drawing.Point(12, 208);
+            this.chbxAanvraagmomentTot.Location = new System.Drawing.Point(11, 172);
             this.chbxAanvraagmomentTot.Name = "chbxAanvraagmomentTot";
             this.chbxAanvraagmomentTot.Size = new System.Drawing.Size(61, 32);
             this.chbxAanvraagmomentTot.TabIndex = 19;
@@ -246,7 +259,7 @@
             // lblAanvraagmoment
             // 
             this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(7, 128);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(6, 98);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(169, 28);
             this.lblAanvraagmoment.TabIndex = 18;
@@ -271,7 +284,7 @@
             // lblPlanningsdatum
             // 
             this.lblPlanningsdatum.AutoSize = true;
-            this.lblPlanningsdatum.Location = new System.Drawing.Point(320, 128);
+            this.lblPlanningsdatum.Location = new System.Drawing.Point(320, 98);
             this.lblPlanningsdatum.Name = "lblPlanningsdatum";
             this.lblPlanningsdatum.Size = new System.Drawing.Size(153, 28);
             this.lblPlanningsdatum.TabIndex = 11;
@@ -298,7 +311,7 @@
             // chbxAanvraagmomentVan
             // 
             this.chbxAanvraagmomentVan.AutoSize = true;
-            this.chbxAanvraagmomentVan.Location = new System.Drawing.Point(12, 170);
+            this.chbxAanvraagmomentVan.Location = new System.Drawing.Point(12, 129);
             this.chbxAanvraagmomentVan.Name = "chbxAanvraagmomentVan";
             this.chbxAanvraagmomentVan.Size = new System.Drawing.Size(66, 32);
             this.chbxAanvraagmomentVan.TabIndex = 3;
@@ -335,15 +348,97 @@
             this.pnlAanvragen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnlAanvragen_ControlAdded);
             this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(93, 279);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 28);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Gebruiker";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(209, 279);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 28);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Titel";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(304, 279);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(157, 28);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Aanvraagmment";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(472, 279);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(163, 28);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Financierings jaar";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(678, 279);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 28);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Status Aanvraag";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(864, 279);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 28);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Bedrag";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(973, 279);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(128, 28);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Kosten Plaats";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1131, 279);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(160, 28);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Plannings Datum";
+            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 702);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlAanvragen);
             this.Controls.Add(this.btnNieuweAanvraag);
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAanvragen";
             this.Text = "Aanvragen";
@@ -352,6 +447,7 @@
             this.grbxFilterAanvraag.ResumeLayout(false);
             this.grbxFilterAanvraag.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -386,5 +482,13 @@
         private System.Windows.Forms.CheckBox cbBedragTot;
         private System.Windows.Forms.TextBox txtBedragTot;
         private System.Windows.Forms.CheckBox cbBedragVan;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

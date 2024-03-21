@@ -53,7 +53,7 @@ namespace MiaClient
             }
             frmAanvraagFormulier.Show();
         }
-        private void BindAanvraag(List<Aanvraag> items)
+        public void BindAanvraag(List<Aanvraag> items)
         {
             this.pnlAanvragen.Controls.Clear();
 
@@ -66,23 +66,29 @@ namespace MiaClient
                 AanvraagItem avi = new AanvraagItem(av.Id,av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats,  av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "aanvraagSelection" + t;
-                avi.Size = new System.Drawing.Size(1300, 33);
+                avi.Size = new System.Drawing.Size(1210, 33);
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                 avi.AanvraagDeleted += Avi_AanvraagDeleted;
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
-                //if(t < 10)
-                //{
+               
                     yPos += 30;
-                //}
             }
         }
-
         private void Avi_AanvraagDeleted(object sender, EventArgs e)
         {
-            //BindAanvraag()
+            try
+            {
+                aanvragen = AanvraagManager.GetAanvragen();
+
+                BindAanvraag(aanvragen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frmAanvragen_Load(object sender, EventArgs e)
@@ -101,8 +107,8 @@ namespace MiaClient
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
             AanvraagItem geselecteerd = (AanvraagItem)sender;
-
-            //txtIdDetail.Text = geselecteerd.Id.ToString();
+            
+            //txtDetail.Text = geselecteerd.Id.ToString();
             //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
             //txtGebruikerDetail.Text = geselecteerd.Gebruiker;
             //txtOmschrijvingDetail.Text = geselecteerd.OmschrijvingActie.ToString();
@@ -157,16 +163,22 @@ namespace MiaClient
                 }
                 if (bedragVan)
                 {
-                    if (cbBedragVan.Checked == true)
+                    if (cbBedragVan.Checked == true )
                     {
-                        items = items.Where(av => av.Bedrag >= Convert.ToInt32(txtBedragVan.Text)).ToList();
+                        if (txtBedragVan.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.Bedrag >= Convert.ToInt32(txtBedragVan.Text)).ToList();
+                        }
                     } 
                 }
                 if (bedragTot)
                 {
                     if (cbBedragTot.Checked == true)
                     {
-                        items = items.Where(av => av.Bedrag <= Convert.ToInt32(txtBedragTot.Text)).ToList();
+                        if(txtBedragTot.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.Bedrag <= Convert.ToInt32(txtBedragTot.Text)).ToList();
+                        }
                     }
                 }
                 if (kostenPlaats)
@@ -174,8 +186,9 @@ namespace MiaClient
                     items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
                 }
             }
-            ////Leegmaken detailvelden
-            //txtBedrag.Text = string.Empty;
+            //Leegmaken detailvelden
+            //txtBedragTot.Text = string.Empty;
+            //txtBedragVan.Text = string.Empty;
             //txtFinancieringsjaar.Text = string.Empty;
             //txtGebruiker.Text = string.Empty;
             //txtKostenPlaats.Text = string.Empty;
@@ -237,9 +250,6 @@ namespace MiaClient
         }
         private void txtBedrag_TextChanged(object sender, EventArgs e)
         {
-        }
-        private void cbBedragVan_CheckedChanged(object sender, EventArgs e)
-        {
             try
             {
                 filterBedragVan = true;
@@ -250,17 +260,13 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void cbBedragVan_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
         private void cbBedragTot_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                filterBedragTot = true;
-                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
         private void txtKostenPlaats_TextChanged(object sender, EventArgs e)
         {
@@ -276,33 +282,25 @@ namespace MiaClient
         }
         private void chbxAanvraagmomentVan_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                filterAanvraagmomentVan = true;
-                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
         private void chbxAanvraagmomentTot_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                filterAanvraagmomentTot = true;
-                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
         private void chbxPlaningsdatumVan_CheckedChanged(object sender, EventArgs e)
         {
+           
+        }
+        private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void txtGebruiker_TextChanged(object sender, EventArgs e)
+        {
             try
             {
-                filterPlanningsdatumVan = true;
+                filterGebruiker = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
             catch (Exception ex)
@@ -310,7 +308,26 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBedragTot_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterBedragTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpPlanningsdatumTot_ValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -322,11 +339,38 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void txtGebruiker_TextChanged(object sender, EventArgs e)
+
+        private void dtpPlanningsdatumVan_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                filterGebruiker = true;
+                filterPlanningsdatumVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpAanvraagmomentVan_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpAanvraagmomentTot_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentTot = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
             catch (Exception ex)
