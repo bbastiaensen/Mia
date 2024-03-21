@@ -343,7 +343,7 @@
             this.pnlAanvragen.AutoScroll = true;
             this.pnlAanvragen.Location = new System.Drawing.Point(15, 310);
             this.pnlAanvragen.Name = "pnlAanvragen";
-            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 380);
+            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 365);
             this.pnlAanvragen.TabIndex = 18;
             // 
             // label1
@@ -378,9 +378,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(525, 279);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 28);
+            this.label4.Size = new System.Drawing.Size(158, 28);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Financierings jaar";
+            this.label4.Text = "Financieringsjaar";
             // 
             // label5
             // 
@@ -405,24 +405,24 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(944, 279);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 28);
+            this.label7.Size = new System.Drawing.Size(124, 28);
             this.label7.TabIndex = 25;
-            this.label7.Text = "Kosten Plaats";
+            this.label7.Text = "Kostenplaats";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(1078, 279);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(160, 28);
+            this.label8.Size = new System.Drawing.Size(153, 28);
             this.label8.TabIndex = 26;
-            this.label8.Text = "Plannings Datum";
+            this.label8.Text = "Planningsdatum";
             // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 702);
+            this.ClientSize = new System.Drawing.Size(1320, 686);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);

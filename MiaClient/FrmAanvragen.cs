@@ -107,7 +107,6 @@ namespace MiaClient
             aanvragen = AanvraagManager.GetAanvragen();
             BindAanvraag(aanvragen);
         }
-
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
             AanvraagItem geselecteerd = (AanvraagItem)sender;
@@ -168,7 +167,6 @@ namespace MiaClient
                         items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
                     }
                 }
-
                 if (bedragVan)
                 {
                     if (cbBedragVan.Checked == true )
@@ -358,7 +356,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void chbxAanvraagmomentVan_Click(object sender, EventArgs e)
         {
             try
@@ -371,7 +368,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void chbxAanvraagmomentTot_Click(object sender, EventArgs e)
         {
             try
@@ -384,7 +380,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void chbxPlaningsdatumVan_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -397,7 +392,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -410,7 +404,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void cbBedragVan_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -429,7 +422,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void cbBedragTot_CheckedChanged(object sender, EventArgs e)
         {
             try

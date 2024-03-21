@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Deployment.Internal;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -338,28 +339,22 @@ namespace MiaClient
         {
             try
             {
-                link = txt_fotoURLInput.Text;
-                //De link is het pad en moet alleen read only zijn
-            }
-            if (!string.IsNullOrEmpty(selectedPath)) // als de string != null is
-            {
-                string FileName = Path.GetFileName(selectedPath);//Hier haal ik de bestandsnaam op
-                string DestinationPath = Path.Combine(Mainpath, FileName); //OM het volledige pad te vinden moet ik deze 2 samen plakken
-                SaveFoto(DestinationPath);
+                Foto foto = new Foto
+                {
 
-                Url = filepath,
+                    Url = filepath,
                     AanvraagId = _aanvraagId
-            FotoManager.SaveFoto(foto);
-            return foto;
-            
+                };
+                FotoManager.SaveFoto(foto);
+                return foto;
+            }
             catch (Exception ex)
             {
                 ErrorHandler(ex);
                 return null;
             }
-    }
-}
-private Link SaveLink(string hyperlink)
+        }
+        private Link SaveLink(string hyperlink)
         {
             try
             {
@@ -692,5 +687,29 @@ private Link SaveLink(string hyperlink)
             }
             
         }
+        //public void UpdateAanvraag()
+        //{
+        //    AanvraagManager.GetAanvraagById(Aanvraag aanvraag);
+        //    Aanvraag updateaanvraag = new Aanvraag
+        //    {
+        //        Gebruiker = txtGebruiker.Text,
+        //        AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+        //        DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+        //        Aanvraagmoment = DateTime.Now,
+        //        Titel = txtTitel.Text,
+        //        Omschrijving = rtxtOmschrijving.Text,
+        //        FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+        //        InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
+        //        PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+        //        Financieringsjaar = ddlFinancieringsjaar.Text,
+        //        StatusAanvraagId = Convert.ToInt32(1),
+        //        KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+        //        PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+        //        AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+        //        AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+        //    };
+        //    AanvraagManager.SaveAanvraag(updateaanvraag, true);
+        //    //LogAanvraag(updateaanvraag);
+        //}
     }    
 }
