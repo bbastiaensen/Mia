@@ -86,10 +86,7 @@ namespace MiaClient
 
                 //Voorbereiden voor de volgende control
                 t++;
-                if (t < 10)
-                {
-                    yPos += 30;
-                }
+                yPos += 30;
             }
         }
 

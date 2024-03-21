@@ -11,31 +11,6 @@ namespace MiaLogic.Manager
     public class AankoperManager
     {
         public static string ConnectionString { get; set; }
-        //public static List<Aankoper> GetAankoper()
-        //{
-        //    List<Aankoper> aankoper = new List<Aankoper>();
-
-        //    using (SqlConnection connection = new SqlConnection(ConnectionString))
-        //    {
-        //        connection.Open();
-
-        //        string query = "SELECT Voornaam + ' ' + Achternaam AS FullName FROM Aankoper ORDER BY FullName ASC";
-
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            using (SqlDataReader reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    string fullName = reader["FullName"].ToString();
-        //                    aankoper.Add(fullName);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return aankoper;
-        //}
         public static List<Aankoper> GetAankoper()
         {
             List<Aankoper> returnlist = null;

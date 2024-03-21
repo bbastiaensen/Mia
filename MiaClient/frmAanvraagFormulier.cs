@@ -24,7 +24,8 @@ namespace MiaClient
         private string selectedPath;
         private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
         private string link = string.Empty;
-
+        public FrmAanvragen frmAanvragen;
+        public event EventHandler AanvraagBewaard;
         public frmAanvraagFormulier()
         {
             InitializeComponent();
@@ -53,12 +54,12 @@ namespace MiaClient
         }
 
         // Ophalen van de data voor de dropdownlists
-        public void VulAanvraagId()
-        {
-            int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
+        //public void VulAanvraagId()
+        //{
+        //    int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
 
-            txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
-        }
+        //    txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
+        //}
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
             List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
@@ -153,7 +154,7 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            VulAanvraagId();
+            
             // Identificatie
             VulAfdelingDropDown(ddlAfdeling);
             VulDienstDropDown(ddlDienst);
@@ -382,19 +383,19 @@ namespace MiaClient
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
 
                 MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (MessageBox.Show("Wil je nog iets wijzigen aan deze aanvraag?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
 
-                }
-                else
+                
+                if (AanvraagBewaard != null)
                 {
-
+                    AanvraagBewaard(this, null);
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
