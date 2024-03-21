@@ -111,6 +111,7 @@
             this.cbBedragTot.TabIndex = 21;
             this.cbBedragTot.Text = "Tot";
             this.cbBedragTot.UseVisualStyleBackColor = true;
+            this.cbBedragTot.CheckedChanged += new System.EventHandler(this.cbBedragTot_CheckedChanged);
             // 
             // txtBedragTot
             // 
@@ -129,6 +130,7 @@
             this.cbBedragVan.TabIndex = 5;
             this.cbBedragVan.Text = "Van";
             this.cbBedragVan.UseVisualStyleBackColor = true;
+            this.cbBedragVan.CheckedChanged += new System.EventHandler(this.cbBedragVan_CheckedChanged);
             // 
             // txtGebruiker
             // 
@@ -230,6 +232,7 @@
             this.chbxPlaningsdatumVan.TabIndex = 4;
             this.chbxPlaningsdatumVan.Text = "Van";
             this.chbxPlaningsdatumVan.UseVisualStyleBackColor = true;
+            this.chbxPlaningsdatumVan.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumVan_CheckedChanged);
             // 
             // chbxPlaningsdatumTot
             // 
@@ -240,6 +243,7 @@
             this.chbxPlaningsdatumTot.TabIndex = 20;
             this.chbxPlaningsdatumTot.Text = "Tot";
             this.chbxPlaningsdatumTot.UseVisualStyleBackColor = true;
+            this.chbxPlaningsdatumTot.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumTot_CheckedChanged);
             // 
             // chbxAanvraagmomentTot
             // 
@@ -250,6 +254,7 @@
             this.chbxAanvraagmomentTot.TabIndex = 19;
             this.chbxAanvraagmomentTot.Text = "Tot";
             this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
+            this.chbxAanvraagmomentTot.Click += new System.EventHandler(this.chbxAanvraagmomentTot_Click);
             // 
             // lblAanvraagmoment
             // 
@@ -312,6 +317,7 @@
             this.chbxAanvraagmomentVan.TabIndex = 3;
             this.chbxAanvraagmomentVan.Text = "Van";
             this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
+            this.chbxAanvraagmomentVan.Click += new System.EventHandler(this.chbxAanvraagmomentVan_Click);
             // 
             // lblGebruiker
             // 

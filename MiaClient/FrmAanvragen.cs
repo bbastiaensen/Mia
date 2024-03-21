@@ -123,11 +123,17 @@ namespace MiaClient
             {
                 if (aanvraagmomentVan)
                 {
-                    items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
+                    if (chbxPlaningsdatumVan.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
+                    }
                 }
                 if (aanvraagmomentTot)
                 {
-                    items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    if (chbxAanvraagmomentTot.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }      
                 }
                 if (planningsdatumVan)
                 {
@@ -233,6 +239,11 @@ namespace MiaClient
         {
             try
             {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtFinancieringsjaar.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtFinancieringsjaar.Text = txtFinancieringsjaar.Text.Remove(txtFinancieringsjaar.Text.Length - 1);
+                }
                 filterFinancieringsjaar = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
@@ -245,6 +256,11 @@ namespace MiaClient
         {
             try
             {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
+                }
                 filterBedragVan = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
@@ -281,6 +297,11 @@ namespace MiaClient
         {
             try
             {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
+                }
                 filterBedragTot = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
@@ -330,6 +351,95 @@ namespace MiaClient
             try
             {
                 filterAanvraagmomentTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxAanvraagmomentVan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxAanvraagmomentTot_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                filterAanvraagmomentTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxPlaningsdatumVan_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterPlanningsdatumVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chbxPlaningsdatumTot_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                filterPlanningsdatumTot = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbBedragVan_CheckedChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
+                }
+                filterBedragVan = true;
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbBedragTot_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
+                }
+                filterBedragTot = true;
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
             catch (Exception ex)

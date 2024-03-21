@@ -334,32 +334,32 @@ namespace MiaClient
                 return null;
             }
         }
-        //private Foto SaveFoto(string filepath)
-        //{
-        //    try
-        //    {
-        //        link = txt_fotoURLInput.Text;
-        //        //De link is het pad en moet alleen read only zijn
-        //    }
-        //    if (!string.IsNullOrEmpty(selectedPath)) // als de string != null is
-        //    {
-        //        string FileName = Path.GetFileName(selectedPath);//Hier haal ik de bestandsnaam op
-        //        string DestinationPath = Path.Combine(Mainpath, FileName); //OM het volledige pad te vinden moet ik deze 2 samen plakken
-        //        SaveFoto(DestinationPath);
+        private Foto SaveFoto(string filepath)
+        {
+            try
+            {
+                link = txt_fotoURLInput.Text;
+                //De link is het pad en moet alleen read only zijn
+            }
+            if (!string.IsNullOrEmpty(selectedPath)) // als de string != null is
+            {
+                string FileName = Path.GetFileName(selectedPath);//Hier haal ik de bestandsnaam op
+                string DestinationPath = Path.Combine(Mainpath, FileName); //OM het volledige pad te vinden moet ik deze 2 samen plakken
+                SaveFoto(DestinationPath);
 
-        //            Url = filepath,
-        //            AanvraagId = _aanvraagId
-        //        };
-        //        FotoManager.SaveFoto(foto);
-        //        return foto;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ErrorHandler(ex);
-        //        return null;
-        //    }
-        //}
-        private Link SaveLink(string hyperlink)
+                Url = filepath,
+                    AanvraagId = _aanvraagId
+            FotoManager.SaveFoto(foto);
+            return foto;
+            
+            catch (Exception ex)
+            {
+                ErrorHandler(ex);
+                return null;
+            }
+    }
+}
+private Link SaveLink(string hyperlink)
         {
             try
             {
@@ -575,14 +575,14 @@ namespace MiaClient
 
                     MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //SaveFoto(destinationPath);
-                    //GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
-                    //{
-                    //    Gebruiker = Program.Gebruiker,
-                    //    Id = Convert.ToInt32(_aanvraagId),
-                    //    TijdstipActie = DateTime.Now,
-                    //    OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {_aanvraagId}."
-                    //}, true);
+                    SaveFoto(destinationPath);
+                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                    {
+                        Gebruiker = Program.Gebruiker,
+                        Id = Convert.ToInt32(_aanvraagId),
+                        TijdstipActie = DateTime.Now,
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {_aanvraagId}."
+                    }, true);
                 }
                 else
                 {
