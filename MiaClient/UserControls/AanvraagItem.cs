@@ -113,7 +113,7 @@ namespace MiaClient.UserControls
                     gebruiksLog1.Gebruiker = Program.Gebruiker;
                     gebruiksLog1.TijdstipActie = DateTime.Now;
                     gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
-              
+
                     GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
                 else
