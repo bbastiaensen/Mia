@@ -23,10 +23,11 @@ namespace MiaClient
     {
         //Variables
         private string selectedPath;
-        private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
-        private string link = string.Empty;
+        private string mainPath;// De folder voor het opslagen, dit wordt de parameter
+        private string hyperlink = string.Empty;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
+        private int _aanvraagId = 0;
 
         public frmAanvraagFormulier()
         {
@@ -121,7 +122,6 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            VulAanvraagId();
             // Identificatie
             VulAfdelingDropDown(ddlAfdeling);
             VulDienstDropDown(ddlDienst);
@@ -138,7 +138,6 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            VulAanvraagId();
             ddlAfdeling.SelectedItem = null;
             ddlDienst.SelectedItem = null;
             ddlPrioriteit.SelectedItem = null;
@@ -273,22 +272,6 @@ namespace MiaClient
         }
         // Vullen van dropdownlists
 
-        public void vulFormulier()
-        {
-            txtGebruiker.Text = Program.Gebruiker;
-            txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            
-            // Identificatie
-            VulAfdelingDropDown(ddlAfdeling);
-            VulDienstDropDown(ddlDienst);
-            // Investering
-            VulPrioriteitDropDown(ddlPrioriteit);
-            VulFinancieringDropDown(ddlFinanciering);
-            VulInvesteringDropDown(ddlInvestering);
-            VulFinancieringsjaarDropDown(ddlFinancieringsjaar);
-            VulKostenplaatsDropDown(ddlKostenplaats);
-            VulAankoperDropDown(ddlWieKooptHet);
-        }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -477,21 +460,6 @@ namespace MiaClient
             }, true);
         }
 
-        private void txtPrijsindicatie_Leave(object sender, EventArgs e)
-        {
-            txtTotaal.Text = BerekenTotaalprijs().ToString();
-        }
-        private void txtAantalStuks_Leave(object sender, EventArgs e)
-        {
-            txtTotaal.Text = BerekenTotaalprijs().ToString();
-        }
-        private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
-            //keren naast elkaar kan geopend worden.
-            e.Cancel = true;
-            ((Form)sender).Hide();
-        }
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -684,15 +652,16 @@ namespace MiaClient
                 else
                 {
                     MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
-                if (AanvraagBewaard != null)
-                {
-                    AanvraagBewaard(this, null);
+
+                    if (AanvraagBewaard != null)
+                    {
+                        AanvraagBewaard(this, null);
+                    }
                 }
-
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"Er is een fout gebeurt tijdens het opslaan van de offerte: {ex.Message}");
