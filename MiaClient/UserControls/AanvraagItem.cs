@@ -106,6 +106,10 @@ namespace MiaClient.UserControls
                         AanvraagDeleted(this, null);
                         MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else 
+                    {
+                        MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLog gebruiksLog1 = new GebruiksLog();
