@@ -171,7 +171,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
             this.Size = new System.Drawing.Size(1210, 33);
-            this.Load += new System.EventHandler(this.AanvraagItem_Load);
             this.ResumeLayout(false);
 
         }

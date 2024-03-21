@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MiaClient.UserControls
 {
@@ -77,15 +78,12 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
-            lblBedrag.Text = "\u20AC " + Bedrag.ToString();
+            lblBedrag.Text = "\u20AC " + Bedrag.ToString("c", CultureInfo.CurrentCulture);
             //lblBedrag.Text = Bedrag.ToString();
             if (Even)
             {
                 this.BackColor = Color.White;
             }
-        }
-        private void llblDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -114,8 +112,8 @@ namespace MiaClient.UserControls
                     GebruiksLog gebruiksLog1 = new GebruiksLog();
                     gebruiksLog1.Gebruiker = Program.Gebruiker;
                     gebruiksLog1.TijdstipActie = DateTime.Now;
-                    gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1 + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
-              
+                    gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
+
                     GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
                 else
@@ -123,9 +121,6 @@ namespace MiaClient.UserControls
                     MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-        private void AanvraagItem_Load(object sender, EventArgs e)
-        {
         }
         private void lblFinancieringsjaar_Click(object sender, EventArgs e)
         {
