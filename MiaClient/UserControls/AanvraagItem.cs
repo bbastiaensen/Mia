@@ -77,7 +77,8 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
-            lblBedrag.Text = Bedrag.ToString();
+            lblBedrag.Text = "\u20AC " + Bedrag.ToString();
+            //lblBedrag.Text = Bedrag.ToString();
             if (Even)
             {
                 this.BackColor = Color.White;
@@ -108,6 +109,14 @@ namespace MiaClient.UserControls
                         MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
+                    Aanvraag aanvraag1 = new Aanvraag();
+                    aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1 + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
+              
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
                 else
                 {
