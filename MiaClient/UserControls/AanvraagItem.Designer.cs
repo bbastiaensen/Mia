@@ -44,15 +44,15 @@
             // 
             // lblGebruiker
             // 
-            this.lblGebruiker.Location = new System.Drawing.Point(118, 2);
+            this.lblGebruiker.Location = new System.Drawing.Point(66, 2);
             this.lblGebruiker.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGebruiker.Name = "lblGebruiker";
-            this.lblGebruiker.Size = new System.Drawing.Size(150, 28);
+            this.lblGebruiker.Size = new System.Drawing.Size(122, 28);
             this.lblGebruiker.TabIndex = 1;
             // 
             // lblAanvraagmoment
             // 
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(278, 2);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(358, 5);
             this.lblAanvraagmoment.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(150, 28);
@@ -61,7 +61,7 @@
             // 
             // lblTitel
             // 
-            this.lblTitel.Location = new System.Drawing.Point(438, 5);
+            this.lblTitel.Location = new System.Drawing.Point(198, 5);
             this.lblTitel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(150, 28);
@@ -70,7 +70,7 @@
             // 
             // lblFinancieringsjaar
             // 
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(734, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(518, 5);
             this.lblFinancieringsjaar.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(60, 28);
@@ -79,7 +79,7 @@
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(804, 5);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(588, 5);
             this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
             this.lblStatusAanvraag.Size = new System.Drawing.Size(260, 28);
@@ -88,7 +88,7 @@
             // 
             // lblKostenplaats
             // 
-            this.lblKostenplaats.Location = new System.Drawing.Point(1074, 2);
+            this.lblKostenplaats.Location = new System.Drawing.Point(929, 5);
             this.lblKostenplaats.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblKostenplaats.Name = "lblKostenplaats";
             this.lblKostenplaats.Size = new System.Drawing.Size(150, 28);
@@ -97,7 +97,7 @@
             // 
             // lblBedrag
             // 
-            this.lblBedrag.Location = new System.Drawing.Point(1234, 5);
+            this.lblBedrag.Location = new System.Drawing.Point(858, 5);
             this.lblBedrag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(61, 28);
@@ -105,10 +105,10 @@
             // 
             // lblPlaningsDatum
             // 
-            this.lblPlaningsDatum.Location = new System.Drawing.Point(598, 5);
+            this.lblPlaningsDatum.Location = new System.Drawing.Point(1089, 2);
             this.lblPlaningsDatum.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPlaningsDatum.Name = "lblPlaningsDatum";
-            this.lblPlaningsDatum.Size = new System.Drawing.Size(150, 28);
+            this.lblPlaningsDatum.Size = new System.Drawing.Size(116, 28);
             this.lblPlaningsDatum.TabIndex = 8;
             this.lblPlaningsDatum.Click += new System.EventHandler(this.lblPlaningsDatum_Click);
             // 
@@ -170,8 +170,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
-            this.Size = new System.Drawing.Size(1300, 33);
-            this.Load += new System.EventHandler(this.AanvraagItem_Load);
+
+            this.Size = new System.Drawing.Size(1210, 33);
             this.ResumeLayout(false);
 
         }

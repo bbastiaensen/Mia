@@ -14,8 +14,8 @@ namespace ProofOfConceptDesign
         public static Image LogoG { get; set; }
         public static Color Buttontext { get; set; }
         public static Color ButtonBack { get; set; }
-        public static Color ButtonBorder { get; set; }
         public static Color Achtergrondkleur { get; set; }
-        public static Color AccentKleuren { get; set; }   
+        public static Color AccentKleur { get; set; }
+        
     }
 }

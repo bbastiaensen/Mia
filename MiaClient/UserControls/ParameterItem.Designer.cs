@@ -39,7 +39,7 @@
             // 
             // lblCode
             // 
-            this.lblCode.Location = new System.Drawing.Point(80, 2);
+            this.lblCode.Location = new System.Drawing.Point(74, 2);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(198, 23);
             this.lblCode.TabIndex = 4;
@@ -47,7 +47,7 @@
             // 
             // lblWaarde
             // 
-            this.lblWaarde.Location = new System.Drawing.Point(284, 2);
+            this.lblWaarde.Location = new System.Drawing.Point(278, 2);
             this.lblWaarde.Name = "lblWaarde";
             this.lblWaarde.Size = new System.Drawing.Size(243, 23);
             this.lblWaarde.TabIndex = 5;
@@ -55,7 +55,7 @@
             // 
             // lblEenheid
             // 
-            this.lblEenheid.Location = new System.Drawing.Point(533, 2);
+            this.lblEenheid.Location = new System.Drawing.Point(527, 2);
             this.lblEenheid.Name = "lblEenheid";
             this.lblEenheid.Size = new System.Drawing.Size(243, 23);
             this.lblEenheid.TabIndex = 6;
@@ -115,7 +115,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ParameterItem";
-            this.Size = new System.Drawing.Size(778, 30);
+            this.Size = new System.Drawing.Size(772, 30);
             this.ResumeLayout(false);
             this.PerformLayout();
 

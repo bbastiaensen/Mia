@@ -23,10 +23,10 @@ namespace MiaClient
     {
         //Variables
         private string selectedPath;
-        private string mainPath;// De folder voor het opslagen, dit wordt de parameter
-        private string hyperlink;
-        private int _aanvraagId = 0;
-
+        private string Mainpath;// De folder voor het opslagen, dit wordt de parameter
+        private string link = string.Empty;
+        public FrmAanvragen frmAanvragen;
+        public event EventHandler AanvraagBewaard;
 
         public frmAanvraagFormulier()
         {
@@ -156,13 +156,33 @@ namespace MiaClient
 
 
         }
+        public frmAanvraagFormulier(int id, string action)
+        {
+
+            Aanvraag aanvraag = null;
+            if (action == "edit")
+            {
+                aanvraag = AanvraagManager.GetAanvraagById(id);
+
+                txtAanvraagId.Text = aanvraag.Id.ToString();
+                txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
+                txtAanvraagmoment.Text = aanvraag.Aanvraagmoment.ToString();
+                txtGebruiker.Text = aanvraag.Gebruiker.ToString();
+                txtPrijsindicatie.Text = aanvraag.PrijsIndicatieStuk.ToString();
+                txtTitel.Text = aanvraag.Titel.ToString();
+                txtTotaal.Text = (aanvraag.PrijsIndicatieStuk * aanvraag.AantalStuk).ToString();
+                rtxtOmschrijving.Text = aanvraag.Omschrijving.ToString();
+            }
+
+        }
 
         // Ophalen van de data voor de dropdownlists
-        public void VulAanvraagId()
-        {
-            int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
-            txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
-        }
+        //public void VulAanvraagId()
+        //{
+        //    int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
+
+        //    txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
+        //}
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
             List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
@@ -252,6 +272,38 @@ namespace MiaClient
             return totaalprijs;
         }
         // Vullen van dropdownlists
+
+        public void vulFormulier()
+        {
+            txtGebruiker.Text = Program.Gebruiker;
+            txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            
+            // Identificatie
+            VulAfdelingDropDown(ddlAfdeling);
+            VulDienstDropDown(ddlDienst);
+            // Investering
+            VulPrioriteitDropDown(ddlPrioriteit);
+            VulFinancieringDropDown(ddlFinanciering);
+            VulInvesteringDropDown(ddlInvestering);
+            VulFinancieringsjaarDropDown(ddlFinancieringsjaar);
+            VulKostenplaatsDropDown(ddlKostenplaats);
+            VulAankoperDropDown(ddlWieKooptHet);
+        }
+        private void txtPrijsindicatie_Leave(object sender, EventArgs e)
+        {
+            txtTotaal.Text = BerekenTotaalprijs().ToString();
+        }
+        private void txtAantalStuks_Leave(object sender, EventArgs e)
+        {
+            txtTotaal.Text = BerekenTotaalprijs().ToString();
+        }
+        private void frmAanvraagFormulier_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
+            //keren naast elkaar kan geopend worden.
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
 
         public void RefreshBoxes(TabControl tabControl) //Dit is het deelprobleem om alle textboxes etc leeg te maken
         {
@@ -609,7 +661,6 @@ namespace MiaClient
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
 
-
                     string uniqueFileName = $"{_aanvraagId}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
                     string destinationFolder = Path.Combine(mainPath + @"\offertes"); // Hier mpet nog de hardocded map naam voor (test)
@@ -633,7 +684,14 @@ namespace MiaClient
                 else
                 {
                     MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
+                if (AanvraagBewaard != null)
+                {
+                    AanvraagBewaard(this, null);
                 }
+
             }
             catch (Exception ex)
             {

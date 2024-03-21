@@ -1,17 +1,21 @@
-﻿using MiaLogic.Manager;
+using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MiaClient
 {
+ 
     public partial class mdiMia : Form
     {
         private int childFormNumber = 0;
@@ -23,29 +27,93 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
 
+
         public mdiMia()
         {
-            GetRol();
+            GetRollen();
             InitializeComponent();
         }
-        private string GetRol()
+        
+        private string GetRollen()
         {
+            string rollen = string.Empty;
+
             if (Program.IsAanvrager)
-                return "Aanvrager";
+            {
+                rollen = "Aanvrager";
+            }
 
             if (Program.IsAankoper)
-                return "Aankoper";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Aankoper";
+            }
 
             if (Program.IsGoedkeurder)
-                return "Goedkeurder";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Goedkeurder";
+            }
 
             if (Program.IsSysteem)
-                return "Systeem";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Systeem";
+            }
 
-            return "Geen rol toegewezen";
+            return rollen;
 
         }
 
+        private void laadGrafischeParameters()
+        {
+            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+          
+            StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
+            StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
+            StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
+            StyleParameters.ButtonBack = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonBack").Waarde);
+            StyleParameters.Buttontext = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonText").Waarde);
+            StyleParameters.Achtergrondkleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("Achtergrondkleur").Waarde);
+
+        }
+        private void stelGrafischeWaardeIn()
+        {
+
+            toolStrip.BackColor = StyleParameters.AccentKleur;
+            menuStrip.BackColor = StyleParameters.AccentKleur;
+            menuStrip.ForeColor = StyleParameters.Buttontext;
+            beheerToolStripMenuItem.BackColor = StyleParameters.AccentKleur;
+            
+
+
+            beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
+            beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
+            this.BackgroundImage = StyleParameters.LogoG;
+            this.BackgroundImageLayout = ImageLayout.Center;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is MdiClient)
+                {
+                    c.BackColor = StyleParameters.Achtergrondkleur ;
+ 
+                }
+            }
+
+            helpMenu.DropDown.BackColor = StyleParameters.AccentKleur;
+            helpMenu.DropDown.ForeColor = StyleParameters.Buttontext;
+
+        }
         private void MenubalkSamenstellen()
         {
             //Aanvrager - enkel items voor aanvrager worden getoond
@@ -130,10 +198,33 @@ namespace MiaClient
             frmParameter.Show();
         }
 
+        private void kleuronhover(object sender, EventArgs e)
+        {
+
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
+            item.ForeColor = StyleParameters.AccentKleur;
+            
+            
+
+        }
+
+        private void kleuronleave(object sender, EventArgs e)
+        {
+
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
+            item.ForeColor = StyleParameters.Buttontext;
+            
+
+
+
+        }
+
         private void mdiMia_Load(object sender, EventArgs e)
         {
-            string rol = GetRol();
-            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {rol}";
+            string rollen = GetRollen();
+            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
             MenubalkSamenstellen();
         }
 
@@ -166,5 +257,7 @@ namespace MiaClient
             }
             frmAanvragen.Show();
         }
+
+        
     }
 }
