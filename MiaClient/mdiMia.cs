@@ -25,24 +25,46 @@ namespace MiaClient
 
         public mdiMia()
         {
-            GetRol();
+            GetRollen();
             InitializeComponent();
         }
-        private string GetRol()
+        private string GetRollen()
         {
+            string rollen = string.Empty;
+
             if (Program.IsAanvrager)
-                return "Aanvrager";
+            {
+                rollen = "Aanvrager";
+            }
 
             if (Program.IsAankoper)
-                return "Aankoper";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Aankoper";
+            }
 
             if (Program.IsGoedkeurder)
-                return "Goedkeurder";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Goedkeurder";
+            }
 
             if (Program.IsSysteem)
-                return "Systeem";
+            {
+                if (!string.IsNullOrEmpty(rollen))
+                {
+                    rollen += " / ";
+                }
+                rollen += "Systeem";
+            }
 
-            return "Geen rol toegewezen";
+            return rollen;
 
         }
 
@@ -132,8 +154,8 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
-            string rol = GetRol();
-            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rol: {rol}";
+            string rollen = GetRollen();
+            toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
             MenubalkSamenstellen();
         }
 

@@ -74,6 +74,7 @@
             this.RadAlle.Name = "RadAlle";
             this.RadAlle.Size = new System.Drawing.Size(54, 25);
             this.RadAlle.TabIndex = 4;
+            this.RadAlle.TabStop = true;
             this.RadAlle.Text = "Alle";
             this.RadAlle.UseVisualStyleBackColor = true;
             this.RadAlle.CheckedChanged += new System.EventHandler(this.RadAlle_CheckedChanged);
@@ -176,6 +177,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LstGebruikers);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmGebruikerBeheer";
