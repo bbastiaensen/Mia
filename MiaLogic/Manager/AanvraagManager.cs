@@ -171,7 +171,7 @@ namespace MiaLogic.Manager
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
                         FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
-                        StatusAanvraagId,  KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
+                        StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
                         @StatusAanvraagId, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
