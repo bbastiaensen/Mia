@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,10 +41,21 @@ namespace MiaClient
 
         private void frmParameter_Load(object sender, EventArgs e)
         {
+
             try
             {
                 parameters = ParameterManager.GetParameters();
 
+                this.BackColor = StyleParameters.Achtergrondkleur;
+
+                btnBewaren.BackColor = StyleParameters.AccentKleur;
+                btnBewaren.ForeColor = StyleParameters.Buttontext;
+                
+                btnNieuw.BackColor = StyleParameters.AccentKleur;
+                btnNieuw.ForeColor = StyleParameters.Buttontext;
+              
+               
+                
                 BindParameters(parameters);
             }
             catch (Exception ex)

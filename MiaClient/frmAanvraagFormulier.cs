@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +31,26 @@ namespace MiaClient
             InitializeComponent();
             //Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
             vulFormulier();
+        }
+        public frmAanvraagFormulier(int id, string action)
+        {
+            Aanvraag aanvraag = null;
+            if (action == "edit")
+            {
+                aanvraag = AanvraagManager.GetAanvraagById(id);
+
+                txtAanvraagId.Text = aanvraag.Id.ToString();
+                txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
+                txtAanvraagmoment.Text = aanvraag.Aanvraagmoment.ToString();
+                txtGebruiker.Text = aanvraag.Gebruiker.ToString();
+                txtPrijsindicatie.Text = aanvraag.PrijsIndicatieStuk.ToString();
+                txtTitel.Text = aanvraag.Titel.ToString();
+                txtTotaal.Text = (aanvraag.PrijsIndicatieStuk * aanvraag.AantalStuk).ToString();
+                rtxtOmschrijving.Text = aanvraag.Omschrijving.ToString();
+            }
+
+
+
         }
 
         // Ophalen van de data voor de dropdownlists
@@ -344,8 +364,8 @@ namespace MiaClient
                 Aanvraag nieuweAanvraag = new Aanvraag
                 {
                     Gebruiker = txtGebruiker.Text,
-                    AfdelingId = AfdelingenManager.GetAfdelingById(Convert.ToInt32(ddlAfdeling.SelectedValue)).Id,
-                    DienstId = DienstenManager.GetDienstById(Convert.ToInt32(ddlDienst.SelectedValue)).Id,
+                    AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                    DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
                     Aanvraagmoment = DateTime.Now,
                     Titel = txtTitel.Text,
                     Omschrijving = rtxtOmschrijving.Text,
@@ -357,7 +377,7 @@ namespace MiaClient
                     KostenplaatsId = KostenplaatsManager.GetKostenplaatsById(Convert.ToInt32(ddlKostenplaats.SelectedValue)).Id,
                     PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                     AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                    AankoperId = AankoperManager.GetAankoperById(Convert.ToInt32(ddlWieKooptHet.SelectedValue)).Id
+                    AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
                 };
 
                 AanvraagManager.SaveAanvraag(nieuweAanvraag, insert: true);
@@ -377,5 +397,5 @@ namespace MiaClient
             }
 
         }
-    }    
+    }
 }

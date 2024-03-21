@@ -171,6 +171,7 @@ namespace MiaClient
                         items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
                     }
                 }
+
                 if (bedragVan)
                 {
                     if (cbBedragVan.Checked == true )
