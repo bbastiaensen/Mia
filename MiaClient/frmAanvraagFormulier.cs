@@ -376,10 +376,20 @@ namespace MiaClient
             }
 
         }
-       // public void Bedra
-        private void txtPrijsindicatie_TextChanged(object sender, EventArgs e)
-        {
 
+        public void Bedrag_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtAantalStuks.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                txtAantalStuks.Text = txtAantalStuks.Text.Remove(txtAantalStuks.Text.Length - 1);
+            }
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrijsindicatie.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
+            }
+            
         }
     }    
 }

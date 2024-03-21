@@ -502,7 +502,7 @@ namespace MiaClient
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 34);
             this.txtPrijsindicatie.TabIndex = 9;
-            this.txtPrijsindicatie.TextChanged += new System.EventHandler(this.txtPrijsindicatie_TextChanged);
+            this.txtPrijsindicatie.TextChanged += new System.EventHandler(this.Bedrag_TextChanged);
             this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
             // lblPrijsindicatie
