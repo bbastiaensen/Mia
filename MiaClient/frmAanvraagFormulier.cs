@@ -46,6 +46,11 @@ namespace MiaClient
             InitializeComponent();
             vulFormulier();
             DisableForm();
+            GetParam();
+        }
+        private void GetParam()
+        {
+            mainPath = ParameterManager.GetParameterByCode("Testmap").Waarde;
         }
 
         private void ErrorHandler(Exception ex, string location)
@@ -424,7 +429,16 @@ namespace MiaClient
                 MessageBox.Show("Aankoper is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
+            if (string.IsNullOrEmpty(txtPrijsindicatie.Text) || !decimal.TryParse(txtPrijsindicatie.Text, out decimal prijsIndicatie))
+            {
+                MessageBox.Show("Prijsindicatie is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtAantalStuks.Text) || !int.TryParse(txtAantalStuks.Text, out int aantalStuks))
+            {
+                MessageBox.Show("Aantalstuks is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             return true;
         }
@@ -456,10 +470,51 @@ namespace MiaClient
             GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
             {
                 Gebruiker = Program.Gebruiker,
-                Id = aanvraag.Id,
+                Id = _aanvraagId,
                 TijdstipActie = DateTime.Now,
-                OmschrijvingActie = $"Aanvraag {aanvraag.Id} werd aangemaakt door gebruiker {Program.Gebruiker}."
+                OmschrijvingActie = $"Aanvraag {_aanvraagId} werd aangemaakt door gebruiker {Program.Gebruiker}."
             }, true);
+        }
+
+        private int GetLastFoto()
+        {
+            List<Foto> fotos = FotoManager.GetFotos();
+
+            if (fotos.Count > 0)
+            {
+                Foto lastFoto = fotos[fotos.Count - 1];
+                return lastFoto.Id;
+            }
+            // Return een default wnr er geen bestand word gevonden
+            return -1;
+        }
+        private int GetLastAanvraag()
+        {
+            int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
+            int aanvraagid = highestAanvraagId + 1;
+            _aanvraagId = aanvraagid;
+
+            return _aanvraagId;
+        }
+        private int GetLastOfferte()
+        {
+            List<Offerte> offertes = OfferteManager.GetOffertes();
+            if (offertes.Count > 0)
+            {
+                Offerte LastOfferte = offertes[offertes.Count - 1];
+                return LastOfferte.Id;
+            }
+            return -1; // Return een default wnr er geen bestand word gevonden
+        }
+        private int GetLastLink()
+        {
+            List<Link> Linken = LinkManager.GetLinken();
+            if (Linken.Count > 0)
+            {
+                Link LastLink = Linken[Linken.Count - 1];
+                return LastLink.Id;
+            }
+            return -1; // Return een default wnr er geen bestand word gevonden
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -472,6 +527,7 @@ namespace MiaClient
             {
                 if (Checks())
                 {
+                    GetLastAanvraag();
                     SaveAanvraag();
                     DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
@@ -510,6 +566,7 @@ namespace MiaClient
             {
                 hyperlink = txt_hyperlinkInput.Text;
                 Link savedlink = SaveLink(hyperlink);
+                int LastLinkId = GetLastLink();
                 if (savedlink != null)
                 {
                     MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -518,7 +575,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {savedlink.Id}."
+                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
                     }, true);
                 }
             }
@@ -563,8 +620,9 @@ namespace MiaClient
                 {
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
+                    int lastFotoId = GetLastFoto();
 
-                    string uniqueFileName = $"{_aanvraagId}-{txt_FotoId.Text}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
+                    string uniqueFileName = $"{_aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
                     string destinationFolder = Path.Combine(mainPath + @"\fotos");
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
@@ -572,14 +630,13 @@ namespace MiaClient
                     SaveFile(selectedPath, destinationPath);
 
                     MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     SaveFoto(destinationPath);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {_aanvraagId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId}."
                     }, true);
                 }
                 else
@@ -630,8 +687,8 @@ namespace MiaClient
                 {
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
-
-                    string uniqueFileName = $"{_aanvraagId}-{txt_offerteId.Text}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
+                    int LastOfferteId = GetLastOfferte();
+                    string uniqueFileName = $"{_aanvraagId}-{LastOfferteId}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
                     string destinationFolder = Path.Combine(mainPath + @"\offertes"); // Hier mpet nog de hardocded map naam voor (test)
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
@@ -643,12 +700,13 @@ namespace MiaClient
 
                     string relativeUrl = Path.Combine("offertes", uniqueFileName);
                     SaveOfferte(relativeUrl);
+
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {_aanvraagId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId}."
                     }, true);
                 }
                 else
