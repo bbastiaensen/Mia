@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
@@ -13,6 +14,64 @@ namespace MiaLogic.Manager
     public static class AanvraagManager
     {
         public static string ConnectionString { get; set; }
+
+        public static Aanvraag GetAanvraagById(int id)
+        {
+            Aanvraag aanvraag = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from Aanvraag where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("@Id", id);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+
+
+
+                    if (objRea.Read())
+                    {
+
+                        aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
+                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            aanvraag.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        aanvraag.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        aanvraag.Kostenplaats = objRea["Kostenplaats"].ToString();
+                       
+                    }
+
+                }
+            }
+
+            return aanvraag;
+        }
         public static List<Aanvraag> GetAanvragen()
         {
             List<Aanvraag> returnlist = null;
@@ -65,69 +124,12 @@ namespace MiaLogic.Manager
                         {
                             a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
+                      
                         returnlist.Add(a);
                     }
                 }
             }
             return returnlist;
-        }
-        public static Aanvraag GetAanvraagById(int id)
-        {
-            Aanvraag aanvraag = null;
-
-            using (SqlConnection objCn = new SqlConnection())
-            {
-
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "select * from Aanvraag where Id = @Id;";
-                    objCmd.Parameters.AddWithValue("@Id", id);
-
-                    objCn.Open();
-
-                    SqlDataReader objRea = objCmd.ExecuteReader();
-                
-                    if (objRea.Read())
-                    {
-
-                        aanvraag = new Aanvraag();
-                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
-                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
-                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
-                        aanvraag.Titel = objRea["Titel"].ToString();
-                        if (objRea["Financieringsjaar"] != DBNull.Value)
-                        {
-                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
-                        }
-                        if (objRea["Planningsdatum"] != DBNull.Value)
-                        {
-                            aanvraag.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
-                        }
-                        aanvraag.StatusAanvraag = objRea["StatusAanvraag"].ToString();
-                        aanvraag.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
-                        if (objRea["AantalStuk"] != DBNull.Value)
-                        {
-                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
-                        }
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
-                        {
-                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
-                        }
-                        aanvraag.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
-                        {
-                            aanvraag.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
-                        }
-                    }
-
-                }
-            }
-
-            return aanvraag;
         }
         // Data uit databank halen
         public static int GetHighestAanvraagId()
@@ -154,6 +156,227 @@ namespace MiaLogic.Manager
             }
             return highestAanvraagId;
         }
+        public static List<Afdeling> GetAfdelingen()
+        {
+            List<Afdeling> afdelingen = new List<Afdeling>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Afdeling ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Afdeling afdeling = new Afdeling
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            afdelingen.Add(afdeling);
+                        }
+                    }
+                }
+            }
+
+            return afdelingen;
+        }
+        public static List<Dienst> GetDiensten()
+        {
+            List<Dienst> diensten = new List<Dienst>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Dienst ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dienst dienst = new Dienst
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            diensten.Add(dienst);
+                        }
+                    }
+                }
+            }
+
+            return diensten;
+        }
+        public static List<Prioriteit> GetPrioriteiten()
+        {
+            List<Prioriteit> prioriteiten = new List<Prioriteit>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Prioriteit ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Prioriteit prioriteit = new Prioriteit
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            prioriteiten.Add(prioriteit);
+                        }
+                    }
+                }
+            }
+
+            return prioriteiten;
+        }
+        public static List<Financiering> GetFinancieringen()
+        {
+            List<Financiering> financieringen = new List<Financiering>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM FinancieringsType ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Financiering financiering = new Financiering
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            financieringen.Add(financiering);
+                        }
+                    }
+                }
+            }
+
+            return financieringen;
+        }
+        public static List<Investering> GetInvesteringen()
+        {
+            List<Investering> investeringen = new List<Investering>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM InvesteringsType ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Investering investering = new Investering
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            investeringen.Add(investering);
+                        }
+                    }
+                }
+            }
+
+            return investeringen;
+        }
+        public static List<string> GetFinancieringsjaren()
+        {
+            List<string> financieringsjaren = new List<string>();
+
+            // Adding financial years based on the current year
+            int currentYear = DateTime.Now.Year;
+            for (int i = 0; i < 5; i++)
+            {
+                string startingYear = (currentYear + i).ToString();
+                financieringsjaren.Add(startingYear);
+            }
+
+            return financieringsjaren;
+        }
+        public static List<Kostenplaats> GetKostenplaatsen()
+        {
+            List<Kostenplaats> kostenplaatsen = new List<Kostenplaats>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Kostenplaats ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Kostenplaats kostenplaats = new Kostenplaats
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            kostenplaatsen.Add(kostenplaats);
+                        }
+                    }
+                }
+            }
+
+            return kostenplaatsen;
+        }
+        public static List<string> GetWieKooptHet()
+        {
+            List<string> aankoper = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Voornaam + ' ' + Achternaam AS FullName FROM Aankoper ORDER BY FullName ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string fullName = reader["FullName"].ToString();
+                            aankoper.Add(fullName);
+                        }
+                    }
+                }
+            }
+
+            return aankoper;
+        }
+
+
         // Aanvragen opslaan
         public static void SaveAanvraag(Aanvraag aanvraag, bool insert)
         {
@@ -174,7 +397,7 @@ namespace MiaLogic.Manager
                         StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId, @KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
                     }
                     else
                     {
@@ -202,9 +425,7 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@InvesteringsTypeId", aanvraag.InvesteringsTypeId);
                         command.Parameters.AddWithValue("@PrioriteitId", aanvraag.PrioriteitId);
                         command.Parameters.AddWithValue("@Financieringsjaar", aanvraag.Financieringsjaar);
-                        
                         command.Parameters.AddWithValue("@StatusAanvraagId", aanvraag.StatusAanvraagId);
-                        
                         command.Parameters.AddWithValue("@KostenplaatsId", aanvraag.KostenplaatsId);
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);
@@ -213,6 +434,7 @@ namespace MiaLogic.Manager
                         if (insert)
                         {
                             aanvraag.Id = Convert.ToInt32(command.ExecuteScalar());
+
                         }
                         else
                         {

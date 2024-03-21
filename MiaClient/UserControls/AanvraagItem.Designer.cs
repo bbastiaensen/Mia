@@ -164,6 +164,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
+
             this.Size = new System.Drawing.Size(1210, 33);
             this.ResumeLayout(false);
 

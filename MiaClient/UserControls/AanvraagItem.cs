@@ -88,7 +88,8 @@ namespace MiaClient.UserControls
         {
             if (AanvraagItemSelected != null)
             {
-                AanvraagItemSelected(this, null);
+                frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id,"edit");
+                aanvraagFormulier.Show();
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -120,5 +121,7 @@ namespace MiaClient.UserControls
                 }
             }
         }
+
+        
     }
 }

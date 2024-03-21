@@ -27,6 +27,7 @@ namespace MiaClient
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new mdiMia());
+
             }
             catch (Exception ex)
             {

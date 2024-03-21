@@ -60,9 +60,9 @@
             this.grpbxFilter.Controls.Add(this.txtEenheid);
             this.grpbxFilter.Controls.Add(this.txtWaarde);
             this.grpbxFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpbxFilter.Location = new System.Drawing.Point(13, 37);
+            this.grpbxFilter.Location = new System.Drawing.Point(13, 36);
             this.grpbxFilter.Name = "grpbxFilter";
-            this.grpbxFilter.Size = new System.Drawing.Size(885, 100);
+            this.grpbxFilter.Size = new System.Drawing.Size(885, 101);
             this.grpbxFilter.TabIndex = 0;
             this.grpbxFilter.TabStop = false;
             this.grpbxFilter.Text = "Filteren";
@@ -72,7 +72,7 @@
             this.lblCode.AutoSize = true;
             this.lblCode.Location = new System.Drawing.Point(74, 25);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(46, 21);
+            this.lblCode.Size = new System.Drawing.Size(58, 28);
             this.lblCode.TabIndex = 8;
             this.lblCode.Text = "Code";
             // 
@@ -81,7 +81,7 @@
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(78, 54);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(198, 29);
+            this.txtCode.Size = new System.Drawing.Size(198, 34);
             this.txtCode.TabIndex = 0;
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
@@ -90,7 +90,7 @@
             this.lblEenheid.AutoSize = true;
             this.lblEenheid.Location = new System.Drawing.Point(526, 25);
             this.lblEenheid.Name = "lblEenheid";
-            this.lblEenheid.Size = new System.Drawing.Size(65, 21);
+            this.lblEenheid.Size = new System.Drawing.Size(81, 28);
             this.lblEenheid.TabIndex = 6;
             this.lblEenheid.Text = "Eenheid";
             // 
@@ -99,7 +99,7 @@
             this.lblWaarde.AutoSize = true;
             this.lblWaarde.Location = new System.Drawing.Point(278, 25);
             this.lblWaarde.Name = "lblWaarde";
-            this.lblWaarde.Size = new System.Drawing.Size(63, 21);
+            this.lblWaarde.Size = new System.Drawing.Size(79, 28);
             this.lblWaarde.TabIndex = 5;
             this.lblWaarde.Text = "Waarde";
             // 
@@ -108,7 +108,7 @@
             this.txtEenheid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEenheid.Location = new System.Drawing.Point(530, 54);
             this.txtEenheid.Name = "txtEenheid";
-            this.txtEenheid.Size = new System.Drawing.Size(349, 29);
+            this.txtEenheid.Size = new System.Drawing.Size(349, 34);
             this.txtEenheid.TabIndex = 2;
             this.txtEenheid.TextChanged += new System.EventHandler(this.txtEenheid_TextChanged);
             // 
@@ -117,7 +117,7 @@
             this.txtWaarde.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWaarde.Location = new System.Drawing.Point(282, 54);
             this.txtWaarde.Name = "txtWaarde";
-            this.txtWaarde.Size = new System.Drawing.Size(242, 29);
+            this.txtWaarde.Size = new System.Drawing.Size(242, 34);
             this.txtWaarde.TabIndex = 1;
             this.txtWaarde.TextChanged += new System.EventHandler(this.txtWaarde_TextChanged);
             // 
@@ -145,7 +145,7 @@
             this.txtCodeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodeDetail.Location = new System.Drawing.Point(149, 418);
             this.txtCodeDetail.Name = "txtCodeDetail";
-            this.txtCodeDetail.Size = new System.Drawing.Size(743, 29);
+            this.txtCodeDetail.Size = new System.Drawing.Size(743, 34);
             this.txtCodeDetail.TabIndex = 2;
             this.txtCodeDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeDetail_KeyPress);
             // 
@@ -154,7 +154,7 @@
             this.txtWaardeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWaardeDetail.Location = new System.Drawing.Point(148, 453);
             this.txtWaardeDetail.Name = "txtWaardeDetail";
-            this.txtWaardeDetail.Size = new System.Drawing.Size(744, 29);
+            this.txtWaardeDetail.Size = new System.Drawing.Size(744, 34);
             this.txtWaardeDetail.TabIndex = 3;
             // 
             // txtEenheidDetail
@@ -162,7 +162,7 @@
             this.txtEenheidDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEenheidDetail.Location = new System.Drawing.Point(148, 488);
             this.txtEenheidDetail.Name = "txtEenheidDetail";
-            this.txtEenheidDetail.Size = new System.Drawing.Size(744, 29);
+            this.txtEenheidDetail.Size = new System.Drawing.Size(744, 34);
             this.txtEenheidDetail.TabIndex = 4;
             // 
             // txtIdDetail
@@ -171,7 +171,7 @@
             this.txtIdDetail.Location = new System.Drawing.Point(148, 383);
             this.txtIdDetail.Name = "txtIdDetail";
             this.txtIdDetail.ReadOnly = true;
-            this.txtIdDetail.Size = new System.Drawing.Size(744, 29);
+            this.txtIdDetail.Size = new System.Drawing.Size(744, 34);
             this.txtIdDetail.TabIndex = 16;
             this.txtIdDetail.TabStop = false;
             // 
@@ -181,7 +181,7 @@
             this.lblEenheidDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEenheidDetail.Location = new System.Drawing.Point(17, 491);
             this.lblEenheidDetail.Name = "lblEenheidDetail";
-            this.lblEenheidDetail.Size = new System.Drawing.Size(68, 21);
+            this.lblEenheidDetail.Size = new System.Drawing.Size(85, 28);
             this.lblEenheidDetail.TabIndex = 15;
             this.lblEenheidDetail.Text = "Eenheid:";
             // 
@@ -191,7 +191,7 @@
             this.lblCodeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodeDetail.Location = new System.Drawing.Point(17, 421);
             this.lblCodeDetail.Name = "lblCodeDetail";
-            this.lblCodeDetail.Size = new System.Drawing.Size(49, 21);
+            this.lblCodeDetail.Size = new System.Drawing.Size(62, 28);
             this.lblCodeDetail.TabIndex = 14;
             this.lblCodeDetail.Text = "Code:";
             // 
@@ -201,7 +201,7 @@
             this.lblWaardeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWaardeDetail.Location = new System.Drawing.Point(17, 456);
             this.lblWaardeDetail.Name = "lblWaardeDetail";
-            this.lblWaardeDetail.Size = new System.Drawing.Size(66, 21);
+            this.lblWaardeDetail.Size = new System.Drawing.Size(83, 28);
             this.lblWaardeDetail.TabIndex = 13;
             this.lblWaardeDetail.Text = "Waarde:";
             // 
@@ -211,7 +211,7 @@
             this.lblIdDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdDetail.Location = new System.Drawing.Point(17, 386);
             this.lblIdDetail.Name = "lblIdDetail";
-            this.lblIdDetail.Size = new System.Drawing.Size(26, 21);
+            this.lblIdDetail.Size = new System.Drawing.Size(33, 28);
             this.lblIdDetail.TabIndex = 12;
             this.lblIdDetail.Text = "Id:";
             // 
@@ -237,7 +237,7 @@
             // 
             // frmParameter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 592);
             this.Controls.Add(this.btnBewaren);
