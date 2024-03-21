@@ -32,7 +32,6 @@ namespace MiaClient
             //Mainpath = ParameterManager.GetParameter(parameterId: 11).Waarde;
             vulFormulier();
         }
-
         // Ophalen van de data voor de dropdownlists
         //public void VulAanvraagId()
         //{
@@ -375,6 +374,11 @@ namespace MiaClient
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+       // public void Bedra
+        private void txtPrijsindicatie_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }    

@@ -343,7 +343,7 @@
             this.pnlAanvragen.AutoScroll = true;
             this.pnlAanvragen.Location = new System.Drawing.Point(15, 310);
             this.pnlAanvragen.Name = "pnlAanvragen";
-            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 270);
+            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 380);
             this.pnlAanvragen.TabIndex = 18;
             this.pnlAanvragen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnlAanvragen_ControlAdded);
             this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
@@ -369,7 +369,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(304, 279);
+            this.label3.Location = new System.Drawing.Point(373, 279);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(157, 28);
             this.label3.TabIndex = 21;
@@ -378,7 +378,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(472, 279);
+            this.label4.Location = new System.Drawing.Point(536, 279);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 28);
             this.label4.TabIndex = 22;
@@ -387,7 +387,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(678, 279);
+            this.label5.Location = new System.Drawing.Point(714, 279);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(153, 28);
             this.label5.TabIndex = 23;
@@ -406,7 +406,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(973, 279);
+            this.label7.Location = new System.Drawing.Point(944, 279);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(128, 28);
             this.label7.TabIndex = 25;
@@ -415,7 +415,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1131, 279);
+            this.label8.Location = new System.Drawing.Point(1078, 279);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(160, 28);
             this.label8.TabIndex = 26;
@@ -426,8 +426,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 702);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);

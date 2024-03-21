@@ -79,10 +79,10 @@
             // 
             // lblStatusAanvraag
             // 
-            this.lblStatusAanvraag.Location = new System.Drawing.Point(588, 5);
+            this.lblStatusAanvraag.Location = new System.Drawing.Point(737, 2);
             this.lblStatusAanvraag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
-            this.lblStatusAanvraag.Size = new System.Drawing.Size(260, 28);
+            this.lblStatusAanvraag.Size = new System.Drawing.Size(182, 28);
             this.lblStatusAanvraag.TabIndex = 5;
             this.lblStatusAanvraag.Click += new System.EventHandler(this.lblStatusAanvraag_Click);
             // 
