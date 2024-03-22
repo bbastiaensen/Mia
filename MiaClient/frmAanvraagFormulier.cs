@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Deployment.Internal;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -142,6 +144,7 @@ namespace MiaClient
 
         public void LeegFormulier()
         {
+            txtAanvraagId.Text = string.Empty;
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ddlAfdeling.SelectedItem = null;
@@ -293,8 +296,6 @@ namespace MiaClient
             decimal totaalprijs = prijsIndicatie * aantalStuks;
             return totaalprijs;
         }
-        // Vullen van dropdownlists
-
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
             txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -470,8 +471,8 @@ namespace MiaClient
                 Aanvraagmoment = DateTime.Now,
                 Titel = txtTitel.Text,
                 Omschrijving = rtxtOmschrijving.Text,
-                FinancieringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
-                InvesteringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
                 PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                 Financieringsjaar = ddlFinancieringsjaar.Text,
                 StatusAanvraagId = Convert.ToInt32(1),
@@ -545,17 +546,31 @@ namespace MiaClient
             {
                 if (Checks())
                 {
-                    GetLastAanvraag();
-                    SaveAanvraag();
-                    DialogResult result = MessageBox.Show("Wilt u deze aanvraag nu verder wijzigen?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
+                    if(txtAanvraagId.Text == string.Empty)
                     {
-                        EnableForm();
+                        GetLastAanvraag();
+                        SaveAanvraag();
+
+                        DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes)
+                        {
+                            EnableForm();
+                            txtAanvraagId.Text = _aanvraagId.ToString();
+                        }
+                        else
+                        {
+                            LeegFormulier();
+                        }
                     }
                     else
                     {
-                        LeegFormulier();
+                        UpdateAanvraag();
                     }
+                   
+                }
+                if (AanvraagBewaard != null)
+                {
+                    AanvraagBewaard(this, null);
                 }
             }
             catch (FormatException ex)
@@ -733,10 +748,7 @@ namespace MiaClient
                     MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                    if (AanvraagBewaard != null)
-                    {
-                        AanvraagBewaard(this, null);
-                    }
+                 
                 }
             }
 
@@ -751,5 +763,52 @@ namespace MiaClient
         {
 
         }
-    }
+
+        public void Bedrag_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtAantalStuks.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                txtAantalStuks.Text = txtAantalStuks.Text.Remove(txtAantalStuks.Text.Length - 1);
+            }
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrijsindicatie.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
+            }
+            
+        }
+        public void UpdateAanvraag()
+        {
+            AanvraagManager.GetAanvraagById(_aanvraagId);
+            Aanvraag updateaanvraag = new Aanvraag
+            {
+                Id = Convert.ToInt32(txtAanvraagId.Text),
+                Gebruiker = txtGebruiker.Text,
+                AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+                Aanvraagmoment = DateTime.Now,
+                Titel = txtTitel.Text,
+                Omschrijving = rtxtOmschrijving.Text,
+                FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
+                PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+                Financieringsjaar = ddlFinancieringsjaar.Text,
+                StatusAanvraagId = Convert.ToInt32(1),
+                KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+                PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+            };
+            AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+        }
+        public void DisableBewaarButon()
+        {
+            btn_Indienen.Enabled = false;
+        }
+        public void EnableBewaarButon()
+        {
+            btn_Indienen.Enabled = true;
+        }
+    }    
 }

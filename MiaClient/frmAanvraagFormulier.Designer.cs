@@ -160,9 +160,81 @@ namespace MiaClient
             this.btn_Indienen.Text = "Bewaren";
             this.btn_Indienen.UseVisualStyleBackColor = true;
             this.btn_Indienen.Click += new System.EventHandler(this.btn_Indienen_Click);
+            this.lblGebruikersNaam.AutoSize = true;
+            this.lblGebruikersNaam.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblGebruikersNaam.Location = new System.Drawing.Point(30, 30);
+            this.lblGebruikersNaam.Name = "lblGebruikersNaam";
+            this.lblGebruikersNaam.Size = new System.Drawing.Size(154, 28);
+            this.lblGebruikersNaam.TabIndex = 3;
+            this.lblGebruikersNaam.Text = "Gebruikersnaam";
             // 
             // btn_Nieuw
             // 
+            this.lblAanvraagmoment.AutoSize = true;
+            this.lblAanvraagmoment.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(480, 30);
+            this.lblAanvraagmoment.Name = "lblAanvraagmoment";
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(71, 28);
+            this.lblAanvraagmoment.TabIndex = 4;
+            this.lblAanvraagmoment.Text = "Datum";
+            // 
+            // lblAfdeling
+            // 
+            this.lblAfdeling.AutoSize = true;
+            this.lblAfdeling.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblAfdeling.Location = new System.Drawing.Point(30, 80);
+            this.lblAfdeling.Name = "lblAfdeling";
+            this.lblAfdeling.Size = new System.Drawing.Size(86, 28);
+            this.lblAfdeling.TabIndex = 5;
+            this.lblAfdeling.Text = "Afdeling";
+            // 
+            // lblDienst
+            // 
+            this.lblDienst.AutoSize = true;
+            this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDienst.Location = new System.Drawing.Point(30, 130);
+            this.lblDienst.Name = "lblDienst";
+            this.lblDienst.Size = new System.Drawing.Size(67, 28);
+            this.lblDienst.TabIndex = 6;
+            this.lblDienst.Text = "Dienst";
+            // 
+            // txtGebruiker
+            // 
+            this.txtGebruiker.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGebruiker.Location = new System.Drawing.Point(190, 30);
+            this.txtGebruiker.Name = "txtGebruiker";
+            this.txtGebruiker.ReadOnly = true;
+            this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
+            this.txtGebruiker.TabIndex = 7;
+            // 
+            // txtAanvraagmoment
+            // 
+            this.txtAanvraagmoment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAanvraagmoment.Location = new System.Drawing.Point(560, 30);
+            this.txtAanvraagmoment.Name = "txtAanvraagmoment";
+            this.txtAanvraagmoment.ReadOnly = true;
+            this.txtAanvraagmoment.Size = new System.Drawing.Size(177, 34);
+            this.txtAanvraagmoment.TabIndex = 8;
+            // 
+            // ddlAfdeling
+            // 
+            this.ddlAfdeling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlAfdeling.FormattingEnabled = true;
+            this.ddlAfdeling.Location = new System.Drawing.Point(122, 80);
+            this.ddlAfdeling.Name = "ddlAfdeling";
+            this.ddlAfdeling.Size = new System.Drawing.Size(282, 36);
+            this.ddlAfdeling.TabIndex = 9;
+            // 
+            // ddlDienst
+            // 
+            this.ddlDienst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlDienst.FormattingEnabled = true;
+            this.ddlDienst.Location = new System.Drawing.Point(122, 127);
+            this.ddlDienst.Name = "ddlDienst";
+            this.ddlDienst.Size = new System.Drawing.Size(282, 36);
+            this.ddlDienst.TabIndex = 10;
+            // 
+            // gboxIdentificatie
             this.btn_Nieuw.Location = new System.Drawing.Point(605, 55);
             this.btn_Nieuw.Name = "btn_Nieuw";
             this.btn_Nieuw.Size = new System.Drawing.Size(103, 37);
@@ -170,6 +242,44 @@ namespace MiaClient
             this.btn_Nieuw.Text = "Nieuw";
             this.btn_Nieuw.UseVisualStyleBackColor = true;
             this.btn_Nieuw.Click += new System.EventHandler(this.btn_Nieuw_Click);
+            // 
+            this.gboxIdentificatie.Controls.Add(this.ddlDienst);
+            this.gboxIdentificatie.Controls.Add(this.ddlAfdeling);
+            this.gboxIdentificatie.Controls.Add(this.txtAanvraagmoment);
+            this.gboxIdentificatie.Controls.Add(this.txtGebruiker);
+            this.gboxIdentificatie.Controls.Add(this.lblDienst);
+            this.gboxIdentificatie.Controls.Add(this.lblAfdeling);
+            this.gboxIdentificatie.Controls.Add(this.lblAanvraagmoment);
+            this.gboxIdentificatie.Controls.Add(this.lblGebruikersNaam);
+            this.gboxIdentificatie.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gboxIdentificatie.Location = new System.Drawing.Point(5, 5);
+            this.gboxIdentificatie.Name = "gboxIdentificatie";
+            this.gboxIdentificatie.Size = new System.Drawing.Size(758, 190);
+            this.gboxIdentificatie.TabIndex = 13;
+            this.gboxIdentificatie.TabStop = false;
+            this.gboxIdentificatie.Text = "Identificatie";
+            // 
+            // tabControl_Aanvraagformulier
+            // 
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Identificatie);
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Investering);
+            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Voorstellen);
+            //this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
+            //this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
+            //this.tabControl_Aanvraagformulier.SelectedIndex = 0;
+            //this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
+            //this.tabControl_Aanvraagformulier.TabIndex = 14;
+
+            // tabPage_Identificatie
+            // 
+            this.tabPage_Identificatie.Controls.Add(this.gboxIdentificatie);
+            this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 37);
+            this.tabPage_Identificatie.Name = "tabPage_Identificatie";
+            this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 558);
+            this.tabPage_Identificatie.TabIndex = 0;
+            this.tabPage_Identificatie.Text = "Identificatie";
+            this.tabPage_Identificatie.UseVisualStyleBackColor = true;
             // 
             // tabPage_Investering
             // 
@@ -404,6 +514,7 @@ namespace MiaClient
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(151, 34);
             this.txtPrijsindicatie.TabIndex = 9;
+            this.txtPrijsindicatie.TextChanged += new System.EventHandler(this.Bedrag_TextChanged);
             this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
             // lblPrijsindicatie
@@ -518,7 +629,13 @@ namespace MiaClient
             this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
             this.txtGebruiker.TabIndex = 7;
             // 
-            // lblDienst
+            //this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
+            //this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
+            //this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
+            //this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 558);
+            //this.tabPage_Voorstellen.TabIndex = 2;
+            //this.tabPage_Voorstellen.Text = "Voorstellen";
+            //this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
             // 
             this.lblDienst.AutoSize = true;
             this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;

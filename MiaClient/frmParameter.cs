@@ -84,7 +84,7 @@ namespace MiaClient
                 ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
-                pi.Size = new System.Drawing.Size(881, 33);
+                pi.Size = new System.Drawing.Size(868, 33);
                 pi.TabIndex = t + 8;
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
@@ -109,7 +109,7 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 detailsWissen();
 
@@ -188,7 +188,7 @@ namespace MiaClient
                 isNieuw = false;
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -211,7 +211,7 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 detailsWissen();
 

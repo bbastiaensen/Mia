@@ -30,6 +30,7 @@ namespace MiaClient.UserControls
 
         public event EventHandler AanvraagDeleted;
         public event EventHandler AanvraagItemSelected;
+        public event EventHandler AanvraagItemChanged;
         public AanvraagItem()
         {
             InitializeComponent();
@@ -78,8 +79,7 @@ namespace MiaClient.UserControls
             {
                 lblTitel.Text = Titel.ToString();
             }
-            lblBedrag.Text = "\u20AC " + Bedrag.ToString("c", CultureInfo.CurrentCulture);
-            //lblBedrag.Text = Bedrag.ToString();
+            lblBedrag.Text = Bedrag.ToString("c", CultureInfo.CurrentCulture);
             if (Even)
             {
                 this.BackColor = Color.White;
@@ -89,10 +89,43 @@ namespace MiaClient.UserControls
         {
             if (AanvraagItemSelected != null)
             {
-                frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                aanvraagFormulier.Show();
+                if(lblStatusAanvraag.Text == "In aanvraag")
+                {
+                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulieredit.Show();
+                    aanvraagFormulieredit.EnableBewaarButon();
+                    aanvraagFormulieredit.UpdateAanvraag();
+                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                }
+                else
+                {
+                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulieredit.Show();
+                    aanvraagFormulieredit.DisableBewaarButon();
+                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                    MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+                Aanvraag aanvraag1 = new Aanvraag();
+                aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                GebruiksLog gebruiksLog1 = new GebruiksLog();
+                gebruiksLog1.Gebruiker = Program.Gebruiker;
+                gebruiksLog1.TijdstipActie = DateTime.Now;
+                gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+                GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+r
             }
         }
+
+        private void AanvraagFormulieredit_AanvraagBewaard(object sender, EventArgs e)
+        {
+            if (AanvraagItemChanged != null)
+            {
+                AanvraagItemChanged(this, null);
+            }
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -107,7 +140,10 @@ namespace MiaClient.UserControls
                         AanvraagDeleted(this, null);
                         MessageBox.Show("De aanvraag is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
+                    else 
+                    {
+                        MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLog gebruiksLog1 = new GebruiksLog();
@@ -122,27 +158,7 @@ namespace MiaClient.UserControls
                     MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private void lblFinancieringsjaar_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblTitel_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblStatusAanvraag_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblPlaningsDatum_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblKostenplaats_Click(object sender, EventArgs e)
-        {
-        }
-        private void lblAanvraagmoment_Click(object sender, EventArgs e)
-        {
-        }
-
+        }  
 
     }
 }

@@ -105,7 +105,7 @@
             // cbBedragTot
             // 
             this.cbBedragTot.AutoSize = true;
-            this.cbBedragTot.Location = new System.Drawing.Point(651, 170);
+            this.cbBedragTot.Location = new System.Drawing.Point(646, 169);
             this.cbBedragTot.Name = "cbBedragTot";
             this.cbBedragTot.Size = new System.Drawing.Size(61, 32);
             this.cbBedragTot.TabIndex = 21;
@@ -237,7 +237,7 @@
             // chbxPlaningsdatumTot
             // 
             this.chbxPlaningsdatumTot.AutoSize = true;
-            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(325, 174);
+            this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(320, 175);
             this.chbxPlaningsdatumTot.Name = "chbxPlaningsdatumTot";
             this.chbxPlaningsdatumTot.Size = new System.Drawing.Size(61, 32);
             this.chbxPlaningsdatumTot.TabIndex = 20;
@@ -254,7 +254,7 @@
             this.chbxAanvraagmomentTot.TabIndex = 19;
             this.chbxAanvraagmomentTot.Text = "Tot";
             this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentTot.CheckedChanged += new System.EventHandler(this.chbxAanvraagmomentTot_CheckedChanged);
+            this.chbxAanvraagmomentTot.Click += new System.EventHandler(this.chbxAanvraagmomentTot_Click);
             // 
             // lblAanvraagmoment
             // 
@@ -317,7 +317,7 @@
             this.chbxAanvraagmomentVan.TabIndex = 3;
             this.chbxAanvraagmomentVan.Text = "Van";
             this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentVan.CheckedChanged += new System.EventHandler(this.chbxAanvraagmomentVan_CheckedChanged);
+            this.chbxAanvraagmomentVan.Click += new System.EventHandler(this.chbxAanvraagmomentVan_Click);
             // 
             // lblGebruiker
             // 
@@ -343,10 +343,8 @@
             this.pnlAanvragen.AutoScroll = true;
             this.pnlAanvragen.Location = new System.Drawing.Point(15, 310);
             this.pnlAanvragen.Name = "pnlAanvragen";
-            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 270);
+            this.pnlAanvragen.Size = new System.Drawing.Size(1300, 365);
             this.pnlAanvragen.TabIndex = 18;
-            this.pnlAanvragen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pnlAanvragen_ControlAdded);
-            this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
             // label1
             // 
@@ -369,35 +367,34 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(304, 279);
+            this.label3.Location = new System.Drawing.Point(359, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 28);
+            this.label3.Size = new System.Drawing.Size(169, 28);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Aanvraagmment";
+            this.label3.Text = "Aanvraagmoment";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(472, 279);
+            this.label4.Location = new System.Drawing.Point(525, 279);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 28);
+            this.label4.Size = new System.Drawing.Size(158, 28);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Financierings jaar";
+            this.label4.Text = "Financieringsjaar";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(678, 279);
+            this.label5.Location = new System.Drawing.Point(685, 279);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(153, 28);
             this.label5.TabIndex = 23;
             this.label5.Text = "Status Aanvraag";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(864, 279);
+            this.label6.Location = new System.Drawing.Point(844, 279);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 28);
             this.label6.TabIndex = 24;
@@ -406,28 +403,28 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(973, 279);
+            this.label7.Location = new System.Drawing.Point(944, 279);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(128, 28);
+            this.label7.Size = new System.Drawing.Size(124, 28);
             this.label7.TabIndex = 25;
-            this.label7.Text = "Kosten Plaats";
+            this.label7.Text = "Kostenplaats";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1131, 279);
+            this.label8.Location = new System.Drawing.Point(1078, 279);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(160, 28);
+            this.label8.Size = new System.Drawing.Size(153, 28);
             this.label8.TabIndex = 26;
-            this.label8.Text = "Plannings Datum";
+            this.label8.Text = "Planningsdatum";
             // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 702);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(1320, 686);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
