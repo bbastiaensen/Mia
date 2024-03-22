@@ -90,18 +90,19 @@ namespace MiaClient.UserControls
             {
                 if(lblStatusAanvraag.Text == "In aanvraag")
                 {
-                    frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                    aanvraagFormulier.Show();
-                    aanvraagFormulier.EnableBewaarButon();
-                    aanvraagFormulier.UpdateAanvraag();
+                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulieredit.Show();
+                    aanvraagFormulieredit.EnableBewaarButon();
+                    aanvraagFormulieredit.UpdateAanvraag();
                 }
                 else
                 {
-                    frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                    aanvraagFormulier.Show();
-                    aanvraagFormulier.DisableBewaarButon();
+                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulieredit.Show();
+                    aanvraagFormulieredit.DisableBewaarButon();
                     MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
                 Aanvraag aanvraag1 = new Aanvraag();
                 aanvraag1.Id = Convert.ToInt32(lblId.Text);
                 GebruiksLog gebruiksLog1 = new GebruiksLog();

@@ -144,6 +144,7 @@ namespace MiaClient
 
         public void LeegFormulier()
         {
+            txtAanvraagId.Text = string.Empty;
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             ddlAfdeling.SelectedItem = null;
