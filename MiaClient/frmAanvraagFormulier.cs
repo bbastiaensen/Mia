@@ -101,7 +101,7 @@ namespace MiaClient
             btn_kiesOfferte.Enabled = false;
         }
 
-        private void EnableForm()
+        private void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
         {
             //Links
             txt_hyperlinkInput.ReadOnly = false;
@@ -169,7 +169,7 @@ namespace MiaClient
             }
             catch (SqlException ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "FrmAanvraagFormulier");
             }
 
             Aanvraag aanvraag = new Aanvraag();
@@ -254,7 +254,7 @@ namespace MiaClient
         {
             List<string> financieringsjaren = MiaLogic.Manager.FinancieringsjaarManager.GetFinancieringsjaren();
             cmbFinancieringsjaar.DataSource = financieringsjaren;
-          
+
             cmbFinancieringsjaar.SelectedIndex = -1;
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)
@@ -547,7 +547,7 @@ namespace MiaClient
                 {
                     GetLastAanvraag();
                     SaveAanvraag();
-                    DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Wilt u deze aanvraag nu verder wijzigen?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
                         EnableForm();
