@@ -94,8 +94,6 @@ namespace MiaClient
             menuStrip.ForeColor = StyleParameters.Buttontext;
             beheerToolStripMenuItem.BackColor = StyleParameters.AccentKleur;
             
-
-
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
@@ -107,7 +105,6 @@ namespace MiaClient
                 if (c is MdiClient)
                 {
                     c.BackColor = StyleParameters.Achtergrondkleur ;
- 
                 }
             }
 
