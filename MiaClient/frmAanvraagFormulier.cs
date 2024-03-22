@@ -70,6 +70,7 @@ namespace MiaClient
             LinkManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void DisableForm()
@@ -157,8 +158,16 @@ namespace MiaClient
         }
         public frmAanvraagFormulier(int id, string action)
         {
+            try
+            {
+                Initialize();
+            }
+            catch (SqlException ex)
+            {
+                ErrorHandler(ex);
+            }
 
-            Aanvraag aanvraag = null;
+            Aanvraag aanvraag = new Aanvraag();
             if (action == "edit")
             {
                 aanvraag = AanvraagManager.GetAanvraagById(id);
@@ -171,6 +180,15 @@ namespace MiaClient
                 txtTitel.Text = aanvraag.Titel.ToString();
                 txtTotaal.Text = (aanvraag.PrijsIndicatieStuk * aanvraag.AantalStuk).ToString();
                 rtxtOmschrijving.Text = aanvraag.Omschrijving.ToString();
+                ddlAfdeling.SelectedValue = aanvraag.AfdelingId;
+                ddlDienst.SelectedValue = aanvraag.DienstId;
+                ddlFinanciering.SelectedValue = aanvraag.FinancieringsTypeId;
+                ddlInvestering.SelectedValue = aanvraag.InvesteringsTypeId;
+                ddlKostenplaats.SelectedValue = aanvraag.KostenplaatsId;
+                ddlPrioriteit.SelectedValue = aanvraag.PrioriteitId;
+                ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
+                ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
+
             }
 
         }
@@ -230,8 +248,8 @@ namespace MiaClient
         public void VulFinancieringsjaarDropDown(ComboBox cmbFinancieringsjaar)
         {
             List<string> financieringsjaren = MiaLogic.Manager.FinancieringsjaarManager.GetFinancieringsjaren();
-
             cmbFinancieringsjaar.DataSource = financieringsjaren;
+          
             cmbFinancieringsjaar.SelectedIndex = -1;
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)
