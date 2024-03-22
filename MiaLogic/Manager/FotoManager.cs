@@ -97,10 +97,12 @@ namespace MiaLogic.Manager
                     }
                     catch (Exception ex)
                     {
+                        throw ex;
 
                     }
                 }
             }
+
         }
         public static void DeleteFoto(Foto foto)
         {
