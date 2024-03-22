@@ -54,7 +54,8 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
                         }
-                        aanvraag.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        aanvraag.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        aanvraag.StatusAanvraag = StatusAanvraagManager.GetStatusAanvraagById(aanvraag.StatusAanvraagId).Naam;
                         if (objRea["AantalStuk"] != DBNull.Value)
                         {
                             aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
@@ -63,7 +64,19 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
-                        aanvraag.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["Omschrijving"] != DBNull.Value)
+                        {
+                            aanvraag.Omschrijving = objRea["Omschrijving"].ToString();
+                        }
+
+                        aanvraag.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
+                        aanvraag.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(aanvraag.KostenplaatsId).Naam;
+                        aanvraag.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
+                        aanvraag.DienstId = Convert.ToInt32(objRea["DienstId"]);
+                        aanvraag.PrioriteitId = Convert.ToInt32(objRea["PrioriteitId"]);
+                        aanvraag.FinancieringsTypeId = Convert.ToInt32(objRea["FinancieringsTypeId"]);
+                        aanvraag.InvesteringsTypeId = Convert.ToInt32(objRea["InvesteringsTypeId"]);
+                        aanvraag.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
                        
                     }
 
