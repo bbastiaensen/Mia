@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Deployment.Internal;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -544,17 +545,31 @@ namespace MiaClient
             {
                 if (Checks())
                 {
-                    GetLastAanvraag();
-                    SaveAanvraag();
-                    DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (result == DialogResult.Yes)
+                    if(txtAanvraagId.Text == string.Empty)
                     {
-                        EnableForm();
+                        GetLastAanvraag();
+                        SaveAanvraag();
+
+                        DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (result == DialogResult.Yes)
+                        {
+                            EnableForm();
+                            txtAanvraagId.Text = _aanvraagId.ToString();
+                        }
+                        else
+                        {
+                            LeegFormulier();
+                        }
                     }
                     else
                     {
-                        LeegFormulier();
+                        UpdateAanvraag();
                     }
+                   
+                }
+                if (AanvraagBewaard != null)
+                {
+                    AanvraagBewaard(this, null);
                 }
             }
             catch (FormatException ex)
@@ -732,10 +747,7 @@ namespace MiaClient
                     MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                    if (AanvraagBewaard != null)
-                    {
-                        AanvraagBewaard(this, null);
-                    }
+                 
                 }
             }
 
@@ -765,29 +777,37 @@ namespace MiaClient
             }
             
         }
-        //public void UpdateAanvraag()
-        //{
-        //    AanvraagManager.GetAanvraagById(_aanvraagId);
-        //    Aanvraag updateaanvraag = new Aanvraag
-        //    {
-        //        Gebruiker = txtGebruiker.Text,
-        //        AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
-        //        DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
-        //        Aanvraagmoment = DateTime.Now,
-        //        Titel = txtTitel.Text,
-        //        Omschrijving = rtxtOmschrijving.Text,
-        //        FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
-        //        InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
-        //        PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
-        //        Financieringsjaar = ddlFinancieringsjaar.Text,
-        //        StatusAanvraagId = Convert.ToInt32(1),
-        //        KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
-        //        PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
-        //        AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-        //        AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
-        //    };
-        //    AanvraagManager.SaveAanvraag(updateaanvraag, true);
-        //    //LogAanvraag(updateaanvraag);
-        //}
+        public void UpdateAanvraag()
+        {
+            AanvraagManager.GetAanvraagById(_aanvraagId);
+            Aanvraag updateaanvraag = new Aanvraag
+            {
+                Id = Convert.ToInt32(txtAanvraagId.Text),
+                Gebruiker = txtGebruiker.Text,
+                AfdelingId = Convert.ToInt32(ddlAfdeling.SelectedValue),
+                DienstId = Convert.ToInt32(ddlDienst.SelectedValue),
+                Aanvraagmoment = DateTime.Now,
+                Titel = txtTitel.Text,
+                Omschrijving = rtxtOmschrijving.Text,
+                FinancieringsTypeId = Convert.ToInt32(ddlFinanciering.SelectedValue),
+                InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
+                PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
+                Financieringsjaar = ddlFinancieringsjaar.Text,
+                StatusAanvraagId = Convert.ToInt32(1),
+                KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
+                PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
+                AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+            };
+            AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+        }
+        public void DisableBewaarButon()
+        {
+            btn_Indienen.Enabled = false;
+        }
+        public void EnableBewaarButon()
+        {
+            btn_Indienen.Enabled = true;
+        }
     }    
 }

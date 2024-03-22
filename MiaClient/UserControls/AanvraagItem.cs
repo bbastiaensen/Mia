@@ -88,8 +88,28 @@ namespace MiaClient.UserControls
         {
             if (AanvraagItemSelected != null)
             {
-                frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id,"edit");
-                aanvraagFormulier.Show();
+                if(lblStatusAanvraag.Text == "In aanvraag")
+                {
+                    frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulier.Show();
+                    aanvraagFormulier.EnableBewaarButon();
+                    aanvraagFormulier.UpdateAanvraag();
+                }
+                else
+                {
+                    frmAanvraagFormulier aanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                    aanvraagFormulier.Show();
+                    aanvraagFormulier.DisableBewaarButon();
+                    MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                Aanvraag aanvraag1 = new Aanvraag();
+                aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                GebruiksLog gebruiksLog1 = new GebruiksLog();
+                gebruiksLog1.Gebruiker = Program.Gebruiker;
+                gebruiksLog1.TijdstipActie = DateTime.Now;
+                gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+                GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
