@@ -98,6 +98,7 @@ namespace MiaClient
 
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
+
             this.BackgroundImage = StyleParameters.LogoG;
             this.BackgroundImageLayout = ImageLayout.Center;
 
