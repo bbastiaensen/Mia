@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace MiaClient.UserControls
 {
@@ -35,10 +35,10 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-        public AanvraagItem(int id,string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar,DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
+        public AanvraagItem(int id, string gebruiker, DateTime aanvraagmoment, string titel, string financieringsjaar, DateTime planingsdatum, string statuaaanvraag, string kostenplaats, decimal prijsindicatiestuk, int aantalstuk, Boolean even)
         {
             InitializeComponent();
-            Id = id;    
+            Id = id;
             Gebruiker = gebruiker;
             Aanvraagmoment = aanvraagmoment;
             Titel = titel;
@@ -50,7 +50,7 @@ namespace MiaClient.UserControls
             AantalStuk = aantalstuk;
             Even = even;
             Bedrag = aantalstuk * prijsindicatiestuk;
-            
+
             SetAanvraagItemWaarden();
         }
         private void SetAanvraagItemWaarden()
@@ -60,7 +60,7 @@ namespace MiaClient.UserControls
             lblId.Text = Id.ToString();
             lblGebruiker.Text = Gebruiker.ToString();
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
-            if(Financieringsjaar != null)
+            if (Financieringsjaar != null)
             {
                 lblFinancieringsjaar.Text = Financieringsjaar.ToString();
             }
@@ -114,6 +114,7 @@ namespace MiaClient.UserControls
                 gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
                 GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+r
             }
         }
 
@@ -137,7 +138,7 @@ namespace MiaClient.UserControls
                         aanvraag.Id = Convert.ToInt32(lblId.Text);
                         AanvraagManager.DeleteAanvraag(aanvraag);
                         AanvraagDeleted(this, null);
-                        MessageBox.Show("De aanvraag is succesvol verwijderd.","Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("De aanvraag is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else 
                     {
@@ -158,5 +159,6 @@ namespace MiaClient.UserControls
                 }
             }
         }  
+
     }
 }

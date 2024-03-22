@@ -103,7 +103,7 @@ namespace MiaClient
             btn_kiesOfferte.Enabled = false;
         }
 
-        private void EnableForm()
+        private void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
         {
             //Links
             txt_hyperlinkInput.ReadOnly = false;
@@ -257,7 +257,7 @@ namespace MiaClient
         {
             List<string> financieringsjaren = MiaLogic.Manager.FinancieringsjaarManager.GetFinancieringsjaren();
             cmbFinancieringsjaar.DataSource = financieringsjaren;
-          
+
             cmbFinancieringsjaar.SelectedIndex = -1;
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)

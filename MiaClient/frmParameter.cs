@@ -48,14 +48,20 @@ namespace MiaClient
 
                 this.BackColor = StyleParameters.Achtergrondkleur;
 
-                btnBewaren.BackColor = StyleParameters.AccentKleur;
+
+                btnBewaren.FlatStyle = FlatStyle.Flat;
+                btnBewaren.FlatAppearance.BorderSize = 0;
+                btnBewaren.BackColor = StyleParameters.ButtonBack;
                 btnBewaren.ForeColor = StyleParameters.Buttontext;
                 
-                btnNieuw.BackColor = StyleParameters.AccentKleur;
+                btnNieuw.BackColor = StyleParameters.ButtonBack;
+
                 btnNieuw.ForeColor = StyleParameters.Buttontext;
-              
-               
-                
+
+                btnNieuw.FlatStyle = FlatStyle.Flat;
+                btnNieuw.FlatAppearance.BorderSize = 0;
+
+
                 BindParameters(parameters);
             }
             catch (Exception ex)

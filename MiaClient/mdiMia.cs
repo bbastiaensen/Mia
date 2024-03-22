@@ -15,7 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MiaClient
 {
- 
+
     public partial class mdiMia : Form
     {
         private int childFormNumber = 0;
@@ -34,7 +34,7 @@ namespace MiaClient
             InitializeComponent();
             laadGrafischeParameters();
         }
-        
+
         private string GetRollen()
         {
             string rollen = string.Empty;
@@ -94,19 +94,17 @@ namespace MiaClient
             menuStrip.ForeColor = StyleParameters.Buttontext;
             beheerToolStripMenuItem.BackColor = StyleParameters.AccentKleur;
             
-
-
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
-            //this.BackgroundImage = StyleParameters.LogoG;
-            //this.BackgroundImageLayout = ImageLayout.Center;
+
+            this.BackgroundImage = StyleParameters.LogoG;
+            this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)
             {
                 if (c is MdiClient)
                 {
-                    c.BackColor = StyleParameters.Achtergrondkleur ;
- 
+                    c.BackColor = StyleParameters.Achtergrondkleur;
                 }
             }
 
@@ -204,8 +202,8 @@ namespace MiaClient
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
 
             item.ForeColor = StyleParameters.AccentKleur;
-            
-            
+
+
 
         }
 
@@ -215,7 +213,7 @@ namespace MiaClient
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
 
             item.ForeColor = StyleParameters.Buttontext;
-            
+
 
 
 
@@ -259,6 +257,6 @@ namespace MiaClient
             frmAanvragen.Show();
         }
 
-        
+
     }
 }
