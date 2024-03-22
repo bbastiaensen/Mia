@@ -114,7 +114,6 @@ namespace MiaClient.UserControls
                 gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
                 GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
-r
             }
         }
 
