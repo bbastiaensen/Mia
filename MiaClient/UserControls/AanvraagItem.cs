@@ -30,6 +30,7 @@ namespace MiaClient.UserControls
 
         public event EventHandler AanvraagDeleted;
         public event EventHandler AanvraagItemSelected;
+        public event EventHandler AanvraagItemChanged;
         public AanvraagItem()
         {
             InitializeComponent();
@@ -94,12 +95,14 @@ namespace MiaClient.UserControls
                     aanvraagFormulieredit.Show();
                     aanvraagFormulieredit.EnableBewaarButon();
                     aanvraagFormulieredit.UpdateAanvraag();
+                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                 }
                 else
                 {
                     frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
                     aanvraagFormulieredit.Show();
                     aanvraagFormulieredit.DisableBewaarButon();
+                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                     MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
@@ -113,6 +116,15 @@ namespace MiaClient.UserControls
                 GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
             }
         }
+
+        private void AanvraagFormulieredit_AanvraagBewaard(object sender, EventArgs e)
+        {
+            if (AanvraagItemChanged != null)
+            {
+                AanvraagItemChanged(this, null);
+            }
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

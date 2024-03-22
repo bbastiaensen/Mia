@@ -73,14 +73,16 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(1210, 33);
                 avi.TabIndex = t + 8;
                 avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                avi.AanvraagDeleted += Avi_AanvraagDeleted;
+                avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
                 this.pnlAanvragen.Controls.Add(avi);
 
                 t++;
                 yPos += 30;
             }
         }
-        private void Avi_AanvraagDeleted(object sender, EventArgs e)
+
+        private void Avi_AanvraagItemChanged(object sender, EventArgs e)
         {
             try
             {
@@ -92,6 +94,7 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void frmAanvragen_Load(object sender, EventArgs e)
         {
             try
@@ -112,11 +115,6 @@ namespace MiaClient
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)
         {
             AanvraagItem geselecteerd = (AanvraagItem)sender;
-            
-            //txtDetail.Text = geselecteerd.Id.ToString();
-            //txtTijdstipActieDetail.Text = geselecteerd.TijdstipActie.ToString();
-            //txtGebruikerDetail.Text = geselecteerd.Gebruiker;
-            //txtOmschrijvingDetail.Text = geselecteerd.OmschrijvingActie.ToString();
         }
         private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
         {
