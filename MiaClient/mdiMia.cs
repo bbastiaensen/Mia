@@ -93,20 +93,18 @@ namespace MiaClient
             menuStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.ForeColor = StyleParameters.Buttontext;
             beheerToolStripMenuItem.BackColor = StyleParameters.AccentKleur;
-
-
-
+            
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
-            //this.BackgroundImage = StyleParameters.LogoG;
-            //this.BackgroundImageLayout = ImageLayout.Center;
+
+            this.BackgroundImage = StyleParameters.LogoG;
+            this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)
             {
                 if (c is MdiClient)
                 {
                     c.BackColor = StyleParameters.Achtergrondkleur;
-
                 }
             }
 
