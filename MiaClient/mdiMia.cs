@@ -78,8 +78,8 @@ namespace MiaClient
         private void laadGrafischeParameters()
         {
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
-            StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
+            //StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
+            //StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
             StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
             StyleParameters.ButtonBack = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonBack").Waarde);
             StyleParameters.Buttontext = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonText").Waarde);
@@ -98,8 +98,8 @@ namespace MiaClient
 
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
-            this.BackgroundImage = StyleParameters.LogoG;
-            this.BackgroundImageLayout = ImageLayout.Center;
+            //this.BackgroundImage = StyleParameters.LogoG;
+            //this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)
             {

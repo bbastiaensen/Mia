@@ -170,7 +170,7 @@ namespace MiaClient
             }
             catch (SqlException ex)
             {
-                ErrorHandler(ex);
+                ErrorHandler(ex, "FrmAanvraagFormulier");
             }
 
             Aanvraag aanvraag = new Aanvraag();
@@ -767,7 +767,7 @@ namespace MiaClient
         }
         //public void UpdateAanvraag()
         //{
-        //    AanvraagManager.GetAanvraagById(Aanvraag aanvraag);
+        //    AanvraagManager.GetAanvraagById(_aanvraagId);
         //    Aanvraag updateaanvraag = new Aanvraag
         //    {
         //        Gebruiker = txtGebruiker.Text,

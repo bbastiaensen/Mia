@@ -103,7 +103,7 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 detailsWissen();
 
@@ -182,7 +182,7 @@ namespace MiaClient
                 isNieuw = false;
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -205,7 +205,7 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(parameters);
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
 
                 detailsWissen();
 
