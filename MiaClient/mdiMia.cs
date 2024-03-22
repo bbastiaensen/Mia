@@ -32,6 +32,7 @@ namespace MiaClient
         {
             GetRollen();
             InitializeComponent();
+            laadGrafischeParameters();
         }
         
         private string GetRollen()
@@ -77,7 +78,6 @@ namespace MiaClient
         private void laadGrafischeParameters()
         {
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-          
             StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
             StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
             StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
@@ -226,6 +226,7 @@ namespace MiaClient
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
             MenubalkSamenstellen();
+            stelGrafischeWaardeIn();
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)

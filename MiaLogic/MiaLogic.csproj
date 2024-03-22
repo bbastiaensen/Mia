@@ -57,6 +57,7 @@
     <Compile Include="Manager\PrioriteitManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Manager\AankoperManager.cs" />
+    <Compile Include="Manager\StatusAanvraagManager.cs" />
     <Compile Include="Object\Aanvraag.cs" />
     <Compile Include="Object\Afdeling.cs" />
     <Compile Include="Object\Dienst.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Object\Prioriteit.cs" />
     <Compile Include="Object\Rol.cs" />
     <Compile Include="Object\Aankoper.cs" />
+    <Compile Include="Object\StatusAanvraag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
