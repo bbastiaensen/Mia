@@ -114,82 +114,6 @@ namespace MiaClient
             }
         }
 
-        private void txtGebruiker_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterGebruiker = true;
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void txtOmschrijving_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterOmschrijving = true;
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void chkVan_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterVan = chkVan.Checked;
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void chkTot_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterTot = chkTot.Checked;
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dtpVan_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void dtpTot_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -199,6 +123,35 @@ namespace MiaClient
         private void pnlGebruiksLogItems_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtGebruiker.Text != string.Empty)
+                {
+                    filterGebruiker = true;
+                }
+                if (txtOmschrijving.Text != string.Empty)
+                {
+                    filterOmschrijving = true;
+                }
+                if (chkTot.Checked != false)
+                {
+                    filterTot = chkTot.Checked;
+                }
+                if (chkVan.Checked != false)
+                {
+                    filterTot = chkTot.Checked;
+                }
+
+                BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

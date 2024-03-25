@@ -256,38 +256,22 @@ namespace MiaClient
 
             return items;
         }
-
-        private void txtCode_TextChanged(object sender, EventArgs e)
+        private void btnFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                filterCode = true;
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void txtWaarde_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterWaarde = true;
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void txtEenheid_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterEenheid = true;
+                if (txtCode.Text != string.Empty)
+                {
+                    filterCode = true;
+                }
+                if (txtEenheid.Text != string.Empty)
+                {
+                    filterEenheid = true;
+                }
+                if (txtWaarde.Text != string.Empty)
+                {
+                    filterWaarde = true;
+                }
                 BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
             }
             catch (Exception ex)

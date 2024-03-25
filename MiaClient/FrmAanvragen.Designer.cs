@@ -65,6 +65,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +112,6 @@
             this.cbBedragTot.TabIndex = 21;
             this.cbBedragTot.Text = "Tot";
             this.cbBedragTot.UseVisualStyleBackColor = true;
-            this.cbBedragTot.CheckedChanged += new System.EventHandler(this.cbBedragTot_CheckedChanged);
             // 
             // txtBedragTot
             // 
@@ -119,7 +119,6 @@
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
             this.txtBedragTot.TabIndex = 26;
-            this.txtBedragTot.TextChanged += new System.EventHandler(this.txtBedragTot_TextChanged);
             // 
             // cbBedragVan
             // 
@@ -130,7 +129,6 @@
             this.cbBedragVan.TabIndex = 5;
             this.cbBedragVan.Text = "Van";
             this.cbBedragVan.UseVisualStyleBackColor = true;
-            this.cbBedragVan.CheckedChanged += new System.EventHandler(this.cbBedragVan_CheckedChanged);
             // 
             // txtGebruiker
             // 
@@ -138,7 +136,6 @@
             this.txtGebruiker.Name = "txtGebruiker";
             this.txtGebruiker.Size = new System.Drawing.Size(272, 34);
             this.txtGebruiker.TabIndex = 25;
-            this.txtGebruiker.TextChanged += new System.EventHandler(this.txtGebruiker_TextChanged);
             // 
             // txtKostenPlaats
             // 
@@ -146,7 +143,6 @@
             this.txtKostenPlaats.Name = "txtKostenPlaats";
             this.txtKostenPlaats.Size = new System.Drawing.Size(272, 34);
             this.txtKostenPlaats.TabIndex = 16;
-            this.txtKostenPlaats.TextChanged += new System.EventHandler(this.txtKostenPlaats_TextChanged);
             // 
             // txtBedragVan
             // 
@@ -154,7 +150,6 @@
             this.txtBedragVan.Name = "txtBedragVan";
             this.txtBedragVan.Size = new System.Drawing.Size(200, 34);
             this.txtBedragVan.TabIndex = 17;
-            this.txtBedragVan.TextChanged += new System.EventHandler(this.txtBedrag_TextChanged);
             // 
             // dtpPlanningsdatumTot
             // 
@@ -162,7 +157,6 @@
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
             this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumTot.TabIndex = 24;
-            this.dtpPlanningsdatumTot.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumTot_ValueChanged);
             // 
             // dtpPlanningsdatumVan
             // 
@@ -170,7 +164,6 @@
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
             this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumVan.TabIndex = 23;
-            this.dtpPlanningsdatumVan.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumVan_ValueChanged);
             // 
             // lblKostenplaats
             // 
@@ -187,7 +180,6 @@
             this.dtpAanvraagmomentTot.Name = "dtpAanvraagmomentTot";
             this.dtpAanvraagmomentTot.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentTot.TabIndex = 22;
-            this.dtpAanvraagmomentTot.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentTot_ValueChanged);
             // 
             // lblBedrag
             // 
@@ -204,7 +196,6 @@
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(272, 34);
             this.txtFinancieringsjaar.TabIndex = 15;
-            this.txtFinancieringsjaar.TextChanged += new System.EventHandler(this.txtFinancieringsjaar_TextChanged);
             // 
             // lblFinancieringsjaar
             // 
@@ -221,7 +212,6 @@
             this.dtpAanvraagmomentVan.Name = "dtpAanvraagmomentVan";
             this.dtpAanvraagmomentVan.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentVan.TabIndex = 21;
-            this.dtpAanvraagmomentVan.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentVan_ValueChanged);
             // 
             // chbxPlaningsdatumVan
             // 
@@ -232,7 +222,6 @@
             this.chbxPlaningsdatumVan.TabIndex = 4;
             this.chbxPlaningsdatumVan.Text = "Van";
             this.chbxPlaningsdatumVan.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumVan.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumVan_CheckedChanged);
             // 
             // chbxPlaningsdatumTot
             // 
@@ -243,7 +232,6 @@
             this.chbxPlaningsdatumTot.TabIndex = 20;
             this.chbxPlaningsdatumTot.Text = "Tot";
             this.chbxPlaningsdatumTot.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumTot.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumTot_CheckedChanged);
             // 
             // chbxAanvraagmomentTot
             // 
@@ -254,7 +242,6 @@
             this.chbxAanvraagmomentTot.TabIndex = 19;
             this.chbxAanvraagmomentTot.Text = "Tot";
             this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentTot.Click += new System.EventHandler(this.chbxAanvraagmomentTot_Click);
             // 
             // lblAanvraagmoment
             // 
@@ -271,7 +258,6 @@
             this.txtStatusAanvraag.Name = "txtStatusAanvraag";
             this.txtStatusAanvraag.Size = new System.Drawing.Size(272, 34);
             this.txtStatusAanvraag.TabIndex = 14;
-            this.txtStatusAanvraag.TextChanged += new System.EventHandler(this.txtStatusAanvraag_TextChanged);
             // 
             // txtTitel
             // 
@@ -279,7 +265,6 @@
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(272, 34);
             this.txtTitel.TabIndex = 13;
-            this.txtTitel.TextChanged += new System.EventHandler(this.txtTitel_TextChanged);
             // 
             // lblPlanningsdatum
             // 
@@ -317,7 +302,6 @@
             this.chbxAanvraagmomentVan.TabIndex = 3;
             this.chbxAanvraagmomentVan.Text = "Van";
             this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentVan.Click += new System.EventHandler(this.chbxAanvraagmomentVan_Click);
             // 
             // lblGebruiker
             // 
@@ -418,11 +402,22 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Planningsdatum";
             // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(15, 15);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(172, 37);
+            this.btnFilter.TabIndex = 27;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 686);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -487,5 +482,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnFilter;
     }
 }
