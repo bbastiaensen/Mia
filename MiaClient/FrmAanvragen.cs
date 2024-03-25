@@ -18,7 +18,7 @@ namespace MiaClient
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
-
+       
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
         bool filterPlanningsdatumVan = false;
@@ -30,6 +30,15 @@ namespace MiaClient
         bool filterBedragVan = false;
         bool filterBedragTot = false;
         bool filterKostenPlaats = false;
+
+        bool SortGebruiker = true;
+        bool SortTitel = true;
+        bool SortAanvraagmoment = true;
+        bool SortStatusAanvraag = true;
+        bool SortBedrag = true;
+        bool SortPlanningsdatum = true;
+        bool SortKostenPlaats = true;
+        bool SortFinancieringsjaar = true;
         public FrmAanvragen()
         {
             InitializeComponent();
@@ -85,7 +94,7 @@ namespace MiaClient
         private void Avi_AanvraagItemChanged(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 aanvragen = AanvraagManager.GetAanvragen();
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
@@ -278,6 +287,134 @@ namespace MiaClient
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSortGebruiker_Click(object sender, EventArgs e)
+        {
+            if(SortGebruiker == true)
+            {
+                SortGebruiker = false;
+                aanvragen = AanvraagManager.GetGebruikerDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortGebruiker = true;
+                aanvragen = AanvraagManager.GetGebruikerAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnSortTitel_Click(object sender, EventArgs e)
+        {
+            if(SortTitel == true)
+            {
+                SortTitel = false;
+                aanvragen = AanvraagManager.GetTitelDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortTitel = true;
+                aanvragen = AanvraagManager.GetTitelAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
+        {
+            if(SortAanvraagmoment == true)
+            {
+                SortAanvraagmoment = false;
+                aanvragen = AanvraagManager.GetAanvraagmomentDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortAanvraagmoment = true;
+                aanvragen = AanvraagManager.GetAanvraagmomentAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnSortFinancieringsjaar_Click(object sender, EventArgs e)
+        {
+            if(SortFinancieringsjaar == true)
+            {
+                SortFinancieringsjaar = false;
+                aanvragen = AanvraagManager.GetFinancieringsjaarDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortFinancieringsjaar = true;
+                aanvragen = AanvraagManager.GetFinancieringsjaarAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
+        {
+            if(SortStatusAanvraag == true)
+            {
+                SortStatusAanvraag = false;
+                aanvragen = AanvraagManager.GetStatusAanvraagDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortStatusAanvraag = true;
+                aanvragen = AanvraagManager.GetStatusAanvraagAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnBedrag_Click(object sender, EventArgs e)
+        {
+            if(SortBedrag == true)
+            {
+                SortBedrag = false;
+                aanvragen = AanvraagManager.GetBedragDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortBedrag = true;
+                aanvragen = AanvraagManager.GetBedragAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnKostenplaats_Click(object sender, EventArgs e)
+        {
+            if(SortKostenPlaats == true)
+            {
+                SortKostenPlaats = false;
+                aanvragen = AanvraagManager.GetKostenplaatstDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortKostenPlaats = true;
+                aanvragen = AanvraagManager.GetKostenplaatstAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+        }
+
+        private void btnPlanningsdatum_Click(object sender, EventArgs e)
+        {
+            if(SortPlanningsdatum == true)
+            {
+                SortPlanningsdatum = false;
+                aanvragen = AanvraagManager.GetPlanningsdatumDesc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
+            }
+            else
+            {
+                SortPlanningsdatum = true;
+                aanvragen = AanvraagManager.GetPlanningsdatumAsc();
+                BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
     }

@@ -129,7 +129,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSortAanvraagmoment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -140,7 +140,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSortGebruiker.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -151,7 +151,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSortFinancieringsjaar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -162,7 +162,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSortStatusAanvraag.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -173,7 +173,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnBedrag.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -184,7 +184,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnKostenplaats.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE
@@ -195,7 +195,7 @@
         MB6PAPlaYAliAdDGUKAB501MTDSgQqSB6upqUGDQCzAwAAA+4EBUwIKCUQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnPlanningsdatum.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EQAACxEBf2RfkQAAAUFJREFUOE9joCvw9PTkgTJJA8bGxhYiIiKPVVVVM6BCxAEtLS0LKSmp4+zs7BfE

@@ -67,13 +67,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnSortTitel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnSortAanvraagmoment = new System.Windows.Forms.Button();
+            this.btnSortGebruiker = new System.Windows.Forms.Button();
+            this.btnSortFinancieringsjaar = new System.Windows.Forms.Button();
+            this.btnSortStatusAanvraag = new System.Windows.Forms.Button();
+            this.btnBedrag = new System.Windows.Forms.Button();
+            this.btnKostenplaats = new System.Windows.Forms.Button();
+            this.btnPlanningsdatum = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -434,124 +434,132 @@
             this.btnSortTitel.Size = new System.Drawing.Size(27, 27);
             this.btnSortTitel.TabIndex = 29;
             this.btnSortTitel.UseVisualStyleBackColor = false;
+            this.btnSortTitel.Click += new System.EventHandler(this.btnSortTitel_Click);
             // 
-            // button1
+            // btnSortAanvraagmoment
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(492, 281);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 27);
-            this.button1.TabIndex = 30;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSortAanvraagmoment.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderSize = 0;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvraagmoment.Image")));
+            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(492, 281);
+            this.btnSortAanvraagmoment.Name = "btnSortAanvraagmoment";
+            this.btnSortAanvraagmoment.Size = new System.Drawing.Size(27, 27);
+            this.btnSortAanvraagmoment.TabIndex = 30;
+            this.btnSortAanvraagmoment.UseVisualStyleBackColor = false;
+            this.btnSortAanvraagmoment.Click += new System.EventHandler(this.btnSortAanvraagmoment_Click);
             // 
-            // button2
+            // btnSortGebruiker
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(176, 281);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(27, 27);
-            this.button2.TabIndex = 31;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnSortGebruiker.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortGebruiker.FlatAppearance.BorderSize = 0;
+            this.btnSortGebruiker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGebruiker.Image")));
+            this.btnSortGebruiker.Location = new System.Drawing.Point(176, 281);
+            this.btnSortGebruiker.Name = "btnSortGebruiker";
+            this.btnSortGebruiker.Size = new System.Drawing.Size(27, 27);
+            this.btnSortGebruiker.TabIndex = 31;
+            this.btnSortGebruiker.UseVisualStyleBackColor = false;
+            this.btnSortGebruiker.Click += new System.EventHandler(this.btnSortGebruiker_Click);
             // 
-            // button3
+            // btnSortFinancieringsjaar
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(656, 281);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(27, 27);
-            this.button3.TabIndex = 32;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnSortFinancieringsjaar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderSize = 0;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortFinancieringsjaar.Image")));
+            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(656, 281);
+            this.btnSortFinancieringsjaar.Name = "btnSortFinancieringsjaar";
+            this.btnSortFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
+            this.btnSortFinancieringsjaar.TabIndex = 32;
+            this.btnSortFinancieringsjaar.UseVisualStyleBackColor = false;
+            this.btnSortFinancieringsjaar.Click += new System.EventHandler(this.btnSortFinancieringsjaar_Click);
             // 
-            // button4
+            // btnSortStatusAanvraag
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(811, 281);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(27, 27);
-            this.button4.TabIndex = 33;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnSortStatusAanvraag.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortStatusAanvraag.FlatAppearance.BorderSize = 0;
+            this.btnSortStatusAanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortStatusAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortStatusAanvraag.Image")));
+            this.btnSortStatusAanvraag.Location = new System.Drawing.Point(811, 281);
+            this.btnSortStatusAanvraag.Name = "btnSortStatusAanvraag";
+            this.btnSortStatusAanvraag.Size = new System.Drawing.Size(27, 27);
+            this.btnSortStatusAanvraag.TabIndex = 33;
+            this.btnSortStatusAanvraag.UseVisualStyleBackColor = false;
+            this.btnSortStatusAanvraag.Click += new System.EventHandler(this.btnSortStatusAanvraag_Click);
             // 
-            // button5
+            // btnBedrag
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(906, 281);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 27);
-            this.button5.TabIndex = 34;
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnBedrag.BackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnBedrag.FlatAppearance.BorderSize = 0;
+            this.btnBedrag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnBedrag.Image")));
+            this.btnBedrag.Location = new System.Drawing.Point(906, 281);
+            this.btnBedrag.Name = "btnBedrag";
+            this.btnBedrag.Size = new System.Drawing.Size(27, 27);
+            this.btnBedrag.TabIndex = 34;
+            this.btnBedrag.UseVisualStyleBackColor = false;
+            this.btnBedrag.Click += new System.EventHandler(this.btnBedrag_Click);
             // 
-            // button6
+            // btnKostenplaats
             // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(1041, 281);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(27, 27);
-            this.button6.TabIndex = 35;
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnKostenplaats.BackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnKostenplaats.FlatAppearance.BorderSize = 0;
+            this.btnKostenplaats.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKostenplaats.Image = ((System.Drawing.Image)(resources.GetObject("btnKostenplaats.Image")));
+            this.btnKostenplaats.Location = new System.Drawing.Point(1041, 281);
+            this.btnKostenplaats.Name = "btnKostenplaats";
+            this.btnKostenplaats.Size = new System.Drawing.Size(27, 27);
+            this.btnKostenplaats.TabIndex = 35;
+            this.btnKostenplaats.UseVisualStyleBackColor = false;
+            this.btnKostenplaats.Click += new System.EventHandler(this.btnKostenplaats_Click);
             // 
-            // button7
+            // btnPlanningsdatum
             // 
-            this.button7.BackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(1227, 281);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(27, 27);
-            this.button7.TabIndex = 36;
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnPlanningsdatum.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPlanningsdatum.FlatAppearance.BorderSize = 0;
+            this.btnPlanningsdatum.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlanningsdatum.Image = ((System.Drawing.Image)(resources.GetObject("btnPlanningsdatum.Image")));
+            this.btnPlanningsdatum.Location = new System.Drawing.Point(1227, 281);
+            this.btnPlanningsdatum.Name = "btnPlanningsdatum";
+            this.btnPlanningsdatum.Size = new System.Drawing.Size(27, 27);
+            this.btnPlanningsdatum.TabIndex = 36;
+            this.btnPlanningsdatum.UseVisualStyleBackColor = false;
+            this.btnPlanningsdatum.Click += new System.EventHandler(this.btnPlanningsdatum_Click);
             // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 686);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPlanningsdatum);
+            this.Controls.Add(this.btnKostenplaats);
+            this.Controls.Add(this.btnBedrag);
+            this.Controls.Add(this.btnSortStatusAanvraag);
+            this.Controls.Add(this.btnSortFinancieringsjaar);
+            this.Controls.Add(this.btnSortGebruiker);
+            this.Controls.Add(this.btnSortAanvraagmoment);
             this.Controls.Add(this.btnSortTitel);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.label5);
@@ -620,12 +628,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnSortTitel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnSortAanvraagmoment;
+        private System.Windows.Forms.Button btnSortGebruiker;
+        private System.Windows.Forms.Button btnSortFinancieringsjaar;
+        private System.Windows.Forms.Button btnSortStatusAanvraag;
+        private System.Windows.Forms.Button btnBedrag;
+        private System.Windows.Forms.Button btnKostenplaats;
+        private System.Windows.Forms.Button btnPlanningsdatum;
     }
 }
