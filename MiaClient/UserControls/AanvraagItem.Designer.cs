@@ -97,6 +97,7 @@
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(98, 28);
             this.lblBedrag.TabIndex = 7;
+            this.lblBedrag.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblPlaningsDatum
             // 
@@ -164,7 +165,6 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "AanvraagItem";
-
             this.Size = new System.Drawing.Size(1210, 33);
             this.ResumeLayout(false);
 
