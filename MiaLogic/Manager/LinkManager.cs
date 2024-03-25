@@ -33,6 +33,7 @@ namespace MiaLogic.Manager
                     {
                         Link link = new Link();
                         link.Id = Convert.ToInt32(reader["Id"]);
+                        link.Titel = reader["Titel"].ToString();
                         link.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         link.Url = reader["Url"].ToString();
                         linken.Add(link);
@@ -52,11 +53,12 @@ namespace MiaLogic.Manager
                     objcmd.CommandType = CommandType.Text;
 
 
-                    objcmd.CommandText = "insert into Linken (AanvraagID, Url) VALUES (@AanvraagID, @Url)";
+                    objcmd.CommandText = "insert into Linken (AanvraagID, Url, Titel) VALUES (@AanvraagID, @Url, @Titel)";
 
 
                     objcmd.Parameters.AddWithValue("@AanvraagID", link.AanvraagId);
                     objcmd.Parameters.AddWithValue("@Url", link.Url);
+                    objcmd.Parameters.AddWithValue("@Titel", link.Titel);
 
                     try
                     {
@@ -86,7 +88,7 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
 
-                    objcmd.CommandText = "select Id, AanvraagID, Url from Linken WHERE Id = @Id;";
+                    objcmd.CommandText = "select Id, AanvraagID, Url, Titel from Linken WHERE Id = @Id;";
                     objcmd.Parameters.AddWithValue("@Id", id);
 
                     objcn.Open(); //Open de connectie met de databank
@@ -96,6 +98,7 @@ namespace MiaLogic.Manager
                     {
                         Link link = new Link();
                         link.Id = Convert.ToInt32(reader["Id"]);
+                        link.Titel = reader["Titel"].ToString();
                         link.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         link.Url = reader["Url"].ToString();
                         linken.Add(link); //Voeg rollen toe aan de lijst voor de specifieke gebruiker
