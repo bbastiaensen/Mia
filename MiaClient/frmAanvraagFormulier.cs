@@ -80,7 +80,7 @@ namespace MiaClient
             StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
-        private void DisableForm()
+        public void DisableForm()
         {
             //Links
             txt_hyperlinkInput.ReadOnly = true;
@@ -101,7 +101,7 @@ namespace MiaClient
             btn_kiesOfferte.Enabled = false;
         }
 
-        private void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
+        public void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
         {
             //Links
             txt_hyperlinkInput.ReadOnly = false;
