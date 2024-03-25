@@ -78,7 +78,6 @@ namespace MiaClient
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Links = new System.Windows.Forms.TabPage();
             this.btn_bewaarLink = new System.Windows.Forms.Button();
-            this.btn_verwijderLink = new System.Windows.Forms.Button();
             this.btn_nieuweLink = new System.Windows.Forms.Button();
             this.txt_hyperlinkInput = new System.Windows.Forms.TextBox();
             this.lbl_hyperlinkDetail = new System.Windows.Forms.Label();
@@ -86,7 +85,6 @@ namespace MiaClient
             this.pnl_Links = new System.Windows.Forms.Panel();
             this.tabPage_Fotos = new System.Windows.Forms.TabPage();
             this.btn_bewaarFoto = new System.Windows.Forms.Button();
-            this.btn_verwijderFoto = new System.Windows.Forms.Button();
             this.btn_nieuweFoto = new System.Windows.Forms.Button();
             this.btn_kiesFoto = new System.Windows.Forms.Button();
             this.txt_FotoId = new System.Windows.Forms.TextBox();
@@ -98,7 +96,6 @@ namespace MiaClient
             this.lbl_fotosTitel = new System.Windows.Forms.Label();
             this.tabPage_Offertes = new System.Windows.Forms.TabPage();
             this.btn_bewaarOfferte = new System.Windows.Forms.Button();
-            this.btn_verwijderOfferte = new System.Windows.Forms.Button();
             this.btn_nieuweOfferte = new System.Windows.Forms.Button();
             this.btn_kiesOfferte = new System.Windows.Forms.Button();
             this.txt_offerteId = new System.Windows.Forms.TextBox();
@@ -108,6 +105,12 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnl_Offertes = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtLinkTitel = new System.Windows.Forms.TextBox();
+            this.TxtFotoTitel = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtOfferteTitel = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -160,81 +163,9 @@ namespace MiaClient
             this.btn_Indienen.Text = "Bewaren";
             this.btn_Indienen.UseVisualStyleBackColor = true;
             this.btn_Indienen.Click += new System.EventHandler(this.btn_Indienen_Click);
-            this.lblGebruikersNaam.AutoSize = true;
-            this.lblGebruikersNaam.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblGebruikersNaam.Location = new System.Drawing.Point(30, 30);
-            this.lblGebruikersNaam.Name = "lblGebruikersNaam";
-            this.lblGebruikersNaam.Size = new System.Drawing.Size(154, 28);
-            this.lblGebruikersNaam.TabIndex = 3;
-            this.lblGebruikersNaam.Text = "Gebruikersnaam";
             // 
             // btn_Nieuw
             // 
-            this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(480, 30);
-            this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(71, 28);
-            this.lblAanvraagmoment.TabIndex = 4;
-            this.lblAanvraagmoment.Text = "Datum";
-            // 
-            // lblAfdeling
-            // 
-            this.lblAfdeling.AutoSize = true;
-            this.lblAfdeling.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblAfdeling.Location = new System.Drawing.Point(30, 80);
-            this.lblAfdeling.Name = "lblAfdeling";
-            this.lblAfdeling.Size = new System.Drawing.Size(86, 28);
-            this.lblAfdeling.TabIndex = 5;
-            this.lblAfdeling.Text = "Afdeling";
-            // 
-            // lblDienst
-            // 
-            this.lblDienst.AutoSize = true;
-            this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDienst.Location = new System.Drawing.Point(30, 130);
-            this.lblDienst.Name = "lblDienst";
-            this.lblDienst.Size = new System.Drawing.Size(67, 28);
-            this.lblDienst.TabIndex = 6;
-            this.lblDienst.Text = "Dienst";
-            // 
-            // txtGebruiker
-            // 
-            this.txtGebruiker.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGebruiker.Location = new System.Drawing.Point(190, 30);
-            this.txtGebruiker.Name = "txtGebruiker";
-            this.txtGebruiker.ReadOnly = true;
-            this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
-            this.txtGebruiker.TabIndex = 7;
-            // 
-            // txtAanvraagmoment
-            // 
-            this.txtAanvraagmoment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAanvraagmoment.Location = new System.Drawing.Point(560, 30);
-            this.txtAanvraagmoment.Name = "txtAanvraagmoment";
-            this.txtAanvraagmoment.ReadOnly = true;
-            this.txtAanvraagmoment.Size = new System.Drawing.Size(177, 34);
-            this.txtAanvraagmoment.TabIndex = 8;
-            // 
-            // ddlAfdeling
-            // 
-            this.ddlAfdeling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlAfdeling.FormattingEnabled = true;
-            this.ddlAfdeling.Location = new System.Drawing.Point(122, 80);
-            this.ddlAfdeling.Name = "ddlAfdeling";
-            this.ddlAfdeling.Size = new System.Drawing.Size(282, 36);
-            this.ddlAfdeling.TabIndex = 9;
-            // 
-            // ddlDienst
-            // 
-            this.ddlDienst.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlDienst.FormattingEnabled = true;
-            this.ddlDienst.Location = new System.Drawing.Point(122, 127);
-            this.ddlDienst.Name = "ddlDienst";
-            this.ddlDienst.Size = new System.Drawing.Size(282, 36);
-            this.ddlDienst.TabIndex = 10;
-            // 
-            // gboxIdentificatie
             this.btn_Nieuw.Location = new System.Drawing.Point(605, 55);
             this.btn_Nieuw.Name = "btn_Nieuw";
             this.btn_Nieuw.Size = new System.Drawing.Size(103, 37);
@@ -242,44 +173,6 @@ namespace MiaClient
             this.btn_Nieuw.Text = "Nieuw";
             this.btn_Nieuw.UseVisualStyleBackColor = true;
             this.btn_Nieuw.Click += new System.EventHandler(this.btn_Nieuw_Click);
-            // 
-            this.gboxIdentificatie.Controls.Add(this.ddlDienst);
-            this.gboxIdentificatie.Controls.Add(this.ddlAfdeling);
-            this.gboxIdentificatie.Controls.Add(this.txtAanvraagmoment);
-            this.gboxIdentificatie.Controls.Add(this.txtGebruiker);
-            this.gboxIdentificatie.Controls.Add(this.lblDienst);
-            this.gboxIdentificatie.Controls.Add(this.lblAfdeling);
-            this.gboxIdentificatie.Controls.Add(this.lblAanvraagmoment);
-            this.gboxIdentificatie.Controls.Add(this.lblGebruikersNaam);
-            this.gboxIdentificatie.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gboxIdentificatie.Location = new System.Drawing.Point(5, 5);
-            this.gboxIdentificatie.Name = "gboxIdentificatie";
-            this.gboxIdentificatie.Size = new System.Drawing.Size(758, 190);
-            this.gboxIdentificatie.TabIndex = 13;
-            this.gboxIdentificatie.TabStop = false;
-            this.gboxIdentificatie.Text = "Identificatie";
-            // 
-            // tabControl_Aanvraagformulier
-            // 
-            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Identificatie);
-            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Investering);
-            //this.tabControl_Aanvraagformulier.Controls.Add(this.tabPage_Voorstellen);
-            //this.tabControl_Aanvraagformulier.Location = new System.Drawing.Point(22, 95);
-            //this.tabControl_Aanvraagformulier.Name = "tabControl_Aanvraagformulier";
-            //this.tabControl_Aanvraagformulier.SelectedIndex = 0;
-            //this.tabControl_Aanvraagformulier.Size = new System.Drawing.Size(799, 599);
-            //this.tabControl_Aanvraagformulier.TabIndex = 14;
-
-            // tabPage_Identificatie
-            // 
-            this.tabPage_Identificatie.Controls.Add(this.gboxIdentificatie);
-            this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 37);
-            this.tabPage_Identificatie.Name = "tabPage_Identificatie";
-            this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(791, 558);
-            this.tabPage_Identificatie.TabIndex = 0;
-            this.tabPage_Identificatie.Text = "Identificatie";
-            this.tabPage_Identificatie.UseVisualStyleBackColor = true;
             // 
             // tabPage_Investering
             // 
@@ -629,13 +522,7 @@ namespace MiaClient
             this.txtGebruiker.Size = new System.Drawing.Size(247, 34);
             this.txtGebruiker.TabIndex = 7;
             // 
-            //this.tabPage_Voorstellen.Controls.Add(this.groupBox1);
-            //this.tabPage_Voorstellen.Location = new System.Drawing.Point(4, 37);
-            //this.tabPage_Voorstellen.Name = "tabPage_Voorstellen";
-            //this.tabPage_Voorstellen.Size = new System.Drawing.Size(791, 558);
-            //this.tabPage_Voorstellen.TabIndex = 2;
-            //this.tabPage_Voorstellen.Text = "Voorstellen";
-            //this.tabPage_Voorstellen.UseVisualStyleBackColor = true;
+            // lblDienst
             // 
             this.lblDienst.AutoSize = true;
             this.lblDienst.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -710,8 +597,9 @@ namespace MiaClient
             // 
             // tabPage_Links
             // 
+            this.tabPage_Links.Controls.Add(this.TxtLinkTitel);
+            this.tabPage_Links.Controls.Add(this.label1);
             this.tabPage_Links.Controls.Add(this.btn_bewaarLink);
-            this.tabPage_Links.Controls.Add(this.btn_verwijderLink);
             this.tabPage_Links.Controls.Add(this.btn_nieuweLink);
             this.tabPage_Links.Controls.Add(this.txt_hyperlinkInput);
             this.tabPage_Links.Controls.Add(this.lbl_hyperlinkDetail);
@@ -728,7 +616,7 @@ namespace MiaClient
             // 
             // btn_bewaarLink
             // 
-            this.btn_bewaarLink.Location = new System.Drawing.Point(273, 343);
+            this.btn_bewaarLink.Location = new System.Drawing.Point(512, 442);
             this.btn_bewaarLink.Name = "btn_bewaarLink";
             this.btn_bewaarLink.Size = new System.Drawing.Size(241, 51);
             this.btn_bewaarLink.TabIndex = 10;
@@ -736,19 +624,9 @@ namespace MiaClient
             this.btn_bewaarLink.UseVisualStyleBackColor = true;
             this.btn_bewaarLink.Click += new System.EventHandler(this.btn_bewaarLink_Click);
             // 
-            // btn_verwijderLink
-            // 
-            this.btn_verwijderLink.Location = new System.Drawing.Point(535, 343);
-            this.btn_verwijderLink.Name = "btn_verwijderLink";
-            this.btn_verwijderLink.Size = new System.Drawing.Size(227, 51);
-            this.btn_verwijderLink.TabIndex = 9;
-            this.btn_verwijderLink.Text = "Verwijder";
-            this.btn_verwijderLink.UseVisualStyleBackColor = true;
-            this.btn_verwijderLink.Click += new System.EventHandler(this.btn_verwijderLink_Click);
-            // 
             // btn_nieuweLink
             // 
-            this.btn_nieuweLink.Location = new System.Drawing.Point(17, 343);
+            this.btn_nieuweLink.Location = new System.Drawing.Point(8, 442);
             this.btn_nieuweLink.Name = "btn_nieuweLink";
             this.btn_nieuweLink.Size = new System.Drawing.Size(240, 51);
             this.btn_nieuweLink.TabIndex = 8;
@@ -759,7 +637,7 @@ namespace MiaClient
             // txt_hyperlinkInput
             // 
             this.txt_hyperlinkInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_hyperlinkInput.Location = new System.Drawing.Point(119, 296);
+            this.txt_hyperlinkInput.Location = new System.Drawing.Point(110, 358);
             this.txt_hyperlinkInput.Name = "txt_hyperlinkInput";
             this.txt_hyperlinkInput.Size = new System.Drawing.Size(643, 34);
             this.txt_hyperlinkInput.TabIndex = 7;
@@ -768,7 +646,7 @@ namespace MiaClient
             // 
             this.lbl_hyperlinkDetail.AutoSize = true;
             this.lbl_hyperlinkDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_hyperlinkDetail.Location = new System.Drawing.Point(12, 295);
+            this.lbl_hyperlinkDetail.Location = new System.Drawing.Point(3, 364);
             this.lbl_hyperlinkDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_hyperlinkDetail.Name = "lbl_hyperlinkDetail";
             this.lbl_hyperlinkDetail.Size = new System.Drawing.Size(100, 28);
@@ -798,8 +676,9 @@ namespace MiaClient
             // 
             // tabPage_Fotos
             // 
+            this.tabPage_Fotos.Controls.Add(this.TxtFotoTitel);
+            this.tabPage_Fotos.Controls.Add(this.label2);
             this.tabPage_Fotos.Controls.Add(this.btn_bewaarFoto);
-            this.tabPage_Fotos.Controls.Add(this.btn_verwijderFoto);
             this.tabPage_Fotos.Controls.Add(this.btn_nieuweFoto);
             this.tabPage_Fotos.Controls.Add(this.btn_kiesFoto);
             this.tabPage_Fotos.Controls.Add(this.txt_FotoId);
@@ -820,7 +699,7 @@ namespace MiaClient
             // 
             // btn_bewaarFoto
             // 
-            this.btn_bewaarFoto.Location = new System.Drawing.Point(268, 376);
+            this.btn_bewaarFoto.Location = new System.Drawing.Point(562, 462);
             this.btn_bewaarFoto.Name = "btn_bewaarFoto";
             this.btn_bewaarFoto.Size = new System.Drawing.Size(206, 40);
             this.btn_bewaarFoto.TabIndex = 21;
@@ -828,19 +707,9 @@ namespace MiaClient
             this.btn_bewaarFoto.UseVisualStyleBackColor = true;
             this.btn_bewaarFoto.Click += new System.EventHandler(this.btn_bewaarFoto_Click);
             // 
-            // btn_verwijderFoto
-            // 
-            this.btn_verwijderFoto.Location = new System.Drawing.Point(519, 376);
-            this.btn_verwijderFoto.Name = "btn_verwijderFoto";
-            this.btn_verwijderFoto.Size = new System.Drawing.Size(206, 40);
-            this.btn_verwijderFoto.TabIndex = 20;
-            this.btn_verwijderFoto.Text = "Verwijder";
-            this.btn_verwijderFoto.UseVisualStyleBackColor = true;
-            this.btn_verwijderFoto.Click += new System.EventHandler(this.btn_verwijderFoto_Click);
-            // 
             // btn_nieuweFoto
             // 
-            this.btn_nieuweFoto.Location = new System.Drawing.Point(17, 376);
+            this.btn_nieuweFoto.Location = new System.Drawing.Point(17, 462);
             this.btn_nieuweFoto.Name = "btn_nieuweFoto";
             this.btn_nieuweFoto.Size = new System.Drawing.Size(206, 40);
             this.btn_nieuweFoto.TabIndex = 19;
@@ -850,9 +719,9 @@ namespace MiaClient
             // 
             // btn_kiesFoto
             // 
-            this.btn_kiesFoto.Location = new System.Drawing.Point(652, 331);
+            this.btn_kiesFoto.Location = new System.Drawing.Point(655, 373);
             this.btn_kiesFoto.Name = "btn_kiesFoto";
-            this.btn_kiesFoto.Size = new System.Drawing.Size(75, 38);
+            this.btn_kiesFoto.Size = new System.Drawing.Size(103, 38);
             this.btn_kiesFoto.TabIndex = 18;
             this.btn_kiesFoto.Text = "...";
             this.btn_kiesFoto.UseVisualStyleBackColor = true;
@@ -861,7 +730,7 @@ namespace MiaClient
             // txt_FotoId
             // 
             this.txt_FotoId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_FotoId.Location = new System.Drawing.Point(74, 290);
+            this.txt_FotoId.Location = new System.Drawing.Point(74, 292);
             this.txt_FotoId.Name = "txt_FotoId";
             this.txt_FotoId.ReadOnly = true;
             this.txt_FotoId.Size = new System.Drawing.Size(93, 34);
@@ -882,17 +751,17 @@ namespace MiaClient
             // txt_fotoURLInput
             // 
             this.txt_fotoURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_fotoURLInput.Location = new System.Drawing.Point(74, 333);
+            this.txt_fotoURLInput.Location = new System.Drawing.Point(74, 376);
             this.txt_fotoURLInput.Name = "txt_fotoURLInput";
             this.txt_fotoURLInput.ReadOnly = true;
-            this.txt_fotoURLInput.Size = new System.Drawing.Size(572, 34);
+            this.txt_fotoURLInput.Size = new System.Drawing.Size(575, 34);
             this.txt_fotoURLInput.TabIndex = 12;
             // 
             // lbl_fotoUrlDetail
             // 
             this.lbl_fotoUrlDetail.AutoSize = true;
             this.lbl_fotoUrlDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fotoUrlDetail.Location = new System.Drawing.Point(12, 335);
+            this.lbl_fotoUrlDetail.Location = new System.Drawing.Point(4, 382);
             this.lbl_fotoUrlDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_fotoUrlDetail.Name = "lbl_fotoUrlDetail";
             this.lbl_fotoUrlDetail.Size = new System.Drawing.Size(51, 28);
@@ -933,8 +802,9 @@ namespace MiaClient
             // 
             // tabPage_Offertes
             // 
+            this.tabPage_Offertes.Controls.Add(this.TxtOfferteTitel);
+            this.tabPage_Offertes.Controls.Add(this.label3);
             this.tabPage_Offertes.Controls.Add(this.btn_bewaarOfferte);
-            this.tabPage_Offertes.Controls.Add(this.btn_verwijderOfferte);
             this.tabPage_Offertes.Controls.Add(this.btn_nieuweOfferte);
             this.tabPage_Offertes.Controls.Add(this.btn_kiesOfferte);
             this.tabPage_Offertes.Controls.Add(this.txt_offerteId);
@@ -954,7 +824,7 @@ namespace MiaClient
             // 
             // btn_bewaarOfferte
             // 
-            this.btn_bewaarOfferte.Location = new System.Drawing.Point(268, 376);
+            this.btn_bewaarOfferte.Location = new System.Drawing.Point(565, 454);
             this.btn_bewaarOfferte.Name = "btn_bewaarOfferte";
             this.btn_bewaarOfferte.Size = new System.Drawing.Size(206, 40);
             this.btn_bewaarOfferte.TabIndex = 30;
@@ -962,19 +832,9 @@ namespace MiaClient
             this.btn_bewaarOfferte.UseVisualStyleBackColor = true;
             this.btn_bewaarOfferte.Click += new System.EventHandler(this.btn_bewaarOfferte_Click);
             // 
-            // btn_verwijderOfferte
-            // 
-            this.btn_verwijderOfferte.Location = new System.Drawing.Point(519, 376);
-            this.btn_verwijderOfferte.Name = "btn_verwijderOfferte";
-            this.btn_verwijderOfferte.Size = new System.Drawing.Size(206, 40);
-            this.btn_verwijderOfferte.TabIndex = 29;
-            this.btn_verwijderOfferte.Text = "Verwijder";
-            this.btn_verwijderOfferte.UseVisualStyleBackColor = true;
-            this.btn_verwijderOfferte.Click += new System.EventHandler(this.btn_verwijderOfferte_Click);
-            // 
             // btn_nieuweOfferte
             // 
-            this.btn_nieuweOfferte.Location = new System.Drawing.Point(17, 376);
+            this.btn_nieuweOfferte.Location = new System.Drawing.Point(3, 454);
             this.btn_nieuweOfferte.Name = "btn_nieuweOfferte";
             this.btn_nieuweOfferte.Size = new System.Drawing.Size(206, 40);
             this.btn_nieuweOfferte.TabIndex = 28;
@@ -984,9 +844,9 @@ namespace MiaClient
             // 
             // btn_kiesOfferte
             // 
-            this.btn_kiesOfferte.Location = new System.Drawing.Point(652, 331);
+            this.btn_kiesOfferte.Location = new System.Drawing.Point(652, 366);
             this.btn_kiesOfferte.Name = "btn_kiesOfferte";
-            this.btn_kiesOfferte.Size = new System.Drawing.Size(75, 38);
+            this.btn_kiesOfferte.Size = new System.Drawing.Size(119, 38);
             this.btn_kiesOfferte.TabIndex = 27;
             this.btn_kiesOfferte.Text = "...";
             this.btn_kiesOfferte.UseVisualStyleBackColor = true;
@@ -1016,7 +876,7 @@ namespace MiaClient
             // txt_offerteURLInput
             // 
             this.txt_offerteURLInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_offerteURLInput.Location = new System.Drawing.Point(74, 333);
+            this.txt_offerteURLInput.Location = new System.Drawing.Point(74, 369);
             this.txt_offerteURLInput.Name = "txt_offerteURLInput";
             this.txt_offerteURLInput.ReadOnly = true;
             this.txt_offerteURLInput.Size = new System.Drawing.Size(572, 34);
@@ -1026,7 +886,7 @@ namespace MiaClient
             // 
             this.lbl_offerteURLDetail.AutoSize = true;
             this.lbl_offerteURLDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_offerteURLDetail.Location = new System.Drawing.Point(12, 335);
+            this.lbl_offerteURLDetail.Location = new System.Drawing.Point(12, 375);
             this.lbl_offerteURLDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offerteURLDetail.Name = "lbl_offerteURLDetail";
             this.lbl_offerteURLDetail.Size = new System.Drawing.Size(51, 28);
@@ -1063,6 +923,54 @@ namespace MiaClient
             this.pnl_Offertes.Name = "pnl_Offertes";
             this.pnl_Offertes.Size = new System.Drawing.Size(715, 230);
             this.pnl_Offertes.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 312);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 28);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Titel:";
+            // 
+            // TxtLinkTitel
+            // 
+            this.TxtLinkTitel.Location = new System.Drawing.Point(110, 306);
+            this.TxtLinkTitel.Name = "TxtLinkTitel";
+            this.TxtLinkTitel.Size = new System.Drawing.Size(100, 34);
+            this.TxtLinkTitel.TabIndex = 12;
+            // 
+            // TxtFotoTitel
+            // 
+            this.TxtFotoTitel.Location = new System.Drawing.Point(74, 336);
+            this.TxtFotoTitel.Name = "TxtFotoTitel";
+            this.TxtFotoTitel.Size = new System.Drawing.Size(157, 34);
+            this.TxtFotoTitel.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 343);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 28);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Titel:";
+            // 
+            // TxtOfferteTitel
+            // 
+            this.TxtOfferteTitel.Location = new System.Drawing.Point(74, 330);
+            this.TxtOfferteTitel.Name = "TxtOfferteTitel";
+            this.TxtOfferteTitel.Size = new System.Drawing.Size(157, 34);
+            this.TxtOfferteTitel.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 336);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 28);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Titel:";
             // 
             // frmAanvraagFormulier
             // 
@@ -1158,7 +1066,6 @@ namespace MiaClient
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage_Links;
         private System.Windows.Forms.Button btn_bewaarLink;
-        private System.Windows.Forms.Button btn_verwijderLink;
         private System.Windows.Forms.Button btn_nieuweLink;
         private System.Windows.Forms.TextBox txt_hyperlinkInput;
         private System.Windows.Forms.Label lbl_hyperlinkDetail;
@@ -1166,7 +1073,6 @@ namespace MiaClient
         private System.Windows.Forms.Panel pnl_Links;
         private System.Windows.Forms.TabPage tabPage_Fotos;
         private System.Windows.Forms.Button btn_bewaarFoto;
-        private System.Windows.Forms.Button btn_verwijderFoto;
         private System.Windows.Forms.Button btn_nieuweFoto;
         private System.Windows.Forms.Button btn_kiesFoto;
         private System.Windows.Forms.TextBox txt_FotoId;
@@ -1178,7 +1084,6 @@ namespace MiaClient
         private System.Windows.Forms.Label lbl_fotosTitel;
         private System.Windows.Forms.TabPage tabPage_Offertes;
         private System.Windows.Forms.Button btn_bewaarOfferte;
-        private System.Windows.Forms.Button btn_verwijderOfferte;
         private System.Windows.Forms.Button btn_nieuweOfferte;
         private System.Windows.Forms.Button btn_kiesOfferte;
         private System.Windows.Forms.TextBox txt_offerteId;
@@ -1188,5 +1093,11 @@ namespace MiaClient
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lbl_offertesTitel;
         private System.Windows.Forms.Panel pnl_Offertes;
+        private System.Windows.Forms.TextBox TxtLinkTitel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TxtFotoTitel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox TxtOfferteTitel;
+        private System.Windows.Forms.Label label3;
     }
 }
