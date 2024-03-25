@@ -86,20 +86,18 @@ namespace MiaClient
             txt_hyperlinkInput.ReadOnly = true;
             btn_bewaarLink.Enabled = false;
             btn_nieuweLink.Enabled = false;
-            btn_verwijderLink.Enabled = false;
+
 
             //Fotos
             txt_fotoURLInput.ReadOnly = true;
             btn_bewaarFoto.Enabled = false;
             btn_nieuweFoto.Enabled = false;
-            btn_verwijderFoto.Enabled = false;
             btn_kiesFoto.Enabled = false;
 
             //Offertes
             txt_offerteURLInput.ReadOnly = true;
             btn_bewaarOfferte.Enabled = false;
             btn_nieuweOfferte.Enabled = false;
-            btn_verwijderOfferte.Enabled = false;
             btn_kiesOfferte.Enabled = false;
         }
 
@@ -109,20 +107,16 @@ namespace MiaClient
             txt_hyperlinkInput.ReadOnly = false;
             btn_bewaarLink.Enabled = true;
             btn_nieuweLink.Enabled = true;
-            btn_verwijderLink.Enabled = true;
-
             //Fotos
-            txt_fotoURLInput.ReadOnly = false;
+            txt_fotoURLInput.ReadOnly = true;
             btn_bewaarFoto.Enabled = true;
             btn_nieuweFoto.Enabled = true;
-            btn_verwijderFoto.Enabled = true;
             btn_kiesFoto.Enabled = true;
 
             //Offertes
-            txt_offerteURLInput.ReadOnly = false;
+            txt_offerteURLInput.ReadOnly = true;
             btn_bewaarOfferte.Enabled = true;
             btn_nieuweOfferte.Enabled = true;
-            btn_verwijderOfferte.Enabled = true;
             btn_kiesOfferte.Enabled = true;
 
         }
@@ -347,6 +341,7 @@ namespace MiaClient
             {
                 Offerte offerte = new Offerte
                 {
+                    Titel = TxtOfferteTitel.Text,
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
@@ -366,7 +361,7 @@ namespace MiaClient
             {
                 Foto foto = new Foto
                 {
-
+                    Titel = TxtFotoTitel.Text,
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
@@ -385,6 +380,7 @@ namespace MiaClient
             {
                 Link link = new Link
                 {
+                    Titel = TxtLinkTitel.Text,
                     AanvraagId = _aanvraagId,
                     Url = hyperlink
                 };
@@ -546,7 +542,7 @@ namespace MiaClient
             {
                 if (Checks())
                 {
-                    if(txtAanvraagId.Text == string.Empty)
+                    if (txtAanvraagId.Text == string.Empty)
                     {
                         GetLastAanvraag();
                         SaveAanvraag();
@@ -566,7 +562,7 @@ namespace MiaClient
                     {
                         UpdateAanvraag();
                     }
-                   
+
                 }
                 if (AanvraagBewaard != null)
                 {
@@ -748,7 +744,7 @@ namespace MiaClient
                     MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                 
+
                 }
             }
 
@@ -776,7 +772,7 @@ namespace MiaClient
                 MessageBox.Show("Je kunt alleen cijfers ingeven.");
                 txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
             }
-            
+
         }
         public void UpdateAanvraag()
         {
@@ -810,5 +806,5 @@ namespace MiaClient
         {
             btn_Indienen.Enabled = true;
         }
-    }    
+    }
 }

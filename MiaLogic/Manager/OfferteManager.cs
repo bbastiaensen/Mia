@@ -33,6 +33,7 @@ namespace MiaLogic.Manager
                     {
                         Offerte offerte = new Offerte();
                         offerte.Id = Convert.ToInt32(reader["Id"]);
+                        offerte.Titel = reader["Titel"].ToString();
                         offerte.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         offerte.Url = reader["Url"].ToString();
                         offertes.Add(offerte);
@@ -55,7 +56,7 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
 
-                    objcmd.CommandText = "select Id, AanvraagID, Url from Offerte WHERE Id = @Id;";
+                    objcmd.CommandText = "select Id,Titel ,AanvraagID, Url from Offerte WHERE Id = @Id;";
                     objcmd.Parameters.AddWithValue("@Id", id);
 
                     objcn.Open(); //Open de connectie met de databank
@@ -65,6 +66,7 @@ namespace MiaLogic.Manager
                     {
                         Offerte offerte = new Offerte();
                         offerte.Id = Convert.ToInt32(reader["Id"]);
+                        offerte.Titel = reader["Titel"].ToString();
                         offerte.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         offerte.Url = reader["Url"].ToString();
                         offertes.Add(offerte); //Voeg rollen toe aan de lijst voor de specifieke gebruiker
@@ -83,10 +85,11 @@ namespace MiaLogic.Manager
                     objcmd.Connection = objcn;
                     objcmd.CommandType = CommandType.Text;
 
-                    objcmd.CommandText = "insert into Offerte (AanvraagID, Url) VALUES (@AanvraagId, @Url)";
+                    objcmd.CommandText = "insert into Offerte (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url,@Titel)";
 
                     objcmd.Parameters.AddWithValue("@AanvraagId", offerte.AanvraagId);
                     objcmd.Parameters.AddWithValue("@Url", offerte.Url);
+                    objcmd.Parameters.AddWithValue("@Titel", offerte.Titel);
                     try
                     {
                         objcn.Open();

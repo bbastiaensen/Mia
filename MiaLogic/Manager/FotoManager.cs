@@ -33,6 +33,7 @@ namespace MiaLogic.Manager
                     {
                         Foto foto = new Foto();
                         foto.Id = Convert.ToInt32(reader["Id"]);
+                        foto.Titel = reader["Titel"].ToString();
                         foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         foto.Url = reader["Url"].ToString();
                         fotos.Add(foto);
@@ -55,7 +56,7 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
 
-                    objcmd.CommandText = "select Id, AanvraagID, Url from Foto WHERE Id = @Id;";
+                    objcmd.CommandText = "select Id, AanvraagID, Url, Titel from Foto WHERE Id = @Id;";
                     objcmd.Parameters.AddWithValue("@Id", id);
 
                     objcn.Open(); //Open de connectie met de databank
@@ -65,6 +66,7 @@ namespace MiaLogic.Manager
                     {
                         Foto foto = new Foto();
                         foto.Id = Convert.ToInt32(reader["Id"]);
+                        foto.Titel = reader["Titel"].ToString();
                         foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         foto.Url = reader["Url"].ToString();
                         fotos.Add(foto); //Voeg rollen toe aan de lijst voor de specifieke gebruiker
@@ -84,11 +86,12 @@ namespace MiaLogic.Manager
                     objcmd.Connection = objcn;
                     objcmd.CommandType = CommandType.Text;
 
-                    objcmd.CommandText = "insert into Foto (AanvraagID, Url) VALUES (@AanvraagId, @Url)";
+                    objcmd.CommandText = "insert into Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
 
 
                     objcmd.Parameters.AddWithValue("@AanvraagId", foto.AanvraagId);
                     objcmd.Parameters.AddWithValue("@Url", foto.Url);
+                    objcmd.Parameters.AddWithValue("@Titel", foto.Titel);
 
                     try
                     {
