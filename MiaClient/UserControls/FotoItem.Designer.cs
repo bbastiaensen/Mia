@@ -81,10 +81,11 @@
             // lblTitel
             // 
             this.lblTitel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitel.Location = new System.Drawing.Point(70, 5);
+            this.lblTitel.Location = new System.Drawing.Point(131, 3);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(374, 23);
             this.lblTitel.TabIndex = 14;
+            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // pcbFoto
             // 
