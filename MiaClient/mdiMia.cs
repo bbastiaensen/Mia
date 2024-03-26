@@ -26,6 +26,7 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
+        frmGoedkeuring FrmGoedkeuring;
 
 
         public mdiMia()
@@ -78,7 +79,7 @@ namespace MiaClient
         private void laadGrafischeParameters()
         {
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            //StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
+            //StyleParameters.LogoG = Image.FromFile(@"\Mia\MiaClient\Foto's\LogoG.png");
             //StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
             StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
             StyleParameters.ButtonBack = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonBack").Waarde);
@@ -97,7 +98,7 @@ namespace MiaClient
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
-            this.BackgroundImage = StyleParameters.LogoG;
+            //this.BackgroundImage = StyleParameters.LogoG;
             this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)
@@ -123,6 +124,7 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
                 helpMenu.Visible = true;
+                goedkeuringenToolStripMenuItem.Visible = false;
             }
 
             //Aankoper - items voor aankoper worden extra bij aangezet
@@ -134,12 +136,13 @@ namespace MiaClient
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
             if (Program.IsGoedkeurder)
             {
-
+                goedkeuringenToolStripMenuItem.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
             if (Program.IsSysteem)
             {
+                goedkeuringenToolStripMenuItem.Visible = true;
                 beheerToolStripMenuItem.Visible = true;
                 gebruiksLogToolStripButton.Visible = true;
                 parameterToolStripButton.Visible = true;
@@ -257,6 +260,14 @@ namespace MiaClient
             frmAanvragen.Show();
         }
 
-
+        private void goedkeuringenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmGoedkeuring == null)
+            {
+                FrmGoedkeuring = new frmGoedkeuring();
+                FrmGoedkeuring.MdiParent = this;
+            }
+            FrmGoedkeuring.Show();
+        }
     }
 }

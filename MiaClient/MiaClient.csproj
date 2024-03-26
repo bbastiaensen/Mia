@@ -87,6 +87,12 @@
     <Compile Include="frmParameter.Designer.cs">
       <DependentUpon>frmParameter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGoedkeuring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoedkeuring.Designer.cs">
+      <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </Compile>
     <Compile Include="mdiMia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleParameters.cs" />
+    <Compile Include="UserControls\GoedkeurItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\GoedkeurItem.Designer.cs">
+      <DependentUpon>GoedkeurItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AanvraagItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +168,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
+      <DependentUpon>GoedkeurItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AanvraagItem.resx">
       <DependentUpon>AanvraagItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +206,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Foto%27s\LogoG.png" />
+    <Content Include="Foto%27s\LogoK.png" />
     <Content Include="pl-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
