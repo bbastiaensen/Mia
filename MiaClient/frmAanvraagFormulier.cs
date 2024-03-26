@@ -31,6 +31,9 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
         private int _aanvraagId = 0;
+        List<Foto> foto;
+        List<Link> lik;
+        List<Offerte> offerte;
 
         public frmAanvraagFormulier()
         {
@@ -862,6 +865,21 @@ namespace MiaClient
         private void Gli_FotoItemSelected(object sender, EventArgs e)
         {
             FotoItem geselecteerd = (FotoItem)sender;
+        }
+
+        private void frmAanvraagFormulier_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                foto = FotoManager.GetFotos();
+                BindFotos(foto);
+                offerte = OfferteManager.GetOffertes();
+                BindOfferte(offerte);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
