@@ -625,7 +625,7 @@ namespace MiaClient
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "C:\\";//Dit is de originele directory
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";//Dit is de filter die alleen maar foto-extenties laat zien
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*";//Dit is de filter die alleen maar foto-extenties laat zien
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -691,7 +691,7 @@ namespace MiaClient
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "C:\\";
-                openFileDialog.Filter = "Text files (*.doc, *.docx, *.xls, *.xlsx)|*.doc;*.docx;*.xls;*.xlsx|All files (*.*)|*.*";
+                openFileDialog.Filter = "Text files (*.doc, *.docx, *.xls, *.xlsx,*.pdf,*.txt)|*.doc;*.docx;*.xls;*.xlsx;*.pdf;*.txt|All files (*.*)|*.*";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
