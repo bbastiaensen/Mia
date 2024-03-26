@@ -77,6 +77,8 @@ namespace MiaClient
             this.Tabpage_bestanden = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Links = new System.Windows.Forms.TabPage();
+            this.TxtLinkTitel = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btn_bewaarLink = new System.Windows.Forms.Button();
             this.btn_nieuweLink = new System.Windows.Forms.Button();
             this.txt_hyperlinkInput = new System.Windows.Forms.TextBox();
@@ -84,6 +86,8 @@ namespace MiaClient
             this.lbl_linksTitel = new System.Windows.Forms.Label();
             this.pnl_Links = new System.Windows.Forms.Panel();
             this.tabPage_Fotos = new System.Windows.Forms.TabPage();
+            this.TxtFotoTitel = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btn_bewaarFoto = new System.Windows.Forms.Button();
             this.btn_nieuweFoto = new System.Windows.Forms.Button();
             this.btn_kiesFoto = new System.Windows.Forms.Button();
@@ -92,9 +96,11 @@ namespace MiaClient
             this.txt_fotoURLInput = new System.Windows.Forms.TextBox();
             this.lbl_fotoUrlDetail = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pnl_Fotos = new System.Windows.Forms.Panel();
+            this.pnlFotos = new System.Windows.Forms.Panel();
             this.lbl_fotosTitel = new System.Windows.Forms.Label();
             this.tabPage_Offertes = new System.Windows.Forms.TabPage();
+            this.TxtOfferteTitel = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btn_bewaarOfferte = new System.Windows.Forms.Button();
             this.btn_nieuweOfferte = new System.Windows.Forms.Button();
             this.btn_kiesOfferte = new System.Windows.Forms.Button();
@@ -104,13 +110,7 @@ namespace MiaClient
             this.lbl_offerteURLDetail = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
-            this.pnl_Offertes = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtLinkTitel = new System.Windows.Forms.TextBox();
-            this.TxtFotoTitel = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtOfferteTitel = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.pnlOffertes = new System.Windows.Forms.Panel();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -275,9 +275,9 @@ namespace MiaClient
             this.lblWieKooptHet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblWieKooptHet.Location = new System.Drawing.Point(30, 146);
             this.lblWieKooptHet.Name = "lblWieKooptHet";
-            this.lblWieKooptHet.Size = new System.Drawing.Size(137, 28);
+            this.lblWieKooptHet.Size = new System.Drawing.Size(97, 28);
             this.lblWieKooptHet.TabIndex = 16;
-            this.lblWieKooptHet.Text = "Wie koopt het";
+            this.lblWieKooptHet.Text = "Aankoper";
             // 
             // gboxTitel
             // 
@@ -614,6 +614,22 @@ namespace MiaClient
             this.tabPage_Links.Text = "Links";
             this.tabPage_Links.UseVisualStyleBackColor = true;
             // 
+            // TxtLinkTitel
+            // 
+            this.TxtLinkTitel.Location = new System.Drawing.Point(110, 306);
+            this.TxtLinkTitel.Name = "TxtLinkTitel";
+            this.TxtLinkTitel.Size = new System.Drawing.Size(100, 34);
+            this.TxtLinkTitel.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 312);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 28);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Titel:";
+            // 
             // btn_bewaarLink
             // 
             this.btn_bewaarLink.Location = new System.Drawing.Point(512, 442);
@@ -686,7 +702,7 @@ namespace MiaClient
             this.tabPage_Fotos.Controls.Add(this.txt_fotoURLInput);
             this.tabPage_Fotos.Controls.Add(this.lbl_fotoUrlDetail);
             this.tabPage_Fotos.Controls.Add(this.label5);
-            this.tabPage_Fotos.Controls.Add(this.pnl_Fotos);
+            this.tabPage_Fotos.Controls.Add(this.pnlFotos);
             this.tabPage_Fotos.Controls.Add(this.lbl_fotosTitel);
             this.tabPage_Fotos.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage_Fotos.Location = new System.Drawing.Point(4, 37);
@@ -696,6 +712,22 @@ namespace MiaClient
             this.tabPage_Fotos.TabIndex = 1;
             this.tabPage_Fotos.Text = "Foto\'s";
             this.tabPage_Fotos.UseVisualStyleBackColor = true;
+            // 
+            // TxtFotoTitel
+            // 
+            this.TxtFotoTitel.Location = new System.Drawing.Point(74, 336);
+            this.TxtFotoTitel.Name = "TxtFotoTitel";
+            this.TxtFotoTitel.Size = new System.Drawing.Size(157, 34);
+            this.TxtFotoTitel.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 343);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 28);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Titel:";
             // 
             // btn_bewaarFoto
             // 
@@ -780,13 +812,13 @@ namespace MiaClient
             this.label5.TabIndex = 8;
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pnl_Fotos
+            // pnlFotos
             // 
-            this.pnl_Fotos.AutoScroll = true;
-            this.pnl_Fotos.Location = new System.Drawing.Point(17, 100);
-            this.pnl_Fotos.Name = "pnl_Fotos";
-            this.pnl_Fotos.Size = new System.Drawing.Size(715, 181);
-            this.pnl_Fotos.TabIndex = 3;
+            this.pnlFotos.AutoScroll = true;
+            this.pnlFotos.Location = new System.Drawing.Point(17, 100);
+            this.pnlFotos.Name = "pnlFotos";
+            this.pnlFotos.Size = new System.Drawing.Size(715, 181);
+            this.pnlFotos.TabIndex = 3;
             // 
             // lbl_fotosTitel
             // 
@@ -813,7 +845,7 @@ namespace MiaClient
             this.tabPage_Offertes.Controls.Add(this.lbl_offerteURLDetail);
             this.tabPage_Offertes.Controls.Add(this.label9);
             this.tabPage_Offertes.Controls.Add(this.lbl_offertesTitel);
-            this.tabPage_Offertes.Controls.Add(this.pnl_Offertes);
+            this.tabPage_Offertes.Controls.Add(this.pnlOffertes);
             this.tabPage_Offertes.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage_Offertes.Location = new System.Drawing.Point(4, 37);
             this.tabPage_Offertes.Name = "tabPage_Offertes";
@@ -821,6 +853,22 @@ namespace MiaClient
             this.tabPage_Offertes.TabIndex = 2;
             this.tabPage_Offertes.Text = "Offertes";
             this.tabPage_Offertes.UseVisualStyleBackColor = true;
+            // 
+            // TxtOfferteTitel
+            // 
+            this.TxtOfferteTitel.Location = new System.Drawing.Point(74, 330);
+            this.TxtOfferteTitel.Name = "TxtOfferteTitel";
+            this.TxtOfferteTitel.Size = new System.Drawing.Size(157, 34);
+            this.TxtOfferteTitel.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 336);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 28);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Titel:";
             // 
             // btn_bewaarOfferte
             // 
@@ -917,60 +965,12 @@ namespace MiaClient
             this.lbl_offertesTitel.Text = "Offertes";
             this.lbl_offertesTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pnl_Offertes
+            // pnlOffertes
             // 
-            this.pnl_Offertes.Location = new System.Drawing.Point(17, 51);
-            this.pnl_Offertes.Name = "pnl_Offertes";
-            this.pnl_Offertes.Size = new System.Drawing.Size(715, 230);
-            this.pnl_Offertes.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 312);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 28);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Titel:";
-            // 
-            // TxtLinkTitel
-            // 
-            this.TxtLinkTitel.Location = new System.Drawing.Point(110, 306);
-            this.TxtLinkTitel.Name = "TxtLinkTitel";
-            this.TxtLinkTitel.Size = new System.Drawing.Size(100, 34);
-            this.TxtLinkTitel.TabIndex = 12;
-            // 
-            // TxtFotoTitel
-            // 
-            this.TxtFotoTitel.Location = new System.Drawing.Point(74, 336);
-            this.TxtFotoTitel.Name = "TxtFotoTitel";
-            this.TxtFotoTitel.Size = new System.Drawing.Size(157, 34);
-            this.TxtFotoTitel.TabIndex = 23;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 343);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 28);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Titel:";
-            // 
-            // TxtOfferteTitel
-            // 
-            this.TxtOfferteTitel.Location = new System.Drawing.Point(74, 330);
-            this.TxtOfferteTitel.Name = "TxtOfferteTitel";
-            this.TxtOfferteTitel.Size = new System.Drawing.Size(157, 34);
-            this.TxtOfferteTitel.TabIndex = 32;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 336);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 28);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Titel:";
+            this.pnlOffertes.Location = new System.Drawing.Point(17, 51);
+            this.pnlOffertes.Name = "pnlOffertes";
+            this.pnlOffertes.Size = new System.Drawing.Size(715, 230);
+            this.pnlOffertes.TabIndex = 11;
             // 
             // frmAanvraagFormulier
             // 
@@ -1080,7 +1080,7 @@ namespace MiaClient
         private System.Windows.Forms.TextBox txt_fotoURLInput;
         private System.Windows.Forms.Label lbl_fotoUrlDetail;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel pnl_Fotos;
+        private System.Windows.Forms.Panel pnlFotos;
         private System.Windows.Forms.Label lbl_fotosTitel;
         private System.Windows.Forms.TabPage tabPage_Offertes;
         private System.Windows.Forms.Button btn_bewaarOfferte;
@@ -1092,7 +1092,7 @@ namespace MiaClient
         private System.Windows.Forms.Label lbl_offerteURLDetail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lbl_offertesTitel;
-        private System.Windows.Forms.Panel pnl_Offertes;
+        private System.Windows.Forms.Panel pnlOffertes;
         private System.Windows.Forms.TextBox TxtLinkTitel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtFotoTitel;

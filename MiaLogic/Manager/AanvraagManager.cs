@@ -246,7 +246,7 @@ namespace MiaLogic.Manager
         {
             if (aanvraag.Id == 0)
             {
-                throw new ArgumentNullException("De parameter die je wil verwijderen is onbestaande.");
+                throw new ArgumentNullException("De aanvraag die je wil verwijderen is onbestaande.");
             }
             using (SqlConnection objCn = new SqlConnection())
             {
@@ -264,6 +264,950 @@ namespace MiaLogic.Manager
                     ObjCmd.ExecuteNonQuery();
                 }
             }
+        }
+        public static List<Aanvraag> GetGebruikerAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetGebruikerDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetTitelAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetTitelDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetStatusAanvraagAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetStatusAanvraagDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetAanvraagmomentAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetAanvraagmomentDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetPlanningsdatumAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetPlanningsdatumDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetFinancieringsjaarAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetFinancieringsjaarDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetKostenplaatstAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetKostenplaatstDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetBedragAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+        public static List<Aanvraag> GetBedragDesc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
         }
     }
 }
