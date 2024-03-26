@@ -81,12 +81,6 @@
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOffertesLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmOffertesLog.Designer.cs">
-      <DependentUpon>frmOffertesLog.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +101,12 @@
     </Compile>
     <Compile Include="UserControls\AanvraagItem.Designer.cs">
       <DependentUpon>AanvraagItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FotoItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FotoItem.Designer.cs">
+      <DependentUpon>FotoItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\GebruikslogItem.cs">
       <SubType>UserControl</SubType>
@@ -153,9 +153,6 @@
     <EmbeddedResource Include="FrmGebruiksLog.resx">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOffertesLog.resx">
-      <DependentUpon>frmOffertesLog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +170,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\AanvraagItem.resx">
       <DependentUpon>AanvraagItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FotoItem.resx">
+      <DependentUpon>FotoItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GebruikslogItem.resx">
       <DependentUpon>GebruikslogItem.cs</DependentUpon>

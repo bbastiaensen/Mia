@@ -1,4 +1,5 @@
-﻿using MiaLogic.Manager;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
@@ -805,6 +806,62 @@ namespace MiaClient
         public void EnableBewaarButon()
         {
             btn_Indienen.Enabled = true;
+        }
+        public void BindOfferte(List<Offerte> items)
+        {
+            this.pnlOffertes.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.TabIndex = t + 8;
+                avi.OfferteItemSelected += Gli_OfferteItemSelected;
+                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                this.pnlOffertes.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_OfferteItemSelected(object sender, EventArgs e)
+        {
+            OffertesItem geselecteerd = (OffertesItem)sender;
+        }
+        public void BindFotos(List<Foto> items)
+        {
+            this.pnlFotos.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.TabIndex = t + 8;
+                avi.OfferteItemSelected += Gli_FotoItemSelected;
+                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                this.pnlFotos.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_FotoItemSelected(object sender, EventArgs e)
+        {
+            FotoItem geselecteerd = (FotoItem)sender;
         }
     }
 }
