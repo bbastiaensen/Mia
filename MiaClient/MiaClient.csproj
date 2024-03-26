@@ -165,6 +165,9 @@
     <EmbeddedResource Include="FrmGebruiksLog.resx">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGoedkeuring.resx">
+      <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
     </EmbeddedResource>

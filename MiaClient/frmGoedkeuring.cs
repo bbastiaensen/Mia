@@ -1,6 +1,10 @@
-﻿using System;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +19,51 @@ namespace MiaClient
         public frmGoedkeuring()
         {
             InitializeComponent();
+            PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+            StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+        }
+
+        public void BindAanvraag(List<Aanvraag> items)
+        {
+            this.pnlGoedkeuringen.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
+                item.Location = new System.Drawing.Point(xPos, yPos);
+                item.Name = "GoedkeurSelection" + t;
+                item.Size = new System.Drawing.Size(1210, 33);
+                item.TabIndex = t + 8;
+                
+                this.pnlGoedkeuringen.Controls.Add(item);
+
+                t++;
+                yPos += 30;
+            }
+        }
+
+        private void frmGoedkeuring_Load(object sender, EventArgs e)
+        {
+           var lijst = AanvraagManager.GetAanvragenInaanvraagOfGoedgekeurd();
+            BindAanvraag(lijst);
+        }
+
+        private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            ((Form)sender).Hide();
         }
     }
 }

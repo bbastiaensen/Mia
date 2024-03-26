@@ -1,5 +1,6 @@
 ﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +22,13 @@ namespace MiaClient.UserControls
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
         public Decimal Bedrag { get; set; }
+        public Boolean Even { get; set; }
 
         public GoedkeurItem()
         {
             InitializeComponent();
         }
-        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar,Decimal bedrag )
+        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar,Decimal bedrag,Boolean even )
         {
          InitializeComponent();
          Id = id;
@@ -35,6 +37,7 @@ namespace MiaClient.UserControls
          Aanvraagmoment = aanvraagmoment;
          Financieringsjaar = financieringsjaar;
          Bedrag = bedrag;
+         Even = even;
             SetGoedkeurItemWaarden();
         }
         private void SetGoedkeurItemWaarden()
@@ -44,6 +47,18 @@ namespace MiaClient.UserControls
             lblFinancieringsjaar.Text = Financieringsjaar.ToString();
             LblAanvrager.Text = Aanvrager;
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
+            if (Even)
+            {
+                this.BackColor = Color.White;
+            }
+
+            else
+            {
+
+                this.BackColor = StyleParameters.AccentKleur;
+                this.ForeColor = StyleParameters.Buttontext;
+                
+            }
         }
       
 
