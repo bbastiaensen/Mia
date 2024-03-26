@@ -881,5 +881,45 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void BindLink(List<Link> items)
+        {
+            this.pnlOffertes.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.TabIndex = t + 8;
+                avi.LinkItemSelected += Gli_LinkItemSelected;
+                avi.LinkDeleted += Avi_LinkItemChanged;
+                avi.LinkItemChanged += Avi_LinkItemChanged;
+                this.pnlOffertes.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_LinkItemSelected(object sender, EventArgs e)
+        {
+            LinkItem geselecteerd = (LinkItem)sender;
+        }
+        private void Avi_LinkItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                link = LinkManager.GetLinken();
+                BindLink(link);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
