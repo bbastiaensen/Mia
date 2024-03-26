@@ -65,6 +65,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnSortTitel = new System.Windows.Forms.Button();
+            this.btnSortAanvraagmoment = new System.Windows.Forms.Button();
+            this.btnSortGebruiker = new System.Windows.Forms.Button();
+            this.btnSortFinancieringsjaar = new System.Windows.Forms.Button();
+            this.btnSortStatusAanvraag = new System.Windows.Forms.Button();
+            this.btnBedrag = new System.Windows.Forms.Button();
+            this.btnKostenplaats = new System.Windows.Forms.Button();
+            this.btnPlanningsdatum = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +120,6 @@
             this.cbBedragTot.TabIndex = 21;
             this.cbBedragTot.Text = "Tot";
             this.cbBedragTot.UseVisualStyleBackColor = true;
-            this.cbBedragTot.CheckedChanged += new System.EventHandler(this.cbBedragTot_CheckedChanged);
             // 
             // txtBedragTot
             // 
@@ -119,7 +127,6 @@
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
             this.txtBedragTot.TabIndex = 26;
-            this.txtBedragTot.TextChanged += new System.EventHandler(this.txtBedragTot_TextChanged);
             // 
             // cbBedragVan
             // 
@@ -130,7 +137,6 @@
             this.cbBedragVan.TabIndex = 5;
             this.cbBedragVan.Text = "Van";
             this.cbBedragVan.UseVisualStyleBackColor = true;
-            this.cbBedragVan.CheckedChanged += new System.EventHandler(this.cbBedragVan_CheckedChanged);
             // 
             // txtGebruiker
             // 
@@ -138,7 +144,6 @@
             this.txtGebruiker.Name = "txtGebruiker";
             this.txtGebruiker.Size = new System.Drawing.Size(272, 34);
             this.txtGebruiker.TabIndex = 25;
-            this.txtGebruiker.TextChanged += new System.EventHandler(this.txtGebruiker_TextChanged);
             // 
             // txtKostenPlaats
             // 
@@ -146,7 +151,6 @@
             this.txtKostenPlaats.Name = "txtKostenPlaats";
             this.txtKostenPlaats.Size = new System.Drawing.Size(272, 34);
             this.txtKostenPlaats.TabIndex = 16;
-            this.txtKostenPlaats.TextChanged += new System.EventHandler(this.txtKostenPlaats_TextChanged);
             // 
             // txtBedragVan
             // 
@@ -154,7 +158,6 @@
             this.txtBedragVan.Name = "txtBedragVan";
             this.txtBedragVan.Size = new System.Drawing.Size(200, 34);
             this.txtBedragVan.TabIndex = 17;
-            this.txtBedragVan.TextChanged += new System.EventHandler(this.txtBedrag_TextChanged);
             // 
             // dtpPlanningsdatumTot
             // 
@@ -162,7 +165,6 @@
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
             this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumTot.TabIndex = 24;
-            this.dtpPlanningsdatumTot.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumTot_ValueChanged);
             // 
             // dtpPlanningsdatumVan
             // 
@@ -170,7 +172,6 @@
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
             this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 34);
             this.dtpPlanningsdatumVan.TabIndex = 23;
-            this.dtpPlanningsdatumVan.ValueChanged += new System.EventHandler(this.dtpPlanningsdatumVan_ValueChanged);
             // 
             // lblKostenplaats
             // 
@@ -187,7 +188,6 @@
             this.dtpAanvraagmomentTot.Name = "dtpAanvraagmomentTot";
             this.dtpAanvraagmomentTot.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentTot.TabIndex = 22;
-            this.dtpAanvraagmomentTot.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentTot_ValueChanged);
             // 
             // lblBedrag
             // 
@@ -204,7 +204,6 @@
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(272, 34);
             this.txtFinancieringsjaar.TabIndex = 15;
-            this.txtFinancieringsjaar.TextChanged += new System.EventHandler(this.txtFinancieringsjaar_TextChanged);
             // 
             // lblFinancieringsjaar
             // 
@@ -221,7 +220,6 @@
             this.dtpAanvraagmomentVan.Name = "dtpAanvraagmomentVan";
             this.dtpAanvraagmomentVan.Size = new System.Drawing.Size(200, 34);
             this.dtpAanvraagmomentVan.TabIndex = 21;
-            this.dtpAanvraagmomentVan.ValueChanged += new System.EventHandler(this.dtpAanvraagmomentVan_ValueChanged);
             // 
             // chbxPlaningsdatumVan
             // 
@@ -232,7 +230,6 @@
             this.chbxPlaningsdatumVan.TabIndex = 4;
             this.chbxPlaningsdatumVan.Text = "Van";
             this.chbxPlaningsdatumVan.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumVan.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumVan_CheckedChanged);
             // 
             // chbxPlaningsdatumTot
             // 
@@ -243,7 +240,6 @@
             this.chbxPlaningsdatumTot.TabIndex = 20;
             this.chbxPlaningsdatumTot.Text = "Tot";
             this.chbxPlaningsdatumTot.UseVisualStyleBackColor = true;
-            this.chbxPlaningsdatumTot.CheckedChanged += new System.EventHandler(this.chbxPlaningsdatumTot_CheckedChanged);
             // 
             // chbxAanvraagmomentTot
             // 
@@ -254,7 +250,6 @@
             this.chbxAanvraagmomentTot.TabIndex = 19;
             this.chbxAanvraagmomentTot.Text = "Tot";
             this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentTot.Click += new System.EventHandler(this.chbxAanvraagmomentTot_Click);
             // 
             // lblAanvraagmoment
             // 
@@ -271,7 +266,6 @@
             this.txtStatusAanvraag.Name = "txtStatusAanvraag";
             this.txtStatusAanvraag.Size = new System.Drawing.Size(272, 34);
             this.txtStatusAanvraag.TabIndex = 14;
-            this.txtStatusAanvraag.TextChanged += new System.EventHandler(this.txtStatusAanvraag_TextChanged);
             // 
             // txtTitel
             // 
@@ -279,7 +273,6 @@
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(272, 34);
             this.txtTitel.TabIndex = 13;
-            this.txtTitel.TextChanged += new System.EventHandler(this.txtTitel_TextChanged);
             // 
             // lblPlanningsdatum
             // 
@@ -317,7 +310,6 @@
             this.chbxAanvraagmomentVan.TabIndex = 3;
             this.chbxAanvraagmomentVan.Text = "Van";
             this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
-            this.chbxAanvraagmomentVan.Click += new System.EventHandler(this.chbxAanvraagmomentVan_Click);
             // 
             // lblGebruiker
             // 
@@ -403,7 +395,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(944, 279);
+            this.label7.Location = new System.Drawing.Point(944, 280);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 28);
             this.label7.TabIndex = 25;
@@ -412,17 +404,164 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1078, 279);
+            this.label8.Location = new System.Drawing.Point(1091, 279);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(153, 28);
             this.label8.TabIndex = 26;
             this.label8.Text = "Planningsdatum";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(15, 15);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(172, 37);
+            this.btnFilter.TabIndex = 27;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // btnSortTitel
+            // 
+            this.btnSortTitel.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortTitel.FlatAppearance.BorderSize = 0;
+            this.btnSortTitel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortTitel.Image = ((System.Drawing.Image)(resources.GetObject("btnSortTitel.Image")));
+            this.btnSortTitel.Location = new System.Drawing.Point(249, 281);
+            this.btnSortTitel.Name = "btnSortTitel";
+            this.btnSortTitel.Size = new System.Drawing.Size(27, 27);
+            this.btnSortTitel.TabIndex = 29;
+            this.btnSortTitel.UseVisualStyleBackColor = false;
+            this.btnSortTitel.Click += new System.EventHandler(this.btnSortTitel_Click);
+            // 
+            // btnSortAanvraagmoment
+            // 
+            this.btnSortAanvraagmoment.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderSize = 0;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvraagmoment.Image")));
+            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(492, 281);
+            this.btnSortAanvraagmoment.Name = "btnSortAanvraagmoment";
+            this.btnSortAanvraagmoment.Size = new System.Drawing.Size(27, 27);
+            this.btnSortAanvraagmoment.TabIndex = 30;
+            this.btnSortAanvraagmoment.UseVisualStyleBackColor = false;
+            this.btnSortAanvraagmoment.Click += new System.EventHandler(this.btnSortAanvraagmoment_Click);
+            // 
+            // btnSortGebruiker
+            // 
+            this.btnSortGebruiker.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortGebruiker.FlatAppearance.BorderSize = 0;
+            this.btnSortGebruiker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGebruiker.Image")));
+            this.btnSortGebruiker.Location = new System.Drawing.Point(176, 281);
+            this.btnSortGebruiker.Name = "btnSortGebruiker";
+            this.btnSortGebruiker.Size = new System.Drawing.Size(27, 27);
+            this.btnSortGebruiker.TabIndex = 31;
+            this.btnSortGebruiker.UseVisualStyleBackColor = false;
+            this.btnSortGebruiker.Click += new System.EventHandler(this.btnSortGebruiker_Click);
+            // 
+            // btnSortFinancieringsjaar
+            // 
+            this.btnSortFinancieringsjaar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderSize = 0;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortFinancieringsjaar.Image")));
+            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(656, 281);
+            this.btnSortFinancieringsjaar.Name = "btnSortFinancieringsjaar";
+            this.btnSortFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
+            this.btnSortFinancieringsjaar.TabIndex = 32;
+            this.btnSortFinancieringsjaar.UseVisualStyleBackColor = false;
+            this.btnSortFinancieringsjaar.Click += new System.EventHandler(this.btnSortFinancieringsjaar_Click);
+            // 
+            // btnSortStatusAanvraag
+            // 
+            this.btnSortStatusAanvraag.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortStatusAanvraag.FlatAppearance.BorderSize = 0;
+            this.btnSortStatusAanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortStatusAanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortStatusAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortStatusAanvraag.Image")));
+            this.btnSortStatusAanvraag.Location = new System.Drawing.Point(811, 281);
+            this.btnSortStatusAanvraag.Name = "btnSortStatusAanvraag";
+            this.btnSortStatusAanvraag.Size = new System.Drawing.Size(27, 27);
+            this.btnSortStatusAanvraag.TabIndex = 33;
+            this.btnSortStatusAanvraag.UseVisualStyleBackColor = false;
+            this.btnSortStatusAanvraag.Click += new System.EventHandler(this.btnSortStatusAanvraag_Click);
+            // 
+            // btnBedrag
+            // 
+            this.btnBedrag.BackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnBedrag.FlatAppearance.BorderSize = 0;
+            this.btnBedrag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnBedrag.Image")));
+            this.btnBedrag.Location = new System.Drawing.Point(906, 281);
+            this.btnBedrag.Name = "btnBedrag";
+            this.btnBedrag.Size = new System.Drawing.Size(27, 27);
+            this.btnBedrag.TabIndex = 34;
+            this.btnBedrag.UseVisualStyleBackColor = false;
+            this.btnBedrag.Click += new System.EventHandler(this.btnBedrag_Click);
+            // 
+            // btnKostenplaats
+            // 
+            this.btnKostenplaats.BackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnKostenplaats.FlatAppearance.BorderSize = 0;
+            this.btnKostenplaats.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnKostenplaats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKostenplaats.Image = ((System.Drawing.Image)(resources.GetObject("btnKostenplaats.Image")));
+            this.btnKostenplaats.Location = new System.Drawing.Point(1041, 281);
+            this.btnKostenplaats.Name = "btnKostenplaats";
+            this.btnKostenplaats.Size = new System.Drawing.Size(27, 27);
+            this.btnKostenplaats.TabIndex = 35;
+            this.btnKostenplaats.UseVisualStyleBackColor = false;
+            this.btnKostenplaats.Click += new System.EventHandler(this.btnKostenplaats_Click);
+            // 
+            // btnPlanningsdatum
+            // 
+            this.btnPlanningsdatum.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPlanningsdatum.FlatAppearance.BorderSize = 0;
+            this.btnPlanningsdatum.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlanningsdatum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlanningsdatum.Image = ((System.Drawing.Image)(resources.GetObject("btnPlanningsdatum.Image")));
+            this.btnPlanningsdatum.Location = new System.Drawing.Point(1227, 281);
+            this.btnPlanningsdatum.Name = "btnPlanningsdatum";
+            this.btnPlanningsdatum.Size = new System.Drawing.Size(27, 27);
+            this.btnPlanningsdatum.TabIndex = 36;
+            this.btnPlanningsdatum.UseVisualStyleBackColor = false;
+            this.btnPlanningsdatum.Click += new System.EventHandler(this.btnPlanningsdatum_Click);
             // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 686);
+            this.Controls.Add(this.btnPlanningsdatum);
+            this.Controls.Add(this.btnKostenplaats);
+            this.Controls.Add(this.btnBedrag);
+            this.Controls.Add(this.btnSortStatusAanvraag);
+            this.Controls.Add(this.btnSortFinancieringsjaar);
+            this.Controls.Add(this.btnSortGebruiker);
+            this.Controls.Add(this.btnSortAanvraagmoment);
+            this.Controls.Add(this.btnSortTitel);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -487,5 +626,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Button btnSortTitel;
+        private System.Windows.Forms.Button btnSortAanvraagmoment;
+        private System.Windows.Forms.Button btnSortGebruiker;
+        private System.Windows.Forms.Button btnSortFinancieringsjaar;
+        private System.Windows.Forms.Button btnSortStatusAanvraag;
+        private System.Windows.Forms.Button btnBedrag;
+        private System.Windows.Forms.Button btnKostenplaats;
+        private System.Windows.Forms.Button btnPlanningsdatum;
     }
 }
