@@ -48,6 +48,7 @@
             this.lblIdDetail = new System.Windows.Forms.Label();
             this.btnNieuw = new System.Windows.Forms.Button();
             this.btnBewaren = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,6 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(198, 34);
             this.txtCode.TabIndex = 0;
-            this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
             // lblEenheid
             // 
@@ -110,7 +110,6 @@
             this.txtEenheid.Name = "txtEenheid";
             this.txtEenheid.Size = new System.Drawing.Size(349, 34);
             this.txtEenheid.TabIndex = 2;
-            this.txtEenheid.TextChanged += new System.EventHandler(this.txtEenheid_TextChanged);
             // 
             // txtWaarde
             // 
@@ -119,7 +118,6 @@
             this.txtWaarde.Name = "txtWaarde";
             this.txtWaarde.Size = new System.Drawing.Size(242, 34);
             this.txtWaarde.TabIndex = 1;
-            this.txtWaarde.TextChanged += new System.EventHandler(this.txtWaarde_TextChanged);
             // 
             // lblParameterTitel
             // 
@@ -235,11 +233,22 @@
             this.btnBewaren.UseVisualStyleBackColor = true;
             this.btnBewaren.Click += new System.EventHandler(this.btnBewaren_Click);
             // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(13, 4);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(172, 37);
+            this.btnFilter.TabIndex = 28;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
             // frmParameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 592);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnNieuw);
             this.Controls.Add(this.txtCodeDetail);
@@ -290,5 +299,6 @@
         private System.Windows.Forms.Button btnBewaren;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.Button btnFilter;
     }
 }

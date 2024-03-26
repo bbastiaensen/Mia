@@ -152,50 +152,7 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //Controle op verplichte velden
-                if (string.IsNullOrWhiteSpace(txtCodeDetail.Text))
-                {
-                    MessageBox.Show("Het veld 'Code' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtWaardeDetail.Text))
-                {
-                    MessageBox.Show("Het veld 'Waarde' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtEenheidDetail.Text))
-                {
-                    MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
-                Parameter p = new Parameter();
-                p.Code = txtCodeDetail.Text;
-                p.Waarde = txtWaardeDetail.Text;
-                p.Eenheid = txtEenheidDetail.Text;
-                if (!isNieuw)
-                {
-                    p.Id = Convert.ToInt32(txtIdDetail.Text);
-                }
-                p.Id = ParameterManager.SaveParameter(p, isNieuw);
-                txtIdDetail.Text = p.Id.ToString();
-
-                isNieuw = false;
-
-                parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-
-                MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ParameterBewaar();
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
@@ -249,19 +206,43 @@ namespace MiaClient
             }
 
             //Leegmaken detailvelden
-            txtIdDetail.Text = string.Empty;
-            txtCodeDetail.Text = string.Empty;
-            txtWaardeDetail.Text = string.Empty;
-            txtEenheidDetail.Text = string.Empty;
+            if (txtEenheidDetail.Text == string.Empty && txtCodeDetail.Text == string.Empty && txtWaardeDetail.Text == string.Empty || txtIdDetail.Text != string.Empty)
+            {
+                txtIdDetail.Text = string.Empty;
+                txtCodeDetail.Text = string.Empty;
+                txtWaardeDetail.Text = string.Empty;
+                txtEenheidDetail.Text = string.Empty;
+            }
+            else
+            {
+                if (MessageBox.Show("Wil je deze parameter opslaan?", "parameter", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ParameterBewaar();
+                    txtIdDetail.Text = string.Empty;
+                    txtCodeDetail.Text = string.Empty;
+                    txtWaardeDetail.Text = string.Empty;
+                    txtEenheidDetail.Text = string.Empty;
+                }
+            }
 
             return items;
         }
-
-        private void txtCode_TextChanged(object sender, EventArgs e)
+        private void btnFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                filterCode = true;
+                if (txtCode.Text != string.Empty)
+                {
+                    filterCode = true;
+                }
+                if (txtEenheid.Text != string.Empty)
+                {
+                    filterEenheid = true;
+                }
+                if (txtWaarde.Text != string.Empty)
+                {
+                    filterWaarde = true;
+                }
                 BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
             }
             catch (Exception ex)
@@ -269,26 +250,47 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void txtWaarde_TextChanged(object sender, EventArgs e)
+        public void ParameterBewaar()
         {
             try
             {
-                filterWaarde = true;
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                //Controle op verplichte velden
+                if (string.IsNullOrWhiteSpace(txtCodeDetail.Text))
+                {
+                    MessageBox.Show("Het veld 'Code' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-        private void txtEenheid_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                filterEenheid = true;
+                if (string.IsNullOrWhiteSpace(txtWaardeDetail.Text))
+                {
+                    MessageBox.Show("Het veld 'Waarde' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtEenheidDetail.Text))
+                {
+                    MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
+                Parameter p = new Parameter();
+                p.Code = txtCodeDetail.Text;
+                p.Waarde = txtWaardeDetail.Text;
+                p.Eenheid = txtEenheidDetail.Text;
+                if (!isNieuw)
+                {
+                    p.Id = Convert.ToInt32(txtIdDetail.Text);
+                }
+                p.Id = ParameterManager.SaveParameter(p, isNieuw);
+                txtIdDetail.Text = p.Id.ToString();
+
+                isNieuw = false;
+
+                parameters = ParameterManager.GetParameters();
                 BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+
+                MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

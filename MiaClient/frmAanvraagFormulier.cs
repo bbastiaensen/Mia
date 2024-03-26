@@ -1,4 +1,5 @@
-﻿using MiaLogic.Manager;
+﻿using MiaClient.UserControls;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
@@ -80,49 +81,43 @@ namespace MiaClient
             StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
-        private void DisableForm()
+        public void DisableForm()
         {
             //Links
             txt_hyperlinkInput.ReadOnly = true;
             btn_bewaarLink.Enabled = false;
             btn_nieuweLink.Enabled = false;
-            btn_verwijderLink.Enabled = false;
+
 
             //Fotos
             txt_fotoURLInput.ReadOnly = true;
             btn_bewaarFoto.Enabled = false;
             btn_nieuweFoto.Enabled = false;
-            btn_verwijderFoto.Enabled = false;
             btn_kiesFoto.Enabled = false;
 
             //Offertes
             txt_offerteURLInput.ReadOnly = true;
             btn_bewaarOfferte.Enabled = false;
             btn_nieuweOfferte.Enabled = false;
-            btn_verwijderOfferte.Enabled = false;
             btn_kiesOfferte.Enabled = false;
         }
 
-        private void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
+        public void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
         {
             //Links
             txt_hyperlinkInput.ReadOnly = false;
             btn_bewaarLink.Enabled = true;
             btn_nieuweLink.Enabled = true;
-            btn_verwijderLink.Enabled = true;
-
             //Fotos
-            txt_fotoURLInput.ReadOnly = false;
+            txt_fotoURLInput.ReadOnly = true;
             btn_bewaarFoto.Enabled = true;
             btn_nieuweFoto.Enabled = true;
-            btn_verwijderFoto.Enabled = true;
             btn_kiesFoto.Enabled = true;
 
             //Offertes
-            txt_offerteURLInput.ReadOnly = false;
+            txt_offerteURLInput.ReadOnly = true;
             btn_bewaarOfferte.Enabled = true;
             btn_nieuweOfferte.Enabled = true;
-            btn_verwijderOfferte.Enabled = true;
             btn_kiesOfferte.Enabled = true;
 
         }
@@ -347,6 +342,7 @@ namespace MiaClient
             {
                 Offerte offerte = new Offerte
                 {
+                    Titel = TxtOfferteTitel.Text,
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
@@ -366,7 +362,7 @@ namespace MiaClient
             {
                 Foto foto = new Foto
                 {
-
+                    Titel = TxtFotoTitel.Text,
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
@@ -385,6 +381,7 @@ namespace MiaClient
             {
                 Link link = new Link
                 {
+                    Titel = TxtLinkTitel.Text,
                     AanvraagId = _aanvraagId,
                     Url = hyperlink
                 };
@@ -546,7 +543,7 @@ namespace MiaClient
             {
                 if (Checks())
                 {
-                    if(txtAanvraagId.Text == string.Empty)
+                    if (txtAanvraagId.Text == string.Empty)
                     {
                         GetLastAanvraag();
                         SaveAanvraag();
@@ -566,7 +563,7 @@ namespace MiaClient
                     {
                         UpdateAanvraag();
                     }
-                   
+
                 }
                 if (AanvraagBewaard != null)
                 {
@@ -748,7 +745,7 @@ namespace MiaClient
                     MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                 
+
                 }
             }
 
@@ -776,7 +773,7 @@ namespace MiaClient
                 MessageBox.Show("Je kunt alleen cijfers ingeven.");
                 txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
             }
-            
+
         }
         public void UpdateAanvraag()
         {
@@ -810,5 +807,61 @@ namespace MiaClient
         {
             btn_Indienen.Enabled = true;
         }
-    }    
+        public void BindOfferte(List<Offerte> items)
+        {
+            this.pnlOffertes.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.TabIndex = t + 8;
+                avi.OfferteItemSelected += Gli_OfferteItemSelected;
+                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                this.pnlOffertes.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_OfferteItemSelected(object sender, EventArgs e)
+        {
+            OffertesItem geselecteerd = (OffertesItem)sender;
+        }
+        public void BindFotos(List<Foto> items)
+        {
+            this.pnlFotos.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.TabIndex = t + 8;
+                avi.OfferteItemSelected += Gli_FotoItemSelected;
+                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                this.pnlFotos.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_FotoItemSelected(object sender, EventArgs e)
+        {
+            FotoItem geselecteerd = (FotoItem)sender;
+        }
+    }
 }

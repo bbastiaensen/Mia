@@ -9,6 +9,7 @@ namespace MiaLogic.Object
     public class Foto
     {
         public int Id { get; set; }
+        public string Titel { get; set; }
         public int AanvraagId { get; set; }
         public string Url { get; set; }
     }
