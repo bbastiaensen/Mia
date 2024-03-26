@@ -15,7 +15,7 @@ namespace MiaLogic.Manager
 
         public static List<Foto> GetFotos()
         {
-            List<Foto> fotos = new List<Foto>();
+            List<Foto> returnlist = null;
 
             using (SqlConnection objcn = new SqlConnection())
             {
@@ -25,22 +25,28 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     objcmd.CommandText = "Select * from Foto order by Id asc;";
-
                     objcn.Open();
 
-                    SqlDataReader reader = objcmd.ExecuteReader();
-                    while (reader.Read())
+                    SqlDataReader objRea = objcmd.ExecuteReader();
+                    while (objRea.Read())
                     {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Foto>();
+                        }
                         Foto foto = new Foto();
-                        foto.Id = Convert.ToInt32(reader["Id"]);
-                        foto.Titel = reader["Titel"].ToString();
-                        foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
-                        foto.Url = reader["Url"].ToString();
-                        fotos.Add(foto);
+                        foto.Id = Convert.ToInt32(objRea["Id"]);
+                        if (objRea["Titel"] != DBNull.Value)
+                        {
+                            foto.Titel = objRea["Titel"].ToString();
+                        }
+                        foto.AanvraagId = Convert.ToInt32(objRea["AanvraagID"]);
+                        foto.Url = objRea["Url"].ToString();
+                        returnlist.Add(foto);
                     }
                 }
             }
-            return fotos;
+            return returnlist;
         }
 
 

@@ -992,6 +992,7 @@ namespace MiaClient
             this.Name = "frmAanvraagFormulier";
             this.Text = "frmAanvraagFormulier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAanvraagFormulier_FormClosing);
+            this.Load += new System.EventHandler(this.frmAanvraagFormulier_Load);
             this.tabPage_Investering.ResumeLayout(false);
             this.pnl_Investeringen.ResumeLayout(false);
             this.gboxInvestering.ResumeLayout(false);

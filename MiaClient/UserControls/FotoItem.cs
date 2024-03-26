@@ -16,34 +16,51 @@ namespace MiaClient.UserControls
         public string Titel { get; set; }
         public string URL { get; set; }
         public int AanvraagId { get; set; }
+        public Boolean Even { get; set; }
 
-        public event EventHandler OfferteDeleted;
-        public event EventHandler OfferteItemSelected;
-        public event EventHandler OfferteItemChanged;
+        public event EventHandler FotoDeleted;
+        public event EventHandler FotoItemSelected;
+        public event EventHandler FotoItemChanged;
         public FotoItem()
         {
             InitializeComponent();
         }
-        public FotoItem(int id, string titel, string url, int aanvraagId)
+        public FotoItem(int id, string titel, string url, int aanvraagId, Boolean even)
         {
+            InitializeComponent();
             Id = id;
             Titel = titel;
             URL = url;
             AanvraagId = aanvraagId;
+            Even = even;
             SetFotoItemWaarde();
+            
         }
         private void SetFotoItemWaarde()
         {
             
             lblId.Text = Id.ToString();
-            lblTitel.Text = Titel.ToString();
+            if (Titel != null)
+            {
+                lblTitel.Text = Titel.ToString();
+            }
+                
             //pcbFoto.Image = URL.;
+            if (Even)
+            {
+                this.BackColor = Color.White;
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }
         private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
         {
 
         }

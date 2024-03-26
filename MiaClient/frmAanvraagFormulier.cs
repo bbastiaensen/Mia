@@ -31,6 +31,9 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
         private int _aanvraagId = 0;
+        List<Foto> foto;
+        List<Link> link;
+        List<Offerte> offerte;
 
         public frmAanvraagFormulier()
         {
@@ -817,7 +820,7 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "OfferteSelection" + t;
                 avi.Size = new System.Drawing.Size(1050, 33);
@@ -845,12 +848,12 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId);
+                FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "OfferteSelection" + t;
+                avi.Name = "FotoSelection" + t;
                 avi.Size = new System.Drawing.Size(1050, 33);
                 avi.TabIndex = t + 8;
-                avi.OfferteItemSelected += Gli_FotoItemSelected;
+                avi.FotoItemSelected += Gli_FotoItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                 //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
                 this.pnlFotos.Controls.Add(avi);
@@ -862,6 +865,21 @@ namespace MiaClient
         private void Gli_FotoItemSelected(object sender, EventArgs e)
         {
             FotoItem geselecteerd = (FotoItem)sender;
+        }
+
+        private void frmAanvraagFormulier_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                foto = FotoManager.GetFotos();
+                BindFotos(foto);
+                offerte = OfferteManager.GetOffertes();
+                BindOfferte(offerte);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
