@@ -31,6 +31,7 @@ namespace MiaClient.UserControls
         public event EventHandler AanvraagDeleted;
         public event EventHandler AanvraagItemSelected;
         public event EventHandler AanvraagItemChanged;
+        frmAanvraagFormulier frmAanvraagFormulier;
         public AanvraagItem()
         {
             InitializeComponent();
@@ -85,35 +86,40 @@ namespace MiaClient.UserControls
                 this.BackColor = Color.White;
             }
         }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (AanvraagItemSelected != null)
+            if (frmAanvraagFormulier == null)
             {
-                if(lblStatusAanvraag.Text == "In aanvraag")
+                if (AanvraagItemSelected != null)
                 {
-                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
-                    aanvraagFormulieredit.Show();
-                    aanvraagFormulieredit.EnableBewaarButon();
-                    aanvraagFormulieredit.UpdateAanvraag();
-                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                }
-                else
-                {
-                    frmAanvraagFormulier aanvraagFormulieredit = new frmAanvraagFormulier(Id, "edit");
-                    aanvraagFormulieredit.Show();
-                    aanvraagFormulieredit.DisableBewaarButon();
-                    aanvraagFormulieredit.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                    MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                
-                Aanvraag aanvraag1 = new Aanvraag();
-                aanvraag1.Id = Convert.ToInt32(lblId.Text);
-                GebruiksLog gebruiksLog1 = new GebruiksLog();
-                gebruiksLog1.Gebruiker = Program.Gebruiker;
-                gebruiksLog1.TijdstipActie = DateTime.Now;
-                gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+                    if (lblStatusAanvraag.Text == "In aanvraag")
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+                        frmAanvraagFormulier.EnableBewaarButon();
+                        frmAanvraagFormulier.UpdateAanvraag();
+                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                        frmAanvraagFormulier.Show();
+                    }
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
-                GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                    Aanvraag aanvraag1 = new Aanvraag();
+                    aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                }
             }
         }
 
@@ -139,7 +145,7 @@ namespace MiaClient.UserControls
                         AanvraagDeleted(this, null);
                         MessageBox.Show("De aanvraag is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else 
+                    else
                     {
                         MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -157,7 +163,7 @@ namespace MiaClient.UserControls
                     MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }  
+        }
 
     }
 }
