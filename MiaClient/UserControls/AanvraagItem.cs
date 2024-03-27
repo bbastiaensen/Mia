@@ -99,6 +99,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
                         frmAanvraagFormulier.EnableBewaarButon();
                         frmAanvraagFormulier.EnableForm();
+                        frmAanvraagFormulier.BindFotoByAanvraagId();
                         frmAanvraagFormulier.UpdateAanvraag();
                         frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                         frmAanvraagFormulier.Show();

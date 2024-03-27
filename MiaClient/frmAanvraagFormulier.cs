@@ -34,6 +34,9 @@ namespace MiaClient
         List<Foto> foto;
         List<Link> link;
         List<Offerte> offerte;
+        bool fotoByAanvraagId = true;
+        bool linkByAanvraagId = false;
+        bool offerteByAanvraagId = false;
 
         public frmAanvraagFormulier()
         {
@@ -823,7 +826,7 @@ namespace MiaClient
                 OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "OfferteSelection" + t;
-                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
@@ -851,7 +854,7 @@ namespace MiaClient
                 FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "FotoSelection" + t;
-                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
@@ -869,12 +872,110 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
+        }
+        public void BindLink(List<Link> items)
+        {
+            this.pnlOffertes.Controls.Clear();
+
+            int xPos = 0;
+            int yPos = 0;
+            int t = 0;
+
+            foreach (var av in items)
+            {
+                LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
+                avi.Location = new System.Drawing.Point(xPos, yPos);
+                avi.Name = "OfferteSelection" + t;
+                avi.Size = new System.Drawing.Size(710, 33);
+                avi.TabIndex = t + 8;
+                avi.LinkItemSelected += Gli_LinkItemSelected;
+                avi.LinkDeleted += Avi_LinkItemChanged;
+                avi.LinkItemChanged += Avi_LinkItemChanged;
+                this.pnlOffertes.Controls.Add(avi);
+
+                t++;
+                yPos += 30;
+            }
+        }
+        private void Gli_LinkItemSelected(object sender, EventArgs e)
+        {
+            LinkItem geselecteerd = (LinkItem)sender;
+        }
+        private void Avi_LinkItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                link = LinkManager.GetLinken();
+                BindLink(link);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Foto> FotoByAanvraagId(List<Foto> items, bool fotoByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (fotoByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList(); 
+                }
+            }
+            return items;
+        }
+        public void BindFotoByAanvraagId()
+        {
             try
             {
                 foto = FotoManager.GetFotos();
-                BindFotos(foto);
+                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Link> LinkByAanvraagId(List<Link> items, bool linkByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (linkByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
+                }
+            }
+            return items;
+        }
+        public void BindLinkByAanvraagId()
+        {
+            try
+            {
+                link = LinkManager.GetLinken();
+                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Offerte> OfferteByAanvraagId(List<Offerte> items, bool offerteByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (offerteByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
+                }
+            }
+            return items;
+        }
+        public void BindOfferteByAanvraagId()
+        {
+            try
+            {
                 offerte = OfferteManager.GetOffertes();
-                BindOfferte(offerte);
+                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
             catch (Exception ex)
             {
