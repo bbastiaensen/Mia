@@ -131,7 +131,7 @@ namespace MiaClient
             {
                 if (aanvraagmomentVan)
                 {
-                    if (chbxPlaningsdatumVan.Checked == true)
+                    if (chbxAanvraagmomentVan.Checked == true)
                     {
                         items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
                     }
