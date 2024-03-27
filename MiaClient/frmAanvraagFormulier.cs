@@ -826,7 +826,7 @@ namespace MiaClient
                 OffertesItem avi = new OffertesItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "OfferteSelection" + t;
-                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
@@ -854,7 +854,7 @@ namespace MiaClient
                 FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "FotoSelection" + t;
-                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
@@ -872,17 +872,6 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    foto = FotoManager.GetFotos();
-            //    BindFotos(foto);
-            //    offerte = OfferteManager.GetOffertes();
-            //    BindOfferte(offerte);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
         public void BindLink(List<Link> items)
         {
@@ -897,7 +886,7 @@ namespace MiaClient
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "OfferteSelection" + t;
-                avi.Size = new System.Drawing.Size(1050, 33);
+                avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;
@@ -941,6 +930,52 @@ namespace MiaClient
             {
                 foto = FotoManager.GetFotos();
                 BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Link> LinkByAanvraagId(List<Link> items, bool linkByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (linkByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
+                }
+            }
+            return items;
+        }
+        public void BindLinkByAanvraagId()
+        {
+            try
+            {
+                link = LinkManager.GetLinken();
+                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Offerte> OfferteByAanvraagId(List<Offerte> items, bool offerteByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (offerteByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
+                }
+            }
+            return items;
+        }
+        public void BindOfferteByAanvraagId()
+        {
+            try
+            {
+                offerte = OfferteManager.GetOffertes();
+                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
             catch (Exception ex)
             {
