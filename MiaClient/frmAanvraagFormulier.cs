@@ -35,8 +35,9 @@ namespace MiaClient
         List<Link> link;
         List<Offerte> offerte;
         bool fotoByAanvraagId = true;
-        bool linkByAanvraagId = false;
-        bool offerteByAanvraagId = false;
+        bool linkByAanvraagId = true;
+        bool offerteByAanvraagId = true;
+        private int _linkId = 0;
 
         public frmAanvraagFormulier()
         {
@@ -391,7 +392,7 @@ namespace MiaClient
                     AanvraagId = _aanvraagId,
                     Url = hyperlink
                 };
-                LinkManager.SaveLinken(link);
+                LinkManager.SaveLinken(link, insert: true) ;
                 return link;
             }
             catch (Exception ex)
@@ -885,7 +886,7 @@ namespace MiaClient
             {
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "OfferteSelection" + t;
+                avi.Name = "LinkSelection" + t;
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
@@ -981,6 +982,28 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void UpdateLink()
+        {
+            LinkManager.GetLinkenById(_linkId);
+            Link updateLink = new Link
+            {
+                Id = Convert.ToInt32(txtAanvraagId.Text),
+                Titel = txtTitel.Text,
+                Url = txt_hyperlinkInput.Text,
+                AanvraagId = _aanvraagId
+            };
+            LinkManager.SaveLinken(updateLink, insert: false);
+
+            
+        }
+        public int GetLastLinkId()
+        {
+            int highestLinkId = MiaLogic.Manager.LinkManager.GetHighestLinkId();
+            int linkid = highestLinkId + 1;
+            _linkId = linkid;
+
+            return _linkId;
         }
     }
 }

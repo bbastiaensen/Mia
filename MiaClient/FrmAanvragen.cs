@@ -39,6 +39,8 @@ namespace MiaClient
         bool SortPlanningsdatum = true;
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
+
+       
         public FrmAanvragen()
         {
             InitializeComponent();
