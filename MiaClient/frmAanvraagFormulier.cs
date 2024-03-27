@@ -34,6 +34,9 @@ namespace MiaClient
         List<Foto> foto;
         List<Link> link;
         List<Offerte> offerte;
+        bool fotoByAanvraagId = true;
+        bool linkByAanvraagId = false;
+        bool offerteByAanvraagId = false;
 
         public frmAanvraagFormulier()
         {
@@ -869,17 +872,17 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
-            try
-            {
-                foto = FotoManager.GetFotos();
-                BindFotos(foto);
-                offerte = OfferteManager.GetOffertes();
-                BindOfferte(offerte);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    foto = FotoManager.GetFotos();
+            //    BindFotos(foto);
+            //    offerte = OfferteManager.GetOffertes();
+            //    BindOfferte(offerte);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         public void BindLink(List<Link> items)
         {
@@ -915,6 +918,29 @@ namespace MiaClient
             {
                 link = LinkManager.GetLinken();
                 BindLink(link);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public List<Foto> FotoByAanvraagId(List<Foto> items, bool fotoByAanvraagId)
+        {
+            if (items != null)
+            {
+                if (fotoByAanvraagId)
+                {
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList(); 
+                }
+            }
+            return items;
+        }
+        public void BindFotoByAanvraagId()
+        {
+            try
+            {
+                foto = FotoManager.GetFotos();
+                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
