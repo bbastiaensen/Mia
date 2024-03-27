@@ -35,8 +35,8 @@ namespace MiaClient
         List<Link> link;
         List<Offerte> offerte;
         bool fotoByAanvraagId = true;
-        bool linkByAanvraagId = false;
-        bool offerteByAanvraagId = false;
+        bool linkByAanvraagId = true;
+        bool offerteByAanvraagId = true;
 
         public frmAanvraagFormulier()
         {
@@ -731,11 +731,12 @@ namespace MiaClient
 
                     SaveFile(selectedPath, destinationPath);
 
+
                     MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Hier returnen we naar de aanvragen formulier, dit doen we met alle 
 
-                    string relativeUrl = Path.Combine("offertes", uniqueFileName);
-                    SaveOfferte(relativeUrl);
+                    //string relativeUrl = Path.Combine("offertes", uniqueFileName);
+                    SaveOfferte(destinationPath);
 
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {

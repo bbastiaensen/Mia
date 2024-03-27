@@ -63,7 +63,7 @@ namespace MiaClient.UserControls
                 String extension = Path.GetExtension(URL).ToLower();
                 if (extension != null)
                 {
-                    if (extension == ".doc" || extension == ".docx" || extension == ".xls" || extension == ".xlsx" || extension == "pdf" || extension == "txt")
+                    if (extension == ".doc" || extension == ".docx" || extension == ".xls" || extension == ".xlsx" || extension == ".pdf" || extension == ".txt")
                     {
                         Process.Start(URL);
                     }
