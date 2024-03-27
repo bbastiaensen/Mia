@@ -831,6 +831,7 @@ namespace MiaClient
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                 //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+
                 this.pnlOffertes.Controls.Add(avi);
 
                 t++;
@@ -919,7 +920,7 @@ namespace MiaClient
             {
                 if (fotoByAanvraagId)
                 {
-                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList(); 
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
                 }
             }
             return items;

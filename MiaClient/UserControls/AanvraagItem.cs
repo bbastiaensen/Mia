@@ -100,6 +100,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.EnableBewaarButon();
                         frmAanvraagFormulier.EnableForm();
                         frmAanvraagFormulier.BindFotoByAanvraagId();
+                        frmAanvraagFormulier.BindOfferteByAanvraagId();
                         frmAanvraagFormulier.UpdateAanvraag();
                         frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                         frmAanvraagFormulier.Show();
