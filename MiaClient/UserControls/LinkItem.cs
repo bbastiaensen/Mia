@@ -69,23 +69,34 @@ namespace MiaClient.UserControls
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            frmAanvraagFormulier = new frmAanvraagFormulier();
+            if (frmAanvraagFormulier == null)
+            {
                 if (LinkItemSelected != null)
                 {
-                        
+                    frmAanvraagFormulier = new frmAanvraagFormulier();
                     
-                    
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.DisableForm();
+                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
-                    //Aanvraag aanvraag1 = new Aanvraag();
-                    //aanvraag1.Id = Convert.ToInt32(lblId.Text);
-                    //GebruiksLog gebruiksLog1 = new GebruiksLog();
-                    //gebruiksLog1.Gebruiker = Program.Gebruiker;
-                    //gebruiksLog1.TijdstipActie = DateTime.Now;
-                    //gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+                    Aanvraag aanvraag1 = new Aanvraag();
+                    aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
-                    //GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
-            
+            }
+
         }
     }
 }
