@@ -99,6 +99,7 @@
             this.BtnGoedgekeurd.Size = new System.Drawing.Size(27, 27);
             this.BtnGoedgekeurd.TabIndex = 16;
             this.BtnGoedgekeurd.UseVisualStyleBackColor = false;
+            this.BtnGoedgekeurd.Click += new System.EventHandler(this.BtnGoedgekeurd_Click);
             // 
             // btnAfgekeurd
             // 
@@ -114,6 +115,7 @@
             this.btnAfgekeurd.Size = new System.Drawing.Size(27, 27);
             this.btnAfgekeurd.TabIndex = 17;
             this.btnAfgekeurd.UseVisualStyleBackColor = false;
+            this.btnAfgekeurd.Click += new System.EventHandler(this.btnAfgekeurd_Click);
             // 
             // btnBekrachtigd
             // 
@@ -129,6 +131,7 @@
             this.btnBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnBekrachtigd.TabIndex = 18;
             this.btnBekrachtigd.UseVisualStyleBackColor = false;
+            this.btnBekrachtigd.Click += new System.EventHandler(this.btnBekrachtigd_Click);
             // 
             // btnNietBekrachtigd
             // 
@@ -144,6 +147,7 @@
             this.btnNietBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnNietBekrachtigd.TabIndex = 19;
             this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
+            this.btnNietBekrachtigd.Click += new System.EventHandler(this.btnNietBekrachtigd_Click);
             // 
             // GoedkeurItem
             // 
@@ -162,6 +166,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GoedkeurItem";
             this.Size = new System.Drawing.Size(1210, 33);
+            this.Load += new System.EventHandler(this.GoedkeurItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

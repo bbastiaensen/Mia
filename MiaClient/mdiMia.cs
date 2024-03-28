@@ -7,7 +7,9 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -79,8 +81,11 @@ namespace MiaClient
         private void laadGrafischeParameters()
         {
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            //StyleParameters.LogoG = Image.FromFile(@"\Mia\MiaClient\Foto's\LogoG.png");
-            //StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
+            string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);
+            StyleParameters.LogoG = Image.FromFile(imagePath);
+            string imagePath2 = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoK").Waarde);
+            StyleParameters.LogoK = Image.FromFile(imagePath2);
             StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
             StyleParameters.ButtonBack = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonBack").Waarde);
             StyleParameters.Buttontext = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonText").Waarde);
@@ -98,7 +103,7 @@ namespace MiaClient
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
-            //this.BackgroundImage = StyleParameters.LogoG;
+            this.BackgroundImage = StyleParameters.LogoG;
             this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)

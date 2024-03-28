@@ -7,7 +7,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +26,8 @@ namespace MiaClient.UserControls
         public string Financieringsjaar { get; set; }
         public Decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
+
+       public string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
 
         public GoedkeurItem()
         {
@@ -60,12 +65,68 @@ namespace MiaClient.UserControls
                 
             }
         }
-      
 
-       
-       
+        private void BtnGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
+            BtnGoedgekeurd.Image = Image.FromFile(imagePath);
+            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+            aanvraag.StatusAanvraagId = 2;
+            AanvraagManager.SaveAanvraag(aanvraag, false);
 
-        
+        }
 
+        private void btnAfgekeurd_Click(object sender, EventArgs e)
+        {
+            string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+            btnAfgekeurd.Image = Image.FromFile(imagePath);
+            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+            aanvraag.StatusAanvraagId = 3;
+            AanvraagManager.SaveAanvraag(aanvraag, false);
+        }
+
+        private void btnBekrachtigd_Click(object sender, EventArgs e)
+        {
+            string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
+            btnBekrachtigd.Image = Image.FromFile(imagePath);
+            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+            aanvraag.StatusAanvraagId = 4;
+            AanvraagManager.SaveAanvraag(aanvraag, false);
+
+        }
+
+        private void btnNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
+            btnNietBekrachtigd.Image = Image.FromFile(imagePath);
+            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+            aanvraag.StatusAanvraagId = 5;
+            AanvraagManager.SaveAanvraag(aanvraag, false);
+        }
+
+        private void GoedkeurItem_Load(object sender, EventArgs e)
+        {
+            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+
+            switch (aanvraag.StatusAanvraagId)
+            {
+                case 2:
+                    string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
+                    BtnGoedgekeurd.Image = Image.FromFile(imagePath); 
+                    break;
+                case 3:
+                    string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                    btnAfgekeurd.Image = Image.FromFile(imagePath2);
+                    break;
+                case 4:
+                    string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
+                    btnBekrachtigd.Image = Image.FromFile(imagePath3);
+                    break;
+                case 5:
+                    string imagePath4= Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
+                    btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
+                    break;
+            }
+        }
     }
 }

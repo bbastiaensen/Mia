@@ -229,6 +229,14 @@
   <ItemGroup>
     <Content Include="Foto%27s\LogoG.png" />
     <Content Include="Foto%27s\LogoK.png" />
+    <Content Include="Icons\Afgekeurd_aan.png" />
+    <Content Include="Icons\Afgekeurd_uit.png" />
+    <Content Include="Icons\bekrachtigd_aan.png" />
+    <Content Include="Icons\bekrachtigd_uit.png" />
+    <Content Include="Icons\goedgekeurd_aan.png" />
+    <Content Include="Icons\goedgekeurd_uit.png" />
+    <Content Include="Icons\NietBekrachtigd_aan.png" />
+    <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="pl-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
