@@ -58,7 +58,7 @@ namespace MiaLogic.Manager
                         }
                         else
                         {
-                            objcmd.CommandText = "Update Linken set (AanvraagID, Url, Titel) VALUES (@AanvraagID, @Url, @Titel) where Id = @Id";
+                            objcmd.CommandText = "Update Linken set AanvraagID = @AanvraagID, Url = @Url, Titel = @Titel where Id = @Id";
                         }
 
 

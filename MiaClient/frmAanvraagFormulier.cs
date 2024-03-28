@@ -201,12 +201,6 @@ namespace MiaClient
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
 
             }
-            
-            else if(action == "editLink")
-            {
-                editLink(id);
-            }
-
         }
 
         // Ophalen van de data voor de dropdownlists
@@ -325,6 +319,8 @@ namespace MiaClient
             switch (tabControl.SelectedIndex)
             {
                 case 0:
+                    lblLinkId.Text = string.Empty;
+                    TxtLinkTitel.Clear();
                     txt_hyperlinkInput.Clear();
                     break;
                 case 1:
@@ -607,12 +603,31 @@ namespace MiaClient
         {
             try
             {
-                hyperlink = txt_hyperlinkInput.Text;
-                Link savedlink = SaveLink(hyperlink);
-                int LastLinkId = GetLastLink();
-                if (savedlink != null)
+                if (lblLinkId.Text == string.Empty)
                 {
-                    MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hyperlink = txt_hyperlinkInput.Text;
+                    Link savedlink = SaveLink(hyperlink);
+
+                    int LastLinkId = GetLastLink();
+                    if (savedlink != null)
+                    {
+                        MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                        {
+                            Gebruiker = Program.Gebruiker,
+                            Id = Convert.ToInt32(_aanvraagId),
+                            TijdstipActie = DateTime.Now,
+                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                        }, true);
+                    }
+                    link = LinkManager.GetLinken();
+                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                }
+                else
+                {
+                    int LastLinkId = GetLastLink();
+                    UpdateLink();
+                    MessageBox.Show("De link is successvol aangepast en opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
@@ -620,7 +635,10 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
                     }, true);
+                    link = LinkManager.GetLinken();
+                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                 }
+
             }
             catch (Exception ex)
             {
@@ -909,6 +927,13 @@ namespace MiaClient
         private void Gli_LinkItemSelected(object sender, EventArgs e)
         {
             LinkItem geselecteerd = (LinkItem)sender;
+           
+            lblLinkId.Text = geselecteerd.Id.ToString();
+            txt_hyperlinkInput.Text = geselecteerd.URL;
+            TxtLinkTitel.Text = geselecteerd.Titel;
+
+            link = LinkManager.GetLinken();
+            BindLink(LinkByAanvraagId(link, linkByAanvraagId));
         }
         private void Avi_LinkItemChanged(object sender, EventArgs e)
         {
@@ -993,13 +1018,13 @@ namespace MiaClient
         }
         public void UpdateLink()
         {
-            LinkManager.GetLinkenById(_linkId);
+            LinkManager.GetLinkenById(Convert.ToInt32(lblLinkId.Text));
             Link updateLink = new Link
             {
-                Id = Convert.ToInt32(_linkId),
-                Titel = txtTitel.Text,
+                Id = Convert.ToInt32(lblLinkId.Text),
+                Titel = TxtLinkTitel.Text,
                 Url = txt_hyperlinkInput.Text,
-                AanvraagId = _aanvraagId
+                AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
             };
             LinkManager.SaveLinken(updateLink, insert: false);
 
@@ -1012,23 +1037,6 @@ namespace MiaClient
             _linkId = linkid;
 
             return _linkId;
-        }
-        public void editLink(int id)
-        {
-            Link linken = new Link();
-            linken = LinkManager.GetLinkById(id);
-
-            txt_hyperlinkInput.Text = linken.Url.ToString();
-            TxtLinkTitel.Text = linken.Titel.ToString();
-
-        }
-        public void Li_LinkItemSelected(object sender, EventArgs e)
-        {
-            LinkItem geselecteerd = (LinkItem)sender;
-
-            txt_hyperlinkInput.Text = geselecteerd.URL;
-            TxtLinkTitel.Text = geselecteerd.Titel;
-
         }
     }
 }
