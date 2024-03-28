@@ -7,7 +7,9 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +28,7 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
+        frmGoedkeuring FrmGoedkeuring;
 
 
         public mdiMia()
@@ -78,8 +81,11 @@ namespace MiaClient
         private void laadGrafischeParameters()
         {
             ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            //StyleParameters.LogoG = Image.FromFile(ParameterManager.GetParameterByCode("LogoG").Waarde);
-            //StyleParameters.LogoK = Image.FromFile(ParameterManager.GetParameterByCode("LogoK").Waarde);
+            string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);
+            StyleParameters.LogoG = Image.FromFile(imagePath);
+            string imagePath2 = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoK").Waarde);
+            StyleParameters.LogoK = Image.FromFile(imagePath2);
             StyleParameters.AccentKleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AccentKleur").Waarde);
             StyleParameters.ButtonBack = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonBack").Waarde);
             StyleParameters.Buttontext = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ButtonText").Waarde);
@@ -123,6 +129,7 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
                 helpMenu.Visible = true;
+                goedkeuringenToolStripMenuItem.Visible = false;
             }
 
             //Aankoper - items voor aankoper worden extra bij aangezet
@@ -134,12 +141,13 @@ namespace MiaClient
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
             if (Program.IsGoedkeurder)
             {
-
+                goedkeuringenToolStripMenuItem.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
             if (Program.IsSysteem)
             {
+                goedkeuringenToolStripMenuItem.Visible = true;
                 beheerToolStripMenuItem.Visible = true;
                 gebruiksLogToolStripButton.Visible = true;
                 parameterToolStripButton.Visible = true;
@@ -257,6 +265,14 @@ namespace MiaClient
             frmAanvragen.Show();
         }
 
-
+        private void goedkeuringenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmGoedkeuring == null)
+            {
+                FrmGoedkeuring = new frmGoedkeuring();
+                FrmGoedkeuring.MdiParent = this;
+            }
+            FrmGoedkeuring.Show();
+        }
     }
 }
