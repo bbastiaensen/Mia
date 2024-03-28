@@ -35,8 +35,8 @@ namespace MiaClient
         List<Link> link;
         List<Offerte> offerte;
         bool fotoByAanvraagId = true;
-        bool linkByAanvraagId = false;
-        bool offerteByAanvraagId = false;
+        bool linkByAanvraagId = true;
+        bool offerteByAanvraagId = true;
 
         public frmAanvraagFormulier()
         {
@@ -731,11 +731,12 @@ namespace MiaClient
 
                     SaveFile(selectedPath, destinationPath);
 
+
                     MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Hier returnen we naar de aanvragen formulier, dit doen we met alle 
 
-                    string relativeUrl = Path.Combine("offertes", uniqueFileName);
-                    SaveOfferte(relativeUrl);
+                    //string relativeUrl = Path.Combine("offertes", uniqueFileName);
+                    SaveOfferte(destinationPath);
 
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
@@ -831,6 +832,7 @@ namespace MiaClient
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                 //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+
                 this.pnlOffertes.Controls.Add(avi);
 
                 t++;
@@ -875,7 +877,7 @@ namespace MiaClient
         }
         public void BindLink(List<Link> items)
         {
-            this.pnlOffertes.Controls.Clear();
+            this.pnl_Links.Controls.Clear();
 
             int xPos = 0;
             int yPos = 0;
@@ -891,7 +893,7 @@ namespace MiaClient
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;
                 avi.LinkItemChanged += Avi_LinkItemChanged;
-                this.pnlOffertes.Controls.Add(avi);
+                this.pnl_Links.Controls.Add(avi);
 
                 t++;
                 yPos += 30;
@@ -919,7 +921,7 @@ namespace MiaClient
             {
                 if (fotoByAanvraagId)
                 {
-                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList(); 
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
                 }
             }
             return items;

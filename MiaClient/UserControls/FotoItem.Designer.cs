@@ -86,6 +86,7 @@
             this.lblTitel.Size = new System.Drawing.Size(374, 23);
             this.lblTitel.TabIndex = 14;
             this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
+            this.lblTitel.MouseHover += new System.EventHandler(this.lblTitel_MouseHover);
             // 
             // pcbFoto
             // 
