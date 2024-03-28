@@ -26,7 +26,7 @@ namespace MiaClient.UserControls
         public event EventHandler LinkItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
 
-        public bool delete = 
+        
         public LinkItem()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace MiaClient.UserControls
             {
                 if (LinkDeleted != null)
                 {
-                    if ( != false)
+                    if (AanvraagItem.delete == true)
                     {
                         Link link = new Link();
                         link.Id = Convert.ToInt32(lblId.Text);
@@ -85,14 +85,24 @@ namespace MiaClient.UserControls
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmAanvraagFormulier = new frmAanvraagFormulier();
             if (frmAanvraagFormulier == null)
             {
                 if (LinkItemSelected != null)
                 {
-                    frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                    frmAanvraagFormulier.Show();
-                    frmAanvraagFormulier.UpdateLink();
+                    if (AanvraagItem.edit == true)
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.UpdateLink();
+                    }
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.DisableForm();
+                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
                     Link link = new Link();
                     link.Id = Convert.ToInt32(lblId.Text);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +23,9 @@ namespace MiaClient.UserControls
         public event EventHandler FotoDeleted;
         public event EventHandler FotoItemSelected;
         public event EventHandler FotoItemChanged;
+
+        frmAanvraagFormulier frmAanvraagFormulier;
+
         public FotoItem()
         {
             InitializeComponent();
@@ -53,7 +58,32 @@ namespace MiaClient.UserControls
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (frmAanvraagFormulier == null)
+            {
+                if (FotoDeleted != null)
+                {
+                    if (AanvraagItem.delete == true)
+                    {
+                        Foto fotos = new Foto();
+                        fotos.Id = Convert.ToInt32(lblId.Text);
+                        FotoManager.DeleteFoto(fotos);
+                        FotoDeleted(this, null);
+                        MessageBox.Show("De Foto is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Je kunt deze Foto niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    Foto foto = new Foto();
+                    foto.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Foto " + foto.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                }
+            }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {

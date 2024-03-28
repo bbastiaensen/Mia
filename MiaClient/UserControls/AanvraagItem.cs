@@ -33,8 +33,8 @@ namespace MiaClient.UserControls
         public event EventHandler AanvraagItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
 
-        public bool edit = false;
-        public bool delete = false;
+        static public bool edit = false;
+        static public bool delete = false;
 
         public AanvraagItem()
         {

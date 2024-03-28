@@ -876,7 +876,7 @@ namespace MiaClient
         }
         public void BindLink(List<Link> items)
         {
-            this.pnlOffertes.Controls.Clear();
+            this.pnl_Links.Controls.Clear();
 
             int xPos = 0;
             int yPos = 0;
@@ -892,7 +892,7 @@ namespace MiaClient
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;
                 avi.LinkItemChanged += Avi_LinkItemChanged;
-                this.pnlOffertes.Controls.Add(avi);
+                this.pnl_Links.Controls.Add(avi);
 
                 t++;
                 yPos += 30;
