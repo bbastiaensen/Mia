@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -54,8 +56,8 @@ namespace MiaClient.UserControls
             {
                 if (LinkDeleted != null)
                 {
-                    
-                    
+
+
                     //Aanvraag aanvraag1 = new Aanvraag();
                     //aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     //GebruiksLog gebruiksLog1 = new GebruiksLog();
@@ -70,22 +72,37 @@ namespace MiaClient.UserControls
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-                if (LinkItemSelected != null)
+            if (LinkItemSelected != null)
+            {
+
+
+
+
+                //Aanvraag aanvraag1 = new Aanvraag();
+                //aanvraag1.Id = Convert.ToInt32(lblId.Text);
+                //GebruiksLog gebruiksLog1 = new GebruiksLog();
+                //gebruiksLog1.Gebruiker = Program.Gebruiker;
+                //gebruiksLog1.TijdstipActie = DateTime.Now;
+                //gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+                //GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+            }
+
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(URL))
                 {
-                        
-                    
-                    
-
-                    //Aanvraag aanvraag1 = new Aanvraag();
-                    //aanvraag1.Id = Convert.ToInt32(lblId.Text);
-                    //GebruiksLog gebruiksLog1 = new GebruiksLog();
-                    //gebruiksLog1.Gebruiker = Program.Gebruiker;
-                    //gebruiksLog1.TijdstipActie = DateTime.Now;
-                    //gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
-
-                    //GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                    Process.Start(URL);
                 }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -74,6 +74,7 @@
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(494, 23);
             this.lblTitel.TabIndex = 12;
+            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // lblId
             // 
