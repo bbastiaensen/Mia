@@ -83,6 +83,7 @@
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(374, 23);
             this.lblTitel.TabIndex = 16;
+            this.lblTitel.Click += new System.EventHandler(this.lblTitel_Click);
             // 
             // LinkItem
             // 

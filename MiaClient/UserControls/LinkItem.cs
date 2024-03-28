@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -113,6 +115,21 @@ namespace MiaClient.UserControls
 
                     GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
+            }
+        }
+
+        private void lblTitel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(URL))
+                {
+                    Process.Start(URL);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

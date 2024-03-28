@@ -732,11 +732,12 @@ namespace MiaClient
 
                     SaveFile(selectedPath, destinationPath);
 
+
                     MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Hier returnen we naar de aanvragen formulier, dit doen we met alle 
 
-                    string relativeUrl = Path.Combine("offertes", uniqueFileName);
-                    SaveOfferte(relativeUrl);
+                    //string relativeUrl = Path.Combine("offertes", uniqueFileName);
+                    SaveOfferte(destinationPath);
 
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
@@ -832,6 +833,7 @@ namespace MiaClient
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
                 //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                 //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+
                 this.pnlOffertes.Controls.Add(avi);
 
                 t++;
@@ -920,7 +922,7 @@ namespace MiaClient
             {
                 if (fotoByAanvraagId)
                 {
-                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList(); 
+                    items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
                 }
             }
             return items;

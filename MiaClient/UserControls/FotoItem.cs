@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,23 +41,24 @@ namespace MiaClient.UserControls
             AanvraagId = aanvraagId;
             Even = even;
             SetFotoItemWaarde();
-            
+
         }
         private void SetFotoItemWaarde()
         {
-            
+
             lblId.Text = Id.ToString();
             if (Titel != null)
             {
                 lblTitel.Text = Titel.ToString();
             }
-                
+
             //pcbFoto.Image = URL.;
             if (Even)
             {
                 this.BackColor = Color.White;
             }
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (frmAanvraagFormulier == null)
@@ -92,6 +95,31 @@ namespace MiaClient.UserControls
 
         private void lblTitel_Click(object sender, EventArgs e)
         {
+            try
+            {
+                String extension = Path.GetExtension(URL).ToLower();
+                if (extension != null)
+                {
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif")
+                    {
+                        Process.Start(URL);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dit bestandstype is niet ondersteund");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void lblTitel_MouseHover(object sender, EventArgs e)
+        {
+
 
         }
     }
