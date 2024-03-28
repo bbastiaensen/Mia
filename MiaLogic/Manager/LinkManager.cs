@@ -159,6 +159,35 @@ namespace MiaLogic.Manager
             return highestLinkId;
         }
 
+        public static Link GetLinkById(int id)
+        {
+            Link linken = null;
 
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+
+                    objcmd.CommandText = "select Id, AanvraagID, Url, Titel from Linken WHERE Id = @Id;";
+                    objcmd.Parameters.AddWithValue("@Id", id);
+
+                    objcn.Open(); //Open de connectie met de databank
+
+                    SqlDataReader reader = objcmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        linken = new Link();
+                        linken.Id = Convert.ToInt32(reader["Id"]);
+                        linken.Titel = reader["Titel"].ToString();
+                        linken.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
+                        linken.Url = reader["Url"].ToString();
+                    }
+                }
+                return linken;
+            }
+        }
     }
 }

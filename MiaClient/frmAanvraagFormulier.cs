@@ -178,6 +178,7 @@ namespace MiaClient
             }
 
             Aanvraag aanvraag = new Aanvraag();
+           
             if (action == "edit")
             {
                 aanvraag = AanvraagManager.GetAanvraagById(id);
@@ -199,6 +200,11 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
 
+            }
+            
+            else if(action == "editLink")
+            {
+                editLink(id);
             }
 
         }
@@ -990,7 +996,7 @@ namespace MiaClient
             LinkManager.GetLinkenById(_linkId);
             Link updateLink = new Link
             {
-                Id = Convert.ToInt32(txtAanvraagId.Text),
+                Id = Convert.ToInt32(_linkId),
                 Titel = txtTitel.Text,
                 Url = txt_hyperlinkInput.Text,
                 AanvraagId = _aanvraagId
@@ -1006,6 +1012,23 @@ namespace MiaClient
             _linkId = linkid;
 
             return _linkId;
+        }
+        public void editLink(int id)
+        {
+            Link linken = new Link();
+            linken = LinkManager.GetLinkById(id);
+
+            txt_hyperlinkInput.Text = linken.Url.ToString();
+            TxtLinkTitel.Text = linken.Titel.ToString();
+
+        }
+        public void Li_LinkItemSelected(object sender, EventArgs e)
+        {
+            LinkItem geselecteerd = (LinkItem)sender;
+
+            txt_hyperlinkInput.Text = geselecteerd.URL;
+            TxtLinkTitel.Text = geselecteerd.Titel;
+
         }
     }
 }

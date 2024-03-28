@@ -93,13 +93,14 @@ namespace MiaClient.UserControls
                 {
                     if (AanvraagItem.edit == true)
                     {
-                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                        frmAanvraagFormulier.Show();
+                        LinkItemSelected(this, null);
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
+                        
                         frmAanvraagFormulier.UpdateLink();
                     }
                     else
                     {
-                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
                         frmAanvraagFormulier.DisableForm();
