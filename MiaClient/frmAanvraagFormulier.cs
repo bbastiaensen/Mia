@@ -353,7 +353,7 @@ namespace MiaClient
                     AanvraagId = _aanvraagId
                 };
 
-                OfferteManager.SaveOfferte(offerte);
+                OfferteManager.SaveOfferte(offerte, true);
                 return offerte;
             }
             catch (Exception ex)
@@ -372,7 +372,7 @@ namespace MiaClient
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
-                FotoManager.SaveFoto(foto);
+                FotoManager.SaveFoto(foto, true);
                 return foto;
             }
             catch (Exception ex)

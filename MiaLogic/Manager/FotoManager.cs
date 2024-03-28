@@ -82,7 +82,7 @@ namespace MiaLogic.Manager
             }
         }
 
-        public static void SaveFoto(Foto foto)
+        public static void SaveFoto(Foto foto, bool insert)
         {
             using (SqlConnection objcn = new SqlConnection())
             {
@@ -91,8 +91,14 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     objcmd.CommandType = CommandType.Text;
-
-                    objcmd.CommandText = "insert into Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
+                    if (insert)
+                    {
+                        objcmd.CommandText = "insert into Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
+                    }
+                    else
+                    {
+                        objcmd.CommandText = " Update Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
+                    }
 
 
                     objcmd.Parameters.AddWithValue("@AanvraagId", foto.AanvraagId);
