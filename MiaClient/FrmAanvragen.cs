@@ -39,10 +39,12 @@ namespace MiaClient
         bool SortPlanningsdatum = true;
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
+
+       
         public FrmAanvragen()
         {
             InitializeComponent();
-
+            //Maken de connecties met de mannagers.
             PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
@@ -53,21 +55,22 @@ namespace MiaClient
             AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-
-        }
+            }
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
+            //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staaat.
             if (frmAanvraagFormulier == null)
             {
                 frmAanvraagFormulier = new frmAanvraagFormulier();
                 frmAanvraagFormulier.MdiParent = MdiParent;
                 frmAanvraagFormulier.AanvraagBewaard += FrmAanvraagFormulier_AanvraagBewaard;
             }
+            //We openen een nieuw aanvraagformulier
             frmAanvraagFormulier.Show();
-
         }
         public void BindAanvraag(List<Aanvraag> items)
         {
+            //Haalt alle aanvragen uit de databank en zet deze in een lijst die we toonen.
             this.pnlAanvragen.Controls.Clear();
 
             int xPos = 0;
@@ -90,7 +93,6 @@ namespace MiaClient
                 yPos += 30;
             }
         }
-
         private void Avi_AanvraagItemChanged(object sender, EventArgs e)
         {
             try
@@ -103,7 +105,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void frmAanvragen_Load(object sender, EventArgs e)
         {
             try
@@ -131,7 +132,7 @@ namespace MiaClient
             {
                 if (aanvraagmomentVan)
                 {
-                    if (chbxPlaningsdatumVan.Checked == true)
+                    if (chbxAanvraagmomentVan.Checked == true)
                     {
                         items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
                     }
@@ -201,15 +202,7 @@ namespace MiaClient
                     items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
                 }
             }
-            //Leegmaken detailvelden
-            //txtBedragTot.Text = string.Empty;
-            //txtBedragVan.Text = string.Empty;
-            //txtFinancieringsjaar.Text = string.Empty;
-            //txtGebruiker.Text = string.Empty;
-            //txtKostenPlaats.Text = string.Empty;
-            //txtStatusAanvraag.Text = string.Empty;
-            //txtTitel.Text = string.Empty;
-            return items;
+           return items;
         }
         private void FrmAanvragen_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -281,7 +274,6 @@ namespace MiaClient
                 {
                     filterPlanningsdatumVan = true;
                 }
-
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
             catch (Exception ex)
@@ -289,7 +281,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnSortGebruiker_Click(object sender, EventArgs e)
         {
             if(SortGebruiker == true)
@@ -305,7 +296,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnSortTitel_Click(object sender, EventArgs e)
         {
             if(SortTitel == true)
@@ -321,7 +311,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
         {
             if(SortAanvraagmoment == true)
@@ -337,7 +326,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnSortFinancieringsjaar_Click(object sender, EventArgs e)
         {
             if(SortFinancieringsjaar == true)
@@ -353,7 +341,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
         {
             if(SortStatusAanvraag == true)
@@ -369,7 +356,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnBedrag_Click(object sender, EventArgs e)
         {
             if(SortBedrag == true)
@@ -385,7 +371,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnKostenplaats_Click(object sender, EventArgs e)
         {
             if(SortKostenPlaats == true)
@@ -401,7 +386,6 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
-
         private void btnPlanningsdatum_Click(object sender, EventArgs e)
         {
             if(SortPlanningsdatum == true)

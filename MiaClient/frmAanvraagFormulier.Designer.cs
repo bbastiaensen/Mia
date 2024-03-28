@@ -111,6 +111,7 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
+            this.lblLinkId = new System.Windows.Forms.Label();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -597,6 +598,7 @@ namespace MiaClient
             // 
             // tabPage_Links
             // 
+            this.tabPage_Links.Controls.Add(this.lblLinkId);
             this.tabPage_Links.Controls.Add(this.TxtLinkTitel);
             this.tabPage_Links.Controls.Add(this.label1);
             this.tabPage_Links.Controls.Add(this.btn_bewaarLink);
@@ -972,6 +974,14 @@ namespace MiaClient
             this.pnlOffertes.Size = new System.Drawing.Size(715, 230);
             this.pnlOffertes.TabIndex = 11;
             // 
+            // lblLinkId
+            // 
+            this.lblLinkId.Location = new System.Drawing.Point(17, 293);
+            this.lblLinkId.Name = "lblLinkId";
+            this.lblLinkId.Size = new System.Drawing.Size(44, 16);
+            this.lblLinkId.TabIndex = 13;
+            this.lblLinkId.Visible = false;
+            // 
             // frmAanvraagFormulier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
@@ -1100,5 +1110,6 @@ namespace MiaClient
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtOfferteTitel;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblLinkId;
     }
 }

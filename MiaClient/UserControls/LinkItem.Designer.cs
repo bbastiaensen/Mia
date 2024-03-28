@@ -49,6 +49,7 @@
             this.btnEdit.Size = new System.Drawing.Size(27, 27);
             this.btnEdit.TabIndex = 13;
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -64,6 +65,7 @@
             this.btnDelete.Size = new System.Drawing.Size(27, 27);
             this.btnDelete.TabIndex = 14;
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblId
             // 
