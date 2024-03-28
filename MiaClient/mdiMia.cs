@@ -99,7 +99,7 @@ namespace MiaClient
             menuStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.ForeColor = StyleParameters.Buttontext;
             beheerToolStripMenuItem.BackColor = StyleParameters.AccentKleur;
-            
+
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 

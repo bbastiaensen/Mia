@@ -16,6 +16,7 @@ namespace MiaClient.UserControls
         public string Titel { get; set; }
         public string URL { get; set; }
         public int AanvraagId { get; set; }
+        public Boolean Even { get; set;}
 
         public event EventHandler OfferteDeleted;
         public event EventHandler OfferteItemSelected;
@@ -24,18 +25,24 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-        public OffertesItem(int id, string titel, string url, int aanvraagId)
+        public OffertesItem(int id, string titel, string url, int aanvraagId, Boolean even)
         {
+            InitializeComponent();
             Id = id;
             Titel = titel;
             URL = url;
             AanvraagId = aanvraagId;
+            Even = even;
             SetOfferteItemWaarde();
         }
         private void SetOfferteItemWaarde()
         {
             lblId.Text = Id.ToString();
             lblTitel.Text = Titel.ToString();
+            if(Even)
+            {
+                this.BackColor = Color.White;
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
