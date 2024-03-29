@@ -896,7 +896,6 @@ namespace MiaClient
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
                 avi.TabIndex = t + 8;
-                avi.FotoItemSelected -= Gli_FotoItemSelected;
                 avi.FotoDeleted += Avi_FotoItemChanged;
                 avi.FotoItemChanged += Avi_FotoItemChanged;
                 this.pnlFotos.Controls.Add(avi);
