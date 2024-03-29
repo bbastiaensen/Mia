@@ -32,6 +32,8 @@ namespace MiaClient.UserControls
         public event EventHandler AanvraagItemSelected;
         public event EventHandler AanvraagItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
+        static public bool edit = false;
+        static public bool delete = false;
         public AanvraagItem()
         {
             InitializeComponent();

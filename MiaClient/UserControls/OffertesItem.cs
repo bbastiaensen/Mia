@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +25,11 @@ namespace MiaClient.UserControls
         public event EventHandler OfferteDeleted;
         public event EventHandler OfferteItemSelected;
         public event EventHandler OfferteItemChanged;
+        frmAanvraagFormulier frmAanvraagFormulier;
+        public static bool edit = false;
+        public static bool delete = false;
+        List<Offerte> offerte;
+
 
         public OffertesItem()
         {
@@ -47,14 +54,68 @@ namespace MiaClient.UserControls
                 this.BackColor = Color.White;
             }
         }
+        public void DeleteOfferte()
+        {
+            try
+            {
+                Offerte offerte = new Offerte();
+                offerte.Id = Id;
+                OfferteManager.DeleteOfferte(offerte);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Ben je zeker dat je deze offerte wilt verwijderen?", "success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                DeleteOfferte();
+                MessageBox.Show("Success");
+                //Hier moeten de aanvragen terug gerefreshed worden
+            }
+            else
+            {
+                return;
+            }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            edit = true;
+            if (frmAanvraagFormulier == null)
+            {
+                if (OfferteItemSelected != null)
+                {
+                    if (OffertesItem.edit == true)
+                    {
+                        OfferteItemSelected(this, null);
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editOfferte");
+                    }
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editOfferte");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.DisableForm();
+                        MessageBox.Show("Je kunt deze offerte niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
+                    Offerte offerte = new Offerte();
+                    offerte.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
+                    {
+                        Gebruiker = Program.Gebruiker,
+                        TijdstipActie = DateTime.Now,
+                        OmschrijvingActie = $"Offerte {offerte.Id} werd aangepast door Gebruiker {Program.Gebruiker.ToString()}"
+
+                    }, true);
+                }
+            }
         }
+
 
         private void lblTitel_Click(object sender, EventArgs e)
         {

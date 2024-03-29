@@ -90,7 +90,7 @@ namespace MiaLogic.Manager
                     }
                     else
                     {
-                        objcmd.CommandText = "Update Offerte (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url,@Titel)";
+                        objcmd.CommandText = "UPDATE Offerte SET Url = @Url, Titel = @Titel WHERE AanvraagID = @AanvraagId";
                     }
 
 
