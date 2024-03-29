@@ -33,19 +33,24 @@
             // 
             // pnlGoedkeuringen
             // 
-            this.pnlGoedkeuringen.Location = new System.Drawing.Point(12, 140);
+            this.pnlGoedkeuringen.AutoScroll = true;
+            this.pnlGoedkeuringen.Location = new System.Drawing.Point(9, 11);
+            this.pnlGoedkeuringen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlGoedkeuringen.Name = "pnlGoedkeuringen";
-            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1145, 397);
+            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1036, 426);
             this.pnlGoedkeuringen.TabIndex = 0;
             // 
             // frmGoedkeuring
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1169, 549);
+            this.ClientSize = new System.Drawing.Size(1052, 446);
             this.Controls.Add(this.pnlGoedkeuringen);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
             this.Name = "frmGoedkeuring";
-            this.Text = "GoedKeuringsform";
+            this.Text = "Goedkeuringen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGoedkeuring_FormClosing);
             this.Load += new System.EventHandler(this.frmGoedkeuring_Load);
             this.ResumeLayout(false);

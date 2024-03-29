@@ -22,6 +22,7 @@ namespace MiaClient.UserControls
         public int Id { get; set; }
         public string Aanvrager { get; set; }
         public DateTime Aanvraagmoment { get; set; }
+        public int AanvraagStatusId { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
         public Decimal Bedrag { get; set; }
@@ -33,22 +34,23 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar,Decimal bedrag,Boolean even )
+        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, int aanvraagStatusId, string titel, string financieringsjaar, Decimal bedrag, Boolean even)
         {
-         InitializeComponent();
-         Id = id;
-         Aanvrager = aanvrager;
-         Titel = titel;
-         Aanvraagmoment = aanvraagmoment;
-         Financieringsjaar = financieringsjaar;
-         Bedrag = bedrag;
-         Even = even;
+            InitializeComponent();
+            Id = id;
+            Aanvrager = aanvrager;
+            AanvraagStatusId = aanvraagStatusId;
+            Titel = titel;
+            Aanvraagmoment = aanvraagmoment;
+            Financieringsjaar = financieringsjaar;
+            Bedrag = bedrag;
+            Even = even;
             SetGoedkeurItemWaarden();
         }
         private void SetGoedkeurItemWaarden()
         {
             lblTitel.Text = Titel;
-            lblBedrag.Text = Bedrag.ToString();
+            lblBedrag.Text = Bedrag.ToString("c", CultureInfo.CurrentCulture);
             lblFinancieringsjaar.Text = Financieringsjaar.ToString();
             LblAanvrager.Text = Aanvrager;
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
@@ -139,9 +141,9 @@ namespace MiaClient.UserControls
 
         private void GoedkeurItem_Load(object sender, EventArgs e)
         {
-            Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
+            //Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
 
-            switch (aanvraag.StatusAanvraagId)
+            switch (AanvraagStatusId)
             {
                 case 2:
                     string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
