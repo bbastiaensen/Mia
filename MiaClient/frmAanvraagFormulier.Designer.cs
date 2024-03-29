@@ -77,6 +77,7 @@ namespace MiaClient
             this.Tabpage_bestanden = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Links = new System.Windows.Forms.TabPage();
+            this.lblLinkId = new System.Windows.Forms.Label();
             this.TxtLinkTitel = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_bewaarLink = new System.Windows.Forms.Button();
@@ -111,7 +112,6 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-            this.lblLinkId = new System.Windows.Forms.Label();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -389,6 +389,7 @@ namespace MiaClient
             this.txtAantalStuks.Name = "txtAantalStuks";
             this.txtAantalStuks.Size = new System.Drawing.Size(172, 34);
             this.txtAantalStuks.TabIndex = 11;
+            this.txtAantalStuks.TextChanged += new System.EventHandler(this.Bedrag_TextChanged);
             this.txtAantalStuks.Leave += new System.EventHandler(this.txtAantalStuks_Leave);
             // 
             // lblAantalStuks
@@ -615,6 +616,14 @@ namespace MiaClient
             this.tabPage_Links.TabIndex = 0;
             this.tabPage_Links.Text = "Links";
             this.tabPage_Links.UseVisualStyleBackColor = true;
+            // 
+            // lblLinkId
+            // 
+            this.lblLinkId.Location = new System.Drawing.Point(17, 293);
+            this.lblLinkId.Name = "lblLinkId";
+            this.lblLinkId.Size = new System.Drawing.Size(44, 16);
+            this.lblLinkId.TabIndex = 13;
+            this.lblLinkId.Visible = false;
             // 
             // TxtLinkTitel
             // 
@@ -973,14 +982,6 @@ namespace MiaClient
             this.pnlOffertes.Name = "pnlOffertes";
             this.pnlOffertes.Size = new System.Drawing.Size(715, 230);
             this.pnlOffertes.TabIndex = 11;
-            // 
-            // lblLinkId
-            // 
-            this.lblLinkId.Location = new System.Drawing.Point(17, 293);
-            this.lblLinkId.Name = "lblLinkId";
-            this.lblLinkId.Size = new System.Drawing.Size(44, 16);
-            this.lblLinkId.TabIndex = 13;
-            this.lblLinkId.Visible = false;
             // 
             // frmAanvraagFormulier
             // 
