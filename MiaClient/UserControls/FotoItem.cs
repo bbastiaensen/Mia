@@ -95,7 +95,7 @@ namespace MiaClient.UserControls
         {
             if (frmAanvraagFormulier == null)
             {
-                if (FotoItemSelected != null)
+                if (FotoItemSelected != null)//Hier gaat nog iets fout
                 {
                     if (AanvraagItem.edit == true)
                     {

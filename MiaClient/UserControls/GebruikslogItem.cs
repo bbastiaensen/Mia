@@ -38,11 +38,11 @@ namespace MiaClient.UserControls
             lblGebruiker.Text = Gebruiker;
             if (OmschrijvingActie.Length >= 47)
             {
-                lblOmschrijvingActieKort.Text = OmschrijvingActie.Substring(0,47) + "...";
+                lblOmschrijvingActieKort.Text = OmschrijvingActie.Substring(0, 47) + "...";
             }
             else
             {
-                lblOmschrijvingActieKort.Text = OmschrijvingActie.ToString();   
+                lblOmschrijvingActieKort.Text = OmschrijvingActie.ToString();
             }
             if (Even)
             {

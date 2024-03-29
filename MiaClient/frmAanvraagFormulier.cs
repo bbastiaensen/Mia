@@ -912,7 +912,11 @@ namespace MiaClient
             txt_FotoId.Text = geselecteerd.Id.ToString();
             txt_fotoURLInput.Text = geselecteerd.URL;
             foto = FotoManager.GetFotos();
-            foto = FotoByAanvraagId(foto, true);
+            if (foto != null)
+            {
+                foto = new List<Foto>();
+            }
+            foto.AddRange(FotoByAanvraagId(foto, true));
             BindFotos(foto);
         }
 
