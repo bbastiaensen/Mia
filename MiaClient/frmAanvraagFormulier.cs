@@ -895,8 +895,6 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
-                avi.TabIndex = t + 8;
-                avi.FotoItemSelected -= Gli_FotoItemSelected;
                 avi.FotoDeleted += Avi_FotoItemChanged;
                 avi.FotoItemChanged += Avi_FotoItemChanged;
                 this.pnlFotos.Controls.Add(avi);
@@ -912,11 +910,7 @@ namespace MiaClient
             txt_FotoId.Text = geselecteerd.Id.ToString();
             txt_fotoURLInput.Text = geselecteerd.URL;
             foto = FotoManager.GetFotos();
-            if (foto != null)
-            {
-                foto = new List<Foto>();
-            }
-            foto.AddRange(FotoByAanvraagId(foto, true));
+            foto = FotoByAanvraagId(foto, true);
             BindFotos(foto);
         }
 
