@@ -102,7 +102,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
                         frmAanvraagFormulier.DisableForm();
-                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Je kunt deze link niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     Link link = new Link();

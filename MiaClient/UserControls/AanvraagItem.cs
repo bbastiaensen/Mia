@@ -121,6 +121,10 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                         MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
+                    {
+                        delete = true;
+                    }
 
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
