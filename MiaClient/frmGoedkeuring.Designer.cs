@@ -33,9 +33,11 @@
             // 
             // pnlGoedkeuringen
             // 
-            this.pnlGoedkeuringen.Location = new System.Drawing.Point(12, 140);
+            this.pnlGoedkeuringen.AutoScroll = true;
+            this.pnlGoedkeuringen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlGoedkeuringen.Location = new System.Drawing.Point(0, 0);
             this.pnlGoedkeuringen.Name = "pnlGoedkeuringen";
-            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1145, 397);
+            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1169, 549);
             this.pnlGoedkeuringen.TabIndex = 0;
             // 
             // frmGoedkeuring

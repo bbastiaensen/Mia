@@ -19,16 +19,9 @@ namespace MiaClient
         public frmGoedkeuring()
         {
             InitializeComponent();
-            PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+           
             AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+          
         }
 
         public void BindAanvraag(List<Aanvraag> items)
@@ -44,7 +37,7 @@ namespace MiaClient
                 GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
                 item.Location = new System.Drawing.Point(xPos, yPos);
                 item.Name = "GoedkeurSelection" + t;
-                item.Size = new System.Drawing.Size(1210, 33);
+                item.Size = new System.Drawing.Size(900, 33);
                 item.TabIndex = t + 8;
                 
                 this.pnlGoedkeuringen.Controls.Add(item);

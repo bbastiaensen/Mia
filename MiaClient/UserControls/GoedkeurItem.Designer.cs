@@ -43,7 +43,7 @@
             // LblAanvrager
             // 
             this.LblAanvrager.AutoSize = true;
-            this.LblAanvrager.Location = new System.Drawing.Point(402, 2);
+            this.LblAanvrager.Location = new System.Drawing.Point(245, 2);
             this.LblAanvrager.Name = "LblAanvrager";
             this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
             this.LblAanvrager.TabIndex = 11;
@@ -52,7 +52,7 @@
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(529, 2);
+            this.lblTitel.Location = new System.Drawing.Point(367, 2);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(72, 28);
             this.lblTitel.TabIndex = 12;
@@ -61,7 +61,7 @@
             // lblAanvraagmoment
             // 
             this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(656, 2);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(514, 2);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
             this.lblAanvraagmoment.TabIndex = 13;
@@ -70,7 +70,7 @@
             // lblFinancieringsjaar
             // 
             this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(798, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(656, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
             this.lblFinancieringsjaar.TabIndex = 14;
@@ -79,7 +79,7 @@
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(928, 2);
+            this.lblBedrag.Location = new System.Drawing.Point(800, 2);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(72, 28);
             this.lblBedrag.TabIndex = 15;
@@ -165,7 +165,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GoedkeurItem";
-            this.Size = new System.Drawing.Size(1210, 33);
+            this.Size = new System.Drawing.Size(882, 33);
             this.Load += new System.EventHandler(this.GoedkeurItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
