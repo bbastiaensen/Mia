@@ -52,7 +52,9 @@ namespace MiaClient.UserControls
                 lblTitel.Text = Titel.ToString();
             }
 
-            //pcbFoto.Image = URL.;
+            pcbFoto.ImageLocation = URL.ToString();
+
+            pcbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
             if (Even)
             {
                 this.BackColor = Color.White;

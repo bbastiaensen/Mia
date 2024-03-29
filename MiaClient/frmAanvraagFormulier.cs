@@ -638,6 +638,7 @@ namespace MiaClient
                     link = LinkManager.GetLinken();
                     BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                 }
+                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
 
             }
             catch (Exception ex)
@@ -940,7 +941,7 @@ namespace MiaClient
             try
             {
                 link = LinkManager.GetLinken();
-                BindLink(link);
+                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
             }
             catch (Exception ex)
             {
