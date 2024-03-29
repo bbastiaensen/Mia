@@ -61,6 +61,7 @@ namespace MiaClient.UserControls
             }
         }
 
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (frmAanvraagFormulier == null)
@@ -92,6 +93,35 @@ namespace MiaClient.UserControls
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (frmAanvraagFormulier == null)
+            {
+                if (FotoItemSelected != null)
+                {
+                    if (AanvraagItem.edit == true)
+                    {
+                        FotoItemSelected(this, null);
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editFoto");
+                    }
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editFoto");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.DisableForm();
+                        MessageBox.Show("Je kunt deze Foto niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    Foto foto = new Foto();
+                    foto.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
+                    {
+                        Gebruiker = Program.Gebruiker,
+                        TijdstipActie = DateTime.Now,
+                        OmschrijvingActie = $"Foto {foto.Id} werd aangepast door Gebruiker {Program.Gebruiker.ToString()}"
+
+                    }, true);
+                }
+            }
 
         }
 

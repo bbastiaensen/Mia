@@ -178,7 +178,7 @@ namespace MiaClient
             }
 
             Aanvraag aanvraag = new Aanvraag();
-           
+
             if (action == "edit")
             {
                 aanvraag = AanvraagManager.GetAanvraagById(id);
@@ -356,7 +356,7 @@ namespace MiaClient
                     AanvraagId = _aanvraagId
                 };
 
-                OfferteManager.SaveOfferte(offerte);
+                OfferteManager.SaveOfferte(offerte, true);
                 return offerte;
             }
             catch (Exception ex)
@@ -375,7 +375,7 @@ namespace MiaClient
                     Url = filepath,
                     AanvraagId = _aanvraagId
                 };
-                FotoManager.SaveFoto(foto);
+                FotoManager.SaveFoto(foto, true);
                 return foto;
             }
             catch (Exception ex)
@@ -394,7 +394,7 @@ namespace MiaClient
                     AanvraagId = _aanvraagId,
                     Url = hyperlink
                 };
-                LinkManager.SaveLinken(link, insert: true) ;
+                LinkManager.SaveLinken(link, insert: true);
                 return link;
             }
             catch (Exception ex)
@@ -700,6 +700,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId}."
                     }, true);
+                    foto = FotoByAanvraagId(foto, true);
+                    BindFotos(foto);
                 }
                 else
                 {
@@ -771,6 +773,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId}."
                     }, true);
+                    offerte = OfferteByAanvraagId(offerte, true);
+                    BindOfferte(offerte);
                 }
                 else
                 {
@@ -856,8 +860,8 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.OfferteItemSelected += Gli_OfferteItemSelected;
-                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
-                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                avi.OfferteDeleted += Avi_OfferteItemChanged;
+                avi.OfferteItemChanged += Avi_OfferteItemChanged;
 
                 this.pnlOffertes.Controls.Add(avi);
 
@@ -868,6 +872,12 @@ namespace MiaClient
         private void Gli_OfferteItemSelected(object sender, EventArgs e)
         {
             OffertesItem geselecteerd = (OffertesItem)sender;
+            TxtOfferteTitel.Text = geselecteerd.Titel;
+            txt_offerteId.Text = geselecteerd.Id.ToString();
+            txt_offerteURLInput.Text = geselecteerd.URL;
+            offerte = OfferteManager.GetOffertes();
+            offerte = OfferteByAanvraagId(offerte, true);
+            BindOfferte(offerte);
         }
         public void BindFotos(List<Foto> items)
         {
@@ -885,8 +895,10 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
-                //avi.AanvraagDeleted += Avi_AanvraagItemChanged;
-                //avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                avi.TabIndex = t + 8;
+                avi.FotoItemSelected -= Gli_FotoItemSelected;
+                avi.FotoDeleted += Avi_FotoItemChanged;
+                avi.FotoItemChanged += Avi_FotoItemChanged;
                 this.pnlFotos.Controls.Add(avi);
 
                 t++;
@@ -896,6 +908,12 @@ namespace MiaClient
         private void Gli_FotoItemSelected(object sender, EventArgs e)
         {
             FotoItem geselecteerd = (FotoItem)sender;
+            TxtFotoTitel.Text = geselecteerd.Titel;
+            txt_FotoId.Text = geselecteerd.Id.ToString();
+            txt_fotoURLInput.Text = geselecteerd.URL;
+            foto = FotoManager.GetFotos();
+            foto = FotoByAanvraagId(foto, true);
+            BindFotos(foto);
         }
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
@@ -928,7 +946,7 @@ namespace MiaClient
         private void Gli_LinkItemSelected(object sender, EventArgs e)
         {
             LinkItem geselecteerd = (LinkItem)sender;
-           
+
             lblLinkId.Text = geselecteerd.Id.ToString();
             txt_hyperlinkInput.Text = geselecteerd.URL;
             TxtLinkTitel.Text = geselecteerd.Titel;
@@ -936,12 +954,37 @@ namespace MiaClient
             link = LinkManager.GetLinken();
             BindLink(LinkByAanvraagId(link, linkByAanvraagId));
         }
+
         private void Avi_LinkItemChanged(object sender, EventArgs e)
         {
             try
             {
                 link = LinkManager.GetLinken();
                 BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Avi_OfferteItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                offerte = OfferteManager.GetOffertes();
+                BindOfferte(offerte);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Avi_FotoItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foto = FotoManager.GetFotos();
+                BindFotos(foto);
             }
             catch (Exception ex)
             {
@@ -1028,9 +1071,19 @@ namespace MiaClient
                 AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
             };
             LinkManager.SaveLinken(updateLink, insert: false);
-
-            
         }
+        public void UpdateOfferte()
+        {
+            OfferteManager.GetOfferteById(Convert.ToInt32(txt_offerteId.Text));
+            Offerte UpdateOfferte = new Offerte()
+            {
+                Id = Convert.ToInt32(txt_offerteId),
+                Titel = TxtOfferteTitel.Text,
+                AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
+            };
+            OfferteManager.SaveOfferte(UpdateOfferte, insert: false);
+        }
+
         public int GetLastLinkId()
         {
             int highestLinkId = MiaLogic.Manager.LinkManager.GetHighestLinkId();

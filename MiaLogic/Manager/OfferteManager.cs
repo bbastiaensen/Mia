@@ -75,7 +75,7 @@ namespace MiaLogic.Manager
                 return offertes;
             }
         }
-        public static void SaveOfferte(Offerte offerte)
+        public static void SaveOfferte(Offerte offerte, bool insert)
         {
             using (SqlConnection objcn = new SqlConnection())
             {
@@ -84,8 +84,15 @@ namespace MiaLogic.Manager
                 {
                     objcmd.Connection = objcn;
                     objcmd.CommandType = CommandType.Text;
+                    if (insert)
+                    {
+                        objcmd.CommandText = "insert into Offerte (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url,@Titel)";
+                    }
+                    else
+                    {
+                        objcmd.CommandText = "UPDATE Offerte SET Url = @Url, Titel = @Titel WHERE AanvraagID = @AanvraagId";
+                    }
 
-                    objcmd.CommandText = "insert into Offerte (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url,@Titel)";
 
                     objcmd.Parameters.AddWithValue("@AanvraagId", offerte.AanvraagId);
                     objcmd.Parameters.AddWithValue("@Url", offerte.Url);
