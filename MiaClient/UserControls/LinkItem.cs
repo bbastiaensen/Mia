@@ -95,8 +95,6 @@ namespace MiaClient.UserControls
                     {
                         LinkItemSelected(this, null);
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
-                        
-                        //frmAanvraagFormulier.UpdateLink();
                     }
                     else
                     {
