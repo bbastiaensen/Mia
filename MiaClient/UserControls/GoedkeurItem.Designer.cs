@@ -45,7 +45,7 @@
             this.LblAanvrager.AutoSize = true;
             this.LblAanvrager.Location = new System.Drawing.Point(402, 2);
             this.LblAanvrager.Name = "LblAanvrager";
-            this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
+            this.LblAanvrager.Size = new System.Drawing.Size(58, 21);
             this.LblAanvrager.TabIndex = 11;
             this.LblAanvrager.Text = "aaaaaa";
             // 
@@ -54,7 +54,7 @@
             this.lblTitel.AutoSize = true;
             this.lblTitel.Location = new System.Drawing.Point(529, 2);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(72, 28);
+            this.lblTitel.Size = new System.Drawing.Size(58, 21);
             this.lblTitel.TabIndex = 12;
             this.lblTitel.Text = "aaaaaa";
             // 
@@ -63,7 +63,7 @@
             this.lblAanvraagmoment.AutoSize = true;
             this.lblAanvraagmoment.Location = new System.Drawing.Point(656, 2);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(58, 21);
             this.lblAanvraagmoment.TabIndex = 13;
             this.lblAanvraagmoment.Text = "aaaaaa";
             // 
@@ -72,7 +72,7 @@
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(798, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(58, 21);
             this.lblFinancieringsjaar.TabIndex = 14;
             this.lblFinancieringsjaar.Text = "aaaaaa";
             // 
@@ -81,7 +81,7 @@
             this.lblBedrag.AutoSize = true;
             this.lblBedrag.Location = new System.Drawing.Point(928, 2);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(72, 28);
+            this.lblBedrag.Size = new System.Drawing.Size(58, 21);
             this.lblBedrag.TabIndex = 15;
             this.lblBedrag.Text = "aaaaaa";
             // 
@@ -151,7 +151,7 @@
             // 
             // GoedkeurItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnNietBekrachtigd);
             this.Controls.Add(this.btnBekrachtigd);
@@ -165,7 +165,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GoedkeurItem";
-            this.Size = new System.Drawing.Size(1210, 33);
+            this.Size = new System.Drawing.Size(1034, 33);
             this.Load += new System.EventHandler(this.GoedkeurItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

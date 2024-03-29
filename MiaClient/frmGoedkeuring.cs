@@ -41,10 +41,10 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
+                GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
                 item.Location = new System.Drawing.Point(xPos, yPos);
                 item.Name = "GoedkeurSelection" + t;
-                item.Size = new System.Drawing.Size(1210, 33);
+                item.Size = new System.Drawing.Size(1034, 33);
                 item.TabIndex = t + 8;
                 
                 this.pnlGoedkeuringen.Controls.Add(item);
@@ -56,7 +56,7 @@ namespace MiaClient
 
         private void frmGoedkeuring_Load(object sender, EventArgs e)
         {
-           var lijst = AanvraagManager.GetAanvragenInaanvraagOfGoedgekeurd();
+            var lijst = AanvraagManager.GetAanvragenInaanvraagOfGoedgekeurd();
             BindAanvraag(lijst);
         }
 
