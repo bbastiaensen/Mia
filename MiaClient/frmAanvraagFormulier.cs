@@ -37,6 +37,7 @@ namespace MiaClient
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
+        private int _linkId = 0;
 
         public frmAanvraagFormulier()
         {
@@ -177,6 +178,7 @@ namespace MiaClient
             }
 
             Aanvraag aanvraag = new Aanvraag();
+           
             if (action == "edit")
             {
                 aanvraag = AanvraagManager.GetAanvraagById(id);
@@ -199,7 +201,6 @@ namespace MiaClient
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
 
             }
-
         }
 
         // Ophalen van de data voor de dropdownlists
@@ -318,6 +319,8 @@ namespace MiaClient
             switch (tabControl.SelectedIndex)
             {
                 case 0:
+                    lblLinkId.Text = string.Empty;
+                    TxtLinkTitel.Clear();
                     txt_hyperlinkInput.Clear();
                     break;
                 case 1:
@@ -391,7 +394,7 @@ namespace MiaClient
                     AanvraagId = _aanvraagId,
                     Url = hyperlink
                 };
-                LinkManager.SaveLinken(link);
+                LinkManager.SaveLinken(link, insert: true) ;
                 return link;
             }
             catch (Exception ex)
@@ -600,12 +603,31 @@ namespace MiaClient
         {
             try
             {
-                hyperlink = txt_hyperlinkInput.Text;
-                Link savedlink = SaveLink(hyperlink);
-                int LastLinkId = GetLastLink();
-                if (savedlink != null)
+                if (lblLinkId.Text == string.Empty)
                 {
-                    MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    hyperlink = txt_hyperlinkInput.Text;
+                    Link savedlink = SaveLink(hyperlink);
+
+                    int LastLinkId = GetLastLink();
+                    if (savedlink != null)
+                    {
+                        MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                        {
+                            Gebruiker = Program.Gebruiker,
+                            Id = Convert.ToInt32(_aanvraagId),
+                            TijdstipActie = DateTime.Now,
+                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                        }, true);
+                    }
+                    link = LinkManager.GetLinken();
+                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                }
+                else
+                {
+                    int LastLinkId = GetLastLink();
+                    UpdateLink();
+                    MessageBox.Show("De link is successvol aangepast en opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
@@ -613,7 +635,10 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
                     }, true);
+                    link = LinkManager.GetLinken();
+                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                 }
+
             }
             catch (Exception ex)
             {
@@ -887,7 +912,7 @@ namespace MiaClient
             {
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "OfferteSelection" + t;
+                avi.Name = "LinkSelection" + t;
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
@@ -902,6 +927,13 @@ namespace MiaClient
         private void Gli_LinkItemSelected(object sender, EventArgs e)
         {
             LinkItem geselecteerd = (LinkItem)sender;
+           
+            lblLinkId.Text = geselecteerd.Id.ToString();
+            txt_hyperlinkInput.Text = geselecteerd.URL;
+            TxtLinkTitel.Text = geselecteerd.Titel;
+
+            link = LinkManager.GetLinken();
+            BindLink(LinkByAanvraagId(link, linkByAanvraagId));
         }
         private void Avi_LinkItemChanged(object sender, EventArgs e)
         {
@@ -983,6 +1015,28 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void UpdateLink()
+        {
+            LinkManager.GetLinkenById(Convert.ToInt32(lblLinkId.Text));
+            Link updateLink = new Link
+            {
+                Id = Convert.ToInt32(lblLinkId.Text),
+                Titel = TxtLinkTitel.Text,
+                Url = txt_hyperlinkInput.Text,
+                AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
+            };
+            LinkManager.SaveLinken(updateLink, insert: false);
+
+            
+        }
+        public int GetLastLinkId()
+        {
+            int highestLinkId = MiaLogic.Manager.LinkManager.GetHighestLinkId();
+            int linkid = highestLinkId + 1;
+            _linkId = linkid;
+
+            return _linkId;
         }
     }
 }

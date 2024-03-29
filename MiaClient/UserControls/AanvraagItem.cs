@@ -32,8 +32,10 @@ namespace MiaClient.UserControls
         public event EventHandler AanvraagItemSelected;
         public event EventHandler AanvraagItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
+
         static public bool edit = false;
         static public bool delete = false;
+
         public AanvraagItem()
         {
             InitializeComponent();
@@ -97,6 +99,7 @@ namespace MiaClient.UserControls
                 {
                     if (lblStatusAanvraag.Text == "In aanvraag")
                     {
+                        edit = true;
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
                         frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
                         frmAanvraagFormulier.EnableBewaarButon();
@@ -110,6 +113,7 @@ namespace MiaClient.UserControls
                     }
                     else
                     {
+                        edit = false;
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
@@ -146,6 +150,7 @@ namespace MiaClient.UserControls
                 {
                     if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
                     {
+                        delete = true;
                         Aanvraag aanvraag = new Aanvraag();
                         aanvraag.Id = Convert.ToInt32(lblId.Text);
                         AanvraagManager.DeleteAanvraag(aanvraag);
@@ -154,6 +159,7 @@ namespace MiaClient.UserControls
                     }
                     else
                     {
+                        delete = false;
                         MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     Aanvraag aanvraag1 = new Aanvraag();
