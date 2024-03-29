@@ -26,10 +26,6 @@ namespace MiaClient.UserControls
         public event EventHandler OfferteItemSelected;
         public event EventHandler OfferteItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
-        public static bool edit = false;
-        public static bool delete = false;
-        List<Offerte> offerte;
-
 
         public OffertesItem()
         {
@@ -84,12 +80,11 @@ namespace MiaClient.UserControls
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            edit = true;
             if (frmAanvraagFormulier == null)
             {
                 if (OfferteItemSelected != null)
                 {
-                    if (OffertesItem.edit == true)
+                    if (AanvraagItem.edit == true)
                     {
                         OfferteItemSelected(this, null);
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editOfferte");

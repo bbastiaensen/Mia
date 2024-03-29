@@ -28,7 +28,7 @@ namespace MiaClient.UserControls
         public event EventHandler LinkItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
 
-        
+
         public LinkItem()
         {
             InitializeComponent();
@@ -95,8 +95,6 @@ namespace MiaClient.UserControls
                     {
                         LinkItemSelected(this, null);
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
-                        
-                        //frmAanvraagFormulier.UpdateLink();
                     }
                     else
                     {
