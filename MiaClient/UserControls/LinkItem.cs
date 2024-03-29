@@ -27,6 +27,8 @@ namespace MiaClient.UserControls
         public event EventHandler LinkItemSelected;
         public event EventHandler LinkItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
+
+        
         public LinkItem()
         {
             InitializeComponent();
@@ -56,38 +58,65 @@ namespace MiaClient.UserControls
             {
                 if (LinkDeleted != null)
                 {
+                    if (AanvraagItem.delete == true)
+                    {
+                        Link link = new Link();
+                        link.Id = Convert.ToInt32(lblId.Text);
+                        LinkManager.DeleteLink(link);
+                        LinkDeleted(this, null);
+                        MessageBox.Show("De link is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Je kunt deze link niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    Link link1 = new Link();
+                    link1.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
 
-
-                    //Aanvraag aanvraag1 = new Aanvraag();
-                    //aanvraag1.Id = Convert.ToInt32(lblId.Text);
-                    //GebruiksLog gebruiksLog1 = new GebruiksLog();
-                    //gebruiksLog1.Gebruiker = Program.Gebruiker;
-                    //gebruiksLog1.TijdstipActie = DateTime.Now;
-                    //gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
-
-                    //GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                }
+                else
+                {
+                    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
-            if (LinkItemSelected != null)
+            if (frmAanvraagFormulier == null)
             {
+                if (LinkItemSelected != null)
+                {
+                    if (AanvraagItem.edit == true)
+                    {
+                        LinkItemSelected(this, null);
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
+                        
+                        //frmAanvraagFormulier.UpdateLink();
+                    }
+                    else
+                    {
+                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.DisableForm();
+                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
+                    Link link = new Link();
+                    link.Id = Convert.ToInt32(lblId.Text);
+                    GebruiksLog gebruiksLog1 = new GebruiksLog();
+                    gebruiksLog1.Gebruiker = Program.Gebruiker;
+                    gebruiksLog1.TijdstipActie = DateTime.Now;
+                    gebruiksLog1.OmschrijvingActie = "Link " + link.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
-
-
-                //Aanvraag aanvraag1 = new Aanvraag();
-                //aanvraag1.Id = Convert.ToInt32(lblId.Text);
-                //GebruiksLog gebruiksLog1 = new GebruiksLog();
-                //gebruiksLog1.Gebruiker = Program.Gebruiker;
-                //gebruiksLog1.TijdstipActie = DateTime.Now;
-                //gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
-
-                //GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+                }
             }
-
         }
 
         private void lblTitel_Click(object sender, EventArgs e)
