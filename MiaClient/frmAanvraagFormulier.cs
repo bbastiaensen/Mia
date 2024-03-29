@@ -490,7 +490,7 @@ namespace MiaClient
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             LogAanvraag(nieuweAanvraag);
         }
-        private void LogAanvraag(Aanvraag aanvraag)
+        private void LogAanvraag(Aanvraag aanvraag) // Logt de aanvraag
         {
             GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
             {
