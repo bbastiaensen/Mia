@@ -74,17 +74,20 @@ namespace MiaClient
         public void SetFormStatus(bool enabled)
         {
             //Links
-            txt_hyperlinkInput.ReadOnly = !enabled;
+            TxtLinkTitel.Enabled = enabled;
+            txt_hyperlinkInput.Enabled = enabled;
             btn_bewaarLink.Enabled = enabled;
             btn_nieuweLink.Enabled = enabled;
             //Fotos
-            txt_fotoURLInput.ReadOnly = enabled;
+            TxtFotoTitel.Enabled = enabled;
+            txt_fotoURLInput.Enabled = enabled;
             btn_bewaarFoto.Enabled = enabled;
             btn_nieuweFoto.Enabled = enabled;
             btn_kiesFoto.Enabled = enabled;
 
             //Offertes
-            txt_offerteURLInput.ReadOnly = enabled;
+            TxtOfferteTitel.Enabled = enabled;
+            txt_offerteURLInput.Enabled = enabled;
             btn_bewaarOfferte.Enabled = enabled;
             btn_nieuweOfferte.Enabled = enabled;
             btn_kiesOfferte.Enabled = enabled;
