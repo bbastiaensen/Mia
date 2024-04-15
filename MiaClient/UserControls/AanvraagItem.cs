@@ -103,7 +103,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
                         frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
                         frmAanvraagFormulier.EnableBewaarButon();
-                        frmAanvraagFormulier.EnableForm();
+                        frmAanvraagFormulier.SetFormStatus(true);
                         frmAanvraagFormulier.BindFotoByAanvraagId();
                         frmAanvraagFormulier.BindOfferteByAanvraagId();
                         frmAanvraagFormulier.BindLinkByAanvraagId();
@@ -117,7 +117,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
-                        frmAanvraagFormulier.DisableForm();
+                        frmAanvraagFormulier.SetFormStatus(false);
                         frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
                         MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

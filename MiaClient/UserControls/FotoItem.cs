@@ -107,7 +107,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editFoto");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
-                        frmAanvraagFormulier.DisableForm();
+                        frmAanvraagFormulier.SetFormStatus(false);
                         MessageBox.Show("Je kunt deze Foto niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
