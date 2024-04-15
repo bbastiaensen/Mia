@@ -125,7 +125,7 @@ namespace MiaClient.UserControls
                     {
                         delete = true;
                     }
-
+                    // moet aangepast worden
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLog gebruiksLog1 = new GebruiksLog();
@@ -166,6 +166,7 @@ namespace MiaClient.UserControls
                         delete = false;
                         MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    // moet aangepast worden
                     Aanvraag aanvraag1 = new Aanvraag();
                     aanvraag1.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLog gebruiksLog1 = new GebruiksLog();

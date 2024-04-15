@@ -127,6 +127,7 @@
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 34);
             this.txtBedragTot.TabIndex = 26;
+            this.txtBedragTot.TextChanged += new System.EventHandler(this.txtBedragTot_TextChanged);
             // 
             // cbBedragVan
             // 
@@ -158,6 +159,7 @@
             this.txtBedragVan.Name = "txtBedragVan";
             this.txtBedragVan.Size = new System.Drawing.Size(200, 34);
             this.txtBedragVan.TabIndex = 17;
+            this.txtBedragVan.TextChanged += new System.EventHandler(this.txtBedragVan_TextChanged);
             // 
             // dtpPlanningsdatumTot
             // 
@@ -204,6 +206,7 @@
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(272, 34);
             this.txtFinancieringsjaar.TabIndex = 15;
+            this.txtFinancieringsjaar.TextChanged += new System.EventHandler(this.txtFinancieringsjaar_TextChanged);
             // 
             // lblFinancieringsjaar
             // 
