@@ -797,6 +797,15 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+            
+            Aanvraag aanvraag1 = new Aanvraag();
+            aanvraag1.Id = Convert.ToInt32(txtAanvraagId.Text);
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
         public void DisableBewaarButon()
         {
@@ -892,12 +901,14 @@ namespace MiaClient
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "LinkSelection" + t;
-                avi.Size = new System.Drawing.Size(705, 33);
+                avi.Size = new System.Drawing.Size(650, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;
                 avi.LinkItemChanged += Avi_LinkItemChanged;
                 this.pnl_Links.Controls.Add(avi);
+                pnl_Links.HorizontalScroll.Maximum = 0;
+                pnl_Links.AutoScroll = false;
 
                 t++;
                 yPos += 30;
@@ -1031,6 +1042,15 @@ namespace MiaClient
                 AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
             };
             LinkManager.SaveLinken(updateLink, insert: false);
+            Link link1 = new Link();
+            link1.Id = Convert.ToInt32(lblLinkId.Text);
+            link1.AanvraagId = Convert.ToInt32(txtAanvraagId.Text);
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag" + link1.AanvraagId + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
         public void UpdateOfferte()
         {

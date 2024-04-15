@@ -207,11 +207,6 @@ namespace MiaClient
             {
                 if (txtFinancieringsjaar.Text != string.Empty)
                 {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(txtFinancieringsjaar.Text, "[^0-9]"))
-                    {
-                        MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                        txtFinancieringsjaar.Text = txtFinancieringsjaar.Text.Remove(txtFinancieringsjaar.Text.Length - 1);
-                    }
                     filterFinancieringsjaar = true;
                 }
                 if (txtStatusAanvraag.Text != string.Empty)
@@ -220,20 +215,10 @@ namespace MiaClient
                 }
                 if (cbBedragTot.Checked != false)
                 {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
-                    {
-                        MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                        txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
-                    }
                     filterBedragVan = true;
                 }
                 if (cbBedragTot.Checked != false)
                 {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
-                    {
-                        MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                        txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
-                    }
                     filterBedragTot = true;
                 }
                 if (txtTitel.Text != string.Empty)
@@ -391,5 +376,54 @@ namespace MiaClient
                 BindAanvraag(FilteredAanvraagItems(aanvragen, filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats));
             }
         }
+        private void txtFinancieringsjaar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtFinancieringsjaar.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtFinancieringsjaar.Text = txtFinancieringsjaar.Text.Remove(txtFinancieringsjaar.Text.Length - 1);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBedragVan_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBedragTot_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
