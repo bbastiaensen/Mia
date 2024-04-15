@@ -27,8 +27,6 @@ namespace MiaClient
         public FrmGebruiksLog()
         {
             InitializeComponent();
-
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void BindGebruiksLogItems(List<GebruiksLog> items)
