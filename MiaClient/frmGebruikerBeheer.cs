@@ -25,8 +25,6 @@ namespace MiaClient
         public frmGebruikerBeheer()
         {
             InitializeComponent();
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-
         }
 
         public void BindLstGebruikers()
