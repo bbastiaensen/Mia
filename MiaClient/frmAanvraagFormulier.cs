@@ -895,8 +895,6 @@ namespace MiaClient
                 avi.Size = new System.Drawing.Size(710, 33);
                 avi.TabIndex = t + 8;
                 avi.FotoItemSelected += Gli_FotoItemSelected;
-                avi.TabIndex = t + 8;
-                avi.FotoItemSelected -= Gli_FotoItemSelected;
                 avi.FotoDeleted += Avi_FotoItemChanged;
                 avi.FotoItemChanged += Avi_FotoItemChanged;
                 this.pnlFotos.Controls.Add(avi);
@@ -932,7 +930,7 @@ namespace MiaClient
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "LinkSelection" + t;
-                avi.Size = new System.Drawing.Size(710, 33);
+                avi.Size = new System.Drawing.Size(705, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;

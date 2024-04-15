@@ -94,7 +94,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Name = "LinkItem";
-            this.Size = new System.Drawing.Size(1050, 33);
+            this.Size = new System.Drawing.Size(705, 33);
             this.ResumeLayout(false);
 
         }
