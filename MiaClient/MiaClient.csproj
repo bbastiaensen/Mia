@@ -188,6 +188,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
@@ -242,11 +243,16 @@
     <Content Include="Icons\Afgekeurd_uit.png" />
     <Content Include="Icons\bekrachtigd_aan.png" />
     <Content Include="Icons\bekrachtigd_uit.png" />
+    <Content Include="Icons\Filter.png" />
     <Content Include="Icons\goedgekeurd_aan.png" />
     <Content Include="Icons\goedgekeurd_uit.png" />
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
+    <Content Include="Icons\nieuweAanvraag.png" />
     <Content Include="pl-icon.ico" />
+    <None Include="Resources\Filter1.png" />
+    <None Include="Resources\nieuweAanvraag.png" />
+    <None Include="Resources\Filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
