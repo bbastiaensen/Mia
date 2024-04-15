@@ -101,7 +101,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editLink");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
-                        frmAanvraagFormulier.DisableForm();
+                        frmAanvraagFormulier.SetFormStatus(false);
                         MessageBox.Show("Je kunt deze link niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 

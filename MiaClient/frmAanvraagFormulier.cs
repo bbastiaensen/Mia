@@ -52,10 +52,9 @@ namespace MiaClient
         }
         private void Initialize()
         {
-            Connections();
             InitializeComponent();
             vulFormulier();
-            DisableForm();
+            SetFormStatus(false);
             GetParam();
         }
         private void GetParam()
@@ -70,62 +69,25 @@ namespace MiaClient
 
         private void Connections()
         {
-            //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
-            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            LinkManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
-        public void DisableForm()
+        public void SetFormStatus(bool enabled)
         {
             //Links
-            txt_hyperlinkInput.ReadOnly = true;
-            btn_bewaarLink.Enabled = false;
-            btn_nieuweLink.Enabled = false;
-
-
+            txt_hyperlinkInput.ReadOnly = !enabled;
+            btn_bewaarLink.Enabled = enabled;
+            btn_nieuweLink.Enabled = enabled;
             //Fotos
-            txt_fotoURLInput.ReadOnly = true;
-            btn_bewaarFoto.Enabled = false;
-            btn_nieuweFoto.Enabled = false;
-            btn_kiesFoto.Enabled = false;
+            txt_fotoURLInput.ReadOnly = enabled;
+            btn_bewaarFoto.Enabled = enabled;
+            btn_nieuweFoto.Enabled = enabled;
+            btn_kiesFoto.Enabled = enabled;
 
             //Offertes
-            txt_offerteURLInput.ReadOnly = true;
-            btn_bewaarOfferte.Enabled = false;
-            btn_nieuweOfferte.Enabled = false;
-            btn_kiesOfferte.Enabled = false;
-        }
-
-        public void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
-        {
-            //Links
-            txt_hyperlinkInput.ReadOnly = false;
-            btn_bewaarLink.Enabled = true;
-            btn_nieuweLink.Enabled = true;
-            //Fotos
-            txt_fotoURLInput.ReadOnly = true;
-            btn_bewaarFoto.Enabled = true;
-            btn_nieuweFoto.Enabled = true;
-            btn_kiesFoto.Enabled = true;
-
-            //Offertes
-            txt_offerteURLInput.ReadOnly = true;
-            btn_bewaarOfferte.Enabled = true;
-            btn_nieuweOfferte.Enabled = true;
-            btn_kiesOfferte.Enabled = true;
+            txt_offerteURLInput.ReadOnly = enabled;
+            btn_bewaarOfferte.Enabled = enabled;
+            btn_nieuweOfferte.Enabled = enabled;
+            btn_kiesOfferte.Enabled = enabled;
 
         }
         public void vulFormulier()
@@ -560,7 +522,7 @@ namespace MiaClient
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (result == DialogResult.Yes)
                         {
-                            EnableForm();
+                            SetFormStatus(true);
                             txtAanvraagId.Text = _aanvraagId.ToString();
                         }
                         else
