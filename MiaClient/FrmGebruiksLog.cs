@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,6 +104,13 @@ namespace MiaClient
             try
             {
                 gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
+
+                this.BackColor = StyleParameters.Achtergrondkleur;
+
+                btnFilter.FlatStyle = FlatStyle.Flat;
+                btnFilter.FlatAppearance.BorderSize = 0;
+                btnFilter.BackColor = StyleParameters.ButtonBack;
+                btnFilter.ForeColor = StyleParameters.Buttontext;
 
                 BindGebruiksLogItems(gebruiksLogs);
             }

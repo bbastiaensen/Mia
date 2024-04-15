@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,6 +77,13 @@ namespace MiaClient
         {
 
             //Deel 1 is hard-coded
+            this.BackColor = StyleParameters.Achtergrondkleur;
+
+            BtnOpslaan.FlatStyle = FlatStyle.Flat;
+            BtnOpslaan.FlatAppearance.BorderSize = 0;
+            BtnOpslaan.BackColor = StyleParameters.ButtonBack;
+            BtnOpslaan.ForeColor = StyleParameters.Buttontext;
+
             //Deel 2 is het tonen van de rollen
             BindRollen();
 
@@ -84,6 +93,7 @@ namespace MiaClient
 
             int frmHeight = yPosBtn + BtnOpslaan.Size.Height + 45;
             this.Size = new System.Drawing.Size(574, frmHeight);
+
         }
 
         private void BindRollenToGebruiker(Gebruiker gebruiker)
