@@ -54,7 +54,7 @@ namespace MiaClient.UserControls
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Ben je zeker dat je deze Aanvraag wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Ben je zeker dat je deze link wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (LinkDeleted != null)
                 {
@@ -65,23 +65,25 @@ namespace MiaClient.UserControls
                         LinkManager.DeleteLink(link);
                         LinkDeleted(this, null);
                         MessageBox.Show("De link is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        Link link1 = new Link();
+                        link1.Id = Convert.ToInt32(lblId.Text);
+                        link.AanvraagId = Convert.ToInt32(AanvraagId);
+                        GebruiksLog gebruiksLog1 = new GebruiksLog();
+                        gebruiksLog1.Gebruiker = Program.Gebruiker;
+                        gebruiksLog1.TijdstipActie = DateTime.Now;
+                        gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag " + link.AanvraagId +  " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
+
+                        GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                     }
                     else
                     {
                         MessageBox.Show("Je kunt deze link niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    Link link1 = new Link();
-                    link1.Id = Convert.ToInt32(lblId.Text);
-                    GebruiksLog gebruiksLog1 = new GebruiksLog();
-                    gebruiksLog1.Gebruiker = Program.Gebruiker;
-                    gebruiksLog1.TijdstipActie = DateTime.Now;
-                    gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
-
-                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
                 else
                 {
-                    MessageBox.Show("Je kunt deze aanvraag niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Je kunt deze link niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -104,15 +106,6 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.DisableForm();
                         MessageBox.Show("Je kunt deze link niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    Link link = new Link();
-                    link.Id = Convert.ToInt32(lblId.Text);
-                    GebruiksLog gebruiksLog1 = new GebruiksLog();
-                    gebruiksLog1.Gebruiker = Program.Gebruiker;
-                    gebruiksLog1.TijdstipActie = DateTime.Now;
-                    gebruiksLog1.OmschrijvingActie = "Link " + link.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
-
-                    GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                 }
             }
         }
