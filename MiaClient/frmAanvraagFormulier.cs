@@ -617,7 +617,7 @@ namespace MiaClient
                             Gebruiker = Program.Gebruiker,
                             Id = Convert.ToInt32(_aanvraagId),
                             TijdstipActie = DateTime.Now,
-                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId}."
                         }, true);
                     }
                     link = LinkManager.GetLinken();
@@ -633,7 +633,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId}."
                     }, true);
                     link = LinkManager.GetLinken();
                     BindLink(LinkByAanvraagId(link, linkByAanvraagId));
@@ -698,7 +698,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {_aanvraagId}."
                     }, true);
                     foto = FotoByAanvraagId(foto, true);
                     BindFotos(foto);
@@ -771,7 +771,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {_aanvraagId}."
                     }, true);
                     offerte = OfferteByAanvraagId(offerte, true);
                     BindOfferte(offerte);
