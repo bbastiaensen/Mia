@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,6 @@ namespace MiaClient
         public FrmGebruiksLog()
         {
             InitializeComponent();
-
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void BindGebruiksLogItems(List<GebruiksLog> items)
@@ -102,6 +101,12 @@ namespace MiaClient
 
         private void frmGebruiksLogDemo_Load(object sender, EventArgs e)
         {
+            this.BackColor = StyleParameters.Achtergrondkleur;
+
+            btnFilter.FlatStyle = FlatStyle.Flat;
+            btnFilter.FlatAppearance.BorderSize = 0;
+            btnFilter.BackColor = StyleParameters.ButtonBack;
+            btnFilter.ForeColor = StyleParameters.Buttontext;
         }
 
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
