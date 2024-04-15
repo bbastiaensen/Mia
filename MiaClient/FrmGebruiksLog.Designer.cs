@@ -292,6 +292,7 @@
             this.Text = "Gebruikslog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGebruiksLog_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruiksLogDemo_Load);
+            this.Shown += new System.EventHandler(this.FrmGebruiksLog_Shown);
             this.grpbxFilter.ResumeLayout(false);
             this.grpbxFilter.PerformLayout();
             this.ResumeLayout(false);

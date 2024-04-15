@@ -101,23 +101,12 @@ namespace MiaClient
 
         private void frmGebruiksLogDemo_Load(object sender, EventArgs e)
         {
-            try
-            {
-                gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
+            this.BackColor = StyleParameters.Achtergrondkleur;
 
-                this.BackColor = StyleParameters.Achtergrondkleur;
-
-                btnFilter.FlatStyle = FlatStyle.Flat;
-                btnFilter.FlatAppearance.BorderSize = 0;
-                btnFilter.BackColor = StyleParameters.ButtonBack;
-                btnFilter.ForeColor = StyleParameters.Buttontext;
-
-                BindGebruiksLogItems(gebruiksLogs);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            btnFilter.FlatStyle = FlatStyle.Flat;
+            btnFilter.FlatAppearance.BorderSize = 0;
+            btnFilter.BackColor = StyleParameters.ButtonBack;
+            btnFilter.ForeColor = StyleParameters.Buttontext;
         }
 
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
@@ -153,6 +142,19 @@ namespace MiaClient
                 }
 
                 BindGebruiksLogItems(FilteredGebruiksLogItems(gebruiksLogs, filterVan, filterTot, filterGebruiker, filterOmschrijving));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmGebruiksLog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
+                BindGebruiksLogItems(gebruiksLogs);
             }
             catch (Exception ex)
             {
