@@ -80,8 +80,7 @@ namespace MiaClient
 
         private void laadGrafischeParameters()
         {
-            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string projectDirectory = Directory.GetCurrentDirectory();
             string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);
             StyleParameters.LogoG = Image.FromFile(imagePath);
             string imagePath2 = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoK").Waarde);
