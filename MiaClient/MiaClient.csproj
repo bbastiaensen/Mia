@@ -239,6 +239,8 @@
   <ItemGroup>
     <Content Include="Foto%27s\LogoG.png" />
     <Content Include="Foto%27s\LogoK.png" />
+    <Content Include="Icons\aanvraag.png" />
+    <Content Include="Icons\Aanvraag_Uit.png" />
     <Content Include="Icons\Afgekeurd_aan.png" />
     <Content Include="Icons\Afgekeurd_uit.png" />
     <Content Include="Icons\bekrachtigd_aan.png" />
@@ -255,4 +257,8 @@
     <None Include="Resources\Filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)Foto's\"* "$(ProjectDir)$(OutDir)Foto's\"
+copy "$(ProjectDir)Icons\"* "$(ProjectDir)$(OutDir)Icons\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
