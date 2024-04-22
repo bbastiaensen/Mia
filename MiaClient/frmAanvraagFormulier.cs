@@ -27,6 +27,8 @@ namespace MiaClient
         //Variables
         private string selectedPath;
         private string mainPath;// De folder voor het opslagen, dit wordt de parameter
+        private string PhotoPath;
+        private string OffertePath;
         private string hyperlink = string.Empty;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
@@ -59,7 +61,9 @@ namespace MiaClient
         }
         private void GetParam()
         {
-            mainPath = ParameterManager.GetParameterByCode("Testmap").Waarde;
+            mainPath = ParameterManager.GetParameterByCode("HoofdMap").Waarde;
+            PhotoPath = ParameterManager.GetParameterByCode("FotoMap").Waarde;
+            OffertePath = ParameterManager.GetParameterByCode("OfferteMap").Waarde;
         }
 
         private void ErrorHandler(Exception ex, string location)
@@ -536,6 +540,7 @@ namespace MiaClient
                     else
                     {
                         UpdateAanvraag();
+                        MessageBox.Show("Je aanvraag is successvol ingediend");
                     }
 
                 }
@@ -651,7 +656,7 @@ namespace MiaClient
 
                     string uniqueFileName = $"{_aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
-                    string destinationFolder = Path.Combine(mainPath + @"\fotos");
+                    string destinationFolder = PhotoPath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
@@ -665,8 +670,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    foto = FotoByAanvraagId(foto, true);
-                    BindFotos(foto);
+                    foto = FotoManager.GetFoto();
+                    BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
                 }
                 else
                 {
@@ -719,7 +724,7 @@ namespace MiaClient
                     int LastOfferteId = GetLastOfferte();
                     string uniqueFileName = $"{_aanvraagId}-{LastOfferteId}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
-                    string destinationFolder = Path.Combine(mainPath + @"\offertes"); // Hier mpet nog de hardocded map naam voor (test)
+                    string destinationFolder = OffertePath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
@@ -738,8 +743,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    offerte = OfferteByAanvraagId(offerte, true);
-                    BindOfferte(offerte);
+                    offerte = OfferteManager.GetOffertes();
+                    BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
                 }
                 else
                 {
@@ -800,7 +805,7 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
-            
+
             Aanvraag aanvraag1 = new Aanvraag();
             aanvraag1.Id = Convert.ToInt32(txtAanvraagId.Text);
             GebruiksLog gebruiksLog1 = new GebruiksLog();
@@ -883,9 +888,9 @@ namespace MiaClient
             TxtFotoTitel.Text = geselecteerd.Titel;
             txt_FotoId.Text = geselecteerd.Id.ToString();
             txt_fotoURLInput.Text = geselecteerd.URL;
-            foto = FotoManager.GetFotos();
+            foto = FotoManager.GetFoto();
             foto = FotoByAanvraagId(foto, true);
-            BindFotos(foto);
+            BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
         }
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
@@ -946,7 +951,7 @@ namespace MiaClient
             try
             {
                 offerte = OfferteManager.GetOffertes();
-                BindOfferte(offerte);
+                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -958,7 +963,7 @@ namespace MiaClient
             try
             {
                 foto = FotoManager.GetFotos();
-                BindFotos(foto);
+                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -980,7 +985,7 @@ namespace MiaClient
         {
             try
             {
-                foto = FotoManager.GetFotos();
+                foto = FotoManager.GetFoto();
                 BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)

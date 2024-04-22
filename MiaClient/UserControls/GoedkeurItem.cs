@@ -28,7 +28,7 @@ namespace MiaClient.UserControls
         public Decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
-       public string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+       public string projectDirectory = Directory.GetCurrentDirectory();
 
         public GoedkeurItem()
         {
