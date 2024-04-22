@@ -256,10 +256,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)Foto's\"* "$(ProjectDir)$(OutDir)Foto's\"
 copy "$(ProjectDir)Icons\"* "$(ProjectDir)$(OutDir)Icons\"</PostBuildEvent>
   </PropertyGroup>
