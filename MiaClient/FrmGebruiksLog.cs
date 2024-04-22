@@ -29,6 +29,19 @@ namespace MiaClient
         int aantalListItems = 10;
         int huidigePage = 1;
 
+        Image imgLast = (Image) new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
+        Image imgLastDisable = (Image) new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
+        Image imgLastHover = (Image) new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-hover.png"));
+        Image imgNext = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50.png"));
+        Image imgNextDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50-grey.png"));
+        Image imgNextHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50-hover.png"));
+        Image imgPrevious = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50.png"));
+        Image imgPreviousDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50-grey.png"));
+        Image imgPreviousHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50-hover.png"));
+        Image imgFirst = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50.png"));
+        Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
+        Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
+
         public FrmGebruiksLog()
         {
             InitializeComponent();
@@ -112,8 +125,17 @@ namespace MiaClient
             btnFilter.BackColor = StyleParameters.ButtonBack;
             btnFilter.ForeColor = StyleParameters.Buttontext;
 
-            Bitmap image = new Bitmap(Directory.GetCurrentDirectory() + "/icons8-first-50.png");
-            picFirst.Image = (Image) image;
+            btnFirst.BackgroundImage = imgFirst;
+            btnFirst.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btnPrevious.BackgroundImage = imgPrevious;
+            btnPrevious.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btnNext.BackgroundImage = imgNext;
+            btnNext.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btnLast.BackgroundImage = imgLast;
+            btnLast.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
@@ -181,6 +203,47 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnLast_MouseHover(object sender, EventArgs e)
+        {
+            btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+            btnLast.BackgroundImage = imgLastHover;
+        }
+
+        private void btnLast_MouseLeave(object sender, EventArgs e)
+        {
+            btnLast.BackgroundImage = imgLast;
+        }
+
+        private void btnNext_MouseHover(object sender, EventArgs e)
+        {
+            btnNext.BackgroundImage = imgNextHover;
+        }
+
+        private void btnNext_MouseLeave(object sender, EventArgs e)
+        {
+            btnNext.BackgroundImage = imgNext;
+        }
+
+        private void btnPrevious_MouseHover(object sender, EventArgs e)
+        {
+            btnPrevious.BackgroundImage = imgPreviousHover;
+        }
+
+        private void btnPrevious_MouseLeave(object sender, EventArgs e)
+        {
+            btnPrevious.BackgroundImage = imgPrevious;
+        }
+
+        private void btnFirst_MouseHover(object sender, EventArgs e)
+        {
+            btnFirst.BackgroundImage = imgFirstHover;
+        }
+
+        private void btnFirst_MouseLeave(object sender, EventArgs e)
+        {
+            btnFirst.BackgroundImage = imgFirst;
         }
     }
 }

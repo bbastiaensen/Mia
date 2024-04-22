@@ -49,9 +49,11 @@
             this.txtGebruikerDetail = new System.Windows.Forms.TextBox();
             this.txtTijdstipActieDetail = new System.Windows.Forms.TextBox();
             this.btnFilter = new System.Windows.Forms.Button();
-            this.picFirst = new System.Windows.Forms.PictureBox();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.grpbxFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFirst)).BeginInit();
             this.SuspendLayout();
             // 
             // lblGebruiksLogTitel
@@ -250,21 +252,63 @@
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
-            // picFirst
+            // btnFirst
             // 
-            this.picFirst.Location = new System.Drawing.Point(12, 460);
-            this.picFirst.Name = "picFirst";
-            this.picFirst.Size = new System.Drawing.Size(30, 30);
-            this.picFirst.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFirst.TabIndex = 29;
-            this.picFirst.TabStop = false;
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.Location = new System.Drawing.Point(12, 460);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(30, 30);
+            this.btnFirst.TabIndex = 33;
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.MouseLeave += new System.EventHandler(this.btnFirst_MouseLeave);
+            this.btnFirst.MouseHover += new System.EventHandler(this.btnFirst_MouseHover);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Location = new System.Drawing.Point(48, 460);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.TabIndex = 34;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.MouseLeave += new System.EventHandler(this.btnPrevious_MouseLeave);
+            this.btnPrevious.MouseHover += new System.EventHandler(this.btnPrevious_MouseHover);
+            // 
+            // btnLast
+            // 
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.Location = new System.Drawing.Point(912, 460);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(30, 30);
+            this.btnLast.TabIndex = 35;
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
+            this.btnLast.MouseHover += new System.EventHandler(this.btnLast_MouseHover);
+            // 
+            // btnNext
+            // 
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Location = new System.Drawing.Point(876, 460);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.TabIndex = 34;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
+            this.btnNext.MouseHover += new System.EventHandler(this.btnNext_MouseHover);
             // 
             // FrmGebruiksLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 806);
-            this.Controls.Add(this.picFirst);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.txtTijdstipActieDetail);
             this.Controls.Add(this.txtGebruikerDetail);
@@ -287,7 +331,6 @@
             this.Shown += new System.EventHandler(this.FrmGebruiksLog_Shown);
             this.grpbxFilter.ResumeLayout(false);
             this.grpbxFilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFirst)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,6 +358,9 @@
         private System.Windows.Forms.TextBox txtGebruikerDetail;
         private System.Windows.Forms.TextBox txtTijdstipActieDetail;
         private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.PictureBox picFirst;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
     }
 }
