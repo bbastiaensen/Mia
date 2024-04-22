@@ -137,5 +137,34 @@ namespace MiaLogic.Manager
                 }
             }
         }
+        public static List<Foto> GetFoto()
+        {
+            List<Foto> fotos = new List<Foto>();
+
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandText = "Select * from Foto order by Id asc;";
+
+                    objcn.Open();
+
+                    SqlDataReader reader = objcmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Foto foto = new Foto();
+                        foto.Id = Convert.ToInt32(reader["Id"]);
+                        foto.Titel = reader["Titel"].ToString();
+                        foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
+                        foto.Url = reader["Url"].ToString();
+                        fotos.Add(foto);
+                    }
+                }
+            }
+            return fotos;
+        }
     }
 }
