@@ -659,9 +659,8 @@ namespace MiaClient
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
-
-                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SaveFoto(destinationPath);
+                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
