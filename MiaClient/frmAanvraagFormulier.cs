@@ -536,6 +536,7 @@ namespace MiaClient
                     else
                     {
                         UpdateAanvraag();
+                        MessageBox.Show("Je aanvraag is successvol ingediend");
                     }
 
                 }
@@ -800,6 +801,7 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+
             
             Aanvraag aanvraag1 = new Aanvraag();
             aanvraag1.Id = Convert.ToInt32(txtAanvraagId.Text);
@@ -946,7 +948,7 @@ namespace MiaClient
             try
             {
                 offerte = OfferteManager.GetOffertes();
-                BindOfferte(offerte);
+                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -958,7 +960,7 @@ namespace MiaClient
             try
             {
                 foto = FotoManager.GetFotos();
-                BindFotos(foto);
+                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
