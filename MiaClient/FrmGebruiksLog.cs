@@ -25,6 +25,9 @@ namespace MiaClient
         bool filterGebruiker = false;
         bool filterOmschrijving = false;
 
+        int aantalListItems = 10;
+        int huidigePage = 1;
+
         public FrmGebruiksLog()
         {
             InitializeComponent();
@@ -107,6 +110,8 @@ namespace MiaClient
             btnFilter.FlatAppearance.BorderSize = 0;
             btnFilter.BackColor = StyleParameters.ButtonBack;
             btnFilter.ForeColor = StyleParameters.Buttontext;
+
+            
         }
 
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)
@@ -154,7 +159,21 @@ namespace MiaClient
             try
             {
                 gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
-                BindGebruiksLogItems(gebruiksLogs);
+                if (gebruiksLogs != null) 
+                {  
+                    if (gebruiksLogs.Count > aantalListItems) {
+                        //Paging is nodig
+                        int aantalPages = (gebruiksLogs.Count / aantalListItems) + 1;
+                        if (huidigePage < aantalPages)
+                        {
+                            BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1)*aantalListItems).Take(aantalListItems).ToList());
+                        }
+                    }
+                    else
+                    {
+                        BindGebruiksLogItems(gebruiksLogs);
+                    }
+                }
             }
             catch (Exception ex)
             {

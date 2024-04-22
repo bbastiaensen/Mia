@@ -51,6 +51,45 @@ namespace MiaLogic.Manager
             return gebruiksLogs;
         }
 
+        public static List<GebruiksLog> GetGebruiksLogs(int van, int tot)
+        {
+            List<GebruiksLog> gebruiksLogs = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from GebruiksLog order by TijdstipActie desc;";
+
+                    objCn.Open();
+
+                    SqlDataReader reader = objCmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        if (gebruiksLogs == null)
+                        {
+                            gebruiksLogs = new List<GebruiksLog>();
+                        }
+
+                        GebruiksLog gebruiksLog = new GebruiksLog();
+                        gebruiksLog.Id = Convert.ToInt32(reader["Id"]);
+                        gebruiksLog.Gebruiker = reader["Gebruiker"].ToString();
+                        gebruiksLog.TijdstipActie = Convert.ToDateTime(reader["TijdstipActie"]);
+                        gebruiksLog.OmschrijvingActie = reader["OmschrijvingActie"].ToString();
+
+                        gebruiksLogs.Add(gebruiksLog);
+                    }
+                }
+            }
+
+            return gebruiksLogs;
+        }
+
+
         public static GebruiksLog GetGebruiksLog(int gebruiksLogId)
         {
             GebruiksLog gebruiksLog = null;
