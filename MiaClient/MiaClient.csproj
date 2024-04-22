@@ -246,6 +246,7 @@
     <Content Include="Icons\Filter.png" />
     <Content Include="Icons\goedgekeurd_aan.png" />
     <Content Include="Icons\goedgekeurd_uit.png" />
+    <Content Include="Icons\icons8-first-50.png" />
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="Icons\nieuweAanvraag.png" />

@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Linq.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,7 +112,8 @@ namespace MiaClient
             btnFilter.BackColor = StyleParameters.ButtonBack;
             btnFilter.ForeColor = StyleParameters.Buttontext;
 
-            
+            Bitmap image = new Bitmap(Directory.GetCurrentDirectory() + "/icons8-first-50.png");
+            picFirst.Image = (Image) image;
         }
 
         private void FrmGebruiksLog_FormClosing(object sender, FormClosingEventArgs e)

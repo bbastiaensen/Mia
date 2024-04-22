@@ -242,7 +242,7 @@
             // btnFilter
             // 
             this.btnFilter.Location = new System.Drawing.Point(13, 11);
-            this.btnFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(2);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(129, 30);
             this.btnFilter.TabIndex = 28;
@@ -255,6 +255,7 @@
             this.picFirst.Location = new System.Drawing.Point(12, 460);
             this.picFirst.Name = "picFirst";
             this.picFirst.Size = new System.Drawing.Size(30, 30);
+            this.picFirst.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picFirst.TabIndex = 29;
             this.picFirst.TabStop = false;
             // 
