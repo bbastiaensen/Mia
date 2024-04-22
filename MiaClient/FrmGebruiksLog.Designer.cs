@@ -243,12 +243,13 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(13, 11);
+            this.btnFilter.FlatAppearance.BorderSize = 0;
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Location = new System.Drawing.Point(13, 3);
             this.btnFilter.Margin = new System.Windows.Forms.Padding(2);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(129, 30);
+            this.btnFilter.Size = new System.Drawing.Size(30, 30);
             this.btnFilter.TabIndex = 28;
-            this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -261,6 +262,7 @@
             this.btnFirst.Size = new System.Drawing.Size(30, 30);
             this.btnFirst.TabIndex = 33;
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             this.btnFirst.MouseLeave += new System.EventHandler(this.btnFirst_MouseLeave);
             this.btnFirst.MouseHover += new System.EventHandler(this.btnFirst_MouseHover);
             // 
@@ -273,6 +275,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             this.btnPrevious.MouseLeave += new System.EventHandler(this.btnPrevious_MouseLeave);
             this.btnPrevious.MouseHover += new System.EventHandler(this.btnPrevious_MouseHover);
             // 
@@ -285,6 +288,7 @@
             this.btnLast.Size = new System.Drawing.Size(30, 30);
             this.btnLast.TabIndex = 35;
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             this.btnLast.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
             this.btnLast.MouseHover += new System.EventHandler(this.btnLast_MouseHover);
             // 
@@ -297,6 +301,7 @@
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 34;
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
             this.btnNext.MouseHover += new System.EventHandler(this.btnNext_MouseHover);
             // 

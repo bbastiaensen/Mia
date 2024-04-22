@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,24 @@ namespace MiaClient
         bool filterWaarde = false;
         bool filterEenheid = false;
         bool isNieuw = true;
+
+        int aantalListItems = 10;
+        int huidigePage = 1;
+        int aantalPages = 0;
+
+        Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
+        Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
+        Image imgLastHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-hover.png"));
+        Image imgNext = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50.png"));
+        Image imgNextDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50-grey.png"));
+        Image imgNextHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-next-50-hover.png"));
+        Image imgPrevious = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50.png"));
+        Image imgPreviousDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50-grey.png"));
+        Image imgPreviousHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-previous-50-hover.png"));
+        Image imgFirst = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50.png"));
+        Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
+        Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
+        Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
 
         public frmParameter()
         {
@@ -58,6 +77,26 @@ namespace MiaClient
 
                 btnNieuw.FlatStyle = FlatStyle.Flat;
                 btnNieuw.FlatAppearance.BorderSize = 0;
+
+                //btnFirst.BackgroundImage = imgFirst;
+                //btnFirst.BackgroundImageLayout = ImageLayout.Stretch;
+                //btnFirst.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+                //btnPrevious.BackgroundImage = imgPrevious;
+                //btnPrevious.BackgroundImageLayout = ImageLayout.Stretch;
+                //btnPrevious.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+                //btnNext.BackgroundImage = imgNext;
+                //btnNext.BackgroundImageLayout = ImageLayout.Stretch;
+                //btnNext.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+                //btnLast.BackgroundImage = imgLast;
+                //btnLast.BackgroundImageLayout = ImageLayout.Stretch;
+                //btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+                btnFilter.BackgroundImage = imgFilter;
+                btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
+                btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
 
                 BindParameters(parameters);
