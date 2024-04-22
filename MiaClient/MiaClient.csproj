@@ -255,4 +255,8 @@
     <None Include="Resources\Filter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)Foto's\"* "$(ProjectDir)$(OutDir)Foto's\"
+copy "$(ProjectDir)Icons\"* "$(ProjectDir)$(OutDir)Icons\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
