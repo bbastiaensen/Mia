@@ -670,8 +670,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    foto = FotoByAanvraagId(foto, true);
-                    BindFotos(foto);
+                    foto = FotoManager.GetFoto();
+                    BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
                 }
                 else
                 {
@@ -743,8 +743,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    offerte = OfferteByAanvraagId(offerte, true);
-                    BindOfferte(offerte);
+                    offerte = OfferteManager.GetOffertes();
+                    BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
                 }
                 else
                 {
@@ -888,9 +888,9 @@ namespace MiaClient
             TxtFotoTitel.Text = geselecteerd.Titel;
             txt_FotoId.Text = geselecteerd.Id.ToString();
             txt_fotoURLInput.Text = geselecteerd.URL;
-            foto = FotoManager.GetFotos();
+            foto = FotoManager.GetFoto();
             foto = FotoByAanvraagId(foto, true);
-            BindFotos(foto);
+            BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
         }
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
@@ -985,7 +985,7 @@ namespace MiaClient
         {
             try
             {
-                foto = FotoManager.GetFotos();
+                foto = FotoManager.GetFoto();
                 BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
