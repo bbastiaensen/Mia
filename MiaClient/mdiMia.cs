@@ -263,6 +263,7 @@ namespace MiaClient
                 frmAanvragen.MdiParent = this;
             }
             frmAanvragen.Show();
+
         }
 
         private void goedkeuringenToolStripMenuItem_Click(object sender, EventArgs e)

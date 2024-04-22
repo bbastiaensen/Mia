@@ -27,8 +27,6 @@ namespace MiaClient
         public frmParameter()
         {
             InitializeComponent();
-
-            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
         private void frmParameter_FormClosing(object sender, FormClosingEventArgs e)

@@ -92,10 +92,11 @@
             // 
             // lblBedrag
             // 
+            this.lblBedrag.AutoSize = true;
             this.lblBedrag.Location = new System.Drawing.Point(821, 5);
             this.lblBedrag.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(98, 28);
+            this.lblBedrag.Size = new System.Drawing.Size(0, 28);
             this.lblBedrag.TabIndex = 7;
             this.lblBedrag.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -167,6 +168,7 @@
             this.Name = "AanvraagItem";
             this.Size = new System.Drawing.Size(1210, 33);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
