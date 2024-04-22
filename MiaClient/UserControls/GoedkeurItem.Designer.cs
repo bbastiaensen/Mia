@@ -38,6 +38,7 @@
             this.btnAfgekeurd = new System.Windows.Forms.Button();
             this.btnBekrachtigd = new System.Windows.Forms.Button();
             this.btnNietBekrachtigd = new System.Windows.Forms.Button();
+            this.btnInaanvraag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
@@ -45,7 +46,7 @@
             this.LblAanvrager.AutoSize = true;
             this.LblAanvrager.Location = new System.Drawing.Point(402, 2);
             this.LblAanvrager.Name = "LblAanvrager";
-            this.LblAanvrager.Size = new System.Drawing.Size(58, 21);
+            this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
             this.LblAanvrager.TabIndex = 11;
             this.LblAanvrager.Text = "aaaaaa";
             // 
@@ -54,7 +55,7 @@
             this.lblTitel.AutoSize = true;
             this.lblTitel.Location = new System.Drawing.Point(529, 2);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(58, 21);
+            this.lblTitel.Size = new System.Drawing.Size(72, 28);
             this.lblTitel.TabIndex = 12;
             this.lblTitel.Text = "aaaaaa";
             // 
@@ -63,7 +64,7 @@
             this.lblAanvraagmoment.AutoSize = true;
             this.lblAanvraagmoment.Location = new System.Drawing.Point(656, 2);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(58, 21);
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
             this.lblAanvraagmoment.TabIndex = 13;
             this.lblAanvraagmoment.Text = "aaaaaa";
             // 
@@ -72,7 +73,7 @@
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(798, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(58, 21);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
             this.lblFinancieringsjaar.TabIndex = 14;
             this.lblFinancieringsjaar.Text = "aaaaaa";
             // 
@@ -81,7 +82,7 @@
             this.lblBedrag.AutoSize = true;
             this.lblBedrag.Location = new System.Drawing.Point(928, 2);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(58, 21);
+            this.lblBedrag.Size = new System.Drawing.Size(72, 28);
             this.lblBedrag.TabIndex = 15;
             this.lblBedrag.Text = "aaaaaa";
             // 
@@ -149,10 +150,27 @@
             this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
             this.btnNietBekrachtigd.Click += new System.EventHandler(this.btnNietBekrachtigd_Click);
             // 
+            // btnInaanvraag
+            // 
+            this.btnInaanvraag.BackColor = System.Drawing.Color.Transparent;
+            this.btnInaanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnInaanvraag.FlatAppearance.BorderSize = 0;
+            this.btnInaanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInaanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInaanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInaanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnInaanvraag.Image")));
+            this.btnInaanvraag.Location = new System.Drawing.Point(146, 3);
+            this.btnInaanvraag.Name = "btnInaanvraag";
+            this.btnInaanvraag.Size = new System.Drawing.Size(27, 27);
+            this.btnInaanvraag.TabIndex = 20;
+            this.btnInaanvraag.UseVisualStyleBackColor = false;
+            this.btnInaanvraag.Click += new System.EventHandler(this.btnInaanvraag_Click);
+            // 
             // GoedkeurItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnInaanvraag);
             this.Controls.Add(this.btnNietBekrachtigd);
             this.Controls.Add(this.btnBekrachtigd);
             this.Controls.Add(this.btnAfgekeurd);
@@ -182,5 +200,6 @@
         private System.Windows.Forms.Button btnAfgekeurd;
         private System.Windows.Forms.Button btnBekrachtigd;
         private System.Windows.Forms.Button btnNietBekrachtigd;
+        private System.Windows.Forms.Button btnInaanvraag;
     }
 }
