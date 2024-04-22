@@ -97,7 +97,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.SetFormStatus(false);
                         MessageBox.Show("Je kunt deze offerte niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
+                    frmAanvraagFormulier.AanvraagBewaard += Offerteormulieredit_OfferteBewaard;
                     Offerte offerte = new Offerte();
                     offerte.Id = Convert.ToInt32(lblId.Text);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog //er wordt een log aangemaakt wanneer de gebruiker probeert in te loggen
@@ -135,6 +135,12 @@ namespace MiaClient.UserControls
             }
 
         }
-
+        private void Offerteormulieredit_OfferteBewaard(object sender, EventArgs e)
+        {
+            if (OfferteItemChanged != null)
+            {
+                OfferteItemChanged(this, null);
+            }
+        }
     }
 }

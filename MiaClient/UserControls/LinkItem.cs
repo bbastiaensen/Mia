@@ -106,6 +106,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier.SetFormStatus(false);
                         MessageBox.Show("Je kunt deze link niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    frmAanvraagFormulier.AanvraagBewaard += LinkFormulieredit_LinkBewaard;
                 }
             }
         }
@@ -122,6 +123,14 @@ namespace MiaClient.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LinkFormulieredit_LinkBewaard(object sender, EventArgs e)
+        {
+            if (LinkItemChanged != null)
+            {
+                LinkItemChanged(this, null);
             }
         }
     }
