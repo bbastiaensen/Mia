@@ -54,10 +54,9 @@ namespace MiaClient
         }
         private void Initialize()
         {
-            Connections();
             InitializeComponent();
             vulFormulier();
-            DisableForm();
+            SetFormStatus(false);
             GetParam();
         }
         private void GetParam()
@@ -74,62 +73,28 @@ namespace MiaClient
 
         private void Connections()
         {
-            //Leg de connectie met de databank, dit deelprobleem wordt in de main opnieuw opgeroepen
-            ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            GebruiksLogManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            PrioriteitManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FinancieringsjaarManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            DienstenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AfdelingenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            InvesteringenManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            AankoperManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            KostenplaatsManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            LinkManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            OfferteManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-            StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
         }
 
-        public void DisableForm()
+        public void SetFormStatus(bool enabled)
         {
             //Links
-            txt_hyperlinkInput.ReadOnly = true;
-            btn_bewaarLink.Enabled = false;
-            btn_nieuweLink.Enabled = false;
-
-
+            TxtLinkTitel.Enabled = enabled;
+            txt_hyperlinkInput.Enabled = enabled;
+            btn_bewaarLink.Enabled = enabled;
+            btn_nieuweLink.Enabled = enabled;
             //Fotos
-            txt_fotoURLInput.ReadOnly = true;
-            btn_bewaarFoto.Enabled = false;
-            btn_nieuweFoto.Enabled = false;
-            btn_kiesFoto.Enabled = false;
+            TxtFotoTitel.Enabled = enabled;
+            txt_fotoURLInput.Enabled = enabled;
+            btn_bewaarFoto.Enabled = enabled;
+            btn_nieuweFoto.Enabled = enabled;
+            btn_kiesFoto.Enabled = enabled;
 
             //Offertes
-            txt_offerteURLInput.ReadOnly = true;
-            btn_bewaarOfferte.Enabled = false;
-            btn_nieuweOfferte.Enabled = false;
-            btn_kiesOfferte.Enabled = false;
-        }
-
-        public void EnableForm() //TODO: met bool werken om zo de code beter te optimalizeren
-        {
-            //Links
-            txt_hyperlinkInput.ReadOnly = false;
-            btn_bewaarLink.Enabled = true;
-            btn_nieuweLink.Enabled = true;
-            //Fotos
-            txt_fotoURLInput.ReadOnly = true;
-            btn_bewaarFoto.Enabled = true;
-            btn_nieuweFoto.Enabled = true;
-            btn_kiesFoto.Enabled = true;
-
-            //Offertes
-            txt_offerteURLInput.ReadOnly = true;
-            btn_bewaarOfferte.Enabled = true;
-            btn_nieuweOfferte.Enabled = true;
-            btn_kiesOfferte.Enabled = true;
+            TxtOfferteTitel.Enabled = enabled;
+            txt_offerteURLInput.Enabled = enabled;
+            btn_bewaarOfferte.Enabled = enabled;
+            btn_nieuweOfferte.Enabled = enabled;
+            btn_kiesOfferte.Enabled = enabled;
 
         }
         public void vulFormulier()
@@ -564,7 +529,7 @@ namespace MiaClient
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         if (result == DialogResult.Yes)
                         {
-                            EnableForm();
+                            SetFormStatus(true);
                             txtAanvraagId.Text = _aanvraagId.ToString();
                         }
                         else
@@ -621,7 +586,7 @@ namespace MiaClient
                             Gebruiker = Program.Gebruiker,
                             Id = Convert.ToInt32(_aanvraagId),
                             TijdstipActie = DateTime.Now,
-                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                         }, true);
                     }
                     link = LinkManager.GetLinken();
@@ -637,7 +602,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     link = LinkManager.GetLinken();
                     BindLink(LinkByAanvraagId(link, linkByAanvraagId));
@@ -702,7 +667,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     foto = FotoByAanvraagId(foto, true);
                     BindFotos(foto);
@@ -775,7 +740,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(_aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId}."
+                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     offerte = OfferteByAanvraagId(offerte, true);
                     BindOfferte(offerte);
@@ -839,6 +804,15 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+            
+            Aanvraag aanvraag1 = new Aanvraag();
+            aanvraag1.Id = Convert.ToInt32(txtAanvraagId.Text);
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
         public void DisableBewaarButon()
         {
@@ -934,12 +908,14 @@ namespace MiaClient
                 LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 avi.Location = new System.Drawing.Point(xPos, yPos);
                 avi.Name = "LinkSelection" + t;
-                avi.Size = new System.Drawing.Size(705, 33);
+                avi.Size = new System.Drawing.Size(650, 33);
                 avi.TabIndex = t + 8;
                 avi.LinkItemSelected += Gli_LinkItemSelected;
                 avi.LinkDeleted += Avi_LinkItemChanged;
                 avi.LinkItemChanged += Avi_LinkItemChanged;
                 this.pnl_Links.Controls.Add(avi);
+                pnl_Links.HorizontalScroll.Maximum = 0;
+                pnl_Links.AutoScroll = false;
 
                 t++;
                 yPos += 30;
@@ -1073,6 +1049,15 @@ namespace MiaClient
                 AanvraagId = Convert.ToInt32(txtAanvraagId.Text)
             };
             LinkManager.SaveLinken(updateLink, insert: false);
+            Link link1 = new Link();
+            link1.Id = Convert.ToInt32(lblLinkId.Text);
+            link1.AanvraagId = Convert.ToInt32(txtAanvraagId.Text);
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag" + link1.AanvraagId + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
         public void UpdateOfferte()
         {

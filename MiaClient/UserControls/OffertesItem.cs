@@ -94,7 +94,7 @@ namespace MiaClient.UserControls
                         frmAanvraagFormulier = new frmAanvraagFormulier(Id, "editOfferte");
                         frmAanvraagFormulier.Show();
                         frmAanvraagFormulier.DisableBewaarButon();
-                        frmAanvraagFormulier.DisableForm();
+                        frmAanvraagFormulier.SetFormStatus(false);
                         MessageBox.Show("Je kunt deze offerte niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
