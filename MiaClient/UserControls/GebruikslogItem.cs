@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProofOfConceptDesign;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -36,9 +37,9 @@ namespace MiaClient.UserControls
             lblId.Text = Id.ToString();
             lblTijdstipActie.Text = TijdstipActie.ToString();
             lblGebruiker.Text = Gebruiker;
-            if (OmschrijvingActie.Length >= 47)
+            if (OmschrijvingActie.Length >= 50)
             {
-                lblOmschrijvingActieKort.Text = OmschrijvingActie.Substring(0,47) + "...";
+                lblOmschrijvingActieKort.Text = OmschrijvingActie.Substring(0,50) + "...";
             }
             else
             {
@@ -46,7 +47,11 @@ namespace MiaClient.UserControls
             }
             if (Even)
             {
-                this.BackColor = Color.White;
+                this.BackColor = StyleParameters.ListItemColor;
+            }
+            else
+            {
+                this.BackColor = StyleParameters.AltListItemColor;
             }
         }
 

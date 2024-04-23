@@ -49,6 +49,10 @@
             this.txtGebruikerDetail = new System.Windows.Forms.TextBox();
             this.txtTijdstipActieDetail = new System.Windows.Forms.TextBox();
             this.btnFilter = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,10 +60,9 @@
             // 
             this.lblGebruiksLogTitel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGebruiksLogTitel.Location = new System.Drawing.Point(16, 11);
-            this.lblGebruiksLogTitel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGebruiksLogTitel.Location = new System.Drawing.Point(12, 9);
             this.lblGebruiksLogTitel.Name = "lblGebruiksLogTitel";
-            this.lblGebruiksLogTitel.Size = new System.Drawing.Size(1153, 30);
+            this.lblGebruiksLogTitel.Size = new System.Drawing.Size(865, 24);
             this.lblGebruiksLogTitel.TabIndex = 0;
             this.lblGebruiksLogTitel.Text = "MIA - Gebruikslog";
             this.lblGebruiksLogTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,10 +70,9 @@
             // dtpVan
             // 
             this.dtpVan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpVan.Location = new System.Drawing.Point(81, 23);
-            this.dtpVan.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpVan.Location = new System.Drawing.Point(61, 19);
             this.dtpVan.Name = "dtpVan";
-            this.dtpVan.Size = new System.Drawing.Size(255, 34);
+            this.dtpVan.Size = new System.Drawing.Size(192, 29);
             this.dtpVan.TabIndex = 1;
             // 
             // grpbxFilter
@@ -84,11 +86,9 @@
             this.grpbxFilter.Controls.Add(this.dtpTot);
             this.grpbxFilter.Controls.Add(this.dtpVan);
             this.grpbxFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpbxFilter.Location = new System.Drawing.Point(17, 46);
-            this.grpbxFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.grpbxFilter.Location = new System.Drawing.Point(13, 37);
             this.grpbxFilter.Name = "grpbxFilter";
-            this.grpbxFilter.Padding = new System.Windows.Forms.Padding(4);
-            this.grpbxFilter.Size = new System.Drawing.Size(1180, 123);
+            this.grpbxFilter.Size = new System.Drawing.Size(929, 100);
             this.grpbxFilter.TabIndex = 2;
             this.grpbxFilter.TabStop = false;
             this.grpbxFilter.Text = "Filteren";
@@ -96,10 +96,9 @@
             // chkTot
             // 
             this.chkTot.AutoSize = true;
-            this.chkTot.Location = new System.Drawing.Point(8, 69);
-            this.chkTot.Margin = new System.Windows.Forms.Padding(4);
+            this.chkTot.Location = new System.Drawing.Point(6, 56);
             this.chkTot.Name = "chkTot";
-            this.chkTot.Size = new System.Drawing.Size(61, 32);
+            this.chkTot.Size = new System.Drawing.Size(49, 25);
             this.chkTot.TabIndex = 8;
             this.chkTot.Text = "Tot";
             this.chkTot.UseVisualStyleBackColor = true;
@@ -107,10 +106,9 @@
             // chkVan
             // 
             this.chkVan.AutoSize = true;
-            this.chkVan.Location = new System.Drawing.Point(8, 30);
-            this.chkVan.Margin = new System.Windows.Forms.Padding(4);
+            this.chkVan.Location = new System.Drawing.Point(6, 24);
             this.chkVan.Name = "chkVan";
-            this.chkVan.Size = new System.Drawing.Size(66, 32);
+            this.chkVan.Size = new System.Drawing.Size(55, 25);
             this.chkVan.TabIndex = 7;
             this.chkVan.Text = "Van";
             this.chkVan.UseVisualStyleBackColor = true;
@@ -118,57 +116,51 @@
             // lblOmschrijving
             // 
             this.lblOmschrijving.AutoSize = true;
-            this.lblOmschrijving.Location = new System.Drawing.Point(556, 31);
-            this.lblOmschrijving.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOmschrijving.Location = new System.Drawing.Point(417, 25);
             this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(127, 28);
+            this.lblOmschrijving.Size = new System.Drawing.Size(103, 21);
             this.lblOmschrijving.TabIndex = 6;
             this.lblOmschrijving.Text = "Omschrijving";
             // 
             // lblGebruiker
             // 
             this.lblGebruiker.AutoSize = true;
-            this.lblGebruiker.Location = new System.Drawing.Point(345, 31);
-            this.lblGebruiker.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGebruiker.Location = new System.Drawing.Point(259, 25);
             this.lblGebruiker.Name = "lblGebruiker";
-            this.lblGebruiker.Size = new System.Drawing.Size(98, 28);
+            this.lblGebruiker.Size = new System.Drawing.Size(79, 21);
             this.lblGebruiker.TabIndex = 5;
             this.lblGebruiker.Text = "Gebruiker";
             // 
             // txtOmschrijving
             // 
             this.txtOmschrijving.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOmschrijving.Location = new System.Drawing.Point(548, 66);
-            this.txtOmschrijving.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOmschrijving.Location = new System.Drawing.Point(411, 54);
             this.txtOmschrijving.Name = "txtOmschrijving";
-            this.txtOmschrijving.Size = new System.Drawing.Size(623, 34);
+            this.txtOmschrijving.Size = new System.Drawing.Size(512, 29);
             this.txtOmschrijving.TabIndex = 4;
             // 
             // txtGebruiker
             // 
             this.txtGebruiker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGebruiker.Location = new System.Drawing.Point(345, 66);
-            this.txtGebruiker.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGebruiker.Location = new System.Drawing.Point(259, 54);
             this.txtGebruiker.Name = "txtGebruiker";
-            this.txtGebruiker.Size = new System.Drawing.Size(193, 34);
+            this.txtGebruiker.Size = new System.Drawing.Size(146, 29);
             this.txtGebruiker.TabIndex = 3;
             // 
             // dtpTot
             // 
             this.dtpTot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTot.Location = new System.Drawing.Point(81, 66);
-            this.dtpTot.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpTot.Location = new System.Drawing.Point(61, 54);
             this.dtpTot.Name = "dtpTot";
-            this.dtpTot.Size = new System.Drawing.Size(255, 34);
+            this.dtpTot.Size = new System.Drawing.Size(192, 29);
             this.dtpTot.TabIndex = 2;
             // 
             // pnlGebruiksLogItems
             // 
             this.pnlGebruiksLogItems.AutoScroll = true;
-            this.pnlGebruiksLogItems.Location = new System.Drawing.Point(16, 176);
-            this.pnlGebruiksLogItems.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlGebruiksLogItems.Location = new System.Drawing.Point(12, 143);
             this.pnlGebruiksLogItems.Name = "pnlGebruiksLogItems";
-            this.pnlGebruiksLogItems.Size = new System.Drawing.Size(1181, 369);
+            this.pnlGebruiksLogItems.Size = new System.Drawing.Size(930, 311);
             this.pnlGebruiksLogItems.TabIndex = 3;
             this.pnlGebruiksLogItems.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGebruiksLogItems_Paint);
             // 
@@ -176,10 +168,9 @@
             // 
             this.lblIdDetail.AutoSize = true;
             this.lblIdDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdDetail.Location = new System.Drawing.Point(23, 570);
-            this.lblIdDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIdDetail.Location = new System.Drawing.Point(17, 499);
             this.lblIdDetail.Name = "lblIdDetail";
-            this.lblIdDetail.Size = new System.Drawing.Size(33, 28);
+            this.lblIdDetail.Size = new System.Drawing.Size(26, 21);
             this.lblIdDetail.TabIndex = 4;
             this.lblIdDetail.Text = "Id:";
             // 
@@ -187,10 +178,9 @@
             // 
             this.lblGebruikerDetail.AutoSize = true;
             this.lblGebruikerDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGebruikerDetail.Location = new System.Drawing.Point(23, 613);
-            this.lblGebruikerDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGebruikerDetail.Location = new System.Drawing.Point(17, 534);
             this.lblGebruikerDetail.Name = "lblGebruikerDetail";
-            this.lblGebruikerDetail.Size = new System.Drawing.Size(102, 28);
+            this.lblGebruikerDetail.Size = new System.Drawing.Size(82, 21);
             this.lblGebruikerDetail.TabIndex = 5;
             this.lblGebruikerDetail.Text = "Gebruiker:";
             // 
@@ -198,10 +188,9 @@
             // 
             this.lblTijdstipActieDetail.AutoSize = true;
             this.lblTijdstipActieDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTijdstipActieDetail.Location = new System.Drawing.Point(648, 570);
-            this.lblTijdstipActieDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTijdstipActieDetail.Location = new System.Drawing.Point(486, 499);
             this.lblTijdstipActieDetail.Name = "lblTijdstipActieDetail";
-            this.lblTijdstipActieDetail.Size = new System.Drawing.Size(126, 28);
+            this.lblTijdstipActieDetail.Size = new System.Drawing.Size(99, 21);
             this.lblTijdstipActieDetail.TabIndex = 6;
             this.lblTijdstipActieDetail.Text = "Tijdstip actie:";
             // 
@@ -209,69 +198,122 @@
             // 
             this.lblOmschrijvingDetail.AutoSize = true;
             this.lblOmschrijvingDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOmschrijvingDetail.Location = new System.Drawing.Point(23, 656);
-            this.lblOmschrijvingDetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOmschrijvingDetail.Location = new System.Drawing.Point(17, 569);
             this.lblOmschrijvingDetail.Name = "lblOmschrijvingDetail";
-            this.lblOmschrijvingDetail.Size = new System.Drawing.Size(131, 28);
+            this.lblOmschrijvingDetail.Size = new System.Drawing.Size(106, 21);
             this.lblOmschrijvingDetail.TabIndex = 7;
             this.lblOmschrijvingDetail.Text = "Omschrijving:";
             // 
             // txtIdDetail
             // 
             this.txtIdDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdDetail.Location = new System.Drawing.Point(197, 566);
-            this.txtIdDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdDetail.Location = new System.Drawing.Point(148, 496);
             this.txtIdDetail.Name = "txtIdDetail";
             this.txtIdDetail.ReadOnly = true;
-            this.txtIdDetail.Size = new System.Drawing.Size(401, 34);
+            this.txtIdDetail.Size = new System.Drawing.Size(302, 29);
             this.txtIdDetail.TabIndex = 8;
             // 
             // txtOmschrijvingDetail
             // 
             this.txtOmschrijvingDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOmschrijvingDetail.Location = new System.Drawing.Point(197, 652);
-            this.txtOmschrijvingDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOmschrijvingDetail.Location = new System.Drawing.Point(148, 566);
             this.txtOmschrijvingDetail.Multiline = true;
             this.txtOmschrijvingDetail.Name = "txtOmschrijvingDetail";
             this.txtOmschrijvingDetail.ReadOnly = true;
-            this.txtOmschrijvingDetail.Size = new System.Drawing.Size(991, 280);
+            this.txtOmschrijvingDetail.Size = new System.Drawing.Size(788, 228);
             this.txtOmschrijvingDetail.TabIndex = 9;
             // 
             // txtGebruikerDetail
             // 
             this.txtGebruikerDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGebruikerDetail.Location = new System.Drawing.Point(197, 609);
-            this.txtGebruikerDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGebruikerDetail.Location = new System.Drawing.Point(148, 531);
             this.txtGebruikerDetail.Name = "txtGebruikerDetail";
             this.txtGebruikerDetail.ReadOnly = true;
-            this.txtGebruikerDetail.Size = new System.Drawing.Size(991, 34);
+            this.txtGebruikerDetail.Size = new System.Drawing.Size(788, 29);
             this.txtGebruikerDetail.TabIndex = 10;
             // 
             // txtTijdstipActieDetail
             // 
             this.txtTijdstipActieDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTijdstipActieDetail.Location = new System.Drawing.Point(788, 566);
-            this.txtTijdstipActieDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTijdstipActieDetail.Location = new System.Drawing.Point(591, 496);
             this.txtTijdstipActieDetail.Name = "txtTijdstipActieDetail";
             this.txtTijdstipActieDetail.ReadOnly = true;
-            this.txtTijdstipActieDetail.Size = new System.Drawing.Size(400, 34);
+            this.txtTijdstipActieDetail.Size = new System.Drawing.Size(345, 29);
             this.txtTijdstipActieDetail.TabIndex = 11;
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(17, 13);
+            this.btnFilter.FlatAppearance.BorderSize = 0;
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Location = new System.Drawing.Point(13, 3);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(2);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(172, 37);
+            this.btnFilter.Size = new System.Drawing.Size(30, 30);
             this.btnFilter.TabIndex = 28;
-            this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
+            // btnFirst
+            // 
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.Location = new System.Drawing.Point(12, 460);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(30, 30);
+            this.btnFirst.TabIndex = 33;
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            this.btnFirst.MouseLeave += new System.EventHandler(this.btnFirst_MouseLeave);
+            this.btnFirst.MouseHover += new System.EventHandler(this.btnFirst_MouseHover);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Location = new System.Drawing.Point(48, 460);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.TabIndex = 34;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            this.btnPrevious.MouseLeave += new System.EventHandler(this.btnPrevious_MouseLeave);
+            this.btnPrevious.MouseHover += new System.EventHandler(this.btnPrevious_MouseHover);
+            // 
+            // btnLast
+            // 
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.Location = new System.Drawing.Point(912, 460);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(30, 30);
+            this.btnLast.TabIndex = 35;
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            this.btnLast.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
+            this.btnLast.MouseHover += new System.EventHandler(this.btnLast_MouseHover);
+            // 
+            // btnNext
+            // 
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Location = new System.Drawing.Point(876, 460);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.TabIndex = 34;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
+            this.btnNext.MouseHover += new System.EventHandler(this.btnNext_MouseHover);
+            // 
             // FrmGebruiksLog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 948);
+            this.ClientSize = new System.Drawing.Size(954, 806);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.txtTijdstipActieDetail);
             this.Controls.Add(this.txtGebruikerDetail);
@@ -286,7 +328,6 @@
             this.Controls.Add(this.lblGebruiksLogTitel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmGebruiksLog";
             this.Text = "Gebruikslog";
@@ -322,5 +363,9 @@
         private System.Windows.Forms.TextBox txtGebruikerDetail;
         private System.Windows.Forms.TextBox txtTijdstipActieDetail;
         private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
     }
 }
