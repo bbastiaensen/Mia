@@ -358,7 +358,12 @@ namespace MiaClient
             if (parameters.Count > aantalListItems)
             {
                 //Paging is nodig
-                aantalPages = (parameters.Count / aantalListItems) + 1;
+                aantalPages = (parameters.Count / aantalListItems);
+                if ((parameters.Count % aantalListItems) != 0)
+                {
+                    aantalPages++;
+                }
+
                 if (huidigePage < aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());

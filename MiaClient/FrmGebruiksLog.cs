@@ -191,7 +191,12 @@ namespace MiaClient
             if (gebruiksLogs.Count > aantalListItems)
             {
                 //Paging is nodig
-                aantalPages = (gebruiksLogs.Count / aantalListItems) + 1;
+                aantalPages = (gebruiksLogs.Count / aantalListItems);
+                if ((gebruiksLogs.Count % aantalListItems) != 0)
+                {
+                    aantalPages++;
+                }
+
                 if (huidigePage < aantalPages)
                 {
                     BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
