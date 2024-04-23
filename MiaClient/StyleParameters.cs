@@ -16,6 +16,9 @@ namespace ProofOfConceptDesign
         public static Color ButtonBack { get; set; }
         public static Color Achtergrondkleur { get; set; }
         public static Color AccentKleur { get; set; }
-        
+        public static Color ListItemColor { get; set; }
+        public static Color AltListItemColor { get; set; }
+
+
     }
 }
