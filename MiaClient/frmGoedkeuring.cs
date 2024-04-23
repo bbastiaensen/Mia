@@ -46,7 +46,7 @@ namespace MiaClient
 
         private void frmGoedkeuring_Load(object sender, EventArgs e)
         {
-            var lijst = AanvraagManager.GetAanvragenInaanvraagOfGoedgekeurd();
+            var lijst = AanvraagManager.GetAanvragen();
             BindAanvraag(lijst);
         }
 

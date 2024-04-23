@@ -24,7 +24,7 @@ namespace MiaClient
                 llblProjectLogoAttribution.LinkVisited = true;
                 System.Diagnostics.Process.Start("https://www.flaticon.com/free-icons/hair");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("De link kon niet worden geopend.");
             }
@@ -37,7 +37,7 @@ namespace MiaClient
                 llblTaTu.LinkVisited = true;
                 System.Diagnostics.Process.Start("https://www.talentenschoolturnhout.be/");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("De link kon niet worden geopend.");
             }
@@ -50,7 +50,20 @@ namespace MiaClient
                 llblMuylenberg.LinkVisited = true;
                 System.Diagnostics.Process.Start("https://www.muylenberg.be/");
             }
-            catch (Exception ex)
+            catch (Exception)
+            {
+                MessageBox.Show("De link kon niet worden geopend.");
+            }
+        }
+
+        private void llblIconsByIcon8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                llblIconsByIcon8.LinkVisited = true;
+                System.Diagnostics.Process.Start("https://icons8.com");
+            }
+            catch (Exception)
             {
                 MessageBox.Show("De link kon niet worden geopend.");
             }
