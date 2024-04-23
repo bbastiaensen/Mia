@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProofOfConceptDesign;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -40,7 +41,11 @@ namespace MiaClient.UserControls
             lblEenheid.Text = Eenheid;
             if (Even)
             {
-                this.BackColor = Color.White;
+                this.BackColor = StyleParameters.ListItemColor;
+            }
+            else
+            {
+                this.BackColor = StyleParameters.AltListItemColor;
             }
         }
 

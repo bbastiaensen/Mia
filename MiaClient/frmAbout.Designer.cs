@@ -37,6 +37,7 @@
             this.llblMuylenberg = new System.Windows.Forms.LinkLabel();
             this.llblTaTu = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llblIconsByIcon8 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProjectLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.llblIconsByIcon8);
             this.groupBox1.Controls.Add(this.llblProjectLogoAttribution);
             this.groupBox1.Location = new System.Drawing.Point(12, 396);
             this.groupBox1.Name = "groupBox1";
@@ -122,6 +124,17 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Credits";
+            // 
+            // llblIconsByIcon8
+            // 
+            this.llblIconsByIcon8.AutoSize = true;
+            this.llblIconsByIcon8.Location = new System.Drawing.Point(6, 46);
+            this.llblIconsByIcon8.Name = "llblIconsByIcon8";
+            this.llblIconsByIcon8.Size = new System.Drawing.Size(125, 21);
+            this.llblIconsByIcon8.TabIndex = 1;
+            this.llblIconsByIcon8.TabStop = true;
+            this.llblIconsByIcon8.Text = "Icons door Icon8";
+            this.llblIconsByIcon8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblIconsByIcon8_LinkClicked);
             // 
             // frmAbout
             // 
@@ -160,5 +173,6 @@
         private System.Windows.Forms.LinkLabel llblMuylenberg;
         private System.Windows.Forms.LinkLabel llblTaTu;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel llblIconsByIcon8;
     }
 }
