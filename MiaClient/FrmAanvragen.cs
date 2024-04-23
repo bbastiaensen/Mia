@@ -582,6 +582,7 @@ namespace MiaClient
         private void btnNext_Click(object sender, EventArgs e)
         {
             huidigePage++;
+            ShowPages();
             if (huidigePage < aantalPages)
             {
                 BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -597,6 +598,7 @@ namespace MiaClient
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             huidigePage--;
+            ShowPages();
             if (huidigePage < aantalPages)
             {
                 BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -611,6 +613,7 @@ namespace MiaClient
         private void btnFirst_Click(object sender, EventArgs e)
         {
             huidigePage = 1;
+            ShowPages();
             BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
             EnableFirstPrevious(false);
             if (huidigePage < aantalPages)
@@ -622,6 +625,7 @@ namespace MiaClient
         private void btnLast_Click(object sender, EventArgs e)
         {
             huidigePage = aantalPages;
+            ShowPages();
             BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
             EnableLastNext(false);
             if (huidigePage > 1)
@@ -641,6 +645,8 @@ namespace MiaClient
                     aantalPages++;
                 }
 
+                ShowPages();
+
                 if (huidigePage < aantalPages)
                 {
                     BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -656,6 +662,11 @@ namespace MiaClient
                 EnableFirstPrevious(false);
                 EnableLastNext(false);
             }
+        }
+
+        private void ShowPages()
+        {
+            lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
     }
 }

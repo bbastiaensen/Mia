@@ -78,6 +78,7 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
+            this.lblPages = new System.Windows.Forms.Label();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -562,7 +563,6 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Location = new System.Drawing.Point(51, 681);
             this.btnPrevious.Name = "btnPrevious";
@@ -588,7 +588,6 @@
             // 
             // btnNext
             // 
-            this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Location = new System.Drawing.Point(1249, 681);
             this.btnNext.Name = "btnNext";
@@ -612,11 +611,20 @@
             this.btnLast.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
             this.btnLast.MouseHover += new System.EventHandler(this.btnLast_MouseHover);
             // 
+            // lblPages
+            // 
+            this.lblPages.Location = new System.Drawing.Point(87, 681);
+            this.lblPages.Name = "lblPages";
+            this.lblPages.Size = new System.Drawing.Size(1156, 30);
+            this.lblPages.TabIndex = 41;
+            this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1327, 720);
+            this.Controls.Add(this.lblPages);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnPrevious);
@@ -708,5 +716,6 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Label lblPages;
     }
 }
