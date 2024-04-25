@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -895,7 +896,35 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
+            CreateUI();
         }
+
+        private void CreateUI()
+        {
+            this.BackColor = StyleParameters.Achtergrondkleur;
+            tabControl_Aanvraagformulier.BackColor = this.BackColor;
+            tabControl.BackColor = this.BackColor;
+
+            foreach (var btn in this.Controls.OfType<Button>())
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.BackColor = StyleParameters.ButtonBack;
+                btn.ForeColor = StyleParameters.Buttontext;
+            }
+
+            foreach (var tp in tabControl.Controls.OfType<TabPage>())
+            {
+                foreach (var btn in tp.Controls.OfType<Button>())
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.BackColor = StyleParameters.ButtonBack;
+                    btn.ForeColor = StyleParameters.Buttontext;
+                }
+            }
+        }
+
         public void BindLink(List<Link> items)
         {
             this.pnl_Links.Controls.Clear();
@@ -906,15 +935,15 @@ namespace MiaClient
 
             foreach (var av in items)
             {
-                LinkItem avi = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
-                avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "LinkSelection" + t;
-                avi.Size = new System.Drawing.Size(650, 33);
-                avi.TabIndex = t + 8;
-                avi.LinkItemSelected += Gli_LinkItemSelected;
-                avi.LinkDeleted += Avi_LinkItemChanged;
-                avi.LinkItemChanged += Avi_LinkItemChanged;
-                this.pnl_Links.Controls.Add(avi);
+                LinkItem li = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
+                li.Location = new System.Drawing.Point(xPos, yPos);
+                li.Name = "LinkSelection" + t;
+                li.Size = new System.Drawing.Size(428, 27);
+                li.TabIndex = t + 8;
+                li.LinkItemSelected += Gli_LinkItemSelected;
+                li.LinkDeleted += Avi_LinkItemChanged;
+                li.LinkItemChanged += Avi_LinkItemChanged;
+                this.pnl_Links.Controls.Add(li);
                 pnl_Links.HorizontalScroll.Maximum = 0;
                 pnl_Links.AutoScroll = false;
 

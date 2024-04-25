@@ -550,19 +550,19 @@
             // 
             // btnNieuweAanvraag
             // 
-            this.btnNieuweAanvraag.BackgroundImage = global::MiaClient.Properties.Resources.nieuweAanvraag;
             this.btnNieuweAanvraag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNieuweAanvraag.FlatAppearance.BorderSize = 0;
             this.btnNieuweAanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNieuweAanvraag.Location = new System.Drawing.Point(1245, 8);
+            this.btnNieuweAanvraag.Location = new System.Drawing.Point(1269, 13);
             this.btnNieuweAanvraag.Name = "btnNieuweAanvraag";
-            this.btnNieuweAanvraag.Size = new System.Drawing.Size(55, 50);
+            this.btnNieuweAanvraag.Size = new System.Drawing.Size(40, 40);
             this.btnNieuweAanvraag.TabIndex = 17;
             this.btnNieuweAanvraag.UseVisualStyleBackColor = true;
             this.btnNieuweAanvraag.Click += new System.EventHandler(this.btnNieuweAanvraag_Click);
             // 
             // btnPrevious
             // 
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Location = new System.Drawing.Point(51, 681);
             this.btnPrevious.Name = "btnPrevious";
@@ -588,6 +588,7 @@
             // 
             // btnNext
             // 
+            this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Location = new System.Drawing.Point(1249, 681);
             this.btnNext.Name = "btnNext";
