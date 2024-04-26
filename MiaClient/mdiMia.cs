@@ -30,6 +30,9 @@ namespace MiaClient
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
 
+        Image imgGebruikersbeheer = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-users-48.png"));
+        Image imgGoedkeuringen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-approval-50.png"));
+
 
         public mdiMia()
         {
@@ -125,9 +128,11 @@ namespace MiaClient
             {
                 aanvragenToolStripMenuItem.Visible = true;
                 aanvragenToolStripButton.Visible = true;
+                goedkeuringenToolStripButton.Visible = false;
                 beheerToolStripMenuItem.Visible = false;
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
+                gebruikersToolStripButton.Visible = false;
                 helpMenu.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = false;
             }
@@ -142,15 +147,18 @@ namespace MiaClient
             if (Program.IsGoedkeurder)
             {
                 goedkeuringenToolStripMenuItem.Visible = true;
+                goedkeuringenToolStripButton.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
             if (Program.IsSysteem)
             {
                 goedkeuringenToolStripMenuItem.Visible = true;
+                goedkeuringenToolStripButton.Visible = true;
                 beheerToolStripMenuItem.Visible = true;
                 gebruiksLogToolStripButton.Visible = true;
                 parameterToolStripButton.Visible = true;
+                gebruikersToolStripButton.Visible = true;
             }
         }
 
@@ -231,6 +239,10 @@ namespace MiaClient
         {
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
+
+            gebruikersToolStripButton.Image = imgGebruikersbeheer;
+            goedkeuringenToolStripButton.Image = imgGoedkeuringen;
+
             MenubalkSamenstellen();
             stelGrafischeWaardeIn();
         }
@@ -267,6 +279,26 @@ namespace MiaClient
         }
 
         private void goedkeuringenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmGoedkeuring == null)
+            {
+                FrmGoedkeuring = new frmGoedkeuring();
+                FrmGoedkeuring.MdiParent = this;
+            }
+            FrmGoedkeuring.Show();
+        }
+
+        private void gebruikersToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmGebruikerBeheer == null)
+            {
+                frmGebruikerBeheer = new frmGebruikerBeheer();
+                frmGebruikerBeheer.MdiParent = this;
+            }
+            frmGebruikerBeheer.Show();
+        }
+
+        private void goedkeuringenToolStripButton_Click(object sender, EventArgs e)
         {
             if (FrmGoedkeuring == null)
             {

@@ -248,6 +248,7 @@
     <Content Include="Icons\Filter.png" />
     <Content Include="Icons\goedgekeurd_aan.png" />
     <Content Include="Icons\goedgekeurd_uit.png" />
+    <Content Include="Icons\icons8-approval-50.png" />
     <Content Include="Icons\icons8-first-50-grey.png" />
     <Content Include="Icons\icons8-first-50-hover.png" />
     <Content Include="Icons\icons8-first-50.png" />
@@ -260,6 +261,7 @@
     <Content Include="Icons\icons8-previous-50-grey.png" />
     <Content Include="Icons\icons8-previous-50-hover.png" />
     <Content Include="Icons\icons8-previous-50.png" />
+    <Content Include="Icons\icons8-users-48.png" />
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="Icons\nieuweAanvraag.png" />
