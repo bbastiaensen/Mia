@@ -33,7 +33,7 @@ namespace MiaClient
         private string hyperlink = string.Empty;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
-        private int _aanvraagId = 0;
+        private int aanvraagId = 0;
         List<Foto> foto;
         List<Link> link;
         List<Offerte> offerte;
@@ -147,11 +147,12 @@ namespace MiaClient
                 ErrorHandler(ex, "FrmAanvraagFormulier");
             }
 
+            aanvraagId = id;
             Aanvraag aanvraag = new Aanvraag();
 
             if (action == "edit")
             {
-                aanvraag = AanvraagManager.GetAanvraagById(id);
+                aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -323,7 +324,7 @@ namespace MiaClient
                 {
                     Titel = TxtOfferteTitel.Text,
                     Url = filepath,
-                    AanvraagId = _aanvraagId
+                    AanvraagId = aanvraagId
                 };
 
                 OfferteManager.SaveOfferte(offerte, true);
@@ -343,7 +344,7 @@ namespace MiaClient
                 {
                     Titel = TxtFotoTitel.Text,
                     Url = filepath,
-                    AanvraagId = _aanvraagId
+                    AanvraagId = aanvraagId
                 };
                 FotoManager.SaveFoto(foto, true);
                 return foto;
@@ -361,7 +362,7 @@ namespace MiaClient
                 Link link = new Link
                 {
                     Titel = TxtLinkTitel.Text,
-                    AanvraagId = _aanvraagId,
+                    AanvraagId = aanvraagId,
                     Url = hyperlink
                 };
                 LinkManager.SaveLinken(link, insert: true);
@@ -465,9 +466,9 @@ namespace MiaClient
             GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
             {
                 Gebruiker = Program.Gebruiker,
-                Id = _aanvraagId,
+                Id = aanvraagId,
                 TijdstipActie = DateTime.Now,
-                OmschrijvingActie = $"Aanvraag {_aanvraagId} werd aangemaakt door gebruiker {Program.Gebruiker}."
+                OmschrijvingActie = $"Aanvraag {aanvraagId} werd aangemaakt door gebruiker {Program.Gebruiker}."
             }, true);
         }
 
@@ -487,9 +488,9 @@ namespace MiaClient
         {
             int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
             int aanvraagid = highestAanvraagId + 1;
-            _aanvraagId = aanvraagid;
+            aanvraagId = aanvraagid;
 
-            return _aanvraagId;
+            return aanvraagId;
         }
         private int GetLastOfferte()
         {
@@ -531,7 +532,7 @@ namespace MiaClient
                         if (result == DialogResult.Yes)
                         {
                             SetFormStatus(true);
-                            txtAanvraagId.Text = _aanvraagId.ToString();
+                            txtAanvraagId.Text = aanvraagId.ToString();
                         }
                         else
                         {
@@ -586,9 +587,9 @@ namespace MiaClient
                         GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                         {
                             Gebruiker = Program.Gebruiker,
-                            Id = Convert.ToInt32(_aanvraagId),
+                            Id = Convert.ToInt32(aanvraagId),
                             TijdstipActie = DateTime.Now,
-                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
+                            OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                         }, true);
                     }
                     link = LinkManager.GetLinken();
@@ -602,9 +603,9 @@ namespace MiaClient
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
-                        Id = Convert.ToInt32(_aanvraagId),
+                        Id = Convert.ToInt32(aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
+                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     link = LinkManager.GetLinken();
                     BindLink(LinkByAanvraagId(link, linkByAanvraagId));
@@ -655,7 +656,7 @@ namespace MiaClient
                     string fileExtension = Path.GetExtension(selectedPath);
                     int lastFotoId = GetLastFoto();
 
-                    string uniqueFileName = $"{_aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
+                    string uniqueFileName = $"{aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
                     string destinationFolder = PhotoPath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
@@ -667,9 +668,9 @@ namespace MiaClient
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
-                        Id = Convert.ToInt32(_aanvraagId),
+                        Id = Convert.ToInt32(aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     foto = FotoManager.GetFoto();
                     BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
@@ -723,7 +724,7 @@ namespace MiaClient
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
                     int LastOfferteId = GetLastOfferte();
-                    string uniqueFileName = $"{_aanvraagId}-{LastOfferteId}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
+                    string uniqueFileName = $"{aanvraagId}-{LastOfferteId}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
                     string destinationFolder = OffertePath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
@@ -740,9 +741,9 @@ namespace MiaClient
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
-                        Id = Convert.ToInt32(_aanvraagId),
+                        Id = Convert.ToInt32(aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {_aanvraagId} door gebruiker {Program.Gebruiker}."
+                        OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     offerte = OfferteManager.GetOffertes();
                     BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
@@ -785,7 +786,7 @@ namespace MiaClient
         }
         public void UpdateAanvraag()
         {
-            AanvraagManager.GetAanvraagById(_aanvraagId);
+            AanvraagManager.GetAanvraagById(aanvraagId);
             Aanvraag updateaanvraag = new Aanvraag
             {
                 Id = Convert.ToInt32(txtAanvraagId.Text),
@@ -938,7 +939,7 @@ namespace MiaClient
                 LinkItem li = new LinkItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
                 li.Location = new System.Drawing.Point(xPos, yPos);
                 li.Name = "LinkSelection" + t;
-                li.Size = new System.Drawing.Size(428, 27);
+                li.Size = new System.Drawing.Size(480, 22);
                 li.TabIndex = t + 8;
                 li.LinkItemSelected += Gli_LinkItemSelected;
                 li.LinkDeleted += Avi_LinkItemChanged;
@@ -948,7 +949,7 @@ namespace MiaClient
                 pnl_Links.AutoScroll = false;
 
                 t++;
-                yPos += 30;
+                yPos += 22;
             }
         }
         private void Gli_LinkItemSelected(object sender, EventArgs e)
@@ -999,11 +1000,11 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public List<Foto> FotoByAanvraagId(List<Foto> items, bool fotoByAanvraagId)
+        public List<Foto> FotoByAanvraagId(List<Foto> items, bool aanvraagId)
         {
             if (items != null)
             {
-                if (fotoByAanvraagId)
+                if (aanvraagId)
                 {
                     items = items.Where(av => av.AanvraagId == Convert.ToInt32(txtAanvraagId.Text)).ToList();
                 }
