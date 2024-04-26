@@ -53,6 +53,7 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
+            this.lblPages = new System.Windows.Forms.Label();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -301,11 +302,21 @@
             this.btnLast.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
             this.btnLast.MouseHover += new System.EventHandler(this.btnLast_MouseHover);
             // 
+            // lblPages
+            // 
+            this.lblPages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPages.Location = new System.Drawing.Point(85, 460);
+            this.lblPages.Name = "lblPages";
+            this.lblPages.Size = new System.Drawing.Size(741, 30);
+            this.lblPages.TabIndex = 43;
+            this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmParameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 692);
+            this.Controls.Add(this.lblPages);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnPrevious);
@@ -366,5 +377,6 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Label lblPages;
     }
 }
