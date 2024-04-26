@@ -30,8 +30,11 @@ namespace MiaClient
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
 
-        Image imgGebruikersbeheer = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-users-48.png"));
-        Image imgGoedkeuringen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-approval-50.png"));
+        Image imgGebruikersbeheer;
+        Image imgGoedkeuringen;
+        Image imgParameters;
+        Image imgGebruikslog;
+        Image imgAanvragen;
 
 
         public mdiMia()
@@ -94,6 +97,7 @@ namespace MiaClient
             StyleParameters.Achtergrondkleur = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("Achtergrondkleur").Waarde);
             StyleParameters.ListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("ListItemColor").Waarde);
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
+            StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
         private void stelGrafischeWaardeIn()
         {
@@ -119,6 +123,29 @@ namespace MiaClient
 
             helpMenu.DropDown.BackColor = StyleParameters.AccentKleur;
             helpMenu.DropDown.ForeColor = StyleParameters.Buttontext;
+
+            if (StyleParameters.AltButtons)
+            {
+                imgGebruikersbeheer = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-users-48-alt.png"));
+                imgGoedkeuringen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-approval-50-alt.png"));
+                imgParameters = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-parameters-66-alt.png"));
+                imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80-alt.png"));
+                imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-alt.png"));
+            }
+            else
+            {
+                imgGebruikersbeheer = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-users-48.png"));
+                imgGoedkeuringen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-approval-50.png"));
+                imgParameters = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-parameters-66.png"));
+                imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80.png"));
+                imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
+            }
+
+            gebruikersToolStripButton.Image = imgGebruikersbeheer;
+            goedkeuringenToolStripButton.Image = imgGoedkeuringen;
+            aanvragenToolStripButton.Image = imgAanvragen;
+            gebruiksLogToolStripButton.Image = imgGebruikslog;
+            parameterToolStripButton.Image = imgParameters;
 
         }
         private void MenubalkSamenstellen()
@@ -239,9 +266,6 @@ namespace MiaClient
         {
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
-
-            gebruikersToolStripButton.Image = imgGebruikersbeheer;
-            goedkeuringenToolStripButton.Image = imgGoedkeuringen;
 
             MenubalkSamenstellen();
             stelGrafischeWaardeIn();

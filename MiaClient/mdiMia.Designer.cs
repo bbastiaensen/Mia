@@ -46,13 +46,13 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.aanvragenToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.goedkeuringenToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.goedkeuringenToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -146,7 +146,7 @@
             this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
             this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.indexToolStripMenuItem.Text = "&Index";
             this.indexToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.indexToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
@@ -154,12 +154,12 @@
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(147, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.aboutToolStripMenuItem.Text = "&Over MIA";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -195,58 +195,18 @@
             this.toolStripSeparator1});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1173, 37);
+            this.toolStrip.Size = new System.Drawing.Size(1173, 25);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "Knoppenbalk";
             // 
             // aanvragenToolStripButton
             // 
             this.aanvragenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.aanvragenToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("aanvragenToolStripButton.Image")));
             this.aanvragenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.aanvragenToolStripButton.Name = "aanvragenToolStripButton";
-            this.aanvragenToolStripButton.Size = new System.Drawing.Size(34, 34);
+            this.aanvragenToolStripButton.Size = new System.Drawing.Size(23, 34);
             this.aanvragenToolStripButton.Text = "Aanvragen";
             this.aanvragenToolStripButton.Click += new System.EventHandler(this.aanvragenToolStripButton_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
-            // 
-            // gebruiksLogToolStripButton
-            // 
-            this.gebruiksLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.gebruiksLogToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("gebruiksLogToolStripButton.Image")));
-            this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
-            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(34, 34);
-            this.gebruiksLogToolStripButton.Text = "GebruiksLog";
-            this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
-            // 
-            // parameterToolStripButton
-            // 
-            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.parameterToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("parameterToolStripButton.Image")));
-            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.parameterToolStripButton.Name = "parameterToolStripButton";
-            this.parameterToolStripButton.Size = new System.Drawing.Size(34, 34);
-            this.parameterToolStripButton.Text = "Parameters";
-            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
-            // 
-            // gebruikersToolStripButton
-            // 
-            this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
-            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 34);
-            this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
-            this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
@@ -261,6 +221,43 @@
             this.goedkeuringenToolStripButton.Size = new System.Drawing.Size(23, 34);
             this.goedkeuringenToolStripButton.Text = "Goedkeuringen";
             this.goedkeuringenToolStripButton.Click += new System.EventHandler(this.goedkeuringenToolStripButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
+            // 
+            // gebruiksLogToolStripButton
+            // 
+            this.gebruiksLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
+            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.gebruiksLogToolStripButton.Text = "GebruiksLog";
+            this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
+            // 
+            // parameterToolStripButton
+            // 
+            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.parameterToolStripButton.Name = "parameterToolStripButton";
+            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.parameterToolStripButton.Text = "Parameters";
+            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
+            // 
+            // gebruikersToolStripButton
+            // 
+            this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
+            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 34);
+            this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
+            this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // mdiMia
             // 
