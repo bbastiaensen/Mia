@@ -18,7 +18,7 @@ namespace ProofOfConceptDesign
         public static Color AccentKleur { get; set; }
         public static Color ListItemColor { get; set; }
         public static Color AltListItemColor { get; set; }
-
+        public static bool AltButtons { get; set; }
 
     }
 }
