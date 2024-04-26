@@ -44,42 +44,34 @@ namespace MiaLogic.Manager
         }
         public static void SaveLinken(Link link, bool insert)
         {
-            
-                using (SqlConnection objcn = new SqlConnection())
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+                using (SqlCommand objcmd = new SqlCommand())
                 {
-                    objcn.ConnectionString = ConnectionString;
-                    using (SqlCommand objcmd = new SqlCommand())
+                    objcmd.Connection = objcn;
+                    objcmd.CommandType = CommandType.Text;
+                    if (insert)
                     {
-                        objcmd.Connection = objcn;
-                        objcmd.CommandType = CommandType.Text;
-                        if (insert)
-                        {
-                            objcmd.CommandText = "insert into Linken (AanvraagID, Url, Titel) VALUES (@AanvraagID, @Url, @Titel)";
-                        }
-                        else
-                        {
-                            objcmd.CommandText = "Update Linken set AanvraagID = @AanvraagID, Url = @Url, Titel = @Titel where Id = @Id";
-                        }
-
-
-                        objcmd.Parameters.AddWithValue("@AanvraagID", link.AanvraagId);
-                        objcmd.Parameters.AddWithValue("@Url", link.Url);
-                        objcmd.Parameters.AddWithValue("@Titel", link.Titel);
-                        objcmd.Parameters.AddWithValue("@Id", link.Id);
-
-                        try
-                        {
-                            objcn.Open();
-                            objcmd.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-
-
-                        }
+                        objcmd.CommandText = "insert into Linken (AanvraagID, Url, Titel) VALUES (@AanvraagID, @Url, @Titel)";
+                    }
+                    else
+                    {
+                        objcmd.CommandText = "update Linken set AanvraagID = @AanvraagID, Url = @Url, Titel = @Titel where Id = @Id";
                     }
 
+
+                    objcmd.Parameters.AddWithValue("@AanvraagID", link.AanvraagId);
+                    objcmd.Parameters.AddWithValue("@Url", link.Url);
+                    objcmd.Parameters.AddWithValue("@Titel", link.Titel);
+                    objcmd.Parameters.AddWithValue("@Id", link.Id);
+
+                    objcn.Open();
+                    objcmd.ExecuteNonQuery();
+
                 }
+
+            }
 
         }
 

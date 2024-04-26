@@ -1,5 +1,6 @@
 ﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,7 +48,11 @@ namespace MiaClient.UserControls
             lblTitel.Text = Titel.ToString();
             if (Even)
             {
-                this.BackColor = Color.White;
+                this.BackColor = StyleParameters.ListItemColor;
+            }
+            else
+            {
+                this.BackColor = StyleParameters.AltListItemColor;
             }
         }
         public void DeleteOfferte()
