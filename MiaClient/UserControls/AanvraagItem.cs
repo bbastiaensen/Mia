@@ -100,36 +100,36 @@ namespace MiaClient.UserControls
         {
             if (frmAanvraagFormulier == null)
             {
-                if (AanvraagItemSelected != null)
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+            }
+
+            if (AanvraagItemSelected != null)
+            {
+                if (lblStatusAanvraag.Text == "In aanvraag")
                 {
-                    if (lblStatusAanvraag.Text == "In aanvraag")
-                    {
-                        edit = true;
-                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                        frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
-                        frmAanvraagFormulier.EnableBewaarButon();
-                        frmAanvraagFormulier.SetFormStatus(true);
-                        frmAanvraagFormulier.BindFotoByAanvraagId();
-                        frmAanvraagFormulier.BindOfferteByAanvraagId();
-                        frmAanvraagFormulier.BindLinkByAanvraagId();
-                        frmAanvraagFormulier.UpdateAanvraag();
-                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                        frmAanvraagFormulier.Show();
-                    }
-                    else
-                    {
-                        edit = false;
-                        frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
-                        frmAanvraagFormulier.Show();
-                        frmAanvraagFormulier.DisableBewaarButon();
-                        frmAanvraagFormulier.SetFormStatus(false);
-                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
-                    {
-                        delete = true;
-                    }
+                    edit = true;
+                    frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+                    frmAanvraagFormulier.EnableBewaarButon();
+                    frmAanvraagFormulier.SetFormStatus(true);
+                    frmAanvraagFormulier.BindFotoByAanvraagId();
+                    frmAanvraagFormulier.BindOfferteByAanvraagId();
+                    frmAanvraagFormulier.BindLinkByAanvraagId();
+                    //frmAanvraagFormulier.UpdateAanvraag();
+                    frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                    frmAanvraagFormulier.Show();
+                }
+                else
+                {
+                    edit = false;
+                    frmAanvraagFormulier.Show();
+                    frmAanvraagFormulier.DisableBewaarButon();
+                    frmAanvraagFormulier.SetFormStatus(false);
+                    frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                    MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
+                {
+                    delete = true;
                 }
             }
         }

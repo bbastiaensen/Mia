@@ -191,7 +191,14 @@ namespace MiaClient
             if (gebruiksLogs.Count > aantalListItems)
             {
                 //Paging is nodig
-                aantalPages = (gebruiksLogs.Count / aantalListItems) + 1;
+                aantalPages = (gebruiksLogs.Count / aantalListItems);
+                if ((gebruiksLogs.Count % aantalListItems) != 0)
+                {
+                    aantalPages++;
+                }
+
+                ShowPages();
+
                 if (huidigePage < aantalPages)
                 {
                     BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -329,6 +336,7 @@ namespace MiaClient
         private void btnNext_Click(object sender, EventArgs e)
         {
             huidigePage++;
+            ShowPages();
             if (huidigePage < aantalPages)
             {
                 BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -344,6 +352,7 @@ namespace MiaClient
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             huidigePage--;
+            ShowPages();
             if (huidigePage < aantalPages)
             {
                 BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -358,6 +367,7 @@ namespace MiaClient
         private void btnFirst_Click(object sender, EventArgs e)
         {
             huidigePage = 1;
+            ShowPages();
             BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
             EnableFirstPrevious(false);
             if (huidigePage < aantalPages)
@@ -369,12 +379,18 @@ namespace MiaClient
         private void btnLast_Click(object sender, EventArgs e)
         {
             huidigePage = aantalPages;
+            ShowPages();
             BindGebruiksLogItems(gebruiksLogs.Skip((huidigePage - 1) * aantalListItems).ToList());
             EnableLastNext(false);
             if (huidigePage > 1)
             {
                 EnableFirstPrevious(true);
             }
+        }
+
+        private void ShowPages()
+        {
+            lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
     }
 }
