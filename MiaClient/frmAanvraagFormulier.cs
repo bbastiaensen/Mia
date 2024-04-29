@@ -533,6 +533,8 @@ namespace MiaClient
                         {
                             SetFormStatus(true);
                             txtAanvraagId.Text = aanvraagId.ToString();
+                            AanvraagItem.edit = true;
+                            AanvraagItem.delete = true;
                         }
                         else
                         {
