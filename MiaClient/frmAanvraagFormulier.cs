@@ -539,6 +539,10 @@ namespace MiaClient
                         else
                         {
                             LeegFormulier();
+                            if (AanvraagBewaard != null)
+                            {
+                                AanvraagBewaard(this, null);
+                            }
                         }
                     }
                     else
@@ -548,10 +552,7 @@ namespace MiaClient
                     }
 
                 }
-                if (AanvraagBewaard != null)
-                {
-                    AanvraagBewaard(this, null);
-                }
+               
             }
             catch (FormatException ex)
             {
