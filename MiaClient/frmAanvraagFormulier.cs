@@ -533,6 +533,8 @@ namespace MiaClient
                         {
                             SetFormStatus(true);
                             txtAanvraagId.Text = aanvraagId.ToString();
+                            AanvraagItem.edit = true;
+                            AanvraagItem.delete = true;
                         }
                         else
                         {
@@ -678,6 +680,7 @@ namespace MiaClient
                 {
                     MessageBox.Show("Selecteer eerst een foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -755,6 +758,7 @@ namespace MiaClient
 
 
                 }
+                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
 
             catch (Exception ex)
@@ -857,7 +861,7 @@ namespace MiaClient
             txt_offerteURLInput.Text = geselecteerd.URL;
             offerte = OfferteManager.GetOffertes();
             offerte = OfferteByAanvraagId(offerte, true);
-            BindOfferte(offerte);
+            BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
         }
         public void BindFotos(List<Foto> items)
         {
