@@ -614,6 +614,7 @@ namespace MiaClient
                     BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                 }
                 BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                LeegLinken();
 
             }
             catch (Exception ex)
@@ -1094,6 +1095,7 @@ namespace MiaClient
             gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag" + link1.AanvraagId + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
             GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+            LeegLinken();
         }
         public void UpdateOfferte()
         {
@@ -1114,6 +1116,11 @@ namespace MiaClient
             _linkId = linkid;
 
             return _linkId;
+        }
+        public void LeegLinken()
+        {
+            TxtLinkTitel.Clear();
+            txt_hyperlinkInput.Clear();
         }
     }
 }
