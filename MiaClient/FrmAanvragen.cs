@@ -210,7 +210,7 @@ namespace MiaClient
                     {
                         if (txtBedragVan.Text != string.Empty)
                         {
-                            items = items.Where(av => av.Bedrag >= Convert.ToInt32(txtBedragVan.Text)).ToList();
+                            items = items.Where(av => av.Bedrag >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
                         }
                     } 
                 }
@@ -220,7 +220,7 @@ namespace MiaClient
                     {
                         if(txtBedragTot.Text != string.Empty)
                         {
-                            items = items.Where(av => av.Bedrag <= Convert.ToInt32(txtBedragTot.Text)).ToList();
+                            items = items.Where(av => av.Bedrag <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
                         }
                     }
                 }
@@ -424,7 +424,7 @@ namespace MiaClient
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(txtFinancieringsjaar.Text, "[^0-9]"))
                 {
-                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    //MessageBox.Show("Je kunt alleen cijfers ingeven.");
                     txtFinancieringsjaar.Text = txtFinancieringsjaar.Text.Remove(txtFinancieringsjaar.Text.Length - 1);
                 }
                 
@@ -436,35 +436,36 @@ namespace MiaClient
         }
         private void txtBedragVan_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
-                {
-                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                    txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragVan.Text, "[^0-9]"))
+            //    {
+            //        //MessageBox.Show("Je kunt alleen cijfers ingeven.");
+            //        txtBedragVan.Text = txtBedragVan.Text.Remove(txtBedragVan.Text.Length - 1);
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void txtBedragTot_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
-                {
-                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                    txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    if (System.Text.RegularExpressions.Regex.IsMatch(txtBedragTot.Text, "[^0-9]"))
+            //    {
+            //        //MessageBox.Show("Je kunt alleen cijfers ingeven.");
+            //        txtBedragTot.Text = txtBedragTot.Text.Remove(txtBedragTot.Text.Length - 1);
+            //    }
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void FrmAanvragen_Shown(object sender, EventArgs e)
@@ -672,6 +673,37 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+
+        private void txtBedragTot_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+                // Verify that the pressed key isn't CTRL or any non-numeric digit
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
+                {
+                    e.Handled = true;
+                }
+
+                // If you want, you can allow decimal (float) numbers
+                if ((e.KeyChar == '.') && (e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            
+        }
+
+        private void txtBedragVan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && (e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
