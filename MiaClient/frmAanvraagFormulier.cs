@@ -459,6 +459,7 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
+            GetLastAanvraag();
             LogAanvraag(nieuweAanvraag);
         }
         private void LogAanvraag(Aanvraag aanvraag)
@@ -486,9 +487,7 @@ namespace MiaClient
         }
         private int GetLastAanvraag()
         {
-            int highestAanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
-            int aanvraagid = highestAanvraagId + 1;
-            aanvraagId = aanvraagid;
+            aanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
 
             return aanvraagId;
         }
@@ -525,7 +524,6 @@ namespace MiaClient
                 {
                     if (txtAanvraagId.Text == string.Empty)
                     {
-                        GetLastAanvraag();
                         SaveAanvraag();
 
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -539,19 +537,22 @@ namespace MiaClient
                         else
                         {
                             LeegFormulier();
+                            if (AanvraagBewaard != null)
+                            {
+                                AanvraagBewaard(this, null);
+                            }
                         }
                     }
                     else
                     {
                         UpdateAanvraag();
-                        MessageBox.Show("Je aanvraag is successvol ingediend");
+                        MessageBox.Show("Je aanvraag is successvol bewaard.", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                }
-                if (AanvraagBewaard != null)
-                {
-                    AanvraagBewaard(this, null);
-                }
+                    if (AanvraagBewaard != null)
+                    {
+                        AanvraagBewaard(this, null);
+                    }
+                } 
             }
             catch (FormatException ex)
             {
@@ -1096,6 +1097,7 @@ namespace MiaClient
             gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag" + link1.AanvraagId + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
 
             GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
+            LeegLinken();
         }
         public void UpdateOfferte()
         {
@@ -1116,6 +1118,11 @@ namespace MiaClient
             _linkId = linkid;
 
             return _linkId;
+        }
+        public void LeegLinken()
+        {
+            TxtLinkTitel.Clear();
+            txt_hyperlinkInput.Clear();
         }
     }
 }

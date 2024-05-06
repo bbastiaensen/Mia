@@ -62,6 +62,7 @@
             this.pbxProjectLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbxProjectLogo.TabIndex = 1;
             this.pbxProjectLogo.TabStop = false;
+            this.pbxProjectLogo.DoubleClick += new System.EventHandler(this.pbxProjectLogo_DoubleClick);
             // 
             // lblProjectTitel
             // 

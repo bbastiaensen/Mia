@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MiaClient.UserControls;
 
 namespace MiaClient
 {
     public partial class frmAbout : Form
     {
+        frmPrompt frmPrompt;
+
         public frmAbout()
         {
             InitializeComponent();
@@ -67,6 +70,17 @@ namespace MiaClient
             {
                 MessageBox.Show("De link kon niet worden geopend.");
             }
+        }
+
+        private void pbxProjectLogo_DoubleClick(object sender, EventArgs e)
+        {
+            if (frmPrompt == null)
+            {
+                frmPrompt = new frmPrompt();
+                frmPrompt.MdiParent = this.MdiParent;
+            }
+            frmPrompt.Show();
+
         }
     }
 }
