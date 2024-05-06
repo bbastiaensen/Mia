@@ -250,7 +250,7 @@ namespace MiaClient
                 {
                     filterStatusAanvraag = true;
                 }
-                if (cbBedragTot.Checked != false)
+                if (cbBedragVan.Checked != false)
                 {
                     filterBedragVan = true;
                 }
