@@ -77,6 +77,7 @@ namespace MiaClient.UserControls
                 DeleteOfferte();
                 MessageBox.Show("Success");
                 //Hier moeten de aanvragen terug gerefreshed worden
+
             }
             else
             {
