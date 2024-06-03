@@ -980,6 +980,7 @@ namespace MiaClient
             {
                 link = LinkManager.GetLinken();
                 BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                LeegLinken();
             }
             catch (Exception ex)
             {

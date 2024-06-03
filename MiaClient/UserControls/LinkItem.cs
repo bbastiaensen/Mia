@@ -72,6 +72,7 @@ namespace MiaClient.UserControls
                         MessageBox.Show("De link is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
+
                         Link link1 = new Link();
                         link1.Id = Convert.ToInt32(lblId.Text);
                         link.AanvraagId = Convert.ToInt32(AanvraagId);
