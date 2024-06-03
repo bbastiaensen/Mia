@@ -552,7 +552,7 @@ namespace MiaClient
                     {
                         AanvraagBewaard(this, null);
                     }
-                } 
+                }
             }
             catch (FormatException ex)
             {
@@ -683,6 +683,7 @@ namespace MiaClient
                     }, true);
                     foto = FotoManager.GetFoto();
                     BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                    selectedPath = string.Empty;
                 }
                 else
                 {
@@ -758,6 +759,7 @@ namespace MiaClient
                     }, true);
                     offerte = OfferteManager.GetOffertes();
                     BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                    selectedPath = string.Empty;
                 }
                 else
                 {
