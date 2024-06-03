@@ -213,7 +213,7 @@
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(272, 34);
             this.txtFinancieringsjaar.TabIndex = 15;
-            this.txtFinancieringsjaar.TextChanged += new System.EventHandler(this.txtFinancieringsjaar_TextChanged);
+            this.txtFinancieringsjaar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFinancieringsjaar_KeyPress);
             // 
             // lblFinancieringsjaar
             // 
