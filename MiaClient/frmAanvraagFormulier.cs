@@ -980,6 +980,7 @@ namespace MiaClient
             {
                 link = LinkManager.GetLinken();
                 BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                LeegLinken();
             }
             catch (Exception ex)
             {
@@ -992,6 +993,7 @@ namespace MiaClient
             {
                 offerte = OfferteManager.GetOffertes();
                 BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                LeegOffertes();
             }
             catch (Exception ex)
             {
@@ -1004,6 +1006,7 @@ namespace MiaClient
             {
                 foto = FotoManager.GetFotos();
                 BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                LeegFoto();
             }
             catch (Exception ex)
             {
@@ -1125,6 +1128,16 @@ namespace MiaClient
         {
             TxtLinkTitel.Clear();
             txt_hyperlinkInput.Clear();
+        }
+        public void LeegOffertes()
+        {
+            TxtOfferteTitel.Clear();
+            txt_offerteURLInput.Clear();
+        }
+        public void LeegFoto()
+        {
+            TxtFotoTitel.Clear();
+            txt_fotoURLInput.Clear
         }
     }
 }

@@ -72,16 +72,19 @@ namespace MiaClient.UserControls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Ben je zeker dat je deze offerte wilt verwijderen?", "success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
-            {
-                DeleteOfferte();
-                MessageBox.Show("Success");
-                //Hier moeten de aanvragen terug gerefreshed worden
-            }
-            else
-            {
-                return;
-            }
+            
+                if (result == DialogResult.Yes)
+                {
+                    DeleteOfferte();
+                    MessageBox.Show("Success");
+                    //Hier moeten de aanvragen terug gerefreshed worden
+                }
+                else
+                {
+                    return;
+                }
+            
+            
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
