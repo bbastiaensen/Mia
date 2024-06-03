@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,8 +102,18 @@ namespace MiaLogic.Manager
 
                         objcn.Open(); // open de connectie met de databank
                         objcmd.ExecuteNonQuery(); // Voer de query uit
-                    }  
+                    }
+                    else
+                    {
+                        gebruiker.IsActief = false;
+                        objcmd.CommandText = "UPDATE Gebruiker SET Actief = @actief WHERE Gebruikersnaam = @gebruikersnaam;";
+                        objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruiker.Gebruikersnaam);
+                        objcmd.Parameters.AddWithValue("@actief", gebruiker.IsActief);
+                        objcn.Open();
+                        objcmd.ExecuteNonQuery();
+                    }
                 }
+
             }
         }
 

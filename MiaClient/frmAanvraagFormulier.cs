@@ -552,7 +552,7 @@ namespace MiaClient
                     {
                         AanvraagBewaard(this, null);
                     }
-                } 
+                }
             }
             catch (FormatException ex)
             {
@@ -578,15 +578,31 @@ namespace MiaClient
         {
             try
             {
-                if (lblLinkId.Text == string.Empty)
+                if (txt_hyperlinkInput.Text != string.Empty)
                 {
-                    hyperlink = txt_hyperlinkInput.Text;
-                    Link savedlink = SaveLink(hyperlink);
-
-                    int LastLinkId = GetLastLink();
-                    if (savedlink != null)
+                    if (lblLinkId.Text == string.Empty)
                     {
-                        MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        hyperlink = txt_hyperlinkInput.Text;
+                        Link savedlink = SaveLink(hyperlink);
+
+                        int LastLinkId = GetLastLink();
+                        if (savedlink != null)
+                        {
+                            MessageBox.Show("De link is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                            {
+                                Gebruiker = Program.Gebruiker,
+                                Id = Convert.ToInt32(aanvraagId),
+                                TijdstipActie = DateTime.Now,
+                                OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
+                            }, true);
+                        }
+                    }
+                    else
+                    {
+                        int LastLinkId = GetLastLink();
+                        UpdateLink();
+                        MessageBox.Show("De link is successvol aangepast en opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                         {
                             Gebruiker = Program.Gebruiker,
@@ -594,27 +610,16 @@ namespace MiaClient
                             TijdstipActie = DateTime.Now,
                             OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                         }, true);
+                        link = LinkManager.GetLinken();
+                        BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                     }
-                    link = LinkManager.GetLinken();
-                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
                 }
                 else
                 {
-                    int LastLinkId = GetLastLink();
-                    UpdateLink();
-                    MessageBox.Show("De link is successvol aangepast en opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
-                    {
-                        Gebruiker = Program.Gebruiker,
-                        Id = Convert.ToInt32(aanvraagId),
-                        TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
-                    }, true);
-                    link = LinkManager.GetLinken();
-                    BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                    MessageBox.Show("Error : Je kan geen lege link opslagen");
+                    return;
                 }
-                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
-                LeegLinken();
+
 
             }
             catch (Exception ex)
@@ -652,6 +657,7 @@ namespace MiaClient
 
         private void btn_bewaarFoto_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (!string.IsNullOrEmpty(selectedPath))
@@ -666,9 +672,8 @@ namespace MiaClient
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     SaveFile(selectedPath, destinationPath);
-
-                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SaveFoto(destinationPath);
+                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
@@ -678,12 +683,14 @@ namespace MiaClient
                     }, true);
                     foto = FotoManager.GetFoto();
                     BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                    selectedPath = string.Empty;
                 }
                 else
                 {
                     MessageBox.Show("Selecteer eerst een foto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                //BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -752,16 +759,13 @@ namespace MiaClient
                     }, true);
                     offerte = OfferteManager.GetOffertes();
                     BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                    selectedPath = string.Empty;
                 }
                 else
                 {
                     MessageBox.Show("Selecteer eerst een offerte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    MessageBox.Show("Je aanvraag is opgeslagen!", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
+                    return;
                 }
-                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
             }
 
             catch (Exception ex)
