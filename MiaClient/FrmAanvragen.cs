@@ -551,22 +551,23 @@ namespace MiaClient
             }
             EnableFirstPrevious(false);
         }
-        private void txtFinancieringsjaar_TextChanged(object sender, EventArgs e)
+
+        private bool IsGeldigFinancieringsjaar(char c)
         {
-            try
+            bool isValid = true;
+
+            if ((int)c < 48 || (int)c > 57)
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtFinancieringsjaar.Text, "[^0-9]"))
+                if((int)c != 8)
                 {
-                    //MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                    txtFinancieringsjaar.Text = txtFinancieringsjaar.Text.Remove(txtFinancieringsjaar.Text.Length - 1);
+                    isValid = false;
                 }
                 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            return isValid;
         }
+
         private void txtBedragVan_TextChanged(object sender, EventArgs e)
         {
             //try
@@ -837,6 +838,11 @@ namespace MiaClient
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !IsGeldigFinancieringsjaar(e.KeyChar);
         }
     }
 }
