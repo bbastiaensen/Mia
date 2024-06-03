@@ -80,6 +80,7 @@ namespace MiaClient.UserControls
                         FotoManager.DeleteFoto(fotos);
                         FotoDeleted(this, null);
                         MessageBox.Show("De Foto is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
                     else
                     {

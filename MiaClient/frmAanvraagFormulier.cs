@@ -596,6 +596,9 @@ namespace MiaClient
                                 TijdstipActie = DateTime.Now,
                                 OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                             }, true);
+                            link = LinkManager.GetLinken();
+                            BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+
                         }
                     }
                     else
@@ -616,7 +619,7 @@ namespace MiaClient
                 }
                 else
                 {
-                    MessageBox.Show("Error : Je kan geen lege link opslagen");
+                    MessageBox.Show("Error : Je kan geen lege link opslagen", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
