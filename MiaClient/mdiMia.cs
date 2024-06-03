@@ -39,9 +39,28 @@ namespace MiaClient
 
         public mdiMia()
         {
-            GetRollen();
+            try
+            {
+                GetRollen();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler("Ophalen van de rollen", ex, "mdiMia");
+            }
             InitializeComponent();
-            laadGrafischeParameters();
+            try
+            {  
+                laadGrafischeParameters();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler("Laden van grafische parameters", ex, "mdiMia");
+            }
+        }
+
+        private static void ErrorHandler(string customMessage, Exception ex, string location)
+        {
+            MessageBox.Show($"Error: {customMessage} - {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private string GetRollen()
