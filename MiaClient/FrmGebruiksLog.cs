@@ -86,30 +86,37 @@ namespace MiaClient
 
         private List<GebruiksLog> FilteredGebruiksLogItems(List<GebruiksLog> items, bool van, bool tot, bool gebruiker, bool omschrijving)
         {
-            if (items != null)
+
+            DateTime vanDate;
+            DateTime totDate;
+
+            // Filteren op "van" datum
+            if (van && chkVan.Checked && DateTime.TryParse(dtpVan.Text, out vanDate))
             {
-                if (van)
-                {
-                    items = items.Where(gl => gl.TijdstipActie >= Convert.ToDateTime(dtpVan.Text)).ToList();
-                }
-
-                if (tot)
-                {
-                    items = items.Where(gl => gl.TijdstipActie <= (Convert.ToDateTime(dtpTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
-                }
-
-                if (gebruiker)
-                {
-                    items = items.Where(gl => gl.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
-                }
-
-                if (omschrijving)
-                {
-                    items = items.Where(gl => gl.OmschrijvingActie.ToLower().Contains(txtOmschrijving.Text.ToLower())).ToList();
-                }
+                items = items.Where(gl => gl.TijdstipActie >= vanDate).ToList();
             }
 
-            //Leegmaken detailvelden
+            // Filteren op "tot" datum
+            if (tot && chkTot.Checked && DateTime.TryParse(dtpTot.Text, out totDate))
+            {
+                items = items.Where(gl => gl.TijdstipActie <= totDate.Add(new TimeSpan(23, 59, 59))).ToList();
+            }
+
+            // Filteren op gebruiker
+            if (gebruiker && !string.IsNullOrWhiteSpace(txtGebruiker.Text))
+            {
+                string gebruikerText = txtGebruiker.Text.ToLower();
+                items = items.Where(gl => gl.Gebruiker.ToLower().Contains(gebruikerText)).ToList();
+            }
+
+            // Filteren op omschrijving
+            if (omschrijving && !string.IsNullOrWhiteSpace(txtOmschrijving.Text))
+            {
+                string omschrijvingText = txtOmschrijving.Text.ToLower();
+                items = items.Where(gl => gl.OmschrijvingActie.ToLower().Contains(omschrijvingText)).ToList();
+            }
+
+            // Leegmaken van velden
             txtIdDetail.Text = string.Empty;
             txtGebruikerDetail.Text = string.Empty;
             txtTijdstipActieDetail.Text = string.Empty;
@@ -158,22 +165,10 @@ namespace MiaClient
         {
             try
             {
-                if (txtGebruiker.Text != string.Empty)
-                {
-                    filterGebruiker = true;
-                }
-                if (txtOmschrijving.Text != string.Empty)
-                {
-                    filterOmschrijving = true;
-                }
-                if (chkTot.Checked != false)
-                {
-                    filterTot = chkTot.Checked;
-                }
-                if (chkVan.Checked != false)
-                {
-                    filterTot = chkTot.Checked;
-                }
+                filterVan = chkVan.Checked && !string.IsNullOrWhiteSpace(dtpVan.Text);
+                filterTot = chkTot.Checked && !string.IsNullOrWhiteSpace(dtpTot.Text);
+                filterGebruiker = !string.IsNullOrWhiteSpace(txtGebruiker.Text);
+                filterOmschrijving = !string.IsNullOrWhiteSpace(txtOmschrijving.Text);
 
                 gebruiksLogs = FilteredGebruiksLogItems(GebruiksLogManager.GetGebruiksLogs(), filterVan, filterTot, filterGebruiker, filterOmschrijving);
 
@@ -190,7 +185,7 @@ namespace MiaClient
         {
             if (gebruiksLogs.Count > aantalListItems)
             {
-                //Paging is nodig
+                // Paging is nodig
                 aantalPages = (gebruiksLogs.Count / aantalListItems);
                 if ((gebruiksLogs.Count % aantalListItems) != 0)
                 {
@@ -198,6 +193,8 @@ namespace MiaClient
                 }
 
                 ShowPages();
+
+                EnableLastNext(huidigePage < aantalPages);
 
                 if (huidigePage < aantalPages)
                 {
