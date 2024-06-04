@@ -71,20 +71,38 @@ namespace MiaClient.UserControls
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ben je zeker dat je deze offerte wilt verwijderen?", "success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            
-                if (result == DialogResult.Yes)
+            if (frmAanvraagFormulier == null)
+            {
+                if (OfferteDeleted != null)
                 {
-                    DeleteOfferte();
-                    MessageBox.Show("Success");
-                    //Hier moeten de aanvragen terug gerefreshed worden
+                    if (AanvraagItem.delete == true)
+                    {
+                        Offerte offertes = new Offerte();
+                        offertes.Id = Convert.ToInt32(lblId.Text);
+                        OfferteManager.DeleteOfferte(offertes);
+                        OfferteDeleted(this, null);
+                        MessageBox.Show("De Offerte is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+                        GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
+                        {
+                            Gebruiker = Program.Gebruiker,
+                            Id = Convert.ToInt32(offertes.Id),
+                            TijdstipActie = DateTime.Now,
+                            OmschrijvingActie = $"Offerte {offertes.Id} werd verwijderd door {Program.Gebruiker}."
+                        }, true);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Je kunt deze Foto niet verwijderen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
-                else
-                {
-                    return;
-                }
-            
-            
+            }
+
+
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {

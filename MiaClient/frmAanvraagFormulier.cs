@@ -1140,7 +1140,7 @@ namespace MiaClient
         public void LeegFoto()
         {
             TxtFotoTitel.Clear();
-            txt_fotoURLInput.Clear
+            txt_fotoURLInput.Clear();
         }
     }
 }
