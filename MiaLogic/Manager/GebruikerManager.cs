@@ -76,6 +76,9 @@ namespace MiaLogic.Manager
                 }
             }
             return gevondenGebruiker; //returned de gevonden gebruiker
+
+
+
         }
 
         public static void SaveGebruiker(Gebruiker gebruiker, bool insert)

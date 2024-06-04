@@ -83,7 +83,7 @@ namespace MiaClient
                 {
                     Gebruiker = gebruiker.Gebruikersnaam;
 
-                    if (gebruiker.IsActief)//als de gebruiker al bestaat : kijk volgende comment
+                    if (gebruiker.IsActief == true)//als de gebruiker al bestaat : kijk volgende comment
                     {
                         SetUserRoles(gebruiker);//legt de rollen van de gebruiker
                     }

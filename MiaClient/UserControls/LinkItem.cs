@@ -79,7 +79,7 @@ namespace MiaClient.UserControls
                         GebruiksLog gebruiksLog1 = new GebruiksLog();
                         gebruiksLog1.Gebruiker = Program.Gebruiker;
                         gebruiksLog1.TijdstipActie = DateTime.Now;
-                        gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag " + link.AanvraagId +  " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
+                        gebruiksLog1.OmschrijvingActie = "Link " + link1.Id + "van aanvraag " + link.AanvraagId + " werd verwijderd door Gebruiker " + Program.Gebruiker.ToString();
 
                         GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
                     }
