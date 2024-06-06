@@ -71,6 +71,21 @@ namespace MiaClient
             MessageBox.Show($"Error: {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        public static bool IsGeldigBedrag(char c)
+        {
+            bool isValid = true;
+
+            if ((int)c < 48 || (int)c > 57)
+            {
+                if ((int)c != 8 && (int)c != 44)
+                {
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
 
         private static void AuthenticateUser()
         {

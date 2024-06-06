@@ -75,9 +75,8 @@ namespace MiaClient.UserControls
             if (result == DialogResult.Yes)
             {
                 DeleteOfferte();
-                MessageBox.Show("Success");
-                //Hier moeten de aanvragen terug gerefreshed worden
-
+                //Triggeren van het OfferteDeleted event
+                OfferteDeleted?.Invoke(this, null);
             }
             else
             {
