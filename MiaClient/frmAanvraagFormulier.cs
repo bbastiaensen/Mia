@@ -36,7 +36,7 @@ namespace MiaClient
         public event EventHandler AanvraagBewaard;
         private int aanvraagId = 0;
         List<Foto> fotos;
-        List<Link> link;
+        List<Link> links;
         List<Offerte> offertes;
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
@@ -579,8 +579,8 @@ namespace MiaClient
                                 TijdstipActie = DateTime.Now,
                                 OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                             }, true);
-                            link = LinkManager.GetLinken();
-                            BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                            links = LinkManager.GetLinken();
+                            BindLink(LinkByAanvraagId(links, linkByAanvraagId));
 
                         }
                     }
@@ -596,8 +596,8 @@ namespace MiaClient
                             TijdstipActie = DateTime.Now,
                             OmschrijvingActie = $"Er werd een nieuwe Link opgeslagen met id {LastLinkId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                         }, true);
-                        link = LinkManager.GetLinken();
-                        BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                        links = LinkManager.GetLinken();
+                        BindLink(LinkByAanvraagId(links, linkByAanvraagId));
                     }
                 }
                 else
@@ -995,16 +995,16 @@ namespace MiaClient
             txt_hyperlinkInput.Text = geselecteerd.URL;
             TxtLinkTitel.Text = geselecteerd.Titel;
 
-            link = LinkManager.GetLinken();
-            BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+            links = LinkManager.GetLinken();
+            BindLink(LinkByAanvraagId(links, linkByAanvraagId));
         }
 
         private void Avi_LinkItemChanged(object sender, EventArgs e)
         {
             try
             {
-                link = LinkManager.GetLinken();
-                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                links = LinkManager.GetLinken();
+                BindLink(LinkByAanvraagId(links, linkByAanvraagId));
                 LeegLinken();
             }
             catch (Exception ex)
@@ -1076,8 +1076,8 @@ namespace MiaClient
         {
             try
             {
-                link = LinkManager.GetLinken();
-                BindLink(LinkByAanvraagId(link, linkByAanvraagId));
+                links = LinkManager.GetLinken();
+                BindLink(LinkByAanvraagId(links, linkByAanvraagId));
             }
             catch (Exception ex)
             {
