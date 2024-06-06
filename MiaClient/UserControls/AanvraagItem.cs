@@ -148,6 +148,7 @@ namespace MiaClient.UserControls
             {
                 if (AanvraagDeleted != null)
                 {
+                    //if (lblGebruiker.Text == Program.Gebruiker && lblStatusAanvraag.Text == "In aanvraag" || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
                     if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
                     {
                         delete = true;
