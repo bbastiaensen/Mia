@@ -50,9 +50,9 @@ namespace MiaLogic.Manager
         }
 
 
-        public static List<Foto> GetFotoById(int id)
+        public static Foto GetFotoById(int id)
         {
-            List<Foto> fotos = new List<Foto>();
+            Foto foto = new Foto();
 
             using (SqlConnection objcn = new SqlConnection())
             {
@@ -68,17 +68,19 @@ namespace MiaLogic.Manager
                     objcn.Open(); //Open de connectie met de databank
 
                     SqlDataReader reader = objcmd.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        Foto foto = new Foto();
                         foto.Id = Convert.ToInt32(reader["Id"]);
                         foto.Titel = reader["Titel"].ToString();
                         foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
                         foto.Url = reader["Url"].ToString();
-                        fotos.Add(foto); //Voeg rollen toe aan de lijst voor de specifieke gebruiker
+                    }
+                    else
+                    {
+                        throw new Exception("Foto met id " + id + " werd niet gevonfen.");
                     }
                 }
-                return fotos;
+                return foto;
             }
         }
 
@@ -165,6 +167,32 @@ namespace MiaLogic.Manager
                 }
             }
             return fotos;
+        }
+
+        public static int GetHighestFotoId()
+        {
+            int hoogsteId = 0;
+
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandType = CommandType.Text;
+                    objcmd.CommandText = "select max(Id) as hoogste from Foto;";
+
+                    objcn.Open();
+                    SqlDataReader reader = objcmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        hoogsteId = Convert.ToInt32(reader["hoogste"]);
+                    }
+                }
+            }
+
+            return hoogsteId;
         }
     }
 }

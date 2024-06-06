@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace MiaClient
 {
@@ -361,7 +362,21 @@ namespace MiaClient
                     Url = filepath,
                     AanvraagId = aanvraagId
                 };
-                FotoManager.SaveFoto(foto, true);
+
+                bool isNieuweFoto = true;
+                if (!string.IsNullOrEmpty(txt_FotoId.Text))
+                {
+                    foto.Id = Convert.ToInt32(txt_FotoId.Text);
+                    isNieuweFoto = false;
+                }
+
+                FotoManager.SaveFoto(foto, isNieuweFoto);
+
+                if (isNieuweFoto)
+                {
+                    foto.Id = FotoManager.GetHighestFotoId();
+                }
+
                 return foto;
             }
             catch (Exception ex)
@@ -661,11 +676,10 @@ namespace MiaClient
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    selectedPath = openFileDialog.FileName;
+                    txt_fotoURLInput.Text = openFileDialog.FileName;
                     MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            txt_fotoURLInput.Text = selectedPath;
         }
 
         private void btn_nieuweFoto_Click(object sender, EventArgs e)
@@ -678,6 +692,7 @@ namespace MiaClient
 
             try
             {
+                selectedPath = txt_fotoURLInput.Text;
                 if (!string.IsNullOrEmpty(selectedPath))
                 {
                     string fileName = Path.GetFileName(selectedPath);
@@ -689,9 +704,27 @@ namespace MiaClient
                     string destinationFolder = PhotoPath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
+                    // check of de gekozen offerte diegene is die al bewaard is.
+                    if (!string.IsNullOrEmpty(txt_FotoId.Text))
+                    {
+                        Foto f = FotoManager.GetFotoById(Convert.ToInt32(txt_FotoId.Text));
+
+                        if (f != null)
+                        {
+                            if (f.Url != selectedPath)
+                            {
+                                //TODO: Verwijder de oude offerte
+                                SaveFile(selectedPath, destinationPath);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SaveFile(selectedPath, destinationPath);
+                    }
+
                     SaveFile(selectedPath, destinationPath);
                     SaveFoto(destinationPath);
-                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
@@ -702,6 +735,8 @@ namespace MiaClient
                     foto = FotoManager.GetFoto();
                     BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
                     selectedPath = string.Empty;
+
+                    MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
