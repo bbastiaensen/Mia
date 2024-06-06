@@ -49,7 +49,6 @@ namespace MiaLogic.Manager
             return returnlist;
         }
 
-
         public static Foto GetFotoById(int id)
         {
             Foto foto = new Foto();
@@ -96,14 +95,13 @@ namespace MiaLogic.Manager
                     if (insert)
                     {
                         objcmd.CommandText = "insert into Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
+                        objcmd.Parameters.AddWithValue("@AanvraagId", foto.AanvraagId);
                     }
                     else
                     {
-                        objcmd.CommandText = " Update Foto (AanvraagID, Url, Titel) VALUES (@AanvraagId, @Url, @Titel)";
-                    }
-
-
-                    objcmd.Parameters.AddWithValue("@AanvraagId", foto.AanvraagId);
+                        objcmd.CommandText = " update Foto set Url=@Url, Titel=@Titel where Id=@Id";
+                        objcmd.Parameters.AddWithValue("@Id", foto.Id);
+                    } 
                     objcmd.Parameters.AddWithValue("@Url", foto.Url);
                     objcmd.Parameters.AddWithValue("@Titel", foto.Titel);
 
@@ -121,6 +119,7 @@ namespace MiaLogic.Manager
             }
 
         }
+
         public static void DeleteFoto(Foto foto)
         {
             using (SqlConnection objcn = new SqlConnection())
@@ -138,35 +137,6 @@ namespace MiaLogic.Manager
                     objcmd.ExecuteNonQuery();
                 }
             }
-        }
-        public static List<Foto> GetFoto()
-        {
-            List<Foto> fotos = new List<Foto>();
-
-            using (SqlConnection objcn = new SqlConnection())
-            {
-                objcn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objcmd = new SqlCommand())
-                {
-                    objcmd.Connection = objcn;
-                    objcmd.CommandText = "Select * from Foto order by Id asc;";
-
-                    objcn.Open();
-
-                    SqlDataReader reader = objcmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Foto foto = new Foto();
-                        foto.Id = Convert.ToInt32(reader["Id"]);
-                        foto.Titel = reader["Titel"].ToString();
-                        foto.AanvraagId = Convert.ToInt32(reader["AanvraagID"]);
-                        foto.Url = reader["Url"].ToString();
-                        fotos.Add(foto);
-                    }
-                }
-            }
-            return fotos;
         }
 
         public static int GetHighestFotoId()

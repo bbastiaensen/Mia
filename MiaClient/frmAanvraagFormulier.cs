@@ -35,7 +35,7 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
         private int aanvraagId = 0;
-        List<Foto> foto;
+        List<Foto> fotos;
         List<Link> link;
         List<Offerte> offertes;
         bool fotoByAanvraagId = true;
@@ -296,9 +296,7 @@ namespace MiaClient
                     txt_hyperlinkInput.Clear();
                     break;
                 case 1:
-                    txt_FotoId.Text = string.Empty;
-                    TxtFotoTitel.Text = string.Empty;
-                    txt_fotoURLInput.Clear();
+                    LeegFoto();
                     selectedPath = string.Empty;
                     break;
                 case 2:
@@ -321,88 +319,64 @@ namespace MiaClient
         }
         private Offerte SaveOfferte(string filepath)
         {
-            try
+            Offerte offerte = new Offerte
             {
-                Offerte offerte = new Offerte
-                {
-                    Titel = TxtOfferteTitel.Text,
-                    Url = filepath,
-                    AanvraagId = aanvraagId
-                };
+                Titel = TxtOfferteTitel.Text,
+                Url = filepath,
+                AanvraagId = aanvraagId
+            };
 
-                bool isNieuweOfferte = true;
-                if (!string.IsNullOrEmpty(txt_offerteId.Text))
-                {
-                    offerte.Id = Convert.ToInt32(txt_offerteId.Text);
-                    isNieuweOfferte = false;
-                }
-
-                OfferteManager.SaveOfferte(offerte, isNieuweOfferte);
-
-                if (isNieuweOfferte)
-                {
-                    offerte.Id = OfferteManager.GetHighestOfferteId();
-                }
-
-                return offerte;
-            }
-            catch (Exception ex)
+            bool isNieuweOfferte = true;
+            if (!string.IsNullOrEmpty(txt_offerteId.Text))
             {
-                ErrorHandler(ex, "SaveOfferte");
-                return null;
+                offerte.Id = Convert.ToInt32(txt_offerteId.Text);
+                isNieuweOfferte = false;
             }
+
+            OfferteManager.SaveOfferte(offerte, isNieuweOfferte);
+
+            if (isNieuweOfferte)
+            {
+                offerte.Id = OfferteManager.GetHighestOfferteId();
+            }
+
+            return offerte;
         }
         private Foto SaveFoto(string filepath)
         {
-            try
+            Foto foto = new Foto
             {
-                Foto foto = new Foto
-                {
-                    Titel = TxtFotoTitel.Text,
-                    Url = filepath,
-                    AanvraagId = aanvraagId
-                };
+                Titel = TxtFotoTitel.Text,
+                Url = filepath,
+                AanvraagId = aanvraagId
+            };
 
-                bool isNieuweFoto = true;
-                if (!string.IsNullOrEmpty(txt_FotoId.Text))
-                {
-                    foto.Id = Convert.ToInt32(txt_FotoId.Text);
-                    isNieuweFoto = false;
-                }
-
-                FotoManager.SaveFoto(foto, isNieuweFoto);
-
-                if (isNieuweFoto)
-                {
-                    foto.Id = FotoManager.GetHighestFotoId();
-                }
-
-                return foto;
-            }
-            catch (Exception ex)
+            bool isNieuweFoto = true;
+            if (!string.IsNullOrEmpty(txt_FotoId.Text))
             {
-                ErrorHandler(ex, "SaveFoto");
-                return null;
+                foto.Id = Convert.ToInt32(txt_FotoId.Text);
+                isNieuweFoto = false;
             }
+
+            FotoManager.SaveFoto(foto, isNieuweFoto);
+
+            if (isNieuweFoto)
+            {
+                foto.Id = FotoManager.GetHighestFotoId();
+            }
+
+            return foto;
         }
         private Link SaveLink(string hyperlink)
         {
-            try
+            Link link = new Link
             {
-                Link link = new Link
-                {
-                    Titel = TxtLinkTitel.Text,
-                    AanvraagId = aanvraagId,
-                    Url = hyperlink
-                };
-                LinkManager.SaveLinken(link, insert: true);
-                return link;
-            }
-            catch (Exception ex)
-            {
-                ErrorHandler(ex, "SaveLinken");
-                return null;
-            }
+                Titel = TxtLinkTitel.Text,
+                AanvraagId = aanvraagId,
+                Url = hyperlink
+            };
+            LinkManager.SaveLinken(link, insert: true);
+            return link;
         }
         public static void Delete() //het deelrpobleem om de hyperlink/foto/offerte te verwijderen
         {
@@ -503,34 +477,13 @@ namespace MiaClient
             }, true);
         }
 
-        private int GetLastFoto()
-        {
-            List<Foto> fotos = FotoManager.GetFotos();
-
-            if (fotos.Count > 0)
-            {
-                Foto lastFoto = fotos[fotos.Count - 1];
-                return lastFoto.Id;
-            }
-            // Return een default wnr er geen bestand word gevonden
-            return -1;
-        }
         private int GetLastAanvraag()
         {
             aanvraagId = MiaLogic.Manager.AanvraagManager.GetHighestAanvraagId();
 
             return aanvraagId;
         }
-        private int GetLastOfferte()
-        {
-            List<Offerte> offertes = OfferteManager.GetOffertes();
-            if (offertes.Count > 0)
-            {
-                Offerte LastOfferte = offertes[offertes.Count - 1];
-                return LastOfferte.Id;
-            }
-            return -1; // Return een default wnr er geen bestand word gevonden
-        }
+
         private int GetLastLink()
         {
             List<Link> Linken = LinkManager.GetLinken();
@@ -677,7 +630,7 @@ namespace MiaClient
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     txt_fotoURLInput.Text = openFileDialog.FileName;
-                    MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show($"De foto is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -697,7 +650,7 @@ namespace MiaClient
                 {
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
-                    int lastFotoId = GetLastFoto();
+                    int lastFotoId = FotoManager.GetHighestFotoId() + 1;
 
                     string uniqueFileName = $"{aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
@@ -705,6 +658,7 @@ namespace MiaClient
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
                     // check of de gekozen offerte diegene is die al bewaard is.
+                    Foto foto = null;
                     if (!string.IsNullOrEmpty(txt_FotoId.Text))
                     {
                         Foto f = FotoManager.GetFotoById(Convert.ToInt32(txt_FotoId.Text));
@@ -713,18 +667,23 @@ namespace MiaClient
                         {
                             if (f.Url != selectedPath)
                             {
-                                //TODO: Verwijder de oude offerte
+                                //TODO: Verwijder de oude foto
                                 SaveFile(selectedPath, destinationPath);
                             }
                         }
                     }
                     else
                     {
-                        SaveFile(selectedPath, destinationPath);
+                        SaveFile(selectedPath, destinationPath); 
+                    }
+                    foto = SaveFoto(destinationPath);
+                    if (foto != null)
+                    {
+                        txt_FotoId.Text = foto.Id.ToString();
+                        TxtFotoTitel.Text = foto.Titel;
+                        txt_fotoURLInput.Text = foto.Url;
                     }
 
-                    SaveFile(selectedPath, destinationPath);
-                    SaveFoto(destinationPath);
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
                         Gebruiker = Program.Gebruiker,
@@ -732,8 +691,8 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    foto = FotoManager.GetFoto();
-                    BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                    fotos = FotoManager.GetFotos();
+                    BindFotos(FotoByAanvraagId(fotos, fotoByAanvraagId));
                     selectedPath = string.Empty;
 
                     MessageBox.Show("De foto is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -749,11 +708,6 @@ namespace MiaClient
             {
                 ErrorHandler(ex, "BewaarFoto");
             }
-
-        }
-
-        private void btn_verwijderFoto_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -787,7 +741,7 @@ namespace MiaClient
                 {
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
-                    int LastOfferteId = GetLastOfferte();
+                    int LastOfferteId = OfferteManager.GetHighestOfferteId() + 1;
                     string uniqueFileName = $"{aanvraagId}-{LastOfferteId}-{DateTime.Now:yyyyMMddHHmm}-{fileExtension}";
 
                     string destinationFolder = OffertePath;
@@ -971,9 +925,9 @@ namespace MiaClient
             TxtFotoTitel.Text = geselecteerd.Titel;
             txt_FotoId.Text = geselecteerd.Id.ToString();
             txt_fotoURLInput.Text = geselecteerd.URL;
-            foto = FotoManager.GetFoto();
-            foto = FotoByAanvraagId(foto, true);
-            BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+            fotos = FotoManager.GetFotos();
+            fotos = FotoByAanvraagId(fotos, true);
+            BindFotos(FotoByAanvraagId(fotos, fotoByAanvraagId));
         }
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
@@ -1075,8 +1029,8 @@ namespace MiaClient
         {
             try
             {
-                foto = FotoManager.GetFotos();
-                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                fotos = FotoManager.GetFotos();
+                BindFotos(FotoByAanvraagId(fotos, fotoByAanvraagId));
                 LeegFoto();
             }
             catch (Exception ex)
@@ -1099,8 +1053,8 @@ namespace MiaClient
         {
             try
             {
-                foto = FotoManager.GetFoto();
-                BindFotos(FotoByAanvraagId(foto, fotoByAanvraagId));
+                fotos = FotoManager.GetFotos();
+                BindFotos(FotoByAanvraagId(fotos, fotoByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -1187,14 +1141,6 @@ namespace MiaClient
             OfferteManager.SaveOfferte(UpdateOfferte, insert: false);
         }
 
-        public int GetLastLinkId()
-        {
-            int highestLinkId = MiaLogic.Manager.LinkManager.GetHighestLinkId();
-            int linkid = highestLinkId + 1;
-            _linkId = linkid;
-
-            return _linkId;
-        }
         public void LeegLinken()
         {
             TxtLinkTitel.Clear();
@@ -1208,6 +1154,7 @@ namespace MiaClient
         }
         public void LeegFoto()
         {
+            txt_FotoId.Clear();
             TxtFotoTitel.Clear();
             txt_fotoURLInput.Clear();
         }
