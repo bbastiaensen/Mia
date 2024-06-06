@@ -135,7 +135,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.Bedrag = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
                       
                         returnlist.Add(a);

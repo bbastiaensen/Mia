@@ -409,7 +409,7 @@ namespace MiaClient
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(282, 29);
             this.txtPrijsindicatie.TabIndex = 3;
-            this.txtPrijsindicatie.TextChanged += new System.EventHandler(this.Bedrag_TextChanged);
+            this.txtPrijsindicatie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrijsindicatie_KeyPress);
             this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
             // lblPrijsindicatie

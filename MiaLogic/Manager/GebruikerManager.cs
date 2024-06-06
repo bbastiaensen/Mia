@@ -108,7 +108,6 @@ namespace MiaLogic.Manager
                     }
                     else
                     {
-                        gebruiker.IsActief = false;
                         objcmd.CommandText = "UPDATE Gebruiker SET Actief = @actief WHERE Gebruikersnaam = @gebruikersnaam;";
                         objcmd.Parameters.AddWithValue("@gebruikersnaam", gebruiker.Gebruikersnaam);
                         objcmd.Parameters.AddWithValue("@actief", gebruiker.IsActief);

@@ -36,7 +36,7 @@ namespace MiaClient
         private int aanvraagId = 0;
         List<Foto> foto;
         List<Link> link;
-        List<Offerte> offerte;
+        List<Offerte> offertes;
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
@@ -295,11 +295,13 @@ namespace MiaClient
                     txt_hyperlinkInput.Clear();
                     break;
                 case 1:
+                    txt_FotoId.Text = string.Empty;
+                    TxtFotoTitel.Text = string.Empty;
                     txt_fotoURLInput.Clear();
                     selectedPath = string.Empty;
                     break;
                 case 2:
-                    txt_offerteURLInput.Clear();
+                    LeegOffertes();
                     selectedPath = string.Empty;
                     break;
             }
@@ -327,7 +329,20 @@ namespace MiaClient
                     AanvraagId = aanvraagId
                 };
 
-                OfferteManager.SaveOfferte(offerte, true);
+                bool isNieuweOfferte = true;
+                if (!string.IsNullOrEmpty(txt_offerteId.Text))
+                {
+                    offerte.Id = Convert.ToInt32(txt_offerteId.Text);
+                    isNieuweOfferte = false;
+                }
+
+                OfferteManager.SaveOfferte(offerte, isNieuweOfferte);
+
+                if (isNieuweOfferte)
+                {
+                    offerte.Id = OfferteManager.GetHighestOfferteId();
+                }
+
                 return offerte;
             }
             catch (Exception ex)
@@ -717,12 +732,10 @@ namespace MiaClient
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    selectedPath = openFileDialog.FileName;
-                    MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txt_offerteURLInput.Text = openFileDialog.FileName;
+                    //MessageBox.Show($"De offerte is succesvol geslecteerd. Dit is het pad :{selectedPath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            txt_offerteURLInput.Text = selectedPath;
-
         }
 
         private void btn_nieuweOfferte_Click(object sender, EventArgs e)
@@ -734,6 +747,7 @@ namespace MiaClient
         {
             try
             {
+                selectedPath = txt_offerteURLInput.Text;
                 if (!string.IsNullOrEmpty(selectedPath))
                 {
                     string fileName = Path.GetFileName(selectedPath);
@@ -744,14 +758,30 @@ namespace MiaClient
                     string destinationFolder = OffertePath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
 
-                    SaveFile(selectedPath, destinationPath);
+                    //check of de gekozen offerte diegene is die al bewaard is.
+                    if (!string.IsNullOrEmpty(txt_offerteId.Text))
+                    {
+                        Offerte o = OfferteManager.GetOfferteById(Convert.ToInt32(txt_offerteId.Text));
 
-
-                    MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Hier returnen we naar de aanvragen formulier, dit doen we met alle 
+                        if (o != null)
+                        {
+                            if (o.Url != selectedPath)
+                            {
+                                //TODO: Verwijder de oude offerte
+                                SaveFile(selectedPath, destinationPath);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SaveFile(selectedPath, destinationPath);
+                    }
 
                     //string relativeUrl = Path.Combine("offertes", uniqueFileName);
-                    SaveOfferte(destinationPath);
+                    Offerte offerte = SaveOfferte(destinationPath);
+                    txt_offerteId.Text = offerte.Id.ToString();
+                    TxtOfferteTitel.Text = offerte.Titel;
+                    txt_offerteURLInput.Text = offerte.Url;
 
                     GebruiksLogManager.SaveGebruiksLog(new GebruiksLog
                     {
@@ -760,9 +790,12 @@ namespace MiaClient
                         TijdstipActie = DateTime.Now,
                         OmschrijvingActie = $"Er werd een nieuwe Offerte opgeslagen met id {LastOfferteId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
-                    offerte = OfferteManager.GetOffertes();
-                    BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                    offertes = OfferteManager.GetOffertes();
+                    BindOfferte(OfferteByAanvraagId(offertes, offerteByAanvraagId));
                     selectedPath = string.Empty;
+
+
+                    MessageBox.Show("De offerte is successvol opgeslagen.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -869,9 +902,9 @@ namespace MiaClient
             TxtOfferteTitel.Text = geselecteerd.Titel;
             txt_offerteId.Text = geselecteerd.Id.ToString();
             txt_offerteURLInput.Text = geselecteerd.URL;
-            offerte = OfferteManager.GetOffertes();
-            offerte = OfferteByAanvraagId(offerte, true);
-            BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+            offertes = OfferteManager.GetOffertes();
+            offertes = OfferteByAanvraagId(offertes, true);
+            BindOfferte(OfferteByAanvraagId(offertes, offerteByAanvraagId));
         }
         public void BindFotos(List<Foto> items)
         {
@@ -994,8 +1027,8 @@ namespace MiaClient
         {
             try
             {
-                offerte = OfferteManager.GetOffertes();
-                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                offertes = OfferteManager.GetOffertes();
+                BindOfferte(OfferteByAanvraagId(offertes, offerteByAanvraagId));
                 LeegOffertes();
             }
             catch (Exception ex)
@@ -1077,8 +1110,8 @@ namespace MiaClient
         {
             try
             {
-                offerte = OfferteManager.GetOffertes();
-                BindOfferte(OfferteByAanvraagId(offerte, offerteByAanvraagId));
+                offertes = OfferteManager.GetOffertes();
+                BindOfferte(OfferteByAanvraagId(offertes, offerteByAanvraagId));
             }
             catch (Exception ex)
             {
@@ -1109,7 +1142,7 @@ namespace MiaClient
         }
         public void UpdateOfferte()
         {
-            OfferteManager.GetOfferteById(Convert.ToInt32(txt_offerteId.Text));
+            //OfferteManager.GetOfferteById(Convert.ToInt32(txt_offerteId.Text));
             Offerte UpdateOfferte = new Offerte()
             {
                 Id = Convert.ToInt32(txt_offerteId),
@@ -1134,13 +1167,19 @@ namespace MiaClient
         }
         public void LeegOffertes()
         {
+            txt_offerteId.Clear();
             TxtOfferteTitel.Clear();
             txt_offerteURLInput.Clear();
         }
         public void LeegFoto()
         {
             TxtFotoTitel.Clear();
-            txt_fotoURLInput.Clear
+            txt_fotoURLInput.Clear();
+        }
+
+        private void txtPrijsindicatie_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
     }
 }
