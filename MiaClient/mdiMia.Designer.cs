@@ -46,13 +46,12 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.aanvragenToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.goedkeuringenToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss2 = new System.Windows.Forms.ToolStripSeparator();
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -186,13 +185,12 @@
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(30, 30);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aanvragenToolStripButton,
-            this.toolStripSeparator3,
+            this.tss1,
             this.goedkeuringenToolStripButton,
-            this.toolStripSeparator2,
+            this.tss2,
             this.gebruiksLogToolStripButton,
             this.parameterToolStripButton,
-            this.gebruikersToolStripButton,
-            this.toolStripSeparator1});
+            this.gebruikersToolStripButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1173, 25);
@@ -204,28 +202,30 @@
             this.aanvragenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.aanvragenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.aanvragenToolStripButton.Name = "aanvragenToolStripButton";
-            this.aanvragenToolStripButton.Size = new System.Drawing.Size(23, 34);
+            this.aanvragenToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.aanvragenToolStripButton.Text = "Aanvragen";
             this.aanvragenToolStripButton.Click += new System.EventHandler(this.aanvragenToolStripButton_Click);
             // 
-            // toolStripSeparator3
+            // tss1
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 37);
+            this.tss1.Name = "tss1";
+            this.tss1.Size = new System.Drawing.Size(6, 25);
+            this.tss1.Visible = false;
             // 
             // goedkeuringenToolStripButton
             // 
             this.goedkeuringenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.goedkeuringenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.goedkeuringenToolStripButton.Name = "goedkeuringenToolStripButton";
-            this.goedkeuringenToolStripButton.Size = new System.Drawing.Size(23, 34);
+            this.goedkeuringenToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.goedkeuringenToolStripButton.Text = "Goedkeuringen";
             this.goedkeuringenToolStripButton.Click += new System.EventHandler(this.goedkeuringenToolStripButton_Click);
             // 
-            // toolStripSeparator2
+            // tss2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
+            this.tss2.Name = "tss2";
+            this.tss2.Size = new System.Drawing.Size(6, 25);
+            this.tss2.Visible = false;
             // 
             // gebruiksLogToolStripButton
             // 
@@ -250,14 +250,9 @@
             this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
-            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 34);
+            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // mdiMia
             // 
@@ -302,14 +297,13 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton gebruiksLogToolStripButton;
         private System.Windows.Forms.ToolStripButton parameterToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem aanvragenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gebruikersToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton aanvragenToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator tss2;
         private System.Windows.Forms.ToolStripMenuItem goedkeuringenToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton gebruikersToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator tss1;
         private System.Windows.Forms.ToolStripButton goedkeuringenToolStripButton;
     }
 }

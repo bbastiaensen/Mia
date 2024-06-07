@@ -192,6 +192,7 @@ namespace MiaClient
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
             if (Program.IsGoedkeurder)
             {
+                tss1.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
             }
@@ -199,6 +200,7 @@ namespace MiaClient
             //Systeem - items voor systeem worden extra bij aangezet
             if (Program.IsSysteem)
             {
+                tss2.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
                 beheerToolStripMenuItem.Visible = true;
