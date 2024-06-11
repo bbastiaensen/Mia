@@ -994,6 +994,7 @@ namespace MiaClient
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAanvraagFormulier";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Aanvraagformulier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAanvraagFormulier_FormClosing);
             this.Load += new System.EventHandler(this.frmAanvraagFormulier_Load);

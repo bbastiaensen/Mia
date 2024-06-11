@@ -341,7 +341,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmGebruiksLog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Gebruikslog";
+            this.Activated += new System.EventHandler(this.FrmGebruiksLog_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGebruiksLog_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruiksLogDemo_Load);
             this.Shown += new System.EventHandler(this.FrmGebruiksLog_Shown);

@@ -667,6 +667,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAanvragen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Aanvragen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAanvragen_FormClosing);
             this.Load += new System.EventHandler(this.frmAanvragen_Load);

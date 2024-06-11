@@ -211,5 +211,10 @@ namespace MiaLogic.Manager
 
             return hoogste;
         }
+
+        public static bool ParameterExists(string parameterName)
+        {
+            return GetParameterByCode(parameterName) == null;
+        }
     }
 }

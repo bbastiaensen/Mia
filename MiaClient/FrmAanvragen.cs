@@ -790,6 +790,7 @@ namespace MiaClient
                 if (huidigePage < aantalPages)
                 {
                     BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+                    EnableLastNext(true);
                 }
                 if (huidigePage == 1)
                 {
@@ -798,6 +799,8 @@ namespace MiaClient
             }
             else
             {
+                aantalPages = 1;
+                ShowPages();
                 BindAanvraag(aanvragen);
                 EnableFirstPrevious(false);
                 EnableLastNext(false);

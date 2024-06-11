@@ -310,6 +310,13 @@ namespace MiaClient
                     return;
                 }
 
+                if (isNieuw && !ParameterManager.ParameterExists(txtCodeDetail.Text))
+                {
+                    MessageBox.Show("De code '" + txtCodeDetail.Text + "' bestaat al.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCodeDetail.Text = string.Empty;
+                    return;
+                }
+
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
                 p.Code = txtCodeDetail.Text;
@@ -324,8 +331,8 @@ namespace MiaClient
 
                 isNieuw = false;
 
-                parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                parameters = FilteredParameters(ParameterManager.GetParameters(), filterCode, filterWaarde, filterEenheid);
+                StartPaging();
 
                 MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -343,7 +350,6 @@ namespace MiaClient
 
                 if (parameters != null)
                 {
-                    BindParameters(parameters);
                     StartPaging();
                 }
             }
@@ -369,6 +375,7 @@ namespace MiaClient
                 if (huidigePage < aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+                    EnableLastNext(true);
                 }
                 if (huidigePage == 1)
                 {
@@ -377,6 +384,8 @@ namespace MiaClient
             }
             else
             {
+                aantalPages = 1;
+                ShowPages();
                 BindParameters(parameters);
                 EnableFirstPrevious(false);
                 EnableLastNext(false);

@@ -134,8 +134,13 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
-
-
+            //Bijlagen
+            LeegLinken();
+            LeegFoto();
+            LeegOffertes();
+            this.pnl_Links.Controls.Clear();
+            this.pnlFotos.Controls.Clear();
+            this.pnlOffertes.Controls.Clear();
         }
         public frmAanvraagFormulier(int id, string action)
         {
@@ -291,9 +296,7 @@ namespace MiaClient
             switch (tabControl.SelectedIndex)
             {
                 case 0:
-                    lblLinkId.Text = string.Empty;
-                    TxtLinkTitel.Clear();
-                    txt_hyperlinkInput.Clear();
+                    LeegLinken();
                     break;
                 case 1:
                     LeegFoto();
@@ -807,17 +810,19 @@ namespace MiaClient
 
         public void Bedrag_TextChanged(object sender, EventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtAantalStuks.Text, "[^0-9]"))
+            if (!string.IsNullOrEmpty(((TextBox)sender).Text))
             {
-                MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                txtAantalStuks.Text = txtAantalStuks.Text.Remove(txtAantalStuks.Text.Length - 1);
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtAantalStuks.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtAantalStuks.Text = txtAantalStuks.Text.Remove(txtAantalStuks.Text.Length - 1);
+                }
+                if (System.Text.RegularExpressions.Regex.IsMatch(txtPrijsindicatie.Text, "[^0-9]"))
+                {
+                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
+                    txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
+                }
             }
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrijsindicatie.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
-            }
-
         }
         public void UpdateAanvraag()
         {
@@ -1143,6 +1148,7 @@ namespace MiaClient
 
         public void LeegLinken()
         {
+            lblLinkId.Text = string.Empty;
             TxtLinkTitel.Clear();
             txt_hyperlinkInput.Clear();
         }
