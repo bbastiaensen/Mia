@@ -810,19 +810,7 @@ namespace MiaClient
 
         public void Bedrag_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(((TextBox)sender).Text))
-            {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtAantalStuks.Text, "[^0-9]"))
-                {
-                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                    txtAantalStuks.Text = txtAantalStuks.Text.Remove(txtAantalStuks.Text.Length - 1);
-                }
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtPrijsindicatie.Text, "[^0-9]"))
-                {
-                    MessageBox.Show("Je kunt alleen cijfers ingeven.");
-                    txtPrijsindicatie.Text = txtPrijsindicatie.Text.Remove(txtPrijsindicatie.Text.Length - 1);
-                }
-            }
+
         }
         public void UpdateAanvraag()
         {
@@ -1166,6 +1154,11 @@ namespace MiaClient
         }
 
         private void txtPrijsindicatie_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
+        }
+
+        private void txtAantalStuks_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }

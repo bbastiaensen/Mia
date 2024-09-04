@@ -389,7 +389,7 @@ namespace MiaClient
             this.txtAantalStuks.Name = "txtAantalStuks";
             this.txtAantalStuks.Size = new System.Drawing.Size(282, 29);
             this.txtAantalStuks.TabIndex = 4;
-            this.txtAantalStuks.TextChanged += new System.EventHandler(this.Bedrag_TextChanged);
+            this.txtAantalStuks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAantalStuks_KeyPress);
             this.txtAantalStuks.Leave += new System.EventHandler(this.txtAantalStuks_Leave);
             // 
             // lblAantalStuks
