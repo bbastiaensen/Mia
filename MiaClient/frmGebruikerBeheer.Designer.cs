@@ -181,6 +181,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmGebruikerBeheer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Beheer gebruikers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGebruikerBeheer_FormClosing);
             this.Load += new System.EventHandler(this.frmGebruikerBeheer_Load);

@@ -340,6 +340,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmParameter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Parameter";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParameter_FormClosing);
             this.Load += new System.EventHandler(this.frmParameter_Load);

@@ -46,14 +46,19 @@ namespace MiaClient
 
         private void frmGoedkeuring_Load(object sender, EventArgs e)
         {
-            var lijst = AanvraagManager.GetAanvragen();
-            BindAanvraag(lijst);
+            
         }
 
         private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             ((Form)sender).Hide();
+        }
+
+        private void frmGoedkeuring_Activated(object sender, EventArgs e)
+        {
+            var lijst = AanvraagManager.GetAanvragen();
+            BindAanvraag(lijst);
         }
     }
 }

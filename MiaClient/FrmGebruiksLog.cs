@@ -215,18 +215,7 @@ namespace MiaClient
 
         private void FrmGebruiksLog_Shown(object sender, EventArgs e)
         {
-            try
-            {
-                gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
-                if (gebruiksLogs != null) 
-                {
-                    StartPaging();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void EnableFirstPrevious(bool enable)
@@ -388,6 +377,22 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+
+        private void FrmGebruiksLog_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                gebruiksLogs = GebruiksLogManager.GetGebruiksLogs();
+                if (gebruiksLogs != null)
+                {
+                    StartPaging();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
