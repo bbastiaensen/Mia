@@ -87,20 +87,23 @@ namespace MiaClient
             int yPos = 0;
             int t = 0;
 
-            foreach (var av in items)
+            if (items != null)
             {
-                AanvraagItem avi = new AanvraagItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats, av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
-                avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "aanvraagSelection" + t;
-                avi.Size = new System.Drawing.Size(1210, 33);
-                avi.TabIndex = t + 8;
-                avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                avi.AanvraagDeleted += Avi_AanvraagItemChanged;
-                avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
-                this.pnlAanvragen.Controls.Add(avi);
+                foreach (var av in items)
+                {
+                    AanvraagItem avi = new AanvraagItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.Planningsdatum, av.StatusAanvraag, av.Kostenplaats, av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
+                    avi.Location = new System.Drawing.Point(xPos, yPos);
+                    avi.Name = "aanvraagSelection" + t;
+                    avi.Size = new System.Drawing.Size(1210, 33);
+                    avi.TabIndex = t + 8;
+                    avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                    avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                    avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                    this.pnlAanvragen.Controls.Add(avi);
 
-                t++;
-                yPos += 30;
+                    t++;
+                    yPos += 30;
+                }
             }
         }
         private void Avi_AanvraagItemChanged(object sender, EventArgs e)

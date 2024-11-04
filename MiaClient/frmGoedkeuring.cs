@@ -29,18 +29,21 @@ namespace MiaClient
             int yPos = 0;
             int t = 0;
 
-            foreach (var av in items)
+            if (items != null)
             {
-                GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
-                item.Location = new System.Drawing.Point(xPos, yPos);
-                item.Name = "GoedkeurSelection" + t;
-                item.Size = new System.Drawing.Size(1034, 33);
-                item.TabIndex = t + 8;
+                foreach (var av in items)
+                {
+                    GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
+                    item.Location = new System.Drawing.Point(xPos, yPos);
+                    item.Name = "GoedkeurSelection" + t;
+                    item.Size = new System.Drawing.Size(1034, 33);
+                    item.TabIndex = t + 8;
                 
-                this.pnlGoedkeuringen.Controls.Add(item);
+                    this.pnlGoedkeuringen.Controls.Add(item);
 
-                t++;
-                yPos += 30;
+                    t++;
+                    yPos += 30;
+                }
             }
         }
 

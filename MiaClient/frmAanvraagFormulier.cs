@@ -896,20 +896,23 @@ namespace MiaClient
             int yPos = 0;
             int t = 0;
 
-            foreach (var av in items)
+            if (items != null)
             {
-                FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
-                avi.Location = new System.Drawing.Point(xPos, yPos);
-                avi.Name = "FotoSelection" + t;
-                avi.Size = new System.Drawing.Size(710, 33);
-                avi.TabIndex = t + 8;
-                avi.FotoItemSelected += Gli_FotoItemSelected;
-                avi.FotoDeleted += Avi_FotoItemChanged;
-                avi.FotoItemChanged += Avi_FotoItemChanged;
-                this.pnlFotos.Controls.Add(avi);
+                foreach (var av in items)
+                {
+                    FotoItem avi = new FotoItem(av.Id, av.Titel, av.Url, av.AanvraagId, t % 2 == 0);
+                    avi.Location = new System.Drawing.Point(xPos, yPos);
+                    avi.Name = "FotoSelection" + t;
+                    avi.Size = new System.Drawing.Size(710, 33);
+                    avi.TabIndex = t + 8;
+                    avi.FotoItemSelected += Gli_FotoItemSelected;
+                    avi.FotoDeleted += Avi_FotoItemChanged;
+                    avi.FotoItemChanged += Avi_FotoItemChanged;
+                    this.pnlFotos.Controls.Add(avi);
 
-                t++;
-                yPos += 30;
+                    t++;
+                    yPos += 30;
+                }
             }
         }
         private void Gli_FotoItemSelected(object sender, EventArgs e)
