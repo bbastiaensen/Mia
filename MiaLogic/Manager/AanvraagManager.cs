@@ -554,7 +554,7 @@ namespace MiaLogic.Manager
                             a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
-                        returnlist.Add(a);
+                        returnlist.Add(a); 
                     }
                 }
             }
