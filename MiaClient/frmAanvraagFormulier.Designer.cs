@@ -45,9 +45,7 @@ namespace MiaClient
             this.txtRichtperiode = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.gboxTitel = new System.Windows.Forms.GroupBox();
             this.gboxPlanning = new System.Windows.Forms.GroupBox();
             this.ddlWieKooptHet = new System.Windows.Forms.ComboBox();
@@ -121,6 +119,8 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cmbRichtperiode = new System.Windows.Forms.ComboBox();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -167,7 +167,7 @@ namespace MiaClient
             // 
             // btn_Indienen
             // 
-            this.btn_Indienen.Location = new System.Drawing.Point(714, 55);
+            this.btn_Indienen.Location = new System.Drawing.Point(1154, 49);
             this.btn_Indienen.Name = "btn_Indienen";
             this.btn_Indienen.Size = new System.Drawing.Size(103, 37);
             this.btn_Indienen.TabIndex = 15;
@@ -177,7 +177,7 @@ namespace MiaClient
             // 
             // btn_Nieuw
             // 
-            this.btn_Nieuw.Location = new System.Drawing.Point(605, 55);
+            this.btn_Nieuw.Location = new System.Drawing.Point(1045, 49);
             this.btn_Nieuw.Name = "btn_Nieuw";
             this.btn_Nieuw.Size = new System.Drawing.Size(103, 37);
             this.btn_Nieuw.TabIndex = 16;
@@ -202,7 +202,7 @@ namespace MiaClient
             this.pnl_Investeringen.Controls.Add(this.gboxInvestering);
             this.pnl_Investeringen.Location = new System.Drawing.Point(6, 6);
             this.pnl_Investeringen.Name = "pnl_Investeringen";
-            this.pnl_Investeringen.Size = new System.Drawing.Size(1230, 546);
+            this.pnl_Investeringen.Size = new System.Drawing.Size(1206, 546);
             this.pnl_Investeringen.TabIndex = 0;
             // 
             // gboxInvestering
@@ -212,24 +212,24 @@ namespace MiaClient
             this.gboxInvestering.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gboxInvestering.Location = new System.Drawing.Point(3, 3);
             this.gboxInvestering.Name = "gboxInvestering";
-            this.gboxInvestering.Size = new System.Drawing.Size(1205, 661);
+            this.gboxInvestering.Size = new System.Drawing.Size(1188, 661);
             this.gboxInvestering.TabIndex = 21;
             this.gboxInvestering.TabStop = false;
             this.gboxInvestering.Text = "Investering";
             // 
             // gboxStatusAanvraag
             // 
+            this.gboxStatusAanvraag.Controls.Add(this.cmbRichtperiode);
+            this.gboxStatusAanvraag.Controls.Add(this.cmbStatus);
             this.gboxStatusAanvraag.Controls.Add(this.txtGoedgekeurdeBedrag);
             this.gboxStatusAanvraag.Controls.Add(this.txtResultaat);
             this.gboxStatusAanvraag.Controls.Add(this.txtRichtperiode);
             this.gboxStatusAanvraag.Controls.Add(this.txtStatus);
             this.gboxStatusAanvraag.Controls.Add(this.richTextBox1);
-            this.gboxStatusAanvraag.Controls.Add(this.comboBox1);
             this.gboxStatusAanvraag.Controls.Add(this.textBox1);
-            this.gboxStatusAanvraag.Controls.Add(this.cmbStatus);
-            this.gboxStatusAanvraag.Location = new System.Drawing.Point(30, 439);
+            this.gboxStatusAanvraag.Location = new System.Drawing.Point(22, 439);
             this.gboxStatusAanvraag.Name = "gboxStatusAanvraag";
-            this.gboxStatusAanvraag.Size = new System.Drawing.Size(763, 216);
+            this.gboxStatusAanvraag.Size = new System.Drawing.Size(1172, 216);
             this.gboxStatusAanvraag.TabIndex = 2;
             this.gboxStatusAanvraag.TabStop = false;
             this.gboxStatusAanvraag.Text = "Status Aanvraag";
@@ -257,9 +257,9 @@ namespace MiaClient
             this.txtRichtperiode.AutoSize = true;
             this.txtRichtperiode.Location = new System.Drawing.Point(247, 46);
             this.txtRichtperiode.Name = "txtRichtperiode";
-            this.txtRichtperiode.Size = new System.Drawing.Size(126, 28);
+            this.txtRichtperiode.Size = new System.Drawing.Size(128, 28);
             this.txtRichtperiode.TabIndex = 5;
-            this.txtRichtperiode.Text = "RichtPeriode:";
+            this.txtRichtperiode.Text = "Richtperiode:";
             // 
             // txtStatus
             // 
@@ -272,34 +272,18 @@ namespace MiaClient
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(374, 85);
+            this.richTextBox1.Location = new System.Drawing.Point(360, 85);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(205, 68);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(374, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 36);
-            this.comboBox1.TabIndex = 3;
-            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(374, 159);
+            this.textBox1.Location = new System.Drawing.Point(409, 159);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 34);
             this.textBox1.TabIndex = 2;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(76, 46);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(121, 36);
-            this.cmbStatus.TabIndex = 0;
             // 
             // gboxTitel
             // 
@@ -1071,13 +1055,42 @@ namespace MiaClient
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
             // 
+            // cmbStatus
+            // 
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Enabled = false;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "In aanvraag",
+            "Goedgekeurd",
+            "Niet goedgekeurd",
+            "Bekrachtigd",
+            "Niet bekrachtigd",
+            "In aankoop",
+            "Afgewerkt",
+            "In wacht",
+            "Verplaatst"});
+            this.cmbStatus.Location = new System.Drawing.Point(81, 43);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(167, 36);
+            this.cmbStatus.TabIndex = 8;
+            // 
+            // cmbRichtperiode
+            // 
+            this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRichtperiode.FormattingEnabled = true;
+            this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
+            this.cmbRichtperiode.Name = "cmbRichtperiode";
+            this.cmbRichtperiode.Size = new System.Drawing.Size(202, 36);
+            this.cmbRichtperiode.TabIndex = 9;
+            // 
             // frmAanvraagFormulier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1260, 788);
+            this.ClientSize = new System.Drawing.Size(1256, 717);
             this.Controls.Add(this.btn_Nieuw);
             this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
@@ -1206,11 +1219,11 @@ namespace MiaClient
         private System.Windows.Forms.GroupBox gboxStatusAanvraag;
         private System.Windows.Forms.Label txtRichtperiode;
         private System.Windows.Forms.Label txtStatus;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label txtGoedgekeurdeBedrag;
         private System.Windows.Forms.Label txtResultaat;
+        private System.Windows.Forms.ComboBox cmbRichtperiode;
+        private System.Windows.Forms.ComboBox cmbStatus;
     }
 }
