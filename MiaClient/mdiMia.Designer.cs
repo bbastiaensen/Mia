@@ -98,13 +98,14 @@
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
             this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
             this.beheerToolStripMenuItem.Text = "&Beheer";
+            this.beheerToolStripMenuItem.Click += new System.EventHandler(this.beheerToolStripMenuItem_Click);
             this.beheerToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.beheerToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
             // 
             // gebruikersToolStripMenuItem
             // 
             this.gebruikersToolStripMenuItem.Name = "gebruikersToolStripMenuItem";
-            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.gebruikersToolStripMenuItem.Text = "Gebruikers";
             this.gebruikersToolStripMenuItem.Click += new System.EventHandler(this.gebruikersToolStripMenuItem_Click);
             this.gebruikersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -113,7 +114,7 @@
             // gebruikslogToolStripMenuItem
             // 
             this.gebruikslogToolStripMenuItem.Name = "gebruikslogToolStripMenuItem";
-            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.gebruikslogToolStripMenuItem.Text = "Gebruikslog";
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             this.gebruikslogToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -122,7 +123,7 @@
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
             this.parametersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);

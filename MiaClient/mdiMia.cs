@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MiaClient
 {
+    //We starten op 12/11/2024 met versie 2 van MIA
 
     public partial class mdiMia : Form
     {
@@ -351,6 +352,11 @@ namespace MiaClient
                 FrmGoedkeuring.MdiParent = this;
             }
             FrmGoedkeuring.Show();
+        }
+
+        private void beheerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

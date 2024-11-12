@@ -483,7 +483,7 @@ namespace MiaClient
             this.gboxIdentificatie.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gboxIdentificatie.Location = new System.Drawing.Point(5, 5);
             this.gboxIdentificatie.Name = "gboxIdentificatie";
-            this.gboxIdentificatie.Size = new System.Drawing.Size(758, 185);
+            this.gboxIdentificatie.Size = new System.Drawing.Size(780, 185);
             this.gboxIdentificatie.TabIndex = 13;
             this.gboxIdentificatie.TabStop = false;
             this.gboxIdentificatie.Text = "Identificatie";
