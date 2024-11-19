@@ -134,7 +134,9 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
-            cmbStatus.SelectedItem = 
+            cmbStatus.SelectedItem = null;
+            txtAFResultaat.Text = string.Empty;
+            txtGB.Text = string.Empty;
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -178,6 +180,8 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 cmbStatus.Enabled = true;
+                txtAFResultaat.Enabled = true;
+                txtGB.Enabled = true;
                 
             }
         }

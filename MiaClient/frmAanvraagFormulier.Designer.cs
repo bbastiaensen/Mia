@@ -40,12 +40,14 @@ namespace MiaClient
             this.pnl_Investeringen = new System.Windows.Forms.Panel();
             this.gboxInvestering = new System.Windows.Forms.GroupBox();
             this.gboxStatusAanvraag = new System.Windows.Forms.GroupBox();
+            this.cmbRichtperiode = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.txtGoedgekeurdeBedrag = new System.Windows.Forms.Label();
             this.txtResultaat = new System.Windows.Forms.Label();
             this.txtRichtperiode = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAFResultaat = new System.Windows.Forms.RichTextBox();
+            this.txtGB = new System.Windows.Forms.TextBox();
             this.gboxTitel = new System.Windows.Forms.GroupBox();
             this.gboxPlanning = new System.Windows.Forms.GroupBox();
             this.ddlWieKooptHet = new System.Windows.Forms.ComboBox();
@@ -119,8 +121,6 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.cmbRichtperiode = new System.Windows.Forms.ComboBox();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -225,8 +225,8 @@ namespace MiaClient
             this.gboxStatusAanvraag.Controls.Add(this.txtResultaat);
             this.gboxStatusAanvraag.Controls.Add(this.txtRichtperiode);
             this.gboxStatusAanvraag.Controls.Add(this.txtStatus);
-            this.gboxStatusAanvraag.Controls.Add(this.richTextBox1);
-            this.gboxStatusAanvraag.Controls.Add(this.textBox1);
+            this.gboxStatusAanvraag.Controls.Add(this.txtAFResultaat);
+            this.gboxStatusAanvraag.Controls.Add(this.txtGB);
             this.gboxStatusAanvraag.Location = new System.Drawing.Point(22, 439);
             this.gboxStatusAanvraag.Name = "gboxStatusAanvraag";
             this.gboxStatusAanvraag.Size = new System.Drawing.Size(1172, 216);
@@ -234,10 +234,39 @@ namespace MiaClient
             this.gboxStatusAanvraag.TabStop = false;
             this.gboxStatusAanvraag.Text = "Status Aanvraag";
             // 
+            // cmbRichtperiode
+            // 
+            this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRichtperiode.FormattingEnabled = true;
+            this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
+            this.cmbRichtperiode.Name = "cmbRichtperiode";
+            this.cmbRichtperiode.Size = new System.Drawing.Size(202, 36);
+            this.cmbRichtperiode.TabIndex = 9;
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Enabled = false;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "In aanvraag",
+            "Goedgekeurd",
+            "Niet goedgekeurd",
+            "Bekrachtigd",
+            "Niet bekrachtigd",
+            "In aankoop",
+            "Afgewerkt",
+            "In wacht",
+            "Verplaatst"});
+            this.cmbStatus.Location = new System.Drawing.Point(81, 43);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(167, 36);
+            this.cmbStatus.TabIndex = 8;
+            // 
             // txtGoedgekeurdeBedrag
             // 
             this.txtGoedgekeurdeBedrag.AutoSize = true;
-            this.txtGoedgekeurdeBedrag.Location = new System.Drawing.Point(247, 162);
+            this.txtGoedgekeurdeBedrag.Location = new System.Drawing.Point(247, 165);
             this.txtGoedgekeurdeBedrag.Name = "txtGoedgekeurdeBedrag";
             this.txtGoedgekeurdeBedrag.Size = new System.Drawing.Size(218, 28);
             this.txtGoedgekeurdeBedrag.TabIndex = 7;
@@ -270,20 +299,24 @@ namespace MiaClient
             this.txtStatus.TabIndex = 4;
             this.txtStatus.Text = "Status:";
             // 
-            // richTextBox1
+            // txtAFResultaat
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(360, 85);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(205, 68);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.txtAFResultaat.AccessibleName = "txtAFResultaat";
+            this.txtAFResultaat.Location = new System.Drawing.Point(360, 85);
+            this.txtAFResultaat.Name = "txtAFResultaat";
+            this.txtAFResultaat.ReadOnly = true;
+            this.txtAFResultaat.Size = new System.Drawing.Size(205, 68);
+            this.txtAFResultaat.TabIndex = 1;
+            this.txtAFResultaat.Text = "";
             // 
-            // textBox1
+            // txtGB
             // 
-            this.textBox1.Location = new System.Drawing.Point(409, 159);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 34);
-            this.textBox1.TabIndex = 2;
+            this.txtGB.AccessibleName = "txtGB";
+            this.txtGB.Location = new System.Drawing.Point(428, 159);
+            this.txtGB.Name = "txtGB";
+            this.txtGB.ReadOnly = true;
+            this.txtGB.Size = new System.Drawing.Size(100, 34);
+            this.txtGB.TabIndex = 2;
             // 
             // gboxTitel
             // 
@@ -1055,42 +1088,13 @@ namespace MiaClient
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
             // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Enabled = false;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "In aanvraag",
-            "Goedgekeurd",
-            "Niet goedgekeurd",
-            "Bekrachtigd",
-            "Niet bekrachtigd",
-            "In aankoop",
-            "Afgewerkt",
-            "In wacht",
-            "Verplaatst"});
-            this.cmbStatus.Location = new System.Drawing.Point(81, 43);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(167, 36);
-            this.cmbStatus.TabIndex = 8;
-            // 
-            // cmbRichtperiode
-            // 
-            this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRichtperiode.FormattingEnabled = true;
-            this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
-            this.cmbRichtperiode.Name = "cmbRichtperiode";
-            this.cmbRichtperiode.Size = new System.Drawing.Size(202, 36);
-            this.cmbRichtperiode.TabIndex = 9;
-            // 
             // frmAanvraagFormulier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1256, 717);
+            this.ClientSize = new System.Drawing.Size(1256, 738);
             this.Controls.Add(this.btn_Nieuw);
             this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
@@ -1219,8 +1223,8 @@ namespace MiaClient
         private System.Windows.Forms.GroupBox gboxStatusAanvraag;
         private System.Windows.Forms.Label txtRichtperiode;
         private System.Windows.Forms.Label txtStatus;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox txtGB;
+        private System.Windows.Forms.RichTextBox txtAFResultaat;
         private System.Windows.Forms.Label txtGoedgekeurdeBedrag;
         private System.Windows.Forms.Label txtResultaat;
         private System.Windows.Forms.ComboBox cmbRichtperiode;

@@ -68,6 +68,10 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.Omschrijving = objRea["Omschrijving"].ToString();
                         }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
 
                         aanvraag.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
                         aanvraag.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(aanvraag.KostenplaatsId).Naam;
@@ -77,6 +81,7 @@ namespace MiaLogic.Manager
                         aanvraag.FinancieringsTypeId = Convert.ToInt32(objRea["FinancieringsTypeId"]);
                         aanvraag.InvesteringsTypeId = Convert.ToInt32(objRea["InvesteringsTypeId"]);
                         aanvraag.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
+                        
                        
                     }
 
