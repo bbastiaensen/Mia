@@ -30,18 +30,23 @@
         {
             this.pnlGoedkeuringen = new System.Windows.Forms.Panel();
             this.grbxFilterGoedKeuring = new System.Windows.Forms.GroupBox();
+            this.lblAanvraagMoment = new System.Windows.Forms.Label();
+            this.chbxAanvraagmomentVan = new System.Windows.Forms.CheckBox();
+            this.chbxBedragVan = new System.Windows.Forms.CheckBox();
+            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.lblBedrag = new System.Windows.Forms.Label();
+            this.lblTitel = new System.Windows.Forms.Label();
             this.lblGebruiker = new System.Windows.Forms.Label();
             this.txtFinancieringsjaar = new System.Windows.Forms.TextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
             this.txtGebruiker = new System.Windows.Forms.TextBox();
-            this.lblTitel = new System.Windows.Forms.Label();
-            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
-            this.chbxBedragVan = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.lblAanvraagMoment = new System.Windows.Forms.Label();
+            this.chbxBedragTot = new System.Windows.Forms.CheckBox();
+            this.chbxAanvraagmomentTot = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterGoedKeuring.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,32 +61,91 @@
             // 
             // grbxFilterGoedKeuring
             // 
-            this.grbxFilterGoedKeuring.Controls.Add(this.lblAanvraagMoment);
-            this.grbxFilterGoedKeuring.Controls.Add(this.checkBox2);
-            this.grbxFilterGoedKeuring.Controls.Add(this.chbxBedragVan);
+            this.grbxFilterGoedKeuring.Controls.Add(this.dateTimePicker2);
+            this.grbxFilterGoedKeuring.Controls.Add(this.dateTimePicker1);
+            this.grbxFilterGoedKeuring.Controls.Add(this.textBox4);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblFinancieringsjaar);
+            this.grbxFilterGoedKeuring.Controls.Add(this.textBox1);
+            this.grbxFilterGoedKeuring.Controls.Add(this.chbxAanvraagmomentTot);
+            this.grbxFilterGoedKeuring.Controls.Add(this.lblAanvraagMoment);
+            this.grbxFilterGoedKeuring.Controls.Add(this.chbxBedragTot);
+            this.grbxFilterGoedKeuring.Controls.Add(this.chbxAanvraagmomentVan);
+            this.grbxFilterGoedKeuring.Controls.Add(this.chbxBedragVan);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblBedrag);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblTitel);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblGebruiker);
             this.grbxFilterGoedKeuring.Controls.Add(this.txtFinancieringsjaar);
             this.grbxFilterGoedKeuring.Controls.Add(this.txtTitel);
             this.grbxFilterGoedKeuring.Controls.Add(this.txtGebruiker);
-            this.grbxFilterGoedKeuring.Location = new System.Drawing.Point(1, 40);
+            this.grbxFilterGoedKeuring.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbxFilterGoedKeuring.Location = new System.Drawing.Point(1, 63);
             this.grbxFilterGoedKeuring.Name = "grbxFilterGoedKeuring";
-            this.grbxFilterGoedKeuring.Size = new System.Drawing.Size(1392, 221);
+            this.grbxFilterGoedKeuring.Size = new System.Drawing.Size(1392, 230);
             this.grbxFilterGoedKeuring.TabIndex = 1;
             this.grbxFilterGoedKeuring.TabStop = false;
             this.grbxFilterGoedKeuring.Text = "Filter";
+            // 
+            // lblAanvraagMoment
+            // 
+            this.lblAanvraagMoment.AutoSize = true;
+            this.lblAanvraagMoment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAanvraagMoment.Location = new System.Drawing.Point(6, 116);
+            this.lblAanvraagMoment.Name = "lblAanvraagMoment";
+            this.lblAanvraagMoment.Size = new System.Drawing.Size(169, 28);
+            this.lblAanvraagMoment.TabIndex = 9;
+            this.lblAanvraagMoment.Text = "Aanvraagmoment";
+            // 
+            // chbxAanvraagmomentVan
+            // 
+            this.chbxAanvraagmomentVan.AutoSize = true;
+            this.chbxAanvraagmomentVan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxAanvraagmomentVan.Location = new System.Drawing.Point(11, 146);
+            this.chbxAanvraagmomentVan.Name = "chbxAanvraagmomentVan";
+            this.chbxAanvraagmomentVan.Size = new System.Drawing.Size(66, 32);
+            this.chbxAanvraagmomentVan.TabIndex = 8;
+            this.chbxAanvraagmomentVan.Text = "Van";
+            this.chbxAanvraagmomentVan.UseVisualStyleBackColor = true;
+            // 
+            // chbxBedragVan
+            // 
+            this.chbxBedragVan.AutoSize = true;
+            this.chbxBedragVan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxBedragVan.Location = new System.Drawing.Point(317, 146);
+            this.chbxBedragVan.Name = "chbxBedragVan";
+            this.chbxBedragVan.Size = new System.Drawing.Size(66, 32);
+            this.chbxBedragVan.TabIndex = 7;
+            this.chbxBedragVan.Text = "Van";
+            this.chbxBedragVan.UseVisualStyleBackColor = true;
+            // 
+            // lblFinancieringsjaar
+            // 
+            this.lblFinancieringsjaar.AutoSize = true;
+            this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(663, 28);
+            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(158, 28);
+            this.lblFinancieringsjaar.TabIndex = 6;
+            this.lblFinancieringsjaar.Text = "Financieringsjaar";
             // 
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
             this.lblBedrag.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBedrag.Location = new System.Drawing.Point(322, 130);
+            this.lblBedrag.Location = new System.Drawing.Point(312, 116);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(74, 28);
             this.lblBedrag.TabIndex = 5;
             this.lblBedrag.Text = "Bedrag";
+            // 
+            // lblTitel
+            // 
+            this.lblTitel.AutoSize = true;
+            this.lblTitel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitel.Location = new System.Drawing.Point(322, 28);
+            this.lblTitel.Name = "lblTitel";
+            this.lblTitel.Size = new System.Drawing.Size(49, 28);
+            this.lblTitel.TabIndex = 4;
+            this.lblTitel.Text = "Titel";
             // 
             // lblGebruiker
             // 
@@ -116,84 +180,75 @@
             this.txtGebruiker.Size = new System.Drawing.Size(272, 34);
             this.txtGebruiker.TabIndex = 0;
             // 
-            // lblTitel
+            // chbxBedragTot
             // 
-            this.lblTitel.AutoSize = true;
-            this.lblTitel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitel.Location = new System.Drawing.Point(322, 28);
-            this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(49, 28);
-            this.lblTitel.TabIndex = 4;
-            this.lblTitel.Text = "Titel";
+            this.chbxBedragTot.AutoSize = true;
+            this.chbxBedragTot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxBedragTot.Location = new System.Drawing.Point(317, 189);
+            this.chbxBedragTot.Name = "chbxBedragTot";
+            this.chbxBedragTot.Size = new System.Drawing.Size(61, 32);
+            this.chbxBedragTot.TabIndex = 2;
+            this.chbxBedragTot.Text = "Tot";
+            this.chbxBedragTot.UseVisualStyleBackColor = true;
             // 
-            // lblFinancieringsjaar
+            // chbxAanvraagmomentTot
             // 
-            this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(663, 28);
-            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(158, 28);
-            this.lblFinancieringsjaar.TabIndex = 6;
-            this.lblFinancieringsjaar.Text = "Financieringsjaar";
+            this.chbxAanvraagmomentTot.AutoSize = true;
+            this.chbxAanvraagmomentTot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxAanvraagmomentTot.Location = new System.Drawing.Point(16, 196);
+            this.chbxAanvraagmomentTot.Name = "chbxAanvraagmomentTot";
+            this.chbxAanvraagmomentTot.Size = new System.Drawing.Size(61, 32);
+            this.chbxAanvraagmomentTot.TabIndex = 3;
+            this.chbxAanvraagmomentTot.Text = "Tot";
+            this.chbxAanvraagmomentTot.UseVisualStyleBackColor = true;
             // 
-            // chbxBedragVan
+            // textBox1
             // 
-            this.chbxBedragVan.AutoSize = true;
-            this.chbxBedragVan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxBedragVan.Location = new System.Drawing.Point(327, 171);
-            this.chbxBedragVan.Name = "chbxBedragVan";
-            this.chbxBedragVan.Size = new System.Drawing.Size(66, 32);
-            this.chbxBedragVan.TabIndex = 7;
-            this.chbxBedragVan.Text = "Van";
-            this.chbxBedragVan.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(411, 146);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 34);
+            this.textBox1.TabIndex = 10;
             // 
-            // checkBox1
+            // textBox4
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(328, 267);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(95, 20);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.textBox4.Location = new System.Drawing.Point(411, 189);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(179, 34);
+            this.textBox4.TabIndex = 13;
             // 
-            // checkBox2
+            // dateTimePicker1
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(11, 181);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(95, 20);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(83, 147);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 34);
+            this.dateTimePicker1.TabIndex = 14;
             // 
-            // checkBox3
+            // dateTimePicker2
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(12, 268);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(95, 20);
-            this.checkBox3.TabIndex = 3;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(83, 189);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 34);
+            this.dateTimePicker2.TabIndex = 15;
             // 
-            // lblAanvraagMoment
+            // btnFilter
             // 
-            this.lblAanvraagMoment.AutoSize = true;
-            this.lblAanvraagMoment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAanvraagMoment.Location = new System.Drawing.Point(12, 141);
-            this.lblAanvraagMoment.Name = "lblAanvraagMoment";
-            this.lblAanvraagMoment.Size = new System.Drawing.Size(169, 28);
-            this.lblAanvraagMoment.TabIndex = 9;
-            this.lblAanvraagMoment.Text = "Aanvraagmoment";
+            this.btnFilter.Location = new System.Drawing.Point(12, 17);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(40, 40);
+            this.btnFilter.TabIndex = 2;
+            this.btnFilter.UseVisualStyleBackColor = true;
             // 
             // frmGoedkeuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 549);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.grbxFilterGoedKeuring);
             this.Controls.Add(this.pnlGoedkeuringen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -208,7 +263,6 @@
             this.grbxFilterGoedKeuring.ResumeLayout(false);
             this.grbxFilterGoedKeuring.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -224,9 +278,14 @@
         private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label lblFinancieringsjaar;
         private System.Windows.Forms.CheckBox chbxBedragVan;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox chbxAanvraagmomentVan;
+        private System.Windows.Forms.CheckBox chbxBedragTot;
+        private System.Windows.Forms.CheckBox chbxAanvraagmomentTot;
         private System.Windows.Forms.Label lblAanvraagMoment;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnFilter;
     }
 }

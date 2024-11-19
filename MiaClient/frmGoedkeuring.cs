@@ -1,13 +1,16 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +19,7 @@ namespace MiaClient
 {
     public partial class frmGoedkeuring : Form
     {
+        Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         public frmGoedkeuring()
         {
             InitializeComponent();
@@ -49,7 +53,10 @@ namespace MiaClient
 
         private void frmGoedkeuring_Load(object sender, EventArgs e)
         {
-            
+            btnFilter.BackgroundImage = imgFilter;
+            btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
+            btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
         }
 
         private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
