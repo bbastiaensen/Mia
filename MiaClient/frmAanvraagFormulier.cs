@@ -180,8 +180,8 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 cmbStatus.Enabled = true;
-                txtAFResultaat.Enabled = true;
-                txtGB.Enabled = true;
+                txtAFResultaat.Text = aanvraag.OpmerkingenResultaat;
+                
                 
             }
         }

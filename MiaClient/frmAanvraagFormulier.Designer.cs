@@ -236,6 +236,7 @@ namespace MiaClient
             // 
             // cmbRichtperiode
             // 
+            this.cmbRichtperiode.AccessibleName = "cmbRichtPeriode";
             this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRichtperiode.FormattingEnabled = true;
             this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
@@ -1094,7 +1095,7 @@ namespace MiaClient
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1256, 738);
+            this.ClientSize = new System.Drawing.Size(1256, 759);
             this.Controls.Add(this.btn_Nieuw);
             this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
