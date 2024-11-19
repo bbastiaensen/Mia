@@ -63,5 +63,7 @@ namespace MiaClient
             var lijst = AanvraagManager.GetAanvragen();
             BindAanvraag(lijst);
         }
+
+       
     }
 }

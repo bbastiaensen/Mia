@@ -68,7 +68,7 @@ namespace MiaClient
 
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
-            //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staaat.
+            //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staat.
             if (frmAanvraagFormulier == null)
             {
                 frmAanvraagFormulier = new frmAanvraagFormulier();
@@ -311,7 +311,7 @@ namespace MiaClient
                 }
                 if (chbxAanvraagmomentTot.Checked != false)
                 {
-                    filterAanvraagmomentTot = true;
+                    filterAanvraagmomentTot = true; 
                 }
                 if (chbxPlaningsdatumVan.Checked != false)
                 {
