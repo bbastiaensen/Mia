@@ -134,6 +134,7 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
+            cmbStatus.SelectedItem = 
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -176,7 +177,8 @@ namespace MiaClient
                 ddlPrioriteit.SelectedValue = aanvraag.PrioriteitId;
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
-
+                cmbStatus.Enabled = true;
+                
             }
         }
 
