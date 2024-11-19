@@ -113,10 +113,12 @@ namespace MiaClient
             VulFinancieringsjaarDropDown(ddlFinancieringsjaar);
             VulKostenplaatsDropDown(ddlKostenplaats);
             VulAankoperDropDown(ddlWieKooptHet);
+            BindStatusAanvraag(ddlStatus);
         }
 
         public void LeegFormulier()
         {
+            
             txtAanvraagId.Text = string.Empty;
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -134,7 +136,7 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
-            
+            ddlStatus.SelectedItem = "In aanvraag";
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -177,8 +179,8 @@ namespace MiaClient
                 ddlPrioriteit.SelectedValue = aanvraag.PrioriteitId;
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
-                cmbStatus.Enabled = true;
-                
+                ddlStatus.Enabled = true;
+                BindStatusAanvraag(ddlStatus);
             }
         }
 
@@ -189,6 +191,13 @@ namespace MiaClient
 
         //    txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
         //}
+        private void BindStatusAanvraag(ComboBox ddlStatus)
+        {
+            ddlStatus.DataSource = MiaLogic.Manager.StatusAanvraagManager.GetStatusAanvraag();
+            ddlStatus.ValueMember = "Id";
+            ddlStatus.DisplayMember = "Naam";
+            ddlStatus.SelectedIndex = -1;
+        }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
             List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();

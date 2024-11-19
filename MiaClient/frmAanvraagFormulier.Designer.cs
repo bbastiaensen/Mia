@@ -40,6 +40,7 @@ namespace MiaClient
             this.pnl_Investeringen = new System.Windows.Forms.Panel();
             this.gboxInvestering = new System.Windows.Forms.GroupBox();
             this.gboxStatusAanvraag = new System.Windows.Forms.GroupBox();
+            this.cmbRichtperiode = new System.Windows.Forms.ComboBox();
             this.txtGoedgekeurdeBedrag = new System.Windows.Forms.Label();
             this.txtResultaat = new System.Windows.Forms.Label();
             this.txtRichtperiode = new System.Windows.Forms.Label();
@@ -119,8 +120,7 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.cmbRichtperiode = new System.Windows.Forms.ComboBox();
+            this.ddlStatus = new System.Windows.Forms.ComboBox();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -219,8 +219,8 @@ namespace MiaClient
             // 
             // gboxStatusAanvraag
             // 
+            this.gboxStatusAanvraag.Controls.Add(this.ddlStatus);
             this.gboxStatusAanvraag.Controls.Add(this.cmbRichtperiode);
-            this.gboxStatusAanvraag.Controls.Add(this.cmbStatus);
             this.gboxStatusAanvraag.Controls.Add(this.txtGoedgekeurdeBedrag);
             this.gboxStatusAanvraag.Controls.Add(this.txtResultaat);
             this.gboxStatusAanvraag.Controls.Add(this.txtRichtperiode);
@@ -233,6 +233,15 @@ namespace MiaClient
             this.gboxStatusAanvraag.TabIndex = 2;
             this.gboxStatusAanvraag.TabStop = false;
             this.gboxStatusAanvraag.Text = "Status Aanvraag";
+            // 
+            // cmbRichtperiode
+            // 
+            this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRichtperiode.FormattingEnabled = true;
+            this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
+            this.cmbRichtperiode.Name = "cmbRichtperiode";
+            this.cmbRichtperiode.Size = new System.Drawing.Size(202, 36);
+            this.cmbRichtperiode.TabIndex = 9;
             // 
             // txtGoedgekeurdeBedrag
             // 
@@ -1055,34 +1064,14 @@ namespace MiaClient
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
             // 
-            // cmbStatus
+            // ddlStatus
             // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Enabled = false;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "In aanvraag",
-            "Goedgekeurd",
-            "Niet goedgekeurd",
-            "Bekrachtigd",
-            "Niet bekrachtigd",
-            "In aankoop",
-            "Afgewerkt",
-            "In wacht",
-            "Verplaatst"});
-            this.cmbStatus.Location = new System.Drawing.Point(81, 43);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(167, 36);
-            this.cmbStatus.TabIndex = 8;
-            // 
-            // cmbRichtperiode
-            // 
-            this.cmbRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRichtperiode.FormattingEnabled = true;
-            this.cmbRichtperiode.Location = new System.Drawing.Point(363, 43);
-            this.cmbRichtperiode.Name = "cmbRichtperiode";
-            this.cmbRichtperiode.Size = new System.Drawing.Size(202, 36);
-            this.cmbRichtperiode.TabIndex = 9;
+            this.ddlStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlStatus.FormattingEnabled = true;
+            this.ddlStatus.Location = new System.Drawing.Point(81, 43);
+            this.ddlStatus.Name = "ddlStatus";
+            this.ddlStatus.Size = new System.Drawing.Size(160, 36);
+            this.ddlStatus.TabIndex = 7;
             // 
             // frmAanvraagFormulier
             // 
@@ -1224,6 +1213,6 @@ namespace MiaClient
         private System.Windows.Forms.Label txtGoedgekeurdeBedrag;
         private System.Windows.Forms.Label txtResultaat;
         private System.Windows.Forms.ComboBox cmbRichtperiode;
-        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.ComboBox ddlStatus;
     }
 }

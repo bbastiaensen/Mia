@@ -54,5 +54,45 @@ namespace MiaLogic.Manager
 
             return Statusaanvraag;
         }
+        //geeft alle statussen terug in een list
+        public static List<StatusAanvraag> GetStatusAanvraag()
+        {
+            StatusAanvraag Status = new StatusAanvraag();
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from StatusAanvraag";
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                    //nieuwe lege list
+                    List<StatusAanvraag> list = null;
+
+                    while (objRea.Read())
+                    {
+                        // als de lijst niet bestaat, maken we het aan
+                        if (list == null)
+                        {
+                            list = new List<StatusAanvraag>();
+                        }
+                        StatusAanvraag s = new StatusAanvraag();
+                        Status.Id = Convert.ToInt32(objRea["Id"]);
+                        Status.Naam = objRea["Naam"].ToString();
+
+                        list.Add(s);
+                    }
+                    return list;
+
+                }
+            }
+        }
     }
 }
