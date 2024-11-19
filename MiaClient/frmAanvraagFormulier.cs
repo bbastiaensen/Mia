@@ -136,7 +136,8 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
-            ddlStatus.SelectedItem = "In aanvraag";
+            ddlStatus.SelectedIndex = 0;
+            ddlStatus.Enabled = true; //possibly Locked?????
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -161,7 +162,9 @@ namespace MiaClient
 
             if (action == "edit")
             {
+                //zet de informatie va de aanvraag in de form
                 aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+                BindStatusAanvraag(ddlStatus);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -180,7 +183,7 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
-                BindStatusAanvraag(ddlStatus);
+                ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
             }
         }
 
@@ -193,7 +196,7 @@ namespace MiaClient
         //}
         private void BindStatusAanvraag(ComboBox ddlStatus)
         {
-            ddlStatus.DataSource = MiaLogic.Manager.StatusAanvraagManager.GetStatusAanvraag();
+            ddlStatus.DataSource = MiaLogic.Manager.StatusAanvraagManager.GetStatusAanvragen();
             ddlStatus.ValueMember = "Id";
             ddlStatus.DisplayMember = "Naam";
             ddlStatus.SelectedIndex = -1;
@@ -470,11 +473,13 @@ namespace MiaClient
                 InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
                 PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                 Financieringsjaar = ddlFinancieringsjaar.Text,
-                StatusAanvraagId = Convert.ToInt32(1),
+                StatusAanvraagId = Convert.ToInt32(ddlStatus.SelectedValue),
+                StatusAanvraag = Convert.ToString(ddlStatus.SelectedItem),
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();

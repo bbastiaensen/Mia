@@ -1068,6 +1068,13 @@ namespace MiaClient
             // 
             this.ddlStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlStatus.FormattingEnabled = true;
+            this.ddlStatus.Items.AddRange(new object[] {
+            "In aanvraag",
+            "Goedgekeurd",
+            "Niet Goedgekeurd",
+            "Bekrachtigd",
+            "Niet Bekrachtigd",
+            ""});
             this.ddlStatus.Location = new System.Drawing.Point(81, 43);
             this.ddlStatus.Name = "ddlStatus";
             this.ddlStatus.Size = new System.Drawing.Size(160, 36);

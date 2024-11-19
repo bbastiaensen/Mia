@@ -55,7 +55,7 @@ namespace MiaLogic.Manager
             return Statusaanvraag;
         }
         //geeft alle statussen terug in een list
-        public static List<StatusAanvraag> GetStatusAanvraag()
+        public static List<StatusAanvraag> GetStatusAanvragen()
         {
             StatusAanvraag Status = new StatusAanvraag();
 
@@ -84,8 +84,8 @@ namespace MiaLogic.Manager
                             list = new List<StatusAanvraag>();
                         }
                         StatusAanvraag s = new StatusAanvraag();
-                        Status.Id = Convert.ToInt32(objRea["Id"]);
-                        Status.Naam = objRea["Naam"].ToString();
+                        s.Id = Convert.ToInt32(objRea["Id"]);
+                        s.Naam = objRea["Naam"].ToString();
 
                         list.Add(s);
                     }
