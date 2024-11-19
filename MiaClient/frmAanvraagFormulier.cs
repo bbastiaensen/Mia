@@ -134,7 +134,7 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
-            cmbStatus.SelectedItem = 
+            
             //Bijlagen
             LeegLinken();
             LeegFoto();
