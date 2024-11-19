@@ -21,7 +21,7 @@ namespace MiaClient
             InitializeComponent();
         }
 
-        public void BindAanvraag(List<Aanvraag> items)
+        public void BindAanvraag(List<Goedkeuring> items)
         {
             this.pnlGoedkeuringen.Controls.Clear();
 
@@ -60,7 +60,7 @@ namespace MiaClient
 
         private void frmGoedkeuring_Activated(object sender, EventArgs e)
         {
-            var lijst = AanvraagManager.GetAanvragen();
+            var lijst = GoedkeuringManager.GetGoedkeuringen();
             BindAanvraag(lijst);
         }
     }
