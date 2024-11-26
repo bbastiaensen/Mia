@@ -65,6 +65,7 @@
     <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
+    <Compile Include="Object\Goedkeuring.cs" />
     <Compile Include="Object\Investering.cs" />
     <Compile Include="Object\Kostenplaats.cs" />
     <Compile Include="Object\Link.cs" />

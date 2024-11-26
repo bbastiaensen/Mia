@@ -19,6 +19,25 @@ namespace MiaClient
 {
     public partial class frmGoedkeuring : Form
     {
+
+
+        bool filterAanvraagmomentVan = false;
+        bool filterAanvraagmomentTot = false;
+        bool filterGebruiker = false;
+        bool filterTitel = false;
+        bool filterFinancieringsjaar = false;
+        bool filterBedragVan = false;
+        bool filterBedragTot = false;
+
+
+        bool SortGebruiker = true;
+        bool SortTitel = true;
+        bool SortAanvraagmoment = true;
+        bool SortBedrag = true;
+        bool SortPlanningsdatum = true;
+        bool SortFinancieringsjaar = true;
+
+
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         public frmGoedkeuring()
         {
@@ -37,12 +56,12 @@ namespace MiaClient
             {
                 foreach (var av in items)
                 {
-                    GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
+                    GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId, av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
                     item.Location = new System.Drawing.Point(xPos, yPos);
                     item.Name = "GoedkeurSelection" + t;
                     item.Size = new System.Drawing.Size(1034, 33);
                     item.TabIndex = t + 8;
-                
+
                     this.pnlGoedkeuringen.Controls.Add(item);
 
                     t++;
@@ -72,5 +91,45 @@ namespace MiaClient
         }
 
        
-    }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtFinancieringsjaar.Text != string.Empty)
+                {
+                    filterFinancieringsjaar = true;
+                }
+                if (chbxBedragVan.Checked != false)
+                {
+                    filterBedragVan = true;
+                }
+                if (chbxBedragTot.Checked != false)
+                {
+                    filterBedragTot = true;
+                }
+                if (txtTitel.Text != string.Empty)
+                {
+                    filterTitel = true;
+                }
+                if (txtGebruiker.Text != string.Empty)
+                {
+                    filterGebruiker = true;
+                }
+                if (chbxAanvraagmomentVan.Checked != false)
+                {
+                    filterAanvraagmomentVan = true;
+                }
+                if (chbxAanvraagmomentTot.Checked != false)
+                {
+                    filterAanvraagmomentTot = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    } 
 }
