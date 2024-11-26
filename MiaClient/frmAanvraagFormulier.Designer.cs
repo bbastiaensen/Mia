@@ -39,6 +39,13 @@ namespace MiaClient
             this.tabPage_Investering = new System.Windows.Forms.TabPage();
             this.pnl_Investeringen = new System.Windows.Forms.Panel();
             this.gboxInvestering = new System.Windows.Forms.GroupBox();
+            this.gboxPlanning = new System.Windows.Forms.GroupBox();
+            this.ddlWieKooptHet = new System.Windows.Forms.ComboBox();
+            this.ddlKostenplaats = new System.Windows.Forms.ComboBox();
+            this.ddlFinancieringsjaar = new System.Windows.Forms.ComboBox();
+            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
+            this.lblKostenplaats = new System.Windows.Forms.Label();
+            this.lblWieKooptHet = new System.Windows.Forms.Label();
             this.gboxStatusAanvraag = new System.Windows.Forms.GroupBox();
             this.ddlStatus = new System.Windows.Forms.ComboBox();
             this.ddlRichtperiode = new System.Windows.Forms.ComboBox();
@@ -49,13 +56,6 @@ namespace MiaClient
             this.txtResultaat = new System.Windows.Forms.RichTextBox();
             this.txtGoedgekeurdeBedrag = new System.Windows.Forms.TextBox();
             this.gboxTitel = new System.Windows.Forms.GroupBox();
-            this.gboxPlanning = new System.Windows.Forms.GroupBox();
-            this.ddlWieKooptHet = new System.Windows.Forms.ComboBox();
-            this.ddlKostenplaats = new System.Windows.Forms.ComboBox();
-            this.ddlFinancieringsjaar = new System.Windows.Forms.ComboBox();
-            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
-            this.lblKostenplaats = new System.Windows.Forms.Label();
-            this.lblWieKooptHet = new System.Windows.Forms.Label();
             this.ddlPrioriteit = new System.Windows.Forms.ComboBox();
             this.lblPrioriteit = new System.Windows.Forms.Label();
             this.ddlInvestering = new System.Windows.Forms.ComboBox();
@@ -124,9 +124,9 @@ namespace MiaClient
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
+            this.gboxPlanning.SuspendLayout();
             this.gboxStatusAanvraag.SuspendLayout();
             this.gboxTitel.SuspendLayout();
-            this.gboxPlanning.SuspendLayout();
             this.tabPage_Identificatie.SuspendLayout();
             this.gboxIdentificatie.SuspendLayout();
             this.tabControl_Aanvraagformulier.SuspendLayout();
@@ -213,10 +213,83 @@ namespace MiaClient
             this.gboxInvestering.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.gboxInvestering.Location = new System.Drawing.Point(3, 3);
             this.gboxInvestering.Name = "gboxInvestering";
-            this.gboxInvestering.Size = new System.Drawing.Size(1188, 538);
+            this.gboxInvestering.Size = new System.Drawing.Size(1194, 514);
             this.gboxInvestering.TabIndex = 21;
             this.gboxInvestering.TabStop = false;
             this.gboxInvestering.Text = "Investering";
+            // 
+            // gboxPlanning
+            // 
+            this.gboxPlanning.Controls.Add(this.ddlWieKooptHet);
+            this.gboxPlanning.Controls.Add(this.ddlKostenplaats);
+            this.gboxPlanning.Controls.Add(this.ddlFinancieringsjaar);
+            this.gboxPlanning.Controls.Add(this.lblFinancieringsjaar);
+            this.gboxPlanning.Controls.Add(this.lblKostenplaats);
+            this.gboxPlanning.Controls.Add(this.lblWieKooptHet);
+            this.gboxPlanning.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gboxPlanning.Location = new System.Drawing.Point(731, 31);
+            this.gboxPlanning.Name = "gboxPlanning";
+            this.gboxPlanning.Size = new System.Drawing.Size(451, 158);
+            this.gboxPlanning.TabIndex = 3;
+            this.gboxPlanning.TabStop = false;
+            this.gboxPlanning.Text = "Planning";
+            // 
+            // ddlWieKooptHet
+            // 
+            this.ddlWieKooptHet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlWieKooptHet.FormattingEnabled = true;
+            this.ddlWieKooptHet.Location = new System.Drawing.Point(175, 97);
+            this.ddlWieKooptHet.Name = "ddlWieKooptHet";
+            this.ddlWieKooptHet.Size = new System.Drawing.Size(270, 29);
+            this.ddlWieKooptHet.TabIndex = 2;
+            // 
+            // ddlKostenplaats
+            // 
+            this.ddlKostenplaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlKostenplaats.FormattingEnabled = true;
+            this.ddlKostenplaats.Location = new System.Drawing.Point(175, 62);
+            this.ddlKostenplaats.Name = "ddlKostenplaats";
+            this.ddlKostenplaats.Size = new System.Drawing.Size(270, 29);
+            this.ddlKostenplaats.TabIndex = 1;
+            // 
+            // ddlFinancieringsjaar
+            // 
+            this.ddlFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlFinancieringsjaar.FormattingEnabled = true;
+            this.ddlFinancieringsjaar.Location = new System.Drawing.Point(175, 27);
+            this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
+            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(270, 29);
+            this.ddlFinancieringsjaar.TabIndex = 0;
+            // 
+            // lblFinancieringsjaar
+            // 
+            this.lblFinancieringsjaar.AutoSize = true;
+            this.lblFinancieringsjaar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(14, 30);
+            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(131, 21);
+            this.lblFinancieringsjaar.TabIndex = 18;
+            this.lblFinancieringsjaar.Text = "Financieringsjaar:";
+            // 
+            // lblKostenplaats
+            // 
+            this.lblKostenplaats.AutoSize = true;
+            this.lblKostenplaats.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblKostenplaats.Location = new System.Drawing.Point(14, 65);
+            this.lblKostenplaats.Name = "lblKostenplaats";
+            this.lblKostenplaats.Size = new System.Drawing.Size(101, 21);
+            this.lblKostenplaats.TabIndex = 17;
+            this.lblKostenplaats.Text = "Kostenplaats:";
+            // 
+            // lblWieKooptHet
+            // 
+            this.lblWieKooptHet.AutoSize = true;
+            this.lblWieKooptHet.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblWieKooptHet.Location = new System.Drawing.Point(14, 100);
+            this.lblWieKooptHet.Name = "lblWieKooptHet";
+            this.lblWieKooptHet.Size = new System.Drawing.Size(80, 21);
+            this.lblWieKooptHet.TabIndex = 16;
+            this.lblWieKooptHet.Text = "Aankoper:";
             // 
             // gboxStatusAanvraag
             // 
@@ -342,79 +415,6 @@ namespace MiaClient
             this.gboxTitel.TabIndex = 1;
             this.gboxTitel.TabStop = false;
             this.gboxTitel.Text = "Item";
-            // 
-            // gboxPlanning
-            // 
-            this.gboxPlanning.Controls.Add(this.ddlWieKooptHet);
-            this.gboxPlanning.Controls.Add(this.ddlKostenplaats);
-            this.gboxPlanning.Controls.Add(this.ddlFinancieringsjaar);
-            this.gboxPlanning.Controls.Add(this.lblFinancieringsjaar);
-            this.gboxPlanning.Controls.Add(this.lblKostenplaats);
-            this.gboxPlanning.Controls.Add(this.lblWieKooptHet);
-            this.gboxPlanning.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gboxPlanning.Location = new System.Drawing.Point(731, 31);
-            this.gboxPlanning.Name = "gboxPlanning";
-            this.gboxPlanning.Size = new System.Drawing.Size(451, 158);
-            this.gboxPlanning.TabIndex = 3;
-            this.gboxPlanning.TabStop = false;
-            this.gboxPlanning.Text = "Planning";
-            // 
-            // ddlWieKooptHet
-            // 
-            this.ddlWieKooptHet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlWieKooptHet.FormattingEnabled = true;
-            this.ddlWieKooptHet.Location = new System.Drawing.Point(175, 97);
-            this.ddlWieKooptHet.Name = "ddlWieKooptHet";
-            this.ddlWieKooptHet.Size = new System.Drawing.Size(270, 29);
-            this.ddlWieKooptHet.TabIndex = 2;
-            // 
-            // ddlKostenplaats
-            // 
-            this.ddlKostenplaats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlKostenplaats.FormattingEnabled = true;
-            this.ddlKostenplaats.Location = new System.Drawing.Point(175, 62);
-            this.ddlKostenplaats.Name = "ddlKostenplaats";
-            this.ddlKostenplaats.Size = new System.Drawing.Size(270, 29);
-            this.ddlKostenplaats.TabIndex = 1;
-            // 
-            // ddlFinancieringsjaar
-            // 
-            this.ddlFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlFinancieringsjaar.FormattingEnabled = true;
-            this.ddlFinancieringsjaar.Location = new System.Drawing.Point(175, 27);
-            this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
-            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(270, 29);
-            this.ddlFinancieringsjaar.TabIndex = 0;
-            // 
-            // lblFinancieringsjaar
-            // 
-            this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(14, 30);
-            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(131, 21);
-            this.lblFinancieringsjaar.TabIndex = 18;
-            this.lblFinancieringsjaar.Text = "Financieringsjaar:";
-            // 
-            // lblKostenplaats
-            // 
-            this.lblKostenplaats.AutoSize = true;
-            this.lblKostenplaats.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblKostenplaats.Location = new System.Drawing.Point(14, 65);
-            this.lblKostenplaats.Name = "lblKostenplaats";
-            this.lblKostenplaats.Size = new System.Drawing.Size(101, 21);
-            this.lblKostenplaats.TabIndex = 17;
-            this.lblKostenplaats.Text = "Kostenplaats:";
-            // 
-            // lblWieKooptHet
-            // 
-            this.lblWieKooptHet.AutoSize = true;
-            this.lblWieKooptHet.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblWieKooptHet.Location = new System.Drawing.Point(14, 100);
-            this.lblWieKooptHet.Name = "lblWieKooptHet";
-            this.lblWieKooptHet.Size = new System.Drawing.Size(80, 21);
-            this.lblWieKooptHet.TabIndex = 16;
-            this.lblWieKooptHet.Text = "Aankoper:";
             // 
             // ddlPrioriteit
             // 
@@ -575,7 +575,7 @@ namespace MiaClient
             this.tabPage_Identificatie.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Identificatie.Name = "tabPage_Identificatie";
             this.tabPage_Identificatie.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Identificatie.Size = new System.Drawing.Size(1227, 460);
+            this.tabPage_Identificatie.Size = new System.Drawing.Size(1227, 553);
             this.tabPage_Identificatie.TabIndex = 0;
             this.tabPage_Identificatie.Text = "Identificatie";
             this.tabPage_Identificatie.UseVisualStyleBackColor = true;
@@ -1092,7 +1092,7 @@ namespace MiaClient
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1273, 714);
+            this.ClientSize = new System.Drawing.Size(1273, 686);
             this.Controls.Add(this.btn_Nieuw);
             this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
@@ -1111,12 +1111,12 @@ namespace MiaClient
             this.tabPage_Investering.ResumeLayout(false);
             this.pnl_Investeringen.ResumeLayout(false);
             this.gboxInvestering.ResumeLayout(false);
+            this.gboxPlanning.ResumeLayout(false);
+            this.gboxPlanning.PerformLayout();
             this.gboxStatusAanvraag.ResumeLayout(false);
             this.gboxStatusAanvraag.PerformLayout();
             this.gboxTitel.ResumeLayout(false);
             this.gboxTitel.PerformLayout();
-            this.gboxPlanning.ResumeLayout(false);
-            this.gboxPlanning.PerformLayout();
             this.tabPage_Identificatie.ResumeLayout(false);
             this.gboxIdentificatie.ResumeLayout(false);
             this.gboxIdentificatie.PerformLayout();
