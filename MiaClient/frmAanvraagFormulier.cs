@@ -23,7 +23,7 @@ namespace MiaClient
 {
     //Soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
     //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
-
+    
     public partial class frmAanvraagFormulier : Form
     {
         //Variables
@@ -114,6 +114,7 @@ namespace MiaClient
             VulKostenplaatsDropDown(ddlKostenplaats);
             VulAankoperDropDown(ddlWieKooptHet);
             BindStatusAanvraag(ddlStatus);
+            ddlStatus.SelectedIndex = 0;
         }
 
         public void LeegFormulier()
@@ -137,7 +138,7 @@ namespace MiaClient
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
             ddlStatus.SelectedIndex = 0;
-            ddlStatus.Enabled = true; //possibly Locked?????
+            ddlStatus.Enabled = false;
             //Bijlagen
             LeegLinken();
             LeegFoto();
