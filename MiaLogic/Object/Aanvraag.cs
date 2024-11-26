@@ -29,5 +29,7 @@ namespace MiaLogic.Object
         public int AankoperId { get; set; }
         public decimal Bedrag { get; set; }
 
+        public string OpmerkingenResultaat { get; set; }
+
     }
 }
