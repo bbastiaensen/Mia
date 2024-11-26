@@ -1,12 +1,14 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,13 +35,15 @@ namespace MiaClient
             {
                 foreach (var av in items)
                 {
-                    GoedkeurItem item = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.StatusAanvraagId,av.Titel, av.Financieringsjaar, av.Bedrag, t % 2 == 0);
-                    item.Location = new System.Drawing.Point(xPos, yPos);
-                    item.Name = "GoedkeurSelection" + t;
-                    item.Size = new System.Drawing.Size(1034, 33);
-                    item.TabIndex = t + 8;
-                
-                    this.pnlGoedkeuringen.Controls.Add(item);
+                    GoedkeurItem agi = new GoedkeurItem(av.Id, av.Gebruiker, av.Aanvraagmoment, av.Titel, av.Financieringsjaar, av.PrijsIndicatieStuk, av.AantalStuk, t % 2 == 0);
+                    agi.Location = new System.Drawing.Point(xPos, yPos);
+                    agi.Name = "aanvraagSelection" + t;
+                    agi.Size = new System.Drawing.Size(1210, 33);
+                    agi.TabIndex = t + 8;
+                    agi.GoedkeurItemSelected += Gli_GoedkeurItemSelected;
+                    agi.GoedkeurDeleted += Agi_GoedkeurItemChanged;
+                    agi.GoedkeurItemChanged += Ai_GoedkeurItemChanged;
+                    this.pnlGoedkeuringen.Controls.Add(agi);
 
                     t++;
                     yPos += 30;
