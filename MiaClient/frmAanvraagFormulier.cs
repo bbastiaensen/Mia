@@ -115,6 +115,8 @@ namespace MiaClient
             VulAankoperDropDown(ddlWieKooptHet);
             BindStatusAanvraag(ddlStatus);
             ddlStatus.SelectedIndex = 0;
+            BindRchtperiode(ddlRichtperiode);
+
         }
 
         public void LeegFormulier()
@@ -160,12 +162,14 @@ namespace MiaClient
 
             aanvraagId = id;
             Aanvraag aanvraag = new Aanvraag();
-
+            Richtperiode periode = new Richtperiode();
             if (action == "edit")
             {
                 //zet de informatie va de aanvraag in de form
                 aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+                periode = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
                 BindStatusAanvraag(ddlStatus);
+                BindRchtperiode(ddlRichtperiode);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -185,6 +189,7 @@ namespace MiaClient
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
                 ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
+                ddlRichtperiode.SelectedIndex = periode.Sorteervolgorde;
             }
         }
 
@@ -201,6 +206,13 @@ namespace MiaClient
             ddlStatus.ValueMember = "Id";
             ddlStatus.DisplayMember = "Naam";
             ddlStatus.SelectedIndex = -1;
+        }
+        private void BindRchtperiode(ComboBox ddlRichtperiode)
+        {
+            ddlRichtperiode.DataSource = MiaLogic.Manager.RichtperiodeManager.GetRichtperiodes();
+            ddlRichtperiode.ValueMember = "Id";
+            ddlRichtperiode.DisplayMember = "Naam";
+            ddlRichtperiode.SelectedIndex = -1;
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {

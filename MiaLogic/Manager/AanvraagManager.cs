@@ -77,7 +77,7 @@ namespace MiaLogic.Manager
                         aanvraag.FinancieringsTypeId = Convert.ToInt32(objRea["FinancieringsTypeId"]);
                         aanvraag.InvesteringsTypeId = Convert.ToInt32(objRea["InvesteringsTypeId"]);
                         aanvraag.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
-                       
+                        aanvraag.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                     }
 
                 }
