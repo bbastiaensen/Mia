@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Object
 {
-    public class Goedkeuring
+    public class Goedkeuring  
     {
         public string Gebruiker { get; set; }
         public DateTime Aanvraagmoment { get; set; }

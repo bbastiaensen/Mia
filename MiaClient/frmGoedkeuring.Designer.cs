@@ -30,11 +30,11 @@
         {
             this.pnlGoedkeuringen = new System.Windows.Forms.Panel();
             this.grbxFilterGoedKeuring = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.dtpAanvraagmomentTot = new System.Windows.Forms.DateTimePicker();
+            this.dtpAanvraagmomentVan = new System.Windows.Forms.DateTimePicker();
+            this.txtBedragTot = new System.Windows.Forms.TextBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBedragVan = new System.Windows.Forms.TextBox();
             this.chbxAanvraagmomentTot = new System.Windows.Forms.CheckBox();
             this.lblAanvraagMoment = new System.Windows.Forms.Label();
             this.chbxBedragTot = new System.Windows.Forms.CheckBox();
@@ -61,11 +61,11 @@
             // 
             // grbxFilterGoedKeuring
             // 
-            this.grbxFilterGoedKeuring.Controls.Add(this.dateTimePicker2);
-            this.grbxFilterGoedKeuring.Controls.Add(this.dateTimePicker1);
-            this.grbxFilterGoedKeuring.Controls.Add(this.textBox4);
+            this.grbxFilterGoedKeuring.Controls.Add(this.dtpAanvraagmomentTot);
+            this.grbxFilterGoedKeuring.Controls.Add(this.dtpAanvraagmomentVan);
+            this.grbxFilterGoedKeuring.Controls.Add(this.txtBedragTot);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblFinancieringsjaar);
-            this.grbxFilterGoedKeuring.Controls.Add(this.textBox1);
+            this.grbxFilterGoedKeuring.Controls.Add(this.txtBedragVan);
             this.grbxFilterGoedKeuring.Controls.Add(this.chbxAanvraagmomentTot);
             this.grbxFilterGoedKeuring.Controls.Add(this.lblAanvraagMoment);
             this.grbxFilterGoedKeuring.Controls.Add(this.chbxBedragTot);
@@ -85,30 +85,30 @@
             this.grbxFilterGoedKeuring.TabStop = false;
             this.grbxFilterGoedKeuring.Text = "Filter";
             // 
-            // dateTimePicker2
+            // dtpAanvraagmomentTot
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(83, 189);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 34);
-            this.dateTimePicker2.TabIndex = 15;
+            this.dtpAanvraagmomentTot.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAanvraagmomentTot.Location = new System.Drawing.Point(83, 189);
+            this.dtpAanvraagmomentTot.Name = "dtpAanvraagmomentTot";
+            this.dtpAanvraagmomentTot.Size = new System.Drawing.Size(200, 34);
+            this.dtpAanvraagmomentTot.TabIndex = 15;
             // 
-            // dateTimePicker1
+            // dtpAanvraagmomentVan
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(83, 147);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 34);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dtpAanvraagmomentVan.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAanvraagmomentVan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAanvraagmomentVan.Location = new System.Drawing.Point(83, 147);
+            this.dtpAanvraagmomentVan.Name = "dtpAanvraagmomentVan";
+            this.dtpAanvraagmomentVan.Size = new System.Drawing.Size(200, 34);
+            this.dtpAanvraagmomentVan.TabIndex = 14;
             // 
-            // textBox4
+            // txtBedragTot
             // 
-            this.textBox4.Location = new System.Drawing.Point(411, 189);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(179, 34);
-            this.textBox4.TabIndex = 13;
+            this.txtBedragTot.Location = new System.Drawing.Point(411, 189);
+            this.txtBedragTot.Multiline = true;
+            this.txtBedragTot.Name = "txtBedragTot";
+            this.txtBedragTot.Size = new System.Drawing.Size(179, 34);
+            this.txtBedragTot.TabIndex = 13;
             // 
             // lblFinancieringsjaar
             // 
@@ -120,13 +120,13 @@
             this.lblFinancieringsjaar.TabIndex = 6;
             this.lblFinancieringsjaar.Text = "Financieringsjaar";
             // 
-            // textBox1
+            // txtBedragVan
             // 
-            this.textBox1.Location = new System.Drawing.Point(389, 144);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 34);
-            this.textBox1.TabIndex = 10;
+            this.txtBedragVan.Location = new System.Drawing.Point(389, 144);
+            this.txtBedragVan.Multiline = true;
+            this.txtBedragVan.Name = "txtBedragVan";
+            this.txtBedragVan.Size = new System.Drawing.Size(188, 34);
+            this.txtBedragVan.TabIndex = 10;
             // 
             // chbxAanvraagmomentTot
             // 
@@ -205,11 +205,11 @@
             // lblGebruiker
             // 
             this.lblGebruiker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGebruiker.Location = new System.Drawing.Point(6, 28);
+            this.lblGebruiker.Location = new System.Drawing.Point(11, 30);
             this.lblGebruiker.Name = "lblGebruiker";
-            this.lblGebruiker.Size = new System.Drawing.Size(98, 28);
+            this.lblGebruiker.Size = new System.Drawing.Size(251, 26);
             this.lblGebruiker.TabIndex = 3;
-            this.lblGebruiker.Text = "Gebruiker";
+            this.lblGebruiker.Text = "Gebruiker\r\nerazer\r\n";
             // 
             // txtFinancieringsjaar
             // 
@@ -283,10 +283,10 @@
         private System.Windows.Forms.CheckBox chbxBedragTot;
         private System.Windows.Forms.CheckBox chbxAanvraagmomentTot;
         private System.Windows.Forms.Label lblAanvraagMoment;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtBedragTot;
+        private System.Windows.Forms.TextBox txtBedragVan;
+        private System.Windows.Forms.DateTimePicker dtpAanvraagmomentTot;
+        private System.Windows.Forms.DateTimePicker dtpAanvraagmomentVan;
         private System.Windows.Forms.Button btnFilter;
     }
 }

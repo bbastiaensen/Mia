@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
 
+        List<Goedkeuring> Goedkeuringen;
 
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -89,47 +91,112 @@ namespace MiaClient
             var lijst = AanvraagManager.GetAanvragen();
             BindAanvraag(lijst);
         }
-
-       
-
-        private void btnFilter_Click(object sender, EventArgs e)
+        private List<Goedkeuring> FilteredGoedkeuringen(List<Goedkeuring> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool gebruiker, bool titel, bool financieringsjaar, bool bedragVan, bool bedragTot)
         {
-            try
+            if (items != null)
             {
-                if (txtFinancieringsjaar.Text != string.Empty)
+                if (aanvraagmomentVan)
                 {
-                    filterFinancieringsjaar = true;
+                    if (chbxAanvraagmomentVan.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
+                    }
                 }
-                if (chbxBedragVan.Checked != false)
+                if (aanvraagmomentTot)
                 {
-                    filterBedragVan = true;
+                    if (chbxAanvraagmomentTot.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }
                 }
-                if (chbxBedragTot.Checked != false)
+                if (gebruiker)
                 {
-                    filterBedragTot = true;
+                    items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
                 }
-                if (txtTitel.Text != string.Empty)
+                if (titel)
                 {
-                    filterTitel = true;
+                    items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (txtGebruiker.Text != string.Empty)
+                if (financieringsjaar)
                 {
-                    filterGebruiker = true;
+                    if (txtFinancieringsjaar.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
+                    }
                 }
-                if (chbxAanvraagmomentVan.Checked != false)
+                if (bedragVan)
                 {
-                    filterAanvraagmomentVan = true;
+                    if (chbxBedragVan.Checked == true)
+                    {
+                        if (txtBedragVan.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.Bedrag >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
+                        }
+                    }
                 }
-                if (chbxAanvraagmomentTot.Checked != false)
+                if (bedragTot)
                 {
-                    filterAanvraagmomentTot = true;
+                    if (chbxBedragTot.Checked == true)
+                    {
+                        if (txtBedragTot.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.Bedrag <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
+                        }
+                    }
                 }
-
             }
-            catch (Exception ex)
+            return items;
+        }
+
+            private void btnFilter_Click(object sender, EventArgs e)
             {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    if (txtFinancieringsjaar.Text != string.Empty)
+                    {
+                        filterFinancieringsjaar = true;
+                    }
+                    if (chbxBedragVan.Checked != false)
+                    {
+                        filterBedragVan = true;
+                    }
+                    if (chbxBedragTot.Checked != false)
+                    {
+                        filterBedragTot = true;
+                    }
+                    if (txtTitel.Text != string.Empty)
+                    {
+                        filterTitel = true;
+                    }
+                    if (txtGebruiker.Text != string.Empty)
+                    {
+                        filterGebruiker = true;
+                    }
+                    if (chbxAanvraagmomentVan.Checked != false)
+                    {
+                        filterAanvraagmomentVan = true;
+                    }
+                    if (chbxAanvraagmomentTot.Checked != false)
+                    {
+                        filterAanvraagmomentTot = true;
+                    }
+
+                Goedkeuringen = FilteredGoedkeuringen(filterBedragVan, filterBedragTot, filterAanvraagmomentVan, filterAanvraagmomentTot, filterTitel, filterGebruiker, filterFinancieringsjaar);
+                
+                
+            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        private void btnSortGebruiker_click (object sender, EventArgs e)
+        {
+            if(SortGebruiker == true)
+            {
+                SortGebruiker = false;
+               
             }
         }
-    } 
-}
+    }
+}   
