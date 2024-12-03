@@ -188,8 +188,8 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
-                ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
-                ddlRichtperiode.SelectedIndex = periode.Id;
+                ddlStatus.SelectedValue = aanvraag.StatusAanvraagId;
+                ddlRichtperiode.SelectedValue = periode.Id;
                 ddlRichtperiode.Enabled = true;
             }
         }
