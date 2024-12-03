@@ -68,7 +68,10 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.Omschrijving = objRea["Omschrijving"].ToString();
                         }
-
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
                         aanvraag.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
                         aanvraag.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(aanvraag.KostenplaatsId).Naam;
                         aanvraag.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
@@ -136,7 +139,10 @@ namespace MiaLogic.Manager
                         {
                             a.Bedrag = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
-                      
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
                         returnlist.Add(a);
                     }
                 }
