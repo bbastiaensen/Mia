@@ -23,7 +23,6 @@ namespace MiaLogic.Manager
 
                 using (SqlCommand objCmd = new SqlCommand())
                 {
-
                     objCmd.Connection = objCn;
                     objCmd.CommandText = "select * from Richtperiode where Id = @Id;";
                     objCmd.Parameters.AddWithValue("@Id", id);
@@ -50,13 +49,13 @@ namespace MiaLogic.Manager
         }
         public static List<Richtperiode> GetRichtperiodes()
         {
+            
             List<Richtperiode> periodes = null;
 
             using (SqlConnection objCn = new SqlConnection())
             {
 
                 objCn.ConnectionString = ConnectionString;
-
                 using (SqlCommand objCmd = new SqlCommand())
                 {
 

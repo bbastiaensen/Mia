@@ -79,7 +79,6 @@ namespace MiaLogic.Manager
                         aanvraag.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
                         aanvraag.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                     }
-
                 }
             }
 
