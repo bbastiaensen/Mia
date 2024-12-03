@@ -185,6 +185,8 @@ namespace MiaClient
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
                 ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
+                txtResultaat.ReadOnly = false;
+                txtResultaat.Text = aanvraag.OpmerkingenResultaat;
             }
         }
 
@@ -479,8 +481,8 @@ namespace MiaClient
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
-                
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
+                OpmerkingenResultaat = txtResultaat.Text
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
