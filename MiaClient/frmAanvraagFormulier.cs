@@ -23,7 +23,7 @@ namespace MiaClient
 {
     //Soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
     //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
-
+    
     public partial class frmAanvraagFormulier : Form
     {
         //Variables
@@ -113,10 +113,13 @@ namespace MiaClient
             VulFinancieringsjaarDropDown(ddlFinancieringsjaar);
             VulKostenplaatsDropDown(ddlKostenplaats);
             VulAankoperDropDown(ddlWieKooptHet);
+            BindStatusAanvraag(ddlStatus);
+            ddlStatus.SelectedIndex = 0;
         }
 
         public void LeegFormulier()
         {
+            
             txtAanvraagId.Text = string.Empty;
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -134,6 +137,8 @@ namespace MiaClient
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
             ddlInvestering.SelectedItem = null;
+            ddlStatus.SelectedIndex = 0;
+            ddlStatus.Enabled = false;
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -158,7 +163,9 @@ namespace MiaClient
 
             if (action == "edit")
             {
+                //zet de informatie va de aanvraag in de form
                 aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+                BindStatusAanvraag(ddlStatus);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -176,8 +183,8 @@ namespace MiaClient
                 ddlPrioriteit.SelectedValue = aanvraag.PrioriteitId;
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
-                cmbStatus.Enabled = true;
-                
+                ddlStatus.Enabled = true;
+                ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
             }
         }
 
@@ -188,6 +195,13 @@ namespace MiaClient
 
         //    txtAanvraagId.Text = (highestAanvraagId + 1).ToString();
         //}
+        private void BindStatusAanvraag(ComboBox ddlStatus)
+        {
+            ddlStatus.DataSource = MiaLogic.Manager.StatusAanvraagManager.GetStatusAanvragen();
+            ddlStatus.ValueMember = "Id";
+            ddlStatus.DisplayMember = "Naam";
+            ddlStatus.SelectedIndex = -1;
+        }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
             List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
@@ -460,11 +474,13 @@ namespace MiaClient
                 InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
                 PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                 Financieringsjaar = ddlFinancieringsjaar.Text,
-                StatusAanvraagId = Convert.ToInt32(1),
+                StatusAanvraagId = Convert.ToInt32(ddlStatus.SelectedValue),
+                StatusAanvraag = Convert.ToString(ddlStatus.SelectedItem),
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();

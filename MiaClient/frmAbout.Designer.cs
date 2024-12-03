@@ -89,7 +89,7 @@
             this.lblOntwikkeldDoor.AutoSize = true;
             this.lblOntwikkeldDoor.Location = new System.Drawing.Point(496, 67);
             this.lblOntwikkeldDoor.Name = "lblOntwikkeldDoor";
-            this.lblOntwikkeldDoor.Size = new System.Drawing.Size(300, 273);
+            this.lblOntwikkeldDoor.Size = new System.Drawing.Size(300, 357);
             this.lblOntwikkeldDoor.TabIndex = 4;
             this.lblOntwikkeldDoor.Text = resources.GetString("lblOntwikkeldDoor.Text");
             // 
@@ -107,7 +107,7 @@
             // llblTaTu
             // 
             this.llblTaTu.AutoSize = true;
-            this.llblTaTu.Location = new System.Drawing.Point(516, 353);
+            this.llblTaTu.Location = new System.Drawing.Point(513, 440);
             this.llblTaTu.Name = "llblTaTu";
             this.llblTaTu.Size = new System.Drawing.Size(231, 21);
             this.llblTaTu.TabIndex = 6;
@@ -119,9 +119,9 @@
             // 
             this.groupBox1.Controls.Add(this.llblIconsByIcon8);
             this.groupBox1.Controls.Add(this.llblProjectLogoAttribution);
-            this.groupBox1.Location = new System.Drawing.Point(12, 396);
+            this.groupBox1.Location = new System.Drawing.Point(12, 490);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(802, 200);
+            this.groupBox1.Size = new System.Drawing.Size(802, 106);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Credits";
