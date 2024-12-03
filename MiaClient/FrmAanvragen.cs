@@ -241,7 +241,7 @@ namespace MiaClient
                     {
                         if (txtBedragVan.Text != string.Empty)
                         {
-                            items = items.Where(av => av.Bedrag >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
+                            items = items.Where(av => av.BudgetToegekend >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
                         }
                     } 
                 }
@@ -251,7 +251,7 @@ namespace MiaClient
                     {
                         if(txtBedragTot.Text != string.Empty)
                         {
-                            items = items.Where(av => av.Bedrag <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
+                            items = items.Where(av => av.BudgetToegekend <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
                         }
                     }
                 }

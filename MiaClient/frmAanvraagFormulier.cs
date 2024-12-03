@@ -193,6 +193,7 @@ namespace MiaClient
                 ddlStatus.SelectedValue = aanvraag.StatusAanvraagId;
                 ddlRichtperiode.SelectedValue = periode.Id;
                 ddlRichtperiode.Enabled = true;
+                txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
             }
         }
 
@@ -495,7 +496,9 @@ namespace MiaClient
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
-                OpmerkingenResultaat = txtResultaat.Text
+                OpmerkingenResultaat = txtResultaat.Text,
+                RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
+                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
@@ -860,11 +863,14 @@ namespace MiaClient
                 InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
                 PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                 Financieringsjaar = ddlFinancieringsjaar.Text,
-                StatusAanvraagId = Convert.ToInt32(1),
+                StatusAanvraagId = Convert.ToInt32(ddlStatus.SelectedValue),
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
+                RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
+                OpmerkingenResultaat = txtResultaat.Text,
+                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
 
