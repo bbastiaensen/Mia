@@ -40,6 +40,11 @@
             this.GoedkeuringBedrag = new System.Windows.Forms.Label();
             this.GoedkeuringTitel = new System.Windows.Forms.Label();
             this.GoedkeuringGebruiker = new System.Windows.Forms.Label();
+            this.lblPages = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlGoedkeuringen
@@ -179,11 +184,64 @@
             this.GoedkeuringGebruiker.TabIndex = 43;
             this.GoedkeuringGebruiker.Text = "Gebruiker";
             // 
+            // lblPages
+            // 
+            this.lblPages.Location = new System.Drawing.Point(135, 629);
+            this.lblPages.Name = "lblPages";
+            this.lblPages.Size = new System.Drawing.Size(1156, 30);
+            this.lblPages.TabIndex = 64;
+            this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnNext
+            // 
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Location = new System.Drawing.Point(1297, 629);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.TabIndex = 62;
+            this.btnNext.UseVisualStyleBackColor = true;
+            // 
+            // btnLast
+            // 
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.Location = new System.Drawing.Point(1333, 629);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(30, 30);
+            this.btnLast.TabIndex = 63;
+            this.btnLast.UseVisualStyleBackColor = true;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Location = new System.Drawing.Point(99, 629);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.TabIndex = 61;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.Location = new System.Drawing.Point(63, 629);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(30, 30);
+            this.btnFirst.TabIndex = 60;
+            this.btnFirst.UseVisualStyleBackColor = true;
+            // 
             // frmGoedkeuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1403, 688);
+            this.Controls.Add(this.lblPages);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.GoedkeuringFinancieringsjaar);
             this.Controls.Add(this.pnlGoedkeuringen);
             this.Controls.Add(this.GoedkeuringGebruiker);
@@ -222,5 +280,10 @@
         private System.Windows.Forms.Label GoedkeuringBedrag;
         private System.Windows.Forms.Label GoedkeuringTitel;
         private System.Windows.Forms.Label GoedkeuringGebruiker;
+        private System.Windows.Forms.Label lblPages;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnFirst;
     }
 }

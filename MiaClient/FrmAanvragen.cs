@@ -832,7 +832,7 @@ namespace MiaClient
             
         }
 
-        private void txtBedragVan_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtBedragVan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
             {
@@ -846,7 +846,7 @@ namespace MiaClient
             }
         }
 
-        private void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !IsGeldigFinancieringsjaar(e.KeyChar);
         }

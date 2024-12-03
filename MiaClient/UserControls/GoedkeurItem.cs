@@ -25,15 +25,23 @@ namespace MiaClient.UserControls
         public int AanvraagStatusId { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
-        public Decimal Bedrag { get; set; }
+        public decimal PrijsIndicatieStuk { get; set; }
+        public int AantalStuk { get; set; }
+        public decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
-       public string projectDirectory = Directory.GetCurrentDirectory();
+        public event EventHandler GoedkeurDeleted;
+        public event EventHandler GoedkeurItemSelected;
+        public event EventHandler GoedkeurItemChanged;
+        frmGoedkeuring frmGoedkeuring;
+
+        public string projectDirectory = Directory.GetCurrentDirectory();
 
         public GoedkeurItem()
         {
             InitializeComponent();
         }
+
         public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, int aanvraagStatusId, string titel, string financieringsjaar, Decimal bedrag, Boolean even)
         {
             InitializeComponent();
@@ -47,6 +55,7 @@ namespace MiaClient.UserControls
             Even = even;
             SetGoedkeurItemWaarden();
         }
+
         private void SetGoedkeurItemWaarden()
         {
             lblTitel.Text = Titel;
