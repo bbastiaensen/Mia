@@ -329,6 +329,7 @@ namespace MiaClient
             // ddlRichtperiode
             // 
             this.ddlRichtperiode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlRichtperiode.Enabled = false;
             this.ddlRichtperiode.FormattingEnabled = true;
             this.ddlRichtperiode.Location = new System.Drawing.Point(175, 60);
             this.ddlRichtperiode.Name = "ddlRichtperiode";

@@ -58,6 +58,7 @@ namespace MiaClient
                 FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                RichtperiodeManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             }
 
             catch (SqlException ex)

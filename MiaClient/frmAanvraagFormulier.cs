@@ -115,6 +115,8 @@ namespace MiaClient
             VulAankoperDropDown(ddlWieKooptHet);
             BindStatusAanvraag(ddlStatus);
             ddlStatus.SelectedIndex = 0;
+            BindRichtperiode(ddlRichtperiode);
+            ddlRichtperiode.SelectedIndex = 0;
         }
 
         public void LeegFormulier()
@@ -160,12 +162,14 @@ namespace MiaClient
 
             aanvraagId = id;
             Aanvraag aanvraag = new Aanvraag();
-
+            Richtperiode periode = new Richtperiode();
             if (action == "edit")
             {
-                //zet de informatie va de aanvraag in de form
+                //zet de informatie van de aanvraag in de form
                 aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+                periode = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
                 BindStatusAanvraag(ddlStatus);
+                BindRichtperiode(ddlRichtperiode);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -184,9 +188,11 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
-                ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
                 txtResultaat.ReadOnly = false;
                 txtResultaat.Text = aanvraag.OpmerkingenResultaat;
+                ddlStatus.SelectedValue = aanvraag.StatusAanvraagId;
+                ddlRichtperiode.SelectedValue = periode.Id;
+                ddlRichtperiode.Enabled = true;
             }
         }
 
@@ -203,6 +209,13 @@ namespace MiaClient
             ddlStatus.ValueMember = "Id";
             ddlStatus.DisplayMember = "Naam";
             ddlStatus.SelectedIndex = -1;
+        }
+        private void BindRichtperiode(ComboBox ddlRichtperiode)
+        {
+            ddlRichtperiode.DataSource = MiaLogic.Manager.RichtperiodeManager.GetRichtperiodes();
+            ddlRichtperiode.ValueMember = "Id";
+            ddlRichtperiode.DisplayMember = "Naam";
+            ddlRichtperiode.SelectedIndex = -1;
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
