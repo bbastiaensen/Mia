@@ -49,6 +49,7 @@
     <Compile Include="Manager\FotoManager.cs" />
     <Compile Include="Manager\GebruikerManager.cs" />
     <Compile Include="Manager\GebruiksLogManager.cs" />
+    <Compile Include="Manager\Goedkeuringmanager.cs" />
     <Compile Include="Manager\InvesteringenManager.cs" />
     <Compile Include="Manager\KostenplaatsManager.cs" />
     <Compile Include="Manager\LinkManager.cs" />

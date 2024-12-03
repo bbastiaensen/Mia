@@ -181,9 +181,10 @@ namespace MiaClient
                         filterAanvraagmomentTot = true;
                     }
 
-                Goedkeuringen = FilteredGoedkeuringen(filterBedragVan, filterBedragTot, filterAanvraagmomentVan, filterAanvraagmomentTot, filterTitel, filterGebruiker, filterFinancieringsjaar);
+                Goedkeuringen = FilteredGoedkeuringen(filterAanvraagmomentVan, filterAanvraagmomentTot, filterGebruiker, filterTitel, financieringsjaar, filterBedragVan, filterBedragTot);
                 
-                
+
+
             }
                 catch (Exception ex)
                 {
