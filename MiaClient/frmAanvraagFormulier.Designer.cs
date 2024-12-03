@@ -377,6 +377,7 @@ namespace MiaClient
             // 
             // txtResultaat
             // 
+            this.txtResultaat.AccessibleName = "txtResultaat";
             this.txtResultaat.Location = new System.Drawing.Point(175, 95);
             this.txtResultaat.Name = "txtResultaat";
             this.txtResultaat.ReadOnly = true;
@@ -386,8 +387,10 @@ namespace MiaClient
             // 
             // txtGoedgekeurdeBedrag
             // 
+            this.txtGoedgekeurdeBedrag.AccessibleName = "txtGoedgekeurdeBedrag";
             this.txtGoedgekeurdeBedrag.Location = new System.Drawing.Point(175, 192);
             this.txtGoedgekeurdeBedrag.Name = "txtGoedgekeurdeBedrag";
+            this.txtGoedgekeurdeBedrag.ReadOnly = true;
             this.txtGoedgekeurdeBedrag.Size = new System.Drawing.Size(270, 34);
             this.txtGoedgekeurdeBedrag.TabIndex = 2;
             // 
