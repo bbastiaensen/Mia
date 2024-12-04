@@ -35,9 +35,6 @@ namespace MiaLogic.Manager
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
 
-
-
-
                     if (objRea.Read())
                     {
 
@@ -84,9 +81,15 @@ namespace MiaLogic.Manager
                         aanvraag.FinancieringsTypeId = Convert.ToInt32(objRea["FinancieringsTypeId"]);
                         aanvraag.InvesteringsTypeId = Convert.ToInt32(objRea["InvesteringsTypeId"]);
                         aanvraag.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
-                       
+                        if (objRea["RichtperiodeId"] != DBNull.Value)
+                        {
+                            aanvraag.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        }
+                        if (objRea["BudgetToegekend"] != null)
+                        {
+                            aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
                     }
-
                 }
             }
 
@@ -103,7 +106,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.OpmerkingenResultaat, a.BudgetToegekend, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -140,18 +143,15 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
                         if (objRea["OpmerkingenResultaat"] != DBNull.Value)
                         {
                             a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
                         }
-                        if (objRea["BudgetToegekend"] != DBNull.Value)
-                        {
-                            a.OpmerkingenResultaat = (objRea["BudgetToegekend"]).ToString();
-                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         returnlist.Add(a);
                     }
                 }
@@ -200,10 +200,12 @@ namespace MiaLogic.Manager
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
                         FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
-                        StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId, OpmerkingenResultaat, BudgetToegekend)
+                        StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId, RichtperiodeId, 
+                        BudgetToegekend, OpmerkingenResultaat)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @OpmerkingenResultaat, @GoedgekeurdeBedrag);";
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId
+                        @BudgetToegekend, @OpmerkingenResultaat);";
                     }
                     else
                     {
@@ -216,9 +218,10 @@ namespace MiaLogic.Manager
                         PrioriteitId = @PrioriteitId, Financieringsjaar = @Financieringsjaar,
                         StatusAanvraagId = @StatusAanvraagId,
                         KostenplaatsId = @KostenplaatsId,
-                        PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId, 
-                        OpmerkingenResultaat = @OpmerkingenResultaat,
-                        BudgetToegekend = @GoedgekeurdeBedrag
+                        PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId,
+                        RichtperiodeId = @RichtperiodeId,
+                        BudgetToegekend = @BudgetToegekend,
+                        OpmerkingenResultaat = @OpmerkingenResultaat
                     WHERE Id = @Id;";
                     }
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -238,8 +241,9 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);
                         command.Parameters.AddWithValue("@AankoperId", aanvraag.AankoperId);
+                        command.Parameters.AddWithValue("@RichtperiodeId", aanvraag.RichtperiodeId);
+                        command.Parameters.AddWithValue("@BudgetToegekend", aanvraag.BudgetToegekend);
                         command.Parameters.AddWithValue("@OpmerkingenResultaat", aanvraag.OpmerkingenResultaat);
-                        command.Parameters.AddWithValue("@GoedgekeurdeBedrag", aanvraag.GoedgekeurdeBedrag);
 
                         if (insert)
                         {
@@ -333,7 +337,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -392,7 +396,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -451,7 +455,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -510,7 +514,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -569,7 +573,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -628,7 +632,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -687,7 +691,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -746,7 +750,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -805,7 +809,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -864,7 +868,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -923,7 +927,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -982,7 +986,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -1041,7 +1045,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -1100,7 +1104,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -1159,7 +1163,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -1218,7 +1222,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);
@@ -1278,7 +1282,7 @@ namespace MiaLogic.Manager
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
                         {
-                            a.Bedrag = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
                         returnlist.Add(a);

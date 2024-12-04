@@ -27,10 +27,11 @@ namespace MiaLogic.Object
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
         public int AankoperId { get; set; }
-        public decimal Bedrag { get; set; }
+        public decimal BudgetToegekend { get; set; }
 
         public string OpmerkingenResultaat { get; set; }
 
+        public int RichtperiodeId { get; set; }
         public decimal GoedgekeurdeBedrag { get; set; }
 
     }
