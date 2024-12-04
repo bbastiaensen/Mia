@@ -72,6 +72,10 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
                         }
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            aanvraag.GoedgekeurdeBedrag = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
                         aanvraag.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
                         aanvraag.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(aanvraag.KostenplaatsId).Naam;
                         aanvraag.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
@@ -99,7 +103,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.OpmerkingenResultaat, a.BudgetToegekend, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -143,6 +147,10 @@ namespace MiaLogic.Manager
                         if (objRea["OpmerkingenResultaat"] != DBNull.Value)
                         {
                             a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = (objRea["BudgetToegekend"]).ToString();
                         }
                         returnlist.Add(a);
                     }
@@ -192,10 +200,10 @@ namespace MiaLogic.Manager
                         query = @"
                     INSERT INTO Aanvraag (Gebruiker, AfdelingId, DienstId, Aanvraagmoment, Titel, Omschrijving,
                         FinancieringsTypeId, InvesteringsTypeId, PrioriteitId, Financieringsjaar,
-                        StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId)
+                        StatusAanvraagId, KostenplaatsId, PrijsIndicatieStuk, AantalStuk, AankoperId, OpmerkingenResultaat, BudgetToegekend)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId);";
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @OpmerkingenResultaat, @GoedgekeurdeBedrag);";
                     }
                     else
                     {
@@ -208,7 +216,9 @@ namespace MiaLogic.Manager
                         PrioriteitId = @PrioriteitId, Financieringsjaar = @Financieringsjaar,
                         StatusAanvraagId = @StatusAanvraagId,
                         KostenplaatsId = @KostenplaatsId,
-                        PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId
+                        PrijsIndicatieStuk = @PrijsIndicatieStuk, AantalStuk = @AantalStuk, AankoperId = @AankoperId, 
+                        OpmerkingenResultaat = @OpmerkingenResultaat,
+                        BudgetToegekend = @GoedgekeurdeBedrag
                     WHERE Id = @Id;";
                     }
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -228,6 +238,8 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@PrijsIndicatieStuk", aanvraag.PrijsIndicatieStuk);
                         command.Parameters.AddWithValue("@AantalStuk", aanvraag.AantalStuk);
                         command.Parameters.AddWithValue("@AankoperId", aanvraag.AankoperId);
+                        command.Parameters.AddWithValue("@OpmerkingenResultaat", aanvraag.OpmerkingenResultaat);
+                        command.Parameters.AddWithValue("@GoedgekeurdeBedrag", aanvraag.GoedgekeurdeBedrag);
 
                         if (insert)
                         {

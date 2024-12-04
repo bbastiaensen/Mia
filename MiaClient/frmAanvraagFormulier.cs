@@ -187,6 +187,8 @@ namespace MiaClient
                 ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
                 txtResultaat.ReadOnly = false;
                 txtResultaat.Text = aanvraag.OpmerkingenResultaat;
+                txtGoedgekeurdeBedrag.ReadOnly = false;
+                txtGoedgekeurdeBedrag.Text = aanvraag.GoedgekeurdeBedrag.ToString();
             }
         }
 
@@ -482,7 +484,8 @@ namespace MiaClient
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
-                OpmerkingenResultaat = txtResultaat.Text
+                OpmerkingenResultaat = txtResultaat.Text,
+                GoedgekeurdeBedrag = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
@@ -529,6 +532,7 @@ namespace MiaClient
                 {
                     if (txtAanvraagId.Text == string.Empty)
                     {
+                        //Toevoegen van een nieuwe aanvraag.
                         SaveAanvraag();
 
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -550,6 +554,7 @@ namespace MiaClient
                     }
                     else
                     {
+                        //Bewaren van een bestaande aanvraag.
                         UpdateAanvraag();
                         MessageBox.Show("Je aanvraag is successvol bewaard.", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -851,7 +856,9 @@ namespace MiaClient
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
+                OpmerkingenResultaat = txtResultaat.Text,
+                GoedgekeurdeBedrag = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
 
