@@ -1184,5 +1184,9 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
+        private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        }
     }
-}
