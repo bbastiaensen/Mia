@@ -25,6 +25,7 @@ namespace MiaClient.UserControls
         public int AanvraagStatusId { get; set; }
         public string Titel { get; set; }
         public string Financieringsjaar { get; set; }
+        public string StatusAanvraag { get; set; }
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
         public decimal Bedrag { get; set; }
@@ -42,16 +43,16 @@ namespace MiaClient.UserControls
             InitializeComponent();
         }
 
-        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, int aanvraagStatusId, string titel, string financieringsjaar, Decimal bedrag, Boolean even)
+        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, Boolean even)
         {
             InitializeComponent();
             Id = id;
+            StatusAanvraag = statusaanvraag;
             Aanvrager = aanvrager;
-            AanvraagStatusId = aanvraagStatusId;
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
-            Bedrag = bedrag;
+            
             Even = even;
             SetGoedkeurItemWaarden();
         }

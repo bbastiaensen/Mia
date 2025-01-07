@@ -58,14 +58,12 @@ namespace MiaClient
             {
                 foreach (var ag in items)
                 {
-                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, Convert.ToInt32(ag.Titel), ag.Financieringsjaar, Convert.ToString(ag.PrijsIndicatieStuk), ag.AantalStuk, t % 2 == 0);
+                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, ag.Titel, ag.Financieringsjaar, ag.PrijsIndicatieStuk, ag.AantalStuk, ag.Statusaanvraag, t % 2 == 0);
                     agi.Location = new System.Drawing.Point(xPos, yPos);
                     agi.Name = "aanvraagSelection" + t;
                     agi.Size = new System.Drawing.Size(1210, 33);
                     agi.TabIndex = t + 8;
                     agi.GoedkeurItemSelected += Gli_GoedkeurItemSelected;
-                    agi.GoedkeurDeleted += Agi_GoedkeurItemChanged;
-                    agi.GoedkeurItemChanged += Agi_GoedkeurItemChanged;
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
                     t++;
@@ -94,16 +92,6 @@ namespace MiaClient
         private void Gli_GoedkeurItemSelected(object sender, EventArgs e)
         {
             GoedkeurItem geselecteerd = (GoedkeurItem)sender;
-        }
-
-        private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Avi_AanvraagItemChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void FrmAanvragen_Shown(object sender, EventArgs e)
