@@ -20,13 +20,11 @@ namespace MiaClient
 
         private void frmBudgetspreiding_Load(object sender, EventArgs e)
         {
-            List<string> financieringsjaren = FinancieringsjaarManager.GetFinancieringsjaren();
-            foreach (string jaren in financieringsjaren) 
+            List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
+            foreach (string jaar in jaren)
             {
-                cmbJaar.Items.Add(jaren);
+                cmbFinancieringsjaar.Items.Add( jaar );
             }
-            
-
         }
     }
 }
