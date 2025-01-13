@@ -142,18 +142,6 @@
         gg==
 </value>
   </data>
-  <data name="btnSortGoedkeuringGebruiker.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAUdJREFUOE+9kj1Lw0Acxp9YMJAKXtpIY5aQHnccN5pSuuiaFyeRWjp0q+LYzaEf
-        wcVBV1ul/QZCEToKbiq4u/hF5JoUrkFKp/7ggbv/83/ujQO2SZIke8XaRoRh2HIc55cxdl301iKlbHme
-        926a5letVvsQQlwuDMbYfr1ezyYZhjZeQCk945w3ATz4vn9EKb1aeocAJlEUlQkhUwBzAK+a5oSQca/X
-        2wUwAnCgL6zC436/v1OtVk8ApABiTamqK1/15f0r4cd85ycAMwAvmmaEkOc4jsuq77/wqNvtliqVyimA
-        DoALTR1VV35+7JWwusNoMBiUbNu+VfcHoE6w1IQQcpemqQVgahhGFmaM3QRBcAzgXkoZc87P9VWLUErb
-        Qojso6hm13W/Lcv68TzvjXMui4G1SCnbrut+NhoNUfQ2YjgcqsfYHn8+4EBUaqEXIgAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
   <data name="btnSortGoedkeuringAanvraagmoment.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -167,6 +155,18 @@
 </value>
   </data>
   <data name="btnSortGoedkeuringTitel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAUdJREFUOE+9kj1Lw0Acxp9YMJAKXtpIY5aQHnccN5pSuuiaFyeRWjp0q+LYzaEf
+        wcVBV1ul/QZCEToKbiq4u/hF5JoUrkFKp/7ggbv/83/ujQO2SZIke8XaRoRh2HIc55cxdl301iKlbHme
+        926a5letVvsQQlwuDMbYfr1ezyYZhjZeQCk945w3ATz4vn9EKb1aeocAJlEUlQkhUwBzAK+a5oSQca/X
+        2wUwAnCgL6zC436/v1OtVk8ApABiTamqK1/15f0r4cd85ycAMwAvmmaEkOc4jsuq77/wqNvtliqVyimA
+        DoALTR1VV35+7JWwusNoMBiUbNu+VfcHoE6w1IQQcpemqQVgahhGFmaM3QRBcAzgXkoZc87P9VWLUErb
+        Qojso6hm13W/Lcv68TzvjXMui4G1SCnbrut+NhoNUfQ2YjgcqsfYHn8+4EBUaqEXIgAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
+  <data name="btnSortGoedkeuringGebruiker.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAUdJREFUOE+9kj1Lw0Acxp9YMJAKXtpIY5aQHnccN5pSuuiaFyeRWjp0q+LYzaEf

@@ -38,13 +38,12 @@
             this.btnAfgekeurd = new System.Windows.Forms.Button();
             this.btnBekrachtigd = new System.Windows.Forms.Button();
             this.btnNietBekrachtigd = new System.Windows.Forms.Button();
-            this.btnInaanvraag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
             // 
             this.LblAanvrager.AutoSize = true;
-            this.LblAanvrager.Location = new System.Drawing.Point(402, 2);
+            this.LblAanvrager.Location = new System.Drawing.Point(221, 2);
             this.LblAanvrager.Name = "LblAanvrager";
             this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
             this.LblAanvrager.TabIndex = 11;
@@ -53,7 +52,7 @@
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(529, 2);
+            this.lblTitel.Location = new System.Drawing.Point(344, 2);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(72, 28);
             this.lblTitel.TabIndex = 12;
@@ -62,7 +61,7 @@
             // lblAanvraagmoment
             // 
             this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(656, 2);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(488, 2);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
             this.lblAanvraagmoment.TabIndex = 13;
@@ -71,7 +70,7 @@
             // lblFinancieringsjaar
             // 
             this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(798, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(766, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
             this.lblFinancieringsjaar.TabIndex = 14;
@@ -80,7 +79,7 @@
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(928, 2);
+            this.lblBedrag.Location = new System.Drawing.Point(915, 2);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(72, 28);
             this.lblBedrag.TabIndex = 15;
@@ -100,7 +99,6 @@
             this.BtnGoedgekeurd.Size = new System.Drawing.Size(27, 27);
             this.BtnGoedgekeurd.TabIndex = 16;
             this.BtnGoedgekeurd.UseVisualStyleBackColor = false;
-            this.BtnGoedgekeurd.Click += new System.EventHandler(this.BtnGoedgekeurd_Click);
             // 
             // btnAfgekeurd
             // 
@@ -116,7 +114,6 @@
             this.btnAfgekeurd.Size = new System.Drawing.Size(27, 27);
             this.btnAfgekeurd.TabIndex = 17;
             this.btnAfgekeurd.UseVisualStyleBackColor = false;
-            this.btnAfgekeurd.Click += new System.EventHandler(this.btnAfgekeurd_Click);
             // 
             // btnBekrachtigd
             // 
@@ -132,7 +129,6 @@
             this.btnBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnBekrachtigd.TabIndex = 18;
             this.btnBekrachtigd.UseVisualStyleBackColor = false;
-            this.btnBekrachtigd.Click += new System.EventHandler(this.btnBekrachtigd_Click);
             // 
             // btnNietBekrachtigd
             // 
@@ -148,29 +144,11 @@
             this.btnNietBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnNietBekrachtigd.TabIndex = 19;
             this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
-            this.btnNietBekrachtigd.Click += new System.EventHandler(this.btnNietBekrachtigd_Click);
-            // 
-            // btnInaanvraag
-            // 
-            this.btnInaanvraag.BackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnInaanvraag.FlatAppearance.BorderSize = 0;
-            this.btnInaanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInaanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnInaanvraag.Image")));
-            this.btnInaanvraag.Location = new System.Drawing.Point(146, 3);
-            this.btnInaanvraag.Name = "btnInaanvraag";
-            this.btnInaanvraag.Size = new System.Drawing.Size(27, 27);
-            this.btnInaanvraag.TabIndex = 20;
-            this.btnInaanvraag.UseVisualStyleBackColor = false;
-            this.btnInaanvraag.Click += new System.EventHandler(this.btnInaanvraag_Click);
             // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnInaanvraag);
             this.Controls.Add(this.btnNietBekrachtigd);
             this.Controls.Add(this.btnBekrachtigd);
             this.Controls.Add(this.btnAfgekeurd);
@@ -200,6 +178,5 @@
         private System.Windows.Forms.Button btnAfgekeurd;
         private System.Windows.Forms.Button btnBekrachtigd;
         private System.Windows.Forms.Button btnNietBekrachtigd;
-        private System.Windows.Forms.Button btnInaanvraag;
     }
 }

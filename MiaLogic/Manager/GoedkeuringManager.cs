@@ -50,7 +50,7 @@ namespace MiaLogic.Manager
                         }
 
                         goedkeuring.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
-                        goedkeuring.StatusAanvraag = StatusAanvraagManager.GetStatusAanvraagById(goedkeuring.StatusAanvraagId).Naam;
+                        goedkeuring.Naam = StatusAanvraagManager.GetStatusAanvraagById(goedkeuring.StatusAanvraagId).Naam;
                         if (objRea["AantalStuk"] != DBNull.Value)
                         {
                             goedkeuring.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
@@ -64,15 +64,9 @@ namespace MiaLogic.Manager
                             goedkeuring.Omschrijving = objRea["Omschrijving"].ToString();
                         }
 
-                        goedkeuring.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
-                        goedkeuring.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(goedkeuring.KostenplaatsId).Naam;
                         goedkeuring.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
                         goedkeuring.DienstId = Convert.ToInt32(objRea["DienstId"]);
-                        goedkeuring.PrioriteitId = Convert.ToInt32(objRea["PrioriteitId"]);
                         goedkeuring.FinancieringsTypeId = Convert.ToInt32(objRea["FinancieringsTypeId"]);
-                        goedkeuring.InvesteringsTypeId = Convert.ToInt32(objRea["InvesteringsTypeId"]);
-                        goedkeuring.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
-
                     }
 
                 }
@@ -91,7 +85,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.AantalStuk, a.PrijsIndicatieStuk from Aanvraag a";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.AantalStuk, a.PrijsIndicatieStuk from Aanvraag a WHERE StatusAanvraagId BETWEEN 2 AND 5";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
