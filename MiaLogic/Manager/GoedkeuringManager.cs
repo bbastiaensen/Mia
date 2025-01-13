@@ -84,7 +84,7 @@ namespace MiaLogic.Manager
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
-
+           
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;

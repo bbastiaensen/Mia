@@ -226,6 +226,7 @@
     </Compile>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AanvraagItem.resx">
       <DependentUpon>AanvraagItem.cs</DependentUpon>

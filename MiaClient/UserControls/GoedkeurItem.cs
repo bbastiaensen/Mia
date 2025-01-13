@@ -52,7 +52,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
-            
+
             Even = even;
             SetGoedkeurItemWaarden();
         }
@@ -74,7 +74,7 @@ namespace MiaClient.UserControls
 
                 this.BackColor = StyleParameters.AccentKleur;
                 this.ForeColor = StyleParameters.Buttontext;
-                
+
             }
         }
 
@@ -82,29 +82,29 @@ namespace MiaClient.UserControls
         {
             Goedkeuring goedkeuring = GoedkeuringManager.GetGoedkeuringById(Id);
 
-            switch (AanvraagStatusId)
-            {
-                case 2:
-                    string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-                    BtnGoedgekeurd.Image = Image.FromFile(imagePath);
+            switch (goedkeuring.StatusAanvraagId)
+                {
+                    case 2:
+                        string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
+                        BtnGoedgekeurd.Image = Image.FromFile(imagePath);
 
-                    break;
-                case 3:
-                    string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-                    btnAfgekeurd.Image = Image.FromFile(imagePath2);
-                    
-                    break;
-                case 4:
-                    string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-                    btnBekrachtigd.Image = Image.FromFile(imagePath3);
+                        break;
+                    case 3:
+                        string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                        btnAfgekeurd.Image = Image.FromFile(imagePath2);
 
-                    break;
-                case 5:
-                    string imagePath4= Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-                    btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
-                    break;
-                
-            }
+                        break;
+                    case 4:
+                        string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
+                        btnBekrachtigd.Image = Image.FromFile(imagePath3);
+
+                        break;
+                    case 5:
+                        string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
+                        btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
+                        break;
+                }
+                return;
         }
     }
 }
