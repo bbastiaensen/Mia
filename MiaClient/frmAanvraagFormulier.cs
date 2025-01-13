@@ -115,6 +115,8 @@ namespace MiaClient
             VulAankoperDropDown(ddlWieKooptHet);
             BindStatusAanvraag(ddlStatus);
             ddlStatus.SelectedIndex = 0;
+            BindRichtperiode(ddlRichtperiode);
+            ddlRichtperiode.SelectedIndex = 0;
         }
 
         public void LeegFormulier()
@@ -160,12 +162,14 @@ namespace MiaClient
 
             aanvraagId = id;
             Aanvraag aanvraag = new Aanvraag();
-
+            Richtperiode periode = new Richtperiode();
             if (action == "edit")
             {
-                //zet de informatie va de aanvraag in de form
+                //zet de informatie van de aanvraag in de form
                 aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+                periode = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
                 BindStatusAanvraag(ddlStatus);
+                BindRichtperiode(ddlRichtperiode);
 
                 txtAanvraagId.Text = aanvraag.Id.ToString();
                 txtAantalStuks.Text = aanvraag.AantalStuk.ToString();
@@ -184,9 +188,13 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedValue = aanvraag.AankoperId;
                 ddlFinancieringsjaar.SelectedItem = aanvraag.Financieringsjaar;
                 ddlStatus.Enabled = true;
-                ddlStatus.SelectedIndex = aanvraag.StatusAanvraagId;
                 txtResultaat.ReadOnly = false;
                 txtResultaat.Text = aanvraag.OpmerkingenResultaat;
+                ddlStatus.SelectedValue = aanvraag.StatusAanvraagId;
+                ddlRichtperiode.SelectedValue = periode.Id;
+                ddlRichtperiode.Enabled = true;
+                txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
+                txtGoedgekeurdeBedrag.ReadOnly = false;
             }
         }
 
@@ -203,6 +211,13 @@ namespace MiaClient
             ddlStatus.ValueMember = "Id";
             ddlStatus.DisplayMember = "Naam";
             ddlStatus.SelectedIndex = -1;
+        }
+        private void BindRichtperiode(ComboBox ddlRichtperiode)
+        {
+            ddlRichtperiode.DataSource = MiaLogic.Manager.RichtperiodeManager.GetRichtperiodes();
+            ddlRichtperiode.ValueMember = "Id";
+            ddlRichtperiode.DisplayMember = "Naam";
+            ddlRichtperiode.SelectedIndex = -1;
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
@@ -289,8 +304,8 @@ namespace MiaClient
             }
 
             // Als beide een correcte waarde hebben berekenen we de totaalprijs
-            decimal totaalprijs = prijsIndicatie * aantalStuks;
-            return totaalprijs;
+                 decimal totaalprijs = prijsIndicatie * aantalStuks;
+                 return totaalprijs;
         }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
@@ -482,7 +497,9 @@ namespace MiaClient
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
-                OpmerkingenResultaat = txtResultaat.Text
+                OpmerkingenResultaat = txtResultaat.Text,
+                RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
+                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
@@ -529,6 +546,7 @@ namespace MiaClient
                 {
                     if (txtAanvraagId.Text == string.Empty)
                     {
+                        //Toevoegen van een nieuwe aanvraag.
                         SaveAanvraag();
 
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -550,6 +568,7 @@ namespace MiaClient
                     }
                     else
                     {
+                        //Bewaren van een bestaande aanvraag.
                         UpdateAanvraag();
                         MessageBox.Show("Je aanvraag is successvol bewaard.", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -847,11 +866,14 @@ namespace MiaClient
                 InvesteringsTypeId = Convert.ToInt32(ddlInvestering.SelectedValue),
                 PrioriteitId = Convert.ToInt32(ddlPrioriteit.SelectedValue),
                 Financieringsjaar = ddlFinancieringsjaar.Text,
-                StatusAanvraagId = Convert.ToInt32(1),
+                StatusAanvraagId = Convert.ToInt32(ddlStatus.SelectedValue),
                 KostenplaatsId = Convert.ToInt32(ddlKostenplaats.SelectedValue),
                 PrijsIndicatieStuk = Convert.ToDecimal(txtPrijsindicatie.Text),
                 AantalStuk = Convert.ToInt32(txtAantalStuks.Text),
-                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue)
+                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
+                RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
+                OpmerkingenResultaat = txtResultaat.Text,
+                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
 
@@ -1184,5 +1206,9 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
+        private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
+        {
+            e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
+        }
+        }
     }
-}

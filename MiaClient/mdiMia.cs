@@ -30,12 +30,14 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
+        frmBudgetSpreiding FrmBudgetSpreiding;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
         Image imgParameters;
         Image imgGebruikslog;
         Image imgAanvragen;
+        Image imgBudgetspreiding;
 
 
         public mdiMia()
@@ -151,6 +153,7 @@ namespace MiaClient
                 imgParameters = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-parameters-66-alt.png"));
                 imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80-alt.png"));
                 imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-alt.png"));
+                imgBudgetspreiding = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50-alt.png"));
             }
             else
             {
@@ -159,6 +162,7 @@ namespace MiaClient
                 imgParameters = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-parameters-66.png"));
                 imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80.png"));
                 imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
+                imgBudgetspreiding = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50.png"));
             }
 
             gebruikersToolStripButton.Image = imgGebruikersbeheer;
@@ -166,6 +170,7 @@ namespace MiaClient
             aanvragenToolStripButton.Image = imgAanvragen;
             gebruiksLogToolStripButton.Image = imgGebruikslog;
             parameterToolStripButton.Image = imgParameters;
+            budgetSpreidingtoolStripButton.Image = imgBudgetspreiding;
 
         }
         private void MenubalkSamenstellen()
@@ -182,12 +187,18 @@ namespace MiaClient
                 gebruikersToolStripButton.Visible = false;
                 helpMenu.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = false;
+                overzichtenToolStripMenuItem.Visible = false;
+                budgetSpreidingToolStripMenuItem.Visible = false;
+                budgetSpreidingtoolStripButton.Visible = false;
             }
 
             //Aankoper - items voor aankoper worden extra bij aangezet
             if (Program.IsAankoper)
             {
-
+                tss3.Visible = true;
+                overzichtenToolStripMenuItem.Visible = true;
+                budgetSpreidingToolStripMenuItem.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = true;
             }
 
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
@@ -196,6 +207,11 @@ namespace MiaClient
                 tss1.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
+                
+                tss3.Visible = true;
+                overzichtenToolStripMenuItem.Visible = true;
+                budgetSpreidingToolStripMenuItem.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
@@ -208,6 +224,11 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = true;
                 parameterToolStripButton.Visible = true;
                 gebruikersToolStripButton.Visible = true;
+
+                tss3.Visible = true;
+                overzichtenToolStripMenuItem.Visible = true;
+                budgetSpreidingToolStripMenuItem.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = true;
             }
         }
 
@@ -357,6 +378,26 @@ namespace MiaClient
         private void beheerToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void budgetoverzichtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmBudgetSpreiding == null)
+            {
+                FrmBudgetSpreiding = new frmBudgetSpreiding();
+                FrmBudgetSpreiding.MdiParent = this;
+            }
+            FrmBudgetSpreiding.Show();
+        }
+
+        private void budgetSpreidingtoolStripButton_Click(object sender, EventArgs e)
+        {
+            if (FrmBudgetSpreiding == null)
+            {
+                FrmBudgetSpreiding = new frmBudgetSpreiding();
+                FrmBudgetSpreiding.MdiParent = this;
+            }
+            FrmBudgetSpreiding.Show();
         }
     }
 }
