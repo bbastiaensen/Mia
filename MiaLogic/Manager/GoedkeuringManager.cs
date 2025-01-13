@@ -71,9 +71,12 @@ namespace MiaLogic.Manager
 
                 }
             }
-
             return goedkeuring;
         }
+
+
+        
+            
         public static List<Goedkeuring> GetGoedkeuringen()
         {
             List<Goedkeuring> returnlist = null;

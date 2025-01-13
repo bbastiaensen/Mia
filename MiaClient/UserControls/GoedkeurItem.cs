@@ -97,9 +97,7 @@ namespace MiaClient.UserControls
                 case 4:
                     string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
                     btnBekrachtigd.Image = Image.FromFile(imagePath3);
-                    btnAfgekeurd.Enabled = false;
-                    BtnGoedgekeurd.Enabled = false;
-                    btnNietBekrachtigd.Enabled = false;
+
                     break;
                 case 5:
                     string imagePath4= Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
