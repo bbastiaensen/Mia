@@ -195,7 +195,6 @@ namespace MiaClient
                 ddlRichtperiode.Enabled = true;
                 txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
                 txtGoedgekeurdeBedrag.ReadOnly = false;
-                txtGoedgekeurdeBedrag.Text = aanvraag.GoedgekeurdeBedrag.ToString();
             }
         }
 
@@ -305,8 +304,8 @@ namespace MiaClient
             }
 
             // Als beide een correcte waarde hebben berekenen we de totaalprijs
-            decimal totaalprijs = prijsIndicatie * aantalStuks;
-            return totaalprijs;
+                 decimal totaalprijs = prijsIndicatie * aantalStuks;
+                 return totaalprijs;
         }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
@@ -501,8 +500,6 @@ namespace MiaClient
                 OpmerkingenResultaat = txtResultaat.Text,
                 RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
                 BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
-                OpmerkingenResultaat = txtResultaat.Text,
-                GoedgekeurdeBedrag = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
@@ -877,9 +874,6 @@ namespace MiaClient
                 RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
                 OpmerkingenResultaat = txtResultaat.Text,
                 BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
-                AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
-                OpmerkingenResultaat = txtResultaat.Text,
-                GoedgekeurdeBedrag = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
 
@@ -1214,7 +1208,7 @@ namespace MiaClient
         }
         private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
         }
     }

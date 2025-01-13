@@ -69,10 +69,6 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
                         }
-                        if (objRea["BudgetToegekend"] != DBNull.Value)
-                        {
-                            aanvraag.GoedgekeurdeBedrag = Convert.ToDecimal(objRea["BudgetToegekend"]);
-                        }
                         aanvraag.KostenplaatsId = Convert.ToInt32(objRea["KostenplaatsId"]);
                         aanvraag.Kostenplaats = KostenplaatsManager.GetKostenplaatsById(aanvraag.KostenplaatsId).Naam;
                         aanvraag.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
@@ -204,7 +200,7 @@ namespace MiaLogic.Manager
                         BudgetToegekend, OpmerkingenResultaat)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId,
                         @BudgetToegekend, @OpmerkingenResultaat);";
                     }
                     else

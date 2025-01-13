@@ -32,7 +32,6 @@ namespace MiaLogic.Object
         public string OpmerkingenResultaat { get; set; }
 
         public int RichtperiodeId { get; set; }
-        public decimal GoedgekeurdeBedrag { get; set; }
 
     }
 }
