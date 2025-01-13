@@ -81,7 +81,7 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         }
-                        if (objRea["BudgetToegekend"] != null)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
                             aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
