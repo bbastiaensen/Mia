@@ -1,6 +1,6 @@
 ﻿namespace MiaClient
 {
-    partial class frmBudgetSpreiding
+    partial class frmBudgetspreiding
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlBudgetspreiding = new System.Windows.Forms.Panel();
+            this.gbxFinanciersjaar = new System.Windows.Forms.GroupBox();
+            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.cmbJaar = new System.Windows.Forms.ComboBox();
+            this.gbxFinanciersjaar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // frmBudgetSpreiding
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 726);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.Name = "frmBudgetSpreiding";
-            this.Text = "Budgetoverzicht";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBudgetSpreiding_FormClosing);
-            this.Load += new System.EventHandler(this.frmBudgetSpreiding_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlBudgetspreiding;
+        private System.Windows.Forms.GroupBox gbxFinanciersjaar;
+        private System.Windows.Forms.Label lblFinancieringsjaar;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.ComboBox cmbJaar;
     }
 }
