@@ -81,7 +81,7 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         }
-                        if (objRea["BudgetToegekend"] != null)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
                             aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
@@ -200,7 +200,7 @@ namespace MiaLogic.Manager
                         BudgetToegekend, OpmerkingenResultaat)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId,
                         @BudgetToegekend, @OpmerkingenResultaat);";
                     }
                     else
