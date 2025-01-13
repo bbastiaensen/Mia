@@ -27,6 +27,7 @@ namespace MiaClient
         frmParameter frmParameter;
         frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
+        frmBudgetspreiding frmBudgetspreiding;
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
@@ -196,9 +197,11 @@ namespace MiaClient
                 tss1.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
+                budgetSpreidingToolStripMenuItem.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
+           
             if (Program.IsSysteem)
             {
                 tss2.Visible = true;
@@ -358,5 +361,16 @@ namespace MiaClient
         {
 
         }
+
+        private void budgetSpreidingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(frmBudgetspreiding == null)
+            {
+                frmBudgetspreiding = new frmBudgetspreiding();
+                frmBudgetspreiding.MdiParent = this;
+            }
+            frmBudgetspreiding.Show();
+        }
     }
 }
+
