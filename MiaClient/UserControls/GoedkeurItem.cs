@@ -82,7 +82,7 @@ namespace MiaClient.UserControls
         {
             Goedkeuring goedkeuring = GoedkeuringManager.GetGoedkeuringById(Id);
 
-            switch (goedkeuring.StatusAanvraagId)
+            switch (Id)
                 {
                     case 2:
                         string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");

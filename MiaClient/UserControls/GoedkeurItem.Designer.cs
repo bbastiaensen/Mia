@@ -38,12 +38,13 @@
             this.btnAfgekeurd = new System.Windows.Forms.Button();
             this.btnBekrachtigd = new System.Windows.Forms.Button();
             this.btnNietBekrachtigd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
             // 
             this.LblAanvrager.AutoSize = true;
-            this.LblAanvrager.Location = new System.Drawing.Point(221, 2);
+            this.LblAanvrager.Location = new System.Drawing.Point(295, 1);
             this.LblAanvrager.Name = "LblAanvrager";
             this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
             this.LblAanvrager.TabIndex = 11;
@@ -52,7 +53,7 @@
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(344, 2);
+            this.lblTitel.Location = new System.Drawing.Point(399, 1);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(72, 28);
             this.lblTitel.TabIndex = 12;
@@ -61,7 +62,7 @@
             // lblAanvraagmoment
             // 
             this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(488, 2);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(580, 1);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
             this.lblAanvraagmoment.TabIndex = 13;
@@ -70,7 +71,7 @@
             // lblFinancieringsjaar
             // 
             this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(766, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(807, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
             this.lblFinancieringsjaar.TabIndex = 14;
@@ -79,7 +80,7 @@
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(915, 2);
+            this.lblBedrag.Location = new System.Drawing.Point(955, 2);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(72, 28);
             this.lblBedrag.TabIndex = 15;
@@ -94,7 +95,7 @@
             this.BtnGoedgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.BtnGoedgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("BtnGoedgekeurd.Image")));
-            this.BtnGoedgekeurd.Location = new System.Drawing.Point(14, 3);
+            this.BtnGoedgekeurd.Location = new System.Drawing.Point(97, 2);
             this.BtnGoedgekeurd.Name = "BtnGoedgekeurd";
             this.BtnGoedgekeurd.Size = new System.Drawing.Size(27, 27);
             this.BtnGoedgekeurd.TabIndex = 16;
@@ -109,7 +110,7 @@
             this.btnAfgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnAfgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("btnAfgekeurd.Image")));
-            this.btnAfgekeurd.Location = new System.Drawing.Point(47, 3);
+            this.btnAfgekeurd.Location = new System.Drawing.Point(130, 2);
             this.btnAfgekeurd.Name = "btnAfgekeurd";
             this.btnAfgekeurd.Size = new System.Drawing.Size(27, 27);
             this.btnAfgekeurd.TabIndex = 17;
@@ -124,7 +125,7 @@
             this.btnBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("btnBekrachtigd.Image")));
-            this.btnBekrachtigd.Location = new System.Drawing.Point(80, 3);
+            this.btnBekrachtigd.Location = new System.Drawing.Point(163, 2);
             this.btnBekrachtigd.Name = "btnBekrachtigd";
             this.btnBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnBekrachtigd.TabIndex = 18;
@@ -139,16 +140,32 @@
             this.btnNietBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnNietBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("btnNietBekrachtigd.Image")));
-            this.btnNietBekrachtigd.Location = new System.Drawing.Point(113, 3);
+            this.btnNietBekrachtigd.Location = new System.Drawing.Point(196, 2);
             this.btnNietBekrachtigd.Name = "btnNietBekrachtigd";
             this.btnNietBekrachtigd.Size = new System.Drawing.Size(27, 27);
             this.btnNietBekrachtigd.TabIndex = 19;
             this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(3, 2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnEdit.TabIndex = 20;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnNietBekrachtigd);
             this.Controls.Add(this.btnBekrachtigd);
             this.Controls.Add(this.btnAfgekeurd);
@@ -178,5 +195,6 @@
         private System.Windows.Forms.Button btnAfgekeurd;
         private System.Windows.Forms.Button btnBekrachtigd;
         private System.Windows.Forms.Button btnNietBekrachtigd;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
