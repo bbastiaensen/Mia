@@ -31,6 +31,8 @@ namespace MiaClient.UserControls
         public decimal Bedrag { get; set; }
         public Boolean Even { get; set; }
 
+
+
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;

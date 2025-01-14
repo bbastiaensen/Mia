@@ -84,6 +84,7 @@ namespace MiaClient
                     agi.Size = new System.Drawing.Size(1210, 33);
                     agi.TabIndex = t + 8;
                     agi.GoedkeurItemSelected += Gli_GoedkeurItemSelected;
+                    agi.GoedkeurItemChanged += Agi_GoedkeurItemChanged;
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
                     t++;
@@ -118,6 +119,33 @@ namespace MiaClient
 
         }
 
+        private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
+
+                huidigePage = 1;
+                StartPaging();
+                ShowPages();
+                if (huidigePage < aantalPages)
+                {
+                    BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+                    EnableLastNext(true);
+                }
+                else if (huidigePage == aantalPages)
+                {
+                    BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
+                    EnableLastNext(false);
+                }
+                EnableFirstPrevious(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -149,6 +177,85 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private List<Goedkeuring> FilteredGoedkeurItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
+        {
+            if (items != null)
+            {
+                if (aanvraagmomentVan)
+                {
+                    if (chbxAanvraagmomentVan.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment >= Convert.ToDateTime(dtpAanvraagmomentVan.Text)).ToList();
+                    }
+                }
+                if (aanvraagmomentTot)
+                {
+                    if (chbxAanvraagmomentTot.Checked == true)
+                    {
+                        items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }      
+                }
+                if (planningsdatumVan)
+                {
+                    if (chbxPlaningsdatumVan.Checked == true)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                    }
+                }
+                if (planningsdatumTot)
+                {
+                    if (chbxPlaningsdatumTot.Checked == true)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }
+                }
+                if (gebruiker)
+                {
+                    items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
+                }
+                if (titel)
+                {
+                    items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
+                }
+                if (statusAanvraag)
+                {
+                    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
+                }
+                if (financieringsjaar)
+                {
+                    if (txtFinancieringsjaar.Text != string.Empty)
+                    {
+                        items = items.Where(av => av.Financieringsjaar != null && av.Financieringsjaar.ToString().Contains(txtFinancieringsjaar.Text.ToLower())).ToList();
+                    }
+                }
+                if (bedragVan)
+                {
+                    if (cbBedragVan.Checked == true )
+                    {
+                        if (txtBedragVan.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.BudgetToegekend >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
+                        }
+                    } 
+                }
+                if (bedragTot)
+                {
+                    if (cbBedragTot.Checked == true)
+                    {
+                        if(txtBedragTot.Text != string.Empty)
+                        {
+                            items = items.Where(av => av.BudgetToegekend <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
+                        }
+                    }
+                }
+                if (kostenPlaats)
+                {
+                    items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
+                }
+            }
+           return items;
         }
 
         private void EnableFirstPrevious(bool enable)
