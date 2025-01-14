@@ -27,6 +27,7 @@ namespace MiaClient
         frmParameter frmParameter;
         frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
+        frmBudgetspreiding frmBudgetspreiding;
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
@@ -215,6 +216,7 @@ namespace MiaClient
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
+           
             if (Program.IsSysteem)
             {
                 tss2.Visible = true;
@@ -401,3 +403,4 @@ namespace MiaClient
         }
     }
 }
+
