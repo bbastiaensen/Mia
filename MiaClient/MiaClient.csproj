@@ -193,9 +193,6 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBudgetSpreiding.resx">
-      <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmGebruikerBeheer.resx">
       <DependentUpon>frmGebruikerBeheer.cs</DependentUpon>
     </EmbeddedResource>
