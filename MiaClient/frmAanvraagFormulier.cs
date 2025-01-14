@@ -194,6 +194,7 @@ namespace MiaClient
                 ddlRichtperiode.SelectedValue = periode.Id;
                 ddlRichtperiode.Enabled = true;
                 txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
+                txtGoedgekeurdeBedrag.ReadOnly = false;
             }
         }
 
@@ -303,8 +304,8 @@ namespace MiaClient
             }
 
             // Als beide een correcte waarde hebben berekenen we de totaalprijs
-            decimal totaalprijs = prijsIndicatie * aantalStuks;
-            return totaalprijs;
+                 decimal totaalprijs = prijsIndicatie * aantalStuks;
+                 return totaalprijs;
         }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
@@ -545,6 +546,7 @@ namespace MiaClient
                 {
                     if (txtAanvraagId.Text == string.Empty)
                     {
+                        //Toevoegen van een nieuwe aanvraag.
                         SaveAanvraag();
 
                         DialogResult result = MessageBox.Show("Je aanvraag is successvol ingediend, Wil je ook nog bestanden uploaden?", "Succes!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -566,6 +568,7 @@ namespace MiaClient
                     }
                     else
                     {
+                        //Bewaren van een bestaande aanvraag.
                         UpdateAanvraag();
                         MessageBox.Show("Je aanvraag is successvol bewaard.", "Succes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1203,5 +1206,9 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
+        private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
+        {
+            e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
+        }
+        }
     }
-}

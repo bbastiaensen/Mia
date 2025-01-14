@@ -380,6 +380,7 @@ namespace MiaClient
             // 
             // txtResultaat
             // 
+            this.txtResultaat.AccessibleName = "txtResultaat";
             this.txtResultaat.Location = new System.Drawing.Point(175, 95);
             this.txtResultaat.Name = "txtResultaat";
             this.txtResultaat.ReadOnly = true;
@@ -389,10 +390,14 @@ namespace MiaClient
             // 
             // txtGoedgekeurdeBedrag
             // 
+            this.txtGoedgekeurdeBedrag.AccessibleName = "txtGoedgekeurdeBedrag";
             this.txtGoedgekeurdeBedrag.Location = new System.Drawing.Point(175, 192);
             this.txtGoedgekeurdeBedrag.Name = "txtGoedgekeurdeBedrag";
+            this.txtGoedgekeurdeBedrag.ReadOnly = true;
             this.txtGoedgekeurdeBedrag.Size = new System.Drawing.Size(270, 34);
             this.txtGoedgekeurdeBedrag.TabIndex = 2;
+            this.txtGoedgekeurdeBedrag.Text = "0";
+            this.txtGoedgekeurdeBedrag.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGoedgekeurdeBedrag_KeyPress);
             // 
             // gboxTitel
             // 
@@ -500,6 +505,7 @@ namespace MiaClient
             // 
             this.txtAantalStuks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAantalStuks.Location = new System.Drawing.Point(156, 250);
+            this.txtAantalStuks.MaxLength = 7;
             this.txtAantalStuks.Name = "txtAantalStuks";
             this.txtAantalStuks.Size = new System.Drawing.Size(282, 34);
             this.txtAantalStuks.TabIndex = 4;
@@ -520,6 +526,7 @@ namespace MiaClient
             // 
             this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrijsindicatie.Location = new System.Drawing.Point(156, 215);
+            this.txtPrijsindicatie.MaxLength = 7;
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(282, 34);
             this.txtPrijsindicatie.TabIndex = 3;
@@ -1139,6 +1146,7 @@ namespace MiaClient
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "frmAanvraagFormulier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Aanvraagformulier";

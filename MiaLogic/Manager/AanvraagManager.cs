@@ -200,7 +200,7 @@ namespace MiaLogic.Manager
                         BudgetToegekend, OpmerkingenResultaat)
                     VALUES (@Gebruiker, @AfdelingId, @DienstId, @Aanvraagmoment, @Titel, @Omschrijving,
                         @FinancieringsTypeId, @InvesteringsTypeId, @PrioriteitId, @Financieringsjaar,
-                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId
+                        @StatusAanvraagId,@KostenplaatsId, @PrijsIndicatieStuk, @AantalStuk, @AankoperId, @RichtperiodeId,
                         @BudgetToegekend, @OpmerkingenResultaat);";
                     }
                     else

@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -84,11 +85,11 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBudgetspreiding.cs">
+    <Compile Include="frmBudgetSpreiding.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBudgetspreiding.Designer.cs">
-      <DependentUpon>frmBudgetspreiding.cs</DependentUpon>
+    <Compile Include="frmBudgetSpreiding.Designer.cs">
+      <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGebruikerBeheer.cs">
       <SubType>Form</SubType>
@@ -192,8 +193,8 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBudgetspreiding.resx">
-      <DependentUpon>frmBudgetspreiding.cs</DependentUpon>
+    <EmbeddedResource Include="frmBudgetSpreiding.resx">
+      <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGebruikerBeheer.resx">
       <DependentUpon>frmGebruikerBeheer.cs</DependentUpon>
@@ -283,6 +284,8 @@
     <Content Include="Icons\goedgekeurd_uit.png" />
     <Content Include="Icons\icons8-approval-50-alt.png" />
     <Content Include="Icons\icons8-approval-50.png" />
+    <Content Include="Icons\icons8-euro-50-alt.png" />
+    <Content Include="Icons\icons8-euro-50.png" />
     <Content Include="Icons\icons8-first-50-grey.png" />
     <Content Include="Icons\icons8-first-50-hover.png" />
     <Content Include="Icons\icons8-first-50.png" />
