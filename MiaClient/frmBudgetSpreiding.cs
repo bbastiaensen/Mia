@@ -66,48 +66,53 @@ namespace MiaClient
             Excel.Workbook workBook = app.Workbooks.Add(Nothing);
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
             // Write data+layout
-            int m = 0;
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetAanvragen();
             List<Aanvraag> inJaar = new List<Aanvraag>();
             foreach (Aanvraag a in aanvragen) {
-                if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString()) {
-                    inJaar.Add(a);
+                try { 
+                    if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
+                    {
+                        inJaar.Add(a);
+                    }
                 } 
+                catch {
+                    MessageBox.Show("Selecteer een financieringsjaar aub");
+                }
             }
-            for (int i = 0; m < rp.Count; i++)
+            int add = 0;
+            for (int m = 1; m < rp.Count; m++)
             {
-                decimal tot = 0;
-                string r1 = "A" + (i + 2);
-                string r2 = "B" + (i + 2);
-                string r3 = "C" + (i + 2);
-                if (m % 2 == 0 && m != 0)
+                string r = (m + 2 +add).ToString();
+                if (m % 2 == 0)
                 {
-                    worksheet.get_Range(r1, r3).Interior.Color = Excel.XlRgbColor.rgbGrey;
+                    worksheet.get_Range("A"+r,"C"+r).Interior.Color = Excel.XlRgbColor.rgbGrey;
                 }
                 else
                 {
-                    worksheet.get_Range(r1, r3).Interior.Color = Excel.XlRgbColor.rgbWhite;
+                    worksheet.get_Range("A"+r, "C"+r).Interior.Color = Excel.XlRgbColor.rgbWhite;
                 }
-                worksheet.get_Range(r1, r1).Value = RichtperiodeManager.GetRichtperiodeById(m);
-                m++;
+                worksheet.get_Range("A" + r, "A" + r).Value = RichtperiodeManager.GetRichtperiodeById(m).Naam;
+                decimal tot = 0;
                 List<Aanvraag> InPer = new List<Aanvraag>();
                 foreach (Aanvraag a in inJaar)
                 {
-                    if (a.RichtperiodeId == i)
+                    if (a.RichtperiodeId == m)
                     {
                         InPer.Add(a);
                     }
                 }
-                for(int j = 0; j < InPer.Count; j++) 
+                for (int j = 0; j < InPer.Count; j++)
                 {
+                    int rs = Convert.ToInt32(r);
+                    add = rs + j;
                     decimal prijs = InPer[j].AantalStuk + InPer[j].PrijsIndicatieStuk;
-                    worksheet.get_Range(r2, r2).Value = InPer[j].Titel;
-                    worksheet.get_Range(r3, r3).Value = (prijs);
+                    worksheet.get_Range("B"+add+r, "B"+add+r).Value = InPer[j].Titel;
+                    worksheet.get_Range("C"+add+r, "C"+add+r).Value = (prijs);
                     tot += prijs;
                 }
-                worksheet.get_Range(r3, r3).Value = tot;
-                worksheet.get_Range(r3, r3).Font.Bold = true;
+                worksheet.get_Range("C"+r, "C"+r).Value = tot;
+                worksheet.get_Range("C"+r, "C"+r).Font.Bold = true;
             }
             //title
             string richtper = cmbFinancieringsjaar.SelectedItem.ToString();
