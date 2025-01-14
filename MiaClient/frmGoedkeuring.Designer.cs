@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoedkeuring));
             this.pnlGoedkeuringen = new System.Windows.Forms.Panel();
             this.GoedkeuringFinancieringsjaar = new System.Windows.Forms.Label();
-            this.btnSortGoedkeuringBedrag = new System.Windows.Forms.Button();
-            this.btnSortGoedkeuringFinancieringsjaar = new System.Windows.Forms.Button();
-            this.btnSortGoedkeuringAanvraagmoment = new System.Windows.Forms.Button();
-            this.btnSortGoedkeuringTitel = new System.Windows.Forms.Button();
+            this.btnSortBedrag = new System.Windows.Forms.Button();
+            this.btnSortFinancieringsjaar = new System.Windows.Forms.Button();
+            this.btnSortAanvraagmoment = new System.Windows.Forms.Button();
+            this.btnSortTitel = new System.Windows.Forms.Button();
             this.GoedkeuringAanvraagmoment = new System.Windows.Forms.Label();
             this.GoedkeuringBedrag = new System.Windows.Forms.Label();
             this.GoedkeuringTitel = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.btnLast = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnFirst = new System.Windows.Forms.Button();
-            this.btnSortGoedkeuringGebruiker = new System.Windows.Forms.Button();
+            this.btnSortGebruiker = new System.Windows.Forms.Button();
             this.GoedkeuringGebruiker = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
@@ -93,69 +93,73 @@
             this.GoedkeuringFinancieringsjaar.Text = "Financieringsingsjaar";
             this.GoedkeuringFinancieringsjaar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnSortGoedkeuringBedrag
+            // btnSortBedrag
             // 
-            this.btnSortGoedkeuringBedrag.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringBedrag.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGoedkeuringBedrag.FlatAppearance.BorderSize = 0;
-            this.btnSortGoedkeuringBedrag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringBedrag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringBedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGoedkeuringBedrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSortGoedkeuringBedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedkeuringBedrag.Image")));
-            this.btnSortGoedkeuringBedrag.Location = new System.Drawing.Point(1391, 294);
-            this.btnSortGoedkeuringBedrag.Name = "btnSortGoedkeuringBedrag";
-            this.btnSortGoedkeuringBedrag.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGoedkeuringBedrag.TabIndex = 56;
-            this.btnSortGoedkeuringBedrag.UseVisualStyleBackColor = false;
+            this.btnSortBedrag.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortBedrag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortBedrag.FlatAppearance.BorderSize = 0;
+            this.btnSortBedrag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortBedrag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortBedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortBedrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSortBedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortBedrag.Image")));
+            this.btnSortBedrag.Location = new System.Drawing.Point(1391, 294);
+            this.btnSortBedrag.Name = "btnSortBedrag";
+            this.btnSortBedrag.Size = new System.Drawing.Size(27, 27);
+            this.btnSortBedrag.TabIndex = 56;
+            this.btnSortBedrag.UseVisualStyleBackColor = false;
+            this.btnSortBedrag.Click += new System.EventHandler(this.btnSortBedrag_Click);
             // 
-            // btnSortGoedkeuringFinancieringsjaar
+            // btnSortFinancieringsjaar
             // 
-            this.btnSortGoedkeuringFinancieringsjaar.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringFinancieringsjaar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGoedkeuringFinancieringsjaar.FlatAppearance.BorderSize = 0;
-            this.btnSortGoedkeuringFinancieringsjaar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringFinancieringsjaar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGoedkeuringFinancieringsjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSortGoedkeuringFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedkeuringFinancieringsjaar.Image")));
-            this.btnSortGoedkeuringFinancieringsjaar.Location = new System.Drawing.Point(1266, 294);
-            this.btnSortGoedkeuringFinancieringsjaar.Name = "btnSortGoedkeuringFinancieringsjaar";
-            this.btnSortGoedkeuringFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGoedkeuringFinancieringsjaar.TabIndex = 54;
-            this.btnSortGoedkeuringFinancieringsjaar.UseVisualStyleBackColor = false;
+            this.btnSortFinancieringsjaar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortFinancieringsjaar.FlatAppearance.BorderSize = 0;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortFinancieringsjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSortFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortFinancieringsjaar.Image")));
+            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(1266, 294);
+            this.btnSortFinancieringsjaar.Name = "btnSortFinancieringsjaar";
+            this.btnSortFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
+            this.btnSortFinancieringsjaar.TabIndex = 54;
+            this.btnSortFinancieringsjaar.UseVisualStyleBackColor = false;
+            this.btnSortFinancieringsjaar.Click += new System.EventHandler(this.btnSortFinancieringsjaar_Click);
             // 
-            // btnSortGoedkeuringAanvraagmoment
+            // btnSortAanvraagmoment
             // 
-            this.btnSortGoedkeuringAanvraagmoment.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringAanvraagmoment.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGoedkeuringAanvraagmoment.FlatAppearance.BorderSize = 0;
-            this.btnSortGoedkeuringAanvraagmoment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringAanvraagmoment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGoedkeuringAanvraagmoment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSortGoedkeuringAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedkeuringAanvraagmoment.Image")));
-            this.btnSortGoedkeuringAanvraagmoment.Location = new System.Drawing.Point(1005, 294);
-            this.btnSortGoedkeuringAanvraagmoment.Name = "btnSortGoedkeuringAanvraagmoment";
-            this.btnSortGoedkeuringAanvraagmoment.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGoedkeuringAanvraagmoment.TabIndex = 52;
-            this.btnSortGoedkeuringAanvraagmoment.UseVisualStyleBackColor = false;
+            this.btnSortAanvraagmoment.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortAanvraagmoment.FlatAppearance.BorderSize = 0;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortAanvraagmoment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSortAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvraagmoment.Image")));
+            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(1005, 294);
+            this.btnSortAanvraagmoment.Name = "btnSortAanvraagmoment";
+            this.btnSortAanvraagmoment.Size = new System.Drawing.Size(27, 27);
+            this.btnSortAanvraagmoment.TabIndex = 52;
+            this.btnSortAanvraagmoment.UseVisualStyleBackColor = false;
+            this.btnSortAanvraagmoment.Click += new System.EventHandler(this.btnSortAanvraagmoment_Click);
             // 
-            // btnSortGoedkeuringTitel
+            // btnSortTitel
             // 
-            this.btnSortGoedkeuringTitel.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringTitel.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGoedkeuringTitel.FlatAppearance.BorderSize = 0;
-            this.btnSortGoedkeuringTitel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringTitel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringTitel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGoedkeuringTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSortGoedkeuringTitel.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedkeuringTitel.Image")));
-            this.btnSortGoedkeuringTitel.Location = new System.Drawing.Point(646, 294);
-            this.btnSortGoedkeuringTitel.Name = "btnSortGoedkeuringTitel";
-            this.btnSortGoedkeuringTitel.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGoedkeuringTitel.TabIndex = 51;
-            this.btnSortGoedkeuringTitel.UseVisualStyleBackColor = false;
+            this.btnSortTitel.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortTitel.FlatAppearance.BorderSize = 0;
+            this.btnSortTitel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortTitel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSortTitel.Image = ((System.Drawing.Image)(resources.GetObject("btnSortTitel.Image")));
+            this.btnSortTitel.Location = new System.Drawing.Point(646, 294);
+            this.btnSortTitel.Name = "btnSortTitel";
+            this.btnSortTitel.Size = new System.Drawing.Size(27, 27);
+            this.btnSortTitel.TabIndex = 51;
+            this.btnSortTitel.UseVisualStyleBackColor = false;
+            this.btnSortTitel.Click += new System.EventHandler(this.btnSortTitel_Click);
             // 
             // GoedkeuringAanvraagmoment
             // 
@@ -204,6 +208,7 @@
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 62;
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnLast
             // 
@@ -214,6 +219,7 @@
             this.btnLast.Size = new System.Drawing.Size(30, 30);
             this.btnLast.TabIndex = 63;
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnPrevious
             // 
@@ -224,6 +230,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 61;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnFirst
             // 
@@ -234,22 +241,24 @@
             this.btnFirst.Size = new System.Drawing.Size(30, 30);
             this.btnFirst.TabIndex = 60;
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
-            // btnSortGoedkeuringGebruiker
+            // btnSortGebruiker
             // 
-            this.btnSortGoedkeuringGebruiker.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringGebruiker.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGoedkeuringGebruiker.FlatAppearance.BorderSize = 0;
-            this.btnSortGoedkeuringGebruiker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringGebruiker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGoedkeuringGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGoedkeuringGebruiker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSortGoedkeuringGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedkeuringGebruiker.Image")));
-            this.btnSortGoedkeuringGebruiker.Location = new System.Drawing.Point(537, 294);
-            this.btnSortGoedkeuringGebruiker.Name = "btnSortGoedkeuringGebruiker";
-            this.btnSortGoedkeuringGebruiker.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGoedkeuringGebruiker.TabIndex = 53;
-            this.btnSortGoedkeuringGebruiker.UseVisualStyleBackColor = false;
+            this.btnSortGebruiker.BackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSortGebruiker.FlatAppearance.BorderSize = 0;
+            this.btnSortGebruiker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSortGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortGebruiker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSortGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGebruiker.Image")));
+            this.btnSortGebruiker.Location = new System.Drawing.Point(537, 294);
+            this.btnSortGebruiker.Name = "btnSortGebruiker";
+            this.btnSortGebruiker.Size = new System.Drawing.Size(27, 27);
+            this.btnSortGebruiker.TabIndex = 53;
+            this.btnSortGebruiker.UseVisualStyleBackColor = false;
+            this.btnSortGebruiker.Click += new System.EventHandler(this.btnSortGebruiker_Click);
             // 
             // GoedkeuringGebruiker
             // 
@@ -271,6 +280,7 @@
             this.btnFilter.Size = new System.Drawing.Size(73, 73);
             this.btnFilter.TabIndex = 66;
             this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // grbxFilterAanvraag
             // 
@@ -545,13 +555,13 @@
             this.Controls.Add(this.pnlGoedkeuringen);
             this.Controls.Add(this.GoedkeuringGebruiker);
             this.Controls.Add(this.GoedkeuringTitel);
-            this.Controls.Add(this.btnSortGoedkeuringBedrag);
-            this.Controls.Add(this.btnSortGoedkeuringFinancieringsjaar);
+            this.Controls.Add(this.btnSortBedrag);
+            this.Controls.Add(this.btnSortFinancieringsjaar);
             this.Controls.Add(this.GoedkeuringBedrag);
-            this.Controls.Add(this.btnSortGoedkeuringGebruiker);
-            this.Controls.Add(this.btnSortGoedkeuringAanvraagmoment);
+            this.Controls.Add(this.btnSortGebruiker);
+            this.Controls.Add(this.btnSortAanvraagmoment);
             this.Controls.Add(this.GoedkeuringAanvraagmoment);
-            this.Controls.Add(this.btnSortGoedkeuringTitel);
+            this.Controls.Add(this.btnSortTitel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -573,10 +583,10 @@
 
         private System.Windows.Forms.Panel pnlGoedkeuringen;
         private System.Windows.Forms.Label GoedkeuringFinancieringsjaar;
-        private System.Windows.Forms.Button btnSortGoedkeuringBedrag;
-        private System.Windows.Forms.Button btnSortGoedkeuringFinancieringsjaar;
-        private System.Windows.Forms.Button btnSortGoedkeuringAanvraagmoment;
-        private System.Windows.Forms.Button btnSortGoedkeuringTitel;
+        private System.Windows.Forms.Button btnSortBedrag;
+        private System.Windows.Forms.Button btnSortFinancieringsjaar;
+        private System.Windows.Forms.Button btnSortAanvraagmoment;
+        private System.Windows.Forms.Button btnSortTitel;
         private System.Windows.Forms.Label GoedkeuringAanvraagmoment;
         private System.Windows.Forms.Label GoedkeuringBedrag;
         private System.Windows.Forms.Label GoedkeuringTitel;
@@ -585,7 +595,7 @@
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnFirst;
-        private System.Windows.Forms.Button btnSortGoedkeuringGebruiker;
+        private System.Windows.Forms.Button btnSortGebruiker;
         private System.Windows.Forms.Label GoedkeuringGebruiker;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.GroupBox grbxFilterAanvraag;
