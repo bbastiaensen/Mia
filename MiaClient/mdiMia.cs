@@ -31,7 +31,6 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
-        frmBudgetSpreiding FrmBudgetSpreiding;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -189,7 +188,7 @@ namespace MiaClient
                 helpMenu.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = false;
                 overzichtenToolStripMenuItem.Visible = false;
-                budgetSpreidingToolStripMenuItem.Visible = false;
+                budgetoverzichtToolStripMenuItem.Visible = false;
                 budgetSpreidingtoolStripButton.Visible = false;
             }
 
@@ -198,7 +197,7 @@ namespace MiaClient
             {
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
-                budgetSpreidingToolStripMenuItem.Visible = true;
+                budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
             }
 
@@ -208,7 +207,11 @@ namespace MiaClient
                 tss1.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
-                budgetSpreidingToolStripMenuItem.Visible = true;
+                
+                tss3.Visible = true;
+                overzichtenToolStripMenuItem.Visible = true;
+                budgetoverzichtToolStripMenuItem.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = true;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
@@ -225,7 +228,7 @@ namespace MiaClient
 
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
-                budgetSpreidingToolStripMenuItem.Visible = true;
+                budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
             }
         }
@@ -380,27 +383,17 @@ namespace MiaClient
 
         private void budgetoverzichtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FrmBudgetSpreiding == null)
+            if (frmBudgetspreiding == null)
             {
-                FrmBudgetSpreiding = new frmBudgetSpreiding();
-                FrmBudgetSpreiding.MdiParent = this;
+                frmBudgetspreiding = new frmBudgetspreiding();
+                frmBudgetspreiding.MdiParent = this;
             }
-            FrmBudgetSpreiding.Show();
+            frmBudgetspreiding.Show();
         }
 
         private void budgetSpreidingtoolStripButton_Click(object sender, EventArgs e)
         {
-            if (FrmBudgetSpreiding == null)
-            {
-                FrmBudgetSpreiding = new frmBudgetSpreiding();
-                FrmBudgetSpreiding.MdiParent = this;
-            }
-            FrmBudgetSpreiding.Show();
-        }
-
-        private void budgetSpreidingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(frmBudgetspreiding == null)
+            if (frmBudgetspreiding == null)
             {
                 frmBudgetspreiding = new frmBudgetspreiding();
                 frmBudgetspreiding.MdiParent = this;

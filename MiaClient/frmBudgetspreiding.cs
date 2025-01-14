@@ -1,4 +1,5 @@
 ﻿using MiaLogic.Manager;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,12 +21,23 @@ namespace MiaClient
 
         private void frmBudgetspreiding_Load(object sender, EventArgs e)
         {
-            List<string> financieringsjaren = FinancieringsjaarManager.GetFinancieringsjaren();
-            foreach (string jaren in financieringsjaren) 
+            CreateUI();
+
+            List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
+            foreach (string jaar in jaren)
             {
-                cmbJaar.Items.Add(jaren);
+                cmbFinancieringsjaar.Items.Add( jaar );
             }
-            
+        }
+
+        private void frmBudgetSpreiding_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
+            //keren naast elkaar kan geopend worden.
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
+
         private void CreateUI()
         {
             //Achtergrondkleur instellen op parameterwaarde
