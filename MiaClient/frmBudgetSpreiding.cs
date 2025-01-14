@@ -1,4 +1,5 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,22 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBudgetSpreiding : Form
+    public partial class frmBudgetspreiding : Form
     {
-        public frmBudgetSpreiding()
+        public frmBudgetspreiding()
         {
             InitializeComponent();
+        }
+
+        private void frmBudgetspreiding_Load(object sender, EventArgs e)
+        {
+            CreateUI();
+
+            List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
+            foreach (string jaar in jaren)
+            {
+                cmbFinancieringsjaar.Items.Add( jaar );
+            }
         }
 
         private void frmBudgetSpreiding_FormClosing(object sender, FormClosingEventArgs e)
@@ -24,11 +36,6 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
-        }
-
-        private void frmBudgetSpreiding_Load(object sender, EventArgs e)
-        {
-            CreateUI();
         }
 
         private void CreateUI()
