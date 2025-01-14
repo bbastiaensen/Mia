@@ -1,4 +1,5 @@
 ﻿using MiaLogic.Manager;
+using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
@@ -66,8 +67,17 @@ namespace MiaClient
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
             // Write data+layout
             int m = 0;
-            for (int i = 0; m < 12; i++)
+            List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
+            List<Aanvraag> aanvragen = AanvraagManager.GetAanvragen();
+            List<Aanvraag> inJaar = new List<Aanvraag>();
+            foreach (Aanvraag a in aanvragen) {
+                if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString()) {
+                    inJaar.Add(a);
+                } 
+            }
+            for (int i = 0; m < rp.Count; i++)
             {
+                decimal tot = 0;
                 string r1 = "A" + (i + 2);
                 string r2 = "B" + (i + 2);
                 string r3 = "C" + (i + 2);
@@ -79,27 +89,29 @@ namespace MiaClient
                 {
                     worksheet.get_Range(r1, r3).Interior.Color = Excel.XlRgbColor.rgbWhite;
                 }
-                if (i % 5 == 0 || i == 0)
+                worksheet.get_Range(r1, r1).Value = RichtperiodeManager.GetRichtperiodeById(m);
+                m++;
+                List<Aanvraag> InPer = new List<Aanvraag>();
+                foreach (Aanvraag a in inJaar)
                 {
-
-                    worksheet.get_Range(r1, r1).Value = GetMonth(m);
-                    worksheet.get_Range(r3, r3).Value = "totaal";
-                    worksheet.get_Range(r3, r3).Font.Bold = true;
-                    m++;
+                    if (a.RichtperiodeId == i)
+                    {
+                        InPer.Add(a);
+                    }
                 }
-                else
+                for(int j = 0; j < InPer.Count; j++) 
                 {
-                    Random rnd = new Random();
-                    int g = rnd.Next(1, 10);
-                    worksheet.get_Range(r2, r2).Value = "titel";
-                    worksheet.get_Range(r3, r3).Value = g;
+                    decimal prijs = InPer[j].AantalStuk + InPer[j].PrijsIndicatieStuk;
+                    worksheet.get_Range(r2, r2).Value = InPer[j].Titel;
+                    worksheet.get_Range(r3, r3).Value = (prijs);
+                    tot += prijs;
                 }
-
-
+                worksheet.get_Range(r3, r3).Value = tot;
+                worksheet.get_Range(r3, r3).Font.Bold = true;
             }
-            //layout
-            string richtper = cmbFinancieringsjaar.SelectedItem.ToString();
             //title
+            string richtper = cmbFinancieringsjaar.SelectedItem.ToString();
+
             worksheet.Cells[1, 1] = "Financieringsjaar: " + richtper;
             worksheet.get_Range("A1", "A1").Font.Bold = true;
             worksheet.get_Range("A1", "A1").Font.Underline = true;
@@ -121,38 +133,7 @@ namespace MiaClient
                 MessageBox.Show("Het Excel document staat klaar!");
             }
         }
-            public string GetMonth(int i)
-            {
-            switch (i)
-            {
-                case 1:
-                    return "januari";
-                case 2:
-                    return "februari";
-                case 3:
-                    return "maart";
-                case 4:
-                    return "april";
-                case 5:
-                    return "mei";
-                case 6:
-                    return "juni";
-                case 7:
-                    return "juli";
-                case 8:
-                    return "augustus";
-                case 9:
-                    return "september";
-                case 10:
-                    return "oktober";
-                case 11:
-                    return "november";
-                case 12:
-                    return "december";
-                default:
-                    return "";
-            }
-        }
+
     }
 }
 
