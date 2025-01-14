@@ -149,7 +149,8 @@ namespace MiaClient
             this.pnlFotos.Controls.Clear();
             this.pnlOffertes.Controls.Clear();
         }
-        public frmAanvraagFormulier(int id, string action)
+        public frmAanvraagFormulier(int id, string 
+            action)
         {
             try
             {
@@ -499,7 +500,7 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
                 OpmerkingenResultaat = txtResultaat.Text,
                 RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
-                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
+                BudgetToegekend = Convert.ToDecimal(txtTotaal.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
