@@ -19,7 +19,7 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
-        List<Goedkeuring> aanvragen;
+        List<Aanvraag> aanvragen;
 
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -42,7 +42,7 @@ namespace MiaClient
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
 
-        int aantalListItems = 11;
+        int aantalListItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
 
@@ -65,8 +65,7 @@ namespace MiaClient
         {
             InitializeComponent();
         }
-
-        public void BindGoedkeuringen(List<Goedkeuring> items)
+        public void BindGoedkeuringen(List<Aanvraag> items)
         {
             this.pnlGoedkeuringen.Controls.Clear();
 
@@ -92,7 +91,6 @@ namespace MiaClient
                 }
             }
         }
-
         public void frmGoedkeuring_Load(object sender, EventArgs e)
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
@@ -118,12 +116,11 @@ namespace MiaClient
             btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
         }
-
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
             try
             {
-                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
+                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetGoedgekeurdeAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
 
                 huidigePage = 1;
                 StartPaging();
@@ -145,29 +142,25 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
         public void frmGoedkeuring_Activated(object sender, EventArgs e)
         {
-            var lijst = GoedkeuringManager.GetGoedkeuringen();
+            var lijst = AanvraagManager.GetGoedgekeurdeAanvragen();
             BindGoedkeuringen(lijst);
         }
-
         private void Gli_GoedkeurItemSelected(object sender, EventArgs e)
         {
             GoedkeurItem geselecteerd = (GoedkeurItem)sender;
         }
-
-        private void FrmAanvragen_Shown(object sender, EventArgs e)
+        private void FrmGoedkeuring_Shown(object sender, EventArgs e)
         {
             try
             {
-                aanvragen = GoedkeuringManager.GetGoedkeuringen();
+                aanvragen = AanvraagManager.GetGoedgekeurdeAanvragen();
                 if (aanvragen != null)
                 {
                     StartPaging();
@@ -178,8 +171,7 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private List<Goedkeuring> FilteredGoedkeurItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
+        private List<Aanvraag> FilteredGoedkeurItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
         {
             if (items != null)
             {
@@ -257,7 +249,6 @@ namespace MiaClient
             }
            return items;
         }
-
         private void EnableFirstPrevious(bool enable)
         {
             if (enable)
@@ -273,7 +264,6 @@ namespace MiaClient
             btnFirst.Enabled = enable;
             btnPrevious.Enabled = enable;
         }
-
         private void EnableLastNext(bool enable)
         {
             if (enable)
@@ -289,13 +279,11 @@ namespace MiaClient
             btnLast.Enabled = enable;
             btnNext.Enabled = enable;
         }
-
         private void btnLast_MouseHover(object sender, EventArgs e)
         {
             btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
             btnLast.BackgroundImage = imgLastHover;
         }
-
         private void btnLast_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == aantalPages)
@@ -307,12 +295,10 @@ namespace MiaClient
                 btnLast.BackgroundImage = imgLast;
             }
         }
-
         private void btnNext_MouseHover(object sender, EventArgs e)
         {
             btnNext.BackgroundImage = imgNextHover;
         }
-
         private void btnNext_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == aantalPages)
@@ -324,12 +310,10 @@ namespace MiaClient
                 btnNext.BackgroundImage = imgNext;
             }
         }
-
         private void btnPrevious_MouseHover(object sender, EventArgs e)
         {
             btnPrevious.BackgroundImage = imgPreviousHover;
         }
-
         private void btnPrevious_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == 1)
@@ -341,12 +325,10 @@ namespace MiaClient
                 btnPrevious.BackgroundImage = imgPrevious;
             }
         }
-
         private void btnFirst_MouseHover(object sender, EventArgs e)
         {
             btnFirst.BackgroundImage = imgFirstHover;
         }
-
         private void btnFirst_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == 1)
@@ -358,7 +340,6 @@ namespace MiaClient
                 btnFirst.BackgroundImage = imgFirst;
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             huidigePage++;
@@ -374,7 +355,6 @@ namespace MiaClient
             }
             EnableFirstPrevious(true);
         }
-
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             huidigePage--;
@@ -389,7 +369,6 @@ namespace MiaClient
             }
             EnableLastNext(true);
         }
-
         private void btnFirst_Click(object sender, EventArgs e)
         {
             huidigePage = 1;
@@ -401,7 +380,6 @@ namespace MiaClient
                 EnableLastNext(true);
             }
         }
-
         private void btnLast_Click(object sender, EventArgs e)
         {
             huidigePage = aantalPages;
@@ -413,7 +391,6 @@ namespace MiaClient
                 EnableFirstPrevious(true);
             }
         }
-
         private void StartPaging()
         {
             if (aanvragen.Count > aantalListItems)
@@ -446,7 +423,6 @@ namespace MiaClient
                 EnableLastNext(false);
             }
         }
-
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();

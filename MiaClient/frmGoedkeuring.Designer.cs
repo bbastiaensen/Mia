@@ -80,7 +80,7 @@
             this.pnlGoedkeuringen.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlGoedkeuringen.Location = new System.Drawing.Point(48, 337);
             this.pnlGoedkeuringen.Name = "pnlGoedkeuringen";
-            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1376, 655);
+            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1376, 413);
             this.pnlGoedkeuringen.TabIndex = 0;
             // 
             // GoedkeuringFinancieringsjaar
@@ -189,7 +189,7 @@
             // 
             // lblPages
             // 
-            this.lblPages.Location = new System.Drawing.Point(98, 1016);
+            this.lblPages.Location = new System.Drawing.Point(184, 766);
             this.lblPages.Name = "lblPages";
             this.lblPages.Size = new System.Drawing.Size(1156, 30);
             this.lblPages.TabIndex = 64;
@@ -199,7 +199,7 @@
             // 
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNext.Location = new System.Drawing.Point(1260, 1016);
+            this.btnNext.Location = new System.Drawing.Point(1346, 766);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 62;
@@ -209,7 +209,7 @@
             // 
             this.btnLast.FlatAppearance.BorderSize = 0;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLast.Location = new System.Drawing.Point(1296, 1016);
+            this.btnLast.Location = new System.Drawing.Point(1382, 766);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(30, 30);
             this.btnLast.TabIndex = 63;
@@ -219,7 +219,7 @@
             // 
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Location = new System.Drawing.Point(62, 1016);
+            this.btnPrevious.Location = new System.Drawing.Point(148, 766);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 61;
@@ -229,7 +229,7 @@
             // 
             this.btnFirst.FlatAppearance.BorderSize = 0;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFirst.Location = new System.Drawing.Point(26, 1016);
+            this.btnFirst.Location = new System.Drawing.Point(112, 766);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(30, 30);
             this.btnFirst.TabIndex = 60;
@@ -533,7 +533,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1436, 1055);
+            this.ClientSize = new System.Drawing.Size(1436, 836);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.grbxFilterAanvraag);
             this.Controls.Add(this.lblPages);
@@ -561,6 +561,7 @@
             this.Activated += new System.EventHandler(this.frmGoedkeuring_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGoedkeuring_FormClosing);
             this.Load += new System.EventHandler(this.frmGoedkeuring_Load);
+            this.Shown += new System.EventHandler(this.FrmGoedkeuring_Shown);
             this.grbxFilterAanvraag.ResumeLayout(false);
             this.grbxFilterAanvraag.PerformLayout();
             this.ResumeLayout(false);

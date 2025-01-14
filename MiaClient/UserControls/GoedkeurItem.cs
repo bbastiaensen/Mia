@@ -44,7 +44,6 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-
         public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, Boolean even)
         {
             InitializeComponent();
@@ -58,7 +57,6 @@ namespace MiaClient.UserControls
             Even = even;
             SetGoedkeurItemWaarden();
         }
-
         private void SetGoedkeurItemWaarden()
         {
             lblTitel.Text = Titel;
@@ -79,10 +77,9 @@ namespace MiaClient.UserControls
 
             }
         }
-
         private void GoedkeurItem_Load(object sender, EventArgs e)
         {
-            Goedkeuring goedkeuring = GoedkeuringManager.GetGoedkeuringById(Id);
+            Aanvraag goedkeuring = AanvraagManager.GetAanvraagById(Id);
 
             switch (Id)
                 {

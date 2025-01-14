@@ -34,7 +34,6 @@ namespace MiaClient
                 ErrorHandler(ex, "Main");
             }
         }
-
         private static void InitializeConnections()
         {
             try
@@ -58,7 +57,6 @@ namespace MiaClient
                 FotoManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 StatusAanvraagManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
-                GoedkeuringManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 RichtperiodeManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             }
 
@@ -72,7 +70,6 @@ namespace MiaClient
         {
             MessageBox.Show($"Error: {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
         public static bool IsGeldigBedrag(char c)
         {
             bool isValid = true;
@@ -87,8 +84,6 @@ namespace MiaClient
 
             return isValid;
         }
-
-
         private static void AuthenticateUser()
         {
             try
@@ -120,8 +115,6 @@ namespace MiaClient
 
             }
         }
-
-
         private static void SetUserRoles(Gebruiker gebruiker)
         {
             try
@@ -154,7 +147,6 @@ namespace MiaClient
             catch (Exception ex)
             { ErrorHandler(ex, "SetUserRoles"); }
         }
-
         private static void HandleInactiveUser(string gebruikersnaam)
         {
             try
@@ -175,7 +167,6 @@ namespace MiaClient
 
             }
         }
-
         private static void CreateNewUser(string gebruikersnaam)
         {
             try
@@ -211,6 +202,5 @@ namespace MiaClient
                 MessageBox.Show($"Error in CreateNewUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
