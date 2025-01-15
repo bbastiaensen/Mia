@@ -19,6 +19,7 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
+        frmGoedkeuringFormulier frmGoedkeuringFormulier;
         List<Aanvraag> aanvragen;
 
         bool filterAanvraagmomentVan = false;
@@ -65,6 +66,8 @@ namespace MiaClient
         {
             InitializeComponent();
         }
+
+
         public void BindGoedkeuringen(List<Aanvraag> items)
         {
             this.pnlGoedkeuringen.Controls.Clear();
@@ -114,7 +117,6 @@ namespace MiaClient
             btnFilter.BackgroundImage = imgFilter;
             btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
             btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
-
         }
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
@@ -152,16 +154,6 @@ namespace MiaClient
             var lijst = AanvraagManager.GetGoedgekeurdeAanvragen();
             BindGoedkeuringen(lijst);
         }
-
-        //public void DisableBewaarButon()
-        //{
-        //    btn_Indienen.Enabled = false;
-        //}
-        //public void EnableBewaarButon()
-        //{
-        //    btn_Indienen.Enabled = true;
-        //}
-
         private void Gli_GoedkeurItemSelected(object sender, EventArgs e)
         {
             GoedkeurItem geselecteerd = (GoedkeurItem)sender;

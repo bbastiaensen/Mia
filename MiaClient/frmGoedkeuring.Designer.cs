@@ -78,15 +78,15 @@
             // pnlGoedkeuringen
             // 
             this.pnlGoedkeuringen.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.pnlGoedkeuringen.Location = new System.Drawing.Point(48, 337);
+            this.pnlGoedkeuringen.Location = new System.Drawing.Point(101, 332);
             this.pnlGoedkeuringen.Name = "pnlGoedkeuringen";
-            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1376, 413);
+            this.pnlGoedkeuringen.Size = new System.Drawing.Size(1210, 413);
             this.pnlGoedkeuringen.TabIndex = 0;
             // 
             // GoedkeuringFinancieringsjaar
             // 
             this.GoedkeuringFinancieringsjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GoedkeuringFinancieringsjaar.Location = new System.Drawing.Point(1050, 298);
+            this.GoedkeuringFinancieringsjaar.Location = new System.Drawing.Point(865, 293);
             this.GoedkeuringFinancieringsjaar.Name = "GoedkeuringFinancieringsjaar";
             this.GoedkeuringFinancieringsjaar.Size = new System.Drawing.Size(219, 29);
             this.GoedkeuringFinancieringsjaar.TabIndex = 59;
@@ -103,7 +103,7 @@
             this.btnSortBedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortBedrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSortBedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortBedrag.Image")));
-            this.btnSortBedrag.Location = new System.Drawing.Point(1391, 294);
+            this.btnSortBedrag.Location = new System.Drawing.Point(1206, 289);
             this.btnSortBedrag.Name = "btnSortBedrag";
             this.btnSortBedrag.Size = new System.Drawing.Size(27, 27);
             this.btnSortBedrag.TabIndex = 56;
@@ -120,7 +120,7 @@
             this.btnSortFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortFinancieringsjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSortFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortFinancieringsjaar.Image")));
-            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(1266, 294);
+            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(1081, 289);
             this.btnSortFinancieringsjaar.Name = "btnSortFinancieringsjaar";
             this.btnSortFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
             this.btnSortFinancieringsjaar.TabIndex = 54;
@@ -137,7 +137,7 @@
             this.btnSortAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortAanvraagmoment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSortAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvraagmoment.Image")));
-            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(1005, 294);
+            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(820, 289);
             this.btnSortAanvraagmoment.Name = "btnSortAanvraagmoment";
             this.btnSortAanvraagmoment.Size = new System.Drawing.Size(27, 27);
             this.btnSortAanvraagmoment.TabIndex = 52;
@@ -154,7 +154,7 @@
             this.btnSortTitel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSortTitel.Image = ((System.Drawing.Image)(resources.GetObject("btnSortTitel.Image")));
-            this.btnSortTitel.Location = new System.Drawing.Point(646, 294);
+            this.btnSortTitel.Location = new System.Drawing.Point(461, 289);
             this.btnSortTitel.Name = "btnSortTitel";
             this.btnSortTitel.Size = new System.Drawing.Size(27, 27);
             this.btnSortTitel.TabIndex = 51;
@@ -165,7 +165,7 @@
             // 
             this.GoedkeuringAanvraagmoment.AutoSize = true;
             this.GoedkeuringAanvraagmoment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GoedkeuringAanvraagmoment.Location = new System.Drawing.Point(832, 300);
+            this.GoedkeuringAanvraagmoment.Location = new System.Drawing.Point(647, 295);
             this.GoedkeuringAanvraagmoment.Name = "GoedkeuringAanvraagmoment";
             this.GoedkeuringAanvraagmoment.Size = new System.Drawing.Size(167, 25);
             this.GoedkeuringAanvraagmoment.TabIndex = 45;
@@ -175,7 +175,7 @@
             // 
             this.GoedkeuringBedrag.AutoSize = true;
             this.GoedkeuringBedrag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GoedkeuringBedrag.Location = new System.Drawing.Point(1310, 300);
+            this.GoedkeuringBedrag.Location = new System.Drawing.Point(1125, 295);
             this.GoedkeuringBedrag.Name = "GoedkeuringBedrag";
             this.GoedkeuringBedrag.Size = new System.Drawing.Size(75, 25);
             this.GoedkeuringBedrag.TabIndex = 48;
@@ -185,7 +185,7 @@
             // 
             this.GoedkeuringTitel.AutoSize = true;
             this.GoedkeuringTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GoedkeuringTitel.Location = new System.Drawing.Point(591, 300);
+            this.GoedkeuringTitel.Location = new System.Drawing.Point(406, 295);
             this.GoedkeuringTitel.Name = "GoedkeuringTitel";
             this.GoedkeuringTitel.Size = new System.Drawing.Size(49, 25);
             this.GoedkeuringTitel.TabIndex = 44;
@@ -253,7 +253,7 @@
             this.btnSortGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortGebruiker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSortGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGebruiker.Image")));
-            this.btnSortGebruiker.Location = new System.Drawing.Point(537, 294);
+            this.btnSortGebruiker.Location = new System.Drawing.Point(352, 289);
             this.btnSortGebruiker.Name = "btnSortGebruiker";
             this.btnSortGebruiker.Size = new System.Drawing.Size(27, 27);
             this.btnSortGebruiker.TabIndex = 53;
@@ -264,7 +264,7 @@
             // 
             this.GoedkeuringGebruiker.AutoSize = true;
             this.GoedkeuringGebruiker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.GoedkeuringGebruiker.Location = new System.Drawing.Point(434, 300);
+            this.GoedkeuringGebruiker.Location = new System.Drawing.Point(249, 295);
             this.GoedkeuringGebruiker.Name = "GoedkeuringGebruiker";
             this.GoedkeuringGebruiker.Size = new System.Drawing.Size(97, 25);
             this.GoedkeuringGebruiker.TabIndex = 43;
