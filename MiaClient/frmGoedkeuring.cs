@@ -152,6 +152,16 @@ namespace MiaClient
             var lijst = AanvraagManager.GetGoedgekeurdeAanvragen();
             BindGoedkeuringen(lijst);
         }
+
+        //public void DisableBewaarButon()
+        //{
+        //    btn_Indienen.Enabled = false;
+        //}
+        //public void EnableBewaarButon()
+        //{
+        //    btn_Indienen.Enabled = true;
+        //}
+
         private void Gli_GoedkeurItemSelected(object sender, EventArgs e)
         {
             GoedkeurItem geselecteerd = (GoedkeurItem)sender;

@@ -38,6 +38,8 @@ namespace MiaClient.UserControls
         public event EventHandler GoedkeurItemChanged;
         frmGoedkeuring frmGoedkeuring;
 
+        static public bool edit = false;
+
         public string projectDirectory = Directory.GetCurrentDirectory();
 
         public GoedkeurItem()
@@ -82,28 +84,71 @@ namespace MiaClient.UserControls
             Aanvraag goedkeuring = AanvraagManager.GetAanvraagById(Id);
 
             switch (Id)
-                {
-                    case 2:
-                        string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-                        BtnGoedgekeurd.Image = Image.FromFile(imagePath);
+            {
+                case 2:
+                    string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
+                    BtnGoedgekeurd.Image = Image.FromFile(imagePath);
 
-                        break;
-                    case 3:
-                        string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-                        btnAfgekeurd.Image = Image.FromFile(imagePath2);
+                    break;
+                case 3:
+                    string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                    btnAfgekeurd.Image = Image.FromFile(imagePath2);
 
-                        break;
-                    case 4:
-                        string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-                        btnBekrachtigd.Image = Image.FromFile(imagePath3);
+                    break;
+                case 4:
+                    string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
+                    btnBekrachtigd.Image = Image.FromFile(imagePath3);
 
-                        break;
-                    case 5:
-                        string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-                        btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
-                        break;
-                }
-                return;
+                    break;
+                case 5:
+                    string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
+                    btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
+                    break;
+            }
+            return;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //        if (frmGoedkeuring == null)
+            //        {
+            //            frmGoedkeuring = new frmGoedkeuring(Id, "edit");
+            //        }
+
+            //        if (GoedkeurItemSelected != null)
+            //        {
+            //            if (lblStatusAanvraag.Text == "In aanvraag")
+            //            {
+            //                edit = true;
+            //                frmGoedkeuring.MdiParent = this.ParentForm.MdiParent;
+            //                frmGoedkeuring.EnableBewaarButon();
+            //                frmGoedkeuring.SetFormStatus(true);
+            //                frmGoedkeuring.BindFotoByAanvraagId();
+            //                frmGoedkeuring.BindOfferteByAanvraagId();
+            //                frmGoedkeuring.BindLinkByAanvraagId();
+            //                //frmAanvraagFormulier.UpdateAanvraag();
+            //                frmGoedkeuring.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            //                frmGoedkeuring.Show();
+            //            }
+            //            else
+            //            {
+            //                edit = false;
+            //                frmGoedkeuring.Show();
+            //                frmGoedkeuring.DisableBewaarButon();
+            //                frmGoedkeuring.SetFormStatus(false);
+            //                frmGoedkeuring.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            //                MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            }
+            //        }
+            //    }
+
+            //    private void GoedkeurFormulieredit_AanvraagBewaard(object sender, EventArgs e)
+            //    {
+            //        if (GoedkeurItemChanged != null)
+            //        {
+            //            GoedkeurItemChanged(this, null);
+            //        }
         }
     }
+
 }

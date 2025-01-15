@@ -39,6 +39,7 @@
             this.btnBekrachtigd = new System.Windows.Forms.Button();
             this.btnNietBekrachtigd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnStatusEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
@@ -160,11 +161,28 @@
             this.btnEdit.Size = new System.Drawing.Size(27, 27);
             this.btnEdit.TabIndex = 20;
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnStatusEdit
+            // 
+            this.btnStatusEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnStatusEdit.FlatAppearance.BorderSize = 0;
+            this.btnStatusEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatusEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnStatusEdit.Image")));
+            this.btnStatusEdit.Location = new System.Drawing.Point(36, 3);
+            this.btnStatusEdit.Name = "btnStatusEdit";
+            this.btnStatusEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnStatusEdit.TabIndex = 21;
+            this.btnStatusEdit.UseVisualStyleBackColor = false;
             // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnStatusEdit);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnNietBekrachtigd);
             this.Controls.Add(this.btnBekrachtigd);
@@ -196,5 +214,6 @@
         private System.Windows.Forms.Button btnBekrachtigd;
         private System.Windows.Forms.Button btnNietBekrachtigd;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnStatusEdit;
     }
 }

@@ -307,6 +307,7 @@
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="Icons\nieuweAanvraag.png" />
+    <Content Include="Icons\Status-Edit.png" />
     <Content Include="pl-icon.ico" />
     <None Include="Resources\Filter1.png" />
     <None Include="Resources\nieuweAanvraag.png" />
