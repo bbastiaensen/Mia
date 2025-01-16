@@ -16,8 +16,10 @@ namespace MiaClient
 {
     public partial class frmBudgetspreiding : Form
     {
-        int i = 1;
-        
+        int i = 0;
+        List<Richtperiode> richtperiodes = null;
+
+
         public frmBudgetspreiding()
         {
             InitializeComponent();
@@ -28,10 +30,10 @@ namespace MiaClient
             CreateUI();
             int xPos = 10;
             int yPos = 0;
-            int year = Convert.ToInt32(cmbFinancieringsjaar.SelectedItem);
-            List<Richtperiode> richtperiodes = RichtperiodeManager.GetRichtperiodes();
-            _ = BudgetManager.GetBudget(i, year);
-            for (i = 1; i <  richtperiodes.Count; i++)
+            
+            richtperiodes = RichtperiodeManager.GetRichtperiodes();
+            
+            for (i = 0; i <  richtperiodes.Count; i++)
             {
                 yPos += 25;
                 Richtperiode richtperiode = richtperiodes[i];
@@ -40,19 +42,17 @@ namespace MiaClient
                 llbl.Location = new Point(xPos, yPos);
                 llbl.Name = "llbl";
                 llbl.Text = Maanden;
-                llbl.Font = new System.Drawing.Font("Comic Sans MS", 12);
+                llbl.Font = new System.Drawing.Font("Comic Sans MS", 12);           
                 llbl.LinkColor = Color.Black;
                 pnlRichtperiode.Controls.Add(llbl);
             }
+          
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
                 cmbFinancieringsjaar.Items.Add( jaar );
             }
           
-            
-           
-            
         }
        
 
@@ -79,6 +79,24 @@ namespace MiaClient
             }
             
         }
-        
+
+        private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int xPos = 35;
+            int yPos = 0;
+
+            string year = cmbFinancieringsjaar.SelectedItem.ToString();
+            foreach (var richtperiode in richtperiodes)
+            {
+                yPos += 25;
+                decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, year);
+                System.Windows.Forms.Label lbl = new Label();
+                lbl.Location = new Point(xPos, yPos);
+                lbl.Name = "lbl";
+                lbl.Text = bedrag.ToString();
+                lbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                pnlRichtperiode.Controls.Add(lbl);
+            }
+        }
     }
 }

@@ -1331,5 +1331,33 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
+
+        public static decimal GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(int richtperiodeId, string financieringsjaar)
+        {
+            decimal ret = 0;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "SELECT SUM(PrijsIndicatieStuk * AantalStuk) As TotaalBedrag from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4 group by RichtperiodeId order by RichtperiodeId asc";
+                    objCmd.Parameters.AddWithValue("@Jaar", financieringsjaar);
+                    objCmd.Parameters.AddWithValue("@RichtperiodeId", richtperiodeId);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                    if (objRea.Read())
+                    {
+                        ret = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                    }
+                }
+
+            }
+            return ret;
+        }
     }
 }

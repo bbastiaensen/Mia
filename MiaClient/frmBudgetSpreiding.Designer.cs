@@ -33,9 +33,9 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.pnlRichtperiode = new System.Windows.Forms.Panel();
+            this.lblTotaal = new System.Windows.Forms.Label();
             this.lblLineThe2nd = new System.Windows.Forms.Label();
             this.lblLine = new System.Windows.Forms.Label();
-            this.lblTotaal = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.pnlRichtperiode.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +69,7 @@
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
             this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 33);
             this.cmbFinancieringsjaar.TabIndex = 2;
+            this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
             // lblFinancieringsjaar
             // 
@@ -91,6 +92,16 @@
             this.pnlRichtperiode.Size = new System.Drawing.Size(776, 450);
             this.pnlRichtperiode.TabIndex = 1;
             // 
+            // lblTotaal
+            // 
+            this.lblTotaal.AutoSize = true;
+            this.lblTotaal.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotaal.Location = new System.Drawing.Point(16, 390);
+            this.lblTotaal.Name = "lblTotaal";
+            this.lblTotaal.Size = new System.Drawing.Size(72, 25);
+            this.lblTotaal.TabIndex = 17;
+            this.lblTotaal.Text = "Totaal : ";
+            // 
             // lblLineThe2nd
             // 
             this.lblLineThe2nd.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -108,16 +119,6 @@
             this.lblLine.Name = "lblLine";
             this.lblLine.Size = new System.Drawing.Size(10, 364);
             this.lblLine.TabIndex = 15;
-            // 
-            // lblTotaal
-            // 
-            this.lblTotaal.AutoSize = true;
-            this.lblTotaal.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotaal.Location = new System.Drawing.Point(16, 390);
-            this.lblTotaal.Name = "lblTotaal";
-            this.lblTotaal.Size = new System.Drawing.Size(78, 24);
-            this.lblTotaal.TabIndex = 17;
-            this.lblTotaal.Text = "Totaal : ";
             // 
             // frmBudgetspreiding
             // 
