@@ -14,7 +14,6 @@ namespace MiaLogic.Manager
     public static class AanvraagManager
     {
         public static string ConnectionString { get; set; }
-
         public static Aanvraag GetAanvraagById(int id)
         {
             Aanvraag aanvraag = null;
@@ -178,6 +177,52 @@ namespace MiaLogic.Manager
                 }
             }
             return highestAanvraagId;
+        }
+        public static List<Aanvraag> GetGoedgekeurdeAanvragen()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.AantalStuk, a.PrijsIndicatieStuk from Aanvraag a WHERE StatusAanvraagId BETWEEN 2 AND 5";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag g;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+
+                        g = new Aanvraag();
+                        g.Gebruiker = objRea["Gebruiker"].ToString();
+                        g.Titel = objRea["Titel"].ToString();
+                        g.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            g.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            g.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+
+                        returnlist.Add(g);
+                    }
+                }
+            }
+            return returnlist;
         }
         // Aanvragen opslaan
         public static void SaveAanvraag(Aanvraag aanvraag, bool insert)
@@ -1227,7 +1272,6 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
-
         public static List<Aanvraag> GetAanvragenInaanvraagOfGoedgekeurd()
         {
             List<Aanvraag> returnlist = null;
