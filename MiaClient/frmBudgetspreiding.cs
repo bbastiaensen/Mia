@@ -72,18 +72,15 @@ namespace MiaClient
             //Making sure the data is in the right year
             if (cmbFinancieringsjaar.SelectedItem == null)
             {
-                MessageBox.Show("Vul een Financieringsjaar in aub");
+                MessageBox.Show("Selecteer eerst een financieringsjaar", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                foreach (Aanvraag a in aanvragen)
-                {
-                    try
+            foreach (Aanvraag a in aanvragen) {
+                try { 
+                    if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
                     {
-                        if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
-                        {
-                            inJaar.Add(a);
-                        }
+                        inJaar.Add(a);
+                    }
 
                     }
                     catch (Exception ex)
