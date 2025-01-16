@@ -103,6 +103,12 @@
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGoedkeuringFormulier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoedkeuringFormulier.Designer.cs">
+      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGoedkeuringFormulier.resx">
+      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +244,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AanvraagItem.resx">
       <DependentUpon>AanvraagItem.cs</DependentUpon>
@@ -318,6 +328,7 @@
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="Icons\nieuweAanvraag.png" />
+    <Content Include="Icons\Status-Edit.png" />
     <Content Include="pl-icon.ico" />
     <None Include="Resources\Filter1.png" />
     <None Include="Resources\nieuweAanvraag.png" />
