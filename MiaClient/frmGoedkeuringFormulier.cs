@@ -21,6 +21,9 @@ namespace MiaClient
 
         private int aanvraagId = 0;
 
+        public string projectDirectory = Directory.GetCurrentDirectory();
+
+
         public frmGoedkeuringFormulier()
         {
 
@@ -36,132 +39,158 @@ namespace MiaClient
             //GetParam();
         }
 
-        //private void BtnGoedgekeurd_Click(object sender, EventArgs e)
-        //{
-        //    string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-        //    BtnGoedgekeurd.Image = Image.FromFile(imagePath);
-        //    Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
-        //    aanvraag.StatusAanvraagId = 2;
-        //    AanvraagManager.SaveAanvraag(aanvraag, false);
-        //    string imageNietBekracht = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uit.png");
-        //    string imageaf = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-        //    string imageBekracht = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uit.png");
-        //    string imagenietaan = Path.Combine(projectDirectory, "icons", "Aanvraag_uit.png");
+        private void GoedkeurItem_Load(object sender, EventArgs e)
+        {
 
-
-
-        //    btnNietBekrachtigd.Image = Image.FromFile(imageNietBekracht);
-        //    btnAfgekeurd.Image = Image.FromFile(imageaf);
-        //    btnNietBekrachtigd.Image = Image.FromFile(imageBekracht);
-        //    btnInaanvraag.Image = Image.FromFile(imagenietaan);
-        //    btnInaanvraag.Enabled = false;
-
-
-        //}
-
-        //private void btnAfgekeurd_Click(object sender, EventArgs e)
-        //{
-        //    string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-        //    btnAfgekeurd.Image = Image.FromFile(imagePath);
-        //    Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
-        //    aanvraag.StatusAanvraagId = 3;
-        //    AanvraagManager.SaveAanvraag(aanvraag, false);
-
-        //    string imageNietBekracht = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uit.png");
-        //    string imagegoed = Path.Combine(projectDirectory, "icons", "goedgekeurd_uit.png");
-        //    string imageBekracht = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uit.png");
-        //    string imagenietaan = Path.Combine(projectDirectory, "icons", "Aanvraag_uit.png");
-
-
-        //    btnNietBekrachtigd.Image = Image.FromFile(imageNietBekracht);
-        //    BtnGoedgekeurd.Image = Image.FromFile(imagegoed);
-        //    btnNietBekrachtigd.Image = Image.FromFile(imageBekracht);
-        //    btnInaanvraag.Image = Image.FromFile(imagenietaan);
-        //    btnInaanvraag.Enabled = true;
-
-
-        //}
-
-        //private void btnBekrachtigd_Click(object sender, EventArgs e)
-        //{
-        //    string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-        //    btnBekrachtigd.Image = Image.FromFile(imagePath);
-        //    Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
-        //    aanvraag.StatusAanvraagId = 4;
-        //    AanvraagManager.SaveAanvraag(aanvraag, false);
-        //    string imageaf = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
-        //    string imagegoed = Path.Combine(projectDirectory, "icons", "goedgekeurd_uit.png");
-        //    string imageBekracht = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uit.png");
-        //    string imagenietaan = Path.Combine(projectDirectory, "icons", "Aanvraag_uit.png");
-
-
-        //    btnAfgekeurd.Image = Image.FromFile(imageaf);
-        //    BtnGoedgekeurd.Image = Image.FromFile(imagegoed);
-        //    btnNietBekrachtigd.Image = Image.FromFile(imageBekracht);
-        //    btnInaanvraag.Image = Image.FromFile(imagenietaan);
-
-        //    btnAfgekeurd.Enabled = false;
-        //    BtnGoedgekeurd.Enabled = false;
-        //    btnNietBekrachtigd.Enabled = false;
-        //    btnInaanvraag.Enabled = false;
-
-        //}
-
-        //private void btnNietBekrachtigd_Click(object sender, EventArgs e)
-        //{
-        //    string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-        //    btnNietBekrachtigd.Image = Image.FromFile(imagePath);
-        //    Aanvraag aanvraag = AanvraagManager.GetAanvraagById(Id);
-        //    aanvraag.StatusAanvraagId = 5;
-        //    AanvraagManager.SaveAanvraag(aanvraag, false);
-        //    string imageaf = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
-        //    string imagegoed = Path.Combine(projectDirectory, "icons", "goedgekeurd_uit.png");
-        //    string imageBekracht = Path.Combine(projectDirectory, "icons", "bekrachtigd_uit.png");
-        //    string imagenietaan = Path.Combine(projectDirectory, "icons", "Aanvraag_uit.png");
-
-
-        //    btnAfgekeurd.Image = Image.FromFile(imageaf);
-        //    BtnGoedgekeurd.Image = Image.FromFile(imagegoed);
-        //    btnBekrachtigd.Image = Image.FromFile(imageBekracht);
-        //    btnInaanvraag.Image = Image.FromFile(imagenietaan);
-        //    btnInaanvraag.Enabled = false;
-
-
-        //}
-
-        //private void GoedkeurItem_Load(object sender, EventArgs e)
-        //{
-        //    Aanvraag goedkeuring = AanvraagManager.GetAanvraagById(Id);
-
-        //    switch (Id)
-        //    {
-        //        case 2:
-        //            string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-        //            BtnGoedgekeurd.Image = Image.FromFile(imagePath);
-
-        //            break;
-        //        case 3:
-        //            string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-        //            btnAfgekeurd.Image = Image.FromFile(imagePath2);
-
-        //            break;
-        //        case 4:
-        //            string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-        //            btnBekrachtigd.Image = Image.FromFile(imagePath3);
-
-        //            break;
-        //        case 5:
-        //            string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-        //            btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
-        //            break;
-        //    }
-        //    return;
-        //}
+        }
 
         public frmGoedkeuringFormulier(int id, string action)
         {
             aanvraagId = id;
             Aanvraag aanvraag = new Aanvraag();
+        }
+
+        bool inaanvraag = false;
+
+        private void pcbInAanvraag_Click(object sender, EventArgs e)
+        {
+            if (inaanvraag == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "aanvraag.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = true;
+
+
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "AanvraagUit.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = false;
+            }
+
+            pcbGoedgekeurd.Enabled = true;
+            pcbNietBekrachtigd.Enabled = true;
+            pcbAfgekeurd.Enabled = true;
+            pcbBekrachtigd.Enabled = true;
+
+        }
+
+        bool goedkeur = false;
+
+        private void pcbGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            if (goedkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = true;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        bool afkeur = false;
+
+        private void pcbAfgekeurd_Click(object sender, EventArgs e)
+        {
+            if (afkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = false;
+            }
+        }
+
+        bool bekrachtig = false;
+
+        private void pcbBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (bekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = false;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        bool nietbekrachtig = false;
+
+        private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (nietbekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = false;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uit.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
         }
     }
 }
