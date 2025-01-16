@@ -34,17 +34,14 @@
             this.lblAanvraagmoment = new System.Windows.Forms.Label();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.lblBedrag = new System.Windows.Forms.Label();
-            this.BtnGoedgekeurd = new System.Windows.Forms.Button();
-            this.btnAfgekeurd = new System.Windows.Forms.Button();
-            this.btnBekrachtigd = new System.Windows.Forms.Button();
-            this.btnNietBekrachtigd = new System.Windows.Forms.Button();
-            this.btnInaanvraag = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnStatusEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
             // 
             this.LblAanvrager.AutoSize = true;
-            this.LblAanvrager.Location = new System.Drawing.Point(402, 2);
+            this.LblAanvrager.Location = new System.Drawing.Point(124, 1);
             this.LblAanvrager.Name = "LblAanvrager";
             this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
             this.LblAanvrager.TabIndex = 11;
@@ -53,7 +50,7 @@
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(529, 2);
+            this.lblTitel.Location = new System.Drawing.Point(228, 1);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(72, 28);
             this.lblTitel.TabIndex = 12;
@@ -62,7 +59,7 @@
             // lblAanvraagmoment
             // 
             this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(656, 2);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(409, 1);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
             this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
             this.lblAanvraagmoment.TabIndex = 13;
@@ -71,7 +68,7 @@
             // lblFinancieringsjaar
             // 
             this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(798, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(636, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
             this.lblFinancieringsjaar.TabIndex = 14;
@@ -80,101 +77,49 @@
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(928, 2);
+            this.lblBedrag.Location = new System.Drawing.Point(784, 2);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(72, 28);
             this.lblBedrag.TabIndex = 15;
             this.lblBedrag.Text = "aaaaaa";
             // 
-            // BtnGoedgekeurd
+            // btnEdit
             // 
-            this.BtnGoedgekeurd.BackColor = System.Drawing.Color.Transparent;
-            this.BtnGoedgekeurd.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnGoedgekeurd.FlatAppearance.BorderSize = 0;
-            this.BtnGoedgekeurd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.BtnGoedgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.BtnGoedgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("BtnGoedgekeurd.Image")));
-            this.BtnGoedgekeurd.Location = new System.Drawing.Point(14, 3);
-            this.BtnGoedgekeurd.Name = "BtnGoedgekeurd";
-            this.BtnGoedgekeurd.Size = new System.Drawing.Size(27, 27);
-            this.BtnGoedgekeurd.TabIndex = 16;
-            this.BtnGoedgekeurd.UseVisualStyleBackColor = false;
-            this.BtnGoedgekeurd.Click += new System.EventHandler(this.BtnGoedgekeurd_Click);
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(15, 2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnEdit.TabIndex = 20;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnAfgekeurd
+            // btnStatusEdit
             // 
-            this.btnAfgekeurd.BackColor = System.Drawing.Color.Transparent;
-            this.btnAfgekeurd.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnAfgekeurd.FlatAppearance.BorderSize = 0;
-            this.btnAfgekeurd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnAfgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnAfgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("btnAfgekeurd.Image")));
-            this.btnAfgekeurd.Location = new System.Drawing.Point(47, 3);
-            this.btnAfgekeurd.Name = "btnAfgekeurd";
-            this.btnAfgekeurd.Size = new System.Drawing.Size(27, 27);
-            this.btnAfgekeurd.TabIndex = 17;
-            this.btnAfgekeurd.UseVisualStyleBackColor = false;
-            this.btnAfgekeurd.Click += new System.EventHandler(this.btnAfgekeurd_Click);
-            // 
-            // btnBekrachtigd
-            // 
-            this.btnBekrachtigd.BackColor = System.Drawing.Color.Transparent;
-            this.btnBekrachtigd.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnBekrachtigd.FlatAppearance.BorderSize = 0;
-            this.btnBekrachtigd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("btnBekrachtigd.Image")));
-            this.btnBekrachtigd.Location = new System.Drawing.Point(80, 3);
-            this.btnBekrachtigd.Name = "btnBekrachtigd";
-            this.btnBekrachtigd.Size = new System.Drawing.Size(27, 27);
-            this.btnBekrachtigd.TabIndex = 18;
-            this.btnBekrachtigd.UseVisualStyleBackColor = false;
-            this.btnBekrachtigd.Click += new System.EventHandler(this.btnBekrachtigd_Click);
-            // 
-            // btnNietBekrachtigd
-            // 
-            this.btnNietBekrachtigd.BackColor = System.Drawing.Color.Transparent;
-            this.btnNietBekrachtigd.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnNietBekrachtigd.FlatAppearance.BorderSize = 0;
-            this.btnNietBekrachtigd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnNietBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnNietBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("btnNietBekrachtigd.Image")));
-            this.btnNietBekrachtigd.Location = new System.Drawing.Point(113, 3);
-            this.btnNietBekrachtigd.Name = "btnNietBekrachtigd";
-            this.btnNietBekrachtigd.Size = new System.Drawing.Size(27, 27);
-            this.btnNietBekrachtigd.TabIndex = 19;
-            this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
-            this.btnNietBekrachtigd.Click += new System.EventHandler(this.btnNietBekrachtigd_Click);
-            // 
-            // btnInaanvraag
-            // 
-            this.btnInaanvraag.BackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnInaanvraag.FlatAppearance.BorderSize = 0;
-            this.btnInaanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnInaanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInaanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnInaanvraag.Image")));
-            this.btnInaanvraag.Location = new System.Drawing.Point(146, 3);
-            this.btnInaanvraag.Name = "btnInaanvraag";
-            this.btnInaanvraag.Size = new System.Drawing.Size(27, 27);
-            this.btnInaanvraag.TabIndex = 20;
-            this.btnInaanvraag.UseVisualStyleBackColor = false;
-            this.btnInaanvraag.Click += new System.EventHandler(this.btnInaanvraag_Click);
+            this.btnStatusEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnStatusEdit.FlatAppearance.BorderSize = 0;
+            this.btnStatusEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnStatusEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatusEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnStatusEdit.Image")));
+            this.btnStatusEdit.Location = new System.Drawing.Point(48, 3);
+            this.btnStatusEdit.Name = "btnStatusEdit";
+            this.btnStatusEdit.Size = new System.Drawing.Size(27, 27);
+            this.btnStatusEdit.TabIndex = 21;
+            this.btnStatusEdit.UseVisualStyleBackColor = false;
             // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnInaanvraag);
-            this.Controls.Add(this.btnNietBekrachtigd);
-            this.Controls.Add(this.btnBekrachtigd);
-            this.Controls.Add(this.btnAfgekeurd);
-            this.Controls.Add(this.BtnGoedgekeurd);
+            this.Controls.Add(this.btnStatusEdit);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblBedrag);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.lblAanvraagmoment);
@@ -183,8 +128,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GoedkeurItem";
-            this.Size = new System.Drawing.Size(1034, 33);
-            this.Load += new System.EventHandler(this.GoedkeurItem_Load);
+            this.Size = new System.Drawing.Size(881, 33);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,10 +140,7 @@
         private System.Windows.Forms.Label lblAanvraagmoment;
         private System.Windows.Forms.Label lblFinancieringsjaar;
         private System.Windows.Forms.Label lblBedrag;
-        private System.Windows.Forms.Button BtnGoedgekeurd;
-        private System.Windows.Forms.Button btnAfgekeurd;
-        private System.Windows.Forms.Button btnBekrachtigd;
-        private System.Windows.Forms.Button btnNietBekrachtigd;
-        private System.Windows.Forms.Button btnInaanvraag;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnStatusEdit;
     }
 }

@@ -96,7 +96,7 @@ namespace MiaClient.UserControls
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        public void btnEdit_Click(object sender, EventArgs e)
         {
             if (frmAanvraagFormulier == null)
             {
