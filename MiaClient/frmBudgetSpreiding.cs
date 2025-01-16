@@ -72,7 +72,8 @@ namespace MiaClient
             //Making sure the data is in the right year
             if (cmbFinancieringsjaar.SelectedItem == null)
             {
-                MessageBox.Show("Vul een Financieringsjaar in aub");
+                MessageBox.Show("Selecteer eerst een financieringsjaar", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             foreach (Aanvraag a in aanvragen) {
                 try { 
@@ -81,10 +82,11 @@ namespace MiaClient
                         inJaar.Add(a);
                     }
 
-                } 
-                catch {
-                    MessageBox.Show("Selecteer een financieringsjaar aub");
-                }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
             }
             //setting up the numbers
             int add = 2;
@@ -127,10 +129,10 @@ namespace MiaClient
                     Color(add, m, worksheet);
                 }
                 rs++;
-                Color((m+ rs), m, worksheet);
+                Color((m + rs), m, worksheet);
                 //puts total of month on it's spot, makes it bold
-                worksheet.get_Range("C"+r, "C"+r).Value = tot;
-                worksheet.get_Range("C"+r, "C"+r).Font.Bold = true;
+                worksheet.get_Range("C" + r, "C" + r).Value = tot;
+                worksheet.get_Range("C" + r, "C" + r).Font.Bold = true;
             }
             //===============just layout=================
             //title
