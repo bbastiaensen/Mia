@@ -187,6 +187,13 @@ namespace MiaClient
             }
         }
 
+        private void frmGoedkeuringFormulier_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
+
         private void frmGoedkeuringFormulier_Load(object sender, EventArgs e)
         {
 

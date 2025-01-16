@@ -224,6 +224,7 @@
             this.Controls.Add(this.btnOpslaan);
             this.Name = "frmGoedkeuringFormulier";
             this.Text = "frmGoedkeuringFormulier";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGoedkeuringFormulier_FormClosing);
             this.Load += new System.EventHandler(this.frmGoedkeuringFormulier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbInAanvraag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGoedgekeurd)).EndInit();
