@@ -38,6 +38,13 @@ namespace MiaClient
             ((Form)sender).Hide();
         }
 
+        private void frmBudgetSpreiding_Load(object sender, EventArgs e)
+        {
+            CreateUI();
+        }
+
+       
+
         private void CreateUI()
         {
             //Achtergrondkleur instellen op parameterwaarde
