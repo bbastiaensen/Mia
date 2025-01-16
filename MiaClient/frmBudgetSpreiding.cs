@@ -70,6 +70,11 @@ namespace MiaClient
             List<Aanvraag> aanvragen = AanvraagManager.GetAanvragen();
             List<Aanvraag> inJaar = new List<Aanvraag>();
             //Making sure the data is in the right year
+            if (cmbFinancieringsjaar.SelectedItem == null)
+            {
+                MessageBox.Show("Selecteer eerst een financieringsjaar", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             foreach (Aanvraag a in aanvragen) {
                 try { 
                     if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
