@@ -122,6 +122,7 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -1104,6 +1105,16 @@ namespace MiaClient
             this.pnlOffertes.Name = "pnlOffertes";
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(405, 136);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(8, 8);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+
             // 
             // frmAanvraagFormulier
             // 

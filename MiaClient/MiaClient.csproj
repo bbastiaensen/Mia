@@ -52,6 +52,10 @@
     <ApplicationIcon>pl-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -102,6 +106,12 @@
     </Compile>
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGoedkeuringFormulier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoedkeuringFormulier.Designer.cs">
+      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
     </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
@@ -193,6 +203,9 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBudgetspreiding.resx">
+      <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGebruikerBeheer.resx">
       <DependentUpon>frmGebruikerBeheer.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoedkeuringFormulier.resx">
+      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
@@ -223,6 +239,7 @@
     </Compile>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AanvraagItem.resx">
       <DependentUpon>AanvraagItem.cs</DependentUpon>
@@ -248,6 +265,7 @@
     <EmbeddedResource Include="UserControls\ParameterItem.resx">
       <DependentUpon>ParameterItem.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -306,6 +324,7 @@
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
     <Content Include="Icons\nieuweAanvraag.png" />
+    <Content Include="Icons\Status-Edit.png" />
     <Content Include="pl-icon.ico" />
     <None Include="Resources\Filter1.png" />
     <None Include="Resources\nieuweAanvraag.png" />
