@@ -19,38 +19,40 @@ namespace MiaClient
     {
         public event EventHandler AanvraagBewaard;
 
+        public frmGoedkeuring frmGoedkeuring;
         private int aanvraagId = 0;
+
+        bool inaanvraag = false;
+        bool goedkeur = false;
+        bool afkeur = false;
+        bool bekrachtig = false;
+        bool nietbekrachtig = false;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
 
 
         public frmGoedkeuringFormulier()
         {
-
             Initialize();
-
         }
 
         private void Initialize()
         {
             InitializeComponent();
-            //vulFormulier();
-            //SetFormStatus(false);
-            //GetParam();
-        }
-
-        private void GoedkeurItem_Load(object sender, EventArgs e)
-        {
-
         }
 
         public frmGoedkeuringFormulier(int id, string action)
         {
             aanvraagId = id;
-            Aanvraag aanvraag = new Aanvraag();
-        }
 
-        bool inaanvraag = false;
+            var aanvraag = AanvraagManager.GetAanvraagById(aanvraagId);
+
+            txtGebruiker.Text = aanvraag.Gebruiker.ToString();
+            txtTitel.Text = aanvraag.Titel.ToString();
+            txtAanvraagMoment.Text = aanvraag.Aanvraagmoment.ToString();
+            txtFinancieringsJaar.Text = aanvraag.Financieringsjaar.ToString();
+            txtBedrag.Text = (aanvraag.PrijsIndicatieStuk * aanvraag.AantalStuk).ToString();
+        }
 
         private void pcbInAanvraag_Click(object sender, EventArgs e)
         {
@@ -77,8 +79,6 @@ namespace MiaClient
             pcbBekrachtigd.Enabled = true;
 
         }
-
-        bool goedkeur = false;
 
         private void pcbGoedgekeurd_Click(object sender, EventArgs e)
         {
@@ -108,8 +108,6 @@ namespace MiaClient
             }
         }
 
-        bool afkeur = false;
-
         private void pcbAfgekeurd_Click(object sender, EventArgs e)
         {
             if (afkeur == false)
@@ -132,8 +130,6 @@ namespace MiaClient
                 afkeur = false;
             }
         }
-
-        bool bekrachtig = false;
 
         private void pcbBekrachtigd_Click(object sender, EventArgs e)
         {
@@ -163,8 +159,6 @@ namespace MiaClient
             }
         }
 
-        bool nietbekrachtig = false;
-
         private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
         {
             if (nietbekrachtig == false)
@@ -191,6 +185,11 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
+        }
+
+        private void frmGoedkeuringFormulier_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

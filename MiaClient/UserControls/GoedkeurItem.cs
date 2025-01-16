@@ -32,11 +32,11 @@ namespace MiaClient.UserControls
         public Boolean Even { get; set; }
 
 
-
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
         frmGoedkeuringFormulier frmGoedkeuringFormulier;
+
 
         static public bool edit = false;
 
@@ -87,14 +87,14 @@ namespace MiaClient.UserControls
                 frmGoedkeuringFormulier = new frmGoedkeuringFormulier(Id, "edit");
             }
 
-                    edit = true;
-                    frmGoedkeuringFormulier.MdiParent = this.ParentForm.MdiParent;
-                    //frmAanvraagFormulier.UpdateAanvraag();
-                    frmGoedkeuringFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
-                    frmGoedkeuringFormulier.Show();
+            edit = true;
+            frmGoedkeuringFormulier.MdiParent = this.ParentForm.MdiParent;
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmGoedkeuringFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            frmGoedkeuringFormulier.Show();
 
         }
-        
+
 
         private void GoedkeurFormulieredit_AanvraagBewaard(object sender, EventArgs e)
         {
