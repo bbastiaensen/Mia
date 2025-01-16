@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Manager\AanvraagManager.cs" />
     <Compile Include="Manager\AfdelingenManager.cs" />
+    <Compile Include="Manager\BudgetManager.cs" />
     <Compile Include="Manager\DienstenManager.cs" />
     <Compile Include="Manager\FinancieringenManager.cs" />
     <Compile Include="Manager\FinancieringsjaarManager.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Manager\StatusAanvraagManager.cs" />
     <Compile Include="Object\Aanvraag.cs" />
     <Compile Include="Object\Afdeling.cs" />
+    <Compile Include="Object\Budget.cs" />
     <Compile Include="Object\Dienst.cs" />
     <Compile Include="Object\Financiering.cs" />
     <Compile Include="Object\Foto.cs" />

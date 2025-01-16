@@ -74,6 +74,7 @@ namespace MiaClient
             this.lblTitel = new System.Windows.Forms.Label();
             this.tabPage_Identificatie = new System.Windows.Forms.TabPage();
             this.gboxIdentificatie = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ddlDienst = new System.Windows.Forms.ComboBox();
             this.ddlAfdeling = new System.Windows.Forms.ComboBox();
             this.txtAanvraagmoment = new System.Windows.Forms.TextBox();
@@ -121,8 +122,6 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.goedkeurItem1 = new MiaClient.UserControls.GoedkeurItem();
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -608,6 +607,15 @@ namespace MiaClient
             this.gboxIdentificatie.TabIndex = 13;
             this.gboxIdentificatie.TabStop = false;
             this.gboxIdentificatie.Text = "Identificatie";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(405, 136);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(8, 8);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // ddlDienst
             // 
@@ -1097,36 +1105,6 @@ namespace MiaClient
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(405, 136);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(8, 8);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // goedkeurItem1
-            // 
-            this.goedkeurItem1.Aanvraagmoment = new System.DateTime(((long)(0)));
-            this.goedkeurItem1.AanvraagStatusId = 0;
-            this.goedkeurItem1.Aanvrager = null;
-            this.goedkeurItem1.Bedrag = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.goedkeurItem1.Even = false;
-            this.goedkeurItem1.Financieringsjaar = null;
-            this.goedkeurItem1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.goedkeurItem1.Id = 0;
-            this.goedkeurItem1.Location = new System.Drawing.Point(597, 61);
-            this.goedkeurItem1.Margin = new System.Windows.Forms.Padding(0);
-            this.goedkeurItem1.Name = "goedkeurItem1";
-            this.goedkeurItem1.Size = new System.Drawing.Size(1034, 33);
-            this.goedkeurItem1.TabIndex = 17;
-            this.goedkeurItem1.Titel = null;
-            // 
             // frmAanvraagFormulier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
@@ -1134,7 +1112,6 @@ namespace MiaClient
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1273, 686);
-            this.Controls.Add(this.goedkeurItem1);
             this.Controls.Add(this.btn_Nieuw);
             this.Controls.Add(this.btn_Indienen);
             this.Controls.Add(this.tabControl_Aanvraagformulier);
@@ -1271,6 +1248,5 @@ namespace MiaClient
         private System.Windows.Forms.ComboBox ddlRichtperiode;
         private System.Windows.Forms.ComboBox ddlStatus;
         private System.Windows.Forms.GroupBox groupBox1;
-        private UserControls.GoedkeurItem goedkeurItem1;
     }
 }
