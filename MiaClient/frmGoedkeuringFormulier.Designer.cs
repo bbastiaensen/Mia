@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoedkeuringFormulier));
             this.btnOpslaan = new System.Windows.Forms.Button();
             this.txtGebruiker = new System.Windows.Forms.TextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
@@ -147,43 +148,58 @@
             // 
             // pcbInAanvraag
             // 
+            this.pcbInAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("pcbInAanvraag.Image")));
+            this.pcbInAanvraag.InitialImage = null;
             this.pcbInAanvraag.Location = new System.Drawing.Point(204, 143);
             this.pcbInAanvraag.Name = "pcbInAanvraag";
             this.pcbInAanvraag.Size = new System.Drawing.Size(50, 50);
             this.pcbInAanvraag.TabIndex = 11;
             this.pcbInAanvraag.TabStop = false;
+            this.pcbInAanvraag.Click += new System.EventHandler(this.pcbInAanvraag_Click);
             // 
             // pcbGoedgekeurd
             // 
+            this.pcbGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbGoedgekeurd.Image")));
+            this.pcbGoedgekeurd.InitialImage = null;
             this.pcbGoedgekeurd.Location = new System.Drawing.Point(412, 143);
             this.pcbGoedgekeurd.Name = "pcbGoedgekeurd";
             this.pcbGoedgekeurd.Size = new System.Drawing.Size(50, 50);
             this.pcbGoedgekeurd.TabIndex = 12;
             this.pcbGoedgekeurd.TabStop = false;
+            this.pcbGoedgekeurd.Click += new System.EventHandler(this.pcbGoedgekeurd_Click);
             // 
             // pcbAfgekeurd
             // 
+            this.pcbAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbAfgekeurd.Image")));
+            this.pcbAfgekeurd.InitialImage = null;
             this.pcbAfgekeurd.Location = new System.Drawing.Point(602, 143);
             this.pcbAfgekeurd.Name = "pcbAfgekeurd";
             this.pcbAfgekeurd.Size = new System.Drawing.Size(50, 50);
             this.pcbAfgekeurd.TabIndex = 13;
             this.pcbAfgekeurd.TabStop = false;
+            this.pcbAfgekeurd.Click += new System.EventHandler(this.pcbAfgekeurd_Click);
             // 
             // pcbBekrachtigd
             // 
+            this.pcbBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbBekrachtigd.Image")));
+            this.pcbBekrachtigd.InitialImage = null;
             this.pcbBekrachtigd.Location = new System.Drawing.Point(782, 143);
             this.pcbBekrachtigd.Name = "pcbBekrachtigd";
             this.pcbBekrachtigd.Size = new System.Drawing.Size(50, 50);
             this.pcbBekrachtigd.TabIndex = 14;
             this.pcbBekrachtigd.TabStop = false;
+            this.pcbBekrachtigd.Click += new System.EventHandler(this.pcbBekrachtigd_Click);
             // 
             // pcbNietBekrachtigd
             // 
+            this.pcbNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbNietBekrachtigd.Image")));
+            this.pcbNietBekrachtigd.InitialImage = null;
             this.pcbNietBekrachtigd.Location = new System.Drawing.Point(961, 143);
             this.pcbNietBekrachtigd.Name = "pcbNietBekrachtigd";
             this.pcbNietBekrachtigd.Size = new System.Drawing.Size(50, 50);
             this.pcbNietBekrachtigd.TabIndex = 15;
             this.pcbNietBekrachtigd.TabStop = false;
+            this.pcbNietBekrachtigd.Click += new System.EventHandler(this.pcbNietBekrachtigd_Click);
             // 
             // frmGoedkeuringFormulier
             // 
@@ -208,6 +224,7 @@
             this.Controls.Add(this.btnOpslaan);
             this.Name = "frmGoedkeuringFormulier";
             this.Text = "frmGoedkeuringFormulier";
+            this.Load += new System.EventHandler(this.frmGoedkeuringFormulier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbInAanvraag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGoedgekeurd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbAfgekeurd)).EndInit();
