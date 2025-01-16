@@ -95,14 +95,7 @@ namespace MiaClient
                 worksheet.get_Range("A" + r, "A" + r).Value = RichtperiodeManager.GetRichtperiodeById(m).Naam;
                 decimal tot = 0;
                 //background color for months in Excel file
-                if (m % 2 == 0)
-                {
-                    worksheet.get_Range("A" + r, "C" + r).Interior.Color = Excel.XlRgbColor.rgbGray;
-                }
-                else
-                {
-                    worksheet.get_Range("A" + r, "C" + r).Interior.Color = Excel.XlRgbColor.rgbWhite;
-                }
+                Color(ri, m, worksheet);
                 //Making sure the data in the right month
                 List<Aanvraag> InPer = new List<Aanvraag>();
                 foreach (Aanvraag a in inJaar)
@@ -116,7 +109,7 @@ namespace MiaClient
                 for (int j = 0; j < InPer.Count; j++)
                 {
                     //add = position of data, rs=offset by the data
-                    add = ri + j +1;
+                    add = ri + j + 1;
                     rs = j + 3;
                     //calculates the price
                     decimal prijs = InPer[j].AantalStuk + InPer[j].PrijsIndicatieStuk;
@@ -126,16 +119,10 @@ namespace MiaClient
                     //total for the month
                     tot += prijs;
                     //background color for data in Excel file
-                    if (m % 2 == 0)
-                    {
-                        worksheet.get_Range("A" + add, "C" + add).Interior.Color = Excel.XlRgbColor.rgbGrey;
-                    }
-                    else
-                    {
-                        worksheet.get_Range("A" + add, "C" + add).Interior.Color = Excel.XlRgbColor.rgbWhite;
-                    }
+                    Color(add, m, worksheet);
                 }
-
+                rs++;
+                Color((m+ rs), m, worksheet);
                 //puts total of month on it's spot, makes it bold
                 worksheet.get_Range("C"+r, "C"+r).Value = tot;
                 worksheet.get_Range("C"+r, "C"+r).Font.Bold = true;
@@ -176,7 +163,17 @@ namespace MiaClient
 
             }
         }
-
+        public void Color(int pos, int month, Excel.Worksheet ws)
+        {
+            if (month % 2 == 0)
+            {
+                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbGrey;
+            }
+            else
+            {
+                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbWhite;
+            }
+        }
     }
 }
 
