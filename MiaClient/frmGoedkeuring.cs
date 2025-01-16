@@ -19,7 +19,6 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
-        frmGoedkeuringFormulier frmGoedkeuringFormulier;
         List<Aanvraag> aanvragen;
 
         bool filterAanvraagmomentVan = false;
@@ -191,32 +190,17 @@ namespace MiaClient
                         items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
                     }      
                 }
-                if (planningsdatumVan)
-                {
-                    if (chbxPlaningsdatumVan.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
-                    }
-                }
-                if (planningsdatumTot)
-                {
-                    if (chbxPlaningsdatumTot.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
-                    }
-                }
+
                 if (gebruiker)
                 {
                     items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
                 }
+
                 if (titel)
                 {
                     items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (statusAanvraag)
-                {
-                    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
-                }
+
                 if (financieringsjaar)
                 {
                     if (txtFinancieringsjaar.Text != string.Empty)
@@ -244,10 +228,6 @@ namespace MiaClient
                         }
                     }
                 }
-                if (kostenPlaats)
-                {
-                    items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
-                }
             }
            return items;
         }
@@ -259,10 +239,7 @@ namespace MiaClient
                 {
                     filterFinancieringsjaar = true;
                 }
-                if (txtStatusAanvraag.Text != string.Empty)
-                {
-                    filterStatusAanvraag = true;
-                }
+
                 if (cbBedragVan.Checked != false)
                 {
                     filterBedragVan = true;
@@ -275,18 +252,12 @@ namespace MiaClient
                 {
                     filterTitel = true;
                 }
-                if (txtKostenPlaats.Text != string.Empty)
-                {
-                    filterKostenPlaats = true;
-                }
+
                 if (txtGebruiker.Text != string.Empty)
                 {
                     filterGebruiker = true;
                 }
-                if (chbxPlaningsdatumTot.Checked != false)
-                {
-                    filterPlanningsdatumTot = true;
-                }
+
                 if (chbxAanvraagmomentVan.Checked != false)
                 {
                     filterAanvraagmomentVan = true;
@@ -294,10 +265,6 @@ namespace MiaClient
                 if (chbxAanvraagmomentTot.Checked != false)
                 {
                     filterAanvraagmomentTot = true;
-                }
-                if (chbxPlaningsdatumVan.Checked != false)
-                {
-                    filterPlanningsdatumVan = true;
                 }
 
                 aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);

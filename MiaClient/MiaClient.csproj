@@ -107,12 +107,6 @@
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGoedkeuringFormulier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGoedkeuringFormulier.Designer.cs">
-      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,9 +208,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGoedkeuringFormulier.resx">
-      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
