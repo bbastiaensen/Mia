@@ -1,4 +1,5 @@
 ﻿using MiaLogic.Manager;
+using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace MiaClient
 {
     public partial class frmBudgetspreiding : Form
     {
+
+        int i = 0;
+        List<Richtperiode> richtperiodes = null;
+
         public frmBudgetspreiding()
         {
             InitializeComponent();
@@ -23,6 +28,24 @@ namespace MiaClient
         {
             CreateUI();
 
+            int xPos = 10;
+            int yPos = 0;
+
+            richtperiodes = RichtperiodeManager.GetRichtperiodes();
+
+            for (i = 0; i < richtperiodes.Count; i++)
+            {
+                yPos += 25;
+                Richtperiode richtperiode = richtperiodes[i];
+                var Maanden = richtperiode.Naam.ToString();
+                System.Windows.Forms.LinkLabel llbl = new LinkLabel();
+                llbl.Location = new Point(xPos, yPos);
+                llbl.Name = "llbl";
+                llbl.Text = Maanden;
+                llbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                llbl.LinkColor = Color.Black;
+                pnlRichtperiode.Controls.Add(llbl);
+            }
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
