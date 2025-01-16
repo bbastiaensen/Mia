@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoedkeuringFormulier));
             this.btnOpslaan = new System.Windows.Forms.Button();
             this.txtGebruiker = new System.Windows.Forms.TextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
@@ -147,6 +148,8 @@
             // 
             // pcbInAanvraag
             // 
+            this.pcbInAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("pcbInAanvraag.Image")));
+            this.pcbInAanvraag.InitialImage = null;
             this.pcbInAanvraag.Location = new System.Drawing.Point(204, 143);
             this.pcbInAanvraag.Name = "pcbInAanvraag";
             this.pcbInAanvraag.Size = new System.Drawing.Size(50, 50);
@@ -155,6 +158,8 @@
             // 
             // pcbGoedgekeurd
             // 
+            this.pcbGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbGoedgekeurd.Image")));
+            this.pcbGoedgekeurd.InitialImage = null;
             this.pcbGoedgekeurd.Location = new System.Drawing.Point(412, 143);
             this.pcbGoedgekeurd.Name = "pcbGoedgekeurd";
             this.pcbGoedgekeurd.Size = new System.Drawing.Size(50, 50);
@@ -163,6 +168,8 @@
             // 
             // pcbAfgekeurd
             // 
+            this.pcbAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbAfgekeurd.Image")));
+            this.pcbAfgekeurd.InitialImage = null;
             this.pcbAfgekeurd.Location = new System.Drawing.Point(602, 143);
             this.pcbAfgekeurd.Name = "pcbAfgekeurd";
             this.pcbAfgekeurd.Size = new System.Drawing.Size(50, 50);
@@ -171,6 +178,8 @@
             // 
             // pcbBekrachtigd
             // 
+            this.pcbBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbBekrachtigd.Image")));
+            this.pcbBekrachtigd.InitialImage = null;
             this.pcbBekrachtigd.Location = new System.Drawing.Point(782, 143);
             this.pcbBekrachtigd.Name = "pcbBekrachtigd";
             this.pcbBekrachtigd.Size = new System.Drawing.Size(50, 50);
@@ -179,6 +188,8 @@
             // 
             // pcbNietBekrachtigd
             // 
+            this.pcbNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbNietBekrachtigd.Image")));
+            this.pcbNietBekrachtigd.InitialImage = null;
             this.pcbNietBekrachtigd.Location = new System.Drawing.Point(961, 143);
             this.pcbNietBekrachtigd.Name = "pcbNietBekrachtigd";
             this.pcbNietBekrachtigd.Size = new System.Drawing.Size(50, 50);

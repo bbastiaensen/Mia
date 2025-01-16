@@ -79,34 +79,6 @@ namespace MiaClient.UserControls
 
             }
         }
-        //private void GoedkeurItem_Load(object sender, EventArgs e)
-        //{
-        //    Aanvraag goedkeuring = AanvraagManager.GetAanvraagById(Id);
-
-        //    switch (Id)
-        //    {
-        //        case 2:
-        //            string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-        //            BtnGoedgekeurd.Image = Image.FromFile(imagePath);
-
-        //            break;
-        //        case 3:
-        //            string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-        //            btnAfgekeurd.Image = Image.FromFile(imagePath2);
-
-        //            break;
-        //        case 4:
-        //            string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-        //            btnBekrachtigd.Image = Image.FromFile(imagePath3);
-
-        //            break;
-        //        case 5:
-        //            string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-        //            btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
-        //            break;
-        //    }
-        //    return;
-        //}
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
