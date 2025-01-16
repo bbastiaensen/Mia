@@ -42,6 +42,12 @@ namespace MiaClient
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
 
+        bool inaanvraag = false;
+        bool goedkeur = false;
+        bool afkeur = false;
+        bool bekrachtig = false;
+        bool nietbekrachtig = false;
+
         int aantalListItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
@@ -276,6 +282,136 @@ namespace MiaClient
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pcbInAanvraag_Click(object sender, EventArgs e)
+        {
+            if (inaanvraag == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Aanvraag_UitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = false;
+            }
+
+            pcbGoedgekeurd.Enabled = true;
+            pcbNietBekrachtigd.Enabled = true;
+            pcbAfgekeurd.Enabled = true;
+            pcbBekrachtigd.Enabled = true;
+        }
+
+        private void pcbGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            if (goedkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = true;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        private void pcbAfgekeurd_Click(object sender, EventArgs e)
+        {
+            if (afkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = false;
+            }
+        }
+
+        private void pcbBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (bekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = false;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigd_uitGroot.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (nietbekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = false;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_uit.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
             }
         }
         private void btnSortGebruiker_Click(object sender, EventArgs e)

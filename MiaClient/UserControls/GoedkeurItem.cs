@@ -106,7 +106,16 @@ namespace MiaClient.UserControls
 
         private void btnStatusEdit_Click(object sender, EventArgs e)
         {
+            if (frmAanvraagFormulier == null)
+            {
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+            }
 
+            edit = true;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            frmAanvraagFormulier.Show();
         }
     }
 

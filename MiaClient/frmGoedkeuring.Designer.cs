@@ -47,6 +47,11 @@
             this.GoedkeuringGebruiker = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
+            this.pcbNietBekrachtigd = new System.Windows.Forms.PictureBox();
+            this.pcbBekrachtigd = new System.Windows.Forms.PictureBox();
+            this.pcbAfgekeurd = new System.Windows.Forms.PictureBox();
+            this.pcbGoedgekeurd = new System.Windows.Forms.PictureBox();
+            this.pcbInAanvraag = new System.Windows.Forms.PictureBox();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
             this.txtBedragTot = new System.Windows.Forms.TextBox();
             this.cbBedragVan = new System.Windows.Forms.CheckBox();
@@ -63,17 +68,12 @@
             this.lblTitel = new System.Windows.Forms.Label();
             this.chbxAanvraagmomentVan = new System.Windows.Forms.CheckBox();
             this.lblGebruiker = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.grbxFilterAanvraag.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbNietBekrachtigd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBekrachtigd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbAfgekeurd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGoedgekeurd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbInAanvraag)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlGoedkeuringen
@@ -285,11 +285,11 @@
             // 
             // grbxFilterAanvraag
             // 
-            this.grbxFilterAanvraag.Controls.Add(this.pictureBox5);
-            this.grbxFilterAanvraag.Controls.Add(this.pictureBox4);
-            this.grbxFilterAanvraag.Controls.Add(this.pictureBox3);
-            this.grbxFilterAanvraag.Controls.Add(this.pictureBox2);
-            this.grbxFilterAanvraag.Controls.Add(this.pictureBox1);
+            this.grbxFilterAanvraag.Controls.Add(this.pcbNietBekrachtigd);
+            this.grbxFilterAanvraag.Controls.Add(this.pcbBekrachtigd);
+            this.grbxFilterAanvraag.Controls.Add(this.pcbAfgekeurd);
+            this.grbxFilterAanvraag.Controls.Add(this.pcbGoedgekeurd);
+            this.grbxFilterAanvraag.Controls.Add(this.pcbInAanvraag);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
@@ -312,6 +312,66 @@
             this.grbxFilterAanvraag.TabIndex = 65;
             this.grbxFilterAanvraag.TabStop = false;
             this.grbxFilterAanvraag.Text = "Filter";
+            // 
+            // pcbNietBekrachtigd
+            // 
+            this.pcbNietBekrachtigd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbNietBekrachtigd.Image")));
+            this.pcbNietBekrachtigd.Location = new System.Drawing.Point(1024, 129);
+            this.pcbNietBekrachtigd.Name = "pcbNietBekrachtigd";
+            this.pcbNietBekrachtigd.Size = new System.Drawing.Size(55, 55);
+            this.pcbNietBekrachtigd.TabIndex = 31;
+            this.pcbNietBekrachtigd.TabStop = false;
+            // 
+            // pcbBekrachtigd
+            // 
+            this.pcbBekrachtigd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbBekrachtigd.Image")));
+            this.pcbBekrachtigd.Location = new System.Drawing.Point(934, 129);
+            this.pcbBekrachtigd.Name = "pcbBekrachtigd";
+            this.pcbBekrachtigd.Size = new System.Drawing.Size(55, 55);
+            this.pcbBekrachtigd.TabIndex = 30;
+            this.pcbBekrachtigd.TabStop = false;
+            // 
+            // pcbAfgekeurd
+            // 
+            this.pcbAfgekeurd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbAfgekeurd.Image")));
+            this.pcbAfgekeurd.Location = new System.Drawing.Point(829, 129);
+            this.pcbAfgekeurd.Name = "pcbAfgekeurd";
+            this.pcbAfgekeurd.Size = new System.Drawing.Size(55, 55);
+            this.pcbAfgekeurd.TabIndex = 29;
+            this.pcbAfgekeurd.TabStop = false;
+            // 
+            // pcbGoedgekeurd
+            // 
+            this.pcbGoedgekeurd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbGoedgekeurd.Image")));
+            this.pcbGoedgekeurd.Location = new System.Drawing.Point(732, 129);
+            this.pcbGoedgekeurd.Name = "pcbGoedgekeurd";
+            this.pcbGoedgekeurd.Size = new System.Drawing.Size(55, 55);
+            this.pcbGoedgekeurd.TabIndex = 28;
+            this.pcbGoedgekeurd.TabStop = false;
+            // 
+            // pcbInAanvraag
+            // 
+            this.pcbInAanvraag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pcbInAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("pcbInAanvraag.Image")));
+            this.pcbInAanvraag.Location = new System.Drawing.Point(631, 129);
+            this.pcbInAanvraag.Name = "pcbInAanvraag";
+            this.pcbInAanvraag.Size = new System.Drawing.Size(55, 55);
+            this.pcbInAanvraag.TabIndex = 27;
+            this.pcbInAanvraag.TabStop = false;
             // 
             // cbBedragTot
             // 
@@ -457,66 +517,6 @@
             this.lblGebruiker.TabIndex = 1;
             this.lblGebruiker.Text = "Gebruiker";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(631, 129);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(732, 129);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox2.TabIndex = 28;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(829, 129);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox3.TabIndex = 29;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(934, 129);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox4.TabIndex = 30;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(1024, 129);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox5.TabIndex = 31;
-            this.pictureBox5.TabStop = false;
-            // 
             // frmGoedkeuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -552,11 +552,11 @@
             this.Shown += new System.EventHandler(this.FrmGoedkeuring_Shown);
             this.grbxFilterAanvraag.ResumeLayout(false);
             this.grbxFilterAanvraag.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbNietBekrachtigd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbBekrachtigd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbAfgekeurd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbGoedgekeurd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbInAanvraag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,10 +598,10 @@
         private System.Windows.Forms.DateTimePicker dtpAanvraagmomentTot;
         private System.Windows.Forms.DateTimePicker dtpAanvraagmomentVan;
         private System.Windows.Forms.Label lblAanvraagmoment;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pcbAfgekeurd;
+        private System.Windows.Forms.PictureBox pcbGoedgekeurd;
+        private System.Windows.Forms.PictureBox pcbInAanvraag;
+        private System.Windows.Forms.PictureBox pcbNietBekrachtigd;
+        private System.Windows.Forms.PictureBox pcbBekrachtigd;
     }
 }
