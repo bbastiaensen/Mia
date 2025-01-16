@@ -554,7 +554,6 @@ namespace MiaClient
             }
             EnableFirstPrevious(false);
         }
-
         private bool IsGeldigFinancieringsjaar(char c)
         {
             bool isValid = true;
@@ -570,7 +569,6 @@ namespace MiaClient
 
             return isValid;
         }
-
         private void txtBedragVan_TextChanged(object sender, EventArgs e)
         {
             //try
@@ -604,7 +602,6 @@ namespace MiaClient
             //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
         }
-
         private void FrmAanvragen_Shown(object sender, EventArgs e)
         {
             try
@@ -620,7 +617,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void EnableFirstPrevious(bool enable)
         {
             if (enable)
@@ -636,7 +632,6 @@ namespace MiaClient
             btnFirst.Enabled = enable;
             btnPrevious.Enabled = enable;
         }
-
         private void EnableLastNext(bool enable)
         {
             if (enable)
@@ -652,13 +647,11 @@ namespace MiaClient
             btnLast.Enabled = enable;
             btnNext.Enabled = enable;
         }
-
         private void btnLast_MouseHover(object sender, EventArgs e)
         {
             btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
             btnLast.BackgroundImage = imgLastHover;
         }
-
         private void btnLast_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == aantalPages)
@@ -670,12 +663,10 @@ namespace MiaClient
                 btnLast.BackgroundImage = imgLast;
             }
         }
-
         private void btnNext_MouseHover(object sender, EventArgs e)
         {
             btnNext.BackgroundImage = imgNextHover;
         }
-
         private void btnNext_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == aantalPages)
@@ -687,12 +678,10 @@ namespace MiaClient
                 btnNext.BackgroundImage = imgNext;
             }
         }
-
         private void btnPrevious_MouseHover(object sender, EventArgs e)
         {
             btnPrevious.BackgroundImage = imgPreviousHover;
         }
-
         private void btnPrevious_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == 1)
@@ -704,12 +693,10 @@ namespace MiaClient
                 btnPrevious.BackgroundImage = imgPrevious;
             }
         }
-
         private void btnFirst_MouseHover(object sender, EventArgs e)
         {
             btnFirst.BackgroundImage = imgFirstHover;
         }
-
         private void btnFirst_MouseLeave(object sender, EventArgs e)
         {
             if (huidigePage == 1)
@@ -721,7 +708,6 @@ namespace MiaClient
                 btnFirst.BackgroundImage = imgFirst;
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             huidigePage++;
@@ -737,7 +723,6 @@ namespace MiaClient
             }
             EnableFirstPrevious(true);
         }
-
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             huidigePage--;
@@ -752,7 +737,6 @@ namespace MiaClient
             }
             EnableLastNext(true);
         }
-
         private void btnFirst_Click(object sender, EventArgs e)
         {
             huidigePage = 1;
@@ -764,7 +748,6 @@ namespace MiaClient
                 EnableLastNext(true);
             }
         }
-
         private void btnLast_Click(object sender, EventArgs e)
         {
             huidigePage = aantalPages;
@@ -776,7 +759,6 @@ namespace MiaClient
                 EnableFirstPrevious(true);
             }
         }
-
         private void StartPaging()
         {
             if (aanvragen.Count > aantalListItems)
@@ -809,12 +791,10 @@ namespace MiaClient
                 EnableLastNext(false);
             }
         }
-
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
-
         private void txtBedragTot_KeyPress(object sender, KeyPressEventArgs e)
         {
             
@@ -831,8 +811,7 @@ namespace MiaClient
                 }
             
         }
-
-        private void txtBedragVan_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtBedragVan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != ','))
             {
@@ -845,8 +824,7 @@ namespace MiaClient
                 e.Handled = true;
             }
         }
-
-        private void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !IsGeldigFinancieringsjaar(e.KeyChar);
         }
