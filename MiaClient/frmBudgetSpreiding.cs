@@ -76,6 +76,7 @@ namespace MiaClient
                     {
                         inJaar.Add(a);
                     }
+
                 } 
                 catch {
                     MessageBox.Show("Selecteer een financieringsjaar aub");
