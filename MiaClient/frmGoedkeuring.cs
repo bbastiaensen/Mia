@@ -21,6 +21,8 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
 
+        public string projectDirectory = Directory.GetCurrentDirectory();
+
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
         bool filterPlanningsdatumVan = false;
