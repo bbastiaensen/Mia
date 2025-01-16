@@ -43,10 +43,7 @@ namespace MiaClient
             CreateUI();
         }
 
-        private void frmBudgetSpreiding_Load(object sender, EventArgs e)
-        {
-            CreateUI();
-        }
+       
 
         private void CreateUI()
         {
