@@ -52,6 +52,10 @@
     <ApplicationIcon>pl-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -102,12 +106,6 @@
     </Compile>
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmGoedkeuringFormulier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGoedkeuringFormulier.Designer.cs">
-      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
     </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
@@ -217,9 +215,6 @@
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGoedkeuringFormulier.resx">
-      <DependentUpon>frmGoedkeuringFormulier.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +265,7 @@
     <EmbeddedResource Include="UserControls\ParameterItem.resx">
       <DependentUpon>ParameterItem.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -293,14 +289,22 @@
     <Content Include="Foto%27s\LogoG.png" />
     <Content Include="Foto%27s\LogoK.png" />
     <Content Include="Icons\aanvraag.png" />
+    <Content Include="Icons\aanvraagGroot.png" />
     <Content Include="Icons\Aanvraag_Uit.png" />
+    <Content Include="Icons\Aanvraag_UitGroot.png" />
+    <Content Include="Icons\AfgekeurdGroot_aan.png" />
     <Content Include="Icons\Afgekeurd_aan.png" />
     <Content Include="Icons\Afgekeurd_uit.png" />
+    <Content Include="Icons\Afgekeurd_uitGroot.png" />
+    <Content Include="Icons\bekrachtigdGroot_aan.png" />
     <Content Include="Icons\bekrachtigd_aan.png" />
     <Content Include="Icons\bekrachtigd_uit.png" />
+    <Content Include="Icons\bekrachtigd_uitGroot.png" />
     <Content Include="Icons\Filter.png" />
+    <Content Include="Icons\goedgekeurdGroot_aan.png" />
     <Content Include="Icons\goedgekeurd_aan.png" />
     <Content Include="Icons\goedgekeurd_uit.png" />
+    <Content Include="Icons\goedgekeurd_uitGroot.png" />
     <Content Include="Icons\icons8-approval-50-alt.png" />
     <Content Include="Icons\icons8-approval-50.png" />
     <Content Include="Icons\icons8-euro-50-alt.png" />
@@ -325,8 +329,10 @@
     <Content Include="Icons\icons8-previous-50.png" />
     <Content Include="Icons\icons8-users-48-alt.png" />
     <Content Include="Icons\icons8-users-48.png" />
+    <Content Include="Icons\NietBekrachtigdGroot_aan.png" />
     <Content Include="Icons\NietBekrachtigd_aan.png" />
     <Content Include="Icons\NietBekrachtigd_uit.png" />
+    <Content Include="Icons\NietBekrachtigd_uitGroot.png" />
     <Content Include="Icons\nieuweAanvraag.png" />
     <Content Include="Icons\Status-Edit.png" />
     <Content Include="pl-icon.ico" />

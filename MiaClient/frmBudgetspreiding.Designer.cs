@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.btnExporteer = new System.Windows.Forms.Button();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExporteer = new System.Windows.Forms.Button();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,16 @@
             this.gbxFinancieringsjaar.TabIndex = 0;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // btnExporteer
+            // 
+            this.btnExporteer.Location = new System.Drawing.Point(486, 33);
+            this.btnExporteer.Name = "btnExporteer";
+            this.btnExporteer.Size = new System.Drawing.Size(215, 27);
+            this.btnExporteer.TabIndex = 2;
+            this.btnExporteer.Text = "Exporteer";
+            this.btnExporteer.UseVisualStyleBackColor = true;
+            this.btnExporteer.Click += new System.EventHandler(this.btnExporteer_Click);
             // 
             // cmbFinancieringsjaar
             // 
@@ -73,15 +83,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 450);
             this.panel1.TabIndex = 1;
-            // 
-            // btnExporteer
-            // 
-            this.btnExporteer.Location = new System.Drawing.Point(486, 33);
-            this.btnExporteer.Name = "btnExporteer";
-            this.btnExporteer.Size = new System.Drawing.Size(215, 27);
-            this.btnExporteer.TabIndex = 2;
-            this.btnExporteer.Text = "Exporteer";
-            this.btnExporteer.UseVisualStyleBackColor = true;
             // 
             // frmBudgetspreiding
             // 

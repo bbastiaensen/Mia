@@ -32,11 +32,12 @@ namespace MiaClient.UserControls
         public Boolean Even { get; set; }
 
 
-
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
-        frmGoedkeuringFormulier frmGoedkeuringFormulier;
+        frmAanvraagFormulier frmAanvraagFormulier;
+        frmGoedkeuring frmGoedkeuring;
+
 
         static public bool edit = false;
 
@@ -55,6 +56,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
+            Bedrag = PrijsIndicatiePerStuk*AantalStuk;
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -79,50 +81,22 @@ namespace MiaClient.UserControls
 
             }
         }
-        //private void GoedkeurItem_Load(object sender, EventArgs e)
-        //{
-        //    Aanvraag goedkeuring = AanvraagManager.GetAanvraagById(Id);
-
-        //    switch (Id)
-        //    {
-        //        case 2:
-        //            string imagePath = Path.Combine(projectDirectory, "icons", "Goedgekeurd_aan.png");
-        //            BtnGoedgekeurd.Image = Image.FromFile(imagePath);
-
-        //            break;
-        //        case 3:
-        //            string imagePath2 = Path.Combine(projectDirectory, "icons", "Afgekeurd_aan.png");
-        //            btnAfgekeurd.Image = Image.FromFile(imagePath2);
-
-        //            break;
-        //        case 4:
-        //            string imagePath3 = Path.Combine(projectDirectory, "icons", "bekrachtigd_aan.png");
-        //            btnBekrachtigd.Image = Image.FromFile(imagePath3);
-
-        //            break;
-        //        case 5:
-        //            string imagePath4 = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_aan.png");
-        //            btnNietBekrachtigd.Image = Image.FromFile(imagePath4);
-        //            break;
-        //    }
-        //    return;
-        //}
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (frmGoedkeuringFormulier == null)
+            if (frmAanvraagFormulier == null)
             {
-                frmGoedkeuringFormulier = new frmGoedkeuringFormulier(Id, "edit");
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
             }
 
-                    edit = true;
-                    frmGoedkeuringFormulier.MdiParent = this.ParentForm.MdiParent;
-                    //frmAanvraagFormulier.UpdateAanvraag();
-                    frmGoedkeuringFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
-                    frmGoedkeuringFormulier.Show();
+            edit = true;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            frmAanvraagFormulier.Show();
 
         }
-        
+
 
         private void GoedkeurFormulieredit_AanvraagBewaard(object sender, EventArgs e)
         {
@@ -130,6 +104,19 @@ namespace MiaClient.UserControls
             {
                 GoedkeurItemChanged(this, null);
             }
+        }
+
+        private void btnStatusEdit_Click(object sender, EventArgs e)
+        {
+            if (frmAanvraagFormulier == null)
+            {
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+            }
+
+            edit = true;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
         }
     }
 
