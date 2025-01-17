@@ -35,7 +35,8 @@ namespace MiaClient.UserControls
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
-        frmGoedkeuringFormulier frmGoedkeuringFormulier;
+        frmAanvraagFormulier frmAanvraagFormulier;
+        frmGoedkeuring frmGoedkeuring;
 
 
         static public bool edit = false;
@@ -55,6 +56,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
+            Bedrag = PrijsIndicatiePerStuk*AantalStuk;
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -82,16 +84,16 @@ namespace MiaClient.UserControls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (frmGoedkeuringFormulier == null)
+            if (frmAanvraagFormulier == null)
             {
-                frmGoedkeuringFormulier = new frmGoedkeuringFormulier(Id, "edit");
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
             }
 
             edit = true;
-            frmGoedkeuringFormulier.MdiParent = this.ParentForm.MdiParent;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
             //frmAanvraagFormulier.UpdateAanvraag();
-            frmGoedkeuringFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
-            frmGoedkeuringFormulier.Show();
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
+            frmAanvraagFormulier.Show();
 
         }
 
@@ -102,6 +104,19 @@ namespace MiaClient.UserControls
             {
                 GoedkeurItemChanged(this, null);
             }
+        }
+
+        private void btnStatusEdit_Click(object sender, EventArgs e)
+        {
+            if (frmAanvraagFormulier == null)
+            {
+                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+            }
+
+            edit = true;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
         }
     }
 

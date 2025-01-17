@@ -204,6 +204,7 @@ namespace MiaLogic.Manager
                         }
 
                         g = new Aanvraag();
+                        g.Id = Convert.ToInt32(objRea["Id"]);
                         g.Gebruiker = objRea["Gebruiker"].ToString();
                         g.Titel = objRea["Titel"].ToString();
                         g.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
