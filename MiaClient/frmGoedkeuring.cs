@@ -137,33 +137,34 @@ namespace MiaClient
             
             string imagePath = "";
 
-            switch (statusId)
+            if(statusId == 1)
             {
+                string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+            }
 
-                case 1:
-                    imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
-                    break;
+            if (statusId == 2)
+            {
+                string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+            }
 
-                case 2:
-                    imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
-                    break;
+            if (statusId == 3)
+            {
+                string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                pcbAfgekeurd.Image = Image.FromFile(imagePath);
+            }
 
-                case 3:
-                    imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
-                    break;
+            if (statusId == 4)
+            {
+                string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+            }
 
-                case 4:
-                    imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
-                    break;
-
-                case 5:
-                    imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
-                    break;
+            if (statusId == 5)
+            {
+                string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
             }
         }
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
