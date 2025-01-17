@@ -65,6 +65,7 @@
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
             this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 33);
             this.cmbFinancieringsjaar.TabIndex = 2;
+            this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
             // lblFinancieringsjaar
             // 

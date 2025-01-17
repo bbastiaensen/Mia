@@ -18,6 +18,7 @@ namespace MiaClient
 
         int i = 0;
         List<Richtperiode> richtperiodes = null;
+        System.Windows.Forms.Label lbl;
 
         public frmBudgetspreiding()
         {
@@ -49,7 +50,7 @@ namespace MiaClient
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
-                cmbFinancieringsjaar.Items.Add( jaar );
+                cmbFinancieringsjaar.Items.Add(jaar);
             }
         }
 
@@ -73,6 +74,27 @@ namespace MiaClient
                 btn.FlatAppearance.BorderSize = 0;
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
+            }
+        }
+
+        private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            int xPos = 150;
+            int yPos = 0;
+
+            foreach (var richtperiode in richtperiodes)
+            {
+                lbl = new Label();
+                lbl.Text = "";
+                string year = cmbFinancieringsjaar.SelectedItem.ToString();
+                yPos += 25;
+                decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, year);
+                lbl.Location = new Point(xPos, yPos);
+                lbl.Name = $"lbl{i}";
+                lbl.Text = bedrag.ToString();
+                lbl.Font = new System.Drawing.Font("Segoe UI", 11);     
+                pnlRichtperiode.Controls.Add(lbl);            
             }
         }
     }

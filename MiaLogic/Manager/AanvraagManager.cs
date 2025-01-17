@@ -1335,6 +1335,7 @@ namespace MiaLogic.Manager
         public static decimal GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(int richtperiodeId, string financieringsjaar)
         {
             decimal ret = 0;
+          
 
             using (SqlConnection objCn = new SqlConnection())
             {
