@@ -174,7 +174,7 @@ namespace MiaClient
         {
             if (month % 2 == 0)
             {
-                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbGrey;
+                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbLightGrey;
             }
             else
             {
