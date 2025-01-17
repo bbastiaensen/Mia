@@ -324,6 +324,7 @@
             this.pcbNietBekrachtigd.Size = new System.Drawing.Size(55, 55);
             this.pcbNietBekrachtigd.TabIndex = 31;
             this.pcbNietBekrachtigd.TabStop = false;
+            this.pcbNietBekrachtigd.Click += new System.EventHandler(this.pcbNietBekrachtigd_Click);
             // 
             // pcbBekrachtigd
             // 
@@ -336,6 +337,7 @@
             this.pcbBekrachtigd.Size = new System.Drawing.Size(55, 55);
             this.pcbBekrachtigd.TabIndex = 30;
             this.pcbBekrachtigd.TabStop = false;
+            this.pcbBekrachtigd.Click += new System.EventHandler(this.pcbBekrachtigd_Click);
             // 
             // pcbAfgekeurd
             // 
@@ -348,6 +350,7 @@
             this.pcbAfgekeurd.Size = new System.Drawing.Size(55, 55);
             this.pcbAfgekeurd.TabIndex = 29;
             this.pcbAfgekeurd.TabStop = false;
+            this.pcbAfgekeurd.Click += new System.EventHandler(this.pcbAfgekeurd_Click);
             // 
             // pcbGoedgekeurd
             // 
@@ -360,6 +363,7 @@
             this.pcbGoedgekeurd.Size = new System.Drawing.Size(55, 55);
             this.pcbGoedgekeurd.TabIndex = 28;
             this.pcbGoedgekeurd.TabStop = false;
+            this.pcbGoedgekeurd.Click += new System.EventHandler(this.pcbGoedgekeurd_Click);
             // 
             // pcbInAanvraag
             // 
@@ -372,6 +376,7 @@
             this.pcbInAanvraag.Size = new System.Drawing.Size(55, 55);
             this.pcbInAanvraag.TabIndex = 27;
             this.pcbInAanvraag.TabStop = false;
+            this.pcbInAanvraag.Click += new System.EventHandler(this.pcbInAanvraag_Click);
             // 
             // cbBedragTot
             // 

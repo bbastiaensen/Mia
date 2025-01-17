@@ -20,8 +20,10 @@ namespace MiaClient
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
+        public event EventHandler AanvraagBewaard;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
+        int statusId = 0;
 
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -44,11 +46,11 @@ namespace MiaClient
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
 
-        bool inaanvraag = false;
-        bool goedkeur = false;
-        bool afkeur = false;
-        bool bekrachtig = false;
-        bool nietbekrachtig = false;
+        bool inaanvraag = true;
+        bool goedkeur = true;
+        bool afkeur = true;
+        bool bekrachtig = true;
+        bool nietbekrachtig = true;
 
         int aantalListItems = 10;
         int huidigePage = 1;
@@ -96,11 +98,14 @@ namespace MiaClient
                     agi.GoedkeurItemChanged += Agi_GoedkeurItemChanged;
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
+                    statusId = ag.StatusAanvraagId;
+
                     t++;
                     yPos += 30;
                 }
             }
         }
+
         public void frmGoedkeuring_Load(object sender, EventArgs e)
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
@@ -124,6 +129,42 @@ namespace MiaClient
             btnFilter.BackgroundImage = imgFilter;
             btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
             btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+            pcbAfgekeurd.Enabled = false;
+            pcbBekrachtigd.Enabled = false;
+            pcbGoedgekeurd.Enabled = false;
+            pcbNietBekrachtigd.Enabled = false;
+            
+            string imagePath = "";
+
+            switch (statusId)
+            {
+
+                case 1:
+                    imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    break;
+
+                case 2:
+                    imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    break;
+
+                case 3:
+                    imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    break;
+
+                case 4:
+                    imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    break;
+
+                case 5:
+                    imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    break;
+            }
         }
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
@@ -292,7 +333,7 @@ namespace MiaClient
             if (inaanvraag == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imagePath);
+                pcbInAanvraag.Image = Image.FromFile(imagePath); 
 
                 inaanvraag = true;
             }
@@ -316,6 +357,9 @@ namespace MiaClient
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
                 pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
                 goedkeur = true;
 
@@ -343,21 +387,29 @@ namespace MiaClient
             if (afkeur == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
-                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+                pcbAfgekeurd.Image = Image.FromFile(imagePath);
+
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
                 afkeur = true;
 
-                pcbGoedgekeurd.Enabled = false;
-                pcbNietBekrachtigd.Enabled = true;
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = false;
                 pcbAfgekeurd.Enabled = true;
-                pcbBekrachtigd.Enabled = true;
+                pcbBekrachtigd.Enabled = false;
             }
             else
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uitGroot.png");
-                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+                pcbAfgekeurd.Image = Image.FromFile(imagePath);
 
                 afkeur = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
             }
         }
 
@@ -368,10 +420,13 @@ namespace MiaClient
                 string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
                 pcbBekrachtigd.Image = Image.FromFile(imagePath);
 
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imageDrop);
+
                 bekrachtig = true;
 
                 pcbGoedgekeurd.Enabled = false;
-                pcbNietBekrachtigd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
                 pcbAfgekeurd.Enabled = false;
                 pcbBekrachtigd.Enabled = true;
             }
@@ -396,6 +451,9 @@ namespace MiaClient
                 string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
                 pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
 
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imageDrop);
+
                 nietbekrachtig = true;
 
                 pcbGoedgekeurd.Enabled = false;
@@ -405,7 +463,7 @@ namespace MiaClient
             }
             else
             {
-                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_uit.png");
+                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uitGroot.png");
                 pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
 
                 nietbekrachtig = false;
