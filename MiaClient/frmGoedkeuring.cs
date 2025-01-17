@@ -19,8 +19,9 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
-        frmGoedkeuringFormulier frmGoedkeuringFormulier;
         List<Aanvraag> aanvragen;
+
+        public string projectDirectory = Directory.GetCurrentDirectory();
 
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -42,6 +43,12 @@ namespace MiaClient
         bool SortPlanningsdatum = true;
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
+
+        bool inaanvraag = false;
+        bool goedkeur = false;
+        bool afkeur = false;
+        bool bekrachtig = false;
+        bool nietbekrachtig = false;
 
         int aantalListItems = 10;
         int huidigePage = 1;
@@ -191,32 +198,17 @@ namespace MiaClient
                         items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
                     }      
                 }
-                if (planningsdatumVan)
-                {
-                    if (chbxPlaningsdatumVan.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
-                    }
-                }
-                if (planningsdatumTot)
-                {
-                    if (chbxPlaningsdatumTot.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
-                    }
-                }
+
                 if (gebruiker)
                 {
                     items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
                 }
+
                 if (titel)
                 {
                     items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (statusAanvraag)
-                {
-                    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
-                }
+
                 if (financieringsjaar)
                 {
                     if (txtFinancieringsjaar.Text != string.Empty)
@@ -244,10 +236,6 @@ namespace MiaClient
                         }
                     }
                 }
-                if (kostenPlaats)
-                {
-                    items = items.Where(av => av.Kostenplaats.ToLower().Contains(txtKostenPlaats.Text.ToLower())).ToList();
-                }
             }
            return items;
         }
@@ -259,10 +247,7 @@ namespace MiaClient
                 {
                     filterFinancieringsjaar = true;
                 }
-                if (txtStatusAanvraag.Text != string.Empty)
-                {
-                    filterStatusAanvraag = true;
-                }
+
                 if (cbBedragVan.Checked != false)
                 {
                     filterBedragVan = true;
@@ -275,18 +260,12 @@ namespace MiaClient
                 {
                     filterTitel = true;
                 }
-                if (txtKostenPlaats.Text != string.Empty)
-                {
-                    filterKostenPlaats = true;
-                }
+
                 if (txtGebruiker.Text != string.Empty)
                 {
                     filterGebruiker = true;
                 }
-                if (chbxPlaningsdatumTot.Checked != false)
-                {
-                    filterPlanningsdatumTot = true;
-                }
+
                 if (chbxAanvraagmomentVan.Checked != false)
                 {
                     filterAanvraagmomentVan = true;
@@ -294,10 +273,6 @@ namespace MiaClient
                 if (chbxAanvraagmomentTot.Checked != false)
                 {
                     filterAanvraagmomentTot = true;
-                }
-                if (chbxPlaningsdatumVan.Checked != false)
-                {
-                    filterPlanningsdatumVan = true;
                 }
 
                 aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
@@ -309,6 +284,136 @@ namespace MiaClient
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pcbInAanvraag_Click(object sender, EventArgs e)
+        {
+            if (inaanvraag == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Aanvraag_UitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                inaanvraag = false;
+            }
+
+            pcbGoedgekeurd.Enabled = true;
+            pcbNietBekrachtigd.Enabled = true;
+            pcbAfgekeurd.Enabled = true;
+            pcbBekrachtigd.Enabled = true;
+        }
+
+        private void pcbGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            if (goedkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = true;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                goedkeur = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        private void pcbAfgekeurd_Click(object sender, EventArgs e)
+        {
+            if (afkeur == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "Afgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+
+                afkeur = false;
+            }
+        }
+
+        private void pcbBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (bekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = false;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigd_uitGroot.png");
+                pcbBekrachtigd.Image = Image.FromFile(imagePath);
+
+                bekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+            }
+        }
+
+        private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            if (nietbekrachtig == false)
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = true;
+
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = false;
+            }
+            else
+            {
+                string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_uit.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+
+                nietbekrachtig = false;
+
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
             }
         }
         private void btnSortGebruiker_Click(object sender, EventArgs e)
