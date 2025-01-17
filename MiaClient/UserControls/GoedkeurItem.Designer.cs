@@ -113,6 +113,7 @@
             this.btnStatusEdit.Size = new System.Drawing.Size(27, 27);
             this.btnStatusEdit.TabIndex = 21;
             this.btnStatusEdit.UseVisualStyleBackColor = false;
+            this.btnStatusEdit.Click += new System.EventHandler(this.btnStatusEdit_Click);
             // 
             // GoedkeurItem
             // 
