@@ -32,7 +32,7 @@
             this.btnExporteer = new System.Windows.Forms.Button();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlRichtperiode = new System.Windows.Forms.Panel();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,8 +64,9 @@
             this.cmbFinancieringsjaar.FormattingEnabled = true;
             this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 33);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
-            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 27);
+            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 33);
             this.cmbFinancieringsjaar.TabIndex = 2;
+            this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
             // lblFinancieringsjaar
             // 
@@ -73,23 +74,23 @@
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(6, 36);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(131, 20);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(156, 25);
             this.lblFinancieringsjaar.TabIndex = 1;
             this.lblFinancieringsjaar.Text = "Financieringsjaar : ";
             // 
-            // panel1
+            // pnlRichtperiode
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 101);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 450);
-            this.panel1.TabIndex = 1;
+            this.pnlRichtperiode.Location = new System.Drawing.Point(12, 101);
+            this.pnlRichtperiode.Name = "pnlRichtperiode";
+            this.pnlRichtperiode.Size = new System.Drawing.Size(776, 450);
+            this.pnlRichtperiode.TabIndex = 1;
             // 
             // frmBudgetspreiding
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 563);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlRichtperiode);
             this.Controls.Add(this.gbxFinancieringsjaar);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -107,7 +108,7 @@
 
         private System.Windows.Forms.GroupBox gbxFinancieringsjaar;
         private System.Windows.Forms.Label lblFinancieringsjaar;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlRichtperiode;
         private System.Windows.Forms.Button btnExporteer;
         private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
     }
