@@ -149,8 +149,7 @@ namespace MiaClient
             this.pnlFotos.Controls.Clear();
             this.pnlOffertes.Controls.Clear();
         }
-        public frmAanvraagFormulier(int id, string 
-            action)
+        public frmAanvraagFormulier(int id, string action)
         {
             try
             {
