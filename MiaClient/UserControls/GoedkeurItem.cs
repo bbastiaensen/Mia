@@ -36,6 +36,7 @@ namespace MiaClient.UserControls
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
         frmAanvraagFormulier frmAanvraagFormulier;
+        frmGoedkeuring frmGoedkeuring;
 
 
         static public bool edit = false;
@@ -55,6 +56,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
+            Bedrag = PrijsIndicatiePerStuk*AantalStuk;
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -115,7 +117,6 @@ namespace MiaClient.UserControls
             frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
             //frmAanvraagFormulier.UpdateAanvraag();
             frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
-            frmAanvraagFormulier.Show();
         }
     }
 
