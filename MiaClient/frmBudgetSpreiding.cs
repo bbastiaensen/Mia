@@ -31,8 +31,24 @@ namespace MiaClient
         {
             CreateUI();
 
+            int xPos = 10;
+            int yPos = 0;
 
-            
+            richtperiodes = RichtperiodeManager.GetRichtperiodes();
+
+            for (i = 0; i < richtperiodes.Count; i++)
+            {
+                yPos += 25;
+                Richtperiode richtperiode = richtperiodes[i];
+                var Maanden = richtperiode.Naam.ToString();
+                System.Windows.Forms.LinkLabel llbl = new LinkLabel();
+                llbl.Location = new Point(xPos, yPos);
+                llbl.Name = "llbl";
+                llbl.Text = Maanden;
+                llbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                llbl.LinkColor = System.Drawing.Color.Black;
+                pnlRichtperiode.Controls.Add(llbl);
+            }
 
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
