@@ -31,6 +31,8 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
             this.txtBedragTot = new System.Windows.Forms.TextBox();
             this.cbBedragVan = new System.Windows.Forms.CheckBox();
@@ -45,8 +47,6 @@
             this.lblPlanningsdatum = new System.Windows.Forms.Label();
             this.lblTitel = new System.Windows.Forms.Label();
             this.lblAanvrager = new System.Windows.Forms.Label();
-            this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
-            this.btnFilter = new System.Windows.Forms.Button();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,40 @@
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFilter.FlatAppearance.BorderSize = 0;
+            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilter.Location = new System.Drawing.Point(356, 26);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(40, 40);
+            this.btnFilter.TabIndex = 28;
+            this.btnFilter.UseVisualStyleBackColor = true;
+            // 
+            // grbxFilterAanvraag
+            // 
+            this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
+            this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
+            this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
+            this.grbxFilterAanvraag.Controls.Add(this.txtGebruiker);
+            this.grbxFilterAanvraag.Controls.Add(this.txtBedragVan);
+            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumTot);
+            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumVan);
+            this.grbxFilterAanvraag.Controls.Add(this.lblBedrag);
+            this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumVan);
+            this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumTot);
+            this.grbxFilterAanvraag.Controls.Add(this.txtTitel);
+            this.grbxFilterAanvraag.Controls.Add(this.lblPlanningsdatum);
+            this.grbxFilterAanvraag.Controls.Add(this.lblTitel);
+            this.grbxFilterAanvraag.Controls.Add(this.lblAanvrager);
+            this.grbxFilterAanvraag.Location = new System.Drawing.Point(402, 26);
+            this.grbxFilterAanvraag.Name = "grbxFilterAanvraag";
+            this.grbxFilterAanvraag.Size = new System.Drawing.Size(625, 213);
+            this.grbxFilterAanvraag.TabIndex = 2;
+            this.grbxFilterAanvraag.TabStop = false;
+            this.grbxFilterAanvraag.Text = "Filter";
             // 
             // cbBedragTot
             // 
@@ -201,48 +235,15 @@
             this.lblAanvrager.TabIndex = 1;
             this.lblAanvrager.Text = "Aanvrager";
             // 
-            // grbxFilterAanvraag
-            // 
-            this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
-            this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
-            this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
-            this.grbxFilterAanvraag.Controls.Add(this.txtGebruiker);
-            this.grbxFilterAanvraag.Controls.Add(this.txtBedragVan);
-            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumTot);
-            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumVan);
-            this.grbxFilterAanvraag.Controls.Add(this.lblBedrag);
-            this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumVan);
-            this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumTot);
-            this.grbxFilterAanvraag.Controls.Add(this.txtTitel);
-            this.grbxFilterAanvraag.Controls.Add(this.lblPlanningsdatum);
-            this.grbxFilterAanvraag.Controls.Add(this.lblTitel);
-            this.grbxFilterAanvraag.Controls.Add(this.lblAanvrager);
-            this.grbxFilterAanvraag.Location = new System.Drawing.Point(402, 26);
-            this.grbxFilterAanvraag.Name = "grbxFilterAanvraag";
-            this.grbxFilterAanvraag.Size = new System.Drawing.Size(625, 213);
-            this.grbxFilterAanvraag.TabIndex = 2;
-            this.grbxFilterAanvraag.TabStop = false;
-            this.grbxFilterAanvraag.Text = "Filter";
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFilter.FlatAppearance.BorderSize = 0;
-            this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilter.Location = new System.Drawing.Point(356, 26);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(40, 40);
-            this.btnFilter.TabIndex = 28;
-            this.btnFilter.UseVisualStyleBackColor = true;
-            // 
             // frmAankopen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 692);
+            this.ClientSize = new System.Drawing.Size(1067, 739);
             this.Controls.Add(this.gbxFinancieringsjaar);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "frmAankopen";
             this.Text = "Aankopen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAankopen_FormClosing);
