@@ -31,6 +31,7 @@ namespace MiaClient
         public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
+        frmAankopen frmAankopen;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -399,6 +400,16 @@ namespace MiaClient
                 frmBudgetspreiding.MdiParent = this;
             }
             frmBudgetspreiding.Show();
+        }
+
+        private void aankopenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmAankopen == null)
+            {
+                frmAankopen = new frmAankopen();
+                frmAankopen.MdiParent = this;
+            }
+            frmAankopen.Show();
         }
     }
 }
