@@ -16,6 +16,10 @@ namespace MiaClient
 {
     public partial class frmBudgetspreiding : Form
     {
+
+        int i = 0;
+        List<Richtperiode> richtperiodes = null;
+        System.Windows.Forms.Label lbl;
         public frmBudgetspreiding()
         {
             InitializeComponent();
@@ -24,6 +28,25 @@ namespace MiaClient
         private void frmBudgetspreiding_Load(object sender, EventArgs e)
         {
             CreateUI();
+
+            int xPos = 10;
+            int yPos = 0;
+
+            richtperiodes = RichtperiodeManager.GetRichtperiodes();
+
+            for (i = 0; i < richtperiodes.Count; i++)
+            {
+                yPos += 25;
+                Richtperiode richtperiode = richtperiodes[i];
+                var Maanden = richtperiode.Naam.ToString();
+                System.Windows.Forms.LinkLabel llbl = new LinkLabel();
+                llbl.Location = new Point(xPos, yPos);
+                llbl.Name = "llbl";
+                llbl.Text = Maanden;
+                llbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                llbl.LinkColor = System.Drawing.Color.Black;
+                pnlRichtperiode.Controls.Add(llbl);
+            }
 
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
@@ -39,13 +62,6 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
-        private void frmBudgetSpreiding_Load(object sender, EventArgs e)
-        {
-            CreateUI();
-        }
-
-       
 
         private void CreateUI()
         {
@@ -185,6 +201,29 @@ namespace MiaClient
             else
             {
                 ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbWhite;
+            }
+        }
+
+        private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int xPos = 150;
+            int yPos = 0;
+            foreach (var richtperiode in richtperiodes)
+            {
+                lbl = new Label();
+
+                pnlRichtperiode.Refresh();
+                string year = cmbFinancieringsjaar.SelectedItem.ToString();
+                decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, year);
+                yPos += 25;
+
+                lbl.Location = new Point(xPos, yPos);
+                lbl.Name = $"lbl{richtperiode.Id}";
+                lbl.Text = bedrag.ToString();
+                lbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                lbl.BringToFront();
+                pnlRichtperiode.Controls.Add(lbl);
             }
         }
     }
