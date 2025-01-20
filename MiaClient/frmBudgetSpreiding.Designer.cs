@@ -80,9 +80,9 @@
             // 
             // pnlRichtperiode
             // 
-            this.pnlRichtperiode.Location = new System.Drawing.Point(12, 101);
+            this.pnlRichtperiode.Location = new System.Drawing.Point(6, 101);
             this.pnlRichtperiode.Name = "pnlRichtperiode";
-            this.pnlRichtperiode.Size = new System.Drawing.Size(776, 450);
+            this.pnlRichtperiode.Size = new System.Drawing.Size(358, 402);
             this.pnlRichtperiode.TabIndex = 1;
             // 
             // frmBudgetspreiding
