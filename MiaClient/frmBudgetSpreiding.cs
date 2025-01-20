@@ -90,8 +90,11 @@ namespace MiaClient
                     }
             }
             //setting up the numbers
+            //position for the data
             int add = 2;
+            //position
             int ri;
+            //offset by data
             int rs = 2;
             bool even = true;
             //loops over the periods (m=month)
@@ -102,6 +105,7 @@ namespace MiaClient
                 ri = m + rs;
                 //the name of the month
                 worksheet.get_Range("A" + ri, "A" + ri).Value = RichtperiodeManager.GetRichtperiodeById(m).Naam;
+                //total of the month
                 decimal tot = 0;
                 //background color for months in Excel file
                 ColorExcel(ri, m, worksheet, even, meh);
@@ -130,6 +134,7 @@ namespace MiaClient
                     tot += prijs;
                     //background color for data in Excel file
                     ColorExcel(add, m, worksheet, even,meh);
+                    //voor opmaak
                     if (even)
                     {
                         even = false;
