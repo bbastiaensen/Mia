@@ -39,7 +39,7 @@ namespace MiaClient.UserControls
         frmGoedkeuring frmGoedkeuring;
 
 
-        static public bool edit = false;
+        static public bool edit = true;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
 
@@ -56,7 +56,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
-            Bedrag = PrijsIndicatiePerStuk*AantalStuk;
+            Bedrag = PrijsIndicatiePerStuk *AantalStuk;
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -89,7 +89,7 @@ namespace MiaClient.UserControls
                 frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
             }
 
-            edit = true;
+
             frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
             //frmAanvraagFormulier.UpdateAanvraag();
             frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;

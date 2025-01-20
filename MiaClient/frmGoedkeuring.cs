@@ -102,6 +102,51 @@ namespace MiaClient
 
                     t++;
                     yPos += 30;
+
+
+                    string imagePath = "";
+                    if (GoedkeurItem.edit == false)
+                    {
+                        grbxFilterAanvraag.Enabled = false;
+
+                        btnSave.Visible = true;
+                        btnSave.Enabled = true;
+                        pcbAfgekeurd.Enabled = true;
+                        pcbBekrachtigd.Enabled = true;
+                        pcbGoedgekeurd.Enabled = true;
+                        pcbNietBekrachtigd.Enabled = true;
+
+                        if (ag.StatusAanvraagId == 1)
+                        {
+                            string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                            pcbInAanvraag.Image = Image.FromFile(imagePath);
+                        }
+
+                        if (ag.StatusAanvraagId == 2)
+                        {
+                            string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                            pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+                        }
+
+                        if (ag.StatusAanvraagId == 3)
+                        {
+                            string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                            pcbAfgekeurd.Image = Image.FromFile(imagePath);
+                        }
+
+                        if (ag.StatusAanvraagId == 4)
+                        {
+                            string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                            pcbBekrachtigd.Image = Image.FromFile(imagePath);
+                        }
+
+                        if (ag.StatusAanvraagId == 5)
+                        {
+                            string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                            pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+                        }
+                        GoedkeurItem.edit = false;
+                    }
                 }
             }
         }
@@ -134,38 +179,7 @@ namespace MiaClient
             pcbBekrachtigd.Enabled = false;
             pcbGoedgekeurd.Enabled = false;
             pcbNietBekrachtigd.Enabled = false;
-            
-            string imagePath = "";
-
-            if(statusId == 1)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 2)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
-                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 3)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
-                pcbAfgekeurd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 4)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
-                pcbBekrachtigd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 5)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
-                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
-            }
+            btnSave.Enabled = false;            
         }
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
