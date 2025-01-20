@@ -34,6 +34,7 @@
             this.aanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goedkeuringenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overzichtenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.budgetoverzichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.budgetoverzichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -69,6 +70,7 @@
             this.aanvragenToolStripMenuItem,
             this.goedkeuringenToolStripMenuItem,
             this.overzichtenToolStripMenuItem,
+            this.aankopenToolStripMenuItem,
             this.beheerToolStripMenuItem,
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -101,6 +103,13 @@
             this.overzichtenToolStripMenuItem.Name = "overzichtenToolStripMenuItem";
             this.overzichtenToolStripMenuItem.Size = new System.Drawing.Size(105, 25);
             this.overzichtenToolStripMenuItem.Text = "Overzichten";
+            // 
+            // budgetoverzichtToolStripMenuItem
+            // 
+            this.budgetoverzichtToolStripMenuItem.Name = "budgetoverzichtToolStripMenuItem";
+            this.budgetoverzichtToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.budgetoverzichtToolStripMenuItem.Text = "Budgetspreiding";
+            this.budgetoverzichtToolStripMenuItem.Click += new System.EventHandler(this.budgetoverzichtToolStripMenuItem_Click);
             // 
             // beheerToolStripMenuItem
             // 
@@ -284,12 +293,12 @@
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
-            // budgetoverzichtToolStripMenuItem
+            // aankopenToolStripMenuItem
             // 
-            this.budgetoverzichtToolStripMenuItem.Name = "budgetoverzichtToolStripMenuItem";
-            this.budgetoverzichtToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
-            this.budgetoverzichtToolStripMenuItem.Text = "Budgetspreiding";
-            this.budgetoverzichtToolStripMenuItem.Click += new System.EventHandler(this.budgetoverzichtToolStripMenuItem_Click);
+            this.aankopenToolStripMenuItem.Name = "aankopenToolStripMenuItem";
+            this.aankopenToolStripMenuItem.Size = new System.Drawing.Size(92, 25);
+            this.aankopenToolStripMenuItem.Text = "Aankopen";
+            this.aankopenToolStripMenuItem.Click += new System.EventHandler(this.aankopenToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -346,6 +355,7 @@
         private System.Windows.Forms.ToolStripButton budgetSpreidingtoolStripButton;
         private System.Windows.Forms.ToolStripSeparator tss3;
         private System.Windows.Forms.ToolStripMenuItem budgetoverzichtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aankopenToolStripMenuItem;
     }
 }
 
