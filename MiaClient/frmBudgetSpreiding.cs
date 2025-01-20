@@ -57,6 +57,7 @@ namespace MiaClient
 
         private void btnExporteer_Click(object sender, EventArgs e)
         {
+            lblWacht.Visible = true;
             //makes a new excel app
             var app = new Excel.Application();
             //opens the app when you press save (if true)
@@ -92,18 +93,20 @@ namespace MiaClient
             int add = 2;
             int ri;
             int rs = 2;
+            bool even = true;
             //loops over the periods (m=month)
             for (int m = 1; m <= rp.Count; m++)
             {
+                bool meh = true;
                 //ri = position in int, r = position in string
                 ri = m + rs;
-                string r = (ri).ToString();
                 //the name of the month
-                worksheet.get_Range("A" + r, "A" + r).Value = RichtperiodeManager.GetRichtperiodeById(m).Naam;
+                worksheet.get_Range("A" + ri, "A" + ri).Value = RichtperiodeManager.GetRichtperiodeById(m).Naam;
                 decimal tot = 0;
                 //background color for months in Excel file
-                Color(ri, m, worksheet);
+                ColorExcel(ri, m, worksheet, even, meh);
                 //Making sure the data in the right month
+                meh = false;
                 List<Aanvraag> InPer = new List<Aanvraag>();
                 foreach (Aanvraag a in inJaar)
                 {
@@ -117,7 +120,7 @@ namespace MiaClient
                 {
                     //add = position of data, rs=offset by the data
                     add = ri + j + 1;
-                    rs = j + 3;
+                    rs += j;
                     //calculates the price
                     decimal prijs = InPer[j].AantalStuk + InPer[j].PrijsIndicatieStuk;
                     //puts data on the right position (based on add)
@@ -126,13 +129,21 @@ namespace MiaClient
                     //total for the month
                     tot += prijs;
                     //background color for data in Excel file
-                    Color(add, m, worksheet);
+                    ColorExcel(add, m, worksheet, even,meh);
+                    if (even)
+                    {
+                        even = false;
+                    }
+                    else
+                    {
+                        even = true;
+                    }
                 }
                 rs++;
-                Color((m + rs), m, worksheet);
+                ColorExcel((m + rs), m, worksheet,even, meh);
                 //puts total of month on it's spot, makes it bold
-                worksheet.get_Range("C" + r, "C" + r).Value = tot;
-                worksheet.get_Range("C" + r, "C" + r).Font.Bold = true;
+                worksheet.get_Range("C" + ri, "C" + ri).Value = tot;
+                worksheet.get_Range("C" + ri, "C" + ri).Font.Bold = true;
             }
             //===============just layout=================
             //title
@@ -153,6 +164,7 @@ namespace MiaClient
             saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
             saveFileDialog1.FilterIndex = 1;
             //shows save file dialog
+            lblWacht.Visible = false;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //it doesn't like onedrive(saves the Excel file)
@@ -170,15 +182,78 @@ namespace MiaClient
 
             }
         }
-        public void Color(int pos, int month, Excel.Worksheet ws)
+        public static Color StringToColor(string colorStr)
         {
-            if (month % 2 == 0)
+            //a way to go from string to system.Color
+            TypeConverter cc = TypeDescriptor.GetConverter(typeof(Color));
+            Color result = (Color)cc.ConvertFromString(colorStr);
+            return result;
+        }
+        public void ColorExcel(int pos, int month, Excel.Worksheet ws, bool even, bool m)
+        {
+            //for the color
+            Parameter p = new Parameter();
+            Color c = new Color();
+            //if the data is the richtperiode
+            p = ParameterManager.GetParameterByCode("TekstExcel");
+            c = StringToColor(p.Waarde);
+            ws.get_Range("A" + pos, "C" + pos).Font.Color = c;
+            if (m)
             {
-                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbLightGrey;
+                ws.get_Range("A" + pos, "A" + pos).Font.Bold = true;
+                //if the month is even
+                if (month % 2 == 0)
+                {
+                    p = ParameterManager.GetParameterByCode("MaandExcelL");
+                    c = StringToColor(p.Waarde);
+                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                }
+                //month is uneven
+                else
+                {
+                    p = ParameterManager.GetParameterByCode("MaandExcelD");
+                    c = StringToColor(p.Waarde);
+                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                }
             }
+            //if the data isnt' the richtperiode
             else
             {
-                ws.get_Range("A" + pos, "C" + pos).Interior.Color = Excel.XlRgbColor.rgbWhite;
+                //if the month is even
+                if (month % 2 == 0)
+                {
+                    //if the position is even(in comparison to the month)
+                    if (even)
+                    {
+                        p = ParameterManager.GetParameterByCode("DataExcelL1");
+                        c = StringToColor(p.Waarde);
+                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    }
+                    else
+                    {
+                        p = ParameterManager.GetParameterByCode("DataExcelL2");
+                        c = StringToColor(p.Waarde);
+                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    }
+
+                }
+                //month is uneven
+                else
+                {
+                    //if the position is even(in comparison to the month
+                    if (even)
+                    {
+                        p = ParameterManager.GetParameterByCode("DataExcelD1");
+                        c = StringToColor(p.Waarde);
+                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    }
+                    else
+                    {
+                        p = ParameterManager.GetParameterByCode("DataExcelD2");
+                        c = StringToColor(p.Waarde);
+                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    }
+                }
             }
         }
     }
