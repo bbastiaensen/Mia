@@ -19,7 +19,7 @@ namespace MiaClient
         int i = 0;
         List<Richtperiode> richtperiodes = null;
         System.Windows.Forms.Label lbl;
-       
+        Richtperiode richtperiode = null;
         List<decimal> brian = new List<decimal>();
         decimal louis = 0;
         public frmBudgetspreiding()
@@ -30,25 +30,12 @@ namespace MiaClient
         private void frmBudgetspreiding_Load(object sender, EventArgs e)
         {
             CreateUI();
+            
+            
 
-            int xPos = 10;
-            int yPos = 0;
+           
 
-            richtperiodes = RichtperiodeManager.GetRichtperiodes();
-
-            for (i = 0; i < richtperiodes.Count; i++)
-            {
-                yPos += 25;
-                Richtperiode richtperiode = richtperiodes[i];
-                var Maanden = richtperiode.Naam.ToString();
-                System.Windows.Forms.LinkLabel llbl = new LinkLabel();
-                llbl.Location = new Point(xPos, yPos);
-                llbl.Name = "llbl";
-                llbl.Text = Maanden;
-                llbl.Font = new System.Drawing.Font("Segoe UI", 11);
-                llbl.LinkColor = System.Drawing.Color.Black;
-                pnlRichtperiode.Controls.Add(llbl);
-            }
+          
 
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
@@ -219,21 +206,55 @@ namespace MiaClient
             lblTotal.Font = new System.Drawing.Font("Segoe UI", 11);
             lblTotal.Name = "lblTotal";
 
+            List<LinkLabel> linkLabels = new List<LinkLabel>();
+            
             for (i = 0; i < richtperiodes.Count; i++)
             {
+                
+
+
                 yPos += 25;
-                Richtperiode richtperiode = richtperiodes[i];
+                 richtperiode = richtperiodes[i];
                 var Maanden = richtperiode.Naam.ToString();
-                System.Windows.Forms.LinkLabel llbl = new LinkLabel();
-                llbl.Location = new Point(xPos - 140, yPos);
+
+
+                linkLabels.Add(new LinkLabel());
+                linkLabels[i].Location = new Point(xPos - 140, yPos);
+                linkLabels[i].Text = Maanden;
+                linkLabels[i].Font = new System.Drawing.Font("Segoe UI", 11);
+                linkLabels[i].LinkColor = System.Drawing.Color.Black;
+              
+
                 lblTotal.Location = new Point(xPos - 140, yPos + 60);
-                llbl.Name = "llbl";
-                llbl.Text = Maanden;
-                llbl.Font = new System.Drawing.Font("Segoe UI", 11);
-                llbl.LinkColor = System.Drawing.Color.Black;
-                pnlRichtperiode.Controls.Add(llbl);
+              
+
+                pnlRichtperiode.Controls.Add(linkLabels[i]);
                 pnlRichtperiode.Controls.Add(lblTotal);
             }
+            xPos = 0;
+            yPos = 0;
+            i = 0;
+            //click event op de linklabels
+            for ( i = 0;i < richtperiodes.Count; i++)
+            {
+                 {
+                     richtperiode = richtperiodes[i];
+                    var Maanden = richtperiode.Naam.ToString();
+
+                    lbl = new Label();
+                    pnlMaand.Refresh();
+                    lbl.Location = new Point(xPos, yPos);
+                    lbl.Text = Maanden;
+
+                    pnlMaand.Controls.Add(lbl);
+                    
+
+                };
+                
+                    
+                
+            }
+            xPos = 150;
             yPos = 0;
             brian.Clear();
             foreach (var richtperiode in richtperiodes)
@@ -255,6 +276,7 @@ namespace MiaClient
                 pnlRichtperiode.Controls.Add(lbl);
             }
         }
+       
     }
 }
 
