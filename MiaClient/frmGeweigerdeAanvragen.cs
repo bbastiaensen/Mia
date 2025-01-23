@@ -23,6 +23,7 @@ namespace MiaClient
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            //just a way to make the wait seem less long
             lblWacht.Visible = true;
             lblWacht.Text = "Dit kan even duren";
             lblLaad1.Visible = true;
@@ -43,20 +44,22 @@ namespace MiaClient
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetAanvragen();
             List<Aanvraag> Status = new List<Aanvraag>();
-            //string jaar = DateTime.Parse(DateTime.Now.ToString()).Year.ToString();
             //Making sure the data is in the right year, and it's refused
             foreach (Aanvraag a in aanvragen)
             {
-                //if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "niet bekrachtigd" || StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Niet goedgekeurd")
-                //{
+                if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "niet bekrachtigd" || StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Niet goedgekeurd")
+                {
                     Status.Add(a);
-                //}
+                }
             }
+            //current year
             int jaar = DateTime.Now.Year;
+            //total offset by year
             int js = 0;
             for (int j = jaar; j <= jaar + 4; j++)
             {
                 lblLaad1.Text = "Excel opstellen...";
+                //making sure it's in the right year
                 List<Aanvraag> inJaar = new List<Aanvraag>();
                 foreach (Aanvraag a in Status)
                 {
@@ -66,6 +69,7 @@ namespace MiaClient
                     }
                 }
                 //setting up the numbers
+                //year in string
                 string finJaar = j.ToString();
                 //position for the data
                 int add = 2;
@@ -135,6 +139,7 @@ namespace MiaClient
                     worksheet.get_Range("C" + ri, "C" + ri).Value = tot;
                     worksheet.get_Range("C" + ri, "C" + ri).Font.Bold = true;
                 }
+                //calculating the offset of the year
                 js = (rs-m-1) + ri;
                 if(j > jaar + 2)
                 {
