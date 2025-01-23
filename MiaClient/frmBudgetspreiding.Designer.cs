@@ -33,6 +33,8 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.pnlRichtperiode = new System.Windows.Forms.Panel();
+            this.lblLijn = new System.Windows.Forms.Label();
+            this.pnlMaand = new System.Windows.Forms.Panel();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,14 +84,31 @@
             // 
             this.pnlRichtperiode.Location = new System.Drawing.Point(12, 101);
             this.pnlRichtperiode.Name = "pnlRichtperiode";
-            this.pnlRichtperiode.Size = new System.Drawing.Size(776, 450);
+            this.pnlRichtperiode.Size = new System.Drawing.Size(352, 450);
             this.pnlRichtperiode.TabIndex = 1;
+            // 
+            // lblLijn
+            // 
+            this.lblLijn.BackColor = System.Drawing.Color.Black;
+            this.lblLijn.Location = new System.Drawing.Point(371, 102);
+            this.lblLijn.Name = "lblLijn";
+            this.lblLijn.Size = new System.Drawing.Size(6, 415);
+            this.lblLijn.TabIndex = 2;
+            // 
+            // pnlMaand
+            // 
+            this.pnlMaand.Location = new System.Drawing.Point(384, 101);
+            this.pnlMaand.Name = "pnlMaand";
+            this.pnlMaand.Size = new System.Drawing.Size(404, 450);
+            this.pnlMaand.TabIndex = 3;
             // 
             // frmBudgetspreiding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 563);
+            this.Controls.Add(this.pnlMaand);
+            this.Controls.Add(this.lblLijn);
             this.Controls.Add(this.pnlRichtperiode);
             this.Controls.Add(this.gbxFinancieringsjaar);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,5 +130,7 @@
         private System.Windows.Forms.Panel pnlRichtperiode;
         private System.Windows.Forms.Button btnExporteer;
         private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
+        private System.Windows.Forms.Label lblLijn;
+        private System.Windows.Forms.Panel pnlMaand;
     }
 }

@@ -17,11 +17,16 @@ namespace MiaClient
     public partial class frmBudgetspreiding : Form
     { 
         int i = 0;
+        List<Aanvraag> Aanvragen   = null;
         List<Richtperiode> richtperiodes = null;
         System.Windows.Forms.Label lbl;
+        Aanvraag zoinks = null;
         Richtperiode richtperiode = null;
-        List<decimal> brian = new List<decimal>();
-        decimal louis = 0;
+        List<decimal> Budgets = new List<decimal>();
+        List<string> Titels = new List<string>();
+        decimal Totaal = 0;
+        int xPos = 0;
+        int yPos = 0;
         public frmBudgetspreiding()
         {
             InitializeComponent();
@@ -195,8 +200,10 @@ namespace MiaClient
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             pnlRichtperiode.Refresh();
             pnlRichtperiode.Controls.Clear();
+            pnlMaand.Controls.Clear();
             int xPos = 150;
             int yPos = 0;
             richtperiodes = RichtperiodeManager.GetRichtperiodes();
@@ -210,19 +217,19 @@ namespace MiaClient
             
             for (i = 0; i < richtperiodes.Count; i++)
             {
-                
-
-
                 yPos += 25;
-                 richtperiode = richtperiodes[i];
-                var Maanden = richtperiode.Naam.ToString();
+                 this.richtperiode = richtperiodes[i];
+                var richtperiode = this.richtperiode.Naam.ToString();
 
 
                 linkLabels.Add(new LinkLabel());
+                linkLabels[i].Name = "llblRichtperiode" + this.richtperiode.Id;
                 linkLabels[i].Location = new Point(xPos - 140, yPos);
-                linkLabels[i].Text = Maanden;
+                linkLabels[i].Text = richtperiode;
                 linkLabels[i].Font = new System.Drawing.Font("Segoe UI", 11);
                 linkLabels[i].LinkColor = System.Drawing.Color.Black;
+
+                linkLabels[i].LinkClicked += FrmBudgetspreiding_Click;
               
 
                 lblTotal.Location = new Point(xPos - 140, yPos + 60);
@@ -231,32 +238,11 @@ namespace MiaClient
                 pnlRichtperiode.Controls.Add(linkLabels[i]);
                 pnlRichtperiode.Controls.Add(lblTotal);
             }
-            xPos = 0;
-            yPos = 0;
-            i = 0;
-            //click event op de linklabels
-            for ( i = 0;i < richtperiodes.Count; i++)
-            {
-                 {
-                     richtperiode = richtperiodes[i];
-                    var Maanden = richtperiode.Naam.ToString();
-
-                    lbl = new Label();
-                    pnlMaand.Refresh();
-                    lbl.Location = new Point(xPos, yPos);
-                    lbl.Text = Maanden;
-
-                    pnlMaand.Controls.Add(lbl);
-                    
-
-                };
-                
-                    
-                
-            }
+          
+            i = 0;         
             xPos = 150;
             yPos = 0;
-            brian.Clear();
+            Budgets.Clear();
             foreach (var richtperiode in richtperiodes)
             {
                 lbl = new Label();
@@ -264,19 +250,73 @@ namespace MiaClient
                 string year = cmbFinancieringsjaar.SelectedItem.ToString();
                 decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, year);
                 yPos += 25;
+
                 lbl.Location = new Point(xPos, yPos);
                 lbl.Name = $"lbl{richtperiode.Id}";
                 lbl.Text = bedrag.ToString();
                 lbl.Font = new System.Drawing.Font("Segoe UI", 11);
-                brian.Add(bedrag);
-                louis = brian.Sum();
+                Budgets.Add(bedrag);
+                Totaal = Budgets.Sum();
                 lblNum.Location = new Point(xPos, yPos + 60);
-                lblNum.Text = louis.ToString();
+                lblNum.Text = Totaal.ToString();
                 pnlRichtperiode.Controls.Add(lblNum);
                 pnlRichtperiode.Controls.Add(lbl);
             }
+           
+
+           
+            
         }
-       
+
+        private void FrmBudgetspreiding_Click(object sender, EventArgs e)
+        {
+            xPos = 10;
+            LinkLabel llblRichtperiode = (LinkLabel)sender;
+            Label Richtperiode = new Label();
+            Label Financieringsjaar = new Label();
+            Financieringsjaar.Text = cmbFinancieringsjaar.Text;
+            
+            Richtperiode.Text = llblRichtperiode.Text; 
+                
+
+            int nietIndexLengte = 16;
+            int indexLengte = llblRichtperiode.Name.Length - nietIndexLengte;
+            
+            pnlMaand.Controls.Clear();
+
+            
+           
+            llblRichtperiode.Location = new Point(xPos, yPos);
+           
+            Financieringsjaar.Location = new Point(xPos - 10, yPos +25);
+            llblRichtperiode.Text = llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte);
+            Titels.Clear();
+            foreach (var aanvraag  in Aanvragen)
+            {
+               
+                
+                Label lbl = new Label();
+                Label prijs = new Label();
+
+                pnlMaand.Controls.Clear();
+
+                string year = Financieringsjaar.Text.ToString();
+                var cheesy = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
+
+                yPos =+ 25;
+
+                lbl.Location = new Point(xPos, yPos);
+                lbl.Name = "hehe";
+                lbl.Text = cheesy.ToString();
+                lbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                Titels.Add(Convert.ToString(cheesy));
+            }
+
+            pnlMaand.Controls.Add(Richtperiode);
+            pnlMaand.Controls.Add(Financieringsjaar);
+            pnlMaand.Controls.Add(lbl);
+
+        }
     }
 }
 

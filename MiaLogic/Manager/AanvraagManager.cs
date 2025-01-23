@@ -1336,7 +1336,7 @@ namespace MiaLogic.Manager
         public static decimal GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(int richtperiodeId, string financieringsjaar)
         {
             decimal ret = 0;
-          
+
 
             using (SqlConnection objCn = new SqlConnection())
             {
@@ -1361,5 +1361,48 @@ namespace MiaLogic.Manager
             }
             return ret;
         }
+        public static List<Aanvraag> GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(int richtperiodeId, string financieringsjaar)
+        {
+           List<Aanvraag> smt = null;
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "SELECT (PrijsIndicatieStuk * Aantalstuk) as Totaal , Titel from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4";
+                    objCmd.Parameters.AddWithValue("@Jaar", financieringsjaar);
+                    objCmd.Parameters.AddWithValue("@RichtperiodeId", richtperiodeId);
+
+                    objCn.Open();
+                    Aanvraag a;
+                   
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                   while(objRea.Read())
+                    {
+                        if (smt == null)
+                        {
+                            smt = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        smt.Add(a);
+                    }
+                   
+                }
+            }
+            return smt;
+        }
+
     }
 }
