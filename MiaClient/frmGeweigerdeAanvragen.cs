@@ -47,10 +47,10 @@ namespace MiaClient
             //Making sure the data is in the right year, and it's refused
             foreach (Aanvraag a in aanvragen)
             {
-                if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "niet bekrachtigd" || StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Niet goedgekeurd")
-                {
+                //if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "niet bekrachtigd" || StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Niet goedgekeurd")
+                //{
                     Status.Add(a);
-                }
+                //}
             }
             int jaar = DateTime.Now.Year;
             int js = 0;
@@ -111,6 +111,10 @@ namespace MiaClient
                         //puts data on the right position (based on add)
                         worksheet.get_Range("B" + add, "B" + add).Value = InPer[p - 1].Titel;
                         worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
+                        if (InPer[p - 1].OpmerkingenResultaat != null)
+                        {
+                            worksheet.get_Range("D" + add, "D" + add).Value = InPer[p - 1].OpmerkingenResultaat;
+                        }
                         //total for the month
                         tot += prijs;
                         //background color for data in Excel file
@@ -145,6 +149,7 @@ namespace MiaClient
             worksheet.get_Range("A1", "A1").Font.Underline = true;
             //layout data
             worksheet.get_Range("B1", "B200").ColumnWidth = 55;
+            worksheet.get_Range("D1", "D200").ColumnWidth= 20;
             worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
 
             // Show save file dialog
@@ -187,7 +192,7 @@ namespace MiaClient
             //if the data is the richtperiode
             p = ParameterManager.GetParameterByCode("TekstExcel");
             c = StringToColor(p.Waarde);
-            ws.get_Range("A" + pos, "C" + pos).Font.Color = c;
+            ws.get_Range("A" + pos, "D" + pos).Font.Color = c;
             if (m)
             {
                 ws.get_Range("A" + pos, "A" + pos).Font.Bold = true;
@@ -196,14 +201,14 @@ namespace MiaClient
                 {
                     p = ParameterManager.GetParameterByCode("MaandExcelL");
                     c = StringToColor(p.Waarde);
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                 }
                 //month is uneven
                 else
                 {
                     p = ParameterManager.GetParameterByCode("MaandExcelD");
                     c = StringToColor(p.Waarde);
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                 }
             }
             //if the data isnt' the richtperiode
@@ -217,13 +222,13 @@ namespace MiaClient
                     {
                         p = ParameterManager.GetParameterByCode("DataExcelL1");
                         c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                     }
                     else
                     {
                         p = ParameterManager.GetParameterByCode("DataExcelL2");
                         c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                     }
 
                 }
@@ -235,13 +240,13 @@ namespace MiaClient
                     {
                         p = ParameterManager.GetParameterByCode("DataExcelD1");
                         c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                     }
                     else
                     {
                         p = ParameterManager.GetParameterByCode("DataExcelD2");
                         c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                     }
                 }
             }
