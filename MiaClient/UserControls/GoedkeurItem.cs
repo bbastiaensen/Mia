@@ -35,11 +35,8 @@ namespace MiaClient.UserControls
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
+        public event EventHandler GoedkeurItemStatusEdit;
         frmAanvraagFormulier frmAanvraagFormulier;
-        frmGoedkeuring frmGoedkeuring;
-
-
-        static public bool edit = true;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
 
@@ -50,6 +47,7 @@ namespace MiaClient.UserControls
         public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, Boolean even)
         {
             InitializeComponent();
+            
             Id = id;
             StatusAanvraag = Statusaanvraag;
             Aanvrager = aanvrager;
@@ -57,6 +55,11 @@ namespace MiaClient.UserControls
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
             Bedrag = PrijsIndicatiePerStuk *AantalStuk;
+
+            //if(Statusaanvraag == "Goedgekeurd")
+            //{
+
+            //}
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -89,7 +92,6 @@ namespace MiaClient.UserControls
                 frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
             }
 
-
             frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
             //frmAanvraagFormulier.UpdateAanvraag();
             frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
@@ -98,7 +100,7 @@ namespace MiaClient.UserControls
         }
 
 
-        private void GoedkeurFormulieredit_AanvraagBewaard(object sender, EventArgs e)
+        public void GoedkeurFormulieredit_AanvraagBewaard(object sender, EventArgs e)
         {
             if (GoedkeurItemChanged != null)
             {
@@ -108,15 +110,9 @@ namespace MiaClient.UserControls
 
         private void btnStatusEdit_Click(object sender, EventArgs e)
         {
-            if (frmAanvraagFormulier == null)
-            {
-                frmAanvraagFormulier = new frmAanvraagFormulier(Id, "edit");
+            if (GoedkeurItemStatusEdit != null) {
+                GoedkeurItemStatusEdit(this, null);
             }
-
-            edit = true;
-            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
-            //frmAanvraagFormulier.UpdateAanvraag();
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurFormulieredit_AanvraagBewaard;
         }
     }
 

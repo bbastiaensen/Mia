@@ -68,7 +68,6 @@
             this.lblTitel = new System.Windows.Forms.Label();
             this.chbxAanvraagmomentVan = new System.Windows.Forms.CheckBox();
             this.lblGebruiker = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbNietBekrachtigd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBekrachtigd)).BeginInit();
@@ -286,7 +285,6 @@
             // 
             // grbxFilterAanvraag
             // 
-            this.grbxFilterAanvraag.Controls.Add(this.btnSave);
             this.grbxFilterAanvraag.Controls.Add(this.pcbNietBekrachtigd);
             this.grbxFilterAanvraag.Controls.Add(this.pcbBekrachtigd);
             this.grbxFilterAanvraag.Controls.Add(this.pcbAfgekeurd);
@@ -524,16 +522,6 @@
             this.lblGebruiker.TabIndex = 1;
             this.lblGebruiker.Text = "Gebruiker";
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(1123, 160);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 32;
-            this.btnSave.Text = "Bewaar";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Visible = false;
-            // 
             // frmGoedkeuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -620,6 +608,5 @@
         private System.Windows.Forms.PictureBox pcbInAanvraag;
         private System.Windows.Forms.PictureBox pcbNietBekrachtigd;
         private System.Windows.Forms.PictureBox pcbBekrachtigd;
-        private System.Windows.Forms.Button btnSave;
     }
 }
