@@ -142,8 +142,8 @@
         private System.Windows.Forms.Panel pnlRichtperiode;
         private System.Windows.Forms.Button btnExporteer;
         private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
+        private System.Windows.Forms.Label lblWacht;
         private System.Windows.Forms.Label lblLijn;
         private System.Windows.Forms.Panel pnlMaand;
-        private System.Windows.Forms.Label lblWacht;
     }
 }
