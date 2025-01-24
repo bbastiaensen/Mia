@@ -68,6 +68,7 @@
             this.lblTitel = new System.Windows.Forms.Label();
             this.chbxAanvraagmomentVan = new System.Windows.Forms.CheckBox();
             this.lblGebruiker = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbNietBekrachtigd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBekrachtigd)).BeginInit();
@@ -285,11 +286,6 @@
             // 
             // grbxFilterAanvraag
             // 
-            this.grbxFilterAanvraag.Controls.Add(this.pcbNietBekrachtigd);
-            this.grbxFilterAanvraag.Controls.Add(this.pcbBekrachtigd);
-            this.grbxFilterAanvraag.Controls.Add(this.pcbAfgekeurd);
-            this.grbxFilterAanvraag.Controls.Add(this.pcbGoedgekeurd);
-            this.grbxFilterAanvraag.Controls.Add(this.pcbInAanvraag);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
@@ -308,7 +304,7 @@
             this.grbxFilterAanvraag.Controls.Add(this.lblGebruiker);
             this.grbxFilterAanvraag.Location = new System.Drawing.Point(101, 46);
             this.grbxFilterAanvraag.Name = "grbxFilterAanvraag";
-            this.grbxFilterAanvraag.Size = new System.Drawing.Size(1270, 213);
+            this.grbxFilterAanvraag.Size = new System.Drawing.Size(634, 213);
             this.grbxFilterAanvraag.TabIndex = 65;
             this.grbxFilterAanvraag.TabStop = false;
             this.grbxFilterAanvraag.Text = "Filter";
@@ -319,7 +315,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbNietBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbNietBekrachtigd.Image")));
-            this.pcbNietBekrachtigd.Location = new System.Drawing.Point(1024, 129);
+            this.pcbNietBekrachtigd.Location = new System.Drawing.Point(1152, 144);
             this.pcbNietBekrachtigd.Name = "pcbNietBekrachtigd";
             this.pcbNietBekrachtigd.Size = new System.Drawing.Size(55, 55);
             this.pcbNietBekrachtigd.TabIndex = 31;
@@ -332,7 +328,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbBekrachtigd.Image = ((System.Drawing.Image)(resources.GetObject("pcbBekrachtigd.Image")));
-            this.pcbBekrachtigd.Location = new System.Drawing.Point(934, 129);
+            this.pcbBekrachtigd.Location = new System.Drawing.Point(1062, 144);
             this.pcbBekrachtigd.Name = "pcbBekrachtigd";
             this.pcbBekrachtigd.Size = new System.Drawing.Size(55, 55);
             this.pcbBekrachtigd.TabIndex = 30;
@@ -345,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbAfgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbAfgekeurd.Image")));
-            this.pcbAfgekeurd.Location = new System.Drawing.Point(829, 129);
+            this.pcbAfgekeurd.Location = new System.Drawing.Point(957, 144);
             this.pcbAfgekeurd.Name = "pcbAfgekeurd";
             this.pcbAfgekeurd.Size = new System.Drawing.Size(55, 55);
             this.pcbAfgekeurd.TabIndex = 29;
@@ -358,7 +354,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbGoedgekeurd.Image = ((System.Drawing.Image)(resources.GetObject("pcbGoedgekeurd.Image")));
-            this.pcbGoedgekeurd.Location = new System.Drawing.Point(732, 129);
+            this.pcbGoedgekeurd.Location = new System.Drawing.Point(860, 144);
             this.pcbGoedgekeurd.Name = "pcbGoedgekeurd";
             this.pcbGoedgekeurd.Size = new System.Drawing.Size(55, 55);
             this.pcbGoedgekeurd.TabIndex = 28;
@@ -371,7 +367,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcbInAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("pcbInAanvraag.Image")));
-            this.pcbInAanvraag.Location = new System.Drawing.Point(631, 129);
+            this.pcbInAanvraag.Location = new System.Drawing.Point(759, 144);
             this.pcbInAanvraag.Name = "pcbInAanvraag";
             this.pcbInAanvraag.Size = new System.Drawing.Size(55, 55);
             this.pcbInAanvraag.TabIndex = 27;
@@ -440,7 +436,7 @@
             // 
             // txtFinancieringsjaar
             // 
-            this.txtFinancieringsjaar.Location = new System.Drawing.Point(632, 58);
+            this.txtFinancieringsjaar.Location = new System.Drawing.Point(486, 160);
             this.txtFinancieringsjaar.Name = "txtFinancieringsjaar";
             this.txtFinancieringsjaar.Size = new System.Drawing.Size(132, 22);
             this.txtFinancieringsjaar.TabIndex = 15;
@@ -450,7 +446,7 @@
             // 
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(627, 27);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(481, 129);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(137, 20);
             this.lblFinancieringsjaar.TabIndex = 7;
@@ -488,7 +484,7 @@
             // 
             this.txtTitel.Location = new System.Drawing.Point(325, 58);
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(272, 22);
+            this.txtTitel.Size = new System.Drawing.Size(293, 22);
             this.txtTitel.TabIndex = 13;
             // 
             // lblTitel
@@ -522,14 +518,30 @@
             this.lblGebruiker.TabIndex = 1;
             this.lblGebruiker.Text = "Gebruiker";
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(860, 236);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(257, 23);
+            this.btnSave.TabIndex = 67;
+            this.btnSave.Text = "Bewaar Status";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // frmGoedkeuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1436, 836);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.pcbNietBekrachtigd);
+            this.Controls.Add(this.pcbGoedgekeurd);
             this.Controls.Add(this.btnFilter);
+            this.Controls.Add(this.pcbBekrachtigd);
             this.Controls.Add(this.grbxFilterAanvraag);
+            this.Controls.Add(this.pcbInAanvraag);
             this.Controls.Add(this.lblPages);
+            this.Controls.Add(this.pcbAfgekeurd);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnPrevious);
@@ -608,5 +620,6 @@
         private System.Windows.Forms.PictureBox pcbInAanvraag;
         private System.Windows.Forms.PictureBox pcbNietBekrachtigd;
         private System.Windows.Forms.PictureBox pcbBekrachtigd;
+        private System.Windows.Forms.Button btnSave;
     }
 }
