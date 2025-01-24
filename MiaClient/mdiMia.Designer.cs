@@ -35,6 +35,7 @@
             this.goedkeuringenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overzichtenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.budgetoverzichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.geweigerdeAanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -99,7 +100,8 @@
             // overzichtenToolStripMenuItem
             // 
             this.overzichtenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.budgetoverzichtToolStripMenuItem});
+            this.budgetoverzichtToolStripMenuItem,
+            this.geweigerdeAanvragenToolStripMenuItem});
             this.overzichtenToolStripMenuItem.Name = "overzichtenToolStripMenuItem";
             this.overzichtenToolStripMenuItem.Size = new System.Drawing.Size(105, 25);
             this.overzichtenToolStripMenuItem.Text = "Overzichten";
@@ -110,6 +112,13 @@
             this.budgetoverzichtToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.budgetoverzichtToolStripMenuItem.Text = "Budgetspreiding";
             this.budgetoverzichtToolStripMenuItem.Click += new System.EventHandler(this.budgetoverzichtToolStripMenuItem_Click);
+            // 
+            // aankopenToolStripMenuItem
+            // 
+            this.aankopenToolStripMenuItem.Name = "aankopenToolStripMenuItem";
+            this.aankopenToolStripMenuItem.Size = new System.Drawing.Size(92, 25);
+            this.aankopenToolStripMenuItem.Text = "Aankopen";
+            this.aankopenToolStripMenuItem.Click += new System.EventHandler(this.aankopenToolStripMenuItem_Click);
             // 
             // beheerToolStripMenuItem
             // 
@@ -293,12 +302,12 @@
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
-            // aankopenToolStripMenuItem
+            // geweigerdeAanvragenToolStripMenuItem
             // 
-            this.aankopenToolStripMenuItem.Name = "aankopenToolStripMenuItem";
-            this.aankopenToolStripMenuItem.Size = new System.Drawing.Size(92, 25);
-            this.aankopenToolStripMenuItem.Text = "Aankopen";
-            this.aankopenToolStripMenuItem.Click += new System.EventHandler(this.aankopenToolStripMenuItem_Click);
+            this.geweigerdeAanvragenToolStripMenuItem.Name = "geweigerdeAanvragenToolStripMenuItem";
+            this.geweigerdeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.geweigerdeAanvragenToolStripMenuItem.Text = "Geweigerde Aanvragen";
+            this.geweigerdeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geweigerdeAanvragenToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -356,6 +365,7 @@
         private System.Windows.Forms.ToolStripSeparator tss3;
         private System.Windows.Forms.ToolStripMenuItem budgetoverzichtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aankopenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem geweigerdeAanvragenToolStripMenuItem;
     }
 }
 

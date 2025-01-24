@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.lblWacht = new System.Windows.Forms.Label();
             this.btnExporteer = new System.Windows.Forms.Button();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.lblWacht);
             this.gbxFinancieringsjaar.Controls.Add(this.btnExporteer);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
             this.gbxFinancieringsjaar.Controls.Add(this.lblFinancieringsjaar);
@@ -50,6 +52,16 @@
             this.gbxFinancieringsjaar.TabIndex = 0;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // lblWacht
+            // 
+            this.lblWacht.AutoSize = true;
+            this.lblWacht.Location = new System.Drawing.Point(517, 60);
+            this.lblWacht.Name = "lblWacht";
+            this.lblWacht.Size = new System.Drawing.Size(142, 20);
+            this.lblWacht.TabIndex = 3;
+            this.lblWacht.Text = "Dit kan even duren...";
+            this.lblWacht.Visible = false;
             // 
             // btnExporteer
             // 
@@ -130,6 +142,7 @@
         private System.Windows.Forms.Panel pnlRichtperiode;
         private System.Windows.Forms.Button btnExporteer;
         private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
+        private System.Windows.Forms.Label lblWacht;
         private System.Windows.Forms.Label lblLijn;
         private System.Windows.Forms.Panel pnlMaand;
     }
