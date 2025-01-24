@@ -70,6 +70,17 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+
+            foreach (var gb in this.Controls.OfType<GroupBox>())
+            {
+                foreach (var btn in gb.Controls.OfType<Button>())
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.BackColor = StyleParameters.ButtonBack;
+                    btn.ForeColor = StyleParameters.Buttontext;
+                }
+            }
         }
 
         private void btnExporteer_Click(object sender, EventArgs e)
