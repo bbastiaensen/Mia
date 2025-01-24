@@ -121,6 +121,7 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
+           
             
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
@@ -610,7 +611,7 @@ namespace MiaClient
             // 
             // groupBox1
             // 
-            
+           
             // 
             // ddlDienst
             // 
@@ -1247,6 +1248,5 @@ namespace MiaClient
         private System.Windows.Forms.Label lblResultaat;
         private System.Windows.Forms.ComboBox ddlRichtperiode;
         private System.Windows.Forms.ComboBox ddlStatus;
-       
     }
 }
