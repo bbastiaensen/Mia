@@ -37,6 +37,7 @@ namespace MiaClient.UserControls
         public event EventHandler GoedkeurItemChanged;
         public event EventHandler GoedkeurItemStatusEdit;
         frmAanvraagFormulier frmAanvraagFormulier;
+        frmGoedkeuring frmGoedkeuring;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
 
@@ -110,10 +111,10 @@ namespace MiaClient.UserControls
 
         private void btnStatusEdit_Click(object sender, EventArgs e)
         {
-            if (GoedkeurItemStatusEdit != null) {
+            if (GoedkeurItemStatusEdit != null) 
+            {
                 GoedkeurItemStatusEdit(this, null);
             }
         }
     }
-
 }
