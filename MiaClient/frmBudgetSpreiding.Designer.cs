@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.lblWacht = new System.Windows.Forms.Label();
             this.btnExporteer = new System.Windows.Forms.Button();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             // 
             // gbxFinancieringsjaar
             // 
-            this.gbxFinancieringsjaar.Controls.Add(this.linkLabel1);
             this.gbxFinancieringsjaar.Controls.Add(this.lblWacht);
             this.gbxFinancieringsjaar.Controls.Add(this.btnExporteer);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
@@ -55,6 +55,16 @@
             this.gbxFinancieringsjaar.TabIndex = 0;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // lblWacht
+            // 
+            this.lblWacht.AutoSize = true;
+            this.lblWacht.Location = new System.Drawing.Point(517, 60);
+            this.lblWacht.Name = "lblWacht";
+            this.lblWacht.Size = new System.Drawing.Size(142, 20);
+            this.lblWacht.TabIndex = 3;
+            this.lblWacht.Text = "Dit kan even duren...";
+            this.lblWacht.Visible = false;
             // 
             // btnExporteer
             // 
@@ -106,26 +116,6 @@
             this.pnlMaand.Name = "pnlMaand";
             this.pnlMaand.Size = new System.Drawing.Size(404, 450);
             this.pnlMaand.TabIndex = 3;
-            // 
-            // lblWacht
-            // 
-            this.lblWacht.AutoSize = true;
-            this.lblWacht.Location = new System.Drawing.Point(516, 60);
-            this.lblWacht.Name = "lblWacht";
-            this.lblWacht.Size = new System.Drawing.Size(142, 20);
-            this.lblWacht.TabIndex = 3;
-            this.lblWacht.Text = "Dit kan even duren...";
-            this.lblWacht.Visible = false;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(516, 78);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(76, 20);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
             // 
             // frmBudgetspreiding
             // 
