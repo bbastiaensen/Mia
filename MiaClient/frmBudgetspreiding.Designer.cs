@@ -32,7 +32,7 @@
             this.btnExporteer = new System.Windows.Forms.Button();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+           
             this.lblWacht = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pnlRichtperiode = new System.Windows.Forms.Panel();
