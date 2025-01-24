@@ -1,5 +1,6 @@
 ﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -254,6 +255,19 @@ namespace MiaClient
                         ws.get_Range("A" + pos, "D" + pos).Interior.Color = c;
                     }
                 }
+            }
+        }
+
+        private void frmGeweigerdeAanvragen_Load(object sender, EventArgs e)
+        {
+            this.BackColor = StyleParameters.Achtergrondkleur;
+
+            foreach (var btn in this.Controls.OfType<Button>())
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.BackColor = StyleParameters.ButtonBack;
+                btn.ForeColor = StyleParameters.Buttontext;
             }
         }
     }
