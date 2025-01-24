@@ -21,6 +21,7 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
         public event EventHandler AanvraagBewaard;
+        GoedkeurItem GoedkeurItem;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
         int statusId = 0;
@@ -55,6 +56,7 @@ namespace MiaClient
         int aantalListItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
+        string imagePath = "";
 
         Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
         Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
@@ -96,12 +98,61 @@ namespace MiaClient
                     agi.TabIndex = t + 8;
                     agi.GoedkeurItemSelected += Gli_GoedkeurItemSelected;
                     agi.GoedkeurItemChanged += Agi_GoedkeurItemChanged;
+                    agi.GoedkeurItemStatusEdit += Agi_GoedkeurItemStatusEdit;
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
-                    statusId = ag.StatusAanvraagId;
-
+                    statusId = ag.Id;
+                    
                     t++;
                     yPos += 30;
+
+                }
+            }
+        }
+
+        private void Agi_GoedkeurItemStatusEdit(object sender, EventArgs e)
+        {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
+            imagePath = "";
+            if (aanvraag.StatusAanvraagId != 0)
+            {
+                grbxFilterAanvraag.Enabled = false;
+
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = true;
+                pcbGoedgekeurd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = true;
+
+                if (aanvraag.StatusAanvraagId == 1)
+                {
+                    string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
+                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                }
+
+                if (aanvraag.StatusAanvraagId == 2)
+                {
+                    string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
+                    pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+                }
+
+                if (aanvraag.StatusAanvraagId == 3)
+                {
+                    string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
+                    pcbAfgekeurd.Image = Image.FromFile(imagePath);
+                }
+
+                if (aanvraag.StatusAanvraagId == 4)
+                {
+                    string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
+                    pcbBekrachtigd.Image = Image.FromFile(imagePath);
+                }
+
+                if (aanvraag.StatusAanvraagId == 5)
+                {
+                    string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
+                    pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
                 }
             }
         }
@@ -134,39 +185,9 @@ namespace MiaClient
             pcbBekrachtigd.Enabled = false;
             pcbGoedgekeurd.Enabled = false;
             pcbNietBekrachtigd.Enabled = false;
-            
-            string imagePath = "";
 
-            if(statusId == 1)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 2)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
-                pcbGoedgekeurd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 3)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
-                pcbAfgekeurd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 4)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
-                pcbBekrachtigd.Image = Image.FromFile(imagePath);
-            }
-
-            if (statusId == 5)
-            {
-                string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
-                pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
-            }
         }
+
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
             try
@@ -193,6 +214,7 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void frmGoedkeuring_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -331,12 +353,16 @@ namespace MiaClient
 
         private void pcbInAanvraag_Click(object sender, EventArgs e)
         {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
             if (inaanvraag == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
                 pcbInAanvraag.Image = Image.FromFile(imagePath); 
 
                 inaanvraag = true;
+                aanvraag.StatusAanvraag = "In aanvraag";
             }
             else
             {
@@ -350,10 +376,15 @@ namespace MiaClient
             pcbNietBekrachtigd.Enabled = true;
             pcbAfgekeurd.Enabled = true;
             pcbBekrachtigd.Enabled = true;
+
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbGoedgekeurd_Click(object sender, EventArgs e)
         {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
             if (goedkeur == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
@@ -365,9 +396,11 @@ namespace MiaClient
                 goedkeur = true;
 
                 pcbGoedgekeurd.Enabled = true;
-                pcbNietBekrachtigd.Enabled = true;
-                pcbAfgekeurd.Enabled = false;
-                pcbBekrachtigd.Enabled = true;
+                pcbNietBekrachtigd.Enabled = false;
+                pcbAfgekeurd.Enabled = true;
+                pcbBekrachtigd.Enabled = false;
+
+                aanvraag.StatusAanvraag = "Goedgekeurd";
             }
             else
             {
@@ -381,17 +414,24 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbAfgekeurd_Click(object sender, EventArgs e)
         {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
             if (afkeur == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
                 pcbAfgekeurd.Image = Image.FromFile(imagePath);
 
-                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imageDrop);
+                //string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                //pcbInAanvraag.Image = Image.FromFile(imageDrop);
+
+                imagePath = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
 
                 afkeur = true;
 
@@ -399,6 +439,8 @@ namespace MiaClient
                 pcbNietBekrachtigd.Enabled = false;
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = false;
+
+                aanvraag.StatusAanvraag = "Niet goedgekeurd";
             }
             else
             {
@@ -412,10 +454,14 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbBekrachtigd_Click(object sender, EventArgs e)
         {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
             if (bekrachtig == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
@@ -430,6 +476,8 @@ namespace MiaClient
                 pcbNietBekrachtigd.Enabled = true;
                 pcbAfgekeurd.Enabled = false;
                 pcbBekrachtigd.Enabled = true;
+
+                aanvraag.StatusAanvraag = "Bekrachtigd";
             }
             else
             {
@@ -443,10 +491,14 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
         {
+
+            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+
             if (nietbekrachtig == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
@@ -461,6 +513,8 @@ namespace MiaClient
                 pcbNietBekrachtigd.Enabled = true;
                 pcbAfgekeurd.Enabled = false;
                 pcbBekrachtigd.Enabled = false;
+
+                aanvraag.StatusAanvraag = "Niet bekrachtigd";
             }
             else
             {
@@ -474,6 +528,7 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
+            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
         private void btnSortGebruiker_Click(object sender, EventArgs e)
         {
