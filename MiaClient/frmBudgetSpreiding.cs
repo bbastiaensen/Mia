@@ -301,15 +301,15 @@ namespace MiaClient
                 pnlMaand.Controls.Clear();
 
                 string year = Financieringsjaar.Text.ToString();
-                var cheesy = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
+                var titel = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
 
                 yPos =+ 25;
 
                 lbl.Location = new Point(xPos, yPos);
                 lbl.Name = "hehe";
-                lbl.Text = cheesy.ToString();
+                lbl.Text = titel.ToString();
                 lbl.Font = new System.Drawing.Font("Segoe UI", 11);
-                Titels.Add(Convert.ToString(cheesy));
+                Titels.Add(Convert.ToString(titel));
             }
 
             pnlMaand.Controls.Add(Richtperiode);
