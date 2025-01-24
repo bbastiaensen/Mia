@@ -140,6 +140,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleParameters.cs" />
+    <Compile Include="UserControls\AankopenItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AankopenItem.Designer.cs">
+      <DependentUpon>AankopenItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GoedkeurItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +243,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\AankopenItem.resx">
+      <DependentUpon>AankopenItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
       <SubType>Designer</SubType>
