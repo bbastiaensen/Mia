@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
         public event EventHandler AanvraagBewaard;
+        public event EventHandler GoedkeurItemChanged;
         GoedkeurItem GoedkeurItem;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
         int statusId = 0;
+        int statusNameId;
 
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -47,16 +50,15 @@ namespace MiaClient
         bool SortKostenPlaats = true;
         bool SortFinancieringsjaar = true;
 
-        bool inaanvraag = true;
-        bool goedkeur = true;
-        bool afkeur = true;
-        bool bekrachtig = true;
-        bool nietbekrachtig = true;
+        bool inaanvraag = false;
+        bool goedkeur = false;
+        bool afkeur = false;
+        bool bekrachtig = false;
+        bool nietbekrachtig = false;
 
         int aantalListItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
-        string imagePath = "";
 
         Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
         Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
@@ -75,7 +77,14 @@ namespace MiaClient
 
         public frmGoedkeuring()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                ErrorHandler(ex, "FrmAanvraagFormulier");
+            }
         }
 
 
@@ -102,7 +111,7 @@ namespace MiaClient
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
                     statusId = ag.Id;
-                    
+
                     t++;
                     yPos += 30;
 
@@ -115,10 +124,9 @@ namespace MiaClient
 
             var aanvraag = AanvraagManager.GetAanvraagById(statusId);
 
-            imagePath = "";
+
             if (aanvraag.StatusAanvraagId != 0)
             {
-                grbxFilterAanvraag.Enabled = false;
 
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
@@ -128,31 +136,31 @@ namespace MiaClient
                 if (aanvraag.StatusAanvraagId == 1)
                 {
                     string imageDrop = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                    pcbInAanvraag.Image = Image.FromFile(imagePath);
+                    pcbInAanvraag.Image = Image.FromFile(imageDrop);
                 }
 
                 if (aanvraag.StatusAanvraagId == 2)
                 {
                     string imageDrop = Path.Combine(projectDirectory, "icons", "goedgekeurdGroot_aan.png");
-                    pcbGoedgekeurd.Image = Image.FromFile(imagePath);
+                    pcbGoedgekeurd.Image = Image.FromFile(imageDrop);
                 }
 
                 if (aanvraag.StatusAanvraagId == 3)
                 {
                     string imageDrop = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
-                    pcbAfgekeurd.Image = Image.FromFile(imagePath);
+                    pcbAfgekeurd.Image = Image.FromFile(imageDrop);
                 }
 
                 if (aanvraag.StatusAanvraagId == 4)
                 {
                     string imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigdGroot_aan.png");
-                    pcbBekrachtigd.Image = Image.FromFile(imagePath);
+                    pcbBekrachtigd.Image = Image.FromFile(imageDrop);
                 }
 
                 if (aanvraag.StatusAanvraagId == 5)
                 {
                     string imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigdGroot_aan.png");
-                    pcbNietBekrachtigd.Image = Image.FromFile(imagePath);
+                    pcbNietBekrachtigd.Image = Image.FromFile(imageDrop);
                 }
             }
         }
@@ -180,12 +188,6 @@ namespace MiaClient
             btnFilter.BackgroundImage = imgFilter;
             btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
             btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
-
-            pcbAfgekeurd.Enabled = false;
-            pcbBekrachtigd.Enabled = false;
-            pcbGoedgekeurd.Enabled = false;
-            pcbNietBekrachtigd.Enabled = false;
-
         }
 
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
@@ -260,7 +262,7 @@ namespace MiaClient
                     if (chbxAanvraagmomentTot.Checked == true)
                     {
                         items = items.Where(av => av.Aanvraagmoment <= (Convert.ToDateTime(dtpAanvraagmomentTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
-                    }      
+                    }
                 }
 
                 if (gebruiker)
@@ -282,26 +284,26 @@ namespace MiaClient
                 }
                 if (bedragVan)
                 {
-                    if (cbBedragVan.Checked == true )
+                    if (cbBedragVan.Checked == true)
                     {
                         if (txtBedragVan.Text != string.Empty)
                         {
                             items = items.Where(av => av.BudgetToegekend >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
                         }
-                    } 
+                    }
                 }
                 if (bedragTot)
                 {
                     if (cbBedragTot.Checked == true)
                     {
-                        if(txtBedragTot.Text != string.Empty)
+                        if (txtBedragTot.Text != string.Empty)
                         {
                             items = items.Where(av => av.BudgetToegekend <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
                         }
                     }
                 }
             }
-           return items;
+            return items;
         }
         private void btnFilter_Click(object sender, EventArgs e)
         {
@@ -359,10 +361,23 @@ namespace MiaClient
             if (inaanvraag == false)
             {
                 string imagePath = Path.Combine(projectDirectory, "icons", "aanvraagGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imagePath); 
+                pcbInAanvraag.Image = Image.FromFile(imagePath);
+
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Goedgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imageDrop);
+
+                imageDrop = Path.Combine(projectDirectory, "icons", "Afgekeurd_uitGroot.png");
+                pcbAfgekeurd.Image = Image.FromFile(imageDrop);
+
+                imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigd_uitGroot.png");
+                pcbBekrachtigd.Image = Image.FromFile(imageDrop);
+
+                imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uitGroot.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imageDrop);
 
                 inaanvraag = true;
-                aanvraag.StatusAanvraag = "In aanvraag";
+
+                statusNameId = 1;
             }
             else
             {
@@ -376,8 +391,6 @@ namespace MiaClient
             pcbNietBekrachtigd.Enabled = true;
             pcbAfgekeurd.Enabled = true;
             pcbBekrachtigd.Enabled = true;
-
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbGoedgekeurd_Click(object sender, EventArgs e)
@@ -393,14 +406,18 @@ namespace MiaClient
                 string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
                 pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
+                imageDrop = Path.Combine(projectDirectory, "icons", "Afgekeurd_uitGroot.png");
+                pcbAfgekeurd.Image = Image.FromFile(imageDrop);
+
                 goedkeur = true;
 
-                pcbGoedgekeurd.Enabled = true;
+                statusNameId = 2;
+
+                pcbGoedgekeurd.Enabled = false;
                 pcbNietBekrachtigd.Enabled = false;
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = false;
 
-                aanvraag.StatusAanvraag = "Goedgekeurd";
             }
             else
             {
@@ -414,7 +431,6 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbAfgekeurd_Click(object sender, EventArgs e)
@@ -427,20 +443,20 @@ namespace MiaClient
                 string imagePath = Path.Combine(projectDirectory, "icons", "AfgekeurdGroot_aan.png");
                 pcbAfgekeurd.Image = Image.FromFile(imagePath);
 
-                //string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
-                //pcbInAanvraag.Image = Image.FromFile(imageDrop);
+                string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
+                pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
-                imagePath = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
-                pcbInAanvraag.Image = Image.FromFile(imagePath);
+                imageDrop = Path.Combine(projectDirectory, "icons", "Goedgekeurd_uitGroot.png");
+                pcbGoedgekeurd.Image = Image.FromFile(imageDrop);
 
                 afkeur = true;
 
+                statusNameId = 3;
+
                 pcbGoedgekeurd.Enabled = true;
                 pcbNietBekrachtigd.Enabled = false;
-                pcbAfgekeurd.Enabled = true;
+                pcbAfgekeurd.Enabled = false;
                 pcbBekrachtigd.Enabled = false;
-
-                aanvraag.StatusAanvraag = "Niet goedgekeurd";
             }
             else
             {
@@ -454,7 +470,6 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbBekrachtigd_Click(object sender, EventArgs e)
@@ -470,14 +485,19 @@ namespace MiaClient
                 string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
                 pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
+                imageDrop = Path.Combine(projectDirectory, "icons", "NietBekrachtigd_uitGroot.png");
+                pcbNietBekrachtigd.Image = Image.FromFile(imageDrop);
+
                 bekrachtig = true;
+
+                statusNameId = 4;
 
                 pcbGoedgekeurd.Enabled = false;
                 pcbNietBekrachtigd.Enabled = true;
                 pcbAfgekeurd.Enabled = false;
-                pcbBekrachtigd.Enabled = true;
+                pcbBekrachtigd.Enabled = false;
 
-                aanvraag.StatusAanvraag = "Bekrachtigd";
+
             }
             else
             {
@@ -491,7 +511,6 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
 
         private void pcbNietBekrachtigd_Click(object sender, EventArgs e)
@@ -507,14 +526,17 @@ namespace MiaClient
                 string imageDrop = Path.Combine(projectDirectory, "icons", "Aanvraag_uitGroot.png");
                 pcbInAanvraag.Image = Image.FromFile(imageDrop);
 
+                imageDrop = Path.Combine(projectDirectory, "icons", "bekrachtigd_uitGroot.png");
+                pcbBekrachtigd.Image = Image.FromFile(imageDrop);
+
                 nietbekrachtig = true;
 
-                pcbGoedgekeurd.Enabled = false;
-                pcbNietBekrachtigd.Enabled = true;
-                pcbAfgekeurd.Enabled = false;
-                pcbBekrachtigd.Enabled = false;
+                statusNameId = 5;
 
-                aanvraag.StatusAanvraag = "Niet bekrachtigd";
+                pcbGoedgekeurd.Enabled = false;
+                pcbNietBekrachtigd.Enabled = false;
+                pcbAfgekeurd.Enabled = false;
+                pcbBekrachtigd.Enabled = true;
             }
             else
             {
@@ -528,8 +550,8 @@ namespace MiaClient
                 pcbAfgekeurd.Enabled = true;
                 pcbBekrachtigd.Enabled = true;
             }
-            frmAanvraagFormulier.AanvraagBewaard += GoedkeurItem.GoedkeurFormulieredit_AanvraagBewaard;
         }
+
         private void btnSortGebruiker_Click(object sender, EventArgs e)
         {
             if (SortGebruiker == true)
@@ -686,6 +708,12 @@ namespace MiaClient
             btnFirst.Enabled = enable;
             btnPrevious.Enabled = enable;
         }
+
+        private void ErrorHandler(Exception ex, string location)
+        {
+            MessageBox.Show($"Error: {ex.Message}, in location {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void EnableLastNext(bool enable)
         {
             if (enable)
@@ -848,6 +876,30 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            UpdateAanvraag();
+        }
+
+        public void UpdateAanvraag()
+        {
+            AanvraagManager.GetAanvraagById(statusId);
+            Aanvraag updateaanvraag = new Aanvraag
+            {
+               StatusAanvraagId = Convert.ToInt32(statusNameId),
+            };
+            AanvraagManager.SaveAanvraag(updateaanvraag, insert: false);
+
+            Aanvraag aanvraag1 = new Aanvraag();
+            aanvraag1.Id = Convert.ToInt32(statusId);
+            GebruiksLog gebruiksLog1 = new GebruiksLog();
+            gebruiksLog1.Gebruiker = Program.Gebruiker;
+            gebruiksLog1.TijdstipActie = DateTime.Now;
+            gebruiksLog1.OmschrijvingActie = "Aanvraag " + aanvraag1.Id + " werd aangepast door Gebruiker " + Program.Gebruiker.ToString();
+
+            GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
     }
 }
