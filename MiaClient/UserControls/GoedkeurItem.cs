@@ -110,7 +110,8 @@ namespace MiaClient.UserControls
 
         private void btnStatusEdit_Click(object sender, EventArgs e)
         {
-            if (GoedkeurItemStatusEdit != null) {
+            if (GoedkeurItemStatusEdit != null) 
+            {
                 GoedkeurItemStatusEdit(this, null);
             }
         }
