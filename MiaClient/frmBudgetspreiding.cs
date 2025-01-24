@@ -378,7 +378,7 @@ namespace MiaClient
                 
                 Label lbl = new Label();
                 Label prijs = new Label();
-
+                
                 pnlMaand.Controls.Clear();
 
                 string year = Financieringsjaar.Text.ToString();
