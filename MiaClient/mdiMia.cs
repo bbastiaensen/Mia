@@ -33,6 +33,7 @@ namespace MiaClient
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
         frmAankopen frmAankopen;
+        frmGeplandeAankopen frmGeplandeAankopen;
         frmGeweigerdeAanvragen frmGeweigerdeAanvragen;
 
         Image imgGebruikersbeheer;
@@ -412,6 +413,16 @@ namespace MiaClient
                 frmAankopen.MdiParent = this;
             }
             frmAankopen.Show();
+        }
+
+        private void geplandeAanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGeplandeAankopen == null)
+            {
+                frmGeplandeAankopen = new frmGeplandeAankopen();
+                frmGeplandeAankopen.MdiParent = this;
+            }
+            frmGeplandeAankopen.Show();
         }
 
         private void geweigerdeAanvragenToolStripMenuItem_Click(object sender, EventArgs e)

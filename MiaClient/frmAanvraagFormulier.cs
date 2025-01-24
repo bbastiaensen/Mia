@@ -352,6 +352,7 @@ namespace MiaClient
                 ErrorHandler(ex, "SaveFile");
             }
         }
+
         private Offerte SaveOfferte(string filepath)
         {
             Offerte offerte = new Offerte

@@ -65,7 +65,7 @@ namespace MiaClient
         {
             InitializeComponent();        
         }
-
+        
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
             //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staaat.
