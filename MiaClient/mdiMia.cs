@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
 {
@@ -32,6 +33,7 @@ namespace MiaClient
         frmGebruikerBeheer frmGebruikerBeheer;
         frmGoedkeuring FrmGoedkeuring;
         frmAankopen frmAankopen;
+        frmGeweigerdeAanvragen frmGeweigerdeAanvragen;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -53,7 +55,7 @@ namespace MiaClient
             }
             InitializeComponent();
             try
-            {  
+            {
                 laadGrafischeParameters();
             }
             catch (Exception ex)
@@ -208,7 +210,7 @@ namespace MiaClient
                 tss1.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = true;
                 goedkeuringenToolStripButton.Visible = true;
-                
+
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
@@ -216,7 +218,7 @@ namespace MiaClient
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
-           
+
             if (Program.IsSysteem)
             {
                 tss2.Visible = true;
@@ -410,6 +412,16 @@ namespace MiaClient
                 frmAankopen.MdiParent = this;
             }
             frmAankopen.Show();
+        }
+
+        private void geweigerdeAanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGeweigerdeAanvragen == null)
+            {
+                frmGeweigerdeAanvragen = new frmGeweigerdeAanvragen();
+                frmGeweigerdeAanvragen.MdiParent = this;
+            }
+            frmGeweigerdeAanvragen.Show();
         }
     }
 }

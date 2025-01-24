@@ -121,7 +121,7 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -591,7 +591,7 @@ namespace MiaClient
             // 
             // gboxIdentificatie
             // 
-            this.gboxIdentificatie.Controls.Add(this.groupBox1);
+           
             this.gboxIdentificatie.Controls.Add(this.ddlDienst);
             this.gboxIdentificatie.Controls.Add(this.ddlAfdeling);
             this.gboxIdentificatie.Controls.Add(this.txtAanvraagmoment);
@@ -607,6 +607,10 @@ namespace MiaClient
             this.gboxIdentificatie.TabIndex = 13;
             this.gboxIdentificatie.TabStop = false;
             this.gboxIdentificatie.Text = "Identificatie";
+            // 
+            // groupBox1
+            // 
+            
             // 
             // ddlDienst
             // 
@@ -1098,12 +1102,7 @@ namespace MiaClient
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(405, 136);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(8, 8);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            
 
             // 
             // frmAanvraagFormulier
@@ -1248,6 +1247,6 @@ namespace MiaClient
         private System.Windows.Forms.Label lblResultaat;
         private System.Windows.Forms.ComboBox ddlRichtperiode;
         private System.Windows.Forms.ComboBox ddlStatus;
-        private System.Windows.Forms.GroupBox groupBox1;
+       
     }
 }
