@@ -414,6 +414,26 @@ namespace MiaClient
             }
             frmAankopen.Show();
         }
+
+        private void geplandeAanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGeplandeAankopen == null)
+            {
+                frmGeplandeAankopen = new frmGeplandeAankopen();
+                frmGeplandeAankopen.MdiParent = this;
+            }
+            frmGeplandeAankopen.Show();
+        }
+
+        private void geweigerdeAanvragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGeweigerdeAanvragen == null)
+            {
+                frmGeweigerdeAanvragen = new frmGeweigerdeAanvragen();
+                frmGeweigerdeAanvragen.MdiParent = this;
+            }
+            frmGeweigerdeAanvragen.Show();
+        }
     }
 }
 
