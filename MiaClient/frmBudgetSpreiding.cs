@@ -70,6 +70,17 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+
+            foreach (var gb in this.Controls.OfType<GroupBox>())
+            {
+                foreach (var btn in gb.Controls.OfType<Button>())
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.BackColor = StyleParameters.ButtonBack;
+                    btn.ForeColor = StyleParameters.Buttontext;
+                }
+            }
         }
 
         private void btnExporteer_Click(object sender, EventArgs e)
@@ -372,30 +383,30 @@ namespace MiaClient
             Financieringsjaar.Location = new Point(xPos - 10, yPos +25);
             llblRichtperiode.Text = llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte);
             Titels.Clear();
-            //foreach (var aanvraag  in Aanvragen)
-            //{
+            foreach (var aanvraag  in Aanvragen)
+            {
                
                 
-            //    Label lbl = new Label();
-            //    Label prijs = new Label();
+                Label lbl = new Label();
+                Label prijs = new Label();
 
-            //    pnlMaand.Controls.Clear();
+                pnlMaand.Controls.Clear();
 
-            //    string year = Financieringsjaar.Text.ToString();
-            //    var titel = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
+                string year = Financieringsjaar.Text.ToString();
+                var titel = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
 
-            //    yPos =+ 25;
+                yPos =+ 25;
 
-            //    lbl.Location = new Point(xPos, yPos);
-            //    lbl.Name = "hehe";
-            //    lbl.Text = titel.ToString();
-            //    lbl.Font = new System.Drawing.Font("Segoe UI", 11);
-            //    Titels.Add(Convert.ToString(titel));
-            //}
+                lbl.Location = new Point(xPos, yPos);
+                lbl.Name = "hehe";
+                lbl.Text = titel.ToString();
+                lbl.Font = new System.Drawing.Font("Segoe UI", 11);
+                Titels.Add(Convert.ToString(titel));
+            }
 
             pnlMaand.Controls.Add(Richtperiode);
             pnlMaand.Controls.Add(Financieringsjaar);
-            //pnlMaand.Controls.Add(lbl);
+            pnlMaand.Controls.Add(lbl);
 
         }
     }
