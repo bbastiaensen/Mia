@@ -1316,7 +1316,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.AankoperId, a.RichtperiodeId, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1357,7 +1357,8 @@ namespace MiaLogic.Manager
                         {
                             a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
                         }
-
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
                         returnlist.Add(a);
                     }
                 }

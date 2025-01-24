@@ -119,6 +119,12 @@
     <Compile Include="frmGeweigerdeAanvragen.Designer.cs">
       <DependentUpon>frmGeweigerdeAanvragen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGeplandeAankopen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeplandeAankopen.Designer.cs">
+      <DependentUpon>frmGeplandeAankopen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGeweigerdeAanvragen.resx">
       <DependentUpon>frmGeweigerdeAanvragen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGeplandeAankopen.resx">
+      <DependentUpon>frmGeplandeAankopen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
