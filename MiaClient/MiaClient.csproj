@@ -113,6 +113,12 @@
     <Compile Include="FrmGebruiksLog.Designer.cs">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGeweigerdeAanvragen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeweigerdeAanvragen.Designer.cs">
+      <DependentUpon>frmGeweigerdeAanvragen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGeplandeAankopen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,12 @@
     <Compile Include="frmPrompt.Designer.cs">
       <DependentUpon>frmPrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeplandeAanvraagen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GeplandeAanvraagen.Designer.cs">
+      <DependentUpon>GeplandeAanvraagen.cs</DependentUpon>
+    </Compile>
     <Compile Include="mdiMia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StyleParameters.cs" />
+    <Compile Include="UserControls\AankopenItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AankopenItem.Designer.cs">
+      <DependentUpon>AankopenItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GoedkeurItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +239,9 @@
     <EmbeddedResource Include="FrmGebruiksLog.resx">
       <DependentUpon>FrmGebruiksLog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGeweigerdeAanvragen.resx">
+      <DependentUpon>frmGeweigerdeAanvragen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmGeplandeAankopen.resx">
       <DependentUpon>frmGeplandeAankopen.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +267,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\AankopenItem.resx">
+      <DependentUpon>AankopenItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GoedkeurItem.resx">
       <DependentUpon>GoedkeurItem.cs</DependentUpon>
       <SubType>Designer</SubType>
