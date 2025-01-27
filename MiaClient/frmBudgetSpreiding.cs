@@ -45,7 +45,7 @@ namespace MiaClient
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
-                cmbFinancieringsjaar.Items.Add( jaar );
+                cmbFinancieringsjaar.Items.Add(jaar);
             }
         }
 
@@ -364,25 +364,24 @@ namespace MiaClient
         {
             xPos = 10;
             LinkLabel llblRichtperiode = (LinkLabel)sender;
-            Label Richtperiode = new Label();
-            Label Financieringsjaar = new Label();
-            Financieringsjaar.Text = cmbFinancieringsjaar.Text;
+            Label lblRichtperiode = new Label();
             
-            Richtperiode.Text = llblRichtperiode.Text; 
-                
-
             int nietIndexLengte = 16;
             int indexLengte = llblRichtperiode.Name.Length - nietIndexLengte;
-            
-            pnlMaand.Controls.Clear();
+            Richtperiode r = new Richtperiode()
+            {
+                Id = Convert.ToInt32(llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte))
+            };
 
-            
-           
-            llblRichtperiode.Location = new Point(xPos, yPos);
-           
-            Financieringsjaar.Location = new Point(xPos - 10, yPos +25);
-            llblRichtperiode.Text = llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte);
+            //Panel leegmaken
+            pnlMaand.Controls.Clear();
+            //Richtperiode en jaar in titel van maandoverzicht zetten
+            lblRichtperiode.Text = llblRichtperiode.Text + " - " + cmbFinancieringsjaar.Text;
+            lblRichtperiode.Location = new Point(xPos, yPos);
+
             Titels.Clear();
+            List<Aanvraag> Aanvragen = AanvraagManager.GetAanvragenByRichtperiodeAndFinancieringsjaar(r, cmbFinancieringsjaar.Text);
+
             //foreach (var aanvraag  in Aanvragen)
             //{
                
@@ -404,8 +403,8 @@ namespace MiaClient
             //    Titels.Add(Convert.ToString(titel));
             //}
 
-            pnlMaand.Controls.Add(Richtperiode);
-            pnlMaand.Controls.Add(Financieringsjaar);
+            pnlMaand.Controls.Add(lblRichtperiode);
+            pnlMaand.Controls.Add(lblFinancieringsjaar);
             //pnlMaand.Controls.Add(lbl);
 
         }
