@@ -1926,7 +1926,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "SELECT SUM(PrijsIndicatieStuk * AantalStuk) As TotaalBedrag from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4 group by RichtperiodeId order by RichtperiodeId asc";
+                    objCmd.CommandText = "SELECT SUM(BudgetToegekend) As TotaalBedrag from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4 group by RichtperiodeId order by RichtperiodeId asc";
                     objCmd.Parameters.AddWithValue("@Jaar", financieringsjaar);
                     objCmd.Parameters.AddWithValue("@RichtperiodeId", richtperiodeId);
 

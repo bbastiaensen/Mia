@@ -78,7 +78,7 @@
             this.cmbFinancieringsjaar.FormattingEnabled = true;
             this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 33);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
-            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 33);
+            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 27);
             this.cmbFinancieringsjaar.TabIndex = 2;
             this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
@@ -88,7 +88,7 @@
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(6, 36);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(156, 25);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(131, 20);
             this.lblFinancieringsjaar.TabIndex = 1;
             this.lblFinancieringsjaar.Text = "Financieringsjaar : ";
             // 
@@ -116,7 +116,7 @@
             // 
             // frmBudgetspreiding
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 563);
             this.Controls.Add(this.pnlMaand);
