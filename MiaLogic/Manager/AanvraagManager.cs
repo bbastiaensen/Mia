@@ -14,6 +14,12 @@ namespace MiaLogic.Manager
     public static class AanvraagManager
     {
         public static string ConnectionString { get; set; }
+
+        /// <summary>
+        /// Aanvraag ophalen op basis van zijn Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Aanvraag object</returns>
         public static Aanvraag GetAanvraagById(int id)
         {
             Aanvraag aanvraag = null;
@@ -606,6 +612,76 @@ namespace MiaLogic.Manager
                 {
                     objCmd.Connection = objCn;
                     objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+
+        public static List<Aanvraag> GetAanvragenByRichtperiodeAndFinancieringsjaar(Richtperiode r, string financieringsjaar)
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend ";
+                    sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
+                    sql += "where Richtperiodeid = @Richtperiodeid and Financieringsjaar = @Financieringsjaar ";
+                    sql += "order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = sql;
+                    objCmd.Parameters.AddWithValue("@Richtperiodeid", r.Id);
+                    objCmd.Parameters.AddWithValue("@Financieringsjaar", financieringsjaar);
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1850,7 +1926,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "SELECT SUM(PrijsIndicatieStuk * AantalStuk) As TotaalBedrag from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4 group by RichtperiodeId order by RichtperiodeId asc";
+                    objCmd.CommandText = "SELECT SUM(BudgetToegekend) As TotaalBedrag from Aanvraag WHERE Financieringsjaar = @Jaar AND RichtperiodeId = @RichtperiodeId AND StatusAanvraagId = 4 group by RichtperiodeId order by RichtperiodeId asc";
                     objCmd.Parameters.AddWithValue("@Jaar", financieringsjaar);
                     objCmd.Parameters.AddWithValue("@RichtperiodeId", richtperiodeId);
 
