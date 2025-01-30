@@ -48,7 +48,7 @@
             this.gbxFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxFinancieringsjaar.Location = new System.Drawing.Point(12, 12);
             this.gbxFinancieringsjaar.Name = "gbxFinancieringsjaar";
-            this.gbxFinancieringsjaar.Size = new System.Drawing.Size(776, 83);
+            this.gbxFinancieringsjaar.Size = new System.Drawing.Size(776, 103);
             this.gbxFinancieringsjaar.TabIndex = 0;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
@@ -56,7 +56,7 @@
             // lblWacht
             // 
             this.lblWacht.AutoSize = true;
-            this.lblWacht.Location = new System.Drawing.Point(517, 60);
+            this.lblWacht.Location = new System.Drawing.Point(517, 63);
             this.lblWacht.Name = "lblWacht";
             this.lblWacht.Size = new System.Drawing.Size(142, 20);
             this.lblWacht.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             // pnlRichtperiode
             // 
-            this.pnlRichtperiode.Location = new System.Drawing.Point(12, 101);
+            this.pnlRichtperiode.Location = new System.Drawing.Point(12, 121);
             this.pnlRichtperiode.Name = "pnlRichtperiode";
             this.pnlRichtperiode.Size = new System.Drawing.Size(352, 450);
             this.pnlRichtperiode.TabIndex = 1;
@@ -102,14 +102,14 @@
             // lblLijn
             // 
             this.lblLijn.BackColor = System.Drawing.Color.Black;
-            this.lblLijn.Location = new System.Drawing.Point(371, 102);
+            this.lblLijn.Location = new System.Drawing.Point(371, 122);
             this.lblLijn.Name = "lblLijn";
             this.lblLijn.Size = new System.Drawing.Size(6, 415);
             this.lblLijn.TabIndex = 2;
             // 
             // pnlMaand
             // 
-            this.pnlMaand.Location = new System.Drawing.Point(384, 101);
+            this.pnlMaand.Location = new System.Drawing.Point(384, 121);
             this.pnlMaand.Name = "pnlMaand";
             this.pnlMaand.Size = new System.Drawing.Size(404, 450);
             this.pnlMaand.TabIndex = 3;
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 563);
+            this.ClientSize = new System.Drawing.Size(800, 580);
             this.Controls.Add(this.pnlMaand);
             this.Controls.Add(this.lblLijn);
             this.Controls.Add(this.pnlRichtperiode);
