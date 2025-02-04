@@ -138,6 +138,7 @@ namespace MiaClient
             txtAantalStuks.Text = string.Empty;
             rtxtOmschrijving.Text = string.Empty;
             txtPrijsindicatie.Text = string.Empty;
+            txtGoedgekeurdeBedrag.Text = "0,00";
             ddlInvestering.SelectedItem = null;
             ddlStatus.SelectedIndex = 0;
             ddlStatus.Enabled = false;
@@ -480,6 +481,11 @@ namespace MiaClient
         }
         private void SaveAanvraag()
         {
+            if (txtGoedgekeurdeBedrag.Text == "")
+            {
+                txtGoedgekeurdeBedrag.Text = "0,00";
+            }
+
             Aanvraag nieuweAanvraag = new Aanvraag
             {
                 Gebruiker = txtGebruiker.Text,
@@ -500,7 +506,7 @@ namespace MiaClient
                 AankoperId = Convert.ToInt32(ddlWieKooptHet.SelectedValue),
                 OpmerkingenResultaat = txtResultaat.Text,
                 RichtperiodeId = Convert.ToInt32(ddlRichtperiode.SelectedValue),
-                BudgetToegekend = Convert.ToDecimal(txtTotaal.Text)
+                BudgetToegekend = Convert.ToDecimal(txtGoedgekeurdeBedrag.Text)
             };
             AanvraagManager.SaveAanvraag(nieuweAanvraag, true);
             GetLastAanvraag();
@@ -853,7 +859,11 @@ namespace MiaClient
         }
         public void UpdateAanvraag()
         {
-            AanvraagManager.GetAanvraagById(aanvraagId);
+            if (txtGoedgekeurdeBedrag.Text == "")
+            {
+                txtGoedgekeurdeBedrag.Text = "0";
+            }
+
             Aanvraag updateaanvraag = new Aanvraag
             {
                 Id = Convert.ToInt32(txtAanvraagId.Text),

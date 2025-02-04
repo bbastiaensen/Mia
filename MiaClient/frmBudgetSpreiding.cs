@@ -4,22 +4,21 @@ using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
-{ 
+{
     public partial class frmBudgetspreiding : Form
     { 
         int i = 0;
         List<Aanvraag> Aanvragen   = null;
         List<Richtperiode> richtperiodes = null;
-        System.Windows.Forms.Label lbl;
         Aanvraag zoinks = null;
         Richtperiode richtperiode = null;
         List<decimal> Budgets = new List<decimal>();
@@ -35,18 +34,13 @@ namespace MiaClient
         private void frmBudgetspreiding_Load(object sender, EventArgs e)
         {
             CreateUI();
-            
-            
-
-           
-
-          
 
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
-                cmbFinancieringsjaar.Items.Add( jaar );
+                cmbFinancieringsjaar.Items.Add(jaar);
             }
+
         }
 
         private void frmBudgetSpreiding_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,7 +57,7 @@ namespace MiaClient
             this.BackColor = StyleParameters.Achtergrondkleur;
 
             //Opmaak buttons instellen op parameterwaardes
-            foreach (var btn in this.Controls.OfType<Button>())
+            foreach (var btn in this.Controls.OfType<System.Windows.Forms.Button>())
             {
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
@@ -73,7 +67,7 @@ namespace MiaClient
 
             foreach (var gb in this.Controls.OfType<GroupBox>())
             {
-                foreach (var btn in gb.Controls.OfType<Button>())
+                foreach (var btn in gb.Controls.OfType<System.Windows.Forms.Button>())
                 {
                     btn.FlatStyle = FlatStyle.Flat;
                     btn.FlatAppearance.BorderSize = 0;
@@ -154,7 +148,7 @@ namespace MiaClient
                     add = ri + j + 1;
                     rs += j;
                     //calculates the price
-                    decimal prijs = InPer[j].AantalStuk + InPer[j].PrijsIndicatieStuk;
+                    decimal prijs = InPer[j].BudgetToegekend;
                     //puts data on the right position (based on add)
                     worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
                     worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
@@ -292,121 +286,140 @@ namespace MiaClient
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            pnlRichtperiode.Refresh();
             pnlRichtperiode.Controls.Clear();
             pnlMaand.Controls.Clear();
             int xPos = 150;
             int yPos = 0;
             richtperiodes = RichtperiodeManager.GetRichtperiodes();
-            System.Windows.Forms.Label lblTotal= new Label();
-            System.Windows.Forms.Label lblNum = new Label();
+            Label lblTotal = new Label();
+            Label lblTotalValue = new Label();
             lblTotal.Text = "Totaal:";
-            lblTotal.Font = new System.Drawing.Font("Segoe UI", 11);
+            lblTotal.Font = new Font("Segoe UI", 11, FontStyle.Bold);
             lblTotal.Name = "lblTotal";
 
-            List<LinkLabel> linkLabels = new List<LinkLabel>();
-            
-            for (i = 0; i < richtperiodes.Count; i++)
+            if (richtperiodes != null)
             {
-                yPos += 25;
-                 this.richtperiode = richtperiodes[i];
-                var richtperiode = this.richtperiode.Naam.ToString();
+                foreach (var richtperiode in richtperiodes)
+                {
+                    yPos += 25;
 
+                    LinkLabel llblRichtperiode = new LinkLabel();
+                    llblRichtperiode.Name = "llblRichtperiode" + richtperiode.Id;
+                    llblRichtperiode.Location = new Point(xPos - 140, yPos);
+                    llblRichtperiode.Text = richtperiode.Naam;
+                    llblRichtperiode.Font = new System.Drawing.Font("Segoe UI", 11);
+                    llblRichtperiode.LinkColor = System.Drawing.Color.Black;
+                    llblRichtperiode.LinkClicked += llblRichtperiode_Click;
 
-                linkLabels.Add(new LinkLabel());
-                linkLabels[i].Name = "llblRichtperiode" + this.richtperiode.Id;
-                linkLabels[i].Location = new Point(xPos - 140, yPos);
-                linkLabels[i].Text = richtperiode;
-                linkLabels[i].Font = new System.Drawing.Font("Segoe UI", 11);
-                linkLabels[i].LinkColor = System.Drawing.Color.Black;
+                    decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, cmbFinancieringsjaar.Text);
+                    Label lblBedrag = new Label();
+                    lblBedrag.Location = new Point(xPos, yPos);
+                    lblBedrag.Name = $"lbl{richtperiode.Id}";
+                    lblBedrag.Text = bedrag.ToString("c", CultureInfo.CurrentCulture);
+                    lblBedrag.Font = new System.Drawing.Font("Segoe UI", 11);
+                    lblBedrag.AutoSize = false;
+                    lblBedrag.Size = new Size(100, 24);
+                    lblBedrag.TextAlign = ContentAlignment.MiddleRight;
+                    Budgets.Add(bedrag);
 
-                linkLabels[i].LinkClicked += FrmBudgetspreiding_Click;
-              
+                    pnlRichtperiode.Controls.Add(llblRichtperiode);
+                    pnlRichtperiode.Controls.Add(lblBedrag);
+
+                }
 
                 lblTotal.Location = new Point(xPos - 140, yPos + 60);
-              
-
-                pnlRichtperiode.Controls.Add(linkLabels[i]);
                 pnlRichtperiode.Controls.Add(lblTotal);
-            }
-          
-            i = 0;         
-            xPos = 150;
-            yPos = 0;
-            Budgets.Clear();
-            foreach (var richtperiode in richtperiodes)
-            {
-                lbl = new Label();
-                pnlRichtperiode.Refresh();
-                string year = cmbFinancieringsjaar.SelectedItem.ToString();
-                decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, year);
-                yPos += 25;
 
-                lbl.Location = new Point(xPos, yPos);
-                lbl.Name = $"lbl{richtperiode.Id}";
-                lbl.Text = bedrag.ToString();
-                lbl.Font = new System.Drawing.Font("Segoe UI", 11);
-                Budgets.Add(bedrag);
-                Totaal = Budgets.Sum();
-                lblNum.Location = new Point(xPos, yPos + 60);
-                lblNum.Text = Totaal.ToString();
-                pnlRichtperiode.Controls.Add(lblNum);
-                pnlRichtperiode.Controls.Add(lbl);
+                lblTotalValue.Location = new Point(xPos, yPos + 60);
+                lblTotalValue.Text = Budgets.Sum().ToString("c", CultureInfo.CurrentCulture);
+                lblTotalValue.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                lblTotalValue.AutoSize = false;
+                lblTotalValue.Size = new Size(100, 24);
+                lblTotalValue.TextAlign = ContentAlignment.MiddleRight;
+                pnlRichtperiode.Controls.Add(lblTotalValue);
             }
-           
+        }
 
-           
+        private void FillRichtperiodes(IProgress<int> progress, string financieringsjaar, Panel pnlRichtperiode)
+        {
             
         }
 
-        private void FrmBudgetspreiding_Click(object sender, EventArgs e)
+        private void llblRichtperiode_Click(object sender, EventArgs e)
         {
             xPos = 10;
+            Label lblRichtperiode = new Label();
             LinkLabel llblRichtperiode = (LinkLabel)sender;
-            Label Richtperiode = new Label();
-            Label Financieringsjaar = new Label();
-            Financieringsjaar.Text = cmbFinancieringsjaar.Text;
             
-            Richtperiode.Text = llblRichtperiode.Text; 
-                
-
             int nietIndexLengte = 16;
             int indexLengte = llblRichtperiode.Name.Length - nietIndexLengte;
-            
+            Richtperiode r = new Richtperiode()
+            {
+                Id = Convert.ToInt32(llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte))
+            };
+
+            //Panel leegmaken
             pnlMaand.Controls.Clear();
+            //Richtperiode en jaar in titel van maandoverzicht zetten
+            lblRichtperiode.Text = llblRichtperiode.Text + " - " + cmbFinancieringsjaar.Text;
+            lblRichtperiode.Location = new Point(10, 10);
+            lblRichtperiode.AutoSize = false;
+            lblRichtperiode.Size = new Size(200, 24);
+            lblRichtperiode.Font = new Font("Segoe UI", 12, FontStyle.Underline | FontStyle.Bold);
+            pnlMaand.Controls.Add(lblRichtperiode);
 
-            
-           
-            llblRichtperiode.Location = new Point(xPos, yPos);
-           
-            Financieringsjaar.Location = new Point(xPos - 10, yPos +25);
-            llblRichtperiode.Text = llblRichtperiode.Name.Substring(nietIndexLengte, indexLengte);
             Titels.Clear();
-            //foreach (var aanvraag  in Aanvragen)
-            //{
-               
-                
-            //    Label lbl = new Label();
-            //    Label prijs = new Label();
+            List<Aanvraag> Aanvragen = AanvraagManager.GetAanvragenByRichtperiodeAndFinancieringsjaar(r, cmbFinancieringsjaar.Text);
 
-            //    pnlMaand.Controls.Clear();
+            if (Aanvragen != null)
+            {
+                yPos = 50;
+                foreach (var aanvraag in Aanvragen)
+                {
+                    Label lblTitel = new Label();
+                    Label lblPrijs = new Label();
 
-            //    string year = Financieringsjaar.Text.ToString();
-            //    var titel = AanvraagManager.GetTitelEnTotaalprijsPerRichtperiodeEnFinancieringsjaar(aanvraag.Id, year);
+                    lblTitel.Text = aanvraag.Titel;
+                    lblPrijs.Text = aanvraag.BudgetToegekend.ToString("c", CultureInfo.CurrentCulture);
 
-            //    yPos =+ 25;
+                    lblTitel.Location = new Point(15, yPos);
+                    lblPrijs.Location = new Point(300, yPos);
 
-            //    lbl.Location = new Point(xPos, yPos);
-            //    lbl.Name = "hehe";
-            //    lbl.Text = titel.ToString();
-            //    lbl.Font = new System.Drawing.Font("Segoe UI", 11);
-            //    Titels.Add(Convert.ToString(titel));
-            //}
+                    lblTitel.AutoSize = false;
+                    lblTitel.Size = new Size(250, 24);
 
-            pnlMaand.Controls.Add(Richtperiode);
-            pnlMaand.Controls.Add(Financieringsjaar);
-            //pnlMaand.Controls.Add(lbl);
+                    lblPrijs.AutoSize = false;
+                    lblPrijs.Size = new Size(100, 24);
+                    lblPrijs.TextAlign = ContentAlignment.MiddleRight;
+
+                    pnlMaand.Controls.Add((Label)lblTitel);
+                    pnlMaand.Controls.Add((Label)lblPrijs);
+
+                    yPos += 25;
+                }
+
+                Label lblTotaal = new Label();
+                Label lblTotaalPrijs = new Label();
+
+                lblTotaal.Text = "Totaal";
+                lblTotaalPrijs.Text = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(r.Id, cmbFinancieringsjaar.Text).ToString("c", CultureInfo.CurrentCulture);
+
+                lblTotaal.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                lblTotaalPrijs.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+
+                lblTotaal.Location = new Point(15, yPos);
+                lblTotaalPrijs.Location = new Point(300, yPos);
+
+                lblTotaal.AutoSize = false;
+                lblTotaal.Size = new Size(250, 24);
+
+                lblTotaalPrijs.AutoSize = false;
+                lblTotaalPrijs.Size = new Size(100, 24);
+                lblTotaalPrijs.TextAlign = ContentAlignment.MiddleRight;
+
+                pnlMaand.Controls.Add((Label)lblTotaal);
+                pnlMaand.Controls.Add((Label)lblTotaalPrijs);
+            }
 
         }
     }
