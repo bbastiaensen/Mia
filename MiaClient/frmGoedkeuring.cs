@@ -73,7 +73,7 @@ namespace MiaClient
         Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
-
+        Icon imgFormIcon = Icon.FromHandle((new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-approval-50.png")).GetHicon()));
 
         public frmGoedkeuring()
         {
@@ -188,13 +188,15 @@ namespace MiaClient
             btnFilter.BackgroundImage = imgFilter;
             btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
             btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+            this.Icon = imgFormIcon;
         }
 
         private void Agi_GoedkeurItemChanged(object sender, EventArgs e)
         {
             try
             {
-                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetGoedgekeurdeAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
+                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragenVoorGoedkeuring(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
 
                 huidigePage = 1;
                 StartPaging();
@@ -224,7 +226,7 @@ namespace MiaClient
         }
         public void frmGoedkeuring_Activated(object sender, EventArgs e)
         {
-            var lijst = AanvraagManager.GetGoedgekeurdeAanvragen();
+            var lijst = AanvraagManager.GetAanvragenVoorGoedkeuring();
             BindGoedkeuringen(lijst);
         }
         private void Gli_GoedkeurItemSelected(object sender, EventArgs e)
@@ -235,7 +237,7 @@ namespace MiaClient
         {
             try
             {
-                aanvragen = AanvraagManager.GetGoedgekeurdeAanvragen();
+                aanvragen = AanvraagManager.GetAanvragenVoorGoedkeuring();
                 if (aanvragen != null)
                 {
                     StartPaging();
@@ -288,7 +290,7 @@ namespace MiaClient
                     {
                         if (txtBedragVan.Text != string.Empty)
                         {
-                            items = items.Where(av => av.BudgetToegekend >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
+                            items = items.Where(av => (av.AantalStuk * av.PrijsIndicatieStuk) >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
                         }
                     }
                 }
@@ -298,7 +300,7 @@ namespace MiaClient
                     {
                         if (txtBedragTot.Text != string.Empty)
                         {
-                            items = items.Where(av => av.BudgetToegekend <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
+                            items = items.Where(av => (av.AantalStuk * av.PrijsIndicatieStuk) <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
                         }
                     }
                 }
@@ -341,7 +343,7 @@ namespace MiaClient
                     filterAanvraagmomentTot = true;
                 }
 
-                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragen(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
+                aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragenVoorGoedkeuring(), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
 
                 huidigePage = 1;
                 StartPaging();
@@ -876,11 +878,6 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            UpdateAanvraag();
         }
 
         public void UpdateAanvraag()

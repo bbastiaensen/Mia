@@ -55,7 +55,7 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
-            Bedrag = PrijsIndicatiePerStuk *AantalStuk;
+            Bedrag = PrijsIndicatiePerStuk * AantalStuk;
 
             //if(Statusaanvraag == "Goedgekeurd")
             //{
@@ -67,22 +67,25 @@ namespace MiaClient.UserControls
         }
         private void SetGoedkeurItemWaarden()
         {
-            lblTitel.Text = Titel;
+            if (Titel.Length > 25)
+            {
+                lblTitel.Text = Titel.Substring(0, 22) + "...";
+            }
+            else
+            {
+                lblTitel.Text = Titel;
+            }
             lblBedrag.Text = Bedrag.ToString("c", CultureInfo.CurrentCulture);
             lblFinancieringsjaar.Text = Financieringsjaar.ToString();
             LblAanvrager.Text = Aanvrager;
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
             if (Even)
             {
-                this.BackColor = Color.White;
+                this.BackColor = StyleParameters.ListItemColor;
             }
-
             else
             {
-
-                this.BackColor = StyleParameters.AccentKleur;
-                this.ForeColor = StyleParameters.Buttontext;
-
+                this.BackColor = StyleParameters.AltListItemColor;
             }
         }
 

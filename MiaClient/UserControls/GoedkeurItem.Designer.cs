@@ -40,48 +40,48 @@
             // 
             // LblAanvrager
             // 
-            this.LblAanvrager.AutoSize = true;
-            this.LblAanvrager.Location = new System.Drawing.Point(124, 1);
+            this.LblAanvrager.Location = new System.Drawing.Point(175, 2);
             this.LblAanvrager.Name = "LblAanvrager";
-            this.LblAanvrager.Size = new System.Drawing.Size(72, 28);
+            this.LblAanvrager.Size = new System.Drawing.Size(113, 21);
             this.LblAanvrager.TabIndex = 11;
-            this.LblAanvrager.Text = "aaaaaa";
+            this.LblAanvrager.Text = "01234567890";
+            this.LblAanvrager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTitel
             // 
-            this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(228, 1);
+            this.lblTitel.Location = new System.Drawing.Point(294, 2);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(72, 28);
+            this.lblTitel.Size = new System.Drawing.Size(256, 21);
             this.lblTitel.TabIndex = 12;
-            this.lblTitel.Text = "aaaaaa";
+            this.lblTitel.Text = "01234567890123456789012345";
+            this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblAanvraagmoment
             // 
-            this.lblAanvraagmoment.AutoSize = true;
-            this.lblAanvraagmoment.Location = new System.Drawing.Point(409, 1);
+            this.lblAanvraagmoment.Location = new System.Drawing.Point(556, 2);
             this.lblAanvraagmoment.Name = "lblAanvraagmoment";
-            this.lblAanvraagmoment.Size = new System.Drawing.Size(72, 28);
+            this.lblAanvraagmoment.Size = new System.Drawing.Size(203, 21);
             this.lblAanvraagmoment.TabIndex = 13;
             this.lblAanvraagmoment.Text = "aaaaaa";
+            this.lblAanvraagmoment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblFinancieringsjaar
             // 
-            this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(636, 2);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(799, 2);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(72, 28);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(77, 21);
             this.lblFinancieringsjaar.TabIndex = 14;
             this.lblFinancieringsjaar.Text = "aaaaaa";
+            this.lblFinancieringsjaar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBedrag
             // 
-            this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(784, 2);
+            this.lblBedrag.Location = new System.Drawing.Point(882, 2);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(72, 28);
+            this.lblBedrag.Size = new System.Drawing.Size(115, 21);
             this.lblBedrag.TabIndex = 15;
-            this.lblBedrag.Text = "aaaaaa";
+            this.lblBedrag.Text = "01234567890";
+            this.lblBedrag.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnEdit
             // 
@@ -117,7 +117,7 @@
             // 
             // GoedkeurItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnStatusEdit);
             this.Controls.Add(this.btnEdit);
@@ -129,9 +129,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GoedkeurItem";
-            this.Size = new System.Drawing.Size(881, 33);
+            this.Size = new System.Drawing.Size(1000, 33);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

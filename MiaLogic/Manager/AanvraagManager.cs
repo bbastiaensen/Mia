@@ -758,7 +758,7 @@ namespace MiaLogic.Manager
             }
             return highestAanvraagId;
         }
-        public static List<Aanvraag> GetGoedgekeurdeAanvragen()
+        public static List<Aanvraag> GetAanvragenVoorGoedkeuring()
         {
             List<Aanvraag> returnlist = null;
 
@@ -768,13 +768,19 @@ namespace MiaLogic.Manager
 
                 using (SqlCommand objCmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("select a.* from Aanvraag a ");
+                    sb.Append("inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId ");
+                    sb.Append("where sa.Naam = 'In aanvraag' or sa.Naam = 'Goedgekeurd' or sa.Naam = 'Niet goedgekeurd' or sa.Naam = 'Niet bekrachtigd' ");
+                    sb.Append("order by a.Aanvraagmoment desc;");
+
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.AantalStuk, a.PrijsIndicatieStuk from Aanvraag a WHERE StatusAanvraagId BETWEEN 2 AND 5";
+                    objCmd.CommandText = sb.ToString();
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
 
-                    Aanvraag g;
+                    Aanvraag aanvraag;
 
                     while (objRea.Read())
                     {
@@ -783,23 +789,28 @@ namespace MiaLogic.Manager
                             returnlist = new List<Aanvraag>();
                         }
 
-                        g = new Aanvraag();
-                        g.Id = Convert.ToInt32(objRea["Id"]);
-                        g.Gebruiker = objRea["Gebruiker"].ToString();
-                        g.Titel = objRea["Titel"].ToString();
-                        g.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
+                        aanvraag.Titel = objRea["Titel"].ToString();
+                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
 
                         if (objRea["Financieringsjaar"] != DBNull.Value)
                         {
-                            g.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
                         }
 
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
                         {
-                            g.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
 
-                        returnlist.Add(g);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        returnlist.Add(aanvraag);
                     }
                 }
             }
