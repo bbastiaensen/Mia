@@ -30,7 +30,7 @@ namespace MiaClient
         bool SortAanv = true;
         bool SortRP = true;
         bool SortJaar = false;
-        bool RSort = false; 
+        bool RSort = false;
         int aantalItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
@@ -61,7 +61,7 @@ namespace MiaClient
                 {
                     SortJaar = true;
                 }
-             aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
+                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
 
                 huidigePage = 1;
                 StartPaging();
@@ -114,11 +114,28 @@ namespace MiaClient
             int xPos = 0;
             int yPos = 0;
             int n = 0;
-                if (items != null)
+            if (items != null)
             {
+
                 foreach (var av in items)
                 {
+
                     AankopenItem avi = new AankopenItem(av.Id, av.Titel, av.Gebruiker, av.Financieringsjaar, av.PrijsIndicatieStuk, av.AantalStuk, n % 2 == 0, av.RichtperiodeId);
+
+                    //char titel = Convert.ToChar(' ');
+                    //int t = 0;
+                    //if (av.Titel.Length > 20)
+                    //{
+                    //    for (int i = 0; i < 17; i++)
+                    //    {
+                    //        t = Convert.ToChar(av.Titel[i]) + titel;
+                    //    }
+                    //    t = titel + Convert.ToInt32("...");
+                    //    titel = Convert.ToChar(t);
+
+                    //    av.Titel = titel.ToString();
+                    //}
+
                     avi.Location = new System.Drawing.Point(xPos, yPos);
                     avi.Name = "aanvraagSelection" + n;
                     avi.Size = new System.Drawing.Size(1210, 20);
@@ -168,7 +185,7 @@ namespace MiaClient
             {
                 if (RSort)
                 {
-                        //items = items.Where(av =>);              
+                    //items = items.Where(av =>);              
                 }
                 if (planningsdatumVan)
                 {

@@ -54,15 +54,17 @@
             // lblTitel
             // 
             this.lblTitel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblTitel.Location = new System.Drawing.Point(50, 0);
+            this.lblTitel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitel.Location = new System.Drawing.Point(36, 0);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(147, 33);
+            this.lblTitel.Size = new System.Drawing.Size(232, 33);
             this.lblTitel.TabIndex = 11;
-            this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTotaalBedrag
             // 
             this.lblTotaalBedrag.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblTotaalBedrag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTotaalBedrag.Location = new System.Drawing.Point(321, 0);
             this.lblTotaalBedrag.Name = "lblTotaalBedrag";
             this.lblTotaalBedrag.Size = new System.Drawing.Size(147, 33);
@@ -72,6 +74,7 @@
             // lblRichtperiode
             // 
             this.lblRichtperiode.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblRichtperiode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblRichtperiode.Location = new System.Drawing.Point(863, 0);
             this.lblRichtperiode.Name = "lblRichtperiode";
             this.lblRichtperiode.Size = new System.Drawing.Size(147, 33);
@@ -81,6 +84,7 @@
             // lblAanvrager
             // 
             this.lblAanvrager.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblAanvrager.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblAanvrager.Location = new System.Drawing.Point(541, 0);
             this.lblAanvrager.Name = "lblAanvrager";
             this.lblAanvrager.Size = new System.Drawing.Size(147, 33);
