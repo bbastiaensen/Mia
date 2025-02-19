@@ -100,7 +100,7 @@ namespace MiaClient
             {
                 foreach (var ag in items)
                 {
-                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, ag.Titel, ag.Financieringsjaar, ag.PrijsIndicatieStuk, ag.AantalStuk, Convert.ToString(ag.StatusAanvraagId), t % 2 == 0);
+                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, ag.Titel, ag.Financieringsjaar, ag.PrijsIndicatieStuk, ag.AantalStuk, ag.StatusAanvraag, t % 2 == 0);
                     agi.Location = new System.Drawing.Point(xPos, yPos);
                     agi.Name = "aanvraagSelection" + t;
                     agi.Size = new System.Drawing.Size(1210, 33);

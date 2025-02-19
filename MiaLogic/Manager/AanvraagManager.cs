@@ -794,6 +794,9 @@ namespace MiaLogic.Manager
                         aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
                         aanvraag.Titel = objRea["Titel"].ToString();
                         aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        StatusAanvraag sa = StatusAanvraagManager.GetStatusAanvraagById(Convert.ToInt32(objRea["StatusAanvraagId"]));
+                        aanvraag.StatusAanvraag = sa.Naam;
+                        aanvraag.StatusAanvraagId = sa.Id;
 
                         if (objRea["Financieringsjaar"] != DBNull.Value)
                         {

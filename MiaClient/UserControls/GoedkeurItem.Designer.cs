@@ -35,7 +35,7 @@
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.lblBedrag = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnStatusEdit = new System.Windows.Forms.Button();
+            this.btnInAanvraag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
@@ -92,34 +92,33 @@
             this.btnEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.Location = new System.Drawing.Point(15, 2);
+            this.btnEdit.Location = new System.Drawing.Point(4, 2);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(27, 27);
             this.btnEdit.TabIndex = 20;
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnStatusEdit
+            // btnInAanvraag
             // 
-            this.btnStatusEdit.BackColor = System.Drawing.Color.Transparent;
-            this.btnStatusEdit.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnStatusEdit.FlatAppearance.BorderSize = 0;
-            this.btnStatusEdit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnStatusEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnStatusEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatusEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnStatusEdit.Image")));
-            this.btnStatusEdit.Location = new System.Drawing.Point(48, 3);
-            this.btnStatusEdit.Name = "btnStatusEdit";
-            this.btnStatusEdit.Size = new System.Drawing.Size(27, 27);
-            this.btnStatusEdit.TabIndex = 21;
-            this.btnStatusEdit.UseVisualStyleBackColor = false;
-            this.btnStatusEdit.Click += new System.EventHandler(this.btnStatusEdit_Click);
+            this.btnInAanvraag.BackColor = System.Drawing.Color.Transparent;
+            this.btnInAanvraag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInAanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnInAanvraag.FlatAppearance.BorderSize = 0;
+            this.btnInAanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnInAanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnInAanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInAanvraag.Location = new System.Drawing.Point(37, 2);
+            this.btnInAanvraag.Name = "btnInAanvraag";
+            this.btnInAanvraag.Size = new System.Drawing.Size(27, 27);
+            this.btnInAanvraag.TabIndex = 21;
+            this.btnInAanvraag.UseVisualStyleBackColor = false;
             // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnStatusEdit);
+            this.Controls.Add(this.btnInAanvraag);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblBedrag);
             this.Controls.Add(this.lblFinancieringsjaar);
@@ -141,6 +140,6 @@
         private System.Windows.Forms.Label lblFinancieringsjaar;
         private System.Windows.Forms.Label lblBedrag;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnStatusEdit;
+        private System.Windows.Forms.Button btnInAanvraag;
     }
 }

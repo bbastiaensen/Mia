@@ -40,6 +40,9 @@ namespace MiaClient.UserControls
         frmGoedkeuring frmGoedkeuring;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
+        Image imgInAanvraagNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
+        Image imgInAanvraagGreen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-green.png"));
+
 
         public GoedkeurItem()
         {
@@ -57,10 +60,16 @@ namespace MiaClient.UserControls
             Financieringsjaar = financieringsjaar;
             Bedrag = PrijsIndicatiePerStuk * AantalStuk;
 
-            //if(Statusaanvraag == "Goedgekeurd")
-            //{
-
-            //}
+            switch (StatusAanvraag.ToLower())
+            {
+                case "in aanvraag":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagGreen;
+                    break;
+                default:
+                    //Als de StatusAanvraag niet gekend is.
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    break;
+            }
 
             Even = even;
             SetGoedkeurItemWaarden();
@@ -112,12 +121,5 @@ namespace MiaClient.UserControls
             }
         }
 
-        private void btnStatusEdit_Click(object sender, EventArgs e)
-        {
-            if (GoedkeurItemStatusEdit != null) 
-            {
-                GoedkeurItemStatusEdit(this, null);
-            }
-        }
     }
 }
