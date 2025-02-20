@@ -42,6 +42,14 @@ namespace MiaClient.UserControls
         public string projectDirectory = Directory.GetCurrentDirectory();
         Image imgInAanvraagNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
         Image imgInAanvraagGreen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-green.png"));
+        Image imgNietGoedgekeurdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-goedgekeurd-50-neutral.png"));
+        Image imgNietGoedgekeurd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-goedgekeurd-50.png"));
+        Image imgGoedgekeurdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-goedgekeurd-50-neutral.png"));
+        Image imgGoedgekeurd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-goedgekeurd-50.png"));
+        Image imgNietBekrachtigdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-bekrachtigd-50-neutral.png"));
+        Image imgNietBekrachtigd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-bekrachtigd-50.png"));
+        Image imgBekrachtigdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-bekrachtigd-50-neutral.png"));
+        Image imgBekrachtigd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-bekrachtigd-50.png"));
 
 
         public GoedkeurItem()
@@ -64,10 +72,46 @@ namespace MiaClient.UserControls
             {
                 case "in aanvraag":
                     btnInAanvraag.BackgroundImage = imgInAanvraagGreen;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "niet goedgekeurd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurd;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "goedgekeurd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurd;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "niet bekrachtigd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigd;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "bekrachtigd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigd;
                     break;
                 default:
                     //Als de StatusAanvraag niet gekend is.
                     btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
                     break;
             }
 
@@ -121,5 +165,29 @@ namespace MiaClient.UserControls
             }
         }
 
+        private void btnInAanvraag_Click(object sender, EventArgs e)
+        {
+            //Status 'In aanvraag' zetten
+        }
+
+        private void btnNietGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            //Status 'Niet goedgekeurd' zetten
+        }
+
+        private void btnGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            //Status 'Goedgekeurd' zetten
+        }
+
+        private void btnNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            //Status 'Niet bekrachtigd' zetten
+        }
+
+        private void btnBekrachtigd_Click(object sender, EventArgs e)
+        {
+            //Status 'Bekrachtigd' zetten
+        }
     }
 }

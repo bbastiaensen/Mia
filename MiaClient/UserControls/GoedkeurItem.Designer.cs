@@ -36,11 +36,15 @@
             this.lblBedrag = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnInAanvraag = new System.Windows.Forms.Button();
+            this.btnNietGoedgekeurd = new System.Windows.Forms.Button();
+            this.btnGoedgekeurd = new System.Windows.Forms.Button();
+            this.btnNietBekrachtigd = new System.Windows.Forms.Button();
+            this.btnBekrachtigd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblAanvrager
             // 
-            this.LblAanvrager.Location = new System.Drawing.Point(175, 2);
+            this.LblAanvrager.Location = new System.Drawing.Point(197, 2);
             this.LblAanvrager.Name = "LblAanvrager";
             this.LblAanvrager.Size = new System.Drawing.Size(113, 21);
             this.LblAanvrager.TabIndex = 11;
@@ -49,9 +53,9 @@
             // 
             // lblTitel
             // 
-            this.lblTitel.Location = new System.Drawing.Point(294, 2);
+            this.lblTitel.Location = new System.Drawing.Point(309, 2);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(256, 21);
+            this.lblTitel.Size = new System.Drawing.Size(250, 21);
             this.lblTitel.TabIndex = 12;
             this.lblTitel.Text = "01234567890123456789012345";
             this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,11 +117,80 @@
             this.btnInAanvraag.Size = new System.Drawing.Size(27, 27);
             this.btnInAanvraag.TabIndex = 21;
             this.btnInAanvraag.UseVisualStyleBackColor = false;
+            this.btnInAanvraag.Click += new System.EventHandler(this.btnInAanvraag_Click);
+            // 
+            // btnNietGoedgekeurd
+            // 
+            this.btnNietGoedgekeurd.BackColor = System.Drawing.Color.Transparent;
+            this.btnNietGoedgekeurd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNietGoedgekeurd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNietGoedgekeurd.FlatAppearance.BorderSize = 0;
+            this.btnNietGoedgekeurd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnNietGoedgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnNietGoedgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNietGoedgekeurd.Location = new System.Drawing.Point(70, 2);
+            this.btnNietGoedgekeurd.Name = "btnNietGoedgekeurd";
+            this.btnNietGoedgekeurd.Size = new System.Drawing.Size(27, 27);
+            this.btnNietGoedgekeurd.TabIndex = 22;
+            this.btnNietGoedgekeurd.UseVisualStyleBackColor = false;
+            this.btnNietGoedgekeurd.Click += new System.EventHandler(this.btnNietGoedgekeurd_Click);
+            // 
+            // btnGoedgekeurd
+            // 
+            this.btnGoedgekeurd.BackColor = System.Drawing.Color.Transparent;
+            this.btnGoedgekeurd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGoedgekeurd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGoedgekeurd.FlatAppearance.BorderSize = 0;
+            this.btnGoedgekeurd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnGoedgekeurd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnGoedgekeurd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoedgekeurd.Location = new System.Drawing.Point(103, 2);
+            this.btnGoedgekeurd.Name = "btnGoedgekeurd";
+            this.btnGoedgekeurd.Size = new System.Drawing.Size(27, 27);
+            this.btnGoedgekeurd.TabIndex = 23;
+            this.btnGoedgekeurd.UseVisualStyleBackColor = false;
+            this.btnGoedgekeurd.Click += new System.EventHandler(this.btnGoedgekeurd_Click);
+            // 
+            // btnNietBekrachtigd
+            // 
+            this.btnNietBekrachtigd.BackColor = System.Drawing.Color.Transparent;
+            this.btnNietBekrachtigd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNietBekrachtigd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNietBekrachtigd.FlatAppearance.BorderSize = 0;
+            this.btnNietBekrachtigd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnNietBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnNietBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNietBekrachtigd.Location = new System.Drawing.Point(136, 2);
+            this.btnNietBekrachtigd.Name = "btnNietBekrachtigd";
+            this.btnNietBekrachtigd.Size = new System.Drawing.Size(27, 27);
+            this.btnNietBekrachtigd.TabIndex = 24;
+            this.btnNietBekrachtigd.UseVisualStyleBackColor = false;
+            this.btnNietBekrachtigd.Click += new System.EventHandler(this.btnNietBekrachtigd_Click);
+            // 
+            // btnBekrachtigd
+            // 
+            this.btnBekrachtigd.BackColor = System.Drawing.Color.Transparent;
+            this.btnBekrachtigd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBekrachtigd.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnBekrachtigd.FlatAppearance.BorderSize = 0;
+            this.btnBekrachtigd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBekrachtigd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBekrachtigd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBekrachtigd.Location = new System.Drawing.Point(169, 2);
+            this.btnBekrachtigd.Name = "btnBekrachtigd";
+            this.btnBekrachtigd.Size = new System.Drawing.Size(27, 27);
+            this.btnBekrachtigd.TabIndex = 25;
+            this.btnBekrachtigd.UseVisualStyleBackColor = false;
+            this.btnBekrachtigd.Click += new System.EventHandler(this.btnBekrachtigd_Click);
             // 
             // GoedkeurItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnBekrachtigd);
+            this.Controls.Add(this.btnNietBekrachtigd);
+            this.Controls.Add(this.btnGoedgekeurd);
+            this.Controls.Add(this.btnNietGoedgekeurd);
             this.Controls.Add(this.btnInAanvraag);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblBedrag);
@@ -141,5 +214,9 @@
         private System.Windows.Forms.Label lblBedrag;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnInAanvraag;
+        private System.Windows.Forms.Button btnNietGoedgekeurd;
+        private System.Windows.Forms.Button btnGoedgekeurd;
+        private System.Windows.Forms.Button btnNietBekrachtigd;
+        private System.Windows.Forms.Button btnBekrachtigd;
     }
 }

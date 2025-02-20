@@ -758,7 +758,7 @@ namespace MiaLogic.Manager
             }
             return highestAanvraagId;
         }
-        public static List<Aanvraag> GetAanvragenVoorGoedkeuring()
+        public static List<Aanvraag> GetAanvragenVoorGoedkeuring(List<StatusAanvraag> statussenAanvraag)
         {
             List<Aanvraag> returnlist = null;
 
@@ -794,9 +794,9 @@ namespace MiaLogic.Manager
                         aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
                         aanvraag.Titel = objRea["Titel"].ToString();
                         aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
-                        StatusAanvraag sa = StatusAanvraagManager.GetStatusAanvraagById(Convert.ToInt32(objRea["StatusAanvraagId"]));
-                        aanvraag.StatusAanvraag = sa.Naam;
-                        aanvraag.StatusAanvraagId = sa.Id;
+                        aanvraag.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        aanvraag.StatusAanvraag = statussenAanvraag.Find(sa => sa.Id == aanvraag.StatusAanvraagId).Naam;
+
 
                         if (objRea["Financieringsjaar"] != DBNull.Value)
                         {
@@ -900,6 +900,12 @@ namespace MiaLogic.Manager
                 throw;
             }
         }
+
+        public static void UpdateStatusAanvraag(Aanvraag aanvraag, StatusAanvraag nieuweStatusAanvraag)
+        {
+
+        }
+
         public static void DeleteAanvraag(Aanvraag aanvraag)
         {
             if (aanvraag.Id == 0)
