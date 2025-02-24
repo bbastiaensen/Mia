@@ -29,15 +29,19 @@ namespace MiaClient.UserControls
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
         public decimal Bedrag { get; set; }
+        public string OpmerkingenResultaat { get; set; }
+        public decimal BudgetToegekend { get; set; }
         public Boolean Even { get; set; }
 
 
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
-        public event EventHandler GoedkeurItemStatusEdit;
+        public event EventHandler GoedkeurItemStatusAanvraagChanged;
+
         frmAanvraagFormulier frmAanvraagFormulier;
         frmGoedkeuring frmGoedkeuring;
+        frmStatusAanvraagWijzigingDetail frmSAWD = null;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
         Image imgInAanvraagNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
@@ -56,7 +60,7 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, Boolean even)
+        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, string opmerkingenResultaat, decimal budgetToegekend, Boolean even)
         {
             InitializeComponent();
             
@@ -67,6 +71,8 @@ namespace MiaClient.UserControls
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
             Bedrag = PrijsIndicatiePerStuk * AantalStuk;
+            OpmerkingenResultaat = opmerkingenResultaat;
+            BudgetToegekend = budgetToegekend;
 
             switch (StatusAanvraag.ToLower())
             {
@@ -172,7 +178,42 @@ namespace MiaClient.UserControls
 
         private void btnNietGoedgekeurd_Click(object sender, EventArgs e)
         {
-            //Status 'Niet goedgekeurd' zetten
+            try
+            {
+                //Status 'Niet goedgekeurd' zetten
+                if (StatusAanvraag.ToLower() == "in aanvraag")
+                {
+                    //Updaten van de Status
+                    Aanvraag aanvraag = new Aanvraag()
+                    {
+                        Id = this.Id
+                    };
+                    StatusAanvraag nieuweStatusAanvraag = StatusAanvraagManager.GetStatusAanvraagByName("Niet goedgekeurd");
+                    AanvraagManager.UpdateStatusAanvraag(aanvraag, nieuweStatusAanvraag);
+
+                    //Updaten van de Status details van deze aanvraag
+                    frmSAWD = new frmStatusAanvraagWijzigingDetail(Id, StatusAanvraag, OpmerkingenResultaat, BudgetToegekend);
+                    frmSAWD.StatusAanvraagDetailGewijzigd += FrmSAWD_StatusAanvraagDetailGewijzigd;
+                    frmSAWD.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Een aanvraag die niet in de status 'In aanvraag' staat kan niet afgekeurd worden.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmSAWD_StatusAanvraagDetailGewijzigd(object sender, EventArgs e)
+        { 
+            frmSAWD = null;
+            if (GoedkeurItemStatusAanvraagChanged != null)
+            {
+                GoedkeurItemStatusAanvraagChanged(this, null);
+            }
         }
 
         private void btnGoedgekeurd_Click(object sender, EventArgs e)

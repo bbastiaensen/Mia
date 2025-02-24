@@ -143,6 +143,12 @@
     <Compile Include="frmPrompt.Designer.cs">
       <DependentUpon>frmPrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmStatusAanvraagWijzigingDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStatusAanvraagWijzigingDetail.Designer.cs">
+      <DependentUpon>frmStatusAanvraagWijzigingDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeplandeAanvraagen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrompt.resx">
       <DependentUpon>frmPrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStatusAanvraagWijzigingDetail.resx">
+      <DependentUpon>frmStatusAanvraagWijzigingDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mdiMia.resx">
       <DependentUpon>mdiMia.cs</DependentUpon>

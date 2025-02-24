@@ -813,6 +813,16 @@ namespace MiaLogic.Manager
                             aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
                         }
 
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+
                         returnlist.Add(aanvraag);
                     }
                 }
@@ -903,7 +913,53 @@ namespace MiaLogic.Manager
 
         public static void UpdateStatusAanvraag(Aanvraag aanvraag, StatusAanvraag nieuweStatusAanvraag)
         {
+            if (aanvraag.Id == 0)
+            {
+                throw new ArgumentNullException("De aanvraag die je wil updaten is onbestaande.");
+            }
 
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Aanvraag set StatusAanvraagId = @StatusAanvraagId where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("Id", aanvraag.Id);
+                    objCmd.Parameters.AddWithValue("@StatusAanvraagId", nieuweStatusAanvraag.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateStatusAanvraagDetails(Aanvraag aanvraag, string opmerkingenResultaat, decimal budgetToegekend)
+        {
+            if (aanvraag.Id == 0)
+            {
+                throw new ArgumentNullException("De aanvraag die je wil updaten is onbestaande.");
+            }
+
+            using (SqlConnection objCn =new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Aanvraag set OpmerkingenResultaat = @OpmerkingenResultaat, BudgetToegekend = @BudgetToegekend where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("Id", aanvraag.Id);
+                    objCmd.Parameters.AddWithValue("@OpmerkingenResultaat", opmerkingenResultaat);
+                    objCmd.Parameters.AddWithValue("@BudgetToegekend", budgetToegekend);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public static void DeleteAanvraag(Aanvraag aanvraag)

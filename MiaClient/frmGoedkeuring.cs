@@ -104,14 +104,14 @@ namespace MiaClient
             {
                 foreach (var ag in items)
                 {
-                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, ag.Titel, ag.Financieringsjaar, ag.PrijsIndicatieStuk, ag.AantalStuk, ag.StatusAanvraag, t % 2 == 0);
+                    GoedkeurItem agi = new GoedkeurItem(ag.Id, ag.Gebruiker, ag.Aanvraagmoment, ag.Titel, ag.Financieringsjaar, ag.PrijsIndicatieStuk, ag.AantalStuk, ag.StatusAanvraag, ag.OpmerkingenResultaat, ag.BudgetToegekend, t % 2 == 0);
                     agi.Location = new System.Drawing.Point(xPos, yPos);
                     agi.Name = "aanvraagSelection" + t;
                     agi.Size = new System.Drawing.Size(1210, 33);
                     agi.TabIndex = t + 8;
                     agi.GoedkeurItemSelected += Gli_GoedkeurItemSelected;
                     agi.GoedkeurItemChanged += Agi_GoedkeurItemChanged;
-                    agi.GoedkeurItemStatusEdit += Agi_GoedkeurItemStatusEdit;
+                    agi.GoedkeurItemStatusAanvraagChanged += Agi_GoedkeurItemStatusAanvraagChanged;
                     this.pnlGoedkeuringen.Controls.Add(agi);
 
                     statusId = ag.Id;
@@ -123,13 +123,14 @@ namespace MiaClient
             }
         }
 
-        private void Agi_GoedkeurItemStatusEdit(object sender, EventArgs e)
+        private void Agi_GoedkeurItemStatusAanvraagChanged(object sender, EventArgs e)
         {
+            //Opnieuw laden van de aanvragen.
+            aanvragen = FilteredGoedkeurItems(AanvraagManager.GetAanvragenVoorGoedkeuring(StatussenAanvraag), filterAanvraagmomentVan, filterAanvraagmomentTot, filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterStatusAanvraag, filterFinancieringsjaar, filterBedragVan, filterBedragTot, filterKostenPlaats);
 
-            var aanvraag = AanvraagManager.GetAanvraagById(statusId);
+            huidigePage = 1;
+            StartPaging();
 
-
-            
         }
 
         public void frmGoedkeuring_Load(object sender, EventArgs e)
