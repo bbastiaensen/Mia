@@ -20,9 +20,14 @@ namespace MiaClient
         {
             InitializeComponent();
         }
-
+        DateTime begin;
+        DateTime end;
+        int es = 0;
+        int em = 0;
+        int emi = 0;
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            begin = DateTime.Now;
             //makes a new excel app
             var app = new Excel.Application();
             //opens the app when you press save (if true)
@@ -36,6 +41,9 @@ namespace MiaClient
             List<Aanvraag> aanvragen = AanvraagManager.GetPlanningsdatumAsc();
             List<Aanvraag> Status = new List<Aanvraag>();
             //Making sure the data is in the right year, and it's refused
+            int behm = DateTime.Now.Minute;
+            int behs = DateTime.Now.Second;
+            int behmi = DateTime.Now.Millisecond;
             foreach (Aanvraag a in aanvragen)
             {
                 if (/*StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Bekrachtigd" &&*/ a.Financieringsjaar == DateTime.Parse(DateTime.Now.ToString()).Year.ToString())
@@ -43,6 +51,12 @@ namespace MiaClient
                     Status.Add(a);
                 }
             }
+            int eehm = DateTime.Now.Minute;
+            int eehs = DateTime.Now.Second;
+            int eehmi = DateTime.Now.Millisecond;
+            es += eehs - behs;
+            em += eehm - behm;
+            emi += eehmi - behmi;
             //setting up the numbers
             //color for the red/green
             Color c = new Color();
@@ -56,6 +70,7 @@ namespace MiaClient
             bool even = true;
             //loops over the periods (m=month)
             int m = 0;
+            DateTime beginRP = DateTime.Now;
             for (m = 1; m <= rp.Count; m++)
             {
                 bool meh = true;
@@ -148,10 +163,11 @@ namespace MiaClient
                 worksheet.get_Range("G" + ri, "G" + ri).Value = tot;
                 worksheet.get_Range("A" + ri, "H" + ri).Font.Bold = true;
             }
+            DateTime endRP = DateTime.Now;
             //===============just layout=================
 
             //title
-            worksheet.Cells[1, 1] = "Geplande Aanvragen ";
+            worksheet.Cells[1, 1] = "Geplande aankopen";
             worksheet.Cells[2, 1] = "Maand";
             worksheet.Cells[2, 2] = "Titel";
             worksheet.Cells[2, 3] = "Aanvrager";
@@ -174,6 +190,7 @@ namespace MiaClient
             saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
             saveFileDialog1.FilterIndex = 1;
             //shows save file dialog
+            end = DateTime.Now;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //it doesn't like onedrive(saves the Excel file)
@@ -190,7 +207,6 @@ namespace MiaClient
                     MessageBox.Show("Excel doesn't like onedrive :(");
                 }
             }
-            
         }
         public static Color StringToColor(string colorStr)
         {

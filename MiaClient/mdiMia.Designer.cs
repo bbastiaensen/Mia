@@ -36,6 +36,7 @@
             this.overzichtenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.budgetoverzichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geweigerdeAanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.geplandeAanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,6 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.geplandeAanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -121,6 +121,13 @@
             this.geweigerdeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
             this.geweigerdeAanvragenToolStripMenuItem.Text = "Geweigerde Aanvragen";
             this.geweigerdeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geweigerdeAanvragenToolStripMenuItem_Click);
+            // 
+            // geplandeAanvragenToolStripMenuItem
+            // 
+            this.geplandeAanvragenToolStripMenuItem.Name = "geplandeAanvragenToolStripMenuItem";
+            this.geplandeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
+            this.geplandeAanvragenToolStripMenuItem.Text = "Geplande Aankopen";
+            this.geplandeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geplandeAanvragenToolStripMenuItem_Click);
             // 
             // aankopenToolStripMenuItem
             // 
@@ -312,13 +319,6 @@
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
-            // geplandeAanvragenToolStripMenuItem
-            // 
-            this.geplandeAanvragenToolStripMenuItem.Name = "geplandeAanvragenToolStripMenuItem";
-            this.geplandeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
-            this.geplandeAanvragenToolStripMenuItem.Text = "Geplande Aanvragen";
-            this.geplandeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geplandeAanvragenToolStripMenuItem_Click);
-            // 
             // mdiMia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -330,7 +330,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mdiMia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MIA";
