@@ -59,8 +59,9 @@ namespace MiaClient.UserControls
         private void SetItemValue()
         {
             lblAanvrager.Text = Gebruiker.ToString();
+
+            //Limiteren van het aantal characters er in de titel komen te staan
             var characters = Titel.ToCharArray();
-            
             if (characters.Length > 20)
             {
                 string chars = "";
