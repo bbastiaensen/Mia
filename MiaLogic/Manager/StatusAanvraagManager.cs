@@ -12,6 +12,7 @@ namespace MiaLogic.Manager
     {
         public static string ConnectionString { get; set; }
 
+        //Geeft een StatusAanvraag terug op basis van een Id
         public static StatusAanvraag GetStatusAanvraagById(int id)
         {
             StatusAanvraag Statusaanvraag = new StatusAanvraag();
@@ -54,6 +55,48 @@ namespace MiaLogic.Manager
 
             return Statusaanvraag;
         }
+
+        //Geeft een StatusAanvraag terug op basis van een Id
+        public static StatusAanvraag GetStatusAanvraagByName(string name)
+        {
+            StatusAanvraag Statusaanvraag = new StatusAanvraag();
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from StatusAanvraag where Naam = @Naam;";
+                    objCmd.Parameters.AddWithValue("@Naam", name);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    if (objRea.Read())
+                    {
+                        if (objRea["Id"] != DBNull.Value)
+                        {
+                            Statusaanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        }
+
+                        if (objRea["Naam"] != DBNull.Value)
+                        {
+                            Statusaanvraag.Naam = objRea["Naam"].ToString();
+                        }
+
+                    }
+
+                }
+            }
+
+            return Statusaanvraag;
+        }
+
         //geeft alle statussen terug in een list
         public static List<StatusAanvraag> GetStatusAanvragen()
         {

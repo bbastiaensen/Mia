@@ -758,7 +758,7 @@ namespace MiaLogic.Manager
             }
             return highestAanvraagId;
         }
-        public static List<Aanvraag> GetGoedgekeurdeAanvragen()
+        public static List<Aanvraag> GetAanvragenVoorGoedkeuring(List<StatusAanvraag> statussenAanvraag)
         {
             List<Aanvraag> returnlist = null;
 
@@ -768,13 +768,19 @@ namespace MiaLogic.Manager
 
                 using (SqlCommand objCmd = new SqlCommand())
                 {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("select a.* from Aanvraag a ");
+                    sb.Append("inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId ");
+                    sb.Append("where sa.Naam = 'In aanvraag' or sa.Naam = 'Goedgekeurd' or sa.Naam = 'Niet goedgekeurd' or sa.Naam = 'Niet bekrachtigd' ");
+                    sb.Append("order by a.Aanvraagmoment desc;");
+
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.AantalStuk, a.PrijsIndicatieStuk from Aanvraag a WHERE StatusAanvraagId BETWEEN 2 AND 5";
+                    objCmd.CommandText = sb.ToString();
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
 
-                    Aanvraag g;
+                    Aanvraag aanvraag;
 
                     while (objRea.Read())
                     {
@@ -783,23 +789,41 @@ namespace MiaLogic.Manager
                             returnlist = new List<Aanvraag>();
                         }
 
-                        g = new Aanvraag();
-                        g.Id = Convert.ToInt32(objRea["Id"]);
-                        g.Gebruiker = objRea["Gebruiker"].ToString();
-                        g.Titel = objRea["Titel"].ToString();
-                        g.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag = new Aanvraag();
+                        aanvraag.Id = Convert.ToInt32(objRea["Id"]);
+                        aanvraag.Gebruiker = objRea["Gebruiker"].ToString();
+                        aanvraag.Titel = objRea["Titel"].ToString();
+                        aanvraag.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        aanvraag.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        aanvraag.StatusAanvraag = statussenAanvraag.Find(sa => sa.Id == aanvraag.StatusAanvraagId).Naam;
+
 
                         if (objRea["Financieringsjaar"] != DBNull.Value)
                         {
-                            g.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                            aanvraag.Financieringsjaar = objRea["Financieringsjaar"].ToString();
                         }
 
                         if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
                         {
-                            g.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                            aanvraag.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
 
-                        returnlist.Add(g);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            aanvraag.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            aanvraag.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+
+                        returnlist.Add(aanvraag);
                     }
                 }
             }
@@ -886,6 +910,58 @@ namespace MiaLogic.Manager
                 throw;
             }
         }
+
+        public static void UpdateStatusAanvraag(Aanvraag aanvraag, StatusAanvraag nieuweStatusAanvraag)
+        {
+            if (aanvraag.Id == 0)
+            {
+                throw new ArgumentNullException("De aanvraag die je wil updaten is onbestaande.");
+            }
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Aanvraag set StatusAanvraagId = @StatusAanvraagId where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("Id", aanvraag.Id);
+                    objCmd.Parameters.AddWithValue("@StatusAanvraagId", nieuweStatusAanvraag.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateStatusAanvraagDetails(Aanvraag aanvraag, string opmerkingenResultaat, decimal budgetToegekend)
+        {
+            if (aanvraag.Id == 0)
+            {
+                throw new ArgumentNullException("De aanvraag die je wil updaten is onbestaande.");
+            }
+
+            using (SqlConnection objCn =new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Aanvraag set OpmerkingenResultaat = @OpmerkingenResultaat, BudgetToegekend = @BudgetToegekend where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("Id", aanvraag.Id);
+                    objCmd.Parameters.AddWithValue("@OpmerkingenResultaat", opmerkingenResultaat);
+                    objCmd.Parameters.AddWithValue("@BudgetToegekend", budgetToegekend);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static void DeleteAanvraag(Aanvraag aanvraag)
         {
             if (aanvraag.Id == 0)
