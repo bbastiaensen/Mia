@@ -216,31 +216,36 @@ namespace MiaClient
             Color result = (Color)cc.ConvertFromString(colorStr);
             return result;
         }
+        Color text = StringToColor(ParameterManager.GetParameterByCode("TekstExcel").Waarde);
+        Color MaandL = StringToColor(ParameterManager.GetParameterByCode("MaandExcelL").Waarde);
+        Color MaandD = StringToColor(ParameterManager.GetParameterByCode("MaandExcelD").Waarde);
+        Color DataL1 = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
+        Color DataL2 = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
+        Color DataD1 = StringToColor(ParameterManager.GetParameterByCode("DataExcelD1").Waarde);
+        Color DataD2 = StringToColor(ParameterManager.GetParameterByCode("DataExcelD2").Waarde);
         public void ColorExcel(int pos, int month, Excel.Worksheet ws, bool even, bool m)
         {
             //for the color
-            Parameter p = new Parameter();
             Color c = new Color();
             //if the data is the richtperiode
-            p = ParameterManager.GetParameterByCode("TekstExcel");
-            c = StringToColor(p.Waarde);
-            ws.get_Range("A" + pos, "C" + pos).Font.Color = c;
+            c = text;
+
+            ws.get_Range("A" + pos, "F" + pos).Font.Color = c;
+            ws.get_Range("H" + pos, "H" + pos).Font.Color = c;
             if (m)
             {
                 ws.get_Range("A" + pos, "A" + pos).Font.Bold = true;
                 //if the month is even
                 if (month % 2 == 0)
                 {
-                    p = ParameterManager.GetParameterByCode("MaandExcelL");
-                    c = StringToColor(p.Waarde);
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    c = MaandL;
+                    ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                 }
                 //month is uneven
                 else
                 {
-                    p = ParameterManager.GetParameterByCode("MaandExcelD");
-                    c = StringToColor(p.Waarde);
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    c = MaandD;
+                    ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                 }
             }
             //if the data isnt' the richtperiode
@@ -252,15 +257,13 @@ namespace MiaClient
                     //if the position is even(in comparison to the month)
                     if (even)
                     {
-                        p = ParameterManager.GetParameterByCode("DataExcelL1");
-                        c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        c = DataL1;
+                        ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                     }
                     else
                     {
-                        p = ParameterManager.GetParameterByCode("DataExcelL2");
-                        c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        c = DataL2;
+                        ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                     }
 
                 }
@@ -270,20 +273,17 @@ namespace MiaClient
                     //if the position is even(in comparison to the month
                     if (even)
                     {
-                        p = ParameterManager.GetParameterByCode("DataExcelD1");
-                        c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        c = DataD1;
+                        ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                     }
                     else
                     {
-                        p = ParameterManager.GetParameterByCode("DataExcelD2");
-                        c = StringToColor(p.Waarde);
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        c = DataD2;
+                        ws.get_Range("A" + pos, "H" + pos).Interior.Color = c;
                     }
                 }
             }
         }
-
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlRichtperiode.Controls.Clear();
