@@ -1,5 +1,6 @@
 ﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,11 @@ namespace MiaClient
         int emi = 0;
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            //just a way to make the wait seem less long
+            lblWacht.Visible = true;
+            lblWacht.Text = "Dit kan even duren";
+            lblLaad1.Visible = true;
+            lblLaad1.Text = "Connectie maken met Excel..";
             begin = DateTime.Now;
             //makes a new excel app
             var app = new Excel.Application();
@@ -35,7 +41,11 @@ namespace MiaClient
             //stuffs for commands
             object Nothing = System.Reflection.Missing.Value;
             Excel.Workbook workBook = app.Workbooks.Add(Nothing);
+            lblLaad1.Text = "Verwerken...";
+            lblWacht.Text = "Dit kan lang duren";
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
+            lblLaad1.Text = "Data ophalen...";
+            lblWacht.Text = "Dit kan even duren";
             // Getting data
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetPlanningsdatumAsc();
@@ -73,6 +83,7 @@ namespace MiaClient
             DateTime beginRP = DateTime.Now;
             for (m = 1; m <= rp.Count; m++)
             {
+                lblLaad1.Text = "Excel opstellen...";
                 bool meh = true;
                 //ri = position in int, r = position in string
                 ri = m + rs;
@@ -85,6 +96,7 @@ namespace MiaClient
                 //Making sure the data in the right month
                 meh = false;
                 List<Aanvraag> InPer = new List<Aanvraag>();
+                lblLaad1.Text = "Data in Excel verwerken " + /*(" + finJaar + ")*/ "...";
                 foreach (Aanvraag a in Status)
                 {
                     if (a.RichtperiodeId == m)
@@ -162,7 +174,10 @@ namespace MiaClient
                 worksheet.get_Range("G" + ri, "G" + ri).Font.Color = c;
                 worksheet.get_Range("G" + ri, "G" + ri).Value = tot;
                 worksheet.get_Range("A" + ri, "H" + ri).Font.Bold = true;
+
             }
+            lblWacht.Text = "Bijna klaar!";
+
             DateTime endRP = DateTime.Now;
             //===============just layout=================
 
@@ -190,6 +205,8 @@ namespace MiaClient
             saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
             saveFileDialog1.FilterIndex = 1;
             //shows save file dialog
+            lblWacht.Visible = false;
+            lblLaad1.Visible = false;
             end = DateTime.Now;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -284,6 +301,24 @@ namespace MiaClient
                 }
             }
         }
-        
+
+        private void frmGeplandeAankopen_Load(object sender, EventArgs e)
+        {
+            this.BackColor = StyleParameters.Achtergrondkleur;
+
+            foreach (var btn in this.Controls.OfType<Button>())
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.BackColor = StyleParameters.ButtonBack;
+                btn.ForeColor = StyleParameters.Buttontext;
+            }
+        }
+
+        private void frmGeplandeAankopen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            ((Form)sender).Hide();
+        }
     }
 }
