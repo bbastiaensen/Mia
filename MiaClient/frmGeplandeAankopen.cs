@@ -21,11 +21,8 @@ namespace MiaClient
         {
             InitializeComponent();
         }
-        DateTime begin;
-        DateTime end;
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            begin = DateTime.Now;
             //just a way to make the wait seem less long
             lblWacht.Visible = true;
             lblWacht.Text = "Dit kan even duren";
@@ -68,7 +65,6 @@ namespace MiaClient
             bool even = true;
             //loops over the periods (m=month)
             int m = 0;
-            DateTime beginRP = DateTime.Now;
             for (m = 1; m <= rp.Count; m++)
             {
                 lblLaad1.Text = "Excel opstellen...";
@@ -173,7 +169,6 @@ namespace MiaClient
             }
             lblWacht.Text = "Bijna klaar!";
 
-            DateTime endRP = DateTime.Now;
             //===============just layout=================
 
             //title
@@ -202,15 +197,15 @@ namespace MiaClient
             //shows save file dialog
             lblWacht.Visible = false;
             lblLaad1.Visible = false;
-            end = DateTime.Now;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //it doesn't like onedrive(saves the Excel file)
                 try
                 {
-                    worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+                    worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, false, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
                     workBook.Close(false, saveFileDialog1.FileName, false);
                     Marshal.ReleaseComObject(workBook);
+                    Marshal.ReleaseComObject(worksheet);
                     app.Quit();
                     MessageBox.Show("Het Excel document staat klaar!");
                 }
