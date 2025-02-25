@@ -171,35 +171,68 @@ namespace MiaClient.UserControls
             }
         }
 
+        private void StatusAanvraagWijzigingDoorvoeren(string nieuweStatusAanvraag)
+        {
+            string toegelatenHuidigeStatus = string.Empty;
+
+            switch (nieuweStatusAanvraag.ToLower())
+            {
+                case "niet goedgekeurd":
+                case "goedgekeurd":
+                    toegelatenHuidigeStatus = "in aanvraag";
+                    break;
+                case "niet bekrachtigd":
+                case "bekrachtigd":
+                    toegelatenHuidigeStatus = "goedgekeurd";
+                    break;
+                case "in aanvraag":
+                    toegelatenHuidigeStatus = "in wacht";
+                    break;
+                default:
+                    throw new Exception("Ongeldige statusaanvraag");
+            }
+
+            if (StatusAanvraag.ToLower() == toegelatenHuidigeStatus)
+            {
+                //Updaten van de Status
+                Aanvraag aanvraag = new Aanvraag()
+                {
+                    Id = this.Id
+                };
+                StatusAanvraag statusAanvraag = StatusAanvraagManager.GetStatusAanvraagByName(nieuweStatusAanvraag);
+                AanvraagManager.UpdateStatusAanvraag(aanvraag, statusAanvraag);
+
+                //Updaten van de Status details van deze aanvraag
+                frmSAWD = new frmStatusAanvraagWijzigingDetail(Id, statusAanvraag, OpmerkingenResultaat, BudgetToegekend);
+                frmSAWD.StatusAanvraagDetailGewijzigd += FrmSAWD_StatusAanvraagDetailGewijzigd;
+                frmSAWD.Show();
+            }
+            else
+            {
+                string boodschap = "Een aanvraag met status '" + this.StatusAanvraag + "' kan niet '" + nieuweStatusAanvraag + "' worden.";
+                MessageBox.Show(boodschap, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
         private void btnInAanvraag_Click(object sender, EventArgs e)
         {
             //Status 'In aanvraag' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("In aanvraag");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnNietGoedgekeurd_Click(object sender, EventArgs e)
         {
+            //Status 'Niet goedgekeurd' zetten
             try
             {
-                //Status 'Niet goedgekeurd' zetten
-                if (StatusAanvraag.ToLower() == "in aanvraag")
-                {
-                    //Updaten van de Status
-                    Aanvraag aanvraag = new Aanvraag()
-                    {
-                        Id = this.Id
-                    };
-                    StatusAanvraag nieuweStatusAanvraag = StatusAanvraagManager.GetStatusAanvraagByName("Niet goedgekeurd");
-                    AanvraagManager.UpdateStatusAanvraag(aanvraag, nieuweStatusAanvraag);
-
-                    //Updaten van de Status details van deze aanvraag
-                    frmSAWD = new frmStatusAanvraagWijzigingDetail(Id, StatusAanvraag, OpmerkingenResultaat, BudgetToegekend);
-                    frmSAWD.StatusAanvraagDetailGewijzigd += FrmSAWD_StatusAanvraagDetailGewijzigd;
-                    frmSAWD.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Een aanvraag die niet in de status 'In aanvraag' staat kan niet afgekeurd worden.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                StatusAanvraagWijzigingDoorvoeren("Niet goedgekeurd");
             }
             catch (Exception ex)
             {
@@ -219,16 +252,40 @@ namespace MiaClient.UserControls
         private void btnGoedgekeurd_Click(object sender, EventArgs e)
         {
             //Status 'Goedgekeurd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Goedgekeurd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnNietBekrachtigd_Click(object sender, EventArgs e)
         {
             //Status 'Niet bekrachtigd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Niet bekrachtigd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnBekrachtigd_Click(object sender, EventArgs e)
         {
             //Status 'Bekrachtigd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Bekrachtigd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

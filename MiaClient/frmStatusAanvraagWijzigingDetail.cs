@@ -24,14 +24,23 @@ namespace MiaClient
             InitializeComponent();
         }
 
-        public frmStatusAanvraagWijzigingDetail(int aanvraagId, string statusAanvraag, string opmerkingenResultaat, decimal budgetToegekend)
+        public frmStatusAanvraagWijzigingDetail(int aanvraagId, StatusAanvraag statusAanvraag, string opmerkingenResultaat, decimal budgetToegekend)
         {
             InitializeComponent();
 
             this.aanvraagId = aanvraagId;
-            txtStatusAanvraag.Text = statusAanvraag;
+            txtStatusAanvraag.Text = statusAanvraag.Naam;
             txtOpmerking.Text = opmerkingenResultaat;
-            txtToegekendBedrag.Text = budgetToegekend.ToString();
+            if (statusAanvraag.Naam.ToLower() == "goedgekeurd" || statusAanvraag.Naam.ToLower() == "bekrachtigd")
+            {
+                txtToegekendBedrag.Text = budgetToegekend.ToString();
+                txtToegekendBedrag.ReadOnly = false;
+            }
+            else
+            {
+                txtToegekendBedrag.Text = "0,00";
+                txtToegekendBedrag.ReadOnly = true;
+            }
         }   
 
         private void frmStatusAanvraagWijzigingDetail_FormClosing(object sender, FormClosingEventArgs e)
