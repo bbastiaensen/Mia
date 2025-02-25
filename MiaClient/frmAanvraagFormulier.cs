@@ -981,6 +981,8 @@ namespace MiaClient
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
             CreateUI();
+
+            ddlDisabler();
         }
 
         private void CreateUI()
@@ -1221,5 +1223,15 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
+        public void ddlDisabler()
+        {
+            Parameter p = new Parameter();
+            p = ParameterManager.GetParameterByCode("MaxBedragRichtper");
+            if (Program.IsAanvrager == true && Convert.ToInt32(p.Waarde) < Convert.ToInt32(txtTotaal.Text))
+            {
+                ddlRichtperiode.Enabled = false;
+            }
+
         }
     }
+}

@@ -82,7 +82,7 @@ namespace MiaLogic.Manager
 
         public static Parameter GetParameter(int parameterId)
         {
-            Parameter parameter = null;
+            Parameter parameter = null; 
 
             using (SqlConnection objCn = new SqlConnection())
             {
