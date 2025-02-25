@@ -1225,11 +1225,16 @@ namespace MiaClient
         }
         public void ddlDisabler()
         {
-            Parameter p = new Parameter();
-            p = ParameterManager.GetParameterByCode("MaxBedragRichtper");
-            if (Program.IsAanvrager == true && Convert.ToInt32(p.Waarde) < Convert.ToInt32(txtTotaal.Text))
+            string p; 
+            p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
+            int m = Convert.ToInt32(p);
+            if (Program.IsAanvrager == true)
             {
-                ddlRichtperiode.Enabled = false;
+                if (m < Convert.ToInt32(txtTotaal.Text)) 
+                {
+                    ddlRichtperiode.Enabled = false;
+                }
+                
             }
 
         }
