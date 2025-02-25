@@ -314,6 +314,28 @@ namespace MiaClient
         }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
+            double one = 1;
+            try
+            {
+                txtPrijsindicatie.Refresh();
+                string temp = txtPrijsindicatie.Text;
+                double number = Convert.ToDouble(temp);
+                if (number <= Convert.ToDouble(MaxBedragStuk) || number == 0)
+                {
+                    txtPrijsindicatie.Text = temp;
+                    txtPrijsindicatie.Refresh();
+                }
+                else
+                {
+                    txtPrijsindicatie.Text = MaxBedragStuk;
+                    txtPrijsindicatie.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " Veld kan niet leeg zijn");
+                txtPrijsindicatie.Text = one.ToString();
+            }
             txtTotaal.Text = BerekenTotaalprijs().ToString();
         }
         private void txtAantalStuks_Leave(object sender, EventArgs e)
@@ -1231,23 +1253,6 @@ namespace MiaClient
         private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
-        }
-
-        private void txtPrijsindicatie_TextChanged(object sender, EventArgs e)
-        {
-            txtPrijsindicatie.Refresh();
-            string temp = txtPrijsindicatie.Text;
-            double number = Convert.ToDouble(txtPrijsindicatie.Text);
-            if (number <= Convert.ToDouble(MaxBedragStuk) && number != 0)
-            {
-                txtPrijsindicatie.Text = temp;
-                txtPrijsindicatie.Refresh();
-            }
-            else
-            { 
-                txtPrijsindicatie.Text = MaxBedragStuk; 
-                txtPrijsindicatie.Refresh();
-            }
         }
     }
 }

@@ -299,7 +299,6 @@ namespace MiaClient
 
             if (richtperiodes != null)
             {
-                Budgets.Clear();
                 foreach (var richtperiode in richtperiodes)
                 {
                     yPos += 25;
