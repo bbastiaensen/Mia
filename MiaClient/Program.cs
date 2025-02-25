@@ -1,5 +1,6 @@
 ﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,9 +25,9 @@ namespace MiaClient
             {
                 InitializeConnections();
                 AuthenticateUser();
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new mdiMia());
+                System.Windows.Forms.Application.EnableVisualStyles();
+                System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+                System.Windows.Forms.Application.Run(new mdiMia());
 
             }
             catch (Exception ex)
@@ -84,6 +85,18 @@ namespace MiaClient
             }
 
             return isValid;
+        }
+        public static string IsMaxBedragStuk(string p, decimal x)
+        {
+            decimal MaxBedragStuk = Convert.ToDecimal(ParameterManager.GetParameterByCode("MaxBedragStuk").Waarde);
+            if (decimal.TryParse(p, out x) && x != 0 && x <= MaxBedragStuk)
+            {
+                return p;
+            }
+            else 
+            {
+                return p = MaxBedragStuk.ToString();
+            }
         }
         private static void AuthenticateUser()
         {

@@ -121,8 +121,6 @@ namespace MiaClient
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_offertesTitel = new System.Windows.Forms.Label();
             this.pnlOffertes = new System.Windows.Forms.Panel();
-           
-            
             this.tabPage_Investering.SuspendLayout();
             this.pnl_Investeringen.SuspendLayout();
             this.gboxInvestering.SuspendLayout();
@@ -525,10 +523,11 @@ namespace MiaClient
             // 
             this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrijsindicatie.Location = new System.Drawing.Point(156, 215);
-            this.txtPrijsindicatie.MaxLength = 5;
+            this.txtPrijsindicatie.MaxLength = 999;
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(282, 34);
             this.txtPrijsindicatie.TabIndex = 3;
+            this.txtPrijsindicatie.TextChanged += new System.EventHandler(this.txtPrijsindicatie_TextChanged);
             this.txtPrijsindicatie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrijsindicatie_KeyPress);
             this.txtPrijsindicatie.Leave += new System.EventHandler(this.txtPrijsindicatie_Leave);
             // 
@@ -592,7 +591,6 @@ namespace MiaClient
             // 
             // gboxIdentificatie
             // 
-           
             this.gboxIdentificatie.Controls.Add(this.ddlDienst);
             this.gboxIdentificatie.Controls.Add(this.ddlAfdeling);
             this.gboxIdentificatie.Controls.Add(this.txtAanvraagmoment);
@@ -608,10 +606,6 @@ namespace MiaClient
             this.gboxIdentificatie.TabIndex = 13;
             this.gboxIdentificatie.TabStop = false;
             this.gboxIdentificatie.Text = "Identificatie";
-            // 
-            // groupBox1
-            // 
-           
             // 
             // ddlDienst
             // 
@@ -1100,11 +1094,6 @@ namespace MiaClient
             this.pnlOffertes.Name = "pnlOffertes";
             this.pnlOffertes.Size = new System.Drawing.Size(762, 304);
             this.pnlOffertes.TabIndex = 11;
-            // 
-            // groupBox1
-            // 
-            
-
             // 
             // frmAanvraagFormulier
             // 
