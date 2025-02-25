@@ -29,23 +29,38 @@ namespace MiaClient.UserControls
         public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
         public decimal Bedrag { get; set; }
+        public string OpmerkingenResultaat { get; set; }
+        public decimal BudgetToegekend { get; set; }
         public Boolean Even { get; set; }
 
 
         public event EventHandler GoedkeurDeleted;
         public event EventHandler GoedkeurItemSelected;
         public event EventHandler GoedkeurItemChanged;
-        public event EventHandler GoedkeurItemStatusEdit;
+        public event EventHandler GoedkeurItemStatusAanvraagChanged;
+
         frmAanvraagFormulier frmAanvraagFormulier;
         frmGoedkeuring frmGoedkeuring;
+        frmStatusAanvraagWijzigingDetail frmSAWD = null;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
+        Image imgInAanvraagNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
+        Image imgInAanvraagGreen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-green.png"));
+        Image imgNietGoedgekeurdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-goedgekeurd-50-neutral.png"));
+        Image imgNietGoedgekeurd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-goedgekeurd-50.png"));
+        Image imgGoedgekeurdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-goedgekeurd-50-neutral.png"));
+        Image imgGoedgekeurd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-goedgekeurd-50.png"));
+        Image imgNietBekrachtigdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-bekrachtigd-50-neutral.png"));
+        Image imgNietBekrachtigd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-niet-bekrachtigd-50.png"));
+        Image imgBekrachtigdNeutral = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-bekrachtigd-50-neutral.png"));
+        Image imgBekrachtigd = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-bekrachtigd-50.png"));
+
 
         public GoedkeurItem()
         {
             InitializeComponent();
         }
-        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, Boolean even)
+        public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, string opmerkingenResultaat, decimal budgetToegekend, Boolean even)
         {
             InitializeComponent();
             
@@ -55,34 +70,81 @@ namespace MiaClient.UserControls
             Titel = titel;
             Aanvraagmoment = aanvraagmoment;
             Financieringsjaar = financieringsjaar;
-            Bedrag = PrijsIndicatiePerStuk *AantalStuk;
+            Bedrag = PrijsIndicatiePerStuk * AantalStuk;
+            OpmerkingenResultaat = opmerkingenResultaat;
+            BudgetToegekend = budgetToegekend;
 
-            //if(Statusaanvraag == "Goedgekeurd")
-            //{
-
-            //}
+            switch (StatusAanvraag.ToLower())
+            {
+                case "in aanvraag":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagGreen;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "niet goedgekeurd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurd;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "goedgekeurd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurd;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "niet bekrachtigd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigd;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+                case "bekrachtigd":
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigd;
+                    break;
+                default:
+                    //Als de StatusAanvraag niet gekend is.
+                    btnInAanvraag.BackgroundImage = imgInAanvraagNeutral;
+                    btnNietGoedgekeurd.BackgroundImage = imgNietGoedgekeurdNeutral;
+                    btnGoedgekeurd.BackgroundImage = imgGoedgekeurdNeutral;
+                    btnNietBekrachtigd.BackgroundImage = imgNietBekrachtigdNeutral;
+                    btnBekrachtigd.BackgroundImage = imgBekrachtigdNeutral;
+                    break;
+            }
 
             Even = even;
             SetGoedkeurItemWaarden();
         }
         private void SetGoedkeurItemWaarden()
         {
-            lblTitel.Text = Titel;
+            if (Titel.Length > 25)
+            {
+                lblTitel.Text = Titel.Substring(0, 22) + "...";
+            }
+            else
+            {
+                lblTitel.Text = Titel;
+            }
             lblBedrag.Text = Bedrag.ToString("c", CultureInfo.CurrentCulture);
             lblFinancieringsjaar.Text = Financieringsjaar.ToString();
             LblAanvrager.Text = Aanvrager;
             lblAanvraagmoment.Text = Aanvraagmoment.ToString();
             if (Even)
             {
-                this.BackColor = Color.White;
+                this.BackColor = StyleParameters.ListItemColor;
             }
-
             else
             {
-
-                this.BackColor = StyleParameters.AccentKleur;
-                this.ForeColor = StyleParameters.Buttontext;
-
+                this.BackColor = StyleParameters.AltListItemColor;
             }
         }
 
@@ -109,11 +171,120 @@ namespace MiaClient.UserControls
             }
         }
 
-        private void btnStatusEdit_Click(object sender, EventArgs e)
+        private void StatusAanvraagWijzigingDoorvoeren(string nieuweStatusAanvraag)
         {
-            if (GoedkeurItemStatusEdit != null) 
+            string toegelatenHuidigeStatus = string.Empty;
+
+            switch (nieuweStatusAanvraag.ToLower())
             {
-                GoedkeurItemStatusEdit(this, null);
+                case "niet goedgekeurd":
+                case "goedgekeurd":
+                    toegelatenHuidigeStatus = "in aanvraag";
+                    break;
+                case "niet bekrachtigd":
+                case "bekrachtigd":
+                    toegelatenHuidigeStatus = "goedgekeurd";
+                    break;
+                case "in aanvraag":
+                    toegelatenHuidigeStatus = "in wacht";
+                    break;
+                default:
+                    throw new Exception("Ongeldige statusaanvraag");
+            }
+
+            if (StatusAanvraag.ToLower() == toegelatenHuidigeStatus)
+            {
+                //Updaten van de Status
+                Aanvraag aanvraag = new Aanvraag()
+                {
+                    Id = this.Id
+                };
+                StatusAanvraag statusAanvraag = StatusAanvraagManager.GetStatusAanvraagByName(nieuweStatusAanvraag);
+                AanvraagManager.UpdateStatusAanvraag(aanvraag, statusAanvraag);
+
+                //Updaten van de Status details van deze aanvraag
+                frmSAWD = new frmStatusAanvraagWijzigingDetail(Id, statusAanvraag, OpmerkingenResultaat, BudgetToegekend);
+                frmSAWD.StatusAanvraagDetailGewijzigd += FrmSAWD_StatusAanvraagDetailGewijzigd;
+                frmSAWD.Show();
+            }
+            else
+            {
+                string boodschap = "Een aanvraag met status '" + this.StatusAanvraag + "' kan niet '" + nieuweStatusAanvraag + "' worden.";
+                MessageBox.Show(boodschap, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnInAanvraag_Click(object sender, EventArgs e)
+        {
+            //Status 'In aanvraag' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("In aanvraag");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNietGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            //Status 'Niet goedgekeurd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Niet goedgekeurd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmSAWD_StatusAanvraagDetailGewijzigd(object sender, EventArgs e)
+        { 
+            frmSAWD = null;
+            if (GoedkeurItemStatusAanvraagChanged != null)
+            {
+                GoedkeurItemStatusAanvraagChanged(this, null);
+            }
+        }
+
+        private void btnGoedgekeurd_Click(object sender, EventArgs e)
+        {
+            //Status 'Goedgekeurd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Goedgekeurd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNietBekrachtigd_Click(object sender, EventArgs e)
+        {
+            //Status 'Niet bekrachtigd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Niet bekrachtigd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBekrachtigd_Click(object sender, EventArgs e)
+        {
+            //Status 'Bekrachtigd' zetten
+            try
+            {
+                StatusAanvraagWijzigingDoorvoeren("Bekrachtigd");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden - " + ex.Message, "Fout!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

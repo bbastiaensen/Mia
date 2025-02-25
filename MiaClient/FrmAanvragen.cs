@@ -60,6 +60,7 @@ namespace MiaClient
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         Image imgNieuweAanvraag = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "nieuweAanvraag.png"));
+        Icon imgFormIcon = Icon.FromHandle((new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png")).GetHicon()));
 
         public FrmAanvragen()
         {
@@ -159,6 +160,8 @@ namespace MiaClient
             btnNieuweAanvraag.BackgroundImage = imgNieuweAanvraag;
             btnNieuweAanvraag.BackgroundImageLayout = ImageLayout.Stretch;
             btnNieuweAanvraag.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+            this.Icon = imgFormIcon;
             
         }
         private void FrmAanvraagFormulier_AanvraagBewaard(object sender, EventArgs e)
