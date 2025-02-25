@@ -270,7 +270,7 @@ namespace MiaClient
                 btn.ForeColor = StyleParameters.Buttontext;
             }
         }
-
+        
         private void frmGeweigerdeAanvragen_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
