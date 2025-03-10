@@ -357,17 +357,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortTitel_Click(object sender, EventArgs e)
         {
@@ -386,17 +375,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
         {
@@ -414,17 +392,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortFinancieringsjaar_Click(object sender, EventArgs e)
         {
@@ -442,17 +409,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortBedrag_Click(object sender, EventArgs e)
         {
@@ -470,17 +426,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindGoedkeuringen(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void EnableFirstPrevious(bool enable)
         {
