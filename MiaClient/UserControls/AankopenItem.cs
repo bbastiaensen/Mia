@@ -26,7 +26,7 @@ namespace MiaClient.UserControls
         public int RichtperiodeId { get; set; }
         public string Financieringsjaar { get; set; }
         public Boolean Even { get; set; }
-        public Richtperiode R {  get; set; }
+        public Richtperiode R { get; set; }
 
         public event EventHandler AanvraagDeleted;
 
@@ -38,7 +38,7 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
-        public AankopenItem(int id, string titel, string gebruiker, string financieringsjaar, decimal p_ind_stuk, int aantals, Boolean even, int richtId) 
+        public AankopenItem(int id, string titel, string gebruiker, string financieringsjaar, decimal p_ind_stuk, int aantals, Boolean even, int richtId)
         {
             InitializeComponent();
             Id = id;
@@ -56,12 +56,32 @@ namespace MiaClient.UserControls
             R.Sorteervolgorde = r.Sorteervolgorde;
             SetItemValue();
         }
-        private void SetItemValue() 
+        private void SetItemValue()
         {
             lblAanvrager.Text = Gebruiker.ToString();
-            lblTitel.Text = Titel.ToString();
+
+            //Limiteren van het aantal characters er in de titel komen te staan
+            var characters = Titel.ToCharArray();
+            if (characters.Length > 20)
+            {
+                string chars = "";
+                string combochars = "";
+
+                for (int i = 0; i < 17; i++)
+                {
+                    chars = characters[i].ToString();
+                    combochars = combochars + chars;
+                }
+                combochars = combochars + "...";
+                lblTitel.Text = combochars;
+            }
+            else
+            {
+                lblTitel.Text = Titel.ToString();
+            }
+
             lblTotaalBedrag.Text = Totaal.ToString("c", CultureInfo.CurrentCulture);
-            lblRichtperiode.Text = R.Naam;        
+            lblRichtperiode.Text = R.Naam;
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
@@ -72,5 +92,4 @@ namespace MiaClient.UserControls
             }
         }
     }
-
 }

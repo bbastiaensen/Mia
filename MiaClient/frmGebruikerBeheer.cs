@@ -207,6 +207,14 @@ namespace MiaClient
 
                 GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
 
+                if (gebruiker.Gebruikersnaam == Program.Gebruiker)
+                {
+                    //De gebruiker heeft zijn eigen instellingen aangepast. De Toepassing moet
+                    //herstart worden om de instellingen effectief toe te passen.
+                    MessageBox.Show("De toepassing wordt gesloten. je dient ze zelf terug op te starten.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Program.Close();
+                }
+
             }
             catch (Exception ex)
             {

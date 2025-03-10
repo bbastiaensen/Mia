@@ -194,6 +194,7 @@ namespace MiaClient
                 overzichtenToolStripMenuItem.Visible = false;
                 budgetoverzichtToolStripMenuItem.Visible = false;
                 budgetSpreidingtoolStripButton.Visible = false;
+                aankopenToolStripMenuItem.Visible = false;
             }
 
             //Aankoper - items voor aankoper worden extra bij aangezet
@@ -203,6 +204,17 @@ namespace MiaClient
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
+
+                tss1.Visible = false;
+                goedkeuringenToolStripMenuItem.Visible = false;
+                goedkeuringenToolStripButton.Visible = false;
+
+                aankopenToolStripMenuItem.Visible = true;
+
+                beheerToolStripMenuItem.Visible = false;
+                gebruiksLogToolStripButton.Visible = false;
+                parameterToolStripButton.Visible = false;
+                gebruikersToolStripButton.Visible = false;
             }
 
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
@@ -216,6 +228,13 @@ namespace MiaClient
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
+
+                beheerToolStripMenuItem.Visible = false;
+                gebruiksLogToolStripButton.Visible = false;
+                parameterToolStripButton.Visible = false;
+                gebruikersToolStripButton.Visible = false;
+
+                aankopenToolStripMenuItem.Visible = false;
             }
 
             //Systeem - items voor systeem worden extra bij aangezet
@@ -234,6 +253,8 @@ namespace MiaClient
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
+
+                aankopenToolStripMenuItem.Visible = true;
             }
         }
 
