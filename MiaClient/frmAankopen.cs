@@ -122,20 +122,6 @@ namespace MiaClient
 
                     AankopenItem avi = new AankopenItem(av.Id, av.Titel, av.Gebruiker, av.Financieringsjaar, av.PrijsIndicatieStuk, av.AantalStuk, n % 2 == 0, av.RichtperiodeId);
 
-                    //char titel = Convert.ToChar(' ');
-                    //int t = 0;
-                    //if (av.Titel.Length > 20)
-                    //{
-                    //    for (int i = 0; i < 17; i++)
-                    //    {
-                    //        t = Convert.ToChar(av.Titel[i]) + titel;
-                    //    }
-                    //    t = titel + Convert.ToInt32("...");
-                    //    titel = Convert.ToChar(t);
-
-                    //    av.Titel = titel.ToString();
-                    //}
-
                     avi.Location = new System.Drawing.Point(xPos, yPos);
                     avi.Name = "aanvraagSelection" + n;
                     avi.Size = new System.Drawing.Size(1210, 20);

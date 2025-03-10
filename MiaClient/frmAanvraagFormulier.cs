@@ -1,6 +1,7 @@
 ﻿using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
+using Microsoft.Office.Interop.Excel;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using Button = System.Windows.Forms.Button;
 
 namespace MiaClient
 {
@@ -31,6 +33,7 @@ namespace MiaClient
         private string mainPath;// De folder voor het opslagen, dit wordt de parameter
         private string PhotoPath;
         private string OffertePath;
+        private string MaxBedragStuk;
         private string hyperlink = string.Empty;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
@@ -66,6 +69,7 @@ namespace MiaClient
             mainPath = ParameterManager.GetParameterByCode("HoofdMap").Waarde;
             PhotoPath = ParameterManager.GetParameterByCode("FotoMap").Waarde;
             OffertePath = ParameterManager.GetParameterByCode("OfferteMap").Waarde;
+            MaxBedragStuk = ParameterManager.GetParameterByCode("MaxBedragStuk").Waarde;
         }
 
         private void ErrorHandler(Exception ex, string location)
@@ -310,6 +314,28 @@ namespace MiaClient
         }
         private void txtPrijsindicatie_Leave(object sender, EventArgs e)
         {
+            double one = 1;
+            try
+            {
+                txtPrijsindicatie.Refresh();
+                string temp = txtPrijsindicatie.Text;
+                double number = Convert.ToDouble(temp);
+                if (number <= Convert.ToDouble(MaxBedragStuk) || number == 0)
+                {
+                    txtPrijsindicatie.Text = temp;
+                    txtPrijsindicatie.Refresh();
+                }
+                else
+                {
+                    txtPrijsindicatie.Text = MaxBedragStuk;
+                    txtPrijsindicatie.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " Veld kan niet leeg zijn");
+                txtPrijsindicatie.Text = one.ToString();
+            }
             txtTotaal.Text = BerekenTotaalprijs().ToString();
         }
         private void txtAantalStuks_Leave(object sender, EventArgs e)
@@ -474,6 +500,13 @@ namespace MiaClient
             if (string.IsNullOrEmpty(txtAantalStuks.Text) || !int.TryParse(txtAantalStuks.Text, out int aantalStuks))
             {
                 MessageBox.Show("Aantalstuks is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (Convert.ToInt32(txtPrijsindicatie.Text) > Convert.ToInt32(MaxBedragStuk))
+            {
+                txtPrijsindicatie.Text = MaxBedragStuk;
+                txtTotaal.Text = BerekenTotaalprijs().ToString();
+                MessageBox.Show("De prijsindicatie is buiten de maximale waarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -1221,5 +1254,5 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
-        }
     }
+}
