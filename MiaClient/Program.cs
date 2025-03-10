@@ -203,5 +203,10 @@ namespace MiaClient
                 MessageBox.Show($"Error in CreateNewUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public static void Close()
+        {
+            Environment.Exit(0);
+        }
     }
 }
