@@ -34,6 +34,7 @@ namespace MiaClient
                     frmGebruikerBeheer.MdiParent = this.MdiParent;
                 }
                 frmGebruikerBeheer.Show();
+                this.Close();
             }
             else
             {
@@ -55,6 +56,13 @@ namespace MiaClient
             btnControleren.FlatAppearance.BorderSize = 0;
             btnControleren.BackColor = StyleParameters.ButtonBack;
             btnControleren.ForeColor = StyleParameters.Buttontext;
+        }
+
+        private void frmPrompt_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            txtCode.Text = string.Empty;
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }

@@ -4,14 +4,10 @@ using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiaClient
@@ -348,17 +344,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortTitel_Click(object sender, EventArgs e)
         {
@@ -377,17 +362,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
         {
@@ -405,17 +379,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortFinancieringsjaar_Click(object sender, EventArgs e)
         {
@@ -433,17 +396,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
         {
@@ -461,17 +413,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnBedrag_Click(object sender, EventArgs e)
         {
@@ -489,17 +430,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnKostenplaats_Click(object sender, EventArgs e)
         {
@@ -517,17 +447,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private void btnPlanningsdatum_Click(object sender, EventArgs e)
         {
@@ -545,17 +464,6 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
             ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalListItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
         }
         private bool IsGeldigFinancieringsjaar(char c)
         {
