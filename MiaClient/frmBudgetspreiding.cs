@@ -93,6 +93,10 @@ namespace MiaClient
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
             List<Aanvraag> inJaar = new List<Aanvraag>();
+            //for charts===
+            List<StatusAanvraag> stat = StatusAanvraagManager.GetStatusAanvragen();
+            int[] hStatus = new int[stat.Count()];
+            //============
             //Making sure the data is in the right year
             if (cmbFinancieringsjaar.SelectedItem == null)
             {
@@ -117,7 +121,7 @@ namespace MiaClient
             //position for the data
             int add = 2;
             //position
-            int ri;
+            int ri = 0;
             //offset by data
             int rs = 2;
             bool even = true;
@@ -174,6 +178,11 @@ namespace MiaClient
                     {
                         even = true;
                     }
+                    //========for charts==========
+                    int statusId = InPer[j].StatusAanvraagId;
+
+                    hStatus[statusId] += 1;
+                    //==================
                 }
                 rs++;
                 ColorExcel((m + rs), m, worksheet,even, meh);
@@ -199,11 +208,21 @@ namespace MiaClient
             Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
             Excel.Chart chart = chartObj.Chart;
 
-            chartRange = worksheet.Range[worksheet.Cells[12, 11], worksheet.Cells[16, 14]];
+            
+            chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[add, 7]];
             chart.SetSourceData(chartRange, Type.Missing);
             chart.ChartType = Excel.XlChartType.xlPie;
-            chart.HasDataTable = true;
-            chart.ApplyDataLabels();
+            chart.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowLabelAndPercent,
+                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                        Type.Missing);
+
+            for(int i = 0; i < 10; i++)
+            {
+                worksheet.get_Range("F" + add, "F" + add).Value2 = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
+
+            }
+            worksheet.get_Range("G" + add, "F" + add).Value = 1;
 
             //=================================
             // Show save file dialog
