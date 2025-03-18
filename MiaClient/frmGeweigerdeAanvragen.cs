@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
@@ -25,7 +26,6 @@ namespace MiaClient
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            DateTime begin = DateTime.Now;
             //just a way to make the wait seem less long
             lblWacht.Visible = true;
             lblWacht.Text = "Dit kan even duren";
@@ -38,11 +38,9 @@ namespace MiaClient
             //stuffs for commands
             object Nothing = System.Reflection.Missing.Value;
             Excel.Workbook workBook = app.Workbooks.Add(Nothing);
-            DateTime ehb = DateTime.Now;
             lblLaad1.Text = "Verwerken...";
             lblWacht.Text = "Dit kan lang duren";
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
-            DateTime ehe = DateTime.Now;
             lblLaad1.Text = "Data ophalen...";
             lblWacht.Text = "Dit kan even duren";
             // Getting data
@@ -95,6 +93,7 @@ namespace MiaClient
                 int m = 0;
                 for (m = 1; m <= rp.Count; m++)
                 {
+
                     bool meh = true;
                     //ri = position in int, r = position in string
                     ri = m + rs + js;
@@ -123,6 +122,7 @@ namespace MiaClient
                         }
                     }
                     //going over the data
+
                     for (int p = 1; p <= InPer.Count; p++)
                     {
                         //add = position of data, rs=offset by data
@@ -132,7 +132,7 @@ namespace MiaClient
                         decimal prijs = InPer[p-1].AantalStuk + InPer[p-1].PrijsIndicatieStuk;
                         //puts data on the right position (based on add)
                         worksheet.get_Range("B" + add, "B" + add).Value = InPer[p - 1].Titel;
-                        worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
+                        worksheet.get_Range("C" + add, "C" + add).Value = prijs;
                         if (InPer[p - 1].OpmerkingenResultaat != null)
                         {
                             worksheet.get_Range("D" + add, "D" + add).Value = InPer[p - 1].OpmerkingenResultaat;
@@ -151,6 +151,7 @@ namespace MiaClient
                             even = true;
                         }
                     }
+                    
                     rs++;
                     ColorExcel((m + rs + js), m, worksheet, even, meh);
                     //puts total of month on it's spot, makes it bold
@@ -184,7 +185,6 @@ namespace MiaClient
             //shows save file dialog
             lblWacht.Visible = false;
             lblLaad1.Visible = false;
-            DateTime end = DateTime.Now;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 //it doesn't like onedrive(saves the Excel file)

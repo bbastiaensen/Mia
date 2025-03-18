@@ -36,10 +36,8 @@ namespace MiaClient
             object Nothing = System.Reflection.Missing.Value;
             Excel.Workbook workBook = app.Workbooks.Add(Nothing);
             lblLaad1.Text = "Verwerken...";
-            lblWacht.Text = "Dit kan lang duren";
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
             lblLaad1.Text = "Data ophalen...";
-            lblWacht.Text = "Dit kan even duren";
             // Getting data
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
@@ -47,7 +45,7 @@ namespace MiaClient
             //Making sure the data is in the right year, and it's refused
             foreach (Aanvraag a in aanvragen)
             {
-                if (/*StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Bekrachtigd" &&*/ a.Financieringsjaar == DateTime.Parse(DateTime.Now.ToString()).Year.ToString())
+                if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Bekrachtigd" && a.Financieringsjaar == DateTime.Parse(DateTime.Now.ToString()).Year.ToString())
                 {
                     Status.Add(a);
                 }
@@ -67,7 +65,6 @@ namespace MiaClient
             int m = 0;
             for (m = 1; m <= rp.Count; m++)
             {
-                lblLaad1.Text = "Excel opstellen...";
                 bool meh = true;
                 //ri = position in int, r = position in string
                 ri = m + rs;
@@ -80,7 +77,6 @@ namespace MiaClient
                 //Making sure the data in the right month
                 meh = false;
                 List<Aanvraag> InPer = new List<Aanvraag>();
-                lblLaad1.Text = "Data in Excel verwerken " + /*(" + finJaar + ")*/ "...";
                 foreach (Aanvraag a in Status)
                 {
                     if(!(a.RichtperiodeId < m))
@@ -95,6 +91,7 @@ namespace MiaClient
                         }
                     }
                 }
+                lblLaad1.Text = "Data in Excel verwerken...";
                 //going over the data
                 for (int p = 1; p <= InPer.Count; p++)
                 {
@@ -162,8 +159,16 @@ namespace MiaClient
                 {
                     c = StringToColor("#B61638");
                 }
+                if(InPer.Count == 0)
+                {
+                    worksheet.get_Range("G" + ri, "G" + ri).Formula = ("=SUM(G" + (ri + 1) + ":" + "G" + (ri+1) + ")");
+                }
+                else
+                {
+                    worksheet.get_Range("G" + ri, "G" + ri).Formula = ("=SUM(G" + (ri + 1) + ":" + "G" + (add + 1) + ")");
+                }
                 worksheet.get_Range("G" + ri, "G" + ri).Font.Color = c;
-                worksheet.get_Range("G" + ri, "G" + ri).Value = tot;
+
                 worksheet.get_Range("A" + ri, "H" + ri).Font.Bold = true;
 
             }
