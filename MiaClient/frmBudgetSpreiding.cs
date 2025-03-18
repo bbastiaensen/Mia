@@ -217,12 +217,11 @@ namespace MiaClient
                         Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                         Type.Missing);
 
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < stat.Count; i++)
             {
                 worksheet.get_Range("F" + add, "F" + add).Value2 = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
-
+                worksheet.get_Range("G" + add, "F" + add).Value = hStatus[i];
             }
-            worksheet.get_Range("G" + add, "F" + add).Value = 1;
 
             //=================================
             // Show save file dialog
