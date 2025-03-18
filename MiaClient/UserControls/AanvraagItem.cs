@@ -108,25 +108,23 @@ namespace MiaClient.UserControls
 
                 if (Program.IsGoedkeurder == true || Program.IsSysteem == true)
                 {
-                    edit = true;
-                    frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
-                    frmAanvraagFormulier.EnableBewaarButon();
-                    frmAanvraagFormulier.SetFormStatus(true);
-                    frmAanvraagFormulier.BindFotoByAanvraagId();
-                    frmAanvraagFormulier.BindOfferteByAanvraagId();
-                    frmAanvraagFormulier.BindLinkByAanvraagId();
-                    //frmAanvraagFormulier.UpdateAanvraag();
-                    frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                    frmAanvraagFormulier.Show();
+                    OpenAanvraagFormulierInEdit();
                 }
                 else
                 {
-                    edit = false;
-                    frmAanvraagFormulier.Show();
-                    frmAanvraagFormulier.DisableBewaarButon();
-                    frmAanvraagFormulier.SetFormStatus(false);
-                    frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
-                    MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (StatusAanvraag.ToLower() == "in aanvraag")
+                    {
+                        OpenAanvraagFormulierInEdit();
+                    }
+                    else
+                    {
+                        edit = false;
+                        frmAanvraagFormulier.Show();
+                        frmAanvraagFormulier.DisableBewaarButon();
+                        frmAanvraagFormulier.SetFormStatus(false);
+                        frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+                        MessageBox.Show("Je kunt deze aanvraag niet aanpassen.", "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 if (lblGebruiker.Text == Program.Gebruiker || Program.IsSysteem && lblStatusAanvraag.Text == "In aanvraag")
                 {
@@ -179,5 +177,18 @@ namespace MiaClient.UserControls
             }
         }
 
+        private void OpenAanvraagFormulierInEdit()
+        {
+            edit = true;
+            frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
+            frmAanvraagFormulier.EnableBewaarButon();
+            frmAanvraagFormulier.SetFormStatus(true);
+            frmAanvraagFormulier.BindFotoByAanvraagId();
+            frmAanvraagFormulier.BindOfferteByAanvraagId();
+            frmAanvraagFormulier.BindLinkByAanvraagId();
+            //frmAanvraagFormulier.UpdateAanvraag();
+            frmAanvraagFormulier.AanvraagBewaard += AanvraagFormulieredit_AanvraagBewaard;
+            frmAanvraagFormulier.Show();
+        }
     }
 }
