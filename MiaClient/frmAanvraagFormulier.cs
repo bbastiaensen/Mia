@@ -62,8 +62,8 @@ namespace MiaClient
         {
             InitializeComponent();
             vulFormulier();
+
             SetFormStatus(false);
-            
             GetParam();
         }
         private void GetParam()
@@ -123,7 +123,7 @@ namespace MiaClient
             ddlStatus.SelectedIndex = 0;
             BindRichtperiode(ddlRichtperiode);
             ddlRichtperiode.SelectedIndex = 0;
-            ddlDisabler();
+            
         }
 
         public void LeegFormulier()
@@ -1264,22 +1264,23 @@ namespace MiaClient
         }
         public void ddlDisabler()
         {
+            
+             decimal totaal = Convert.ToDecimal(txtTotaal.Text);
             string p;
             try
             {
                 p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
                 int m = Convert.ToInt32(p);
-                while (txtTotaal.Text != null)
-                {
+               
                     if (Program.IsAanvrager == true)
                     {
-                        if (m < Convert.ToInt32(txtTotaal.Text))
+                        if (m < Convert.ToInt32(totaal))
                         {
                             ddlRichtperiode.Enabled = false;
                         }
 
                     }
-                }
+                
             }
             catch(Exception ex)
             {
