@@ -105,7 +105,8 @@ namespace MiaClient.UserControls
 
             if (AanvraagItemSelected != null)
             {
-                if (lblStatusAanvraag.Text == "In aanvraag")
+
+                if (Program.IsGoedkeurder == true || Program.IsSysteem == true)
                 {
                     edit = true;
                     frmAanvraagFormulier.MdiParent = this.ParentForm.MdiParent;
