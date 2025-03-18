@@ -192,7 +192,20 @@ namespace MiaClient
             //layout data
             worksheet.get_Range("B1", "B200").ColumnWidth = 55;
             worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
+            //=============testing charts======
+            Excel.Range chartRange;
 
+            Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
+            Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
+            Excel.Chart chart = chartObj.Chart;
+
+            chartRange = worksheet.Range[worksheet.Cells[12, 11], worksheet.Cells[16, 14]];
+            chart.SetSourceData(chartRange, Type.Missing);
+            chart.ChartType = Excel.XlChartType.xlPie;
+            chart.HasDataTable = true;
+            chart.ApplyDataLabels();
+
+            //=================================
             // Show save file dialog
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //savefile dialog inputs
