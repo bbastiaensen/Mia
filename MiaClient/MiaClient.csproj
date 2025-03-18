@@ -125,6 +125,12 @@
     <Compile Include="frmGeplandeAankopen.Designer.cs">
       <DependentUpon>frmGeplandeAankopen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.Designer.cs">
+      <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAanvraagFormulier.resx">
       <DependentUpon>frmAanvraagFormulier.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
@@ -253,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.resx">
+      <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
@@ -375,6 +385,8 @@
     <Content Include="Icons\icons8-niet-goedgekeurd-50.png" />
     <Content Include="Icons\icons8-parameters-66-alt.png" />
     <Content Include="Icons\icons8-parameters-66.png" />
+    <Content Include="Icons\icons8-pie-chart-48-alt.png" />
+    <Content Include="Icons\icons8-pie-chart-48.png" />
     <Content Include="Icons\icons8-previous-50-grey.png" />
     <Content Include="Icons\icons8-previous-50-hover.png" />
     <Content Include="Icons\icons8-previous-50.png" />
