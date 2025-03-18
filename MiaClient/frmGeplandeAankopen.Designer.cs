@@ -48,9 +48,9 @@
             // lblLaad1
             // 
             this.lblLaad1.AutoSize = true;
-            this.lblLaad1.Location = new System.Drawing.Point(45, 156);
+            this.lblLaad1.Location = new System.Drawing.Point(13, 90);
             this.lblLaad1.Name = "lblLaad1";
-            this.lblLaad1.Size = new System.Drawing.Size(321, 20);
+            this.lblLaad1.Size = new System.Drawing.Size(402, 25);
             this.lblLaad1.TabIndex = 7;
             this.lblLaad1.Text = "                                                                              ";
             this.lblLaad1.Visible = false;
@@ -61,14 +61,14 @@
             this.lblWacht.Location = new System.Drawing.Point(13, 120);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
-            this.lblWacht.Size = new System.Drawing.Size(142, 20);
+            this.lblWacht.Size = new System.Drawing.Size(183, 25);
             this.lblWacht.TabIndex = 6;
             this.lblWacht.Text = "Dit kan even duren...";
             this.lblWacht.Visible = false;
             // 
             // frmGeplandeAankopen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 152);
             this.Controls.Add(this.lblLaad1);
