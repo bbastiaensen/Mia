@@ -51,6 +51,7 @@ namespace MiaClient
             try
             {
                 Initialize();
+                
             }
             catch (SqlException ex)
             {
@@ -62,6 +63,7 @@ namespace MiaClient
             InitializeComponent();
             vulFormulier();
             SetFormStatus(false);
+            
             GetParam();
         }
         private void GetParam()
@@ -121,6 +123,7 @@ namespace MiaClient
             ddlStatus.SelectedIndex = 0;
             BindRichtperiode(ddlRichtperiode);
             ddlRichtperiode.SelectedIndex = 0;
+            ddlDisabler();
         }
 
         public void LeegFormulier()
@@ -200,6 +203,7 @@ namespace MiaClient
                 ddlRichtperiode.Enabled = true;
                 txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
                 txtGoedgekeurdeBedrag.ReadOnly = false;
+                
             }
         }
 
@@ -223,6 +227,7 @@ namespace MiaClient
             ddlRichtperiode.ValueMember = "Id";
             ddlRichtperiode.DisplayMember = "Naam";
             ddlRichtperiode.SelectedIndex = -1;
+            
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
@@ -892,6 +897,7 @@ namespace MiaClient
         }
         public void UpdateAanvraag()
         {
+           
             if (txtGoedgekeurdeBedrag.Text == "")
             {
                 txtGoedgekeurdeBedrag.Text = "0";
@@ -1258,17 +1264,28 @@ namespace MiaClient
         }
         public void ddlDisabler()
         {
-            string p; 
-            p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
-            int m = Convert.ToInt32(p);
-            if (Program.IsAanvrager == true)
+            string p;
+            try
             {
-                if (m < Convert.ToInt32(txtTotaal.Text)) 
+                p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
+                int m = Convert.ToInt32(p);
+                while (txtTotaal.Text != null)
                 {
-                    ddlRichtperiode.Enabled = false;
+                    if (Program.IsAanvrager == true)
+                    {
+                        if (m < Convert.ToInt32(txtTotaal.Text))
+                        {
+                            ddlRichtperiode.Enabled = false;
+                        }
+
+                    }
                 }
-                
             }
+            catch(Exception ex)
+            {
+                ErrorHandler(ex, "frmAanvraagFormulier");
+            }
+          
 
         }
     }
