@@ -507,7 +507,7 @@ namespace MiaClient
                 MessageBox.Show("Aantalstuks is verplicht.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (Convert.ToInt32(txtPrijsindicatie.Text) > Convert.ToInt32(MaxBedragStuk))
+            if (Convert.ToDecimal(txtPrijsindicatie.Text) > Convert.ToDecimal(MaxBedragStuk))
             {
                 txtPrijsindicatie.Text = MaxBedragStuk;
                 txtTotaal.Text = BerekenTotaalprijs().ToString();
@@ -625,7 +625,7 @@ namespace MiaClient
             }
             catch (FormatException ex)
             {
-                ErrorHandler(ex, "IndienenAanvraag: Formatexeption");
+                ErrorHandler(ex, "IndienenAanvraag: Formatexeption; Checks = null");
             }
             catch (Exception ex)
             {
