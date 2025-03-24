@@ -36,6 +36,7 @@ namespace MiaClient
         frmGeplandeAankopen frmGeplandeAankopen;
         frmGeweigerdeAanvragen frmGeweigerdeAanvragen;
         frmGrafiekStatusAanvraagPerFinancieringsjaar frmGrafiekStatusAanvraagPerFinancieringsjaar;
+        frmGrafiekBudgetSpreiding frmGrafiekBudgetSpreiding;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -465,6 +466,16 @@ namespace MiaClient
                 frmGrafiekStatusAanvraagPerFinancieringsjaar.MdiParent = this;
             }
             frmGrafiekStatusAanvraagPerFinancieringsjaar.Show();
+        }
+
+        private void budgetSpreidingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmGrafiekBudgetSpreiding == null)
+            {
+                frmGrafiekBudgetSpreiding = new frmGrafiekBudgetSpreiding();
+                frmGrafiekBudgetSpreiding.MdiParent = this;
+            }
+            frmGrafiekBudgetSpreiding.Show();
         }
     }
 }

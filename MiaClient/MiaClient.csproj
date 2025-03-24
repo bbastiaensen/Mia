@@ -125,6 +125,12 @@
     <Compile Include="frmGeplandeAankopen.Designer.cs">
       <DependentUpon>frmGeplandeAankopen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGrafiekBudgetSpreiding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGrafiekBudgetSpreiding.Designer.cs">
+      <DependentUpon>frmGrafiekBudgetSpreiding.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGoedkeuring.resx">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGrafiekBudgetSpreiding.resx">
+      <DependentUpon>frmGrafiekBudgetSpreiding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.resx">
       <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
