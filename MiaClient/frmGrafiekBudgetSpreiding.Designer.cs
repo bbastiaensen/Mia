@@ -1,6 +1,6 @@
 ﻿namespace MiaClient
 {
-    partial class frmGrafiekStatusAanvraagPerFinancieringsjaar
+    partial class frmGrafiekBudgetSpreiding
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.SuspendLayout();
             // 
-            // frmGrafiekStatusAanvraagPerFinancieringsjaar
+            // frmGrafiekBudgetSpreiding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -40,10 +40,10 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmGrafiekStatusAanvraagPerFinancieringsjaar";
-            this.Text = "Status Aanvraag per Financieringsjaar";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGrafiekStatusAanvraagPerFinancieringsjaar_FormClosing);
-            this.Load += new System.EventHandler(this.frmGrafiekStatusAanvraagPerFinancieringsjaar_Load);
+            this.Name = "frmGrafiekBudgetSpreiding";
+            this.Text = "Budgetspreiding";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGrafiekBudgetSpreiding_FormClosing);
+            this.Load += new System.EventHandler(this.frmGrafiekBudgetSpreiding_Load);
             this.ResumeLayout(false);
 
         }
