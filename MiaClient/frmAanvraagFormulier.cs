@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Deployment.Internal;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -740,10 +741,13 @@ namespace MiaClient
 
                     // check of de gekozen offerte diegene is die al bewaard is.
                     Foto foto = null;
+                    Image image = Image.FromFile(fileName);
+                    ImageFormat format = image.RawFormat;
+                    ImageAttributes imageAttributes = new ImageAttributes();
+                    
                     if (!string.IsNullOrEmpty(txt_FotoId.Text))
                     {
                         Foto f = FotoManager.GetFotoById(Convert.ToInt32(txt_FotoId.Text));
-
                         if (f != null)
                         {
                             if (f.Url != selectedPath)
