@@ -209,18 +209,21 @@ namespace MiaClient
             Excel.Chart chart = chartObj.Chart;
 
             
-            chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[add, 7]];
+            chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[(2+stat.Count), 7]];
             chart.SetSourceData(chartRange, Type.Missing);
             chart.ChartType = Excel.XlChartType.xlPie;
             chart.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowLabelAndPercent,
                         Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                         Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                         Type.Missing);
-
-            for(int i = 0; i < stat.Count; i++)
+            chart.ApplyLayout(1);
+            chart.ChartTitle.Text = "Status in elke aanvraag(jaar "+ richtper +")";
+            for (int i = 1; i < stat.Count; i++)
             {
-                worksheet.get_Range("F" + add, "F" + add).Value2 = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
-                worksheet.get_Range("G" + add, "F" + add).Value = hStatus[i];
+                int p = i + 3;
+                string stt = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
+                worksheet.get_Range("F" + p, "F" + p).Value = stt;
+                worksheet.get_Range("G" + p, "G" + p).Value = hStatus[i].ToString();
             }
 
             //=================================
