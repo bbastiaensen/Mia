@@ -93,6 +93,10 @@ namespace MiaClient
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
             List<Aanvraag> inJaar = new List<Aanvraag>();
+            //for charts===
+            List<StatusAanvraag> stat = StatusAanvraagManager.GetStatusAanvragen();
+            int[] hStatus = new int[stat.Count()];
+            //============
             //Making sure the data is in the right year
             if (cmbFinancieringsjaar.SelectedItem == null)
             {
@@ -117,7 +121,7 @@ namespace MiaClient
             //position for the data
             int add = 2;
             //position
-            int ri;
+            int ri = 0;
             //offset by data
             int rs = 2;
             bool even = true;
@@ -174,6 +178,11 @@ namespace MiaClient
                     {
                         even = true;
                     }
+                    //========for charts==========
+                    int statusId = InPer[j].StatusAanvraagId;
+
+                    hStatus[statusId] += 1;
+                    //==================
                 }
                 rs++;
                 ColorExcel((m + rs), m, worksheet,even, meh);
@@ -192,7 +201,32 @@ namespace MiaClient
             //layout data
             worksheet.get_Range("B1", "B200").ColumnWidth = 55;
             worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
+            //=============testing charts======
+            Excel.Range chartRange;
 
+            Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
+            Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
+            Excel.Chart chart = chartObj.Chart;
+
+            
+            chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[(2+stat.Count), 7]];
+            chart.SetSourceData(chartRange, Type.Missing);
+            chart.ChartType = Excel.XlChartType.xlPie;
+            chart.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowLabelAndPercent,
+                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                        Type.Missing);
+            chart.ApplyLayout(1);
+            chart.ChartTitle.Text = "Status in elke aanvraag(jaar "+ richtper +")";
+            for (int i = 1; i < stat.Count; i++)
+            {
+                int p = i + 3;
+                string stt = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
+                worksheet.get_Range("F" + p, "F" + p).Value = stt;
+                worksheet.get_Range("G" + p, "G" + p).Value = hStatus[i].ToString();
+            }
+
+            //=================================
             // Show save file dialog
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //savefile dialog inputs
