@@ -1289,8 +1289,6 @@ namespace MiaClient
                         }
                     }
                 }
-                   
-                
             }
             catch(Exception ex)
             {
