@@ -51,6 +51,7 @@ namespace MiaClient
             try
             {
                 Initialize();
+             
             }
             catch (SqlException ex)
             {
@@ -61,8 +62,10 @@ namespace MiaClient
         {
             InitializeComponent();
             vulFormulier();
+            
             SetFormStatus(false);
             GetParam();
+           
         }
         private void GetParam()
         {
@@ -121,6 +124,7 @@ namespace MiaClient
             ddlStatus.SelectedIndex = 0;
             BindRichtperiode(ddlRichtperiode);
             ddlRichtperiode.SelectedIndex = 0;
+            
         }
 
         public void LeegFormulier()
@@ -200,6 +204,7 @@ namespace MiaClient
                 ddlRichtperiode.Enabled = true;
                 txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
                 txtGoedgekeurdeBedrag.ReadOnly = false;
+                
             }
         }
 
@@ -223,6 +228,7 @@ namespace MiaClient
             ddlRichtperiode.ValueMember = "Id";
             ddlRichtperiode.DisplayMember = "Naam";
             ddlRichtperiode.SelectedIndex = -1;
+            
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
@@ -892,6 +898,7 @@ namespace MiaClient
         }
         public void UpdateAanvraag()
         {
+           
             if (txtGoedgekeurdeBedrag.Text == "")
             {
                 txtGoedgekeurdeBedrag.Text = "0";
@@ -1014,6 +1021,8 @@ namespace MiaClient
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
             CreateUI();
+            ddlDisabler();
+
         }
 
         private void CreateUI()
@@ -1253,6 +1262,40 @@ namespace MiaClient
         private void txtGoedgekeurdeBedrag_KeyPress(object sender, KeyPressEventArgs e) 
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
+        }
+        private void ddlDisabler()
+        {
+            
+             decimal totaal = Convert.ToDecimal(txtTotaal.Text);
+            string p;
+            try
+            {
+                p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
+                int m = Convert.ToInt32(p);
+                if(Program.IsSysteem != true)
+                {
+                    if(Program.IsGoedkeurder != true)
+                    {
+                        if(Program.IsAankoper != true)
+                        {
+                            if (Program.IsAanvrager == true)
+                            {
+                                if (m < Convert.ToDecimal(totaal))
+                                {
+                                    ddlRichtperiode.Enabled = false;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler(ex, "frmAanvraagFormulier");
+            }
+          
+
         }
     }
 }
