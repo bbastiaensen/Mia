@@ -51,7 +51,7 @@ namespace MiaClient
             try
             {
                 Initialize();
-                
+             
             }
             catch (SqlException ex)
             {
@@ -62,9 +62,10 @@ namespace MiaClient
         {
             InitializeComponent();
             vulFormulier();
-           
+            
             SetFormStatus(false);
             GetParam();
+           
         }
         private void GetParam()
         {
@@ -1020,8 +1021,8 @@ namespace MiaClient
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
             CreateUI();
+            ddlDisabler();
 
-            
         }
 
         private void CreateUI()
@@ -1262,7 +1263,7 @@ namespace MiaClient
         {
             e.Handled = !Program.IsGeldigBedrag(e.KeyChar);
         }
-        public void ddlDisabler()
+        private void ddlDisabler()
         {
             
              decimal totaal = Convert.ToDecimal(txtTotaal.Text);
@@ -1271,15 +1272,24 @@ namespace MiaClient
             {
                 p = ParameterManager.GetParameterByCode("MaxBedragRichtper").Waarde;
                 int m = Convert.ToInt32(p);
-               
-                    if (Program.IsAanvrager == true)
+                if(Program.IsSysteem != true)
+                {
+                    if(Program.IsGoedkeurder != true)
                     {
-                        if (m < Convert.ToInt32(totaal))
+                        if(Program.IsAankoper != true)
                         {
-                            ddlRichtperiode.Enabled = false;
-                        }
+                            if (Program.IsAanvrager == true)
+                            {
+                                if (m < Convert.ToDecimal(totaal))
+                                {
+                                    ddlRichtperiode.Enabled = false;
+                                }
 
+                            }
+                        }
                     }
+                }
+                   
                 
             }
             catch(Exception ex)
