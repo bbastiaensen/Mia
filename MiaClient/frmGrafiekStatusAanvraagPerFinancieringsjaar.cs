@@ -57,7 +57,7 @@ namespace MiaClient
             {
                 List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
                 chartStatusAanvraag.Series.Add(s.Naam);
-                chartStatusAanvraag.Series[s.Naam].Points.Clear();
+
 
                 int totAntal = 0;
             }
