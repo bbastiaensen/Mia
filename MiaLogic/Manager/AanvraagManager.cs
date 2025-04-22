@@ -677,7 +677,7 @@ namespace MiaLogic.Manager
                     objCmd.Connection = objCn;
                     string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend ";
                     sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
-                    sql += "where Richtperiodeid = @Richtperiodeid and Financieringsjaar = @Financieringsjaar ";
+                    sql += "where Richtperiodeid = @Richtperiodeid and Financieringsjaar = @Financieringsjaar AND StatusAanvraagId = 4 ";
                     sql += "order by a.Aanvraagmoment desc";
                     objCmd.CommandText = sql;
                     objCmd.Parameters.AddWithValue("@Richtperiodeid", r.Id);
