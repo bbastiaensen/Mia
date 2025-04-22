@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,7 +83,36 @@ namespace MiaLogic.Manager
                 return foto;
             }
         }
+        public static void UpdateFoto(Foto foto, string new_url)
+        {
+            using (SqlConnection objcn = new SqlConnection())
+            {
+                objcn.ConnectionString = ConnectionString;
+                using (SqlCommand objcmd = new SqlCommand())
+                {
+                    objcmd.Connection = objcn;
+                    objcmd.CommandType = CommandType.Text;
+                    
+                    
+                    objcmd.CommandText = " update Foto set Url=@Url, Titel=@Titel where Id=@Id";
+                    objcmd.Parameters.AddWithValue("@Id", foto.Id);
+                    objcmd.Parameters.AddWithValue("@Url", new_url);
+                    objcmd.Parameters.AddWithValue("@Titel", foto.Titel);
 
+                    try
+                    {
+                        objcn.Open();
+                        objcmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+
+                    }
+                }
+            }
+
+        }
         public static void SaveFoto(Foto foto, bool insert)
         {
             using (SqlConnection objcn = new SqlConnection())
