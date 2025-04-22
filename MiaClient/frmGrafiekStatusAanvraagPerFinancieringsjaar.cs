@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;                      
 
 namespace MiaClient
 {
@@ -50,6 +51,7 @@ namespace MiaClient
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
             chartStatusAanvraag.Series.Clear();
+            Series serie = new Series();
 
             List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
 
@@ -58,8 +60,7 @@ namespace MiaClient
                 List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
                 chartStatusAanvraag.Series.Add(s.Naam);
 
-
-                int totAntal = 0;
+                
             }
         }
     }
