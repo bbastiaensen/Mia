@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;                      
 
 namespace MiaClient
 {
@@ -37,6 +40,28 @@ namespace MiaClient
         private void frmGrafiekStatusAanvraagPerFinancieringsjaar_Load(object sender, EventArgs e)
         {
             CreateUI();
+
+            List<string> finJaren = FinancieringsjaarManager.GetFinancieringsjaren();
+            foreach (string jaar in finJaren)
+            {
+                cmbFinancieringsjaar.Items.Add(jaar);
+            }
+        }
+
+        private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chartStatusAanvraag.Series.Clear();
+            Series serie = new Series();
+
+            List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
+
+            foreach (StatusAanvraag s in statusaanvragen)
+            {
+                List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
+                chartStatusAanvraag.Series.Add(s.Naam);
+
+                
+            }
         }
     }
 }
