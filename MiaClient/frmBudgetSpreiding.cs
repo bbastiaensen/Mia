@@ -42,6 +42,7 @@ namespace MiaClient
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
 
+
         }
 
         private void frmBudgetSpreiding_FormClosing(object sender, FormClosingEventArgs e)
