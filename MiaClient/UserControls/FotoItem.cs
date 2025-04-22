@@ -44,6 +44,10 @@ namespace MiaClient.UserControls
             SetFotoItemWaarde();
 
         }
+        private void Delete_File(string filePath)
+        {
+           File.Delete(filePath);
+        }
         private void SetFotoItemWaarde()
         {
 
@@ -77,7 +81,9 @@ namespace MiaClient.UserControls
                     {
                         Foto fotos = new Foto();
                         fotos.Id = Convert.ToInt32(lblId.Text);
-                        FotoManager.DeleteFoto(fotos);
+                        Foto real_foto = FotoManager.GetFotoById(fotos.Id);
+                        string url = real_foto.Url;
+                        Delete_File(url);
                         FotoDeleted(this, null);
                         MessageBox.Show("De Foto is succesvol verwijderd.", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

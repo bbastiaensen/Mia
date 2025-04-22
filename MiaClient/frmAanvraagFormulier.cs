@@ -380,6 +380,17 @@ namespace MiaClient
                 ErrorHandler(ex, "SaveFile");
             }
         }
+        private void Delete_File(string filePath)
+        {
+            try
+            {
+                File.Delete(filePath);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler(ex, "DeleteFile");
+            }
+        }
 
         private Offerte SaveOfferte(string filepath)
         {
@@ -741,18 +752,23 @@ namespace MiaClient
 
                     // check of de gekozen offerte diegene is die al bewaard is.
                     Foto foto = null;
-                    Image image = Image.FromFile(fileName);
-                    ImageFormat format = image.RawFormat;
-                    ImageAttributes imageAttributes = new ImageAttributes();
-                    
+                    //Image image = Image.FromFile(fileName);
+                    //ImageFormat format = image.RawFormat;
+                    //ImageAttributes imageAttributes = new ImageAttributes();
+                    //DateTime lastWrite = File.GetLastWriteTime(fileName);
+                    //DateTime sysTime = DateTime.Now;
+                    //TimeSpan dif = sysTime.Subtract(lastWrite);
                     if (!string.IsNullOrEmpty(txt_FotoId.Text))
                     {
                         Foto f = FotoManager.GetFotoById(Convert.ToInt32(txt_FotoId.Text));
+                        string url = f.Url.ToString();
                         if (f != null)
                         {
                             if (f.Url != selectedPath)
                             {
                                 //TODO: Verwijder de oude foto
+                                Delete_File(url);
+                                FotoManager.UpdateFoto(f, uniqueFileName);
                                 SaveFile(selectedPath, destinationPath);
                             }
                         }
