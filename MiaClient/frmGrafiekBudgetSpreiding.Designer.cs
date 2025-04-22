@@ -28,13 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 30D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 40D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(4D, 10D);
+            this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
+            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
+            this.chartBudgetspreiding = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.gbxFinancieringsjaar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBudgetspreiding)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gbxFinancieringsjaar
+            // 
+            this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
+            this.gbxFinancieringsjaar.Controls.Add(this.lblFinancieringsjaar);
+            this.gbxFinancieringsjaar.Location = new System.Drawing.Point(13, 13);
+            this.gbxFinancieringsjaar.Name = "gbxFinancieringsjaar";
+            this.gbxFinancieringsjaar.Size = new System.Drawing.Size(1042, 110);
+            this.gbxFinancieringsjaar.TabIndex = 0;
+            this.gbxFinancieringsjaar.TabStop = false;
+            this.gbxFinancieringsjaar.Text = "Selecteer een financieringsjaar";
+            // 
+            // cmbFinancieringsjaar
+            // 
+            this.cmbFinancieringsjaar.FormattingEnabled = true;
+            this.cmbFinancieringsjaar.Location = new System.Drawing.Point(145, 44);
+            this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
+            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(209, 33);
+            this.cmbFinancieringsjaar.TabIndex = 4;
+            this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
+            // 
+            // lblFinancieringsjaar
+            // 
+            this.lblFinancieringsjaar.AutoSize = true;
+            this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(8, 47);
+            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(156, 25);
+            this.lblFinancieringsjaar.TabIndex = 3;
+            this.lblFinancieringsjaar.Text = "Financieringsjaar : ";
+            // 
+            // chartBudgetspreiding
+            // 
+            chartArea1.AxisX.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.Yes;
+            chartArea1.Name = "ChartArea1";
+            this.chartBudgetspreiding.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartBudgetspreiding.Legends.Add(legend1);
+            this.chartBudgetspreiding.Location = new System.Drawing.Point(13, 129);
+            this.chartBudgetspreiding.Name = "chartBudgetspreiding";
+            this.chartBudgetspreiding.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.chartBudgetspreiding.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            dataPoint1.LegendText = "yippie";
+            dataPoint2.LegendText = "dingus";
+            dataPoint3.LegendText = "ymca";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            series2.Points.Add(dataPoint4);
+            this.chartBudgetspreiding.Series.Add(series1);
+            this.chartBudgetspreiding.Series.Add(series2);
+            this.chartBudgetspreiding.Size = new System.Drawing.Size(1042, 551);
+            this.chartBudgetspreiding.TabIndex = 1;
+            this.chartBudgetspreiding.Text = "chart1";
             // 
             // frmGrafiekBudgetSpreiding
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 692);
+            this.Controls.Add(this.chartBudgetspreiding);
+            this.Controls.Add(this.gbxFinancieringsjaar);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -44,10 +124,18 @@
             this.Text = "Budgetspreiding";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGrafiekBudgetSpreiding_FormClosing);
             this.Load += new System.EventHandler(this.frmGrafiekBudgetSpreiding_Load);
+            this.gbxFinancieringsjaar.ResumeLayout(false);
+            this.gbxFinancieringsjaar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartBudgetspreiding)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox gbxFinancieringsjaar;
+        private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
+        private System.Windows.Forms.Label lblFinancieringsjaar;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartBudgetspreiding;
     }
 }
