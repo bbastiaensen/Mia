@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 30D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 40D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(3D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(4D, 10D);
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -79,31 +72,10 @@
             chartArea1.AxisX.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.Yes;
             chartArea1.Name = "ChartArea1";
             this.chartBudgetspreiding.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartBudgetspreiding.Legends.Add(legend1);
             this.chartBudgetspreiding.Location = new System.Drawing.Point(13, 129);
             this.chartBudgetspreiding.Name = "chartBudgetspreiding";
             this.chartBudgetspreiding.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.chartBudgetspreiding.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            dataPoint1.LegendText = "yippie";
-            dataPoint2.LegendText = "dingus";
-            dataPoint3.LegendText = "ymca";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series1.Points.Add(dataPoint3);
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            series2.Points.Add(dataPoint4);
-            this.chartBudgetspreiding.Series.Add(series1);
-            this.chartBudgetspreiding.Series.Add(series2);
             this.chartBudgetspreiding.Size = new System.Drawing.Size(1042, 551);
             this.chartBudgetspreiding.TabIndex = 1;
             this.chartBudgetspreiding.Text = "chart1";

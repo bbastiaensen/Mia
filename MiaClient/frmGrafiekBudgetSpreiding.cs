@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MiaClient
 {
@@ -28,7 +29,7 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
+        List<Color> kleuren = new List<Color>();
         private void frmGrafiekBudgetSpreiding_Load(object sender, EventArgs e)
         {
             CreateUI();
@@ -38,6 +39,21 @@ namespace MiaClient
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
+            
+            kleuren.Add(Color.Maroon);
+            kleuren.Add(Color.Red);
+            kleuren.Add(Color.Orange);
+            kleuren.Add(Color.Yellow);
+            kleuren.Add(Color.Green);
+            kleuren.Add(Color.Cyan);
+            kleuren.Add(Color.CornflowerBlue);
+            kleuren.Add(Color.Purple);
+            kleuren.Add(Color.Violet);
+            kleuren.Add(Color.Orchid);
+            kleuren.Add(Color.DeepPink);
+            kleuren.Add(Color.PaleVioletRed);
+            kleuren.Add(Color.White);
+            kleuren.Add(Color.Gray);
         }
 
         private void CreateUI()
@@ -63,7 +79,7 @@ namespace MiaClient
                     aanvragen.Add(ah);
                 }
             }
-            chartBudgetspreiding.Series.Add("grafiek");
+            chartBudgetspreiding.Series.Add("Grafiek");
             foreach (Richtperiode r in richtperiodes) {
                 decimal budget = 0;
                 foreach (Aanvraag a in aanvragen)
@@ -73,14 +89,13 @@ namespace MiaClient
                         budget += a.AantalStuk * a.PrijsIndicatieStuk;
                     }
                 }
+                chartBudgetspreiding.Series["Grafiek"].IsValueShownAsLabel = true;
+                chartBudgetspreiding.Series["Grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
 
-
-                chartBudgetspreiding.Series["grafiek"].IsValueShownAsLabel = true;
-                chartBudgetspreiding.Series["grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
-                chartBudgetspreiding.Series["grafiek"].Points[0].AxisLabel = "nog geen";
                 chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
                 chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
             }
+            chartBudgetspreiding.Series["Grafiek"].Points[0].AxisLabel = "nog geen";
         }
     }
 }
