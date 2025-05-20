@@ -50,10 +50,12 @@ namespace MiaClient
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //values worden gereset 
             chartBudgetspreiding.ResetAutoValues();
-            string finjaar = cmbFinancieringsjaar.SelectedItem.ToString();
             chartBudgetspreiding.Series.Clear();
-
+            //finjaar wordt opgehaald
+            string finjaar = cmbFinancieringsjaar.SelectedItem.ToString();
+            //aanvragen en richtperiodes worden gevraagd en gefilterd
             List<Richtperiode> richtperiodes = RichtperiodeManager.GetRichtperiodes();
             List<Aanvraag> aanvragen = new List<Aanvraag>();
             aanvragen.Clear();
@@ -64,22 +66,29 @@ namespace MiaClient
                     aanvragen.Add(ah);
                 }
             }
+            //series voor de chart
             chartBudgetspreiding.Series.Add("Grafiek");
+            //voor elke richtperiode
             foreach (Richtperiode r in richtperiodes) {
                 decimal budget = 0;
+                //voor elke aanvraag
                 foreach (Aanvraag a in aanvragen)
                 {
+                    //richtperiode wordt nagekeken en budget berekend
                     if (a.RichtperiodeId == r.Id)
                     {
-                        budget += a.AantalStuk * a.PrijsIndicatieStuk;
+                        budget += a.BudgetToegekend;
                     }
                 }
+                //punt wordt toegevoegd -> een voor elke richtperiode
                 chartBudgetspreiding.Series["Grafiek"].IsValueShownAsLabel = true;
                 chartBudgetspreiding.Series["Grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
-
-                chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
-                chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
+                
             }
+            //titels voor de grafiek
+            chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
+            chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
+            //label voor richtperiode nog geen
             chartBudgetspreiding.Series["Grafiek"].Points[0].AxisLabel = "nog geen";
         }
     }
