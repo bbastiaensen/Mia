@@ -734,6 +734,78 @@ namespace MiaLogic.Manager
             return returnlist;
         }
         // Data uit databank halen
+
+        public static List<Aanvraag> GetAanvragenByRichtperiodeAndFinancieringsjaarAndStatusAanvraag(Richtperiode r, string financieringsjaar, StatusAanvraag sa)
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend ";
+                    sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
+                    sql += "where Richtperiodeid = @Richtperiodeid and Financieringsjaar = @Financieringsjaar and StatusAanvraagId = @StatusAanvraagId ";
+                    sql += "order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = sql;
+                    objCmd.Parameters.AddWithValue("@Richtperiodeid", r.Id);
+                    objCmd.Parameters.AddWithValue("@Financieringsjaar", financieringsjaar);
+                    objCmd.Parameters.AddWithValue("@StatusAanvraagId", sa.Id);
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+
         public static int GetHighestAanvraagId()
         {
             int highestAanvraagId = 0;
