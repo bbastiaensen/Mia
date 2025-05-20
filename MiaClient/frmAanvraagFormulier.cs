@@ -16,6 +16,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -858,12 +859,13 @@ namespace MiaClient
                     if (!string.IsNullOrEmpty(txt_offerteId.Text))
                     {
                         Offerte o = OfferteManager.GetOfferteById(Convert.ToInt32(txt_offerteId.Text));
-
+                        string url = o.Url;
                         if (o != null)
                         {
                             if (o.Url != selectedPath)
                             {
                                 //TODO: Verwijder de oude offerte
+                                Delete_File(url);
                                 SaveFile(selectedPath, destinationPath);
                             }
                         }
@@ -1286,7 +1288,7 @@ namespace MiaClient
         private void ddlDisabler()
         {
             
-             decimal totaal = Convert.ToDecimal(txtTotaal.Text);
+            decimal totaal = Convert.ToDecimal(txtTotaal.Text);
             string p;
             try
             {
