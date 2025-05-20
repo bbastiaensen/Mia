@@ -32,6 +32,10 @@ namespace MiaClient.UserControls
         {
             InitializeComponent();
         }
+        private void Delete_File(string filePath)
+        {
+            File.Delete(filePath);
+        }
         public OffertesItem(int id, string titel, string url, int aanvraagId, Boolean even)
         {
             InitializeComponent();
@@ -74,6 +78,11 @@ namespace MiaClient.UserControls
             DialogResult result = MessageBox.Show("Ben je zeker dat je deze offerte wilt verwijderen?", "success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.Yes)
             {
+                Offerte o = new Offerte();
+                o.Id = Convert.ToInt32(lblId.Text);
+                Offerte r_o = OfferteManager.GetOfferteById(o.Id);
+                string url = r_o.Url;
+                Delete_File(url);
                 DeleteOfferte();
                 //Triggeren van het OfferteDeleted event
                 OfferteDeleted?.Invoke(this, null);
