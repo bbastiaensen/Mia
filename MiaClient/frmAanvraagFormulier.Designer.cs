@@ -487,6 +487,7 @@ namespace MiaClient
             this.txtTotaal.ReadOnly = true;
             this.txtTotaal.Size = new System.Drawing.Size(282, 34);
             this.txtTotaal.TabIndex = 5;
+            this.txtTotaal.Text = "0";
             // 
             // lblTotaal
             // 
