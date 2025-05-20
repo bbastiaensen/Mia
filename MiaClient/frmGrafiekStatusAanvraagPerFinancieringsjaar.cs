@@ -41,6 +41,8 @@ namespace MiaClient
         {
             CreateUI();
 
+            textBox1.Visible = true;
+
             List<string> finJaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in finJaren)
             {
@@ -50,17 +52,27 @@ namespace MiaClient
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chartStatusAanvraag.Series.Clear();
+            chartStatusAanvraag.Series["Taart"].Points.Clear();
             Series serie = new Series();
 
             List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
 
+            int teller = 1;
+
             foreach (StatusAanvraag s in statusaanvragen)
             {
                 List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
-                chartStatusAanvraag.Series.Add(s.Naam);
 
-                
+                int aantalAanvragenPerStatus = s.Naam.Count();
+
+                decimal procent = aantalAanvragenPerStatus / 71;
+                procent = procent * 100;
+                string naamProcent = procent.ToString() + "%";
+
+                chartStatusAanvraag.Series["Taart"].Points.AddXY(naamProcent, procent);
+                textBox1.Visible = false;
+
+                teller ++;
             }
         }
     }

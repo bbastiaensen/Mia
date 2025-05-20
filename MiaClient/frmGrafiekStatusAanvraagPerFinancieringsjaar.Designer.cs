@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem13 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem14 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem15 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem16 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem17 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.LegendItem legendItem18 = new System.Windows.Forms.DataVisualization.Charting.LegendItem();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.chartStatusAanvraag = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartStatusAanvraag)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,10 +55,28 @@
             // 
             // chartStatusAanvraag
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartStatusAanvraag.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartStatusAanvraag.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartStatusAanvraag.ChartAreas.Add(chartArea3);
+            legendItem13.Color = System.Drawing.Color.SteelBlue;
+            legendItem13.Name = "In Aanvraag";
+            legendItem14.Color = System.Drawing.Color.YellowGreen;
+            legendItem14.Name = "Goedgekeurd";
+            legendItem15.Color = System.Drawing.Color.SkyBlue;
+            legendItem15.Name = "Afgekeurd";
+            legendItem16.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            legendItem16.Name = "Bekrachtigd";
+            legendItem17.Color = System.Drawing.Color.MediumOrchid;
+            legendItem17.Name = "Niet Bekrachtigd";
+            legendItem18.Color = System.Drawing.Color.Salmon;
+            legendItem18.Name = "In Afwachting";
+            legend3.CustomItems.Add(legendItem13);
+            legend3.CustomItems.Add(legendItem14);
+            legend3.CustomItems.Add(legendItem15);
+            legend3.CustomItems.Add(legendItem16);
+            legend3.CustomItems.Add(legendItem17);
+            legend3.CustomItems.Add(legendItem18);
+            legend3.Name = "StatusLegend";
+            this.chartStatusAanvraag.Legends.Add(legend3);
             this.chartStatusAanvraag.Location = new System.Drawing.Point(26, 141);
             this.chartStatusAanvraag.Name = "chartStatusAanvraag";
             this.chartStatusAanvraag.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -64,11 +89,13 @@
         System.Drawing.Color.Cyan,
         System.Drawing.Color.Navy,
         System.Drawing.Color.Fuchsia};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartStatusAanvraag.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "StatusLegend";
+            series3.Name = "Taart";
+            series3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.chartStatusAanvraag.Series.Add(series3);
             this.chartStatusAanvraag.Size = new System.Drawing.Size(1017, 539);
             this.chartStatusAanvraag.TabIndex = 1;
             this.chartStatusAanvraag.Text = "Overzicht Aanvraagstatus";
@@ -82,11 +109,24 @@
             this.lblFinancieringsjaar.TabIndex = 2;
             this.lblFinancieringsjaar.Text = "Financieringsjaar:";
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(853, 153);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(148, 114);
+            this.textBox1.TabIndex = 3;
+            // 
             // frmGrafiekStatusAanvraagPerFinancieringsjaar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 692);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.cmbFinancieringsjaar);
             this.Controls.Add(this.chartStatusAanvraag);
@@ -109,5 +149,6 @@
         private System.Windows.Forms.ComboBox cmbFinancieringsjaar;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartStatusAanvraag;
         private System.Windows.Forms.Label lblFinancieringsjaar;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
