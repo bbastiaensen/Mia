@@ -39,21 +39,6 @@ namespace MiaClient
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
-            
-            kleuren.Add(Color.Maroon);
-            kleuren.Add(Color.Red);
-            kleuren.Add(Color.Orange);
-            kleuren.Add(Color.Yellow);
-            kleuren.Add(Color.Green);
-            kleuren.Add(Color.Cyan);
-            kleuren.Add(Color.CornflowerBlue);
-            kleuren.Add(Color.Purple);
-            kleuren.Add(Color.Violet);
-            kleuren.Add(Color.Orchid);
-            kleuren.Add(Color.DeepPink);
-            kleuren.Add(Color.PaleVioletRed);
-            kleuren.Add(Color.White);
-            kleuren.Add(Color.Gray);
         }
 
         private void CreateUI()
@@ -74,7 +59,7 @@ namespace MiaClient
             aanvragen.Clear();
             foreach(Aanvraag ah in AanvraagManager.GetAanvragen())
             {
-                if (ah.Financieringsjaar == finjaar)
+                if (ah.Financieringsjaar == finjaar && ah.StatusAanvraagId == 4)
                 {
                     aanvragen.Add(ah);
                 }
