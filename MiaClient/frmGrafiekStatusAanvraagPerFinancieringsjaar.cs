@@ -50,18 +50,44 @@ namespace MiaClient
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chartStatusAanvraag.Series.Clear();
+            chartStatusAanvraag.Series["Taart"].Points.Clear();
+            chartStatusAanvraag.Legends.Clear();
             Series serie = new Series();
 
             List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
 
+           
+
             foreach (StatusAanvraag s in statusaanvragen)
             {
-                List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
-                chartStatusAanvraag.Series.Add(s.Naam);
+                int teller = 0;
+                int aanvragen = 0;
 
-                
+                List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
+
+                foreach(Aanvraag a in aanvraag)
+                {
+                    if(a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString()) 
+                    {
+                        aanvragen++;
+
+                        if(s.Id == a.StatusAanvraagId)
+                        {
+                            teller ++;
+                        }
+                    }
+                }
+
+
+                double procent = teller * 100;
+                procent = procent / aanvragen;
+
+                chartStatusAanvraag.Series["Taart"].IsValueShownAsLabel = true;
+                chartStatusAanvraag.Legends.Add(s.Naam);
+                chartStatusAanvraag.Series["Taart"].Points.AddXY(s.Naam, Math.Round(procent, 2));
             }
+
+            chartStatusAanvraag.Titles.Add("Status aanvragen Financieringsjaar " + cmbFinancieringsjaar.SelectedItem.ToString() + " (in procent)");
         }
     }
 }

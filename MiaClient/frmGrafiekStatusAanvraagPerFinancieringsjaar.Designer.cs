@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.chartStatusAanvraag = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -50,8 +49,6 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chartStatusAanvraag.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartStatusAanvraag.Legends.Add(legend1);
             this.chartStatusAanvraag.Location = new System.Drawing.Point(26, 141);
             this.chartStatusAanvraag.Name = "chartStatusAanvraag";
             this.chartStatusAanvraag.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -66,8 +63,8 @@
         System.Drawing.Color.Fuchsia};
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Taart";
+            series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             this.chartStatusAanvraag.Series.Add(series1);
             this.chartStatusAanvraag.Size = new System.Drawing.Size(1017, 539);
             this.chartStatusAanvraag.TabIndex = 1;
