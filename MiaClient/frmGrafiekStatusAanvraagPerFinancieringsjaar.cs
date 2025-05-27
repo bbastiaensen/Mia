@@ -41,8 +41,6 @@ namespace MiaClient
         {
             CreateUI();
 
-            textBox1.Visible = true;
-
             List<string> finJaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in finJaren)
             {
@@ -53,27 +51,43 @@ namespace MiaClient
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
             chartStatusAanvraag.Series["Taart"].Points.Clear();
+            chartStatusAanvraag.Legends.Clear();
             Series serie = new Series();
 
             List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
 
-            int teller = 1;
+           
 
             foreach (StatusAanvraag s in statusaanvragen)
             {
+                int teller = 0;
+                int aanvragen = 0;
+
                 List<Aanvraag> aanvraag = AanvraagManager.GetStatusAanvraagAsc();
 
-                int aantalAanvragenPerStatus = s.Naam.Count();
+                foreach(Aanvraag a in aanvraag)
+                {
+                    if(a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString()) 
+                    {
+                        aanvragen++;
 
-                decimal procent = aantalAanvragenPerStatus / 71;
-                procent = procent * 100;
-                string naamProcent = procent.ToString() + "%";
+                        if(s.Id == a.StatusAanvraagId)
+                        {
+                            teller ++;
+                        }
+                    }
+                }
 
-                chartStatusAanvraag.Series["Taart"].Points.AddXY(naamProcent, procent);
-                textBox1.Visible = false;
 
-                teller ++;
+                double procent = teller * 100;
+                procent = procent / aanvragen;
+
+                chartStatusAanvraag.Series["Taart"].IsValueShownAsLabel = true;
+                chartStatusAanvraag.Legends.Add(s.Naam);
+                chartStatusAanvraag.Series["Taart"].Points.AddXY(s.Naam, Math.Round(procent, 2));
             }
+
+            chartStatusAanvraag.Titles.Add("Status aanvragen Financieringsjaar " + cmbFinancieringsjaar.SelectedItem.ToString() + " (in procent)");
         }
     }
 }
