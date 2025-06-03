@@ -72,6 +72,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Evo_Budg_DataSet.cs">
+      <DependentUpon>Evo_Budg_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Evo_Budg_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Evo_Budg_DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmAankopen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,6 +344,17 @@
     <EmbeddedResource Include="UserControls\ParameterItem.resx">
       <DependentUpon>ParameterItem.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Evo_Budg_DataSet.xsc">
+      <DependentUpon>Evo_Budg_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Evo_Budg_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Evo_Budg_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Evo_Budg_DataSet.xss">
+      <DependentUpon>Evo_Budg_DataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
