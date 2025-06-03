@@ -67,7 +67,7 @@ namespace MiaClient
                 }
             }
             //series voor de chart
-            chartBudgetspreiding.Series.Add("Grafiek");
+            chartBudgetspreiding.Series.Add("Grafiek").Font = new Font("Segoe UI", 11);
             //voor elke richtperiode
             foreach (Richtperiode r in richtperiodes) {
                 decimal budget = 0;
@@ -83,11 +83,13 @@ namespace MiaClient
                 //punt wordt toegevoegd -> een voor elke richtperiode
                 chartBudgetspreiding.Series["Grafiek"].IsValueShownAsLabel = true;
                 chartBudgetspreiding.Series["Grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
-                
+
             }
             //titels voor de grafiek
             chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
+            chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.TitleFont = new Font("Segoe UI", 11);
             chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
+            chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.TitleFont = new Font("Segoe UI", 11);
             //label voor richtperiode nog geen
             chartBudgetspreiding.Series["Grafiek"].Points[0].AxisLabel = "nog geen";
         }
