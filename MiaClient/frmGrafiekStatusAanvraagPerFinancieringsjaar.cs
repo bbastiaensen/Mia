@@ -52,6 +52,7 @@ namespace MiaClient
         {
             chartStatusAanvraag.Series["Taart"].Points.Clear();
             chartStatusAanvraag.Legends.Clear();
+            chartStatusAanvraag.Titles.Clear();
             Series serie = new Series();
 
             List<StatusAanvraag> statusaanvragen = StatusAanvraagManager.GetStatusAanvragen();
@@ -84,7 +85,10 @@ namespace MiaClient
 
                 chartStatusAanvraag.Series["Taart"].IsValueShownAsLabel = true;
                 chartStatusAanvraag.Legends.Add(s.Naam);
-                chartStatusAanvraag.Series["Taart"].Points.AddXY(s.Naam, Math.Round(procent, 2));
+                if(procent > 0.004) 
+                {
+                    chartStatusAanvraag.Series["Taart"].Points.AddXY(s.Naam, Math.Round(procent, 2));
+                }
             }
 
             chartStatusAanvraag.Titles.Add("Status aanvragen Financieringsjaar " + cmbFinancieringsjaar.SelectedItem.ToString() + " (in procent)");
