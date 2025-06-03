@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MiaClient
 {
@@ -20,9 +21,11 @@ namespace MiaClient
         {
             InitializeComponent();
         }
-
         private void frmGrafiekEvolutieBudgetten_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'evo_Budg_DataSet.Evo_Budg_G' table. You can move, or remove it, as needed.
+            this.evo_Budg_G_TableAdapter.Fill(this.evo_Budg_DataSet.Evo_Budg_G);
+            chart1.Dock = DockStyle.Fill; 
             CreateUI();
         }
 
