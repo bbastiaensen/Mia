@@ -415,7 +415,7 @@ namespace MiaClient
             pnlMaand.Controls.Add(lblRichtperiode);
 
             Titels.Clear();
-            List<Aanvraag> Aanvragen = AanvraagManager.GetAanvragenByRichtperiodeAndFinancieringsjaarAndStatusAanvraag(r, cmbFinancieringsjaar.Text, new StatusAanvraag() { Id = 4 });
+            List<Aanvraag> Aanvragen = AanvraagManager.GetAanvragenByRichtperiodeAndFinancieringsjaar(r, cmbFinancieringsjaar.Text);
 
             if (Aanvragen != null)
             {
