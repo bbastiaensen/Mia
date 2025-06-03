@@ -266,7 +266,7 @@ namespace MiaClient
                 }
                 if (chbxPlaningsdatumVan.Checked != false)
                 {
-                    filterPlanningsdatumTot = true;
+                    filterPlanningsdatumVan = true;
                 }
                 if (chbxPlaningsdatumTot.Checked != false)
                 {
