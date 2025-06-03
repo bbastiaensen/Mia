@@ -63,6 +63,7 @@
         System.Drawing.Color.Fuchsia};
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new System.Drawing.Font("Segoe UI", 10F);
             series1.Name = "Taart";
             series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             this.chartStatusAanvraag.Series.Add(series1);
