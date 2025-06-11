@@ -45,7 +45,7 @@ namespace MiaClient
             lblWacht.Text = "Dit kan even duren";
             // Getting data
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
-            List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
+            List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
             List<Aanvraag> Status = new List<Aanvraag>();
             //Making sure the data is in the right year, and it's refused
             foreach (Aanvraag a in aanvragen)

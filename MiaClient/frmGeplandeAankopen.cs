@@ -40,9 +40,15 @@ namespace MiaClient
             lblLaad1.Text = "Data ophalen...";
             // Getting data
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
-            List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
+
+            //Lijn 45 moet vervangen worden door lijn 46 in het kader van de issue 222
+            List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
+            //List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByFinancieringsjaar("hier komt het financieringsjaar");
+
             List<Aanvraag> Status = new List<Aanvraag>();
+
             //Making sure the data is in the right year, and it's refused
+
             foreach (Aanvraag a in aanvragen)
             {
                 if (StatusAanvraagManager.GetStatusAanvraagById(a.StatusAanvraagId).Naam == "Bekrachtigd" && a.Financieringsjaar == DateTime.Parse(DateTime.Now.ToString()).Year.ToString())

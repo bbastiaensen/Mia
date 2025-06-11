@@ -1105,9 +1105,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1164,9 +1164,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1223,9 +1223,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1282,9 +1282,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1341,9 +1341,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1400,9 +1400,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1459,9 +1459,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1518,9 +1518,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1577,9 +1577,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
                         a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
@@ -1637,9 +1637,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -2061,7 +2061,14 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
-        public static List<Aanvraag> GetRichtPeriodeAsc()
+
+        public static List<Aanvraag> GetAanvragenByFinancieringsjaar(string financieringjaar)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public static List<Aanvraag> GetAanvragenByRichtPeriodeAsc()
         {
             List<Aanvraag> returnlist = null;
 
