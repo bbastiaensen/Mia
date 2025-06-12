@@ -2073,7 +2073,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend ";
+                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend, a.AankoperId ";
                     sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
                     sql += "where Financieringsjaar = @Financieringsjaar and StatusAanvraagId = @StatusAanvraagId ";
                     sql += "order by a.Aanvraagmoment desc";
@@ -2127,6 +2127,7 @@ namespace MiaLogic.Manager
                             a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
                         }
                         a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
                         returnlist.Add(a);
                     }
                 }
@@ -2253,7 +2254,14 @@ namespace MiaLogic.Manager
                     SqlDataReader objRea = objCmd.ExecuteReader();
                     if (objRea.Read())
                     {
-                        ret = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                        if (objRea["TotaalBedrag"] != DBNull.Value)
+                        {
+                            ret = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                        }
+                        else
+                        {
+                            ret = Convert.ToDecimal(0);
+                        }
                     }
                 }
 

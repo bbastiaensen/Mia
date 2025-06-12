@@ -44,8 +44,6 @@ namespace MiaClient
                 // Getting data
                 List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
 
-                //Lijn 45 moet vervangen worden door lijn 46 in het kader van de issue 222
-                //List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
                 List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByFinancieringsjaarAndStatus(ddlFinancieringsjaar.SelectedValue.ToString(), 4);
                 
                 //setting up the numbers
@@ -74,21 +72,7 @@ namespace MiaClient
                     ColorExcel(ri, m, worksheet, even, meh);
                     //Making sure the data in the right month
                     meh = false;
-                    List<Aanvraag> InPer = new List<Aanvraag>();
-                    foreach (Aanvraag a in aanvragen)
-                    {
-                        if (!(a.RichtperiodeId < m))
-                        {
-                            if (a.RichtperiodeId == m)
-                            {
-                                InPer.Add(a);
-                            }
-                            if (a.RichtperiodeId > m)
-                            {
-                                break;
-                            }
-                        }
-                    }
+                    List<Aanvraag> InPer = aanvragen.Where(a => a.RichtperiodeId == m).ToList();
                     lblLaad1.Text = "Data in Excel verwerken...";
                     //going over the data
                     for (int p = 1; p <= InPer.Count; p++)
@@ -219,6 +203,7 @@ namespace MiaClient
 
             
         }
+        
         public static Color StringToColor(string colorStr)
         {
             //a way to go from string to system.Color
