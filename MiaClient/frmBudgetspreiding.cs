@@ -92,7 +92,7 @@ namespace MiaClient
             Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
             // Getting data
             List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
-            List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
+            List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
             List<Aanvraag> inJaar = new List<Aanvraag>();
             //for charts===
             List<StatusAanvraag> stat = StatusAanvraagManager.GetStatusAanvragen();

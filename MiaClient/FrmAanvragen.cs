@@ -236,22 +236,16 @@ namespace MiaClient
                 }
                 if (bedragVan)
                 {
-                    if (cbBedragVan.Checked == true )
+                    if (txtBedragVan.Text != string.Empty)
                     {
-                        if (txtBedragVan.Text != string.Empty)
-                        {
-                            items = items.Where(av => av.BudgetToegekend >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
-                        }
+                        items = items.Where(av => (decimal)(av.AantalStuk * av.PrijsIndicatieStuk) >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
                     } 
                 }
                 if (bedragTot)
                 {
-                    if (cbBedragTot.Checked == true)
+                    if(txtBedragTot.Text != string.Empty)
                     {
-                        if(txtBedragTot.Text != string.Empty)
-                        {
-                            items = items.Where(av => av.BudgetToegekend <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
-                        }
+                        items = items.Where(av => (decimal)(av.AantalStuk * av.PrijsIndicatieStuk) <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
                     }
                 }
                 if (kostenPlaats)
