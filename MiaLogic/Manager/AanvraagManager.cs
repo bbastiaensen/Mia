@@ -1068,7 +1068,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1105,9 +1105,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1127,7 +1127,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Gebruiker desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1164,9 +1164,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1186,7 +1186,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1223,9 +1223,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1245,7 +1245,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Titel desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1282,9 +1282,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1304,7 +1304,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1341,9 +1341,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1363,7 +1363,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by sa.Naam desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1400,9 +1400,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1422,7 +1422,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1459,9 +1459,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1481,7 +1481,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1518,9 +1518,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1540,7 +1540,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.AankoperId, a.RichtperiodeId, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.AankoperId, a.RichtperiodeId, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1577,9 +1577,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
                         a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
@@ -1600,7 +1600,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.PlanningsDatum desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1637,9 +1637,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1659,7 +1659,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1696,9 +1696,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1718,7 +1718,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1755,9 +1755,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1777,7 +1777,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1814,9 +1814,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1836,7 +1836,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by k.Naam desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1873,9 +1873,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1895,7 +1895,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag asc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag asc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1932,9 +1932,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -1954,7 +1954,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, a.AantalStuk * a.PrijsIndicatieStuk as bedrag, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by bedrag desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -1991,9 +1991,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -2013,7 +2013,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId where sa.Naam = 'In aanvraag' or sa.Naam = 'Goedgekeurd' order by a.Aanvraagmoment asc ";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId where sa.Naam = 'In aanvraag' or sa.Naam = 'Goedgekeurd' order by a.Aanvraagmoment asc ";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -2050,9 +2050,9 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
 
                         returnlist.Add(a);
@@ -2061,7 +2061,8 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
-        public static List<Aanvraag> GetRichtPeriodeAsc()
+
+        public static List<Aanvraag> GetAanvragenByFinancieringsjaarAndStatus(string financieringjaar, int statusAanvraagId)
         {
             List<Aanvraag> returnlist = null;
 
@@ -2072,7 +2073,15 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.AankoperId, a.RichtperiodeId, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar, a.RichtperiodeId asc";
+                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend, a.AankoperId ";
+                    sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
+                    sql += "where Financieringsjaar = @Financieringsjaar and StatusAanvraagId = @StatusAanvraagId ";
+                    sql += "order by a.Aanvraagmoment desc";
+
+                    objCmd.CommandText = sql;
+                    objCmd.Parameters.AddWithValue("@Financieringsjaar", financieringjaar);
+                    objCmd.Parameters.AddWithValue("@StatusAanvraagId", statusAanvraagId);
+
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -2109,9 +2118,111 @@ namespace MiaLogic.Manager
                             a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
                         }
                         a.Kostenplaats = objRea["Kostenplaats"].ToString();
-                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value && objRea["AantalStuk"] != DBNull.Value)
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
                         {
-                            a.BudgetToegekend = Convert.ToInt32(objRea["PrijsIndicatieStuk"]) * Convert.ToInt32(objRea["AantalStuk"]);
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+
+        public static List<string> GetAlleFinancieringsjaren()
+        {
+            List<string> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select distinct Financieringsjaar ";
+                    sql += "from Aanvraag ";
+                    sql += "order by Financieringsjaar asc";
+
+                    objCmd.CommandText = sql;
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<string>();
+                        }
+
+                        returnlist.Add(objRea["Financieringsjaar"].ToString());
+                    }
+                }
+            }
+            return returnlist;
+        }
+
+        public static List<Aanvraag> GetAanvragenByRichtPeriodeAsc()
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, a.AankoperId, a.RichtperiodeId, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Financieringsjaar, a.RichtperiodeId asc";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
                         a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
@@ -2143,7 +2254,14 @@ namespace MiaLogic.Manager
                     SqlDataReader objRea = objCmd.ExecuteReader();
                     if (objRea.Read())
                     {
-                        ret = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                        if (objRea["TotaalBedrag"] != DBNull.Value)
+                        {
+                            ret = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                        }
+                        else
+                        {
+                            ret = Convert.ToDecimal(0);
+                        }
                     }
                 }
 

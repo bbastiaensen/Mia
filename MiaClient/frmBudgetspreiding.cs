@@ -36,11 +36,10 @@ namespace MiaClient
         {
             CreateUI();
 
-            List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
-            foreach (string jaar in jaren)
-            {
-                cmbFinancieringsjaar.Items.Add(jaar);
-            }
+            List<string> finJaren = AanvraagManager.GetAlleFinancieringsjaren();
+            cmbFinancieringsjaar.ValueMember = "Financieringsjaar";
+            cmbFinancieringsjaar.DisplayMember = "Financieringsjaar";
+            cmbFinancieringsjaar.DataSource = finJaren;
 
 
         }
@@ -81,179 +80,181 @@ namespace MiaClient
 
         private void btnExporteer_Click(object sender, EventArgs e)
         {
-            lblWacht.Visible = true;
-            //makes a new excel app
-            var app = new Excel.Application();
-            //opens the app when you press save (if true)
-            app.Visible = false;
-            //stuffs for commands
-            object Nothing = System.Reflection.Missing.Value;
-            Excel.Workbook workBook = app.Workbooks.Add(Nothing);
-            Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
-            // Getting data
-            List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
-            List<Aanvraag> aanvragen = AanvraagManager.GetRichtPeriodeAsc();
-            List<Aanvraag> inJaar = new List<Aanvraag>();
-            //for charts===
-            List<StatusAanvraag> stat = StatusAanvraagManager.GetStatusAanvragen();
-            int[] hStatus = new int[stat.Count()];
-            //============
-            //Making sure the data is in the right year
-            if (cmbFinancieringsjaar.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Selecteer eerst een financieringsjaar", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lblWacht.Visible = false;
-                return;
-            }
-            foreach (Aanvraag a in aanvragen) {
-                try { 
-                    if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
+                lblWacht.Visible = true;
+                //makes a new excel app
+                var app = new Excel.Application();
+                //opens the app when you press save (if true)
+                app.Visible = false;
+                //stuffs for commands
+                object Nothing = System.Reflection.Missing.Value;
+                Excel.Workbook workBook = app.Workbooks.Add(Nothing);
+                Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
+                // Getting data
+                List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
+                List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
+                List<Aanvraag> inJaar = new List<Aanvraag>();
+                //for charts===
+                List<StatusAanvraag> stat = StatusAanvraagManager.GetStatusAanvragen();
+                int[] hStatus = new int[stat.Count()];
+                //============
+                //Making sure the data is in the right year
+                if (cmbFinancieringsjaar.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecteer eerst een financieringsjaar", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    lblWacht.Visible = false;
+                    return;
+                }
+                foreach (Aanvraag a in aanvragen)
+                {
+                    try
                     {
-                        inJaar.Add(a);
-                    }
+                        if (a.Financieringsjaar == cmbFinancieringsjaar.SelectedItem.ToString())
+                        {
+                            inJaar.Add(a);
+                        }
 
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString());
                     }
-            }
-            //setting up the numbers
-            //position for the data
-            int add = 2;
-            //position
-            int ri = 0;
-            //offset by data
-            int rs = 2;
-            bool even = true;
-            //loops over the periods (m=month)
-            for (int m = 1; m <= rp.Count; m++)
-            {
-                bool meh = true;
-                //ri = position in int, r = position in string
-                ri = m + rs;
-                //the name of the month
-                worksheet.get_Range("A" + ri, "A" + ri).Value = rp[m - 1].Naam;
-                //total of the month
-                decimal tot = 0;
-                //background color for months in Excel file
-                ColorExcel(ri, m, worksheet, even, meh);
-                //Making sure the data in the right month
-                meh = false;
-                List<Aanvraag> InPer = new List<Aanvraag>();
-                foreach (Aanvraag a in inJaar)
-                {
-                    if (!(a.RichtperiodeId < m))
-                    {
-                        if (a.RichtperiodeId == m)
-                        {
-                            InPer.Add(a);
-                        }
-                        if (a.RichtperiodeId > m)
-                        {
-                            break;
-                        }
-                    }
                 }
-                //going over the data
-                for (int j = 0; j < InPer.Count; j++)
+                //setting up the numbers
+                //position for the data
+                int add = 2;
+                //position
+                int ri = 0;
+                //offset by data
+                int rs = 2;
+                bool even = true;
+                //loops over the periods (m=month)
+                for (int m = 1; m <= rp.Count; m++)
                 {
-                    //add = position of data, rs=offset by the data
-                    add = ri + j + 1;
-                    rs += j;
-                    //calculates the price
-                    decimal prijs = InPer[j].BudgetToegekend;
-                    //puts data on the right position (based on add)
-                    worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
-                    worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
-                    //total for the month
-                    tot += prijs;
-                    //background color for data in Excel file
-                    ColorExcel(add, m, worksheet, even,meh);
-                    //voor opmaak
-                    if (even)
+                    bool meh = true;
+                    //ri = position in int, r = position in string
+                    ri = m + rs;
+                    //the name of the month
+                    worksheet.get_Range("A" + ri, "A" + ri).Value = rp[m - 1].Naam;
+                    //total of the month
+                    decimal tot = 0;
+                    //background color for months in Excel file
+                    ColorExcel(ri, m, worksheet, even, meh);
+                    //Making sure the data in the right month
+                    meh = false;
+                    List<Aanvraag> InPer = new List<Aanvraag>();
+                    foreach (Aanvraag a in inJaar)
                     {
-                        even = false;
+                        if (!(a.RichtperiodeId < m))
+                        {
+                            if (a.RichtperiodeId == m)
+                            {
+                                InPer.Add(a);
+                            }
+                            if (a.RichtperiodeId > m)
+                            {
+                                break;
+                            }
+                        }
                     }
-                    else
+                    //going over the data
+                    for (int j = 0; j < InPer.Count; j++)
                     {
-                        even = true;
-                    }
-                    //========for charts==========
-                    int statusId = InPer[j].StatusAanvraagId;
+                        //add = position of data, rs=offset by the data
+                        add = ri + j + 1;
+                        rs += j;
+                        //calculates the price
+                        decimal prijs = InPer[j].BudgetToegekend;
+                        //puts data on the right position (based on add)
+                        worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
+                        worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
+                        //total for the month
+                        tot += prijs;
+                        //background color for data in Excel file
+                        ColorExcel(add, m, worksheet, even, meh);
+                        //voor opmaak
+                        if (even)
+                        {
+                            even = false;
+                        }
+                        else
+                        {
+                            even = true;
+                        }
+                        //========for charts==========
+                        int statusId = InPer[j].StatusAanvraagId;
 
-                    hStatus[statusId] += 1;
-                    //==================
+                        hStatus[statusId] += 1;
+                        //==================
+                    }
+                    rs++;
+                    ColorExcel((m + rs), m, worksheet, even, meh);
+                    //puts total of month on it's spot, makes it bold
+                    worksheet.get_Range("C" + ri, "C" + ri).Value = tot;
+                    worksheet.get_Range("C" + ri, "C" + ri).Font.Bold = true;
                 }
-                rs++;
-                ColorExcel((m + rs), m, worksheet,even, meh);
-                //puts total of month on it's spot, makes it bold
-                worksheet.get_Range("C" + ri, "C" + ri).Value = tot;
-                worksheet.get_Range("C" + ri, "C" + ri).Font.Bold = true;
-            }
-            //===============just layout=================
-            //title
-            string richtper = cmbFinancieringsjaar.SelectedItem.ToString();
+                //===============just layout=================
+                //title
+                string richtper = cmbFinancieringsjaar.SelectedItem.ToString();
 
-            worksheet.Cells[1, 1] = "Financieringsjaar: " + richtper;
-            //layout title
-            worksheet.get_Range("A1", "A1").Font.Bold = true;
-            worksheet.get_Range("A1", "A1").Font.Underline = true;
-            //layout data
-            worksheet.get_Range("B1", "B200").ColumnWidth = 55;
-            worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
-            //=============testing charts======
-            Excel.Range chartRange;
+                worksheet.Cells[1, 1] = "Financieringsjaar: " + richtper;
+                //layout title
+                worksheet.get_Range("A1", "A1").Font.Bold = true;
+                worksheet.get_Range("A1", "A1").Font.Underline = true;
+                //layout data
+                worksheet.get_Range("B1", "B200").ColumnWidth = 55;
+                worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
+                //=============testing charts======
+                Excel.Range chartRange;
 
-            Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
-            Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
-            Excel.Chart chart = chartObj.Chart;
+                Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
+                Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
+                Excel.Chart chart = chartObj.Chart;
 
-            
-            chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[(2+stat.Count), 7]];
-            chart.SetSourceData(chartRange, Type.Missing);
-            chart.ChartType = Excel.XlChartType.xlPie;
-            chart.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowLabelAndPercent,
-                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                        Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                        Type.Missing);
-            chart.ApplyLayout(1);
-            chart.ChartTitle.Text = "Status in elke aanvraag(jaar "+ richtper +")";
-            for (int i = 1; i < stat.Count; i++)
-            {
-                int p = i + 3;
-                string stt = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
-                worksheet.get_Range("F" + p, "F" + p).Value = stt;
-                worksheet.get_Range("G" + p, "G" + p).Value = hStatus[i].ToString();
-            }
 
-            //=================================
-            // Show save file dialog
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            //savefile dialog inputs
-            saveFileDialog1.FileName = "Budgetoverzicht-" + richtper;
-            saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
-            saveFileDialog1.FilterIndex = 1;
-            //shows save file dialog
-            lblWacht.Visible = false;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                //it doesn't like onedrive(saves the Excel file)
-                try
+                chartRange = worksheet.Range[worksheet.Cells[3, 6], worksheet.Cells[(2 + stat.Count), 7]];
+                chart.SetSourceData(chartRange, Type.Missing);
+                chart.ChartType = Excel.XlChartType.xlPie;
+                chart.ApplyDataLabels(Excel.XlDataLabelsType.xlDataLabelsShowLabelAndPercent,
+                            Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                            Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                            Type.Missing);
+                chart.ApplyLayout(1);
+                chart.ChartTitle.Text = "Status in elke aanvraag(jaar " + richtper + ")";
+                for (int i = 1; i < stat.Count; i++)
+                {
+                    int p = i + 3;
+                    string stt = StatusAanvraagManager.GetStatusAanvraagById(i).Naam;
+                    worksheet.get_Range("F" + p, "F" + p).Value = stt;
+                    worksheet.get_Range("G" + p, "G" + p).Value = hStatus[i].ToString();
+                }
+
+                //=================================
+                // Show save file dialog
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                //savefile dialog inputs
+                saveFileDialog1.FileName = "Budgetoverzicht-" + richtper;
+                saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
+                saveFileDialog1.FilterIndex = 1;
+                //shows save file dialog
+                lblWacht.Visible = false;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, false, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
                     workBook.Close(false, saveFileDialog1.FileName, false);
                     Marshal.ReleaseComObject(workBook);
                     Marshal.ReleaseComObject(worksheet);
                     app.Quit();
-                    MessageBox.Show("Het Excel document staat klaar!");
-                }
-                catch
-                {
-                    MessageBox.Show("Excel doesn't like onedrive :(");
+                    MessageBox.Show("Het Excel document staat klaar!", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden bij het genereren van het Excel bestand. - " + ex.Message, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         public static Color StringToColor(string colorStr)
         {
@@ -331,58 +332,70 @@ namespace MiaClient
         }
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pnlRichtperiode.Controls.Clear();
-            pnlMaand.Controls.Clear();
-            int xPos = 150;
-            int yPos = 0;
-            richtperiodes = RichtperiodeManager.GetRichtperiodes();
-            Label lblTotal = new Label();
-            Label lblTotalValue = new Label();
-            lblTotal.Text = "Totaal:";
-            lblTotal.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            lblTotal.Name = "lblTotal";
-
-            if (richtperiodes != null)
+            try
             {
-                Budgets.Clear();
-                foreach (var richtperiode in richtperiodes)
+                if (!string.IsNullOrEmpty(cmbFinancieringsjaar.SelectedValue.ToString()))
                 {
-                    yPos += 25;
+                    pnlRichtperiode.Controls.Clear();
+                    pnlMaand.Controls.Clear();
+                    int xPos = 150;
+                    int yPos = 0;
+                    richtperiodes = RichtperiodeManager.GetRichtperiodes();
+                    Label lblTotal = new Label();
+                    Label lblTotalValue = new Label();
+                    lblTotal.Text = "Totaal:";
+                    lblTotal.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                    lblTotal.Name = "lblTotal";
 
-                    LinkLabel llblRichtperiode = new LinkLabel();
-                    llblRichtperiode.Name = "llblRichtperiode" + richtperiode.Id;
-                    llblRichtperiode.Location = new Point(xPos - 140, yPos);
-                    llblRichtperiode.Text = richtperiode.Naam;
-                    llblRichtperiode.Font = new System.Drawing.Font("Segoe UI", 11);
-                    llblRichtperiode.LinkColor = System.Drawing.Color.Black;
-                    llblRichtperiode.LinkClicked += llblRichtperiode_Click;
+                    if (richtperiodes != null)
+                    {
+                        Budgets.Clear();
+                        foreach (var richtperiode in richtperiodes)
+                        {
+                            yPos += 25;
 
-                    decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, cmbFinancieringsjaar.Text);
-                    Label lblBedrag = new Label();
-                    lblBedrag.Location = new Point(xPos, yPos);
-                    lblBedrag.Name = $"lbl{richtperiode.Id}";
-                    lblBedrag.Text = bedrag.ToString("c", CultureInfo.CurrentCulture);
-                    lblBedrag.Font = new System.Drawing.Font("Segoe UI", 11);
-                    lblBedrag.AutoSize = false;
-                    lblBedrag.Size = new Size(100, 24);
-                    lblBedrag.TextAlign = ContentAlignment.MiddleRight;
-                    Budgets.Add(bedrag);
+                            LinkLabel llblRichtperiode = new LinkLabel();
+                            llblRichtperiode.Name = "llblRichtperiode" + richtperiode.Id;
+                            llblRichtperiode.Location = new Point(xPos - 140, yPos);
+                            llblRichtperiode.Text = richtperiode.Naam;
+                            llblRichtperiode.Font = new System.Drawing.Font("Segoe UI", 11);
+                            llblRichtperiode.LinkColor = System.Drawing.Color.Black;
+                            llblRichtperiode.LinkClicked += llblRichtperiode_Click;
 
-                    pnlRichtperiode.Controls.Add(llblRichtperiode);
-                    pnlRichtperiode.Controls.Add(lblBedrag);
+                            decimal bedrag = AanvraagManager.GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(richtperiode.Id, cmbFinancieringsjaar.SelectedValue.ToString());
+                            Label lblBedrag = new Label();
+                            lblBedrag.Location = new Point(xPos, yPos);
+                            lblBedrag.Name = $"lbl{richtperiode.Id}";
+                            lblBedrag.Text = bedrag.ToString("c", CultureInfo.CurrentCulture);
+                            lblBedrag.Font = new System.Drawing.Font("Segoe UI", 11);
+                            lblBedrag.AutoSize = false;
+                            lblBedrag.Size = new Size(100, 24);
+                            lblBedrag.TextAlign = ContentAlignment.MiddleRight;
+                            Budgets.Add(bedrag);
+
+                            pnlRichtperiode.Controls.Add(llblRichtperiode);
+                            pnlRichtperiode.Controls.Add(lblBedrag);
+
+                        }
+
+                        lblTotal.Location = new Point(xPos - 140, yPos + 60);
+                        pnlRichtperiode.Controls.Add(lblTotal);
+
+                        lblTotalValue.Location = new Point(xPos, yPos + 60);
+                        lblTotalValue.Text = Budgets.Sum().ToString("c", CultureInfo.CurrentCulture);
+                        lblTotalValue.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                        lblTotalValue.AutoSize = false;
+                        lblTotalValue.Size = new Size(100, 24);
+                        lblTotalValue.TextAlign = ContentAlignment.MiddleRight;
+                        pnlRichtperiode.Controls.Add(lblTotalValue);
+                    }
 
                 }
 
-                lblTotal.Location = new Point(xPos - 140, yPos + 60);
-                pnlRichtperiode.Controls.Add(lblTotal);
-
-                lblTotalValue.Location = new Point(xPos, yPos + 60);
-                lblTotalValue.Text = Budgets.Sum().ToString("c", CultureInfo.CurrentCulture);
-                lblTotalValue.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-                lblTotalValue.AutoSize = false;
-                lblTotalValue.Size = new Size(100, 24);
-                lblTotalValue.TextAlign = ContentAlignment.MiddleRight;
-                pnlRichtperiode.Controls.Add(lblTotalValue);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een fout opgetreden bij het ophalen van de budgetspreiding. - " + ex.Message, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
