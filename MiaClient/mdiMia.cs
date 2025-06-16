@@ -212,7 +212,8 @@ namespace MiaClient
                 goedkeuringenToolStripMenuItem.Visible = false;
                 goedkeuringenToolStripButton.Visible = false;
 
-                aankopenToolStripMenuItem.Visible = true;
+                //TO DO: Dit is onvoldoende uitgewerkt om al gebruikt te worden.
+                //aankopenToolStripMenuItem.Visible = true;
 
                 beheerToolStripMenuItem.Visible = false;
                 gebruiksLogToolStripButton.Visible = false;
@@ -257,7 +258,8 @@ namespace MiaClient
                 budgetoverzichtToolStripMenuItem.Visible = true;
                 budgetSpreidingtoolStripButton.Visible = true;
 
-                aankopenToolStripMenuItem.Visible = true;
+                //TO DO: Dit is onvoldoende uitgewerkt om al gebruikt te worden.
+                //aankopenToolStripMenuItem.Visible = true;
             }
         }
 
