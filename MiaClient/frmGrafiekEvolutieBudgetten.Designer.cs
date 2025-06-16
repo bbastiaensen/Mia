@@ -34,14 +34,14 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.evoBudgGBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.evoBudgDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.evo_Budg_DataSet = new MiaClient.Evo_Budg_DataSet();
-            this.evoBudgGBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.evo_Budg_G_TableAdapter = new MiaClient.Evo_Budg_DataSetTableAdapters.Evo_Budg_G_TableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.evoBudgGBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evoBudgDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evo_Budg_DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evoBudgGBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -77,6 +77,11 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
+            // evoBudgGBindingSource
+            // 
+            this.evoBudgGBindingSource.DataMember = "Evo_Budg_G";
+            this.evoBudgGBindingSource.DataSource = this.evoBudgDataSetBindingSource;
+            // 
             // evoBudgDataSetBindingSource
             // 
             this.evoBudgDataSetBindingSource.DataSource = this.evo_Budg_DataSet;
@@ -87,31 +92,26 @@
             this.evo_Budg_DataSet.DataSetName = "Evo_Budg_DataSet";
             this.evo_Budg_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // evoBudgGBindingSource
-            // 
-            this.evoBudgGBindingSource.DataMember = "Evo_Budg_G";
-            this.evoBudgGBindingSource.DataSource = this.evoBudgDataSetBindingSource;
-            // 
             // evo_Budg_G_TableAdapter
             // 
             this.evo_Budg_G_TableAdapter.ClearBeforeFill = true;
             // 
             // frmGrafiekEvolutieBudgetten
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 692);
             this.Controls.Add(this.chart1);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGrafiekEvolutieBudgetten";
-            this.Text = "frmGrafiekEvolutieBudgetten";
+            this.Text = "Evolutie Budgetten";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGrafiekEvolutieBudgetten_FormClosing);
             this.Load += new System.EventHandler(this.frmGrafiekEvolutieBudgetten_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.evoBudgGBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evoBudgDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evo_Budg_DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.evoBudgGBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
