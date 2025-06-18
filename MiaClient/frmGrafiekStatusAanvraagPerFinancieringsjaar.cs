@@ -41,11 +41,10 @@ namespace MiaClient
         {
             CreateUI();
 
-            List<string> finJaren = FinancieringsjaarManager.GetFinancieringsjaren();
-            foreach (string jaar in finJaren)
-            {
-                cmbFinancieringsjaar.Items.Add(jaar);
-            }
+            List<string> finJaren = AanvraagManager.GetAlleFinancieringsjaren();
+            cmbFinancieringsjaar.ValueMember = "Financieringsjaar";
+            cmbFinancieringsjaar.DisplayMember = "Financieringsjaar";
+            cmbFinancieringsjaar.DataSource = finJaren;
         }
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
