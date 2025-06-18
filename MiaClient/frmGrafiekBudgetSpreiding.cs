@@ -63,33 +63,40 @@ namespace MiaClient
                     List<Richtperiode> richtperiodes = RichtperiodeManager.GetRichtperiodes();
                     List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByFinancieringsjaarAndStatus(finjaar, 4);
 
-                    //series voor de chart
-                    chartBudgetspreiding.Series.Add("Grafiek").Font = new Font("Segoe UI", 11);
-                    //voor elke richtperiode
-                    foreach (Richtperiode r in richtperiodes)
+                    if (aanvragen != null)
                     {
-                        decimal budget = 0;
-                        //voor elke aanvraag
-                        foreach (Aanvraag a in aanvragen)
+                        //series voor de chart
+                        chartBudgetspreiding.Series.Add("Grafiek").Font = new Font("Segoe UI", 11);
+                        //voor elke richtperiode
+                        foreach (Richtperiode r in richtperiodes)
                         {
-                            //richtperiode wordt nagekeken en budget berekend
-                            if (a.RichtperiodeId == r.Id)
+                            decimal budget = 0;
+                            //voor elke aanvraag
+                            foreach (Aanvraag a in aanvragen)
                             {
-                                budget += a.BudgetToegekend;
+                                //richtperiode wordt nagekeken en budget berekend
+                                if (a.RichtperiodeId == r.Id)
+                                {
+                                    budget += a.BudgetToegekend;
+                                }
                             }
-                        }
-                        //punt wordt toegevoegd -> een voor elke richtperiode
-                        chartBudgetspreiding.Series["Grafiek"].IsValueShownAsLabel = true;
-                        chartBudgetspreiding.Series["Grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
+                            //punt wordt toegevoegd -> een voor elke richtperiode
+                            chartBudgetspreiding.Series["Grafiek"].IsValueShownAsLabel = true;
+                            chartBudgetspreiding.Series["Grafiek"].Points.AddXY(r.Id, Convert.ToDouble(budget));
 
+                        }
+                        //titels voor de grafiek
+                        chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
+                        chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.TitleFont = new Font("Segoe UI", 11);
+                        chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
+                        chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.TitleFont = new Font("Segoe UI", 11);
+                        //label voor richtperiode nog geen
+                        chartBudgetspreiding.Series["Grafiek"].Points[0].AxisLabel = "nog geen";
                     }
-                    //titels voor de grafiek
-                    chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.Title = "Maanden";
-                    chartBudgetspreiding.ChartAreas["ChartArea1"].AxisX.TitleFont = new Font("Segoe UI", 11);
-                    chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.Title = "Budget gebruikt";
-                    chartBudgetspreiding.ChartAreas["ChartArea1"].AxisY.TitleFont = new Font("Segoe UI", 11);
-                    //label voor richtperiode nog geen
-                    chartBudgetspreiding.Series["Grafiek"].Points[0].AxisLabel = "nog geen";
+                    else
+                    {
+                        MessageBox.Show("Er zijn geen aanvragen die bekrachtigd zijn voor het geselecteerde jaar.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)

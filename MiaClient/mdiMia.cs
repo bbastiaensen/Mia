@@ -18,7 +18,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
 {
-    //We starten op 12/11/2024 met versie 2 van MIA
+    //Versie 2 - Release 1 van MIA
 
     public partial class mdiMia : Form
     {
