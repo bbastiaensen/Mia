@@ -11,7 +11,7 @@ namespace MiaLogic.Manager
     public class KostenplaatsManager
     {
         public static string ConnectionString { get; set; }
-        public static List<Kostenplaats> GetKostenplaatsen()
+        public static List<Kostenplaats> GetAllKostenplaatsen()
         {
             List<Kostenplaats> kostenplaatsen = new List<Kostenplaats>();
 
@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id, Naam FROM Kostenplaats ORDER BY Naam ASC";
+                string query = "SELECT * FROM Kostenplaats ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,8 +30,14 @@ namespace MiaLogic.Manager
                             Kostenplaats kostenplaats = new Kostenplaats
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
+                                Naam = reader["Naam"].ToString(),
+                                Actief = Convert.ToBoolean(reader["Actief"])
                             };
+
+                            if (reader["Code"] != System.DBNull.Value)
+                            {
+                                kostenplaats.Code = Convert.ToInt32(reader["Code"]);
+                            }
 
                             kostenplaatsen.Add(kostenplaats);
                         }
@@ -44,39 +50,104 @@ namespace MiaLogic.Manager
         {
             Kostenplaats kostenplaats = null;
 
-            try
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                connection.Open();
+
+                string query = "SELECT * FROM Kostenplaats WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    connection.Open();
+                    command.Parameters.AddWithValue("@Id", id);
 
-                    string query = "SELECT Id, Naam FROM Kostenplaats WHERE Id = @Id";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
+                            kostenplaats = new Kostenplaats
                             {
-                                kostenplaats = new Kostenplaats
-                                {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    Naam = reader["Naam"].ToString()
-                                };
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString(),
+                                Actief = Convert.ToBoolean(reader["Actief"])
+                            };
+
+                            if (reader["Code"] != System.DBNull.Value)
+                            {
+                                kostenplaats.Code = Convert.ToInt32(reader["Code"]);
                             }
                         }
                     }
                 }
             }
-            catch (Exception)
+
+            return kostenplaats;
+        }
+
+        public static Kostenplaats SaveKostenplaats(bool isNew, Kostenplaats kostenplaats)
+        {
+            string sql = string.Empty;
+
+            if (isNew)
             {
-                Console.WriteLine("Het systeem kon de Kostenplaats niet vinden, probeer het nog eens.");
-                throw;
+                //INSERT
+                sql = "insert into Kostenplaats(Naam, Code, Actief) values(@Naam, @Code, @Actief);";
+            }
+            else
+            {
+                //UPDATE
+                sql = "update Kostenplaats set Naam = @Naam, Code = @Code, Actief = @Actief where Id = @Id;";
+            }
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    command.Parameters.AddWithValue("@Naam", kostenplaats.Naam);
+                    command.Parameters.AddWithValue("@Code", kostenplaats.Code);
+                    command.Parameters.AddWithValue("@Actief", kostenplaats.Actief);
+                    if (!isNew)
+                    {
+                        command.Parameters.AddWithValue("@Id", kostenplaats.Id);
+                    }
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+
+                    if (isNew)
+                    {
+                        kostenplaats.Id = GetHighestId();
+                    }
+                }
             }
 
             return kostenplaats;
+        }
+
+        private static int GetHighestId()
+        {
+            int highestId = 0;
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT max(Id) as highest FROM Kostenplaats;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            highestId = Convert.ToInt32(reader["highest"]);
+                        }
+                    }
+                }
+            }
+            return highestId;
         }
     }
 }

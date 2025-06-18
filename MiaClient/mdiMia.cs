@@ -38,6 +38,7 @@ namespace MiaClient
         frmGrafiekStatusAanvraagPerFinancieringsjaar frmGrafiekStatusAanvraagPerFinancieringsjaar;
         frmGrafiekBudgetSpreiding frmGrafiekBudgetSpreiding;
         frmGrafiekEvolutieBudgetten frmGrafiekEvolutieBugetten;
+        frmBeheerKostenplaatsen frmBeheerKostenplaatsen;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -489,6 +490,16 @@ namespace MiaClient
                 frmGrafiekEvolutieBugetten.MdiParent = this;
             }
             frmGrafiekEvolutieBugetten.Show();
+        }
+
+        private void kostenplaatsenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerKostenplaatsen == null)
+            {
+                frmBeheerKostenplaatsen = new frmBeheerKostenplaatsen();
+                frmBeheerKostenplaatsen.MdiParent = this;
+            }
+            frmBeheerKostenplaatsen.Show();
         }
     }
 }

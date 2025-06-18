@@ -40,6 +40,7 @@
             this.grafiekenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.budgetSpreidingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusAanvragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evolutieBudgettenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.evolutieBudgettenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -158,6 +159,13 @@
             this.statusAanvragenToolStripMenuItem.Text = "Status aanvragen";
             this.statusAanvragenToolStripMenuItem.Click += new System.EventHandler(this.statusAanvragenToolStripMenuItem_Click);
             // 
+            // evolutieBudgettenToolStripMenuItem
+            // 
+            this.evolutieBudgettenToolStripMenuItem.Name = "evolutieBudgettenToolStripMenuItem";
+            this.evolutieBudgettenToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.evolutieBudgettenToolStripMenuItem.Text = "Evolutie budgetten";
+            this.evolutieBudgettenToolStripMenuItem.Click += new System.EventHandler(this.evolutieBudgettenToolStripMenuItem_Click);
+            // 
             // aankopenToolStripMenuItem
             // 
             this.aankopenToolStripMenuItem.Name = "aankopenToolStripMenuItem";
@@ -170,6 +178,7 @@
             this.beheerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gebruikersToolStripMenuItem,
             this.gebruikslogToolStripMenuItem,
+            this.kostenplaatsenToolStripMenuItem,
             this.parametersToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
             this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
@@ -181,7 +190,7 @@
             // gebruikersToolStripMenuItem
             // 
             this.gebruikersToolStripMenuItem.Name = "gebruikersToolStripMenuItem";
-            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.gebruikersToolStripMenuItem.Text = "Gebruikers";
             this.gebruikersToolStripMenuItem.Click += new System.EventHandler(this.gebruikersToolStripMenuItem_Click);
             this.gebruikersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -190,7 +199,7 @@
             // gebruikslogToolStripMenuItem
             // 
             this.gebruikslogToolStripMenuItem.Name = "gebruikslogToolStripMenuItem";
-            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.gebruikslogToolStripMenuItem.Text = "Gebruikslog";
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             this.gebruikslogToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -199,7 +208,7 @@
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
             this.parametersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -347,12 +356,12 @@
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
-            // evolutieBudgettenToolStripMenuItem
+            // kostenplaatsenToolStripMenuItem
             // 
-            this.evolutieBudgettenToolStripMenuItem.Name = "evolutieBudgettenToolStripMenuItem";
-            this.evolutieBudgettenToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
-            this.evolutieBudgettenToolStripMenuItem.Text = "Evolutie budgetten";
-            this.evolutieBudgettenToolStripMenuItem.Click += new System.EventHandler(this.evolutieBudgettenToolStripMenuItem_Click);
+            this.kostenplaatsenToolStripMenuItem.Name = "kostenplaatsenToolStripMenuItem";
+            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.kostenplaatsenToolStripMenuItem.Text = "Kostenplaatsen";
+            this.kostenplaatsenToolStripMenuItem.Click += new System.EventHandler(this.kostenplaatsenToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -416,6 +425,7 @@
         private System.Windows.Forms.ToolStripMenuItem statusAanvragenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem budgetSpreidingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evolutieBudgettenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kostenplaatsenToolStripMenuItem;
     }
 }
 
