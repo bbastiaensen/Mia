@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MiaClient
@@ -35,6 +36,7 @@ namespace MiaClient
                 ErrorHandler(ex, "Main");
             }
         }
+
         private static void InitializeConnections()
         {
             try
@@ -215,6 +217,11 @@ namespace MiaClient
             {
                 MessageBox.Show($"Error in CreateNewUser : {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static bool IsNumeric(string value)
+        {
+            return value.All(char.IsNumber);
         }
 
         public static void Close()

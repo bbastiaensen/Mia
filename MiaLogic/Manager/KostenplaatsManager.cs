@@ -149,5 +149,22 @@ namespace MiaLogic.Manager
             }
             return highestId;
         }
+
+        public static void DeleteKostenplaats(Kostenplaats kostenplaats)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "delete from Kostenplaats where Id = @Id";
+                    command.Parameters.AddWithValue("@Id", kostenplaats.Id);
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
