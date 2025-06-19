@@ -286,7 +286,7 @@ namespace MiaClient
         }
         public void VulKostenplaatsDropDown(ComboBox cmbKostenplaats)
         {
-            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.KostenplaatsManager.GetKostenplaatsen();
+            List<Kostenplaats> kostenplaatsen = MiaLogic.Manager.KostenplaatsManager.GetAllKostenplaatsen().Where(k => k.Actief == true).ToList();
 
             cmbKostenplaats.DataSource = kostenplaatsen;
             cmbKostenplaats.DisplayMember = "Naam";
