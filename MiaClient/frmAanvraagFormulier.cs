@@ -750,9 +750,9 @@ namespace MiaClient
                 {
                     string fileName = Path.GetFileName(selectedPath);
                     string fileExtension = Path.GetExtension(selectedPath);
-                    int lastFotoId = FotoManager.GetHighestFotoId() + 1;
+                    int newFotoId = FotoManager.GetHighestFotoId() + 1;
 
-                    string uniqueFileName = $"{aanvraagId}-{lastFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
+                    string uniqueFileName = $"{aanvraagId}-{newFotoId}-{DateTime.Now:yyyyMMddHHmm}{fileExtension}";
 
                     string destinationFolder = PhotoPath;
                     string destinationPath = Path.Combine(destinationFolder, uniqueFileName);
@@ -773,7 +773,7 @@ namespace MiaClient
                         {
                             if (f.Url != selectedPath)
                             {
-                                //TODO: Verwijder de oude foto
+                                //Verwijder de oude foto
                                 Delete_File(url);
                                 FotoManager.UpdateFoto(f, uniqueFileName);
                                 SaveFile(selectedPath, destinationPath);
@@ -797,7 +797,7 @@ namespace MiaClient
                         Gebruiker = Program.Gebruiker,
                         Id = Convert.ToInt32(aanvraagId),
                         TijdstipActie = DateTime.Now,
-                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {lastFotoId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
+                        OmschrijvingActie = $"Er werd een nieuwe Foto opgeslagen met id {newFotoId} voor aanvraag {aanvraagId} door gebruiker {Program.Gebruiker}."
                     }, true);
                     fotos = FotoManager.GetFotos();
                     BindFotos(FotoByAanvraagId(fotos, fotoByAanvraagId));
@@ -864,7 +864,7 @@ namespace MiaClient
                         {
                             if (o.Url != selectedPath)
                             {
-                                //TODO: Verwijder de oude offerte
+                                //Verwijder de oude offerte
                                 Delete_File(url);
                                 SaveFile(selectedPath, destinationPath);
                             }
@@ -904,7 +904,7 @@ namespace MiaClient
 
             catch (Exception ex)
             {
-                MessageBox.Show($"Er is een fout gebeurt tijdens het opslaan van de offerte: {ex.Message}");
+                MessageBox.Show($"Er is een fout gebeurt tijdens het opslaan van de offerte: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

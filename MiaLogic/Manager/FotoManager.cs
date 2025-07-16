@@ -187,7 +187,14 @@ namespace MiaLogic.Manager
 
                     if (reader.Read())
                     {
-                        hoogsteId = Convert.ToInt32(reader["hoogste"]);
+                        if (reader["hoogste"] != System.DBNull.Value)
+                        {
+                            hoogsteId = Convert.ToInt32(reader["hoogste"]);
+                        }
+                        else
+                        {
+                            hoogsteId = 0;
+                        }
                     }
                 }
             }
