@@ -104,6 +104,12 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBeheerAankopers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerAankopers.Designer.cs">
+      <DependentUpon>frmBeheerAankopers.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBeheerKostenplaatsen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerAankopers.resx">
+      <DependentUpon>frmBeheerAankopers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerKostenplaatsen.resx">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
