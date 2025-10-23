@@ -43,8 +43,10 @@
             this.evolutieBudgettenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aankopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beheerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aankopersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +65,8 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afdelingenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dienstenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -176,6 +179,9 @@
             // beheerToolStripMenuItem
             // 
             this.beheerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aankopersToolStripMenuItem,
+            this.afdelingenToolStripMenuItem,
+            this.dienstenToolStripMenuItem,
             this.gebruikersToolStripMenuItem,
             this.gebruikslogToolStripMenuItem,
             this.kostenplaatsenToolStripMenuItem,
@@ -186,6 +192,13 @@
             this.beheerToolStripMenuItem.Click += new System.EventHandler(this.beheerToolStripMenuItem_Click);
             this.beheerToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.beheerToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
+            // 
+            // aankopersToolStripMenuItem
+            // 
+            this.aankopersToolStripMenuItem.Name = "aankopersToolStripMenuItem";
+            this.aankopersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.aankopersToolStripMenuItem.Text = "Aankopers";
+            this.aankopersToolStripMenuItem.Click += new System.EventHandler(this.aankopersToolStripMenuItem_Click);
             // 
             // gebruikersToolStripMenuItem
             // 
@@ -204,6 +217,13 @@
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             this.gebruikslogToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.gebruikslogToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
+            // 
+            // kostenplaatsenToolStripMenuItem
+            // 
+            this.kostenplaatsenToolStripMenuItem.Name = "kostenplaatsenToolStripMenuItem";
+            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.kostenplaatsenToolStripMenuItem.Text = "Kostenplaatsen";
+            this.kostenplaatsenToolStripMenuItem.Click += new System.EventHandler(this.kostenplaatsenToolStripMenuItem_Click);
             // 
             // parametersToolStripMenuItem
             // 
@@ -356,12 +376,19 @@
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
-            // kostenplaatsenToolStripMenuItem
+            // afdelingenToolStripMenuItem
             // 
-            this.kostenplaatsenToolStripMenuItem.Name = "kostenplaatsenToolStripMenuItem";
-            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
-            this.kostenplaatsenToolStripMenuItem.Text = "Kostenplaatsen";
-            this.kostenplaatsenToolStripMenuItem.Click += new System.EventHandler(this.kostenplaatsenToolStripMenuItem_Click);
+            this.afdelingenToolStripMenuItem.Name = "afdelingenToolStripMenuItem";
+            this.afdelingenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.afdelingenToolStripMenuItem.Text = "Afdelingen";
+            this.afdelingenToolStripMenuItem.Click += new System.EventHandler(this.afdelingenToolStripMenuItem_Click);
+            // 
+            // dienstenToolStripMenuItem
+            // 
+            this.dienstenToolStripMenuItem.Name = "dienstenToolStripMenuItem";
+            this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.dienstenToolStripMenuItem.Text = "Diensten";
+            this.dienstenToolStripMenuItem.Click += new System.EventHandler(this.dienstenToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -426,6 +453,9 @@
         private System.Windows.Forms.ToolStripMenuItem budgetSpreidingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evolutieBudgettenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kostenplaatsenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aankopersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afdelingenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dienstenToolStripMenuItem;
     }
 }
 

@@ -89,7 +89,7 @@
             this.lblOntwikkeldDoor.AutoSize = true;
             this.lblOntwikkeldDoor.Location = new System.Drawing.Point(496, 67);
             this.lblOntwikkeldDoor.Name = "lblOntwikkeldDoor";
-            this.lblOntwikkeldDoor.Size = new System.Drawing.Size(300, 357);
+            this.lblOntwikkeldDoor.Size = new System.Drawing.Size(300, 441);
             this.lblOntwikkeldDoor.TabIndex = 4;
             this.lblOntwikkeldDoor.Text = resources.GetString("lblOntwikkeldDoor.Text");
             // 
@@ -106,8 +106,9 @@
             // 
             // llblTaTu
             // 
+            this.llblTaTu.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.llblTaTu.AutoSize = true;
-            this.llblTaTu.Location = new System.Drawing.Point(513, 440);
+            this.llblTaTu.Location = new System.Drawing.Point(511, 525);
             this.llblTaTu.Name = "llblTaTu";
             this.llblTaTu.Size = new System.Drawing.Size(231, 21);
             this.llblTaTu.TabIndex = 6;
@@ -117,9 +118,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox1.Controls.Add(this.llblIconsByIcon8);
             this.groupBox1.Controls.Add(this.llblProjectLogoAttribution);
-            this.groupBox1.Location = new System.Drawing.Point(12, 490);
+            this.groupBox1.Location = new System.Drawing.Point(12, 549);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(802, 106);
             this.groupBox1.TabIndex = 7;
@@ -141,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 604);
+            this.ClientSize = new System.Drawing.Size(826, 662);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llblTaTu);
             this.Controls.Add(this.llblMuylenberg);

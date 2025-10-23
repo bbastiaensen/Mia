@@ -11,22 +11,14 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerAankopers : Form
+    public partial class frmBeheerDiensten : Form
     {
-        public frmBeheerAankopers()
+        public frmBeheerDiensten()
         {
             InitializeComponent();
         }
 
-        private void frmBeheerAankopers_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
-            //keren naast elkaar kan geopend worden.
-            e.Cancel = true;
-            ((Form)sender).Hide();
-        }
-
-        private void frmBeheerAankopers_Load(object sender, EventArgs e)
+        private void frmBeheerDiensten_Load(object sender, EventArgs e)
         {
             CreateUI();
         }
@@ -44,6 +36,14 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+        }
+
+        private void frmBeheerDiensten_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
+            //keren naast elkaar kan geopend worden.
+            e.Cancel = true;
+            ((Form)sender).Hide();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MiaClient
 {
-    partial class frmBeheerAankopers
+    partial class frmBeheerAfdelingen
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.SuspendLayout();
             // 
-            // frmBeheerAankopers
+            // frmBeheerAfdelingen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -38,10 +38,10 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.Name = "frmBeheerAankopers";
-            this.Text = "Beheer Aankopers";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerAankopers_FormClosing);
-            this.Load += new System.EventHandler(this.frmBeheerAankopers_Load);
+            this.Name = "frmBeheerAfdelingen";
+            this.Text = "Beheer Afdelingen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerAfdelingen_FormClosing);
+            this.Load += new System.EventHandler(this.frmBeheerAfdelingen_Load);
             this.ResumeLayout(false);
 
         }
