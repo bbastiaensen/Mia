@@ -39,6 +39,9 @@ namespace MiaClient
         frmGrafiekBudgetSpreiding frmGrafiekBudgetSpreiding;
         frmGrafiekEvolutieBudgetten frmGrafiekEvolutieBugetten;
         frmBeheerKostenplaatsen frmBeheerKostenplaatsen;
+        frmBeheerAankopers frmBeheerAankopers;
+        frmBeheerAfdelingen frmBeheerAfdelingen;
+        frmBeheerDiensten frmBeheerDiensten;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -500,6 +503,36 @@ namespace MiaClient
                 frmBeheerKostenplaatsen.MdiParent = this;
             }
             frmBeheerKostenplaatsen.Show();
+        }
+
+        private void aankopersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerAankopers == null)
+            {
+                frmBeheerAankopers = new frmBeheerAankopers();
+                frmBeheerAankopers.MdiParent = this;
+            }
+            frmBeheerAankopers.Show();
+        }
+
+        private void afdelingenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerAfdelingen == null)
+            {
+                frmBeheerAfdelingen = new frmBeheerAfdelingen();
+                frmBeheerAfdelingen.MdiParent = this;
+            }
+            frmBeheerAfdelingen.Show();
+        }
+
+        private void dienstenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerDiensten == null)
+            {
+                frmBeheerDiensten = new frmBeheerDiensten();
+                frmBeheerDiensten.MdiParent = this;
+            }
+            frmBeheerDiensten.Show();
         }
     }
 }
