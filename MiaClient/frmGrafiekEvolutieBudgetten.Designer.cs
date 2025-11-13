@@ -48,7 +48,6 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.DataSource = this.evoBudgGBindingSource;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(12, 12);
@@ -58,7 +57,7 @@
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Color = System.Drawing.Color.Red;
             series1.Legend = "Legend1";
-            series1.Name = "aangv. bedr";
+            series1.Name = "Aangevraagd bedrag";
             series1.XValueMember = "Jaar";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series1.YValueMembers = "TotaalBedrag";
@@ -67,7 +66,7 @@
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.Blue;
             series2.Legend = "Legend1";
-            series2.Name = "toegk. bedr";
+            series2.Name = "Toegekend bedrag";
             series2.XValueMember = "Jaar";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series2.YValueMembers = "SomVanToegekend";
