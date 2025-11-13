@@ -211,6 +211,7 @@ namespace MiaClient
             Color result = (Color)cc.ConvertFromString(colorStr);
             return result;
         }
+
         Color text = StringToColor(ParameterManager.GetParameterByCode("TekstExcel").Waarde);
         Color MaandL = StringToColor(ParameterManager.GetParameterByCode("MaandExcelL").Waarde);
         Color MaandD = StringToColor(ParameterManager.GetParameterByCode("MaandExcelD").Waarde);
@@ -297,7 +298,11 @@ namespace MiaClient
             ddlFinancieringsjaar.DisplayMember = "Financieringsjaar";
             ddlFinancieringsjaar.DataSource = AanvraagManager.GetAlleFinancieringsjaren();
 
-            btnExcel.Enabled = false;
+            if (string.IsNullOrEmpty(ddlFinancieringsjaar.SelectedValue.ToString()))
+            {
+                btnExcel.Enabled = false;
+            }
+            
         }
 
         private void frmGeplandeAankopen_FormClosing(object sender, FormClosingEventArgs e)
