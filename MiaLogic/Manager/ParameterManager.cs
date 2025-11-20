@@ -41,6 +41,7 @@ namespace MiaLogic.Manager
                         parameter.Code = reader["Code"].ToString();
                         parameter.Waarde = reader["Waarde"].ToString();
                         parameter.Eenheid = reader["Eenheid"].ToString();
+                        //parameters.verklaging = reader["Verklaring"].ToString();
 
                         parameters.Add(parameter);
                     }
@@ -140,6 +141,7 @@ namespace MiaLogic.Manager
                     objCmd.Parameters.AddWithValue("@Code", parameter.Code);
                     objCmd.Parameters.AddWithValue("@Waarde", parameter.Waarde);
                     objCmd.Parameters.AddWithValue("@Eenheid", parameter.Eenheid);
+                    objCmd.Parameters.AddWithValue("@Verklaring", parameter.Verklaring);
                     if (!insert)
                     {
                         objCmd.Parameters.AddWithValue("@Id", parameter.Id);

@@ -115,7 +115,7 @@ namespace MiaClient
 
             foreach (var p in items)
             {
-                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, t % 2 == 0);
+                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid,   t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
                 pi.Size = new System.Drawing.Size(868, 33);
@@ -161,10 +161,16 @@ namespace MiaClient
 
             txtIdDetail.Text = geselecteerd.Id.ToString();
             txtCodeDetail.Text = geselecteerd.Code;
+        
+      
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
 
+            //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
+            txtCodeDetail.ReadOnly = true;
+
             isNieuw = false;
+     
         }
 
         private void detailsWissen()
@@ -173,15 +179,21 @@ namespace MiaClient
             txtCodeDetail.Text = string.Empty;
             txtWaardeDetail.Text = string.Empty;
             txtEenheidDetail.Text = string.Empty;
+            // Ik wis hier ook de verklaring
+            txtVerklaring.Text = string.Empty ;
 
             isNieuw = true;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
         {
+
+
             //Detailformulier leegmaken voor nieuwe invoer.
             detailsWissen();
             txtCodeDetail.Focus();
+            // parameter Code kan nu bewerkt worden:
+            txtCodeDetail.ReadOnly = false;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -309,19 +321,26 @@ namespace MiaClient
                     MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+       
+        
                 if (isNieuw && !ParameterManager.ParameterExists(txtCodeDetail.Text))
                 {
                     MessageBox.Show("De code '" + txtCodeDetail.Text + "' bestaat al.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodeDetail.Text = string.Empty;
                     return;
                 }
+          
 
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
                 p.Code = txtCodeDetail.Text;
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
+                p.Verklaring = txtVerklaring.Text;
+               
+               
+                
+                
                 if (!isNieuw)
                 {
                     p.Id = Convert.ToInt32(txtIdDetail.Text);
