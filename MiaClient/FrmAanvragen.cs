@@ -20,9 +20,6 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
 
-        private List<Afdeling> afdeling;
-        private List<Dienst> diensten;
-
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
         bool filterPlanningsdatumVan = false;
@@ -776,28 +773,40 @@ namespace MiaClient
                 }
 
                 int row = 2;
+
                 foreach (var a in gefilterdeAanvragen)
                 {
-                    worksheet.Cells[row, 1].value = a.Aanvraagmoment;
-                    worksheet.Cells[row, 1].numberFormat = "dd-mm-YYYY";
-                    worksheet.Cells[row, 2] = a.Titel;
-                    worksheet.Cells[row, 3] = a.Gebruiker;
-                    worksheet.Cells[row, 4] = a.Financieringsjaar?.ToString() ?? "";
-                    worksheet.Cells[row, 5] = afdeling.FirstOrDefault(x => x.Id == a.AfdelingId)?.Naam ?? "";
-                    worksheet.Cells[row, 6] = diensten.FirstOrDefault(x => x.Id == a.DienstId)?.Naam ?? "";
-                    worksheet.Cells[row, 7] = a.Kostenplaats;
-                    worksheet.Cells[row, 8] = a.AantalStuk * a.PrijsIndicatieStuk;
-                    worksheet.Cells[row, 9] = a.StatusAanvraag;
-                    if(a.Planningsdatum == DateTime.MinValue)
+                    if (a.Aanvraagmoment != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 10].Value = "Nog niet gepland";
+                        worksheet.Cells[row, 1].Value = a.Aanvraagmoment.ToString("dd-mm-yyyy");
+                        //worksheet.Cells[row, 1].NumberFormat = "dd-mm-yyyy";
                     }
                     else
                     {
-                        worksheet.Cells[row, 10].Value = a.Planningsdatum;
-                        worksheet.Cells[row, 10].numberFormat = "dd-mm-YYYY";
+                        worksheet.Cells[row, 1].Value = "Niet beschikbaar";
                     }
-                        row++;
+
+                    worksheet.Cells[row, 2] = a.Titel;
+                    worksheet.Cells[row, 3] = a.Gebruiker;
+                    worksheet.Cells[row, 4] = a.Financieringsjaar?.ToString() ?? "";
+
+                    worksheet.Cells[row, 5] = AfdelingenManager.GetAfdelingNaamById(a.AfdelingId) ?? "Onbekend";
+                    worksheet.Cells[row, 6] = DienstenManager.GetDienstNaamById(a.DienstId) ?? "Onbekend";
+
+                    worksheet.Cells[row, 7] = a.Kostenplaats;
+                    worksheet.Cells[row, 8] = a.AantalStuk * a.PrijsIndicatieStuk;
+                    worksheet.Cells[row, 9] = a.StatusAanvraag;
+                    
+                    if (a.Planningsdatum != DateTime.MinValue)
+                    {
+                        worksheet.Cells[row, 10].Value = a.Planningsdatum.ToString("dd-mm-yyyy");
+                        //worksheet.Cells[row, 10].NumberFormat = "dd-mm-yyyy";
+                    }
+                    else
+                    {
+                        worksheet.Cells[row, 10].Value = "Nog niet gepland";
+                    }
+                    row++;
                 }
 
                 worksheet.Columns.AutoFit();

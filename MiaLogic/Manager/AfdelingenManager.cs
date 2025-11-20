@@ -77,5 +77,36 @@ namespace MiaLogic.Manager
             }
             return afdeling;
         }
+
+        public static string GetAfdelingNaamById(int id)
+        {
+            string naam = "onbekend";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT Naam FROM Afdeling WHERE Id = @Id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            naam = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Fout bij het ophalen van de Afdeling naam" + ex.Message);
+            }
+            return naam;
+        }
     }
 }
