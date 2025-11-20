@@ -187,6 +187,9 @@ namespace MiaClient
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             ParameterBewaar();
+            StyleParametersOpslaan();
+            StyleParametersOpslaanNaarDatabase();
+            RefreshAllForms();
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
@@ -371,7 +374,7 @@ namespace MiaClient
                 }
 
                 ShowPages();
-
+                
                 if (huidigePage < aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -552,5 +555,90 @@ namespace MiaClient
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
+
+      
+
+        private void StyleParametersOpslaan()
+        {
+            // Dit verandert de styleparameters naar de juiste hexadecimale kleurcode.
+            StyleParameters.Achtergrondkleur = ColorTranslator.FromHtml(ParameterWaarde("Achtergrondkleur"));
+            StyleParameters.ButtonBack = ColorTranslator.FromHtml(ParameterWaarde("ButtonBack"));
+            StyleParameters.Buttontext = ColorTranslator.FromHtml(ParameterWaarde("ButtonText"));
+            StyleParameters.AccentKleur = ColorTranslator.FromHtml(ParameterWaarde("AccentKleur"));
+            StyleParameters.ListItemColor = ColorTranslator.FromHtml(ParameterWaarde("ListItemColor"));
+            StyleParameters.AltListItemColor = ColorTranslator.FromHtml(ParameterWaarde("AltListItemColor"));
+            StyleParameters.AltButtons = ParameterWaarde("AltButtons") == "true";
+
+
+            string logoK = ParameterWaarde("LogoK");
+            if (!string.IsNullOrEmpty(logoK) && System.IO.File.Exists(logoK))
+                StyleParameters.LogoK = Image.FromFile(logoK);
+
+            string logoG = ParameterWaarde("LogoG");
+            if (!string.IsNullOrEmpty(logoG) && System.IO.File.Exists(logoG))
+                StyleParameters.LogoG = Image.FromFile(logoG);
+        }
+
+        private string ParameterWaarde(string code)
+        {
+            // Dit geeft de Waarde van een parameter (code).
+            var parameter = ParameterManager.GetParameterByCode(code);
+            if (parameter != null)
+            {
+                return parameter.Waarde;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void StyleParametersOpslaanNaarDatabase()
+        {
+            SaveParam("Achtergrondkleur", ColorTranslator.ToHtml(StyleParameters.Achtergrondkleur));
+            SaveParam("ButtonBack", ColorTranslator.ToHtml(StyleParameters.ButtonBack));
+            SaveParam("ButtonText", ColorTranslator.ToHtml(StyleParameters.Buttontext));
+            SaveParam("AccentKleur", ColorTranslator.ToHtml(StyleParameters.AccentKleur));
+            SaveParam("ListItemColor", ColorTranslator.ToHtml(StyleParameters.ListItemColor));
+            SaveParam("AltListItemColor", ColorTranslator.ToHtml(StyleParameters.AltListItemColor));
+            SaveParam("AltButtons", StyleParameters.AltButtons ? "true" : "false");
+
+            SaveParam("LogoK", ParameterWaarde("LogoK")); 
+            SaveParam("LogoG", ParameterWaarde("LogoG"));
+        }
+
+        private void SaveParam(string code, string waarde)
+        {
+            var p = ParameterManager.GetParameterByCode(code);
+
+            if (p != null)
+            {
+                p.Waarde = waarde;
+                ParameterManager.SaveParameter(p, false);
+            }
+        }
+
+        public void RefreshAllForms()
+        {
+            foreach (Form frm in Application.OpenForms)
+            {
+                // Achtergrondkleur toepassen
+                frm.BackColor = StyleParameters.Achtergrondkleur; 
+
+                // Alle controls in de form aanpassen
+                foreach (Control c in frm.Controls)
+                {
+                    if (c is Button btn)
+                    {
+                        btn.BackColor = StyleParameters.ButtonBack; 
+                        btn.ForeColor = StyleParameters.Buttontext;
+                        
+                    }
+                }
+
+                frm.Refresh();
+            }
+        }
+
     }
 }
