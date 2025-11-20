@@ -73,7 +73,7 @@ namespace MiaClient
         }
 
 
-        private void CreateUI()
+        public void CreateUI()
         {
 
             //Deel 1 is hard-coded

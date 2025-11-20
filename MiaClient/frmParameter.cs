@@ -69,7 +69,7 @@ namespace MiaClient
                 btnBewaren.FlatAppearance.BorderSize = 0;
                 btnBewaren.BackColor = StyleParameters.ButtonBack;
                 btnBewaren.ForeColor = StyleParameters.Buttontext;
-                
+
                 btnNieuw.BackColor = StyleParameters.ButtonBack;
 
                 btnNieuw.ForeColor = StyleParameters.Buttontext;
@@ -139,7 +139,7 @@ namespace MiaClient
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
                 p.Id = geselecteerd.Id;
- 
+
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
@@ -374,7 +374,7 @@ namespace MiaClient
                 }
 
                 ShowPages();
-                
+
                 if (huidigePage < aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
@@ -556,7 +556,7 @@ namespace MiaClient
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
 
-      
+
 
         private void StyleParametersOpslaan()
         {
@@ -603,7 +603,7 @@ namespace MiaClient
             SaveParam("AltListItemColor", ColorTranslator.ToHtml(StyleParameters.AltListItemColor));
             SaveParam("AltButtons", StyleParameters.AltButtons ? "true" : "false");
 
-            SaveParam("LogoK", ParameterWaarde("LogoK")); 
+            SaveParam("LogoK", ParameterWaarde("LogoK"));
             SaveParam("LogoG", ParameterWaarde("LogoG"));
         }
 
@@ -623,22 +623,33 @@ namespace MiaClient
             foreach (Form frm in Application.OpenForms)
             {
                 // Achtergrondkleur toepassen
-                frm.BackColor = StyleParameters.Achtergrondkleur; 
+                frm.BackColor = StyleParameters.Achtergrondkleur;
 
-                // Alle controls in de form aanpassen
-                foreach (Control c in frm.Controls)
+                if (frm.Name == "mdiMIA")
                 {
-                    if (c is Button btn)
+                    foreach (Control ctl in frm.Controls)
                     {
-                        btn.BackColor = StyleParameters.ButtonBack; 
-                        btn.ForeColor = StyleParameters.Buttontext;
-                        
+                        if (ctl is MdiClient)
+                        {
+                            ctl.BackColor = StyleParameters.Achtergrondkleur;
+                        }
                     }
+
+                    // Alle controls in de form aanpassen
+                    foreach (Control c in frm.Controls)
+                    {
+                        if (c is Button btn)
+                        {
+                            btn.BackColor = StyleParameters.ButtonBack;
+                            btn.ForeColor = StyleParameters.Buttontext;
+
+                        }
+                    }
+
+                    frm.Refresh();
                 }
-
-                frm.Refresh();
             }
-        }
 
+        }
     }
 }

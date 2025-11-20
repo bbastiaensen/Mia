@@ -132,7 +132,7 @@ namespace MiaClient
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
             StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
-        private void stelGrafischeWaardeIn()
+        public void CreateUI()
         {
 
             toolStrip.BackColor = StyleParameters.AccentKleur;
@@ -346,7 +346,7 @@ namespace MiaClient
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
 
             MenubalkSamenstellen();
-            stelGrafischeWaardeIn();
+            CreateUI();
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)

@@ -1047,7 +1047,7 @@ namespace MiaClient
 
         }
 
-        private void CreateUI()
+        public void CreateUI()
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
             tabControl_Aanvraagformulier.BackColor = this.BackColor;

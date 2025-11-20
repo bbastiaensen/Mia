@@ -41,7 +41,7 @@ namespace MiaClient
             cmbFinancieringsjaar.DataSource = finJaren;
         }
 
-        private void CreateUI()
+        public void CreateUI()
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
 
