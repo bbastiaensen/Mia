@@ -47,9 +47,8 @@
 
                 cmbFinancieringsjaar.Items.AddRange(jaren.Select(j => j.ToString()).ToArray());
 
-                // Selecteer automatisch het laatste (recentste) jaar
-                if (cmbFinancieringsjaar.Items.Count > 0)
-                    cmbFinancieringsjaar.SelectedIndex = cmbFinancieringsjaar.Items.Count - 1;
+                // **Verwijder automatische selectie van laatste jaar**
+                cmbFinancieringsjaar.SelectedIndex = -1; // geen vooraf geselecteerd jaar
             }
             else
             {
@@ -59,9 +58,10 @@
                       "MIA – Geen financieringsjaren",
                       MessageBoxButtons.OK,
                       MessageBoxIcon.Information
-                  );
+                );
             }
         }
+
 
 
 

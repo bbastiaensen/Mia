@@ -37,21 +37,26 @@
             // 
             // cmbFinancieringsjaar
             // 
+            this.cmbFinancieringsjaar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmbFinancieringsjaar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbFinancieringsjaar.FormattingEnabled = true;
-            this.cmbFinancieringsjaar.Location = new System.Drawing.Point(251, 26);
+            this.cmbFinancieringsjaar.Location = new System.Drawing.Point(12, 12);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
-            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(121, 33);
+            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(64, 33);
             this.cmbFinancieringsjaar.TabIndex = 0;
             this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
             // btnGenereer
             // 
-            this.btnGenereer.Location = new System.Drawing.Point(406, 25);
+            this.btnGenereer.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGenereer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenereer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGenereer.Location = new System.Drawing.Point(93, 12);
             this.btnGenereer.Name = "btnGenereer";
             this.btnGenereer.Size = new System.Drawing.Size(119, 33);
             this.btnGenereer.TabIndex = 1;
             this.btnGenereer.Text = "Genereren";
-            this.btnGenereer.UseVisualStyleBackColor = true;
+            this.btnGenereer.UseVisualStyleBackColor = false;
             this.btnGenereer.Click += new System.EventHandler(this.btnGenereer_Click);
             // 
             // dataGridView
