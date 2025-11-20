@@ -54,7 +54,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.lblPages = new System.Windows.Forms.Label();
-            this.txtVerklaring = new System.Windows.Forms.TextBox();
+            this.txtVerklaringDetail = new System.Windows.Forms.TextBox();
             this.lblVerklaring = new System.Windows.Forms.Label();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +156,7 @@
             this.pnlParameters.Name = "pnlParameters";
             this.pnlParameters.Size = new System.Drawing.Size(886, 311);
             this.pnlParameters.TabIndex = 1;
+            this.pnlParameters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlParameters_Paint);
             // 
             // txtCodeDetail
             // 
@@ -313,13 +314,13 @@
             this.lblPages.TabIndex = 43;
             this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtVerklaring
+            // txtVerklaringDetail
             // 
-            this.txtVerklaring.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVerklaring.Location = new System.Drawing.Point(149, 635);
-            this.txtVerklaring.Name = "txtVerklaring";
-            this.txtVerklaring.Size = new System.Drawing.Size(744, 29);
-            this.txtVerklaring.TabIndex = 44;
+            this.txtVerklaringDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVerklaringDetail.Location = new System.Drawing.Point(149, 635);
+            this.txtVerklaringDetail.Name = "txtVerklaringDetail";
+            this.txtVerklaringDetail.Size = new System.Drawing.Size(744, 29);
+            this.txtVerklaringDetail.TabIndex = 44;
             // 
             // lblVerklaring
             // 
@@ -336,7 +337,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 756);
-            this.Controls.Add(this.txtVerklaring);
+            this.Controls.Add(this.txtVerklaringDetail);
             this.Controls.Add(this.lblVerklaring);
             this.Controls.Add(this.lblPages);
             this.Controls.Add(this.btnNext);
@@ -401,7 +402,7 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Label lblPages;
-        private System.Windows.Forms.TextBox txtVerklaring;
+        private System.Windows.Forms.TextBox txtVerklaringDetail;
         private System.Windows.Forms.Label lblVerklaring;
     }
 }

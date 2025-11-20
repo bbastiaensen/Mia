@@ -23,6 +23,7 @@ namespace MiaClient
         bool filterCode = false;
         bool filterWaarde = false;
         bool filterEenheid = false;
+        bool filterVerklaring = true;
         bool isNieuw = true;
 
         int aantalListItems = 10;
@@ -123,10 +124,33 @@ namespace MiaClient
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
                 this.pnlParameters.Controls.Add(pi);
+                pi.MouseEnter += Pi_MouseEnter;
+                pi.MouseLeave += Pi_MouseLeave;
 
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
+            }
+        }
+
+
+        //methode hover over de para-items
+        private void Pi_MouseEnter(object sender, EventArgs e)
+        {
+            var item = sender as ParameterItem;
+            if (item != null)
+            {
+                // Voorbeeld: achtergrondkleur wijzigen
+                item.BackColor = Color.LightYellow;
+            }
+        }
+        private void Pi_MouseLeave(object sender, EventArgs e)
+        {
+            var item = sender as ParameterItem;
+            if (item != null)
+            {
+                // Voorbeeld: achtergrondkleur wijzigen
+                item.BackColor = Color.LightBlue;
             }
         }
 
@@ -165,6 +189,7 @@ namespace MiaClient
       
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
+            
 
             //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
@@ -179,8 +204,8 @@ namespace MiaClient
             txtCodeDetail.Text = string.Empty;
             txtWaardeDetail.Text = string.Empty;
             txtEenheidDetail.Text = string.Empty;
-            // Ik wis hier ook de verklaring
-            txtVerklaring.Text = string.Empty ;
+            
+            txtVerklaringDetail.Text = string.Empty;
 
             isNieuw = true;
         }
@@ -199,6 +224,7 @@ namespace MiaClient
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             ParameterBewaar();
+        
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
@@ -249,6 +275,7 @@ namespace MiaClient
                 {
                     items = items.Where(p => p.Eenheid.ToLower().Contains(txtEenheid.Text.ToLower())).ToList();
                 }
+           
             }
 
             //Leegmaken detailvelden
@@ -336,7 +363,7 @@ namespace MiaClient
                 p.Code = txtCodeDetail.Text;
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
-                p.Verklaring = txtVerklaring.Text;
+                p.Verklaring = txtVerklaringDetail.Text;
                
                
                 
@@ -352,7 +379,7 @@ namespace MiaClient
 
                 parameters = FilteredParameters(ParameterManager.GetParameters(), filterCode, filterWaarde, filterEenheid);
                 StartPaging();
-
+                detailsWissen();
                 MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -570,6 +597,11 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+
+        private void pnlParameters_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

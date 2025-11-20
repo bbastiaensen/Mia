@@ -41,7 +41,7 @@ namespace MiaLogic.Manager
                         parameter.Code = reader["Code"].ToString();
                         parameter.Waarde = reader["Waarde"].ToString();
                         parameter.Eenheid = reader["Eenheid"].ToString();
-                        //parameters.verklaging = reader["Verklaring"].ToString();
+                        parameter.Verklaring = reader["Verklaring"].ToString();
 
                         parameters.Add(parameter);
                     }
@@ -75,6 +75,7 @@ namespace MiaLogic.Manager
                         parameter.Code = reader["Code"].ToString();
                         parameter.Waarde = reader["Waarde"].ToString();
                         parameter.Eenheid = reader["Eenheid"].ToString();
+                        parameter.Verklaring = reader["Verklaring"].ToString();
                     }
                 }
             }
@@ -106,6 +107,7 @@ namespace MiaLogic.Manager
                         parameter.Code = reader["Code"].ToString();
                         parameter.Waarde = reader["Waarde"].ToString();
                         parameter.Eenheid = reader["Eenheid"].ToString();
+                        parameter.Verklaring = reader["Verklaring"].ToString();
                     }
                 }
             }
@@ -130,11 +132,11 @@ namespace MiaLogic.Manager
                     string sql = string.Empty;
                     if (insert)
                     {
-                        sql = "insert into Parameter(Code, Waarde, Eenheid) values(@Code, @Waarde, @Eenheid);";
+                        sql = "insert into Parameter(Code, Waarde, Eenheid, Verklaring) values(@Code, @Waarde, @Eenheid, @Verklaring);";
                     }
                     else
                     {
-                        sql = "update Parameter set Code=@Code, Waarde=@Waarde, Eenheid=@Eenheid where Id = @Id";
+                        sql = "update Parameter set Code=@Code, Waarde=@Waarde, Eenheid=@Eenheid, Verklaring=@Verklaring where Id = @Id";
                     }
 
                     objCmd.CommandText = sql;

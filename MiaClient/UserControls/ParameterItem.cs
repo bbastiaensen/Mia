@@ -11,6 +11,8 @@ namespace MiaClient.UserControls
         public string Code { get; set; }
         public string Waarde { get; set; }
         public string Eenheid { get; set; }
+
+        
         public Boolean Even { get; set; }
 
         public event EventHandler ParameterSelected;
@@ -29,6 +31,7 @@ namespace MiaClient.UserControls
             Code = code;
             Waarde = waarde;
             Eenheid = eenheid;
+       
             Even = even;
             SetParameterWaarden();
         }
@@ -39,6 +42,7 @@ namespace MiaClient.UserControls
             lblCode.Text = Code;
             lblWaarde.Text = Waarde;
             lblEenheid.Text = Eenheid;
+            
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
