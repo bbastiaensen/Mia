@@ -27,28 +27,13 @@ namespace MiaClient
         {
             List<EvolutieBudgetten> alleEvoluties = AanvraagManager.GetEvolutieBudgetten();
 
-
-            // TODO: This line of code loads data into the 'evo_Budg_DataSet.Evo_Budg_G' table. You can move, or remove it, as needed.
-            //this.evo_Budg_G_TableAdapter.Fill(this.evo_Budg_DataSet.Evo_Budg_G);
-
-
-            //chart1.Series["Aangevraagd bedrag"].XValueMember = "Financieringsjaar";
-            //chart1.Series["Aangevraagd bedrag"].YValueMembers = "TotaalbedragAlle";
-
-            //chart1.Series["Toegekend bedrag"].XValueMember = "Financieringsjaar";
-            //chart1.Series["Aangevraagd bedrag"].YValueMembers = "TotaalbedragAlle";
-
             foreach (var evolutie in alleEvoluties)
             {
-                chart1.Series["Aangevraagd bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragAlle);
-                chart1.Series["Toegekend bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragBekrachtigd);
+                chrtEvolutieBudgetten.Series["Aangevraagd bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragAlle);
+                chrtEvolutieBudgetten.Series["Toegekend bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragBekrachtigd);
             }
 
-            
-
-            //chart1.DataSource = alleEvoluties;
-
-            chart1.Dock = DockStyle.Fill; 
+            chrtEvolutieBudgetten.Dock = DockStyle.Fill; 
             CreateUI();
         }
 
@@ -63,6 +48,8 @@ namespace MiaClient
             this.BackColor = StyleParameters.Achtergrondkleur;
 
             this.Icon = imgFormIcon;
+
+            
         }
     }
 }
