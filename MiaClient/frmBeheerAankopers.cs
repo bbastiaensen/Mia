@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,12 @@ namespace MiaClient
 {
     public partial class frmBeheerAankopers : Form
     {
+        List<Aankoper> aankopers;
+
+        int xPos = 10;
+        int yPos = 20;
+        int grpHeight = 26;
+        bool IsNew = false;
         public frmBeheerAankopers()
         {
             InitializeComponent();
@@ -29,6 +37,7 @@ namespace MiaClient
         private void frmBeheerAankopers_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLstAankopers();
         }
 
         private void CreateUI()
@@ -44,6 +53,61 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+        }
+        public void BindLstAankopers()
+        {
+
+            aankopers = AankoperManager.GetAankoper();
+            LstAankopers.DisplayMember = "FullName";
+            
+            LstAankopers.ValueMember = "Id";
+            LstAankopers.DataSource= aankopers;
+        }
+
+        private void LstAankopers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Aankoper aankoper  = (Aankoper)LstAankopers.SelectedItem;
+
+            txtId.Text = Convert.ToString(aankoper.Id);
+            txtVoornaam.Text = aankoper.Voornaam;
+            if (txtAchternaam.Text == ) 
+            {
+                aankoper.Achternaam = null;
+            }
+            else
+            {
+                txtAchternaam.Text = aankoper.Achternaam;
+            }
+
+                
+            if (aankoper.actief)
+            {
+                checkActief.Checked = true;
+            }
+            
+        }
+
+        private void btnNieuw_Click(object sender, EventArgs e)
+        {
+            txtAchternaam.Text = string.Empty;
+            txtId.Text= string.Empty;
+            txtVoornaam.Text= string.Empty;
+            checkActief.Checked= false;
+            IsNew = true;
+        }
+
+        private void btnBewaren_Click(object sender, EventArgs e)
+        {
+            Aankoper a = new Aankoper();
+            a.Voornaam = txtVoornaam.Text;
+            a.Achternaam = txtAchternaam.Text;
+            a.actief = checkActief.Checked;
+            a.Id = AankoperManager.SaveAankoper(a, IsNew);
+
+            BindLstAankopers();
+
+            LstAankopers.SelectedValue = a.Id;
+            IsNew = false;
         }
     }
 }

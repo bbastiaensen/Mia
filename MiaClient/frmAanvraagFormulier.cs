@@ -295,7 +295,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetActiveAankopers();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.DisplayMember = "FullName";
@@ -1319,5 +1319,7 @@ namespace MiaClient
           
 
         }
+
+ 
     }
 }

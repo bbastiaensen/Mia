@@ -242,6 +242,7 @@ namespace MiaClient
             this.ddlWieKooptHet.Name = "ddlWieKooptHet";
             this.ddlWieKooptHet.Size = new System.Drawing.Size(270, 36);
             this.ddlWieKooptHet.TabIndex = 2;
+            
             // 
             // ddlKostenplaats
             // 
