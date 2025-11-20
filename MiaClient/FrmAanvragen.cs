@@ -9,6 +9,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace MiaClient
 {
@@ -16,7 +19,10 @@ namespace MiaClient
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
-       
+
+        private List<Afdeling> afdeling;
+        private List<Dienst> diensten;
+
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
         bool filterPlanningsdatumVan = false;
@@ -56,6 +62,7 @@ namespace MiaClient
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         Image imgNieuweAanvraag = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "nieuweAanvraag.png"));
+        Image imgExportToExcel = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "excelExport.png"));
         Icon imgFormIcon = Icon.FromHandle((new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png")).GetHicon()));
 
         public FrmAanvragen()
@@ -156,6 +163,10 @@ namespace MiaClient
             btnNieuweAanvraag.BackgroundImage = imgNieuweAanvraag;
             btnNieuweAanvraag.BackgroundImageLayout = ImageLayout.Stretch;
             btnNieuweAanvraag.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+            btnExportToExcel.BackgroundImage = imgExportToExcel;
+            btnExportToExcel.BackgroundImageLayout = ImageLayout.Stretch;
+            btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
             this.Icon = imgFormIcon;
             
@@ -732,6 +743,85 @@ namespace MiaClient
         public void txtFinancieringsjaar_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !IsGeldigFinancieringsjaar(e.KeyChar);
+        }
+
+        private void btnExportToExcel_Click(object sender, EventArgs e)
+        {
+            
+            //TODO Label: even wachten, connectie
+
+            try
+            {
+                var app = new Excel.Application();
+                app.Visible = false;
+                object Nothing = Type.Missing;
+                Excel.Workbook workbook = app.Workbooks.Add(Nothing);
+                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                List<Aanvraag> gefilterdeAanvragen = aanvragen;
+
+                if (gefilterdeAanvragen == null || gefilterdeAanvragen.Count == 0)
+                {
+                    MessageBox.Show("Geen aanvragen gevonden om te exporteren.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string[] header = new string[] { "Aanvraagdatum", "Titel", "Aanvrager", "Financieringsjaar", "Afdeling", "Dienst", "Kostenplaats", "Aangevraagd bedrag", "Status aanvraag", "Planningsdatum", };
+
+                for (int i = 0; i < header.Length; i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = header[i];
+                    worksheet.Cells[1, i + 1].Font.Bold = true;
+                    worksheet.Cells[1, i + 1].Interior.Color = System.Drawing.Color.LightGray;
+                }
+
+                int row = 2;
+                foreach (var a in gefilterdeAanvragen)
+                {
+                    worksheet.Cells[row, 1].value = a.Aanvraagmoment;
+                    worksheet.Cells[row, 1].numberFormat = "dd-mm-YYYY";
+                    worksheet.Cells[row, 2] = a.Titel;
+                    worksheet.Cells[row, 3] = a.Gebruiker;
+                    worksheet.Cells[row, 4] = a.Financieringsjaar?.ToString() ?? "";
+                    worksheet.Cells[row, 5] = afdeling.FirstOrDefault(x => x.Id == a.AfdelingId)?.Naam ?? "";
+                    worksheet.Cells[row, 6] = diensten.FirstOrDefault(x => x.Id == a.DienstId)?.Naam ?? "";
+                    worksheet.Cells[row, 7] = a.Kostenplaats;
+                    worksheet.Cells[row, 8] = a.AantalStuk * a.PrijsIndicatieStuk;
+                    worksheet.Cells[row, 9] = a.StatusAanvraag;
+                    if(a.Planningsdatum == DateTime.MinValue)
+                    {
+                        worksheet.Cells[row, 10].Value = "Nog niet gepland";
+                    }
+                    else
+                    {
+                        worksheet.Cells[row, 10].Value = a.Planningsdatum;
+                        worksheet.Cells[row, 10].numberFormat = "dd-mm-YYYY";
+                    }
+                        row++;
+                }
+
+                worksheet.Columns.AutoFit();
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.FileName = "AanvragenExport";
+                saveFileDialog.Filter = "Excel bestanden (*.xlsx)|*.xlsx";
+                saveFileDialog.FilterIndex = 1;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) 
+                { 
+                    worksheet.SaveAs(saveFileDialog.FileName);
+                    workbook.Close(false, saveFileDialog.FileName, false);
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(worksheet);
+                    app.Quit();
+
+                    MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

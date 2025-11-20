@@ -80,6 +80,7 @@
             this.btnLast = new System.Windows.Forms.Button();
             this.lblPages = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnExportToExcel = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -632,11 +633,26 @@
             this.label9.Text = "ingsjaar";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnExportToExcel
+            // 
+            this.btnExportToExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportToExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExportToExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExportToExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExportToExcel.Location = new System.Drawing.Point(1078, 13);
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
+            this.btnExportToExcel.TabIndex = 43;
+            this.btnExportToExcel.UseVisualStyleBackColor = false;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
+            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1327, 763);
+            this.Controls.Add(this.btnExportToExcel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblPages);
             this.Controls.Add(this.btnNext);
@@ -734,5 +750,6 @@
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Label lblPages;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnExportToExcel;
     }
 }
