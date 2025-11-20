@@ -146,7 +146,7 @@ namespace MiaLogic.Manager
                     {
 
                         objCmd.CommandText = "update Aankoper set Voornaam = @Voornaam, ";
-                        objCmd.CommandText += "Achternaam = @Achternaam where Id = @Id";
+                        objCmd.CommandText += "Achternaam = @Achternaam , Actief = @Actief where Id = @Id";
                         objCmd.Parameters.AddWithValue("@Id", aankoper.Id);
                     }
                     objCmd.Parameters.AddWithValue("@Voornaam", aankoper.Voornaam);
@@ -164,7 +164,7 @@ namespace MiaLogic.Manager
                     {
                         return aankoper.Id;
                     }
-                   
+
                 }
             }
         }
@@ -195,6 +195,27 @@ namespace MiaLogic.Manager
                     }
                 }
 
+            }
+        }
+        public static void DeleteAankoper(Aankoper aankoper)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from Aankoper ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", aankoper.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
             }
         }
     }

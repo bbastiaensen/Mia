@@ -21,6 +21,7 @@ namespace MiaClient
         int yPos = 20;
         int grpHeight = 26;
         bool IsNew = false;
+        
         public frmBeheerAankopers()
         {
             InitializeComponent();
@@ -62,52 +63,91 @@ namespace MiaClient
             
             LstAankopers.ValueMember = "Id";
             LstAankopers.DataSource= aankopers;
+            
         }
 
         private void LstAankopers_SelectedIndexChanged(object sender, EventArgs e)
         {
             Aankoper aankoper  = (Aankoper)LstAankopers.SelectedItem;
 
-            txtId.Text = Convert.ToString(aankoper.Id);
-            txtVoornaam.Text = aankoper.Voornaam;
-            if (txtAchternaam.Text == ) 
+           
+            if (aankoper != null) 
             {
-                aankoper.Achternaam = null;
-            }
-            else
-            {
+                txtId.Text = Convert.ToString(aankoper.Id);
+                txtVoornaam.Text = aankoper.Voornaam;
                 txtAchternaam.Text = aankoper.Achternaam;
-            }
+                if (aankoper.actief)
+                {
+                    checkActief.Checked = true;
+                }
+                else
+                {
+                    checkActief.Checked = false;
+                }
 
-                
-            if (aankoper.actief)
-            {
-                checkActief.Checked = true;
+                    IsNew = false;
             }
-            
+           
         }
-
-        private void btnNieuw_Click(object sender, EventArgs e)
+        private void ClearFields()
         {
             txtAchternaam.Text = string.Empty;
-            txtId.Text= string.Empty;
-            txtVoornaam.Text= string.Empty;
-            checkActief.Checked= false;
+            txtId.Text = string.Empty;
+            txtVoornaam.Text = string.Empty;
+            checkActief.Checked = false;
             IsNew = true;
+        }
+        private void btnNieuw_Click(object sender, EventArgs e)
+        {
+            ClearFields();
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             Aankoper a = new Aankoper();
+            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam = txtVoornaam.Text;
             a.Achternaam = txtAchternaam.Text;
-            a.actief = checkActief.Checked;
+            if (checkActief.Checked)
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief= false;
+            }
+          
+
             a.Id = AankoperManager.SaveAankoper(a, IsNew);
 
             BindLstAankopers();
 
-            LstAankopers.SelectedValue = a.Id;
+            LstAankopers.SelectedValue = a.Id.ToString();
             IsNew = false;
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            Aankoper a = new Aankoper();
+            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
+            a.Voornaam= txtVoornaam.Text;
+            a.Achternaam= txtAchternaam.Text;
+            if (checkActief.Checked) 
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief= false;
+            }
+
+            AankoperManager.DeleteAankoper(a);
+
+            BindLstAankopers();
+            ClearFields();
+
+
+
         }
     }
 }
