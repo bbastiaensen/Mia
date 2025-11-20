@@ -23,6 +23,7 @@ namespace MiaClient
         List<Aanvraag> aanvragen;
         public event EventHandler AanvraagBewaard;
         public event EventHandler GoedkeurItemChanged;
+        public event EventHandler StatusAanvraagGewijzigd;
         GoedkeurItem GoedkeurItem;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
@@ -131,6 +132,11 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
 
+            //TODO: frmAanvragen melden dat er een refresh moet gebeuren.
+            if (StatusAanvraagGewijzigd != null)
+            {
+                StatusAanvraagGewijzigd(this, null);
+            }
         }
 
         public void frmGoedkeuring_Load(object sender, EventArgs e)

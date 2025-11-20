@@ -16,6 +16,8 @@ namespace MiaClient
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
+
+        frmGoedkeuring frmGoedkeuring = null;
        
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -62,7 +64,18 @@ namespace MiaClient
         {
             InitializeComponent();        
         }
-        
+
+        public FrmAanvragen(frmGoedkeuring frmGoedkeuring)
+        {
+            this.frmGoedkeuring = frmGoedkeuring;
+            if (this.frmGoedkeuring != null)
+            {
+
+            }
+            InitializeComponent();
+        }
+
+
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
             //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staaat.
