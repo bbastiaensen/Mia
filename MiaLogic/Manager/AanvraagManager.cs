@@ -2135,6 +2135,197 @@ namespace MiaLogic.Manager
             return returnlist;
         }
 
+        public static List<Aanvraag> GetAanvragenByFinancieringsjaar(string financieringjaar)
+        {
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend, a.AankoperId ";
+                    sql += "from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId ";
+                    sql += "where Financieringsjaar = @Financieringsjaar ";
+                    sql += "order by a.Aanvraagmoment desc";
+
+                    objCmd.CommandText = sql;
+                    objCmd.Parameters.AddWithValue("@Financieringsjaar", financieringjaar);
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        a.AankoperId = Convert.ToInt32(objRea["AankoperId"]);
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist;
+        }
+
+        public static List<EvolutieBudget> GetTotaalBedragPerFinancieringsjaar()
+        {
+            List<EvolutieBudget> evoluties = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select year(Financieringsjaar) as Jaar, CAST(SUM(AantalStuk * PrijsIndicatieStuk) AS DECIMAL(18, 2)) AS TotaalBedrag ";
+                    sql += "from Aanvraag ";
+                    sql += "group by year(Financieringsjaar) ";
+                    sql += "order by Jaar";
+
+                    objCmd.CommandText = sql;
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    EvolutieBudget evolutie = null; ;
+
+                    while (objRea.Read())
+                    {
+                        if (evolutie == null)
+                        {
+                            evoluties = new List<EvolutieBudget>();
+                        }
+                        evolutie = new EvolutieBudget();
+                        evolutie.Financieringsjaar = Convert.ToInt32(objRea["Jaar"]);
+                        evolutie.Totaalbedrag = Convert.ToDecimal(objRea["TotaalBedrag"]);
+                        
+                        evoluties.Add(evolutie);
+                    }
+                }
+            }
+
+            return evoluties;
+        }
+
+        public static List<EvolutieBudget> GetTotaalBedragPerFinancieringsjaarEnBekrachtigd()
+        {
+            List<EvolutieBudget> evoluties = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    string sql = "select year(Financieringsjaar) as Jaar, CAST(SUM(AantalStuk * PrijsIndicatieStuk) AS DECIMAL(18, 2)) AS TotaalBedrag ";
+                    sql += "from Aanvraag ";
+                    sql += "where StatusAanvraagId = 4 ";
+                    sql += "group by year(Financieringsjaar) ";
+                    sql += "order by Jaar";
+
+                    objCmd.CommandText = sql;
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    EvolutieBudget evolutie = null; ;
+
+                    while (objRea.Read())
+                    {
+                        if (evolutie == null)
+                        {
+                            evoluties = new List<EvolutieBudget>();
+                        }
+                        evolutie = new EvolutieBudget();
+                        evolutie.Financieringsjaar = Convert.ToInt32(objRea["Jaar"]);
+                        evolutie.Totaalbedrag = Convert.ToDecimal(objRea["TotaalBedrag"]);
+
+                        evoluties.Add(evolutie);
+                    }
+                }
+            }
+
+            return evoluties;
+        }
+
+        public static List<EvolutieBudgetten> GetEvolutieBudgetten()
+        {
+            List<EvolutieBudgetten> budgetten = null;
+
+            List<EvolutieBudget> alle = GetTotaalBedragPerFinancieringsjaar();
+            List<EvolutieBudget> bekrachtigd = GetTotaalBedragPerFinancieringsjaarEnBekrachtigd();
+
+            foreach (var evolutie in alle)
+            {
+                EvolutieBudget evolutieBekrachtigd = bekrachtigd.Find(ev => ev.Financieringsjaar == evolutie.Financieringsjaar);
+
+                if (budgetten == null)
+                {
+                    budgetten = new List<EvolutieBudgetten>();
+                }
+
+                EvolutieBudgetten thisEv = new EvolutieBudgetten();
+                thisEv.Financieringsjaar = evolutie.Financieringsjaar;
+                thisEv.TotaalbedragAlle = evolutie.Totaalbedrag;
+                if (evolutieBekrachtigd != null)
+                {
+                    thisEv.TotaalbedragBekrachtigd = evolutieBekrachtigd.Totaalbedrag;
+                }
+                else
+                {
+                    thisEv.TotaalbedragBekrachtigd = 0;
+                }
+
+                budgetten.Add(thisEv);
+            }
+
+            return budgetten;
+        }
+
         public static List<string> GetAlleFinancieringsjaren()
         {
             List<string> returnlist = null;

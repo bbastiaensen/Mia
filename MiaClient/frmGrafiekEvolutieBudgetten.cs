@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,9 +25,15 @@ namespace MiaClient
         }
         private void frmGrafiekEvolutieBudgetten_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'evo_Budg_DataSet.Evo_Budg_G' table. You can move, or remove it, as needed.
-            this.evo_Budg_G_TableAdapter.Fill(this.evo_Budg_DataSet.Evo_Budg_G);
-            chart1.Dock = DockStyle.Fill; 
+            List<EvolutieBudgetten> alleEvoluties = AanvraagManager.GetEvolutieBudgetten();
+
+            foreach (var evolutie in alleEvoluties)
+            {
+                chrtEvolutieBudgetten.Series["Aangevraagd bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragAlle);
+                chrtEvolutieBudgetten.Series["Toegekend bedrag"].Points.AddXY(evolutie.Financieringsjaar, evolutie.TotaalbedragBekrachtigd);
+            }
+
+            chrtEvolutieBudgetten.Dock = DockStyle.Fill; 
             CreateUI();
         }
 
@@ -40,6 +48,8 @@ namespace MiaClient
             this.BackColor = StyleParameters.Achtergrondkleur;
 
             this.Icon = imgFormIcon;
+
+            
         }
     }
 }
