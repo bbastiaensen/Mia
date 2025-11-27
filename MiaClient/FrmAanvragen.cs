@@ -763,7 +763,8 @@ namespace MiaClient
                     return;
                 }
 
-                string[] header = new string[] { "Aanvraagdatum", "Titel", "Aanvrager", "Financieringsjaar", "Afdeling", "Dienst", "Kostenplaats", "Aangevraagd bedrag", "Status aanvraag", "Planningsdatum", };
+                string[] header = new string[] { "Aanvraagdatum", "Titel", "Aanvrager", "Financieringsjaar", "Afdeling",
+                    "Dienst", "Kostenplaats", "Aangevraagd bedrag", "Status aanvraag", "Planningsdatum", };
 
                 for (int i = 0; i < header.Length; i++)
                 {
@@ -778,8 +779,8 @@ namespace MiaClient
                 {
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 1].Value = a.Aanvraagmoment.ToString("dd-mm-yyyy");
-                        //worksheet.Cells[row, 1].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 1].Value = a.Aanvraagmoment;
+                        worksheet.Cells[row, 1].NumberFormat = "dd-mm-yyyy";
                     }
                     else
                     {
@@ -790,8 +791,8 @@ namespace MiaClient
                     worksheet.Cells[row, 3] = a.Gebruiker;
                     worksheet.Cells[row, 4] = a.Financieringsjaar?.ToString() ?? "";
 
-                    worksheet.Cells[row, 5] = AfdelingenManager.GetAfdelingNaamById(a.AfdelingId) ?? "Onbekend";
-                    worksheet.Cells[row, 6] = DienstenManager.GetDienstNaamById(a.DienstId) ?? "Onbekend";
+                    worksheet.Cells[row, 5] = AfdelingenManager.GetAfdelingNaamById(a.AfdelingId);
+                    worksheet.Cells[row, 6] = DienstenManager.GetDienstNaamById(a.DienstId);
 
                     worksheet.Cells[row, 7] = a.Kostenplaats;
                     worksheet.Cells[row, 8] = a.AantalStuk * a.PrijsIndicatieStuk;
@@ -799,8 +800,8 @@ namespace MiaClient
                     
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 10].Value = a.Planningsdatum.ToString("dd-mm-yyyy");
-                        //worksheet.Cells[row, 10].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 10].Value = a.Planningsdatum;
+                        worksheet.Cells[row, 10].NumberFormat = "dd-mm-yyyy";
                     }
                     else
                     {

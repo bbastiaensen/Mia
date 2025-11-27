@@ -80,7 +80,7 @@ namespace MiaLogic.Manager
 
         public static string GetAfdelingNaamById(int id)
         {
-            string naam = "onbekend";
+            string naam = "Onbekend";
 
             try
             {
