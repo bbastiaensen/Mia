@@ -81,6 +81,7 @@
             this.lblPages = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnExportToExcel = new System.Windows.Forms.Button();
+            this.lblWachtenExcelAanvragen = new System.Windows.Forms.Label();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -635,23 +636,33 @@
             // 
             // btnExportToExcel
             // 
-            this.btnExportToExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportToExcel.BackColor = System.Drawing.SystemColors.Control;
             this.btnExportToExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExportToExcel.FlatAppearance.BorderSize = 0;
-            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExportToExcel.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExportToExcel.Location = new System.Drawing.Point(1078, 13);
+            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToExcel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportToExcel.Location = new System.Drawing.Point(1214, 13);
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
             this.btnExportToExcel.TabIndex = 43;
-            this.btnExportToExcel.UseVisualStyleBackColor = false;
+            this.btnExportToExcel.UseVisualStyleBackColor = true;
             this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
+            // 
+            // lblWachtenExcelAanvragen
+            // 
+            this.lblWachtenExcelAanvragen.AutoSize = true;
+            this.lblWachtenExcelAanvragen.Location = new System.Drawing.Point(1003, 25);
+            this.lblWachtenExcelAanvragen.Name = "lblWachtenExcelAanvragen";
+            this.lblWachtenExcelAanvragen.Size = new System.Drawing.Size(0, 28);
+            this.lblWachtenExcelAanvragen.TabIndex = 44;
+            this.lblWachtenExcelAanvragen.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1327, 763);
+            this.Controls.Add(this.lblWachtenExcelAanvragen);
             this.Controls.Add(this.btnExportToExcel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblPages);
@@ -751,5 +762,6 @@
         private System.Windows.Forms.Label lblPages;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnExportToExcel;
+        private System.Windows.Forms.Label lblWachtenExcelAanvragen;
     }
 }

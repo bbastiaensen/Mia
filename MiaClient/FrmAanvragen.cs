@@ -11,6 +11,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.ComponentModel;
+using System.Globalization;
 
 
 namespace MiaClient
@@ -202,6 +204,7 @@ namespace MiaClient
             btnNieuweAanvraag.BackgroundImageLayout = ImageLayout.Stretch;
             btnNieuweAanvraag.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
+            btnExportToExcel.BackColor = StyleParameters.Achtergrondkleur;
             btnExportToExcel.BackgroundImage = imgExportToExcel;
             btnExportToExcel.BackgroundImageLayout = ImageLayout.Stretch;
             btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
@@ -783,10 +786,27 @@ namespace MiaClient
             e.Handled = !IsGeldigFinancieringsjaar(e.KeyChar);
         }
 
+        public static Color StringToColor(string colorStr)
+        {
+            TypeConverter cc = TypeDescriptor.GetConverter(typeof(Color));
+            Color result = (Color)cc.ConvertFromString(colorStr);
+            return result;
+        }
+
+        Color textKleurExc = StringToColor(ParameterManager.GetParameterByCode("TekstExcel").Waarde);
+        Color DataDonkerExc = StringToColor(ParameterManager.GetParameterByCode("MaandExcelD").Waarde);
+
+        Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
+        Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
+        
+
+
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
+            lblWachtenExcelAanvragen.Visible = true;
+            lblWachtenExcelAanvragen.Text = "Data in Excel verwerken...";
+
             
-            //TODO Label: even wachten, connectie
 
             try
             {
@@ -804,40 +824,72 @@ namespace MiaClient
                     return;
                 }
 
-                string[] header = new string[] { "Aanvraagdatum", "Titel", "Aanvrager", "Financieringsjaar", "Afdeling",
-                    "Dienst", "Kostenplaats", "Aangevraagd bedrag", "Status aanvraag", "Planningsdatum", };
+                string[] header = new string[] { 
+                    "Aanvrager", "Titel", "Aanvraagdatum", 
+                    "Afdeling", "Dienst", "Financieringsjaar",
+                    "Status aanvraag", "Bedrag", "Kostenplaats",
+                    "Planningsdatum" };
+
+                //Opmaak header
+                for (int i = 0; i < header.Length; i++)
+                {
+                    var cell = worksheet.Cells[1, i + 1];
+                    cell.Value = header[i];
+                    cell.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
+                    cell.Font.Bold = true;
+                    cell.Font.Size = 11;
+                    cell.Interior.Color = DataDonkerExc;
+                    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    
+                }
 
                 for (int i = 0; i < header.Length; i++)
                 {
                     worksheet.Cells[1, i + 1].Value = header[i];
                     worksheet.Cells[1, i + 1].Font.Bold = true;
-                    worksheet.Cells[1, i + 1].Interior.Color = System.Drawing.Color.LightGray;
+                    worksheet.Cells[1, i + 1].Interior.Color = DataDonkerExc;
                 }
 
                 int row = 2;
 
                 foreach (var a in gefilterdeAanvragen)
                 {
+
+                    decimal bedrag = a.AantalStuk * a.PrijsIndicatieStuk;
+
+                    worksheet.Cells[row, 1] = a.Gebruiker;
+                    worksheet.Cells[row, 2] = a.Titel;
+
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 1].Value = a.Aanvraagmoment;
-                        worksheet.Cells[row, 1].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 3].Value = a.Aanvraagmoment;
+                        worksheet.Cells[row, 3].NumberFormat = "dd-mm-yyyy";
                     }
                     else
                     {
-                        worksheet.Cells[row, 1].Value = "Niet beschikbaar";
+                        worksheet.Cells[row, 3].Value = "Nog niet aangevraagd";
                     }
 
-                    worksheet.Cells[row, 2] = a.Titel;
-                    worksheet.Cells[row, 3] = a.Gebruiker;
-                    worksheet.Cells[row, 4] = a.Financieringsjaar?.ToString() ?? "";
+                    worksheet.Cells[row, 4] = AfdelingenManager.GetAfdelingNaamById(a.AfdelingId);
+                    worksheet.Cells[row, 5] = DienstenManager.GetDienstNaamById(a.DienstId);
 
-                    worksheet.Cells[row, 5] = AfdelingenManager.GetAfdelingNaamById(a.AfdelingId);
-                    worksheet.Cells[row, 6] = DienstenManager.GetDienstNaamById(a.DienstId);
+                    worksheet.Cells[row, 6] = a.Financieringsjaar?.ToString();
 
-                    worksheet.Cells[row, 7] = a.Kostenplaats;
-                    worksheet.Cells[row, 8] = a.AantalStuk * a.PrijsIndicatieStuk;
-                    worksheet.Cells[row, 9] = a.StatusAanvraag;
+                    worksheet.Cells[row, 7] = a.StatusAanvraag;
+
+                    if (bedrag == 0)
+                    {
+                        worksheet.Cells[row, 8].Value = "Geen Kost";
+                        worksheet.Cells[row, 8].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    }
+                    else
+                    {
+                        worksheet.Cells[row, 8].Value = bedrag;
+                        worksheet.Cells[row, 8].NumberFormat = "€ #.##,00;;";
+                        worksheet.Cells[row, 8].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    }
+                    
+                    worksheet.Cells[row, 9] = a.Kostenplaats;
                     
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
@@ -848,15 +900,32 @@ namespace MiaClient
                     {
                         worksheet.Cells[row, 10].Value = "Nog niet gepland";
                     }
+
+                    Excel.Range rijRange = worksheet.Range[$"A{row}:J{row}"];
+                    rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
+                    rijRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                    if (row % 2 == 0)
+                        rijRange.Interior.Color = DataLicht2Exc;
+                    else
+                        rijRange.Interior.Color = DataLicht1Exc;
+
                     row++;
                 }
 
+                Excel.Range used = worksheet.Range["A1:J" + (row - 1)];
+                used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                used.Borders.Color = textKleurExc;
+
+                worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 worksheet.Columns.AutoFit();
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.FileName = "AanvragenExport";
                 saveFileDialog.Filter = "Excel bestanden (*.xlsx)|*.xlsx";
                 saveFileDialog.FilterIndex = 1;
+
+                lblWachtenExcelAanvragen.Visible = false;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK) 
                 { 
@@ -867,6 +936,7 @@ namespace MiaClient
                     app.Quit();
 
                     MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblWachtenExcelAanvragen.Visible = false;
                 }
             }
             catch (Exception ex) 
