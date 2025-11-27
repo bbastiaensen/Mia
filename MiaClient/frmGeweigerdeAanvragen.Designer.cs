@@ -31,11 +31,13 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.lblWacht = new System.Windows.Forms.Label();
             this.lblLaad1 = new System.Windows.Forms.Label();
+            this.cmbJaar = new System.Windows.Forms.ComboBox();
+            this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(15, 14);
+            this.btnExcel.Location = new System.Drawing.Point(31, 120);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(363, 71);
@@ -47,10 +49,10 @@
             // lblWacht
             // 
             this.lblWacht.AutoSize = true;
-            this.lblWacht.Location = new System.Drawing.Point(13, 120);
+            this.lblWacht.Location = new System.Drawing.Point(13, 250);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
-            this.lblWacht.Size = new System.Drawing.Size(142, 20);
+            this.lblWacht.Size = new System.Drawing.Size(183, 25);
             this.lblWacht.TabIndex = 4;
             this.lblWacht.Text = "Dit kan even duren...";
             this.lblWacht.Visible = false;
@@ -60,16 +62,36 @@
             this.lblLaad1.AutoSize = true;
             this.lblLaad1.Location = new System.Drawing.Point(13, 90);
             this.lblLaad1.Name = "lblLaad1";
-            this.lblLaad1.Size = new System.Drawing.Size(321, 20);
+            this.lblLaad1.Size = new System.Drawing.Size(402, 25);
             this.lblLaad1.TabIndex = 5;
             this.lblLaad1.Text = "                                                                              ";
             this.lblLaad1.Visible = false;
             // 
+            // cmbJaar
+            // 
+            this.cmbJaar.FormattingEnabled = true;
+            this.cmbJaar.Location = new System.Drawing.Point(291, 34);
+            this.cmbJaar.Name = "cmbJaar";
+            this.cmbJaar.Size = new System.Drawing.Size(144, 33);
+            this.cmbJaar.TabIndex = 10;
+            this.cmbJaar.SelectedIndexChanged += new System.EventHandler(this.cmbJaar_SelectedIndexChanged);
+            // 
+            // lblFinancieringsjaar
+            // 
+            this.lblFinancieringsjaar.AutoSize = true;
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(0, 34);
+            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(275, 25);
+            this.lblFinancieringsjaar.TabIndex = 11;
+            this.lblFinancieringsjaar.Text = "Selecteer een financieringsjaar:";
+            // 
             // frmGeweigerdeAanvragen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 152);
+            this.ClientSize = new System.Drawing.Size(510, 349);
+            this.Controls.Add(this.lblFinancieringsjaar);
+            this.Controls.Add(this.cmbJaar);
             this.Controls.Add(this.lblLaad1);
             this.Controls.Add(this.lblWacht);
             this.Controls.Add(this.btnExcel);
@@ -91,5 +113,7 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Label lblWacht;
         private System.Windows.Forms.Label lblLaad1;
+        private System.Windows.Forms.ComboBox cmbJaar;
+        private System.Windows.Forms.Label lblFinancieringsjaar;
     }
 }
