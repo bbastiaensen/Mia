@@ -64,6 +64,8 @@
     <Compile Include="Object\Aanvraag.cs" />
     <Compile Include="Object\Afdeling.cs" />
     <Compile Include="Object\Dienst.cs" />
+    <Compile Include="Object\EvolutieBudget.cs" />
+    <Compile Include="Object\EvolutieBudgetten.cs" />
     <Compile Include="Object\Financiering.cs" />
     <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
