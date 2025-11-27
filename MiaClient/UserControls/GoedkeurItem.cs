@@ -206,6 +206,7 @@ namespace MiaClient.UserControls
                 frmSAWD = new frmStatusAanvraagWijzigingDetail(Id, statusAanvraag, OpmerkingenResultaat, BudgetToegekend);
                 frmSAWD.StatusAanvraagDetailGewijzigd += FrmSAWD_StatusAanvraagDetailGewijzigd;
                 frmSAWD.Show();
+
             }
             else
             {

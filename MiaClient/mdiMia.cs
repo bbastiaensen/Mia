@@ -353,7 +353,7 @@ namespace MiaClient
         {
             if (frmAanvragen == null)
             {
-                frmAanvragen = new FrmAanvragen();
+                frmAanvragen = new FrmAanvragen(FrmGoedkeuring);
                 frmAanvragen.MdiParent = this;
             }
             frmAanvragen.Show();
@@ -373,7 +373,7 @@ namespace MiaClient
         {
             if (frmAanvragen == null)
             {
-                frmAanvragen = new FrmAanvragen();
+                frmAanvragen = new FrmAanvragen(FrmGoedkeuring);
                 frmAanvragen.MdiParent = this;
             }
             frmAanvragen.Show();
@@ -384,7 +384,7 @@ namespace MiaClient
         {
             if (FrmGoedkeuring == null)
             {
-                FrmGoedkeuring = new frmGoedkeuring();
+                FrmGoedkeuring = new frmGoedkeuring(frmAanvragen);
                 FrmGoedkeuring.MdiParent = this;
             }
             FrmGoedkeuring.Show();
@@ -404,7 +404,7 @@ namespace MiaClient
         {
             if (FrmGoedkeuring == null)
             {
-                FrmGoedkeuring = new frmGoedkeuring();
+                FrmGoedkeuring = new frmGoedkeuring(frmAanvragen);
                 FrmGoedkeuring.MdiParent = this;
             }
             FrmGoedkeuring.Show();

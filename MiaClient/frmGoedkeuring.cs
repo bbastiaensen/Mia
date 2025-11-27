@@ -20,9 +20,11 @@ namespace MiaClient
     public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
+        FrmAanvragen frmAanvragen;
         List<Aanvraag> aanvragen;
         public event EventHandler AanvraagBewaard;
         public event EventHandler GoedkeurItemChanged;
+        public event EventHandler StatusAanvraagGewijzigd;
         GoedkeurItem GoedkeurItem;
 
         public string projectDirectory = Directory.GetCurrentDirectory();
@@ -91,6 +93,25 @@ namespace MiaClient
             }
         }
 
+        public frmGoedkeuring(FrmAanvragen frmAanvragen)
+        {
+            try
+            {
+                if (frmAanvragen != null)
+                {
+                    this.frmAanvragen = frmAanvragen;
+                    this.frmAanvragen.HookUp(this);
+                }
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                ErrorHandler(ex, "FrmAanvraagFormulier");
+            }
+        }
+
+        
+
 
         public void BindGoedkeuringen(List<Aanvraag> items)
         {
@@ -131,6 +152,11 @@ namespace MiaClient
             huidigePage = 1;
             StartPaging();
 
+            //frmAanvragen melden dat er een refresh moet gebeuren.
+            if (StatusAanvraagGewijzigd != null)
+            {
+                StatusAanvraagGewijzigd(this, null);
+            }
         }
 
         public void frmGoedkeuring_Load(object sender, EventArgs e)
