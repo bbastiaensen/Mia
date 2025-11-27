@@ -128,6 +128,8 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
+
+            
             Aankoper a = new Aankoper();
             a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam= txtVoornaam.Text;
@@ -140,8 +142,15 @@ namespace MiaClient
             {
                 a.actief= false;
             }
+            DialogResult JaNee = MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Bent u zeker?", MessageBoxButtons.YesNo);
 
-            AankoperManager.DeleteAankoper(a);
+            if (JaNee == DialogResult.Yes)
+            {
+                MessageBox.Show("De Aankoper is succesvol verwijderd");
+                AankoperManager.DeleteAankoper(a);
+            }
+           
+            
 
             BindLstAankopers();
             ClearFields();
