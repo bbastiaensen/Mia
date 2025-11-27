@@ -37,10 +37,10 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(31, 120);
+            this.btnExcel.Location = new System.Drawing.Point(13, 81);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(363, 71);
+            this.btnExcel.Size = new System.Drawing.Size(358, 77);
             this.btnExcel.TabIndex = 0;
             this.btnExcel.Text = "Genereer Excel";
             this.btnExcel.UseVisualStyleBackColor = true;
@@ -49,7 +49,7 @@
             // lblWacht
             // 
             this.lblWacht.AutoSize = true;
-            this.lblWacht.Location = new System.Drawing.Point(13, 250);
+            this.lblWacht.Location = new System.Drawing.Point(8, 220);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
             this.lblWacht.Size = new System.Drawing.Size(183, 25);
@@ -60,7 +60,7 @@
             // lblLaad1
             // 
             this.lblLaad1.AutoSize = true;
-            this.lblLaad1.Location = new System.Drawing.Point(13, 90);
+            this.lblLaad1.Location = new System.Drawing.Point(13, 179);
             this.lblLaad1.Name = "lblLaad1";
             this.lblLaad1.Size = new System.Drawing.Size(402, 25);
             this.lblLaad1.TabIndex = 5;
@@ -69,17 +69,16 @@
             // 
             // cmbJaar
             // 
-            this.cmbJaar.FormattingEnabled = true;
-            this.cmbJaar.Location = new System.Drawing.Point(291, 34);
+            this.cmbJaar.Location = new System.Drawing.Point(289, 31);
             this.cmbJaar.Name = "cmbJaar";
-            this.cmbJaar.Size = new System.Drawing.Size(144, 33);
-            this.cmbJaar.TabIndex = 10;
+            this.cmbJaar.Size = new System.Drawing.Size(82, 33);
+            this.cmbJaar.TabIndex = 12;
             this.cmbJaar.SelectedIndexChanged += new System.EventHandler(this.cmbJaar_SelectedIndexChanged);
             // 
             // lblFinancieringsjaar
             // 
             this.lblFinancieringsjaar.AutoSize = true;
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(0, 34);
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(8, 31);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(275, 25);
             this.lblFinancieringsjaar.TabIndex = 11;
@@ -89,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 349);
+            this.ClientSize = new System.Drawing.Size(387, 256);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.cmbJaar);
             this.Controls.Add(this.lblLaad1);

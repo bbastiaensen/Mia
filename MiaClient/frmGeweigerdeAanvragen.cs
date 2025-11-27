@@ -204,16 +204,18 @@ namespace MiaClient
 
         private void frmGeweigerdeAanvragen_Load(object sender, EventArgs e)
         {
+
             cmbJaar.ValueMember = "Financieringsjaar";
             cmbJaar.DisplayMember = "Financieringsjaar";
             cmbJaar.DataSource = AanvraagManager.GetAlleFinancieringsjaren();
 
+            // ComboBox leeg tonen
+            cmbJaar.SelectedIndex = -1;
+
+            // Excel-knop uitschakelen tot gebruiker iets kiest
             btnExcel.Enabled = false;
 
-            cmbJaar.SelectedIndexChanged += (s, ev) =>
-            {
-                btnExcel.Enabled = !string.IsNullOrEmpty(cmbJaar.SelectedValue?.ToString());
-            };
+
         }
 
 
@@ -222,6 +224,11 @@ namespace MiaClient
         {
             e.Cancel = true;
             ((Form)sender).Hide();
+        }
+
+        private void cmbJaar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnExcel.Enabled = cmbJaar.SelectedIndex != -1;
         }
     }
 }
