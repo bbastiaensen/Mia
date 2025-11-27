@@ -13,12 +13,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace MiaClient
 {
     public partial class frmParameter : Form
     {
         List<Parameter> parameters;
+        
+
+        private ToolTip tip = new ToolTip(); // tooltip gebruikt bij hover
 
         bool filterCode = false;
         bool filterWaarde = false;
@@ -47,6 +52,11 @@ namespace MiaClient
         public frmParameter()
         {
             InitializeComponent();
+        
+
+
+
+
         }
 
         private void frmParameter_FormClosing(object sender, FormClosingEventArgs e)
@@ -98,6 +108,10 @@ namespace MiaClient
                 btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
                 btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
+               
+
+
+
             }
             catch (Exception ex)
             {
@@ -116,43 +130,36 @@ namespace MiaClient
 
             foreach (var p in items)
             {
-                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid,   t % 2 == 0);
+                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring ,   t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
                 pi.Size = new System.Drawing.Size(868, 33);
                 pi.TabIndex = t + 8;
+             
+                // Events koppelen
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
+
+                // Tooltip via MouseHover instellen
+                pi.EnableTooltip(tip);
+
+
                 this.pnlParameters.Controls.Add(pi);
-                pi.MouseEnter += Pi_MouseEnter;
-                pi.MouseLeave += Pi_MouseLeave;
+
+                
 
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
+
+               
             }
         }
 
 
-        //methode hover over de para-items
-        private void Pi_MouseEnter(object sender, EventArgs e)
-        {
-            var item = sender as ParameterItem;
-            if (item != null)
-            {
-                // Voorbeeld: achtergrondkleur wijzigen
-                item.BackColor = Color.LightYellow;
-            }
-        }
-        private void Pi_MouseLeave(object sender, EventArgs e)
-        {
-            var item = sender as ParameterItem;
-            if (item != null)
-            {
-                // Voorbeeld: achtergrondkleur wijzigen
-                item.BackColor = Color.LightBlue;
-            }
-        }
+      
+
+
 
         private void Pi_ParameterDeleted(object sender, EventArgs e)
         {
@@ -189,6 +196,8 @@ namespace MiaClient
       
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
+
+            txtVerklaringDetail.Text = geselecteerd.Verklaring;
             
 
             //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
