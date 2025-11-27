@@ -20,6 +20,8 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
 
+        frmGoedkeuring frmGoedkeuring = null;
+       
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
         bool filterPlanningsdatumVan = false;
@@ -66,7 +68,46 @@ namespace MiaClient
         {
             InitializeComponent();        
         }
-        
+
+        public FrmAanvragen(frmGoedkeuring frmGoedkeuring)
+        {
+            this.frmGoedkeuring = frmGoedkeuring;
+            if (this.frmGoedkeuring != null)
+            {
+                this.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
+            }
+            InitializeComponent();
+        }
+
+        public void HookUp(object sender)
+        {
+            if (sender != this)
+            {
+                this.frmGoedkeuring = (frmGoedkeuring)sender;
+                if (this.frmGoedkeuring != null)
+                {
+                    this.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
+                }
+            }
+        }
+
+        private void FrmGoedkeuring_StatusAanvraagGewijzigd(object sender, EventArgs e)
+        {
+            //Er is een status van een aanvraag gewijzigd bij goedkeuringen. Refreshen lijst met aanvragen.
+            try
+            {
+                aanvragen = AanvraagManager.GetAanvragen();
+                if (aanvragen != null)
+                {
+                    StartPaging();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnNieuweAanvraag_Click(object sender, EventArgs e)
         {
             //Als er op de knop nieuwe aanvraag wordt geklikt kijken we of er al een aanvraagformulier open staaat.
