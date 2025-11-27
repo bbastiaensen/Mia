@@ -52,7 +52,7 @@ namespace MiaClient
             ((Form)sender).Hide();
         }
 
-        private void CreateUI()
+        public void CreateUI()
         {
             //Achtergrondkleur instellen op parameterwaarde
             this.BackColor = StyleParameters.Achtergrondkleur;
