@@ -153,7 +153,7 @@ namespace MiaLogic.Manager
                     objCmd.Parameters.AddWithValue("@Achternaam", aankoper.Achternaam);
                     objCmd.Parameters.AddWithValue("@Actief", aankoper.actief);
 
-                    objCn.Open();
+                    objCn.Open();   
 
                     objCmd.ExecuteNonQuery();
                     if (isnew)
@@ -218,6 +218,27 @@ namespace MiaLogic.Manager
                 }
             }
         }
-        public static void 
+        public static void CheckAanvraagAankoper(Aankoper aankoper)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "select Aanvraag.AankoperId from aankoper";
+                    objCmd.CommandText += "inner join Aanvraag on aankoper.Id = aanvraag.AankoperId";
+                    objCmd.CommandText += "where Aanvraag.AankoperId = @Id";
+
+                    objCmd.Parameters.AddWithValue("@Id", aankoper.Id);
+                    
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

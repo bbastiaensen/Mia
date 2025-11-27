@@ -242,7 +242,6 @@ namespace MiaClient
             this.ddlWieKooptHet.Name = "ddlWieKooptHet";
             this.ddlWieKooptHet.Size = new System.Drawing.Size(270, 36);
             this.ddlWieKooptHet.TabIndex = 2;
-            
             // 
             // ddlKostenplaats
             // 
@@ -1117,6 +1116,7 @@ namespace MiaClient
             this.Name = "frmAanvraagFormulier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Aanvraagformulier";
+            this.Activated += new System.EventHandler(this.frmAanvraagFormulier_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAanvraagFormulier_FormClosing);
             this.Load += new System.EventHandler(this.frmAanvraagFormulier_Load);
             this.tabPage_Investering.ResumeLayout(false);

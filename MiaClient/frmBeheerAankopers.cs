@@ -121,7 +121,7 @@ namespace MiaClient
             a.Id = AankoperManager.SaveAankoper(a, IsNew);
 
             BindLstAankopers();
-
+            ClearFields();
             LstAankopers.SelectedValue = a.Id.ToString();
             IsNew = false;
         }
@@ -142,14 +142,15 @@ namespace MiaClient
             {
                 a.actief= false;
             }
-            DialogResult JaNee = MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Bent u zeker?", MessageBoxButtons.YesNo);
-
-            if (JaNee == DialogResult.Yes)
+            
+           
+            
+            if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd");
+                MessageBox.Show("De Aankoper is succesvol verwijderd", "succes", MessageBoxButtons.OK);
                 AankoperManager.DeleteAankoper(a);
             }
-           
+          
             
 
             BindLstAankopers();

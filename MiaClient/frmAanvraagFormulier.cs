@@ -63,7 +63,7 @@ namespace MiaClient
         private void Initialize()
         {
             InitializeComponent();
-            vulFormulier();
+            //vulFormulier();
             
             SetFormStatus(false);
             GetParam();
@@ -1319,8 +1319,10 @@ namespace MiaClient
           
 
         }
-     
 
- 
+        private void frmAanvraagFormulier_Activated(object sender, EventArgs e)
+        {
+            vulFormulier();
+        }
     }
 }
