@@ -416,6 +416,14 @@
     <Content Include="Icons\icons8-approval-50.png" />
     <Content Include="Icons\icons8-bekrachtigd-50-neutral.png" />
     <Content Include="Icons\icons8-bekrachtigd-50.png" />
+    <Content Include="Icons\icons8-businessman-50-alt.png" />
+    <Content Include="Icons\icons8-businessman-50.png" />
+    <Content Include="Icons\icons8-cost-euro-50-alt.png" />
+    <Content Include="Icons\icons8-cost-euro-50.png" />
+    <Content Include="Icons\icons8-department-50-alt.png" />
+    <Content Include="Icons\icons8-department-50.png" />
+    <Content Include="Icons\icons8-dienst-50-alt.png" />
+    <Content Include="Icons\icons8-dienst-50.png" />
     <Content Include="Icons\icons8-euro-50-alt.png" />
     <Content Include="Icons\icons8-euro-50.png" />
     <Content Include="Icons\icons8-first-50-grey.png" />
