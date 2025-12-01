@@ -48,5 +48,19 @@
         }
 
         #endregion
+=======
+        private System.Windows.Forms.ListBox LstAankopers;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Label lblVoornaam;
+        private System.Windows.Forms.Label lblAchternaam;
+        private System.Windows.Forms.Label lblActief;
+        private System.Windows.Forms.CheckBox checkActief;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtAchternaam;
+        private System.Windows.Forms.TextBox txtVoornaam;
+        private System.Windows.Forms.Button btnNieuw;
+        private System.Windows.Forms.Button btnVerwijderen;
+        private System.Windows.Forms.Button btnBewaren;
+>>>>>>> a6c3b7d4610a61a3a4ac0a29bd65f05af70416d5
     }
 }
