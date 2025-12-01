@@ -554,7 +554,7 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
-        }
+       }
 
 
 
@@ -635,20 +635,29 @@ namespace MiaClient
                         }
                     }
                 }
-                    // Alle controls in de form aanpassen
-                    foreach (Control c in frm.Controls)
-                    {
-                        if (c is Button btn)
-                        {
-                            btn.BackColor = StyleParameters.ButtonBack;
-                            btn.ForeColor = StyleParameters.Buttontext;
 
-                        }
-                    }
+              
+                
+                    // Alle controls in de form aanpassen
+                    //foreach (Control c in frm.Controls)
+                    //{
+                    //    if (c is Button btn)
+                    //    {
+                    //        btn.BackColor = StyleParameters.ButtonBack;
+                    //        btn.ForeColor = StyleParameters.Buttontext;
+
+                    //    }
+
+                      
+                    //}
 
                     frm.Refresh();
                 
             }
+            btnBewaren.BackColor = StyleParameters.ButtonBack;
+            btnNieuw.BackColor = StyleParameters.ButtonBack;
+            btnNieuw.ForeColor = StyleParameters.Buttontext;
+            btnBewaren.ForeColor = StyleParameters.Buttontext;
 
         }
     }
