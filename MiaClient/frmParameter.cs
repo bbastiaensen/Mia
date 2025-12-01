@@ -634,7 +634,7 @@ namespace MiaClient
                             ctl.BackColor = StyleParameters.Achtergrondkleur;
                         }
                     }
-
+                }
                     // Alle controls in de form aanpassen
                     foreach (Control c in frm.Controls)
                     {
@@ -647,7 +647,7 @@ namespace MiaClient
                     }
 
                     frm.Refresh();
-                }
+                
             }
 
         }
