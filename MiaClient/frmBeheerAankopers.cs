@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,13 @@ namespace MiaClient
 {
     public partial class frmBeheerAankopers : Form
     {
+        List<Aankoper> aankopers;
+
+        int xPos = 10;
+        int yPos = 20;
+        int grpHeight = 26;
+        bool IsNew = false;
+        
         public frmBeheerAankopers()
         {
             InitializeComponent();
@@ -29,6 +38,7 @@ namespace MiaClient
         private void frmBeheerAankopers_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLstAankopers();
         }
 
         private void CreateUI()
@@ -44,6 +54,110 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+        }
+        public void BindLstAankopers()
+        {
+
+            aankopers = AankoperManager.GetAankoper();
+            LstAankopers.DisplayMember = "FullName";
+            
+            LstAankopers.ValueMember = "Id";
+            LstAankopers.DataSource= aankopers;
+            
+        }
+
+        private void LstAankopers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Aankoper aankoper  = (Aankoper)LstAankopers.SelectedItem;
+
+           
+            if (aankoper != null) 
+            {
+                txtId.Text = Convert.ToString(aankoper.Id);
+                txtVoornaam.Text = aankoper.Voornaam;
+                txtAchternaam.Text = aankoper.Achternaam;
+                if (aankoper.actief)
+                {
+                    checkActief.Checked = true;
+                }
+                else
+                {
+                    checkActief.Checked = false;
+                }
+
+                    IsNew = false;
+            }
+           
+        }
+        private void ClearFields()
+        {
+            txtAchternaam.Text = string.Empty;
+            txtId.Text = string.Empty;
+            txtVoornaam.Text = string.Empty;
+            checkActief.Checked = false;
+            IsNew = true;
+        }
+        private void btnNieuw_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void btnBewaren_Click(object sender, EventArgs e)
+        {
+            Aankoper a = new Aankoper();
+            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
+            a.Voornaam = txtVoornaam.Text;
+            a.Achternaam = txtAchternaam.Text;
+            if (checkActief.Checked)
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief= false;
+            }
+          
+
+            a.Id = AankoperManager.SaveAankoper(a, IsNew);
+
+            BindLstAankopers();
+            ClearFields();
+            LstAankopers.SelectedValue = a.Id.ToString();
+            IsNew = false;
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+
+            
+            Aankoper a = new Aankoper();
+            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
+            a.Voornaam= txtVoornaam.Text;
+            a.Achternaam= txtAchternaam.Text;
+            if (checkActief.Checked) 
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief= false;
+            }
+            
+           
+            
+            if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
+            {
+                MessageBox.Show("De Aankoper is succesvol verwijderd", "succes", MessageBoxButtons.OK);
+                AankoperManager.DeleteAankoper(a);
+            }
+          
+            
+
+            BindLstAankopers();
+            ClearFields();
+
+
+
         }
     }
 }
