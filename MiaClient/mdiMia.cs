@@ -49,7 +49,10 @@ namespace MiaClient
         Image imgGebruikslog;
         Image imgAanvragen;
         Image imgBudgetspreiding;
-
+        Image imgAankopers;
+        Image imgAfdelingen;
+        Image imgDiensten;
+        Image imgKostenplaats;
 
         public mdiMia()
         {
@@ -165,6 +168,10 @@ namespace MiaClient
                 imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80-alt.png"));
                 imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80-alt.png"));
                 imgBudgetspreiding = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50-alt.png"));
+                imgAankopers = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-businessman-50-alt.png"));
+                imgAfdelingen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-department-50-alt.png"));
+                imgDiensten = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-dienst-50-alt.png"));
+                imgKostenplaats = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-cost-euro-50-alt.png"));
             }
             else
             {
@@ -174,6 +181,10 @@ namespace MiaClient
                 imgGebruikslog = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-log-80.png"));
                 imgAanvragen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-form-80.png"));
                 imgBudgetspreiding = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50.png"));
+                imgAankopers = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-businessman-50.png"));
+                imgAfdelingen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-department-50.png"));
+                imgDiensten = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-dienst-50.png"));
+                imgKostenplaats = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-cost-euro-50.png"));
             }
 
             gebruikersToolStripButton.Image = imgGebruikersbeheer;
@@ -182,7 +193,10 @@ namespace MiaClient
             gebruiksLogToolStripButton.Image = imgGebruikslog;
             parameterToolStripButton.Image = imgParameters;
             budgetSpreidingtoolStripButton.Image = imgBudgetspreiding;
-
+            aankopersToolStripButton.Image = imgAankopers;
+            afdelingToolStripButton.Image = imgAfdelingen;
+            dienstToolStripButton.Image = imgDiensten;
+            kostenplaatsToolStripButton.Image = imgKostenplaats;
         }
         private void MenubalkSamenstellen()
         {
@@ -196,6 +210,10 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
                 gebruikersToolStripButton.Visible = false;
+                aankopersToolStripButton.Visible = false;
+                afdelingToolStripButton.Visible = false;
+                dienstToolStripButton.Visible = false;
+                kostenplaatsToolStripButton.Visible = false;
                 helpMenu.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = false;
                 overzichtenToolStripMenuItem.Visible = false;
@@ -223,6 +241,10 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
                 gebruikersToolStripButton.Visible = false;
+                aankopersToolStripButton.Visible = false;
+                afdelingToolStripButton.Visible = false;
+                dienstToolStripButton.Visible = false;
+                kostenplaatsToolStripButton.Visible = false;
             }
 
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
@@ -241,6 +263,10 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = false;
                 parameterToolStripButton.Visible = false;
                 gebruikersToolStripButton.Visible = false;
+                aankopersToolStripButton.Visible = false;
+                afdelingToolStripButton.Visible = false;
+                dienstToolStripButton.Visible = false;
+                kostenplaatsToolStripButton.Visible = false;
 
                 aankopenToolStripMenuItem.Visible = false;
             }
@@ -256,6 +282,13 @@ namespace MiaClient
                 gebruiksLogToolStripButton.Visible = true;
                 parameterToolStripButton.Visible = true;
                 gebruikersToolStripButton.Visible = true;
+                aankopersToolStripButton.Visible = true;
+                //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
+                afdelingToolStripButton.Visible = false;
+                afdelingenToolStripMenuItem.Visible = false;
+                dienstToolStripButton.Visible = false;
+                dienstenToolStripMenuItem.Visible = false;
+                kostenplaatsToolStripButton.Visible = true;
 
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
@@ -533,6 +566,46 @@ namespace MiaClient
                 frmBeheerDiensten.MdiParent = this;
             }
             frmBeheerDiensten.Show();
+        }
+
+        private void aankopersToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerAankopers == null)
+            {
+                frmBeheerAankopers = new frmBeheerAankopers();
+                frmBeheerAankopers.MdiParent = this;
+            }
+            frmBeheerAankopers.Show();
+        }
+
+        private void afdelingenToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerAfdelingen == null)
+            {
+                frmBeheerAfdelingen = new frmBeheerAfdelingen();
+                frmBeheerAfdelingen.MdiParent = this;
+            }
+            frmBeheerAfdelingen.Show();
+        }
+
+        private void dienstToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerDiensten == null)
+            {
+                frmBeheerDiensten = new frmBeheerDiensten();
+                frmBeheerDiensten.MdiParent = this;
+            }
+            frmBeheerDiensten.Show();
+        }
+
+        private void kostenplaatsToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerKostenplaatsen == null)
+            {
+                frmBeheerKostenplaatsen = new frmBeheerKostenplaatsen();
+                frmBeheerKostenplaatsen.MdiParent = this;
+            }
+            frmBeheerKostenplaatsen.Show();
         }
     }
 }
