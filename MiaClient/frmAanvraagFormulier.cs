@@ -63,7 +63,7 @@ namespace MiaClient
         private void Initialize()
         {
             InitializeComponent();
-            //vulFormulier();
+            vulFormulier();
             
             SetFormStatus(false);
             GetParam();
@@ -1322,7 +1322,9 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Activated(object sender, EventArgs e)
         {
-            vulFormulier();
+            //Doen we hier niet meer, want dan zijn de waarden in de dropdownlists
+            //niet meer geselecteerd.
+            //vulFormulier();
         }
     }
 }
