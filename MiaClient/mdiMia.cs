@@ -283,8 +283,11 @@ namespace MiaClient
                 parameterToolStripButton.Visible = true;
                 gebruikersToolStripButton.Visible = true;
                 aankopersToolStripButton.Visible = true;
-                afdelingToolStripButton.Visible = true;
-                dienstToolStripButton.Visible = true;
+                //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
+                afdelingToolStripButton.Visible = false;
+                afdelingenToolStripMenuItem.Visible = false;
+                dienstToolStripButton.Visible = false;
+                dienstenToolStripMenuItem.Visible = false;
                 kostenplaatsToolStripButton.Visible = true;
 
                 tss3.Visible = true;
