@@ -48,6 +48,7 @@ namespace MiaClient.UserControls
             lblWaarde.Text = Waarde;
             lblEenheid.Text = Eenheid;
 
+           
 
             if (Even)
             {
@@ -58,99 +59,38 @@ namespace MiaClient.UserControls
                 this.BackColor = StyleParameters.AltListItemColor;
             }
         }
-        //// Tooltip forwarding
-        //public void EnableTooltip(ToolTip tip)
-        //{
-        //    // Tooltip op root control
-        //    this.MouseMove += (s, e) => tip.Show(
-        //        $"Code: {Code}\nWaarde: {Waarde}\nEenheid: {Eenheid}\nVerklaring: {Verklaring}",
-        //        this
-        //    );
-        //     this.MouseLeave += (s, e) => tip.Hide(this);
 
-        //    // Forward naar subcontrols
-        //    ForwardTooltipToChildren(this, tip);
-        //}
 
-        //private void ForwardTooltipToChildren(Control parent, ToolTip tip)
-        //{
-        //    foreach (Control c in parent.Controls)
-        //    {
-        //        // Gebruik MouseEnter in plaats van MouseMove
-        //        c.MouseMove += (s, e) =>
-        //        {
-        //            // Alleen tonen als tooltip nog niet zichtbaar
-        //            tip.Show(
-        //                $"Code: {Code}\nWaarde: {Waarde}\nEenheid: {Eenheid}\nVerklaring: {Verklaring}",
-        //                this
-        //            );
-        //        };
 
-        //        // Niet automatisch verbergen bij MouseLeave van subcontrol
-        //        // De root MouseLeave regelt dit al
 
-        //        if (c.HasChildren)
-        //            ForwardTooltipToChildren(c, tip);
-        //    }
-        //}
-
-        public void EnableTooltip(ToolTip tip)
+        public void EnableCodeHover(ToolTip tip)
         {
-            this.MouseEnter += (s, e) =>
+            // Hover effect voor lblCode
+            lblCode.MouseEnter += (s, e) =>
             {
-                // Tooltip tonen, 3 seconden
+                // Tooltip tonen met de waarden van deze parameter
+                // moet hier nog if verklaring
                 tip.Show(
-                    $"Code: {Code}\nWaarde: {Waarde}\nEenheid: {Eenheid}\nVerklaring: {Verklaring}",
-                    this,
-                    0, 0, 3000
+                    
+                    $"Verklaring: {Verklaring}",
+                    lblCode,
+                    0, lblCode.Height, 3000
                 );
+
+                // Optioneel: achtergrondkleur van de label veranderen tijdens hover
+                lblCode.BackColor = Color.LightYellow;
             };
 
-            this.MouseLeave += (s, e) =>
+            lblCode.MouseLeave += (s, e) =>
             {
-                // Kijk waar de muis nu is
-                Point p = this.PointToClient(Cursor.Position);
-                if (!this.ClientRectangle.Contains(p))
-                {
-                    tip.Hide(this);
-                }
-                // anders muis zit nog binnen de control of child, tooltip blijft
+                // Tooltip verbergen
+                tip.Hide(lblCode);
+
+                // Achtergrondkleur terugzetten naar normale kleur
+                lblCode.BackColor = Even ? StyleParameters.ListItemColor : StyleParameters.AltListItemColor;
             };
-
-            // Optioneel: subcontrols doorgeven, zodat hover over knop/label tooltip niet verdwijnt
-            foreach (Control c in this.Controls)
-            {
-                c.MouseMove += (s, e) =>
-                {
-                    tip.Show(
-                        $"Code: {Code}\nWaarde: {Waarde}\nEenheid: {Eenheid}\nVerklaring: {Verklaring}",
-                        this,
-                        0, 0, 3000
-                    );
-                };
-            }
         }
 
-
-
-        private void ForwardTooltipToChildren(Control parent, ToolTip tip)
-        {
-            foreach (Control c in parent.Controls)
-            {
-                c.MouseEnter += (s, e) => ShowTooltip(tip);
-                // Geen MouseLeave hier; root regelt het verbergen
-                if (c.HasChildren)
-                    ForwardTooltipToChildren(c, tip);
-            }
-        }
-
-        private void ShowTooltip(ToolTip tip)
-        {
-            tip.Show(
-                $"Code: {Code}\nWaarde: {Waarde}\nEenheid: {Eenheid}\nVerklaring: {Verklaring}",
-                this
-            );
-        }
 
 
         private void btnEdit_Click(object sender, EventArgs e)

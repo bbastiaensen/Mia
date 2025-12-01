@@ -141,7 +141,8 @@ namespace MiaClient
                 pi.ParameterDeleted += Pi_ParameterDeleted;
 
                 // Tooltip via MouseHover instellen
-                pi.EnableTooltip(tip);
+                //// Alleen hover op Waarde
+                pi.EnableCodeHover(tip);
 
 
                 this.pnlParameters.Controls.Add(pi);
