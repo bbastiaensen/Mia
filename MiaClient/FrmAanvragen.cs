@@ -934,7 +934,7 @@ namespace MiaClient
                     Marshal.ReleaseComObject(workbook);
                     Marshal.ReleaseComObject(worksheet);
                     app.Quit();
-
+                     
                     MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblWachtenExcelAanvragen.Visible = false;
                 }
