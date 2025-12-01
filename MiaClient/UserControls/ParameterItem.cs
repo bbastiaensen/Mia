@@ -1,5 +1,6 @@
 ﻿using ProofOfConceptDesign;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -65,31 +66,31 @@ namespace MiaClient.UserControls
 
         public void EnableCodeHover(ToolTip tip)
         {
-            // Hover effect voor lblCode
-            lblCode.MouseEnter += (s, e) =>
-            {
-                // Tooltip tonen met de waarden van deze parameter
-                // moet hier nog if verklaring
-                tip.Show(
-                    
-                    $"Verklaring: {Verklaring}",
-                    lblCode,
-                    0, lblCode.Height, 3000
-                );
+            if (lblCode == null) throw new ArgumentNullException(nameof(lblCode));
+            if (tip == null) throw new ArgumentNullException(nameof(tip));
 
-                // Optioneel: achtergrondkleur van de label veranderen tijdens hover
-                lblCode.BackColor = Color.LightYellow;
-            };
+            // Tooltip instellen
+            string text = string.IsNullOrEmpty(Verklaring) ? "Null" : Verklaring;
+            tip.SetToolTip(lblCode, $"Verklaring: {text}");
 
-            lblCode.MouseLeave += (s, e) =>
-            {
-                // Tooltip verbergen
-                tip.Hide(lblCode);
+            // Hover effect, eerst oude handlers verwijderen
+            lblCode.MouseEnter -= lblCode_MouseEnter;
+            lblCode.MouseLeave -= lblCode_MouseLeave;
 
-                // Achtergrondkleur terugzetten naar normale kleur
-                lblCode.BackColor = Even ? StyleParameters.ListItemColor : StyleParameters.AltListItemColor;
-            };
+            lblCode.MouseEnter += lblCode_MouseEnter;
+            lblCode.MouseLeave += lblCode_MouseLeave;
         }
+
+        private void lblCode_MouseEnter(object sender, EventArgs e)
+        {
+            lblCode.BackColor = Color.LightYellow;
+        }
+
+        private void lblCode_MouseLeave(object sender, EventArgs e)
+        {
+            lblCode.BackColor = Even ? StyleParameters.ListItemColor : StyleParameters.AltListItemColor;
+        }
+
 
 
 
