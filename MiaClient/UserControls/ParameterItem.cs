@@ -12,7 +12,6 @@ namespace MiaClient.UserControls
         public string Code { get; set; }
         public string Waarde { get; set; }
         public string Eenheid { get; set; }
-
         public string Verklaring { get; set; }
 
 
@@ -47,9 +46,7 @@ namespace MiaClient.UserControls
             lblId.Text = Id.ToString();
             lblCode.Text = Code;
             lblWaarde.Text = Waarde;
-            lblEenheid.Text = Eenheid;
-
-           
+            lblEenheid.Text = Eenheid;        
 
             if (Even)
             {
@@ -61,9 +58,6 @@ namespace MiaClient.UserControls
             }
         }
 
-
-
-
         public void EnableCodeHover(ToolTip tip)
         {
             if (lblCode == null) throw new ArgumentNullException(nameof(lblCode));
@@ -71,28 +65,11 @@ namespace MiaClient.UserControls
 
             // Tooltip instellen
             string text = string.IsNullOrEmpty(Verklaring) ? "Null" : Verklaring;
-            tip.SetToolTip(lblCode, $"Verklaring: {text}");
-
-            // Hover effect, eerst oude handlers verwijderen
-            lblCode.MouseEnter -= lblCode_MouseEnter;
-            lblCode.MouseLeave -= lblCode_MouseLeave;
-
-            lblCode.MouseEnter += lblCode_MouseEnter;
-            lblCode.MouseLeave += lblCode_MouseLeave;
+            if (text != "Null")
+            {
+                tip.SetToolTip(lblCode, $"Verklaring: {text}");
+            }
         }
-
-        private void lblCode_MouseEnter(object sender, EventArgs e)
-        {
-            lblCode.BackColor = Color.LightYellow;
-        }
-
-        private void lblCode_MouseLeave(object sender, EventArgs e)
-        {
-            lblCode.BackColor = Even ? StyleParameters.ListItemColor : StyleParameters.AltListItemColor;
-        }
-
-
-
 
         private void btnEdit_Click(object sender, EventArgs e)
         {

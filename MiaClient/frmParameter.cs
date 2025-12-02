@@ -52,11 +52,6 @@ namespace MiaClient
         public frmParameter()
         {
             InitializeComponent();
-        
-
-
-
-
         }
 
         private void frmParameter_FormClosing(object sender, FormClosingEventArgs e)
@@ -108,10 +103,6 @@ namespace MiaClient
                 btnFilter.BackgroundImageLayout = ImageLayout.Stretch;
                 btnFilter.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
-               
-
-
-
             }
             catch (Exception ex)
             {
@@ -144,23 +135,13 @@ namespace MiaClient
                 //// Alleen hover op Waarde
                 pi.EnableCodeHover(tip);
 
-
                 this.pnlParameters.Controls.Add(pi);
-
-                
 
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
-
-               
             }
         }
-
-
-      
-
-
 
         private void Pi_ParameterDeleted(object sender, EventArgs e)
         {
@@ -175,7 +156,8 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                //BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                StartPaging();
 
                 detailsWissen();
 
@@ -235,31 +217,6 @@ namespace MiaClient
         {
             ParameterBewaar();
         
-        }
-
-        private void btnVerwijderen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
-                Parameter p = new Parameter();
-                if (!isNieuw)
-                {
-                    p.Id = Convert.ToInt32(txtIdDetail.Text);
-                }
-                ParameterManager.DeleteParameter(p);
-
-                parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-
-                detailsWissen();
-
-                MessageBox.Show("De gegevens zijn verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void txtCodeDetail_KeyPress(object sender, KeyPressEventArgs e)
@@ -374,9 +331,6 @@ namespace MiaClient
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
                 p.Verklaring = txtVerklaringDetail.Text;
-               
-               
-                
                 
                 if (!isNieuw)
                 {
@@ -428,7 +382,7 @@ namespace MiaClient
 
                 ShowPages();
 
-                if (huidigePage < aantalPages)
+                if (huidigePage <= aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
                     EnableLastNext(true);
