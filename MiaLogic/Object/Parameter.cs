@@ -12,5 +12,7 @@ namespace MiaLogic.Object
         public string Code { get; set; }
         public string Waarde { get; set; }
         public string Eenheid { get; set; }
+
+        public string Verklaring { get; set; }
     }
 }
