@@ -155,7 +155,7 @@
             this.pnlParameters.Location = new System.Drawing.Point(12, 143);
             this.pnlParameters.Name = "pnlParameters";
             this.pnlParameters.Size = new System.Drawing.Size(886, 311);
-            this.pnlParameters.TabIndex = 1;
+            this.pnlParameters.TabIndex = 0;
             this.pnlParameters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlParameters_Paint);
             // 
             // txtCodeDetail
@@ -164,7 +164,7 @@
             this.txtCodeDetail.Location = new System.Drawing.Point(149, 527);
             this.txtCodeDetail.Name = "txtCodeDetail";
             this.txtCodeDetail.Size = new System.Drawing.Size(743, 29);
-            this.txtCodeDetail.TabIndex = 2;
+            this.txtCodeDetail.TabIndex = 1;
             this.txtCodeDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeDetail_KeyPress);
             // 
             // txtWaardeDetail
@@ -173,7 +173,7 @@
             this.txtWaardeDetail.Location = new System.Drawing.Point(148, 562);
             this.txtWaardeDetail.Name = "txtWaardeDetail";
             this.txtWaardeDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtWaardeDetail.TabIndex = 3;
+            this.txtWaardeDetail.TabIndex = 2;
             // 
             // txtEenheidDetail
             // 
@@ -181,7 +181,7 @@
             this.txtEenheidDetail.Location = new System.Drawing.Point(148, 597);
             this.txtEenheidDetail.Name = "txtEenheidDetail";
             this.txtEenheidDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtEenheidDetail.TabIndex = 4;
+            this.txtEenheidDetail.TabIndex = 3;
             // 
             // txtIdDetail
             // 
@@ -318,9 +318,10 @@
             // 
             this.txtVerklaringDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVerklaringDetail.Location = new System.Drawing.Point(149, 635);
+            this.txtVerklaringDetail.Multiline = true;
             this.txtVerklaringDetail.Name = "txtVerklaringDetail";
-            this.txtVerklaringDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtVerklaringDetail.TabIndex = 44;
+            this.txtVerklaringDetail.Size = new System.Drawing.Size(744, 69);
+            this.txtVerklaringDetail.TabIndex = 4;
             // 
             // lblVerklaring
             // 
