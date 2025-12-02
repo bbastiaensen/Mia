@@ -295,7 +295,7 @@ namespace MiaClient
         }
         public void VulAankoperDropDown(ComboBox cmbAankoper)
         {
-            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetAankoper();
+            List<Aankoper> aankoper = MiaLogic.Manager.AankoperManager.GetActiveAankopers();
 
             cmbAankoper.DataSource = aankoper;
             cmbAankoper.DisplayMember = "FullName";
@@ -1044,7 +1044,7 @@ namespace MiaClient
         {
             CreateUI();
             ddlDisabler();
-
+          
         }
 
         public void CreateUI()
@@ -1318,6 +1318,13 @@ namespace MiaClient
             }
           
 
+        }
+
+        private void frmAanvraagFormulier_Activated(object sender, EventArgs e)
+        {
+            //Doen we hier niet meer, want dan zijn de waarden in de dropdownlists
+            //niet meer geselecteerd.
+            //vulFormulier();
         }
     }
 }

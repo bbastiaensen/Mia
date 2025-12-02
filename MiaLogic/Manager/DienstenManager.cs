@@ -77,5 +77,36 @@ namespace MiaLogic.Manager
             }
             return dienst;
         }
+        public static string GetDienstNaamById(int id) 
+        {
+            string naam = "Onbekend";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT Naam FROM Dienst WHERE Id = @Id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            naam = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fout bij het ophalen van de dienst naam" + ex.Message);
+            }
+            return naam;
+
+        }
     }
 }

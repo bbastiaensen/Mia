@@ -611,7 +611,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
+                    objCmd.CommandText = "select a.Id, a.Gebruiker, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, sa.Naam as StatusAanvraag, sa.Id as StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam as Kostenplaats, a.OpmerkingenResultaat, a.RichtperiodeId, a.BudgetToegekend, a.AfdelingId, a.DienstId from Aanvraag a inner join StatusAanvraag sa on sa.Id = a.StatusAanvraagId inner join Kostenplaats k on k.Id = a.KostenplaatsId order by a.Aanvraagmoment desc";
                     objCn.Open();
 
                     SqlDataReader objRea = objCmd.ExecuteReader();
@@ -656,6 +656,11 @@ namespace MiaLogic.Manager
                         {
                             a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
                         }
+                        if (objRea["AfdelingId"] != DBNull.Value)
+                            a.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
+
+                        if (objRea["DienstId"] != DBNull.Value)
+                            a.DienstId = Convert.ToInt32(objRea["DienstId"]);
                         a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
                         returnlist.Add(a);
                     }

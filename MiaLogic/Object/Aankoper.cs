@@ -12,5 +12,7 @@ namespace MiaLogic.Object
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
         public string FullName { get; set; }
+        
+        public bool actief { get; set; }
     }
 }
