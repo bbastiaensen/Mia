@@ -638,7 +638,7 @@ namespace MiaClient
 
               
                 
-                    // Alle controls in de form aanpassen
+                    // Alle controls in de form aanpassenn
                     //foreach (Control c in frm.Controls)
                     //{
                     //    if (c is Button btn)
