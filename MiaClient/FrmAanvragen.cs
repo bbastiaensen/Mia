@@ -906,7 +906,7 @@ namespace MiaClient
 
                     Excel.Range rijRange = worksheet.Range[$"A{row}:J{row}"];
                     rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
-                    rijRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    
 
                     if (row % 2 == 0)
                         rijRange.Interior.Color = DataLicht2Exc;
@@ -923,7 +923,9 @@ namespace MiaClient
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 used.Borders.Color = textKleurExc;
 
-                worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                worksheet.Range["A:J"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                worksheet.Columns[8].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+
                 worksheet.Columns.AutoFit();
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
