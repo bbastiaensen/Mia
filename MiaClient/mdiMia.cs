@@ -288,6 +288,7 @@ namespace MiaClient
                 afdelingenToolStripMenuItem.Visible = false;
                 dienstToolStripButton.Visible = false;
                 dienstenToolStripMenuItem.Visible = false;
+
                 kostenplaatsToolStripButton.Visible = true;
 
                 tss3.Visible = true;

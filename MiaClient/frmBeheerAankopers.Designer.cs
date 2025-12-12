@@ -48,7 +48,7 @@
             this.LstAankopers.ItemHeight = 20;
             this.LstAankopers.Location = new System.Drawing.Point(12, 12);
             this.LstAankopers.Name = "LstAankopers";
-            this.LstAankopers.Size = new System.Drawing.Size(289, 124);
+            this.LstAankopers.Size = new System.Drawing.Size(289, 164);
             this.LstAankopers.TabIndex = 0;
             this.LstAankopers.SelectedIndexChanged += new System.EventHandler(this.LstAankopers_SelectedIndexChanged);
             // 
@@ -122,9 +122,9 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(12, 157);
+            this.btnNieuw.Location = new System.Drawing.Point(314, 136);
             this.btnNieuw.Name = "btnNieuw";
-            this.btnNieuw.Size = new System.Drawing.Size(169, 47);
+            this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 9;
             this.btnNieuw.Text = "Nieuw";
             this.btnNieuw.UseVisualStyleBackColor = true;
@@ -132,9 +132,9 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(472, 161);
+            this.btnVerwijderen.Location = new System.Drawing.Point(536, 136);
             this.btnVerwijderen.Name = "btnVerwijderen";
-            this.btnVerwijderen.Size = new System.Drawing.Size(169, 43);
+            this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 10;
             this.btnVerwijderen.Text = "Verwijderen";
             this.btnVerwijderen.UseVisualStyleBackColor = true;
@@ -142,9 +142,9 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(242, 156);
+            this.btnBewaren.Location = new System.Drawing.Point(425, 136);
             this.btnBewaren.Name = "btnBewaren";
-            this.btnBewaren.Size = new System.Drawing.Size(169, 49);
+            this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 11;
             this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 219);
+            this.ClientSize = new System.Drawing.Size(653, 184);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
