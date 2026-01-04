@@ -13,16 +13,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace MiaClient
 {
     public partial class frmParameter : Form
     {
         List<Parameter> parameters;
+        
+
+        private ToolTip tip = new ToolTip(); // tooltip gebruikt bij hover
 
         bool filterCode = false;
         bool filterWaarde = false;
         bool filterEenheid = false;
+        bool filterVerklaring = true;
         bool isNieuw = true;
 
         int aantalListItems = 10;
@@ -115,13 +121,20 @@ namespace MiaClient
 
             foreach (var p in items)
             {
-                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, t % 2 == 0);
+                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring ,   t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
                 pi.Size = new System.Drawing.Size(868, 33);
                 pi.TabIndex = t + 8;
+             
+                // Events koppelen
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
+
+                // Tooltip via MouseHover instellen
+                //// Alleen hover op Waarde
+                pi.EnableCodeHover(tip);
+
                 this.pnlParameters.Controls.Add(pi);
 
                 //Voorbereiden voor de volgende control
@@ -143,7 +156,8 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                //BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                StartPaging();
 
                 detailsWissen();
 
@@ -161,10 +175,19 @@ namespace MiaClient
 
             txtIdDetail.Text = geselecteerd.Id.ToString();
             txtCodeDetail.Text = geselecteerd.Code;
+        
+      
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
 
+            txtVerklaringDetail.Text = geselecteerd.Verklaring;
+            
+
+            //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
+            txtCodeDetail.ReadOnly = true;
+
             isNieuw = false;
+     
         }
 
         private void detailsWissen()
@@ -173,45 +196,27 @@ namespace MiaClient
             txtCodeDetail.Text = string.Empty;
             txtWaardeDetail.Text = string.Empty;
             txtEenheidDetail.Text = string.Empty;
+            
+            txtVerklaringDetail.Text = string.Empty;
 
             isNieuw = true;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
         {
+
+
             //Detailformulier leegmaken voor nieuwe invoer.
             detailsWissen();
             txtCodeDetail.Focus();
+            // parameter Code kan nu bewerkt worden:
+            txtCodeDetail.ReadOnly = false;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             ParameterBewaar();
-        }
-
-        private void btnVerwijderen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
-                Parameter p = new Parameter();
-                if (!isNieuw)
-                {
-                    p.Id = Convert.ToInt32(txtIdDetail.Text);
-                }
-                ParameterManager.DeleteParameter(p);
-
-                parameters = ParameterManager.GetParameters();
-                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
-
-                detailsWissen();
-
-                MessageBox.Show("De gegevens zijn verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        
         }
 
         private void txtCodeDetail_KeyPress(object sender, KeyPressEventArgs e)
@@ -237,6 +242,7 @@ namespace MiaClient
                 {
                     items = items.Where(p => p.Eenheid.ToLower().Contains(txtEenheid.Text.ToLower())).ToList();
                 }
+           
             }
 
             //Leegmaken detailvelden
@@ -309,19 +315,23 @@ namespace MiaClient
                     MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+       
+        
                 if (isNieuw && !ParameterManager.ParameterExists(txtCodeDetail.Text))
                 {
                     MessageBox.Show("De code '" + txtCodeDetail.Text + "' bestaat al.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodeDetail.Text = string.Empty;
                     return;
                 }
+          
 
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
                 p.Code = txtCodeDetail.Text;
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
+                p.Verklaring = txtVerklaringDetail.Text;
+                
                 if (!isNieuw)
                 {
                     p.Id = Convert.ToInt32(txtIdDetail.Text);
@@ -333,7 +343,7 @@ namespace MiaClient
 
                 parameters = FilteredParameters(ParameterManager.GetParameters(), filterCode, filterWaarde, filterEenheid);
                 StartPaging();
-
+                detailsWissen();
                 MessageBox.Show("De gegevens zijn bewaard.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -372,7 +382,7 @@ namespace MiaClient
 
                 ShowPages();
 
-                if (huidigePage < aantalPages)
+                if (huidigePage <= aantalPages)
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
                     EnableLastNext(true);
@@ -551,6 +561,11 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+
+        private void pnlParameters_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

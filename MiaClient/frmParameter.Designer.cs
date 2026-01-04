@@ -54,6 +54,8 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnLast = new System.Windows.Forms.Button();
             this.lblPages = new System.Windows.Forms.Label();
+            this.txtVerklaringDetail = new System.Windows.Forms.TextBox();
+            this.lblVerklaring = new System.Windows.Forms.Label();
             this.grpbxFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,7 +155,8 @@
             this.pnlParameters.Location = new System.Drawing.Point(12, 143);
             this.pnlParameters.Name = "pnlParameters";
             this.pnlParameters.Size = new System.Drawing.Size(886, 311);
-            this.pnlParameters.TabIndex = 1;
+            this.pnlParameters.TabIndex = 0;
+            this.pnlParameters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlParameters_Paint);
             // 
             // txtCodeDetail
             // 
@@ -161,7 +164,7 @@
             this.txtCodeDetail.Location = new System.Drawing.Point(149, 527);
             this.txtCodeDetail.Name = "txtCodeDetail";
             this.txtCodeDetail.Size = new System.Drawing.Size(743, 29);
-            this.txtCodeDetail.TabIndex = 2;
+            this.txtCodeDetail.TabIndex = 1;
             this.txtCodeDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeDetail_KeyPress);
             // 
             // txtWaardeDetail
@@ -170,7 +173,7 @@
             this.txtWaardeDetail.Location = new System.Drawing.Point(148, 562);
             this.txtWaardeDetail.Name = "txtWaardeDetail";
             this.txtWaardeDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtWaardeDetail.TabIndex = 3;
+            this.txtWaardeDetail.TabIndex = 2;
             // 
             // txtEenheidDetail
             // 
@@ -178,7 +181,7 @@
             this.txtEenheidDetail.Location = new System.Drawing.Point(148, 597);
             this.txtEenheidDetail.Name = "txtEenheidDetail";
             this.txtEenheidDetail.Size = new System.Drawing.Size(744, 29);
-            this.txtEenheidDetail.TabIndex = 4;
+            this.txtEenheidDetail.TabIndex = 3;
             // 
             // txtIdDetail
             // 
@@ -232,7 +235,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(216, 643);
+            this.btnNieuw.Location = new System.Drawing.Point(216, 710);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(251, 41);
             this.btnNieuw.TabIndex = 5;
@@ -242,7 +245,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(473, 643);
+            this.btnBewaren.Location = new System.Drawing.Point(473, 710);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(251, 41);
             this.btnBewaren.TabIndex = 6;
@@ -311,11 +314,32 @@
             this.lblPages.TabIndex = 43;
             this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtVerklaringDetail
+            // 
+            this.txtVerklaringDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVerklaringDetail.Location = new System.Drawing.Point(149, 635);
+            this.txtVerklaringDetail.Multiline = true;
+            this.txtVerklaringDetail.Name = "txtVerklaringDetail";
+            this.txtVerklaringDetail.Size = new System.Drawing.Size(744, 69);
+            this.txtVerklaringDetail.TabIndex = 4;
+            // 
+            // lblVerklaring
+            // 
+            this.lblVerklaring.AutoSize = true;
+            this.lblVerklaring.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerklaring.Location = new System.Drawing.Point(18, 638);
+            this.lblVerklaring.Name = "lblVerklaring";
+            this.lblVerklaring.Size = new System.Drawing.Size(84, 21);
+            this.lblVerklaring.TabIndex = 45;
+            this.lblVerklaring.Text = "Verklaring:";
+            // 
             // frmParameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 692);
+            this.ClientSize = new System.Drawing.Size(911, 756);
+            this.Controls.Add(this.txtVerklaringDetail);
+            this.Controls.Add(this.lblVerklaring);
             this.Controls.Add(this.lblPages);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnLast);
@@ -379,5 +403,7 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnLast;
         private System.Windows.Forms.Label lblPages;
+        private System.Windows.Forms.TextBox txtVerklaringDetail;
+        private System.Windows.Forms.Label lblVerklaring;
     }
 }
