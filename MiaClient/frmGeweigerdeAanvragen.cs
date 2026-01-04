@@ -217,18 +217,14 @@ namespace MiaClient
 
 
         }
-
-
-
         private void frmGeweigerdeAanvragen_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
         private void cmbJaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnExcel.Enabled = cmbJaar.SelectedIndex != -1;
+            btnExcel.Enabled = !string.IsNullOrEmpty(cmbJaar.SelectedValue.ToString());
         }
     }
 }
