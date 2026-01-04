@@ -49,7 +49,7 @@
             // lblWacht
             // 
             this.lblWacht.AutoSize = true;
-            this.lblWacht.Location = new System.Drawing.Point(8, 220);
+            this.lblWacht.Location = new System.Drawing.Point(13, 204);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
             this.lblWacht.Size = new System.Drawing.Size(183, 25);
@@ -71,7 +71,7 @@
             // 
             this.cmbJaar.Location = new System.Drawing.Point(289, 31);
             this.cmbJaar.Name = "cmbJaar";
-            this.cmbJaar.Size = new System.Drawing.Size(82, 33);
+            this.cmbJaar.Size = new System.Drawing.Size(126, 33);
             this.cmbJaar.TabIndex = 12;
             this.cmbJaar.SelectedIndexChanged += new System.EventHandler(this.cmbJaar_SelectedIndexChanged);
             // 
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 256);
+            this.ClientSize = new System.Drawing.Size(489, 271);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.cmbJaar);
             this.Controls.Add(this.lblLaad1);
