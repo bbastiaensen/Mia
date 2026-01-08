@@ -137,6 +137,8 @@ namespace MiaClient
 
                 this.pnlParameters.Controls.Add(pi);
 
+
+               
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
@@ -156,7 +158,8 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                //BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                //aanpassing thomas 
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
                 StartPaging();
 
                 detailsWissen();
@@ -183,7 +186,7 @@ namespace MiaClient
             txtVerklaringDetail.Text = geselecteerd.Verklaring;
             
 
-            //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
+            //hier zet ik Code parameter naar readonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
 
             isNieuw = false;
@@ -211,6 +214,7 @@ namespace MiaClient
             txtCodeDetail.Focus();
             // parameter Code kan nu bewerkt worden:
             txtCodeDetail.ReadOnly = false;
+       
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
