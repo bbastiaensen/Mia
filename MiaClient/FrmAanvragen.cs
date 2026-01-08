@@ -862,7 +862,7 @@ namespace MiaClient
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
                         worksheet.Cells[row, 3].Value = a.Aanvraagmoment;
-                        worksheet.Cells[row, 3].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 3].NumberFormat = "dd/mm/jjjj";
                     }
                     else
                     {
@@ -893,7 +893,7 @@ namespace MiaClient
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
                         worksheet.Cells[row, 10].Value = a.Planningsdatum;
-                        worksheet.Cells[row, 10].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 10].NumberFormat = "dd/mm/jjjj";
                     }
                     else
                     {
