@@ -52,7 +52,26 @@ namespace MiaClient
         public frmParameter()
         {
             InitializeComponent();
+        
+        
         }
+        //zorgt dat hover niet weg gaat na paging et cetera
+        private void UpdatePagingButtons()
+        {
+            btnFirst.BackgroundImage =
+                huidigePage == 1 ? imgFirstDisable : imgFirst;
+
+            btnPrevious.BackgroundImage =
+                huidigePage == 1 ? imgPreviousDisable : imgPrevious;
+
+            btnNext.BackgroundImage =
+                huidigePage == aantalPages ? imgNextDisable : imgNext;
+
+            btnLast.BackgroundImage =
+                huidigePage == aantalPages ? imgLastDisable : imgLast;
+        }
+
+
 
         private void frmParameter_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -137,6 +156,8 @@ namespace MiaClient
 
                 this.pnlParameters.Controls.Add(pi);
 
+
+               
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
@@ -156,10 +177,13 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                //BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                //aanpassing thomas 
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
                 StartPaging();
 
                 detailsWissen();
+                UpdatePagingButtons();
+
 
                 MessageBox.Show("De parameter is verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -183,7 +207,7 @@ namespace MiaClient
             txtVerklaringDetail.Text = geselecteerd.Verklaring;
             
 
-            //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
+            //hier zet ik Code parameter naar readonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
 
             isNieuw = false;
@@ -211,6 +235,7 @@ namespace MiaClient
             txtCodeDetail.Focus();
             // parameter Code kan nu bewerkt worden:
             txtCodeDetail.ReadOnly = false;
+       
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -386,6 +411,7 @@ namespace MiaClient
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
                     EnableLastNext(true);
+                    UpdatePagingButtons();
                 }
                 if (huidigePage == 1)
                 {
@@ -399,6 +425,7 @@ namespace MiaClient
                 BindParameters(parameters);
                 EnableFirstPrevious(false);
                 EnableLastNext(false);
+                UpdatePagingButtons();
             }
         }
 
@@ -510,13 +537,16 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+                UpdatePagingButtons();
             }
             else if (huidigePage == aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).ToList());
                 EnableLastNext(false);
+                UpdatePagingButtons();
             }
             EnableFirstPrevious(true);
+            UpdatePagingButtons();
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -526,12 +556,16 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+                UpdatePagingButtons();
             }
             if (huidigePage == 1)
             {
                 EnableFirstPrevious(false);
             }
             EnableLastNext(true);
+
+
+            UpdatePagingButtons();
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -544,6 +578,7 @@ namespace MiaClient
             {
                 EnableLastNext(true);
             }
+            UpdatePagingButtons();
         }
 
         private void btnLast_Click(object sender, EventArgs e)
@@ -556,6 +591,7 @@ namespace MiaClient
             {
                 EnableFirstPrevious(true);
             }
+            UpdatePagingButtons();
         }
 
         private void ShowPages()
@@ -563,9 +599,6 @@ namespace MiaClient
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
 
-        private void pnlParameters_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+   
     }
 }
