@@ -124,6 +124,8 @@ namespace MiaClient
             ClearFields();
             LstAankopers.SelectedValue = a.Id.ToString();
             IsNew = false;
+
+            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
@@ -147,7 +149,7 @@ namespace MiaClient
             
             if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "succes", MessageBoxButtons.OK);
+                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AankoperManager.DeleteAankoper(a);
             }
           
