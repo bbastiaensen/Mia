@@ -235,6 +235,12 @@ namespace MiaClient
 
                 parameters = ParameterManager.GetParameters();
                 BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void txtCodeDetail_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -684,7 +690,7 @@ namespace MiaClient
             btnBewaren.ForeColor = StyleParameters.Buttontext;
 
         }
-        }
+        
 
         private void pnlParameters_Paint(object sender, PaintEventArgs e)
         {
