@@ -866,7 +866,7 @@ namespace MiaClient
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
                         worksheet.Cells[row, 3].Value = a.Aanvraagmoment;
-                        worksheet.Cells[row, 3].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 3].NumberFormat = "dd/mm/jjjj";
                     }
                     else
                     {
@@ -897,7 +897,7 @@ namespace MiaClient
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
                         worksheet.Cells[row, 10].Value = a.Planningsdatum;
-                        worksheet.Cells[row, 10].NumberFormat = "dd-mm-yyyy";
+                        worksheet.Cells[row, 10].NumberFormat = "dd/mm/jjjj";
                     }
                     else
                     {
@@ -906,7 +906,7 @@ namespace MiaClient
 
                     Excel.Range rijRange = worksheet.Range[$"A{row}:J{row}"];
                     rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
-                    rijRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    
 
                     if (row % 2 == 0)
                         rijRange.Interior.Color = DataLicht2Exc;
@@ -923,7 +923,9 @@ namespace MiaClient
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 used.Borders.Color = textKleurExc;
 
-                worksheet.Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                worksheet.Range["A:J"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                worksheet.Columns[8].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+
                 worksheet.Columns.AutoFit();
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -940,7 +942,7 @@ namespace MiaClient
                     Marshal.ReleaseComObject(workbook);
                     Marshal.ReleaseComObject(worksheet);
                     app.Quit();
-
+                     
                     MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblWachtenExcelAanvragen.Visible = false;
                 }
