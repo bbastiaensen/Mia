@@ -807,8 +807,6 @@ namespace MiaClient
             lblWachtenExcelAanvragen.Visible = true;
             lblWachtenExcelAanvragen.Text = "Data in Excel verwerken...";
 
-            //Debug.WriteLine("Start: " + DateTime.Now.ToLongTimeString());
-
             try
             {
                 var app = new Excel.Application();
@@ -852,8 +850,6 @@ namespace MiaClient
                 }
 
                 int row = 2;
-
-                //Debug.WriteLine("Header klaar: " + DateTime.Now.ToLongTimeString());
 
                 foreach (var a in gefilterdeAanvragen)
                 {
@@ -912,8 +908,6 @@ namespace MiaClient
                         rijRange.Interior.Color = DataLicht2Exc;
                     else
                         rijRange.Interior.Color = DataLicht1Exc;
-                    
-                    //Debug.WriteLine("Rij " + row + ": " + DateTime.Now.ToLongTimeString());
 
                     row++;
 
