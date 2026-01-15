@@ -161,5 +161,45 @@ namespace MiaClient
 
 
         }
+
+        private void txtVoornaam_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAchternaam_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkActief_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblActief_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAchternaam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblVoornaam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblId_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

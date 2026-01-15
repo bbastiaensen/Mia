@@ -53,7 +53,14 @@ namespace MiaClient
         public frmParameter()
         {
             InitializeComponent();
+        
+        
         }
+        
+        
+
+
+
 
         private void frmParameter_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -116,6 +123,11 @@ namespace MiaClient
             //Eventueel bestaande lijst verwijderen
             this.pnlParameters.Controls.Clear();
 
+            //Zorgt ervoor dat alle oude "tip"-relaties verwijdert worden zodanig nat ze de nieuwe niet hinderen
+            tip.RemoveAll();
+            tip.Active = true;
+            tip.ShowAlways = true;
+
             int xPos = 0;
             int yPos = 0;
             int t = 0;
@@ -138,6 +150,8 @@ namespace MiaClient
 
                 this.pnlParameters.Controls.Add(pi);
 
+
+               
                 //Voorbereiden voor de volgende control
                 t++;
                 yPos += 30;
@@ -157,10 +171,13 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                //BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+                 
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
                 StartPaging();
 
                 detailsWissen();
+               
+
 
                 MessageBox.Show("De parameter is verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -184,7 +201,7 @@ namespace MiaClient
             txtVerklaringDetail.Text = geselecteerd.Verklaring;
 
 
-            //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
+            //hier zet ik Code parameter naar readonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
 
             isNieuw = false;
@@ -212,6 +229,7 @@ namespace MiaClient
             txtCodeDetail.Focus();
             // parameter Code kan nu bewerkt worden:
             txtCodeDetail.ReadOnly = false;
+       
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -408,6 +426,7 @@ namespace MiaClient
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
                     EnableLastNext(true);
+                 
                 }
                 if (huidigePage == 1)
                 {
@@ -421,6 +440,7 @@ namespace MiaClient
                 BindParameters(parameters);
                 EnableFirstPrevious(false);
                 EnableLastNext(false);
+              
             }
         }
 
@@ -532,13 +552,16 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+               
             }
             else if (huidigePage == aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).ToList());
                 EnableLastNext(false);
+               
             }
             EnableFirstPrevious(true);
+          
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -548,12 +571,16 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
+              
             }
             if (huidigePage == 1)
             {
                 EnableFirstPrevious(false);
             }
             EnableLastNext(true);
+
+
+          
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -566,6 +593,7 @@ namespace MiaClient
             {
                 EnableLastNext(true);
             }
+          
         }
 
         private void btnLast_Click(object sender, EventArgs e)
@@ -578,6 +606,7 @@ namespace MiaClient
             {
                 EnableFirstPrevious(true);
             }
+           
         }
 
         private void ShowPages()
@@ -585,8 +614,7 @@ namespace MiaClient
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
 
-
-       
+  
 
         public void RefreshAllForms()
         {
@@ -651,6 +679,5 @@ namespace MiaClient
                 frm.Refresh();
             }
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,13 @@ namespace MiaClient
 {
     public partial class frmBeheerInvesteringsType : Form
     {
+
+        List<Financiering>  financierings;
+
+        int xPos = 10;
+        int yPos = 20;
+        int grpHeight = 26;
+        bool IsNew = false;
         public frmBeheerInvesteringsType()
         {
             InitializeComponent();
@@ -44,6 +53,85 @@ namespace MiaClient
                 btn.BackColor = StyleParameters.ButtonBack;
                 btn.ForeColor = StyleParameters.Buttontext;
             }
+        }
+
+
+
+        public void BindLstAankopers()
+        {
+
+            financierings = FinancieringenManager.GetFinancieringen();
+            LstFinancieringsTypen.DisplayMember = "FullName";
+
+            LstFinancieringsTypen.ValueMember = "Id";
+            LstFinancieringsTypen.DataSource = financierings;
+
+        }
+
+   
+       
+        private void btnNieuw_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LstFinancieringsTypen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Financiering financier = (Financiering)LstFinancieringsTypen.SelectedItem;
+
+
+            if (financier != null)
+            {
+                txtId.Text = Convert.ToString(financier.Id);
+                txtNaam.Text = financier.Naam;
+              
+                if (financier.actief)
+                {
+                    checkActief.Checked = true;
+                }
+                else
+                {
+                    checkActief.Checked = false;
+                }
+
+                IsNew = false;
+            }
+        }
+
+        private void ClearFields()
+        {
+            
+            txtId.Text = string.Empty;
+            txtNaam.Text = string.Empty;
+            checkActief.Checked = false;
+            IsNew = true;
+        }
+
+        private void btnBewaren_Click(object sender, EventArgs e)
+        {
+            Financiering a = new Financiering();
+            a.Id = Convert.ToInt32(LstFinancieringsTypen.SelectedValue);
+            a.Naam = txtNaam.Text;
+          
+            if (checkActief.Checked)
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief = false;
+            }
+
+
+            //a.Id = FinancieringenManager.
+            //    SaveAankoper(a, IsNew);
+
+            BindLstAankopers();
+            ClearFields();
+            LstFinancieringsTypen.SelectedValue = a.Id.ToString();
+            IsNew = false;
+
+            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
