@@ -122,7 +122,7 @@ namespace MiaClient
 
         }
 
-        private void laadGrafischeParameters()
+        public static void laadGrafischeParameters()
         {
             string projectDirectory = Directory.GetCurrentDirectory();
             string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);

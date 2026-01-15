@@ -217,8 +217,6 @@ namespace MiaClient
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             ParameterBewaar();
-            StyleParametersOpslaan();
-            StyleParametersOpslaanNaarDatabase();
             RefreshAllForms();
         }
 
@@ -588,73 +586,14 @@ namespace MiaClient
         }
 
 
-
-        private void StyleParametersOpslaan()
-        {
-            // Dit verandert de styleparameters naar de juiste hexadecimale kleurcode.
-            StyleParameters.Achtergrondkleur = ColorTranslator.FromHtml(ParameterWaarde("Achtergrondkleur"));
-            StyleParameters.ButtonBack = ColorTranslator.FromHtml(ParameterWaarde("ButtonBack"));
-            StyleParameters.Buttontext = ColorTranslator.FromHtml(ParameterWaarde("ButtonText"));
-            StyleParameters.AccentKleur = ColorTranslator.FromHtml(ParameterWaarde("AccentKleur"));
-            StyleParameters.ListItemColor = ColorTranslator.FromHtml(ParameterWaarde("ListItemColor"));
-            StyleParameters.AltListItemColor = ColorTranslator.FromHtml(ParameterWaarde("AltListItemColor"));
-            StyleParameters.AltButtons = ParameterWaarde("AltButtons") == "true";
-
-
-            string logoK = ParameterWaarde("LogoK");
-            if (!string.IsNullOrEmpty(logoK) && System.IO.File.Exists(logoK))
-                StyleParameters.LogoK = Image.FromFile(logoK);
-
-            string logoG = ParameterWaarde("LogoG");
-            if (!string.IsNullOrEmpty(logoG) && System.IO.File.Exists(logoG))
-                StyleParameters.LogoG = Image.FromFile(logoG);
-        }
-
-        private string ParameterWaarde(string code)
-        {
-            // Dit geeft de Waarde van een parameter (code).
-            var parameter = ParameterManager.GetParameterByCode(code);
-            if (parameter != null)
-            {
-                return parameter.Waarde;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        private void StyleParametersOpslaanNaarDatabase()
-        {
-            SaveParam("Achtergrondkleur", ColorTranslator.ToHtml(StyleParameters.Achtergrondkleur));
-            SaveParam("ButtonBack", ColorTranslator.ToHtml(StyleParameters.ButtonBack));
-            SaveParam("ButtonText", ColorTranslator.ToHtml(StyleParameters.Buttontext));
-            SaveParam("AccentKleur", ColorTranslator.ToHtml(StyleParameters.AccentKleur));
-            SaveParam("ListItemColor", ColorTranslator.ToHtml(StyleParameters.ListItemColor));
-            SaveParam("AltListItemColor", ColorTranslator.ToHtml(StyleParameters.AltListItemColor));
-            SaveParam("AltButtons", StyleParameters.AltButtons ? "true" : "false");
-
-            SaveParam("LogoK", ParameterWaarde("LogoK"));
-            SaveParam("LogoG", ParameterWaarde("LogoG"));
-        }
-
-        private void SaveParam(string code, string waarde)
-        {
-            var p = ParameterManager.GetParameterByCode(code);
-
-            if (p != null)
-            {
-                p.Waarde = waarde;
-                ParameterManager.SaveParameter(p, false);
-            }
-        }
+       
 
         public void RefreshAllForms()
         {
+            mdiMia.laadGrafischeParameters();
 
             foreach (Form frm in Application.OpenForms)
             {
-                //---------------------------------------------------
                 //ACHTERGROND LUKT WEL
                 frm.BackColor = StyleParameters.Achtergrondkleur;
                 foreach (Control ctl in frm.Controls)
@@ -663,16 +602,13 @@ namespace MiaClient
                     {
                         ctl.BackColor = StyleParameters.Achtergrondkleur;
                     }
-                    //---------------------------------------------------
 
 
-
-                    //---------------------------------------------------
-                    //BUTTONS LUKT WEL, MAAR MAG NIET OP DE PAGING BUTTONS
+                    //BUTTONS LUKT
                     if (ctl is System.Windows.Forms.Button button) 
                     {
                         //JUIST
-                        if (ctl.Name == "btnFirst" || ctl.Name == "btnLast" || ctl.Name == "btnPrevious" || ctl.Name == "btnNext" || button.Image != null)
+                        if (button.Image != null || button.BackgroundImage != null)
                         {
                             //doe niks
                         }
@@ -682,63 +618,33 @@ namespace MiaClient
                             ctl.ForeColor = StyleParameters.Buttontext;
                         }
 
-
-
-
-
-
                         //AccentKleur/AltButtons LUKT NIET
-                        //if (StyleParameters.AltButtons)
-                        //{
-                        //    button.FlatStyle = FlatStyle.Flat;
-                        //    button.FlatAppearance.BorderSize = 0;
-                        //    button.FlatAppearance.BorderColor = StyleParameters.AccentKleur;
-                        //}
-                        //else
-                        //{
-                        //    button.FlatStyle = FlatStyle.Standard;
-                        //}
                     }
-                    //---------------------------------------------------
 
 
 
-                    //---------------------------------------------------
                     ////LISTITEMCOLOR LUKT NIET
-                    //if (ctl is FotoItem fotoItem)
-                    //{
-                    //    fotoItem.BackColor = StyleParameters.ListItemColor;
-
-                    //}
-                    //---------------------------------------------------
-
+                 
                 }
 
                 //---------------------------------------------------
                 //LOGO'S LUKT WEL
                 if (frm is mdiMia mdi)
                 {
-                    string basePath = Path.Combine(
-                        Directory.GetCurrentDirectory(), "Foto's");
+                    string fotoPad = Path.Combine(Directory.GetCurrentDirectory(), "Foto's");
 
-                    var logoG = ParameterManager.GetParameterByCode("LogoG")?.Waarde;
-                    var logoK = ParameterManager.GetParameterByCode("LogoK")?.Waarde;
-
+                    // LogoG direct laden en toepassen
+                    string logoG = ParameterManager.GetParameterByCode("LogoG")?.Waarde;
                     if (!string.IsNullOrEmpty(logoG))
                     {
-                        StyleParameters.LogoG?.Dispose();
-                        StyleParameters.LogoG = Image.FromFile(Path.Combine(basePath, logoG));
-                        mdi.BackgroundImage = StyleParameters.LogoG;
-                        mdi.BackgroundImageLayout = ImageLayout.Center;
+                        string logoPath = Path.Combine(fotoPad, logoG);
+                        if (File.Exists(logoPath))
+                        {
+                            mdi.BackgroundImage?.Dispose(); // Oude achtergrond opruimen
+                            mdi.BackgroundImage = Image.FromFile(logoPath);
+                            mdi.BackgroundImageLayout = ImageLayout.Center;
+                        }
                     }
-
-                    if (!string.IsNullOrEmpty(logoK))
-                    {
-                        StyleParameters.LogoK?.Dispose();
-                        StyleParameters.LogoK = Image.FromFile(Path.Combine(basePath, logoK));
-                    }
-
-                    mdi.Refresh();
                 }
                 //---------------------------------------------------
 
