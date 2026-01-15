@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,8 @@ namespace MiaClient
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
 
         bool IsNew = false;
+
+        public event EventHandler PrioriteitenGewijzigd;
 
         public frmPrioriteit()
         {
@@ -35,7 +38,7 @@ namespace MiaClient
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
 
-            //this.Icon = imgFormIcon;
+            
 
             foreach (var btn in this.Controls.OfType<Button>())
             {
@@ -101,6 +104,7 @@ namespace MiaClient
                 p.Actief = false;
             }
             p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+            PrioriteitenGewijzigd?.Invoke(this, EventArgs.Empty);
 
             BindlstPrioriteiten();
             ClearFields();
@@ -128,10 +132,13 @@ namespace MiaClient
             {
                 
                 PrioriteitManager.DeletePrioriteit(p);
-                BindlstPrioriteiten();
+                PrioriteitenGewijzigd?.Invoke(this, EventArgs.Empty); 
                 MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
             }
-           
+            IsNew = false;
+            BindlstPrioriteiten();
+
         }
         public void ClearFields()
         {
@@ -139,5 +146,6 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             chkActief.Checked = false;
         }
+        
     }
 }

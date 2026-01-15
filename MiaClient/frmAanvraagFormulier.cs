@@ -43,6 +43,7 @@ namespace MiaClient
         List<Foto> fotos;
         List<Link> links;
         List<Offerte> offertes;
+        List<Prioriteit> prioriteiten = new List<Prioriteit>();
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
@@ -1325,6 +1326,30 @@ namespace MiaClient
             //Doen we hier niet meer, want dan zijn de waarden in de dropdownlists
             //niet meer geselecteerd.
             //vulFormulier();
+        }
+        private void BindPrioriteiten()
+        {
+            prioriteiten = PrioriteitManager.GetActivePrioriteiten();
+            ddlPrioriteit.DataSource = null;
+            ddlPrioriteit.DisplayMember = "Naam";
+            ddlPrioriteit.ValueMember = "Id";
+            ddlPrioriteit.DataSource = prioriteiten;
+        }
+
+        private void FrmBeheerPrioriteit_Changed(object sender, EventArgs e)
+        {
+            int? geselecteerdeId = ddlPrioriteit.SelectedValue as int?;
+
+            BindPrioriteiten();
+
+            if (geselecteerdeId.HasValue && ddlPrioriteit.Items.Cast<Prioriteit>().Any(p=> p.Id == geselecteerdeId))
+            {
+                ddlPrioriteit.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlPrioriteit.SelectedIndex = -1;
+            }
         }
     }
 }
