@@ -612,7 +612,27 @@ namespace MiaClient
             }
             frmBeheerKostenplaatsen.Show();
         }
- 
+
+        private void investeringsTypesToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerInvesteringsType == null)
+            {
+                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
+                frmBeheerInvesteringsType.MdiParent = this;
+            }
+            frmBeheerInvesteringsType.Show();
+        }
+
+        private void financieringsTypesToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerFinancieringsType == null)
+            {
+                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
+                frmBeheerInvesteringsType.MdiParent = this;
+            }
+            frmBeheerInvesteringsType.Show();
+        }
+
     }
 }
 
