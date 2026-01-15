@@ -26,7 +26,6 @@ namespace MiaClient
 
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
-        frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
         frmBudgetspreiding frmBudgetspreiding;
         frmGebruikerBeheer frmGebruikerBeheer;
@@ -324,12 +323,12 @@ namespace MiaClient
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmAbout == null)
+            if (AppForms.frmAbout == null)
             {
-                frmAbout = new frmAbout();
-                frmAbout.MdiParent = this;
+                AppForms.frmAbout = new frmAbout();
+                AppForms.frmAbout.MdiParent = this;
             }
-            frmAbout.Show();
+            AppForms.frmAbout.Show();
         }
 
         private void gebruiksLogToolStripButton_Click(object sender, EventArgs e)
