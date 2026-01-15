@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace MiaClient
@@ -21,7 +22,7 @@ namespace MiaClient
     public partial class frmParameter : Form
     {
         List<Parameter> parameters;
-        
+
 
         private ToolTip tip = new ToolTip(); // tooltip gebruikt bij hover
 
@@ -82,7 +83,7 @@ namespace MiaClient
                 btnBewaren.FlatAppearance.BorderSize = 0;
                 btnBewaren.BackColor = StyleParameters.ButtonBack;
                 btnBewaren.ForeColor = StyleParameters.Buttontext;
-                
+
                 btnNieuw.BackColor = StyleParameters.ButtonBack;
 
                 btnNieuw.ForeColor = StyleParameters.Buttontext;
@@ -133,12 +134,12 @@ namespace MiaClient
 
             foreach (var p in items)
             {
-                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring ,   t % 2 == 0);
+                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring, t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
                 pi.Size = new System.Drawing.Size(868, 33);
                 pi.TabIndex = t + 8;
-             
+
                 // Events koppelen
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
@@ -166,7 +167,7 @@ namespace MiaClient
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
                 p.Id = geselecteerd.Id;
- 
+
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
@@ -192,19 +193,19 @@ namespace MiaClient
 
             txtIdDetail.Text = geselecteerd.Id.ToString();
             txtCodeDetail.Text = geselecteerd.Code;
-        
-      
+
+
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
 
             txtVerklaringDetail.Text = geselecteerd.Verklaring;
-            
+
 
             //hier zet ik Code parameter naar readonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
 
             isNieuw = false;
-     
+
         }
 
         private void detailsWissen()
@@ -213,7 +214,7 @@ namespace MiaClient
             txtCodeDetail.Text = string.Empty;
             txtWaardeDetail.Text = string.Empty;
             txtEenheidDetail.Text = string.Empty;
-            
+
             txtVerklaringDetail.Text = string.Empty;
 
             isNieuw = true;
@@ -234,7 +235,28 @@ namespace MiaClient
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             ParameterBewaar();
-        
+            RefreshAllForms();
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
+                Parameter p = new Parameter();
+                if (!isNieuw)
+                {
+                    p.Id = Convert.ToInt32(txtIdDetail.Text);
+                }
+                ParameterManager.DeleteParameter(p);
+
+                parameters = ParameterManager.GetParameters();
+                BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtCodeDetail_KeyPress(object sender, KeyPressEventArgs e)
@@ -260,7 +282,7 @@ namespace MiaClient
                 {
                     items = items.Where(p => p.Eenheid.ToLower().Contains(txtEenheid.Text.ToLower())).ToList();
                 }
-           
+
             }
 
             //Leegmaken detailvelden
@@ -333,15 +355,15 @@ namespace MiaClient
                     MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-       
-        
+
+
                 if (isNieuw && !ParameterManager.ParameterExists(txtCodeDetail.Text))
                 {
                     MessageBox.Show("De code '" + txtCodeDetail.Text + "' bestaat al.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodeDetail.Text = string.Empty;
                     return;
                 }
-          
+
 
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
@@ -349,7 +371,7 @@ namespace MiaClient
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
                 p.Verklaring = txtVerklaringDetail.Text;
-                
+
                 if (!isNieuw)
                 {
                     p.Id = Convert.ToInt32(txtIdDetail.Text);
@@ -592,6 +614,70 @@ namespace MiaClient
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
         }
 
-   
+  
+
+        public void RefreshAllForms()
+        {
+            mdiMia.laadGrafischeParameters();
+
+            foreach (Form frm in Application.OpenForms)
+            {
+                //ACHTERGROND LUKT WEL
+                frm.BackColor = StyleParameters.Achtergrondkleur;
+                foreach (Control ctl in frm.Controls)
+                {
+                    if (ctl is MdiClient client)
+                    {
+                        ctl.BackColor = StyleParameters.Achtergrondkleur;
+                    }
+
+
+                    //BUTTONS LUKT
+                    if (ctl is System.Windows.Forms.Button button) 
+                    {
+                        //JUIST
+                        if (button.Image != null || button.BackgroundImage != null)
+                        {
+                            //doe niks
+                        }
+                        else
+                        {
+                            ctl.BackColor = StyleParameters.ButtonBack;
+                            ctl.ForeColor = StyleParameters.Buttontext;
+                        }
+
+                        //AccentKleur/AltButtons LUKT NIET
+                    }
+
+
+
+                    ////LISTITEMCOLOR LUKT NIET
+                 
+                }
+
+                //---------------------------------------------------
+                //LOGO'S LUKT WEL
+                if (frm is mdiMia mdi)
+                {
+                    string fotoPad = Path.Combine(Directory.GetCurrentDirectory(), "Foto's");
+
+                    // LogoG direct laden en toepassen
+                    string logoG = ParameterManager.GetParameterByCode("LogoG")?.Waarde;
+                    if (!string.IsNullOrEmpty(logoG))
+                    {
+                        string logoPath = Path.Combine(fotoPad, logoG);
+                        if (File.Exists(logoPath))
+                        {
+                            mdi.BackgroundImage?.Dispose(); // Oude achtergrond opruimen
+                            mdi.BackgroundImage = Image.FromFile(logoPath);
+                            mdi.BackgroundImageLayout = ImageLayout.Center;
+                        }
+                    }
+                }
+                //---------------------------------------------------
+
+                frm.Refresh();
+            }
+        }
     }
 }

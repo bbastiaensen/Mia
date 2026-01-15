@@ -36,7 +36,7 @@ namespace MiaClient
             CreateUI();
         }
 
-        private void CreateUI()
+        public void CreateUI()
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
 
