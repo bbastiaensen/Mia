@@ -10,6 +10,7 @@ namespace ProofOfConceptDesign
 {
     public static class StyleParameters
     {
+
         public static Image LogoK { get; set; }
         public static Image LogoG { get; set; }
         public static Color Buttontext { get; set; }

@@ -118,7 +118,7 @@ namespace MiaClient
 
         }
 
-        private void laadGrafischeParameters()
+        public static void laadGrafischeParameters()
         {
             string projectDirectory = Directory.GetCurrentDirectory();
             string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);
@@ -133,7 +133,7 @@ namespace MiaClient
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
             StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
-        private void stelGrafischeWaardeIn()
+        public void CreateUI()
         {
 
             toolStrip.BackColor = StyleParameters.AccentKleur;
@@ -380,7 +380,7 @@ namespace MiaClient
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
 
             MenubalkSamenstellen();
-            stelGrafischeWaardeIn();
+            CreateUI();
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -609,7 +609,7 @@ namespace MiaClient
             frmBeheerKostenplaatsen.Show();
         }
 
-        private void investeringsTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void investeringsTypesToolStripButton_Click(object sender, EventArgs e)
         {
             if (frmBeheerInvesteringsType == null)
             {
@@ -619,15 +619,16 @@ namespace MiaClient
             frmBeheerInvesteringsType.Show();
         }
 
-        private void financieringsTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void financieringsTypesToolStripButton_Click(object sender, EventArgs e)
         {
             if (frmBeheerFinancieringsType == null)
             {
-                frmBeheerFinancieringsType = new frmBeheerFinancieringsType();
-                frmBeheerFinancieringsType.MdiParent = this;
+                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
+                frmBeheerInvesteringsType.MdiParent = this;
             }
-            frmBeheerFinancieringsType.Show();
+            frmBeheerInvesteringsType.Show();
         }
+
     }
 }
 
