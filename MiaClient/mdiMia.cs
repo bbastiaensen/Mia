@@ -612,16 +612,7 @@ namespace MiaClient
             }
             frmBeheerKostenplaatsen.Show();
         }
-
-        public Color AccentKleur
-        {
-            get => StyleParameters.AccentKleur;
-            set
-            {
-                StyleParameters.AccentKleur = value;
-                CreateUI(); // UI opnieuw opbouwen
-            }
-        }
+ 
     }
 }
 
