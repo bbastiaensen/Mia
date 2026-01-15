@@ -55,6 +55,7 @@ namespace MiaClient
             try
             {
                 Initialize();
+                   
              
             }
             catch (SqlException ex)
@@ -1046,8 +1047,6 @@ namespace MiaClient
         {
             CreateUI();
             ddlDisabler();
-            //frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
-
         }
 
         private void CreateUI()
@@ -1329,10 +1328,6 @@ namespace MiaClient
             //niet meer geselecteerd.
             //vulFormulier();
         }
-
-
-        /*==============================================================================*/
-
         private void BindAankopers()
         {
             aankopers = AankoperManager.GetActiveAankopers();
@@ -1341,8 +1336,6 @@ namespace MiaClient
             ddlWieKooptHet.DisplayMember = "FullName";
             ddlWieKooptHet.ValueMember = "Id";
             ddlWieKooptHet.DataSource = aankopers;
-            //frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
-
         }
 
         private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
@@ -1350,11 +1343,15 @@ namespace MiaClient
             int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
             BindAankopers();
-
+             
             if (geselecteerdeId.HasValue &&
                 ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
             {
                 ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlWieKooptHet.SelectedIndex = -1;
             }
         }
     }
