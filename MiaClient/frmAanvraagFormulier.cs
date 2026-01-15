@@ -53,7 +53,6 @@ namespace MiaClient
             try
             {
                 Initialize();
-             
             }
             catch (SqlException ex)
             {
