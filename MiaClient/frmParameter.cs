@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace MiaClient
@@ -21,7 +22,7 @@ namespace MiaClient
     public partial class frmParameter : Form
     {
         List<Parameter> parameters;
-        
+
 
         private ToolTip tip = new ToolTip(); // tooltip gebruikt bij hover
 
@@ -121,12 +122,12 @@ namespace MiaClient
 
             foreach (var p in items)
             {
-                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring ,   t % 2 == 0);
+                ParameterItem pi = new ParameterItem(p.Id, p.Code, p.Waarde, p.Eenheid, p.Verklaring, t % 2 == 0);
                 pi.Location = new System.Drawing.Point(xPos, yPos);
                 pi.Name = "parameterSelection" + t;
                 pi.Size = new System.Drawing.Size(868, 33);
                 pi.TabIndex = t + 8;
-             
+
                 // Events koppelen
                 pi.ParameterSelected += Pi_ParameterSelected;
                 pi.ParameterDeleted += Pi_ParameterDeleted;
@@ -175,19 +176,19 @@ namespace MiaClient
 
             txtIdDetail.Text = geselecteerd.Id.ToString();
             txtCodeDetail.Text = geselecteerd.Code;
-        
-      
+
+
             txtWaardeDetail.Text = geselecteerd.Waarde;
             txtEenheidDetail.Text = geselecteerd.Eenheid;
 
             txtVerklaringDetail.Text = geselecteerd.Verklaring;
-            
+
 
             //hier zet ik Code parameter naar eadonly omdat die van een bestaande veld niet veranderd mag worden.( Readonly = false is bij methode btnNieuw_Click(object sender, EventArgs e))
             txtCodeDetail.ReadOnly = true;
 
             isNieuw = false;
-     
+
         }
 
         private void detailsWissen()
@@ -196,7 +197,7 @@ namespace MiaClient
             txtCodeDetail.Text = string.Empty;
             txtWaardeDetail.Text = string.Empty;
             txtEenheidDetail.Text = string.Empty;
-            
+
             txtVerklaringDetail.Text = string.Empty;
 
             isNieuw = true;
@@ -265,7 +266,7 @@ namespace MiaClient
                 {
                     items = items.Where(p => p.Eenheid.ToLower().Contains(txtEenheid.Text.ToLower())).ToList();
                 }
-           
+
             }
 
             //Leegmaken detailvelden
@@ -338,15 +339,15 @@ namespace MiaClient
                     MessageBox.Show("Het veld 'Eenheid' moet ingevuld zijn.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-       
-        
+
+
                 if (isNieuw && !ParameterManager.ParameterExists(txtCodeDetail.Text))
                 {
                     MessageBox.Show("De code '" + txtCodeDetail.Text + "' bestaat al.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCodeDetail.Text = string.Empty;
                     return;
                 }
-          
+
 
                 //Nieuw parameter object aanmaken en vullen met de waarden uit het formulier
                 Parameter p = new Parameter();
@@ -354,7 +355,7 @@ namespace MiaClient
                 p.Waarde = txtWaardeDetail.Text;
                 p.Eenheid = txtEenheidDetail.Text;
                 p.Verklaring = txtVerklaringDetail.Text;
-                
+
                 if (!isNieuw)
                 {
                     p.Id = Convert.ToInt32(txtIdDetail.Text);
@@ -584,7 +585,7 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
-       }
+        }
 
 
 
@@ -650,51 +651,100 @@ namespace MiaClient
 
         public void RefreshAllForms()
         {
+
             foreach (Form frm in Application.OpenForms)
             {
-                // Achtergrondkleur toepassen
+                //---------------------------------------------------
+                //ACHTERGROND LUKT WEL
                 frm.BackColor = StyleParameters.Achtergrondkleur;
-
-                if (frm.Name == "mdiMIA")
+                foreach (Control ctl in frm.Controls)
                 {
-                    foreach (Control ctl in frm.Controls)
+                    if (ctl is MdiClient client)
                     {
-                        if (ctl is MdiClient)
-                        {
-                            ctl.BackColor = StyleParameters.Achtergrondkleur;
-                        }
+                        ctl.BackColor = StyleParameters.Achtergrondkleur;
                     }
+                    //---------------------------------------------------
+
+
+
+                    //---------------------------------------------------
+                    //BUTTONS LUKT WEL, MAAR MAG NIET OP DE PAGING BUTTONS
+                    if (ctl is System.Windows.Forms.Button button) 
+                    {
+                        //JUIST
+                        if (ctl.Name == "btnFirst" || ctl.Name == "btnLast" || ctl.Name == "btnPrevious" || ctl.Name == "btnNext" || button.Image != null)
+                        {
+                            //doe niks
+                        }
+                        else
+                        {
+                            ctl.BackColor = StyleParameters.ButtonBack;
+                            ctl.ForeColor = StyleParameters.Buttontext;
+                        }
+
+
+
+
+
+
+                        //AccentKleur/AltButtons LUKT NIET
+                        //if (StyleParameters.AltButtons)
+                        //{
+                        //    button.FlatStyle = FlatStyle.Flat;
+                        //    button.FlatAppearance.BorderSize = 0;
+                        //    button.FlatAppearance.BorderColor = StyleParameters.AccentKleur;
+                        //}
+                        //else
+                        //{
+                        //    button.FlatStyle = FlatStyle.Standard;
+                        //}
+                    }
+                    //---------------------------------------------------
+
+
+
+                    //---------------------------------------------------
+                    ////LISTITEMCOLOR LUKT NIET
+                    //if (ctl is FotoItem fotoItem)
+                    //{
+                    //    fotoItem.BackColor = StyleParameters.ListItemColor;
+
+                    //}
+                    //---------------------------------------------------
+
                 }
 
-              
-                
-                    // Alle controls in de form aanpassenn
-                    //foreach (Control c in frm.Controls)
-                    //{
-                    //    if (c is Button btn)
-                    //    {
-                    //        btn.BackColor = StyleParameters.ButtonBack;
-                    //        btn.ForeColor = StyleParameters.Buttontext;
+                //---------------------------------------------------
+                //LOGO'S LUKT WEL
+                if (frm is mdiMia mdi)
+                {
+                    string basePath = Path.Combine(
+                        Directory.GetCurrentDirectory(), "Foto's");
 
-                    //    }
+                    var logoG = ParameterManager.GetParameterByCode("LogoG")?.Waarde;
+                    var logoK = ParameterManager.GetParameterByCode("LogoK")?.Waarde;
 
-                      
-                    //}
+                    if (!string.IsNullOrEmpty(logoG))
+                    {
+                        StyleParameters.LogoG?.Dispose();
+                        StyleParameters.LogoG = Image.FromFile(Path.Combine(basePath, logoG));
+                        mdi.BackgroundImage = StyleParameters.LogoG;
+                        mdi.BackgroundImageLayout = ImageLayout.Center;
+                    }
 
-                    frm.Refresh();
-                
+                    if (!string.IsNullOrEmpty(logoK))
+                    {
+                        StyleParameters.LogoK?.Dispose();
+                        StyleParameters.LogoK = Image.FromFile(Path.Combine(basePath, logoK));
+                    }
+
+                    mdi.Refresh();
+                }
+                //---------------------------------------------------
+
+                frm.Refresh();
             }
-            btnBewaren.BackColor = StyleParameters.ButtonBack;
-            btnNieuw.BackColor = StyleParameters.ButtonBack;
-            btnNieuw.ForeColor = StyleParameters.Buttontext;
-            btnBewaren.ForeColor = StyleParameters.Buttontext;
-
         }
-        
 
-        private void pnlParameters_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

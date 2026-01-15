@@ -61,8 +61,8 @@ namespace MiaClient.UserControls
         private void Delete_File(string filePath)
         {
            File.Delete(filePath);
-        }
-        private void SetFotoItemWaarde()
+        }   
+        public void SetFotoItemWaarde()
         {
 
             lblId.Text = Id.ToString();
@@ -181,5 +181,6 @@ namespace MiaClient.UserControls
 
 
         }
+
     }
 }

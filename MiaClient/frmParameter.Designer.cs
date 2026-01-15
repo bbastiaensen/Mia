@@ -1,4 +1,7 @@
-﻿namespace MiaClient
+﻿using System;
+using System.Windows.Forms;
+
+namespace MiaClient
 {
     partial class frmParameter
     {
@@ -374,6 +377,10 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void pnlParameters_Paint(object sender, PaintEventArgs e)
+        {
         }
 
         #endregion
