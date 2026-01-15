@@ -29,9 +29,7 @@ namespace MiaClient
         frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
         frmBudgetspreiding frmBudgetspreiding;
-        public FrmAanvragen frmAanvragen;
         frmGebruikerBeheer frmGebruikerBeheer;
-        frmGoedkeuring FrmGoedkeuring;
         frmAankopen frmAankopen;
         frmGeplandeAankopen frmGeplandeAankopen;
         frmGeweigerdeAanvragen frmGeweigerdeAanvragen;
@@ -39,7 +37,6 @@ namespace MiaClient
         frmGrafiekBudgetSpreiding frmGrafiekBudgetSpreiding;
         frmGrafiekEvolutieBudgetten frmGrafiekEvolutieBugetten;
         frmBeheerKostenplaatsen frmBeheerKostenplaatsen;
-        frmBeheerAankopers frmBeheerAankopers;
         frmBeheerAfdelingen frmBeheerAfdelingen;
         frmBeheerDiensten frmBeheerDiensten;
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
@@ -390,12 +387,12 @@ namespace MiaClient
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmAanvragen == null)
+            if (AppForms.frmAanvragen == null)
             {
-                frmAanvragen = new FrmAanvragen(FrmGoedkeuring);
-                frmAanvragen.MdiParent = this;
+                AppForms.frmAanvragen = new FrmAanvragen();
+                AppForms.frmAanvragen.MdiParent = this;
             }
-            frmAanvragen.Show();
+            AppForms.frmAanvragen.Show();
         }
 
         private void gebruikersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -410,23 +407,23 @@ namespace MiaClient
 
         private void aanvragenToolStripButton_Click(object sender, EventArgs e)
         {
-            if (frmAanvragen == null)
+            if (AppForms.frmAanvragen == null)
             {
-                frmAanvragen = new FrmAanvragen(FrmGoedkeuring);
-                frmAanvragen.MdiParent = this;
+                AppForms.frmAanvragen = new FrmAanvragen();
+                AppForms.frmAanvragen.MdiParent = this;
             }
-            frmAanvragen.Show();
+            AppForms.frmAanvragen.Show();
 
         }
 
         private void goedkeuringenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FrmGoedkeuring == null)
+            if (AppForms.frmGoedkeuring == null)
             {
-                FrmGoedkeuring = new frmGoedkeuring(frmAanvragen);
-                FrmGoedkeuring.MdiParent = this;
+                AppForms.frmGoedkeuring = new frmGoedkeuring();
+                AppForms.frmGoedkeuring.MdiParent = this;
             }
-            FrmGoedkeuring.Show();
+            AppForms.frmGoedkeuring.Show();
         }
 
         private void gebruikersToolStripButton_Click(object sender, EventArgs e)
@@ -441,12 +438,12 @@ namespace MiaClient
 
         private void goedkeuringenToolStripButton_Click(object sender, EventArgs e)
         {
-            if (FrmGoedkeuring == null)
+            if (AppForms.frmGoedkeuring == null)
             {
-                FrmGoedkeuring = new frmGoedkeuring(frmAanvragen);
-                FrmGoedkeuring.MdiParent = this;
+                AppForms.frmGoedkeuring = new frmGoedkeuring();
+                AppForms.frmGoedkeuring.MdiParent = this;
             }
-            FrmGoedkeuring.Show();
+            AppForms.frmGoedkeuring.Show();
         }
 
         private void beheerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -546,12 +543,12 @@ namespace MiaClient
 
         private void aankopersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmBeheerAankopers == null)
+            if (AppForms.frmBeheerAankopers == null)
             {
-                frmBeheerAankopers = new frmBeheerAankopers();
-                frmBeheerAankopers.MdiParent = this;
+                AppForms.frmBeheerAankopers = new frmBeheerAankopers();
+                AppForms.frmBeheerAankopers.MdiParent = this;
             }
-            frmBeheerAankopers.Show();
+            AppForms.frmBeheerAankopers.Show();
         }
 
         private void afdelingenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -576,12 +573,12 @@ namespace MiaClient
 
         private void aankopersToolStripButton_Click(object sender, EventArgs e)
         {
-            if (frmBeheerAankopers == null)
+            if (AppForms.frmBeheerAankopers == null)
             {
-                frmBeheerAankopers = new frmBeheerAankopers();
-                frmBeheerAankopers.MdiParent = this;
+                AppForms.frmBeheerAankopers = new frmBeheerAankopers();
+                AppForms.frmBeheerAankopers.MdiParent = this;
             }
-            frmBeheerAankopers.Show();
+            AppForms.frmBeheerAankopers.Show();
         }
 
         private void afdelingenToolStripButton_Click(object sender, EventArgs e)
