@@ -114,6 +114,18 @@
     <Compile Include="frmBeheerDiensten.Designer.cs">
       <DependentUpon>frmBeheerDiensten.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBeheerFinancieringsType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerFinancieringsType.Designer.cs">
+      <DependentUpon>frmBeheerFinancieringsType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBeheerInvesteringsType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerInvesteringsType.Designer.cs">
+      <DependentUpon>frmBeheerInvesteringsType.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBeheerKostenplaatsen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerDiensten.resx">
       <DependentUpon>frmBeheerDiensten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerFinancieringsType.resx">
+      <DependentUpon>frmBeheerFinancieringsType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerInvesteringsType.resx">
+      <DependentUpon>frmBeheerInvesteringsType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerKostenplaatsen.resx">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
