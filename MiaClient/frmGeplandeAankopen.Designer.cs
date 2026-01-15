@@ -40,7 +40,7 @@
             this.btnExcel.Location = new System.Drawing.Point(13, 55);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(365, 71);
+            this.btnExcel.Size = new System.Drawing.Size(435, 71);
             this.btnExcel.TabIndex = 0;
             this.btnExcel.TabStop = false;
             this.btnExcel.Text = "Genereer Excel";
@@ -52,7 +52,7 @@
             this.lblLaad1.AutoSize = true;
             this.lblLaad1.Location = new System.Drawing.Point(13, 131);
             this.lblLaad1.Name = "lblLaad1";
-            this.lblLaad1.Size = new System.Drawing.Size(402, 25);
+            this.lblLaad1.Size = new System.Drawing.Size(321, 20);
             this.lblLaad1.TabIndex = 7;
             this.lblLaad1.Text = "                                                                              ";
             this.lblLaad1.Visible = false;
@@ -63,7 +63,7 @@
             this.lblWacht.Location = new System.Drawing.Point(13, 151);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
-            this.lblWacht.Size = new System.Drawing.Size(183, 25);
+            this.lblWacht.Size = new System.Drawing.Size(142, 20);
             this.lblWacht.TabIndex = 6;
             this.lblWacht.Text = "Dit kan even duren...";
             this.lblWacht.Visible = false;
@@ -73,7 +73,7 @@
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(13, 13);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(275, 25);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(214, 20);
             this.lblFinancieringsjaar.TabIndex = 8;
             this.lblFinancieringsjaar.Text = "Selecteer een financieringsjaar:";
             // 
@@ -82,15 +82,15 @@
             this.ddlFinancieringsjaar.FormattingEnabled = true;
             this.ddlFinancieringsjaar.Location = new System.Drawing.Point(304, 10);
             this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
-            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(144, 33);
+            this.ddlFinancieringsjaar.Size = new System.Drawing.Size(144, 28);
             this.ddlFinancieringsjaar.TabIndex = 9;
             this.ddlFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.ddlFinancieringsjaar_SelectedIndexChanged);
             // 
             // frmGeplandeAankopen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 241);
+            this.ClientSize = new System.Drawing.Size(463, 241);
             this.Controls.Add(this.ddlFinancieringsjaar);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.lblLaad1);
