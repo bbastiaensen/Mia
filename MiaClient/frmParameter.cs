@@ -622,7 +622,6 @@ namespace MiaClient
                     }
 
 
-
                     ////LISTITEMCOLOR LUKT NIET
                  
                 }
