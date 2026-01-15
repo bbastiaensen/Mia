@@ -204,13 +204,22 @@ namespace MiaClient
 
         private void frmGeweigerdeAanvragen_Load(object sender, EventArgs e)
         {
+            this.BackColor = StyleParameters.Achtergrondkleur;
+
+            foreach (var btn in this.Controls.OfType<Button>())
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.BackColor = StyleParameters.ButtonBack;
+                btn.ForeColor = StyleParameters.Buttontext;
+            }
 
             cmbJaar.ValueMember = "Financieringsjaar";
             cmbJaar.DisplayMember = "Financieringsjaar";
             cmbJaar.DataSource = AanvraagManager.GetAlleFinancieringsjaren();
 
             // ComboBox leeg tonen
-            cmbJaar.SelectedIndex = -1;
+            //cmbJaar.SelectedIndex = -1;
 
             // Excel-knop uitschakelen tot gebruiker iets kiest
             btnExcel.Enabled = false;
@@ -226,5 +235,6 @@ namespace MiaClient
         {
             btnExcel.Enabled = !string.IsNullOrEmpty(cmbJaar.SelectedValue.ToString());
         }
+
     }
 }
