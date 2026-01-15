@@ -40,7 +40,7 @@
             this.btnExcel.Location = new System.Drawing.Point(13, 55);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(365, 71);
+            this.btnExcel.Size = new System.Drawing.Size(435, 71);
             this.btnExcel.TabIndex = 0;
             this.btnExcel.TabStop = false;
             this.btnExcel.Text = "Genereer Excel";
@@ -80,7 +80,7 @@
             // ddlFinancieringsjaar
             // 
             this.ddlFinancieringsjaar.FormattingEnabled = true;
-            this.ddlFinancieringsjaar.Location = new System.Drawing.Point(234, 11);
+            this.ddlFinancieringsjaar.Location = new System.Drawing.Point(304, 10);
             this.ddlFinancieringsjaar.Name = "ddlFinancieringsjaar";
             this.ddlFinancieringsjaar.Size = new System.Drawing.Size(144, 28);
             this.ddlFinancieringsjaar.TabIndex = 9;
@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 184);
+            this.ClientSize = new System.Drawing.Size(463, 241);
             this.Controls.Add(this.ddlFinancieringsjaar);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.lblLaad1);

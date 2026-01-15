@@ -48,6 +48,7 @@
             this.dienstenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investeringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,13 +65,14 @@
             this.tss2 = new System.Windows.Forms.ToolStripSeparator();
             this.budgetSpreidingtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tss3 = new System.Windows.Forms.ToolStripSeparator();
-            this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.aankopersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.afdelingToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.dienstToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.gebruikersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.financieringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -186,8 +188,10 @@
             this.aankopersToolStripMenuItem,
             this.afdelingenToolStripMenuItem,
             this.dienstenToolStripMenuItem,
+            this.financieringsTypesToolStripMenuItem,
             this.gebruikersToolStripMenuItem,
             this.gebruikslogToolStripMenuItem,
+            this.investeringsTypesToolStripMenuItem,
             this.kostenplaatsenToolStripMenuItem,
             this.parametersToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
@@ -200,28 +204,28 @@
             // aankopersToolStripMenuItem
             // 
             this.aankopersToolStripMenuItem.Name = "aankopersToolStripMenuItem";
-            this.aankopersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.aankopersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.aankopersToolStripMenuItem.Text = "Aankopers";
             this.aankopersToolStripMenuItem.Click += new System.EventHandler(this.aankopersToolStripMenuItem_Click);
             // 
             // afdelingenToolStripMenuItem
             // 
             this.afdelingenToolStripMenuItem.Name = "afdelingenToolStripMenuItem";
-            this.afdelingenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.afdelingenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.afdelingenToolStripMenuItem.Text = "Afdelingen";
             this.afdelingenToolStripMenuItem.Click += new System.EventHandler(this.afdelingenToolStripMenuItem_Click);
             // 
             // dienstenToolStripMenuItem
             // 
             this.dienstenToolStripMenuItem.Name = "dienstenToolStripMenuItem";
-            this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.dienstenToolStripMenuItem.Text = "Diensten";
             this.dienstenToolStripMenuItem.Click += new System.EventHandler(this.dienstenToolStripMenuItem_Click);
             // 
             // gebruikersToolStripMenuItem
             // 
             this.gebruikersToolStripMenuItem.Name = "gebruikersToolStripMenuItem";
-            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gebruikersToolStripMenuItem.Text = "Gebruikers";
             this.gebruikersToolStripMenuItem.Click += new System.EventHandler(this.gebruikersToolStripMenuItem_Click);
             this.gebruikersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -230,23 +234,30 @@
             // gebruikslogToolStripMenuItem
             // 
             this.gebruikslogToolStripMenuItem.Name = "gebruikslogToolStripMenuItem";
-            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gebruikslogToolStripMenuItem.Text = "Gebruikslog";
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             this.gebruikslogToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.gebruikslogToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
             // 
+            // investeringsTypesToolStripMenuItem
+            // 
+            this.investeringsTypesToolStripMenuItem.Name = "investeringsTypesToolStripMenuItem";
+            this.investeringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.investeringsTypesToolStripMenuItem.Text = "InvesteringsTypes";
+            this.investeringsTypesToolStripMenuItem.Click += new System.EventHandler(this.investeringsTypesToolStripMenuItem_Click);
+            // 
             // kostenplaatsenToolStripMenuItem
             // 
             this.kostenplaatsenToolStripMenuItem.Name = "kostenplaatsenToolStripMenuItem";
-            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.kostenplaatsenToolStripMenuItem.Text = "Kostenplaatsen";
             this.kostenplaatsenToolStripMenuItem.Click += new System.EventHandler(this.kostenplaatsenToolStripMenuItem_Click);
             // 
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
             this.parametersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -371,33 +382,6 @@
             this.tss3.Size = new System.Drawing.Size(6, 25);
             this.tss3.Visible = false;
             // 
-            // gebruiksLogToolStripButton
-            // 
-            this.gebruiksLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
-            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.gebruiksLogToolStripButton.Text = "GebruiksLog";
-            this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
-            // 
-            // parameterToolStripButton
-            // 
-            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.parameterToolStripButton.Name = "parameterToolStripButton";
-            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.parameterToolStripButton.Text = "Parameters";
-            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
-            // 
-            // gebruikersToolStripButton
-            // 
-            this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
-            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
-            this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
-            // 
             // aankopersToolStripButton
             // 
             this.aankopersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -425,6 +409,24 @@
             this.dienstToolStripButton.Text = "Dienst";
             this.dienstToolStripButton.Click += new System.EventHandler(this.dienstToolStripButton_Click);
             // 
+            // gebruikersToolStripButton
+            // 
+            this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
+            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
+            this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
+            // 
+            // gebruiksLogToolStripButton
+            // 
+            this.gebruiksLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
+            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.gebruiksLogToolStripButton.Text = "GebruiksLog";
+            this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
+            // 
             // kostenplaatsToolStripButton
             // 
             this.kostenplaatsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -433,6 +435,22 @@
             this.kostenplaatsToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.kostenplaatsToolStripButton.Text = "Kostenplaats";
             this.kostenplaatsToolStripButton.Click += new System.EventHandler(this.kostenplaatsToolStripButton_Click);
+            // 
+            // parameterToolStripButton
+            // 
+            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.parameterToolStripButton.Name = "parameterToolStripButton";
+            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.parameterToolStripButton.Text = "Parameters";
+            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
+            // 
+            // financieringsTypesToolStripMenuItem
+            // 
+            this.financieringsTypesToolStripMenuItem.Name = "financieringsTypesToolStripMenuItem";
+            this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
+            this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -504,6 +522,8 @@
         private System.Windows.Forms.ToolStripButton afdelingToolStripButton;
         private System.Windows.Forms.ToolStripButton dienstToolStripButton;
         private System.Windows.Forms.ToolStripButton kostenplaatsToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem investeringsTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem financieringsTypesToolStripMenuItem;
     }
 }
 
