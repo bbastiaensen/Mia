@@ -270,7 +270,9 @@ namespace MiaClient
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
-            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetInvesteringen();
+            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetInvesteringen()
+                                     .Where(i => i.Actief == true)
+                                     .ToList();
 
             cmbInvestering.DataSource = investeringen;
             cmbInvestering.DisplayMember = "Naam";
@@ -1325,6 +1327,11 @@ namespace MiaClient
             //Doen we hier niet meer, want dan zijn de waarden in de dropdownlists
             //niet meer geselecteerd.
             //vulFormulier();
+        }
+
+        private void ddlInvestering_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

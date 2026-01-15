@@ -45,5 +45,6 @@ namespace MiaClient
                 btn.ForeColor = StyleParameters.Buttontext;
             }
         }
+        public bool Actief { get; set; }
     }
 }

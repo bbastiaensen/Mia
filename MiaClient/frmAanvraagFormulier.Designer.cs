@@ -449,6 +449,7 @@ namespace MiaClient
             this.ddlInvestering.Name = "ddlInvestering";
             this.ddlInvestering.Size = new System.Drawing.Size(282, 36);
             this.ddlInvestering.TabIndex = 7;
+            this.ddlInvestering.SelectedIndexChanged += new System.EventHandler(this.ddlInvestering_SelectedIndexChanged);
             // 
             // ddlFinanciering
             // 
