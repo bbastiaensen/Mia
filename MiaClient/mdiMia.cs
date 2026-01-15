@@ -42,6 +42,8 @@ namespace MiaClient
         frmBeheerAankopers frmBeheerAankopers;
         frmBeheerAfdelingen frmBeheerAfdelingen;
         frmBeheerDiensten frmBeheerDiensten;
+        frmBeheerInvesteringsType frmBeheerInvesteringsType;
+        frmBeheerFinancieringsType frmBeheerFinancieringsType;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -288,6 +290,8 @@ namespace MiaClient
                 afdelingenToolStripMenuItem.Visible = false;
                 dienstToolStripButton.Visible = false;
                 dienstenToolStripMenuItem.Visible = false;
+                financieringsTypesToolStripMenuItem.Visible = false;
+                investeringsTypesToolStripMenuItem.Visible = false;
 
                 kostenplaatsToolStripButton.Visible = true;
 
