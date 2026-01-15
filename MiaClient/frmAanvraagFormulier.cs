@@ -37,11 +37,13 @@ namespace MiaClient
         private string OffertePath;
         private string MaxBedragStuk;
         private string hyperlink = string.Empty;
+        frmBeheerAankopers frmBeheerAankopers;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
+        List<Aankoper> aankopers;
         List<Offerte> offertes;
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
@@ -1044,7 +1046,8 @@ namespace MiaClient
         {
             CreateUI();
             ddlDisabler();
-          
+            //frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
+
         }
 
         private void CreateUI()
@@ -1325,6 +1328,34 @@ namespace MiaClient
             //Doen we hier niet meer, want dan zijn de waarden in de dropdownlists
             //niet meer geselecteerd.
             //vulFormulier();
+        }
+
+
+        /*==============================================================================*/
+
+        private void BindAankopers()
+        {
+            aankopers = AankoperManager.GetActiveAankopers();
+
+            ddlWieKooptHet.DataSource = null;
+            ddlWieKooptHet.DisplayMember = "FullName";
+            ddlWieKooptHet.ValueMember = "Id";
+            ddlWieKooptHet.DataSource = aankopers;
+            //frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
+
+        }
+
+        private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
+        {
+            int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
+
+            BindAankopers();
+
+            if (geselecteerdeId.HasValue &&
+                ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
+            {
+                ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
+            }
         }
     }
 }
