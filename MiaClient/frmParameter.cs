@@ -55,21 +55,9 @@ namespace MiaClient
         
         
         }
-        //zorgt dat hover niet weg gaat na paging et cetera
-        private void UpdatePagingButtons()
-        {
-            btnFirst.BackgroundImage =
-                huidigePage == 1 ? imgFirstDisable : imgFirst;
+        
+        
 
-            btnPrevious.BackgroundImage =
-                huidigePage == 1 ? imgPreviousDisable : imgPrevious;
-
-            btnNext.BackgroundImage =
-                huidigePage == aantalPages ? imgNextDisable : imgNext;
-
-            btnLast.BackgroundImage =
-                huidigePage == aantalPages ? imgLastDisable : imgLast;
-        }
 
 
 
@@ -134,6 +122,11 @@ namespace MiaClient
             //Eventueel bestaande lijst verwijderen
             this.pnlParameters.Controls.Clear();
 
+            //Zorgt ervoor dat alle oude "tip"-relaties verwijdert worden zodanig nat ze de nieuwe niet hinderen
+            tip.RemoveAll();
+            tip.Active = true;
+            tip.ShowAlways = true;
+
             int xPos = 0;
             int yPos = 0;
             int t = 0;
@@ -177,12 +170,12 @@ namespace MiaClient
                 ParameterManager.DeleteParameter(p);
 
                 parameters = ParameterManager.GetParameters();
-                //aanpassing thomas 
+                 
                 BindParameters(FilteredParameters(parameters, filterCode, filterWaarde, filterEenheid));
                 StartPaging();
 
                 detailsWissen();
-                UpdatePagingButtons();
+               
 
 
                 MessageBox.Show("De parameter is verwijderd.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -411,7 +404,7 @@ namespace MiaClient
                 {
                     BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
                     EnableLastNext(true);
-                    UpdatePagingButtons();
+                 
                 }
                 if (huidigePage == 1)
                 {
@@ -425,7 +418,7 @@ namespace MiaClient
                 BindParameters(parameters);
                 EnableFirstPrevious(false);
                 EnableLastNext(false);
-                UpdatePagingButtons();
+              
             }
         }
 
@@ -537,16 +530,16 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                UpdatePagingButtons();
+               
             }
             else if (huidigePage == aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).ToList());
                 EnableLastNext(false);
-                UpdatePagingButtons();
+               
             }
             EnableFirstPrevious(true);
-            UpdatePagingButtons();
+          
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -556,7 +549,7 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindParameters(parameters.Skip((huidigePage - 1) * aantalListItems).Take(aantalListItems).ToList());
-                UpdatePagingButtons();
+              
             }
             if (huidigePage == 1)
             {
@@ -565,7 +558,7 @@ namespace MiaClient
             EnableLastNext(true);
 
 
-            UpdatePagingButtons();
+          
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -578,7 +571,7 @@ namespace MiaClient
             {
                 EnableLastNext(true);
             }
-            UpdatePagingButtons();
+          
         }
 
         private void btnLast_Click(object sender, EventArgs e)
@@ -591,7 +584,7 @@ namespace MiaClient
             {
                 EnableFirstPrevious(true);
             }
-            UpdatePagingButtons();
+           
         }
 
         private void ShowPages()
