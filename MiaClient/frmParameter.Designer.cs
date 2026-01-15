@@ -159,7 +159,6 @@ namespace MiaClient
             this.pnlParameters.Name = "pnlParameters";
             this.pnlParameters.Size = new System.Drawing.Size(886, 311);
             this.pnlParameters.TabIndex = 0;
-            this.pnlParameters.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlParameters_Paint);
             // 
             // txtCodeDetail
             // 
