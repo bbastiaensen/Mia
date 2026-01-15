@@ -85,22 +85,9 @@ namespace MiaClient
         {
             try
             {
-                InitializeComponent();
-            }
-            catch (SqlException ex)
-            {
-                ErrorHandler(ex, "FrmAanvraagFormulier");
-            }
-        }
-
-        public frmGoedkeuring(FrmAanvragen frmAanvragen)
-        {
-            try
-            {
-                if (frmAanvragen != null)
+                if (AppForms.frmAanvragen != null)
                 {
-                    this.frmAanvragen = frmAanvragen;
-                    this.frmAanvragen.HookUp(this);
+                    AppForms.frmAanvragen.HookUp(this);
                 }
                 InitializeComponent();
             }
