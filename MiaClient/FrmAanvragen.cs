@@ -23,7 +23,7 @@ namespace MiaClient
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;
 
-        frmGoedkeuring frmGoedkeuring = null;
+        //frmGoedkeuring frmGoedkeuring = null;
        
         bool filterAanvraagmomentVan = false;
         bool filterAanvraagmomentTot = false;
@@ -69,15 +69,9 @@ namespace MiaClient
 
         public FrmAanvragen()
         {
-            InitializeComponent();        
-        }
-
-        public FrmAanvragen(frmGoedkeuring frmGoedkeuring)
-        {
-            this.frmGoedkeuring = frmGoedkeuring;
-            if (this.frmGoedkeuring != null)
+            if (AppForms.frmGoedkeuring != null)
             {
-                this.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
+                AppForms.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
             }
             InitializeComponent();
         }
@@ -86,10 +80,10 @@ namespace MiaClient
         {
             if (sender != this)
             {
-                this.frmGoedkeuring = (frmGoedkeuring)sender;
-                if (this.frmGoedkeuring != null)
+                AppForms.frmGoedkeuring = (frmGoedkeuring)sender;
+                if (AppForms.frmGoedkeuring != null)
                 {
-                    this.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
+                    AppForms.frmGoedkeuring.StatusAanvraagGewijzigd += FrmGoedkeuring_StatusAanvraagGewijzigd;
                 }
             }
         }
