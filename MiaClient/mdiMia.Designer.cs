@@ -248,7 +248,7 @@
             this.investeringsTypesToolStripMenuItem.Name = "investeringsTypesToolStripMenuItem";
             this.investeringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.investeringsTypesToolStripMenuItem.Text = "InvesteringsTypes";
-            this.investeringsTypesToolStripMenuItem.Click += new System.EventHandler(this.investeringsTypesToolStripMenuItem_Click);
+            this.investeringsTypesToolStripMenuItem.Click += new System.EventHandler(this.investeringsTypesToolStripButton_Click);
             // 
             // kostenplaatsenToolStripMenuItem
             // 
@@ -453,7 +453,7 @@
             this.financieringsTypesToolStripMenuItem.Name = "financieringsTypesToolStripMenuItem";
             this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
-            this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripMenuItem_Click);
+            this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripButton_Click);
             // 
             // parameterToolStripButton
             // 

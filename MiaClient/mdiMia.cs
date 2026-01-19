@@ -26,7 +26,6 @@ namespace MiaClient
 
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
-        frmAbout frmAbout;
         frmAanvraagFormulier frmAanvraagFormulier;
         frmBudgetspreiding frmBudgetspreiding;
         frmGebruikerBeheer frmGebruikerBeheer;
@@ -120,7 +119,7 @@ namespace MiaClient
 
         }
 
-        private void laadGrafischeParameters()
+        public static void laadGrafischeParameters()
         {
             string projectDirectory = Directory.GetCurrentDirectory();
             string imagePath = Path.Combine(projectDirectory, "Foto's", ParameterManager.GetParameterByCode("LogoG").Waarde);
@@ -135,7 +134,7 @@ namespace MiaClient
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
             StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
-        private void stelGrafischeWaardeIn()
+        public void CreateUI()
         {
 
             toolStrip.BackColor = StyleParameters.AccentKleur;
@@ -325,12 +324,12 @@ namespace MiaClient
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmAbout == null)
+            if (AppForms.frmAbout == null)
             {
-                frmAbout = new frmAbout();
-                frmAbout.MdiParent = this;
+                AppForms.frmAbout = new frmAbout();
+                AppForms.frmAbout.MdiParent = this;
             }
-            frmAbout.Show();
+            AppForms.frmAbout.Show();
         }
 
         private void gebruiksLogToolStripButton_Click(object sender, EventArgs e)
@@ -382,7 +381,7 @@ namespace MiaClient
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
 
             MenubalkSamenstellen();
-            stelGrafischeWaardeIn();
+            CreateUI();
         }
 
         private void aanvragenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -611,7 +610,7 @@ namespace MiaClient
             frmBeheerKostenplaatsen.Show();
         }
 
-        private void investeringsTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void investeringsTypesToolStripButton_Click(object sender, EventArgs e)
         {
             if (frmBeheerInvesteringsType == null)
             {
@@ -621,14 +620,14 @@ namespace MiaClient
             frmBeheerInvesteringsType.Show();
         }
 
-        private void financieringsTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void financieringsTypesToolStripButton_Click(object sender, EventArgs e)
         {
             if (frmBeheerFinancieringsType == null)
             {
-                frmBeheerFinancieringsType = new frmBeheerFinancieringsType();
-                frmBeheerFinancieringsType.MdiParent = this;
+                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
+                frmBeheerInvesteringsType.MdiParent = this;
             }
-            frmBeheerFinancieringsType.Show();
+            frmBeheerInvesteringsType.Show();
         }
 
         private void prioriteitToolStripMenuItem_Click(object sender, EventArgs e)
