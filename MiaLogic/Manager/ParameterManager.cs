@@ -220,5 +220,7 @@ namespace MiaLogic.Manager
         {
             return GetParameterByCode(parameterName) == null;
         }
+
+
     }
 }
