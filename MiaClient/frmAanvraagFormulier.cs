@@ -40,6 +40,7 @@ namespace MiaClient
         frmBeheerAankopers frmBeheerAankopers;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
+        public event EventHandler AankopersChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
@@ -70,11 +71,6 @@ namespace MiaClient
             SetFormStatus(false);
             GetParam();
 
-            if (AppForms.frmBeheerAankopers != null)
-            {
-                AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
-                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
-            }
         }
 
         private void GetParam()
@@ -1050,8 +1046,10 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
+            AppForms.frmAanvraagFormulier = this;
             CreateUI();
             ddlDisabler();
+            TriggerAankoperEvent();
         }
 
         public void CreateUI()
@@ -1334,31 +1332,40 @@ namespace MiaClient
             //vulFormulier();
         }
 
-        private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
+        public void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
         {
+            RefreshAankoperDropdown();
+        }
+
+        public void RefreshAankoperDropdown()
+        {
+
             int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
-            //Moet mischien?
-            //ddlWieKooptHet.BindingContext = new BindingContext();
-
-            List<Aankoper> nieuweAankopers = AankoperManager.GetActiveAankopers();
+            var nieuweAankopers = AankoperManager.GetActiveAankopers();
 
             ddlWieKooptHet.DataSource = null;
             ddlWieKooptHet.DisplayMember = "FullName";
             ddlWieKooptHet.ValueMember = "Id";
             ddlWieKooptHet.DataSource = nieuweAankopers;
-
-            if (geselecteerdeId.HasValue &&
-                ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
-                //ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId.Value))
-
-
+            
+            if (geselecteerdeId.HasValue && 
+                nieuweAankopers.Any(a => a.Id == geselecteerdeId.Value))
             {
                 ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
             }
             else
             {
                 ddlWieKooptHet.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerAankoperEvent()
+        {
+            if (AppForms.frmBeheerAankopers != null)
+            {
+                //AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
+                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
             }
         }
     }

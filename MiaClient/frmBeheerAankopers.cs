@@ -34,6 +34,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+
+            if (AppForms.frmBeheerAankopers == this)
+            {
+                AppForms.frmBeheerAankopers = null;
+            }
         }
 
         private void frmBeheerAankopers_Load(object sender, EventArgs e)
@@ -41,7 +46,13 @@ namespace MiaClient
             CreateUI();
             BindLstAankopers();
 
-            AankopersChanged?.Invoke(this, EventArgs.Empty);
+            AppForms.frmBeheerAankopers = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.AankopersChanged -= AppForms.frmAanvraagFormulier.FrmBeheerAankopers_AankopersChanged;
+                this.AankopersChanged += AppForms.frmAanvraagFormulier.FrmBeheerAankopers_AankopersChanged;
+            }
         }
 
         public void CreateUI()
