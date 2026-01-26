@@ -128,7 +128,7 @@ namespace MiaLogic.Manager
                     else
                     {
 
-                        objCmd.CommandText = "update Afdeling set Naam = @Naam, ";
+                        objCmd.CommandText = "update Afdeling set Naam = @Naam, Actief = @Actief WHERE Id = @Id";
                         objCmd.Parameters.AddWithValue("@Id", afdeling.Id);
                     }
                     objCmd.Parameters.AddWithValue("@Naam", afdeling.Naam);

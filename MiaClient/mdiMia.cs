@@ -282,8 +282,8 @@ namespace MiaClient
                 gebruikersToolStripButton.Visible = true;
                 aankopersToolStripButton.Visible = true;
                 //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
-                afdelingToolStripButton.Visible = false;
-                afdelingenToolStripMenuItem.Visible = false;
+                afdelingToolStripButton.Visible = true;
+                afdelingenToolStripMenuItem.Visible = true;
                 dienstToolStripButton.Visible = false;
                 dienstenToolStripMenuItem.Visible = false;
                 financieringsTypesToolStripMenuItem.Visible = false;

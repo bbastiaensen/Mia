@@ -27,6 +27,7 @@ namespace MiaClient
         private void frmBeheerAfdelingen_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLstAfdelingen();
         }
 
         public void CreateUI()
@@ -55,7 +56,7 @@ namespace MiaClient
         public void BindLstAfdelingen()
         {
             afdelingen = AfdelingenManager.GetAfdelingen();
-            LstAfdelingen.DisplayMember = "FullName";
+            LstAfdelingen.DisplayMember = "Naam";
 
             LstAfdelingen.ValueMember = "Id";
             LstAfdelingen.DataSource = afdelingen;
@@ -117,7 +118,7 @@ namespace MiaClient
 
             BindLstAfdelingen();
             ClearFields();
-            LstAfdelingen.SelectedValue = a.Id.ToString();
+            LstAfdelingen.SelectedValue = a.Id;
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -126,8 +127,8 @@ namespace MiaClient
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
             Afdeling a = new Afdeling();
-            a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
-            a.Naam = txtNaam.Text;
+            if (!IsNew)
+                a.Id = (int)LstAfdelingen.SelectedValue; a.Naam = txtNaam.Text;
             if (checkActief.Checked)
             {
                 a.actief = true;
@@ -139,7 +140,7 @@ namespace MiaClient
 
 
 
-            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "Afdeling verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AfdelingenManager.DeleteAfdeling(a);
