@@ -269,7 +269,7 @@ namespace MiaClient
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
-            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetInvesteringen();
+            List<Investering> investeringen = MiaLogic.Manager.InvesteringenManager.GetActiveInvesteringen();
 
             cmbInvestering.DataSource = investeringen;
             cmbInvestering.DisplayMember = "Naam";

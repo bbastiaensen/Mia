@@ -2,82 +2,172 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiaLogic.Manager
 {
     public class InvesteringenManager
     {
         public static string ConnectionString { get; set; }
+
         public static List<Investering> GetInvesteringen()
         {
-            List<Investering> investeringen = new List<Investering>();
+            List<Investering> returnlist = null;
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlConnection objCn = new SqlConnection())
             {
-                connection.Open();
+                objCn.ConnectionString = ConnectionString;
 
-                string query = "SELECT Id, Naam FROM InvesteringsType ORDER BY Naam ASC";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand objCmd = new SqlCommand())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Investering investering = new Investering
-                            {
-                                Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
-                            };
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "SELECT Id, Naam, Actief FROM InvesteringsType ORDER BY Naam";
 
-                            investeringen.Add(investering);
+                    objCn.Open();
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    Investering inv;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Investering>();
                         }
+
+                        inv = new Investering();
+                        inv.Id = Convert.ToInt32(objRea["Id"]);
+                        inv.Naam = objRea["Naam"].ToString();
+                        inv.Actief = Convert.ToBoolean(objRea["Actief"]);
+
+                        returnlist.Add(inv);
                     }
                 }
             }
-
-            return investeringen;
+            return returnlist;
         }
-        public static Investering GetInvesteringById(int id)
+
+        public static List<Investering> GetActiveInvesteringen()
         {
-            Investering investeringsType = null;
+            List<Investering> returnlist = null;
 
-            try
+            using (SqlConnection objCn = new SqlConnection())
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
                 {
-                    connection.Open();
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "SELECT Id, Naam, Actief FROM InvesteringsType WHERE Actief = 1 ORDER BY Naam";
 
-                    string query = "SELECT Id, Naam FROM InvesteringsType WHERE Id = @Id";
+                    objCn.Open();
+                    SqlDataReader objRea = objCmd.ExecuteReader();
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    Investering inv;
+
+                    while (objRea.Read())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (returnlist == null)
                         {
-                            if (reader.Read())
-                            {
-                                investeringsType = new Investering
-                                {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    Naam = reader["Naam"].ToString()
-                                };
-                            }
+                            returnlist = new List<Investering>();
                         }
+
+                        inv = new Investering();
+                        inv.Id = Convert.ToInt32(objRea["Id"]);
+                        inv.Naam = objRea["Naam"].ToString();
+                        inv.Actief = Convert.ToBoolean(objRea["Actief"]);
+
+                        returnlist.Add(inv);
                     }
                 }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Het systeem kon de Investering niet vinden, probeer het nog eens.");
-                throw;
-            }
+            return returnlist;
+        }
 
-            return investeringsType;
+        public static int SaveInvestering(Investering investering, bool isnew)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    if (isnew)
+                    {
+                        objCmd.CommandText = "insert into InvesteringsType(Naam, Actief) ";
+                        objCmd.CommandText += "values(@Naam, @Actief);";
+                    }
+                    else
+                    {
+                        objCmd.CommandText = "update InvesteringsType set Naam = @Naam, ";
+                        objCmd.CommandText += "Actief = @Actief where Id = @Id";
+                        objCmd.Parameters.AddWithValue("@Id", investering.Id);
+                    }
+
+                    objCmd.Parameters.AddWithValue("@Naam", investering.Naam);
+                    objCmd.Parameters.AddWithValue("@Actief", investering.Actief);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+
+                    if (isnew)
+                    {
+                        return GetHighestId();
+                    }
+                    else
+                    {
+                        return investering.Id;
+                    }
+                }
+            }
+        }
+
+        public static void DeleteInvestering(Investering investering)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from InvesteringsType ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", investering.Id);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private static int GetHighestId()
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Highest from InvesteringsType";
+
+                    objCn.Open();
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    if (objRea.Read())
+                    {
+                        return Convert.ToInt32(objRea["Highest"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
         }
     }
 }
