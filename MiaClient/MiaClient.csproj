@@ -133,6 +133,12 @@
     <Compile Include="frmBeheerKostenplaatsen.Designer.cs">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmBeheerPrioriteit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBeheerPrioriteit.Designer.cs">
+      <DependentUpon>FrmBeheerPrioriteit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBudgetSpreiding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerKostenplaatsen.resx">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBeheerPrioriteit.resx">
+      <DependentUpon>FrmBeheerPrioriteit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBudgetspreiding.resx">
       <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>

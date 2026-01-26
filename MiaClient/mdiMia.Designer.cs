@@ -46,6 +46,7 @@
             this.aankopersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afdelingenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dienstenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.financieringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gebruikslogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investeringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.financieringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -193,7 +194,8 @@
             this.gebruikslogToolStripMenuItem,
             this.investeringsTypesToolStripMenuItem,
             this.kostenplaatsenToolStripMenuItem,
-            this.parametersToolStripMenuItem});
+            this.parametersToolStripMenuItem,
+            this.prioriteitToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
             this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
             this.beheerToolStripMenuItem.Text = "&Beheer";
@@ -221,6 +223,13 @@
             this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.dienstenToolStripMenuItem.Text = "Diensten";
             this.dienstenToolStripMenuItem.Click += new System.EventHandler(this.dienstenToolStripMenuItem_Click);
+            // 
+            // financieringsTypesToolStripMenuItem
+            // 
+            this.financieringsTypesToolStripMenuItem.Name = "financieringsTypesToolStripMenuItem";
+            this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
+            this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripButton_Click);
             // 
             // gebruikersToolStripMenuItem
             // 
@@ -445,12 +454,12 @@
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
-            // financieringsTypesToolStripMenuItem
+            // prioriteitToolStripMenuItem
             // 
-            this.financieringsTypesToolStripMenuItem.Name = "financieringsTypesToolStripMenuItem";
-            this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
-            this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
-            this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripButton_Click);
+            this.prioriteitToolStripMenuItem.Name = "prioriteitToolStripMenuItem";
+            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.prioriteitToolStripMenuItem.Text = "Prioriteit";
+            this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -524,6 +533,7 @@
         private System.Windows.Forms.ToolStripButton kostenplaatsToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem investeringsTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem financieringsTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prioriteitToolStripMenuItem;
     }
 }
 

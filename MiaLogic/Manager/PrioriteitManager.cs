@@ -79,5 +79,127 @@ namespace MiaLogic.Manager
 
             return prioriteit;
         }
+        public static List<Prioriteit> GetActivePrioriteiten()
+        {
+            List<Prioriteit> prioriteiten = new List<Prioriteit>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Prioriteit  where actief = 1 ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Prioriteit prioriteit = new Prioriteit
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            prioriteiten.Add(prioriteit);
+                        }
+                    }
+                }
+            }
+
+            return prioriteiten;
+        }
+        public static int SavePrioriteit(Prioriteit prioriteit, bool isnew)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    if (isnew)
+                    {
+                        //Nieuw
+                        objCmd.CommandText = "insert into Prioriteit(Naam, Actief)";
+                        objCmd.CommandText += "values( @Naam , @Actief);";
+
+                    }
+                    else
+                    {
+
+                        objCmd.CommandText = "update Prioriteit set Naam = @Naam, ";
+                        objCmd.CommandText += " Actief = @Actief where Id = @Id";
+                        objCmd.Parameters.AddWithValue("@Id", prioriteit.Id);
+                    }
+                    objCmd.Parameters.AddWithValue("@Naam", prioriteit.Naam);
+                    
+                    objCmd.Parameters.AddWithValue("@Actief", prioriteit.actief);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                    if (isnew)
+                    {
+                        return GetHighestPrioriteitID();
+                    }
+                    else
+                    {
+                        return prioriteit.Id;
+                    }
+
+                }
+            }
+        }
+        private static int GetHighestPrioriteitID()
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Highest from Prioriteit";
+
+
+                    objCn.Open();
+
+                    SqlDataReader ObjRea = objCmd.ExecuteReader();
+                    if (ObjRea.Read())
+                    {
+
+                        return Convert.ToInt32(ObjRea["Highest"]);
+
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+            }
+        }
+        public static void DeletePrioriteit(Prioriteit prioriteit)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from Prioriteit ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", prioriteit.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
