@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id, Naam FROM Afdeling ORDER BY Naam ASC";
+                string query = "SELECT Id, Actief, Naam FROM Afdeling ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,7 +30,8 @@ namespace MiaLogic.Manager
                             Afdeling afdeling = new Afdeling
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
+                                Naam = reader["Naam"].ToString(),
+                                actief = Convert.ToBoolean(reader["Actief"])
                             };
 
                             afdelingen.Add(afdeling);
@@ -50,7 +51,7 @@ namespace MiaLogic.Manager
                 {
                     connection.Open();
 
-                    string query = "SELECT Id, Naam FROM Afdeling WHERE Id = @Id";
+                    string query = "SELECT Id, Actief, Naam FROM Afdeling WHERE Id = @Id";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -63,7 +64,8 @@ namespace MiaLogic.Manager
                                 afdeling = new Afdeling
                                 {
                                     Id = Convert.ToInt32(reader["Id"]),
-                                    Naam = reader["Naam"].ToString()
+                                    Naam = reader["Naam"].ToString(),
+                                    actief = Convert.ToBoolean(reader["Actief"])
                                 };
                             }
                         }
