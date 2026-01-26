@@ -16,6 +16,7 @@ namespace MiaClient
     public partial class frmBeheerAankopers : Form
     {
         List<Aankoper> aankopers;
+        public event EventHandler AankopersChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -119,6 +120,7 @@ namespace MiaClient
           
 
             a.Id = AankoperManager.SaveAankoper(a, IsNew);
+            AankopersChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAankopers();
             ClearFields();
@@ -130,8 +132,6 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-
-            
             Aankoper a = new Aankoper();
             a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam= txtVoornaam.Text;
@@ -145,21 +145,15 @@ namespace MiaClient
                 a.actief= false;
             }
             
-           
-            
             if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
             {
                 MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AankoperManager.DeleteAankoper(a);
+                AankopersChanged?.Invoke(this, EventArgs.Empty);
             }
-          
-            
 
             BindLstAankopers();
-            ClearFields();
-
-
-
+            ClearFields();  
         }
     }
 }
