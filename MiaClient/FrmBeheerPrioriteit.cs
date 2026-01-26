@@ -69,9 +69,6 @@ namespace MiaClient
         private void LstPrioriteiten_SelectedIndexChanged(object sender, EventArgs e)
         {
             Prioriteit prioriteit = (Prioriteit)LstPrioriteiten.SelectedItem;
-
-
-
             if (prioriteit != null)
             {
                 txtId.Text = Convert.ToString(prioriteit.Id);

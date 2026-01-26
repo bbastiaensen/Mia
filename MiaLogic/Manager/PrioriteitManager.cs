@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id, Naam FROM Prioriteit ORDER BY Naam ASC";
+                string query = "SELECT Id, Actief, Naam FROM Prioriteit ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,7 +30,9 @@ namespace MiaLogic.Manager
                             Prioriteit prioriteit = new Prioriteit
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
+                                Naam = reader["Naam"].ToString(),
+                                actief = Convert.ToBoolean(reader["Actief"])
+                               
                             };
 
                             prioriteiten.Add(prioriteit);
