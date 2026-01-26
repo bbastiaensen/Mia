@@ -251,7 +251,7 @@ namespace MiaClient
         }
         public void VulDienstDropDown(ComboBox cmbDienst)
         {
-            List<Dienst> diensten = MiaLogic.Manager.DienstenManager.GetDiensten();
+            List<Dienst> diensten = MiaLogic.Manager.DienstenManager.GetActiveDiensten();
 
             cmbDienst.DataSource = diensten;
             cmbDienst.DisplayMember = "Naam";

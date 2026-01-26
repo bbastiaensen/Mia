@@ -285,7 +285,7 @@ namespace MiaClient
                 afdelingToolStripButton.Visible = false;
                 afdelingenToolStripMenuItem.Visible = false;
                 dienstToolStripButton.Visible = false;
-                dienstenToolStripMenuItem.Visible = false;
+                dienstenToolStripMenuItem.Visible = true;
                 financieringsTypesToolStripMenuItem.Visible = true;
                 investeringsTypesToolStripMenuItem.Visible = true;
 

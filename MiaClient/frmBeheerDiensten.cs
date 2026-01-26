@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,11 @@ namespace MiaClient
 {
     public partial class frmBeheerDiensten : Form
     {
+        List<Dienst> Diensten;
+      
+
+      
+        bool IsNew = false;
         public frmBeheerDiensten()
         {
             InitializeComponent();
@@ -21,6 +28,7 @@ namespace MiaClient
         private void frmBeheerDiensten_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLstDiensten();
         }
 
         public void CreateUI()
@@ -44,6 +52,104 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+        }
+        public void BindLstDiensten()
+        {
+
+            Diensten = DienstenManager.GetDiensten();
+            lstDiensten.DisplayMember = "Naam";
+
+            lstDiensten.ValueMember = "Id";
+            lstDiensten.DataSource = Diensten;
+
+        }
+
+        private void lstDiensten_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Dienst dienst = (Dienst)lstDiensten.SelectedItem;
+
+
+            if (dienst != null)
+            {
+                txtId.Text = Convert.ToString(dienst.Id);
+               txtNaam.Text = dienst.Naam;
+               
+                if (dienst.actief)
+                {
+                    checkActief.Checked = true;
+                }
+                else
+                {
+                    checkActief.Checked = false;
+                }
+
+                IsNew = false;
+            }
+        }
+        private void ClearFields()
+        {
+            txtNaam.Text = string.Empty;
+            txtId.Text = string.Empty;
+            checkActief.Checked = false;
+            IsNew = true;
+        }
+
+        private void btnNieuw_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void btnBewaren_Click(object sender, EventArgs e)
+        {
+            Dienst d = new Dienst();
+            d.Id = Convert.ToInt32(lstDiensten.SelectedValue);
+            d.Naam = txtNaam.Text;
+
+            if (checkActief.Checked)
+            {
+                d.actief = true;
+            }
+            else
+            {
+                d.actief = false;
+            }
+
+
+            d.Id = DienstenManager.SaveDienst(d, IsNew);
+
+
+            BindLstDiensten();
+            ClearFields();
+           lstDiensten.SelectedValue = d.Id.ToString();
+            IsNew = false;
+
+            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            Dienst d = new Dienst();
+            d.Id = Convert.ToInt32(lstDiensten.SelectedValue);
+            d.Naam = txtNaam.Text;
+           
+            if (checkActief.Checked)
+            {
+                d.actief = true;
+            }
+            else
+            {
+                d.actief = false;
+            }
+
+            if (MessageBox.Show($"Bent u zeker dat u {lstDiensten.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show("De Dienst   is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DienstenManager.DeleteDienst(d);
+             
+            }
+
+            BindLstDiensten();
+            ClearFields();
         }
     }
 }
