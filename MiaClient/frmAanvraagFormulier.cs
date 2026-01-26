@@ -69,7 +69,13 @@ namespace MiaClient
 
             SetFormStatus(false);
             GetParam();
-           
+
+            if (AppForms.frmBeheerAankopers != null)
+            {
+                AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
+                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
+            }
+
         }
         private void GetParam()
         {
@@ -1327,22 +1333,18 @@ namespace MiaClient
             //niet meer geselecteerd.
             //vulFormulier();
         }
-        private void BindAankopers()
-        {
-            aankopers = AankoperManager.GetActiveAankopers();
-
-            ddlWieKooptHet.DataSource = null;
-            ddlWieKooptHet.DisplayMember = "FullName";
-            ddlWieKooptHet.ValueMember = "Id";
-            ddlWieKooptHet.DataSource = aankopers;
-        }
 
         private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
         {
             int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
-            BindAankopers();
-             
+            List<Aankoper> nieuweAankopers = AankoperManager.GetActiveAankopers();
+
+            ddlWieKooptHet.DataSource = null;
+            ddlWieKooptHet.DisplayMember = "FullName";
+            ddlWieKooptHet.ValueMember = "Id";
+            ddlWieKooptHet.DataSource = nieuweAankopers;
+
             if (geselecteerdeId.HasValue &&
                 ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
             {
