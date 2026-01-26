@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id, Naam FROM FinancieringsType ORDER BY Naam ASC";
+                string query = "SELECT Id, Actief, Naam FROM FinancieringsType ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,7 +30,8 @@ namespace MiaLogic.Manager
                             Financiering financiering = new Financiering
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
+                                Naam = reader["Naam"].ToString(),
+                                Actief = Convert.ToBoolean(reader["Actief"])
                             };
 
                             financieringen.Add(financiering);
@@ -40,42 +41,47 @@ namespace MiaLogic.Manager
             }
             return financieringen;
         }
-        public static Financiering GetFinancieringById(int id)
+
+        public static void DeactiveerFinanciering(int id)
         {
-            Financiering financieringsType = null;
-
-            try
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id", cn))
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                cmd.Parameters.AddWithValue("@Id", id);
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+       
+
+        public static List<Financiering> GetActieveFinancieringen()
+        {
+            List<Financiering> financieringen = new List<Financiering>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam, Actief FROM FinancieringsType WHERE Actief = 1 ORDER BY Naam";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-
-                    string query = "SELECT Id, Naam FROM FinancieringsType WHERE Id = @Id";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    while (reader.Read())
                     {
-                        command.Parameters.AddWithValue("@Id", id);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        financieringen.Add(new Financiering
                         {
-                            if (reader.Read())
-                            {
-                                financieringsType = new Financiering
-                                {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    Naam = reader["Naam"].ToString()
-                                };
-                            }
-                        }
+                            Id = (int)reader["Id"],
+                            Naam = reader["Naam"].ToString(),
+                            Actief = (bool)reader["Actief"]
+                        });
                     }
                 }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Het systeem kon de Financiering niet vinden, probeer het nog eens.");
-                throw;
-            }
-            return financieringsType;
+            return financieringen;
         }
 
         public static int SaveFinancieringType(Financiering financiering, bool isnew)
@@ -102,8 +108,8 @@ namespace MiaLogic.Manager
                         objCmd.Parameters.AddWithValue("@Id", financiering.Id);
                     }
                     objCmd.Parameters.AddWithValue("@Naam", financiering.Naam);
-                
-                    objCmd.Parameters.AddWithValue("@Actief", financiering.actief);
+
+                    objCmd.Parameters.AddWithValue("@Actief", financiering.Actief);
 
                     objCn.Open();
 
@@ -151,26 +157,49 @@ namespace MiaLogic.Manager
             }
         }
 
-        public static void DeleteAankoper(Financiering financiering)
+        public static bool IsFinancieringGebruikt(int financieringsTypeId)
         {
-            using (SqlConnection objCn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT COUNT(*) FROM Aanvraag WHERE FinancieringsTypeId = @Id", cn))
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-                    objCmd.Connection = objCn;
-
-                    objCmd.CommandText = "delete from FinancieringsType ";
-                    objCmd.CommandText += "where Id = @Id;";
-
-                    objCmd.Parameters.AddWithValue("@Id", financiering.Id);
-
-                    objCn.Open();
-
-                    objCmd.ExecuteNonQuery();
-                }
+                cmd.Parameters.AddWithValue("@Id", financieringsTypeId);
+                cn.Open();
+                return (int)cmd.ExecuteScalar() > 0;
             }
+        }
+
+
+        public static void DeleteFinancier(Financiering financiering)
+        {
+            using (SqlConnection objCn = new SqlConnection(ConnectionString))
+            using (SqlCommand objCmd = new SqlCommand(
+                "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id", objCn))
+            {
+                objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+                objCn.Open();
+                objCmd.ExecuteNonQuery();
+            }
+            //    using (SqlConnection objCn = new SqlConnection())
+            //    {
+            //        objCn.ConnectionString = ConnectionString;
+
+            //        using (SqlCommand objCmd = new SqlCommand())
+            //        {
+            //            objCmd.Connection = objCn;
+
+            //            objCmd.CommandText = "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id";
+
+            //            objCmd.CommandText += "where Id = @Id;";
+
+            //            objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+
+            //            objCn.Open();
+
+            //            objCmd.ExecuteNonQuery();
+            //        }
+            //    }
+            //}
         }
     }
 }

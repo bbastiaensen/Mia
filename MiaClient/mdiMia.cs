@@ -623,10 +623,10 @@ namespace MiaClient
         {
             if (frmBeheerFinancieringsType == null)
             {
-                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
-                frmBeheerInvesteringsType.MdiParent = this;
+                frmBeheerFinancieringsType = new frmBeheerFinancieringsType(); /// wees eerst naar investering waardoor het niet werkte
+                frmBeheerFinancieringsType.MdiParent = this;
             }
-            frmBeheerInvesteringsType.Show();
+            frmBeheerFinancieringsType.Show();
         }
 
     }

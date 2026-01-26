@@ -120,6 +120,11 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+         
+
+
+
             // Identificatie
             VulAfdelingDropDown(ddlAfdeling);
             VulDienstDropDown(ddlDienst);
@@ -269,12 +274,16 @@ namespace MiaClient
         }
         public void VulFinancieringDropDown(ComboBox cmbFinanciering)
         {
-            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetFinancieringen();
+         
+            // Alleen actieve financieringen ophalen
+            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetActieveFinancieringen();
+
 
             cmbFinanciering.DataSource = financieringen;
             cmbFinanciering.DisplayMember = "Naam";
             cmbFinanciering.ValueMember = "Id";
             cmbFinanciering.SelectedIndex = -1;
+
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
@@ -1354,6 +1363,11 @@ namespace MiaClient
             {
                 ddlWieKooptHet.SelectedIndex = -1;
             }
+        }
+
+        private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
