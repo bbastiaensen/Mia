@@ -108,5 +108,98 @@ namespace MiaLogic.Manager
             }
             return naam;
         }
+
+        public static int SaveAfdeling(Afdeling afdeling, bool isnew)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    if (isnew)
+                    {
+                        //Nieuw
+                        objCmd.CommandText = "insert into Afdeling(Naam, Actief)";
+                        objCmd.CommandText += "values(@Naam, @Actief);";
+
+                    }
+                    else
+                    {
+
+                        objCmd.CommandText = "update Afdeling set Naam = @Naam, ";
+                        objCmd.Parameters.AddWithValue("@Id", afdeling.Id);
+                    }
+                    objCmd.Parameters.AddWithValue("@Naam", afdeling.Naam);
+                    objCmd.Parameters.AddWithValue("@Actief", afdeling.actief);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                    if (isnew)
+                    {
+                        return GetHighestAfdelingID();
+                    }
+                    else
+                    {
+                        return afdeling.Id;
+                    }
+
+                }
+            }
+        }
+
+        private static int GetHighestAfdelingID()
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Highest from Afdeling";
+
+
+                    objCn.Open();
+
+                    SqlDataReader ObjRea = objCmd.ExecuteReader();
+                    if (ObjRea.Read())
+                    {
+
+                        return Convert.ToInt32(ObjRea["Highest"]);
+
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+            }
+        }
+
+        public static void DeleteAfdeling(Afdeling afdeling)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from Afdeling ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", afdeling.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
