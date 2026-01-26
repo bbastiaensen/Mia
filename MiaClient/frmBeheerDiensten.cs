@@ -45,28 +45,5 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
-        private void ClearFields()
-        {
-            txtAchternaam.Text = string.Empty;
-            txtId.Text = string.Empty;
-            txtVoornaam.Text = string.Empty;
-            checkActief.Checked = false;
-        }
-
-        private void btnNieuw_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void btnBewaren_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnVerwijderen_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

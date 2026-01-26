@@ -1364,7 +1364,6 @@ namespace MiaClient
         {
             if (AppForms.frmBeheerAankopers != null)
             {
-                //AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
                 AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
             }
         }
