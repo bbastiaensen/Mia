@@ -37,11 +37,13 @@ namespace MiaClient
         private string OffertePath;
         private string MaxBedragStuk;
         private string hyperlink = string.Empty;
+        frmBeheerAankopers frmBeheerAankopers;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
+        List<Aankoper> aankopers;
         List<Offerte> offertes;
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
         bool fotoByAanvraagId = true;
@@ -54,6 +56,7 @@ namespace MiaClient
             try
             {
                 Initialize();
+             
             }
             catch (SqlException ex)
             {
@@ -64,10 +67,16 @@ namespace MiaClient
         {
             InitializeComponent();
             vulFormulier();
-            
+
             SetFormStatus(false);
             GetParam();
-           
+
+            if (AppForms.frmBeheerAankopers != null)
+            {
+                AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
+                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
+            }
+
         }
         private void GetParam()
         {
@@ -1044,7 +1053,6 @@ namespace MiaClient
         {
             CreateUI();
             ddlDisabler();
-          
         }
 
         public void CreateUI()
@@ -1326,28 +1334,26 @@ namespace MiaClient
             //niet meer geselecteerd.
             //vulFormulier();
         }
-        private void BindPrioriteiten()
+
+        private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
         {
-            prioriteiten = PrioriteitManager.GetActivePrioriteiten();
-            ddlPrioriteit.DataSource = null;
-            ddlPrioriteit.DisplayMember = "Naam";
-            ddlPrioriteit.ValueMember = "Id";
-            ddlPrioriteit.DataSource = prioriteiten;
-        }
+            int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
-        private void FrmBeheerPrioriteit_Changed(object sender, EventArgs e)
-        {
-            int? geselecteerdeId = ddlPrioriteit.SelectedValue as int?;
+            List<Aankoper> nieuweAankopers = AankoperManager.GetActiveAankopers();
 
-            BindPrioriteiten();
+            ddlWieKooptHet.DataSource = null;
+            ddlWieKooptHet.DisplayMember = "FullName";
+            ddlWieKooptHet.ValueMember = "Id";
+            ddlWieKooptHet.DataSource = nieuweAankopers;
 
-            if (geselecteerdeId.HasValue && ddlPrioriteit.Items.Cast<Prioriteit>().Any(p=> p.Id == geselecteerdeId))
+            if (geselecteerdeId.HasValue &&
+                ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
             {
-                ddlPrioriteit.SelectedValue = geselecteerdeId.Value;
+                ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
             }
             else
             {
-                ddlPrioriteit.SelectedIndex = -1;
+                ddlWieKooptHet.SelectedIndex = -1;
             }
         }
     }
