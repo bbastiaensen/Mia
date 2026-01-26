@@ -203,5 +203,36 @@ namespace MiaLogic.Manager
                 }
             }
         }
+
+        public static List<Afdeling> GetActiveAfdeling()
+        {
+            List<Afdeling> afdelingen = new List<Afdeling>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Actief, Naam FROM Afdeling WHERE Actief=1 ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Afdeling afdeling = new Afdeling
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString(),
+                                actief = Convert.ToBoolean(reader["Actief"])
+                            };
+
+                            afdelingen.Add(afdeling);
+                        }
+                    }
+                }
+            }
+            return afdelingen;
+        }
     }
 }
