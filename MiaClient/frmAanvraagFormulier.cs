@@ -75,8 +75,8 @@ namespace MiaClient
                 AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
                 AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
             }
-
         }
+
         private void GetParam()
         {
             mainPath = ParameterManager.GetParameterByCode("HoofdMap").Waarde;
@@ -1338,6 +1338,9 @@ namespace MiaClient
         {
             int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
+            //Moet mischien?
+            //ddlWieKooptHet.BindingContext = new BindingContext();
+
             List<Aankoper> nieuweAankopers = AankoperManager.GetActiveAankopers();
 
             ddlWieKooptHet.DataSource = null;
@@ -1347,6 +1350,9 @@ namespace MiaClient
 
             if (geselecteerdeId.HasValue &&
                 ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
+                //ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId.Value))
+
+
             {
                 ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
             }

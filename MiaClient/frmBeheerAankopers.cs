@@ -40,6 +40,8 @@ namespace MiaClient
         {
             CreateUI();
             BindLstAankopers();
+
+            AankopersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public void CreateUI()
