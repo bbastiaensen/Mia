@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,7 @@ namespace MiaClient
         private void frmBeheerInvesteringsType_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLstFinancieringsTypen();
         }
 
         private void frmBeheerInvesteringsType_FormClosing(object sender, FormClosingEventArgs e)
@@ -57,7 +59,7 @@ namespace MiaClient
 
 
 
-        public void BindLstAankopers()
+        public void BindLstFinancieringsTypen()
         {
 
             financierings = FinancieringenManager.GetFinancieringen();
@@ -72,7 +74,7 @@ namespace MiaClient
        
         private void btnNieuw_Click(object sender, EventArgs e)
         {
-
+            ClearFields();
         }
 
         private void LstFinancieringsTypen_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,15 +125,40 @@ namespace MiaClient
             }
 
 
-            //a.Id = FinancieringenManager.
-            //    SaveAankoper(a, IsNew);
+            a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
 
-            BindLstAankopers();
+            BindLstFinancieringsTypen();
             ClearFields();
             LstFinancieringsTypen.SelectedValue = a.Id.ToString();
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            Financiering a = new Financiering();
+            a.Id = Convert.ToInt32(LstFinancieringsTypen.SelectedValue);
+            a.Naam = txtNaam.Text;
+           
+            if (checkActief.Checked)
+            {
+                a.actief = true;
+            }
+            else
+            {
+                a.actief = false;
+            }
+
+            if (MessageBox.Show($"Bent u zeker dat u {LstFinancieringsTypen.Text} wilt verwijderen?", "FinancieringsTypen verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show("De FinancieringsTypen is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FinancieringenManager.DeleteAankoper(a);
+                //AankopersChanged?.Invoke(this, EventArgs.Empty); ik thomas ga hier nog is naar kijken.
+            }
+
+            BindLstFinancieringsTypen();
+            ClearFields();
         }
     }
 }

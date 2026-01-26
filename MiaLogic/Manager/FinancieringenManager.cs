@@ -77,5 +77,100 @@ namespace MiaLogic.Manager
             }
             return financieringsType;
         }
+
+        public static int SaveFinancieringType(Financiering financiering, bool isnew)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    if (isnew)
+                    {
+                        //Nieuw
+                        objCmd.CommandText = "insert into FinancieringsType(naam, Actief)";
+                        objCmd.CommandText += "values(@Naam , @Actief);";
+
+                    }
+                    else
+                    {
+
+                        objCmd.CommandText = "update FinancieringsType set naam = @Naam, ";
+                        objCmd.CommandText += "Actief = @Actief where Id = @Id";
+                        objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+                    }
+                    objCmd.Parameters.AddWithValue("@Naam", financiering.Naam);
+                
+                    objCmd.Parameters.AddWithValue("@Actief", financiering.actief);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                    if (isnew)
+                    {
+                        return GetHighestFinancierID();
+                    }
+                    else
+                    {
+                        return financiering.Id;
+                    }
+
+                }
+            }
+        }
+
+        private static int GetHighestFinancierID()
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Highest from FinancieringsType";
+
+
+                    objCn.Open();
+
+                    SqlDataReader ObjRea = objCmd.ExecuteReader();
+                    if (ObjRea.Read())
+                    {
+
+                        return Convert.ToInt32(ObjRea["Highest"]);
+
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+            }
+        }
+
+        public static void DeleteAankoper(Financiering financiering)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from FinancieringsType ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
