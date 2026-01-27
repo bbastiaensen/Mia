@@ -1,8 +1,11 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,14 +16,12 @@ namespace MiaClient
 {
     public partial class frmBeheerInvesteringsType : Form
     {
-        public frmBeheerInvesteringsType()
-        {
-            InitializeComponent();
-        }
+     
 
         private void frmBeheerInvesteringsType_Load(object sender, EventArgs e)
         {
             CreateUI();
+           
         }
 
         private void frmBeheerInvesteringsType_FormClosing(object sender, FormClosingEventArgs e)
@@ -45,5 +46,20 @@ namespace MiaClient
                 btn.ForeColor = StyleParameters.Buttontext;
             }
         }
+
+
+       
+        
+
+   
+       
+      
+
+      
+
+
+
+  
     }
 }
+
