@@ -1394,7 +1394,7 @@ namespace MiaClient
         {
             if (AppForms.frmbeheerAfdelingen != null)
             {
-                AppForms.frmbeheerAfdelingen.BeheerChanged += FrmBeheerAfdeling_AfdelingChanged;
+                AppForms.frmbeheerAfdelingen.AfdelingChanged += FrmBeheerAfdeling_AfdelingChanged;
             }
         }
 

@@ -17,7 +17,7 @@ namespace MiaClient
     {
         List<Afdeling> afdelingen;
         bool IsNew = false;
-        public event EventHandler BeheerChanged;
+        public event EventHandler AfdelingChanged;
 
 
         public frmBeheerAfdelingen()
@@ -33,8 +33,8 @@ namespace MiaClient
 
             if (AppForms.frmAanvraagFormulier != null)
             {
-                this.BeheerChanged -= AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
-                this.BeheerChanged += AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
+                this.AfdelingChanged -= AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
+                this.AfdelingChanged += AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
             }
         }
 
@@ -128,7 +128,7 @@ namespace MiaClient
 
 
             a.Id = AfdelingenManager.SaveAfdeling(a, IsNew);
-            BeheerChanged?.Invoke(this, EventArgs.Empty);
+            AfdelingChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAfdelingen();
             ClearFields();
@@ -141,8 +141,8 @@ namespace MiaClient
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
             Afdeling a = new Afdeling();
-            if (!IsNew)
-                a.Id = (int)LstAfdelingen.SelectedValue; a.Naam = txtNaam.Text;
+            a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
+            a.Naam = txtNaam.Text;
             if (checkActief.Checked)
             {
                 a.actief = true;
@@ -152,20 +152,15 @@ namespace MiaClient
                 a.actief = false;
             }
 
-
-
-            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "Afdeling verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u dat u {LstAfdelingen.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AfdelingenManager.DeleteAfdeling(a);
-                BeheerChanged?.Invoke(this, EventArgs.Empty);
+                AfdelingChanged?.Invoke(this, EventArgs.Empty);
             }
-
-
 
             BindLstAfdelingen();
             ClearFields();
-
         }
     }
 }
