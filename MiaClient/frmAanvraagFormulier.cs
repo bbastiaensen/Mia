@@ -1417,6 +1417,8 @@ namespace MiaClient
         private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
         public void RefreshAfdelingDropdown()
         {
 
