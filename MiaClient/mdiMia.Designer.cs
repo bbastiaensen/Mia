@@ -73,6 +73,8 @@
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.financieringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -193,7 +195,8 @@
             this.gebruikslogToolStripMenuItem,
             this.investeringsTypesToolStripMenuItem,
             this.kostenplaatsenToolStripMenuItem,
-            this.parametersToolStripMenuItem});
+            this.parametersToolStripMenuItem,
+            this.prioriteitToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
             this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
             this.beheerToolStripMenuItem.Text = "&Beheer";
@@ -452,6 +455,22 @@
             this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
             this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripButton_Click);
             // 
+            // parameterToolStripButton
+            // 
+            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.parameterToolStripButton.Name = "parameterToolStripButton";
+            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.parameterToolStripButton.Text = "Parameters";
+            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
+            // 
+            // prioriteitToolStripMenuItem
+            // 
+            this.prioriteitToolStripMenuItem.Name = "prioriteitToolStripMenuItem";
+            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.prioriteitToolStripMenuItem.Text = "Prioriteit";
+            this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
+            // 
             // mdiMia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -524,6 +543,7 @@
         private System.Windows.Forms.ToolStripButton kostenplaatsToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem investeringsTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem financieringsTypesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prioriteitToolStripMenuItem;
     }
 }
 

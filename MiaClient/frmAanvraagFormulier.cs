@@ -47,10 +47,12 @@ namespace MiaClient
         List<Link> links;
         List<Aankoper> aankopers;
         List<Offerte> offertes;
+        List<Prioriteit> prioriteiten = new List<Prioriteit>();
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
         private int _linkId = 0;
+        public event EventHandler BeheerChanged;
 
         public frmAanvraagFormulier()
         {
@@ -244,7 +246,7 @@ namespace MiaClient
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
-            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
+            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetActiveAfdeling();
 
             cmbAfdeling.DataSource = afdelingen;
             cmbAfdeling.DisplayMember = "Naam";
@@ -262,7 +264,7 @@ namespace MiaClient
         }
         public void VulPrioriteitDropDown(ComboBox cmbPrioriteit)
         {
-            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetPrioriteiten();
+            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetActivePrioriteiten();
 
             cmbPrioriteit.DataSource = prioriteiten;
             cmbPrioriteit.DisplayMember = "Naam";
@@ -1061,6 +1063,7 @@ namespace MiaClient
             ddlDisabler();
             TriggerAankoperEvent();
             TriggerFinancieringsTypeEvent();
+            TriggerAfdelingEvent();
         }
 
         public void CreateUI()
@@ -1383,6 +1386,10 @@ namespace MiaClient
 
         }
 
+        public void FrmBeheerAfdeling_AfdelingChanged(object sender, EventArgs e)
+        {
+            RefreshAfdelingDropdown();
+        }
 
         public void RefreshAankoperDropdown()
         {
@@ -1410,6 +1417,35 @@ namespace MiaClient
         private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        public void RefreshAfdelingDropdown()
+        {
+
+            int? geselecteerdeId = ddlAfdeling.SelectedValue as int?;
+
+            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
+
+            ddlAfdeling.DataSource = null;
+            ddlAfdeling.DisplayMember = "Naam";
+            ddlAfdeling.ValueMember = "Id";
+            ddlAfdeling.DataSource = nieuweAfdelingen;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweAfdelingen.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlAfdeling.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlAfdeling.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerAfdelingEvent()
+        {
+            if (AppForms.frmbeheerAfdelingen != null)
+            {
+                AppForms.frmbeheerAfdelingen.AfdelingChanged += FrmBeheerAfdeling_AfdelingChanged;
+            }
         }
 
         public void TriggerAankoperEvent()
