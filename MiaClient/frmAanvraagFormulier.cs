@@ -42,15 +42,18 @@ namespace MiaClient
         public event EventHandler InvesteringsTypeschanged;
         public event EventHandler AanvraagBewaard;
         public event EventHandler AankopersChanged;
+        public event EventHandler FinancieringTypeChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
         List<Aankoper> aankopers;
         List<Offerte> offertes;
+        List<Prioriteit> prioriteiten = new List<Prioriteit>();
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
         private int _linkId = 0;
+        public event EventHandler BeheerChanged;
 
         public frmAanvraagFormulier()
         {
@@ -117,6 +120,11 @@ namespace MiaClient
         {
             txtGebruiker.Text = Program.Gebruiker;
             txtAanvraagmoment.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+         
+
+
+
             // Identificatie
             VulAfdelingDropDown(ddlAfdeling);
             VulDienstDropDown(ddlDienst);
@@ -239,7 +247,7 @@ namespace MiaClient
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
-            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
+            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetActiveAfdeling();
 
             cmbAfdeling.DataSource = afdelingen;
             cmbAfdeling.DisplayMember = "Naam";
@@ -257,7 +265,7 @@ namespace MiaClient
         }
         public void VulPrioriteitDropDown(ComboBox cmbPrioriteit)
         {
-            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetPrioriteiten();
+            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetActivePrioriteiten();
 
             cmbPrioriteit.DataSource = prioriteiten;
             cmbPrioriteit.DisplayMember = "Naam";
@@ -266,12 +274,16 @@ namespace MiaClient
         }
         public void VulFinancieringDropDown(ComboBox cmbFinanciering)
         {
-            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetFinancieringen();
+         
+            // Alleen actieve financieringen ophalen
+            List<Financiering> financieringen = MiaLogic.Manager.FinancieringenManager.GetActieveFinancieringen();
+
 
             cmbFinanciering.DataSource = financieringen;
             cmbFinanciering.DisplayMember = "Naam";
             cmbFinanciering.ValueMember = "Id";
             cmbFinanciering.SelectedIndex = -1;
+
         }
         public void VulInvesteringDropDown(ComboBox cmbInvestering)
         {
@@ -1053,6 +1065,8 @@ namespace MiaClient
             TriggerAankoperEvent();
             TriggerInvesteringsEvent();
 
+            TriggerFinancieringsTypeEvent();
+            TriggerAfdelingEvent();
         }
 
         public void CreateUI()
@@ -1340,6 +1354,46 @@ namespace MiaClient
             RefreshAankoperDropdown();
         }
 
+        public void frmBeheerFinancieringsType_financieringTypeChanged(object sender, EventArgs e)
+        {
+            RefreshDropdown_financieringType();
+        }
+        public void RefreshDropdown_financieringType()
+        {
+
+            int? geselecteerdeId = ddlFinanciering.SelectedValue as int?;
+
+            var nieuweType = FinancieringenManager.GetActieveFinancieringen();
+
+            ddlFinanciering.DataSource = null;
+            ddlFinanciering.DisplayMember = "Naam";
+            ddlFinanciering.ValueMember = "Id";
+            ddlFinanciering.DataSource = nieuweType;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweType.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlFinanciering.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlFinanciering.SelectedIndex = -1;
+            }
+        }
+        public void TriggerFinancieringsTypeEvent() {
+
+            if (AppForms.frmBeheerFinancieringsType != null)
+            {
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
+            }
+
+        }
+
+        public void FrmBeheerAfdeling_AfdelingChanged(object sender, EventArgs e)
+        {
+            RefreshAfdelingDropdown();
+        }
+
         public void RefreshAankoperDropdown()
         {
 
@@ -1393,6 +1447,42 @@ namespace MiaClient
                 AppForms.frmBeheerInvesteringsType.InvesteringsTypeschanged += FrmBeheerInvesteringsType_InvesteringsTypeChanged;
             }
         }
+        private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void RefreshAfdelingDropdown()
+        {
+
+            int? geselecteerdeId = ddlAfdeling.SelectedValue as int?;
+
+            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
+
+            ddlAfdeling.DataSource = null;
+            ddlAfdeling.DisplayMember = "Naam";
+            ddlAfdeling.ValueMember = "Id";
+            ddlAfdeling.DataSource = nieuweAfdelingen;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweAfdelingen.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlAfdeling.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlAfdeling.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerAfdelingEvent()
+        {
+            if (AppForms.frmbeheerAfdelingen != null)
+            {
+                AppForms.frmbeheerAfdelingen.AfdelingChanged += FrmBeheerAfdeling_AfdelingChanged;
+            }
+        }
+
         public void TriggerAankoperEvent()
         {
             if (AppForms.frmBeheerAankopers != null)

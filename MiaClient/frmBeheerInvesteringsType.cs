@@ -2,6 +2,11 @@
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,11 +22,14 @@ namespace MiaClient
         {
             InitializeComponent();
         }
+     
 
         private void frmBeheerInvesteringsType_Load(object sender, EventArgs e)
         {
             CreateUI();
             LoadList();
+           
+        }
 
             btnNieuw.Click += btnNieuw_Click;
             btnBewaren.Click += btnBewaren_Click;
@@ -135,5 +143,19 @@ namespace MiaClient
                 AppForms.frmBeheerInvesteringsType = null;
             }
         }
+
+       
+        
+
+   
+       
+      
+
+      
+
+
+
+  
     }
 }
+

@@ -40,6 +40,7 @@ namespace MiaClient
         frmBeheerDiensten frmBeheerDiensten;
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
+        frmPrioriteit frmPrioriteit;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -282,8 +283,8 @@ namespace MiaClient
                 gebruikersToolStripButton.Visible = true;
                 aankopersToolStripButton.Visible = true;
                 //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
-                afdelingToolStripButton.Visible = false;
-                afdelingenToolStripMenuItem.Visible = false;
+                afdelingToolStripButton.Visible = true;
+                afdelingenToolStripMenuItem.Visible = true;
                 dienstToolStripButton.Visible = false;
                 dienstenToolStripMenuItem.Visible = false;
                 financieringsTypesToolStripMenuItem.Visible = true;
@@ -623,12 +624,21 @@ namespace MiaClient
         {
             if (frmBeheerFinancieringsType == null)
             {
-                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
-                frmBeheerInvesteringsType.MdiParent = this;
+                frmBeheerFinancieringsType = new frmBeheerFinancieringsType(); /// wees eerst naar investering waardoor het niet werkte
+                frmBeheerFinancieringsType.MdiParent = this;
             }
-            frmBeheerInvesteringsType.Show();
+            frmBeheerFinancieringsType.Show();
         }
 
+        private void prioriteitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmPrioriteit == null)
+            {
+                frmPrioriteit = new frmPrioriteit();
+                frmPrioriteit.MdiParent = this;
+            }
+            frmPrioriteit.Show();
+        }
     }
 }
 
