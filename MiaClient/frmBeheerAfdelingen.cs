@@ -17,6 +17,7 @@ namespace MiaClient
     {
         List<Afdeling> afdelingen;
         bool IsNew = false;
+        public event EventHandler BeheerChanged;
 
 
         public frmBeheerAfdelingen()
@@ -28,6 +29,13 @@ namespace MiaClient
         {
             CreateUI();
             BindLstAfdelingen();
+            AppForms.frmbeheerAfdelingen = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.BeheerChanged -= AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
+                this.BeheerChanged += AppForms.frmAanvraagFormulier.FrmBeheerAfdeling_AfdelingChanged;
+            }
         }
 
         public void CreateUI()
@@ -51,6 +59,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+
+            if (AppForms.frmbeheerAfdelingen == this)
+            {
+                AppForms.frmbeheerAfdelingen = null;
+            }
         }
 
         public void BindLstAfdelingen()
@@ -115,6 +128,7 @@ namespace MiaClient
 
 
             a.Id = AfdelingenManager.SaveAfdeling(a, IsNew);
+            BeheerChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAfdelingen();
             ClearFields();
@@ -144,6 +158,7 @@ namespace MiaClient
             {
                 MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AfdelingenManager.DeleteAfdeling(a);
+                BeheerChanged?.Invoke(this, EventArgs.Empty);
             }
 
 
