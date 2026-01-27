@@ -50,6 +50,7 @@ namespace MiaClient
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
         private int _linkId = 0;
+        public event EventHandler BeheerChanged;
 
         public frmAanvraagFormulier()
         {
@@ -238,7 +239,7 @@ namespace MiaClient
         }
         public void VulAfdelingDropDown(ComboBox cmbAfdeling)
         {
-            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetAfdelingen();
+            List<Afdeling> afdelingen = MiaLogic.Manager.AfdelingenManager.GetActiveAfdeling();
 
             cmbAfdeling.DataSource = afdelingen;
             cmbAfdeling.DisplayMember = "Naam";
@@ -1050,6 +1051,7 @@ namespace MiaClient
             CreateUI();
             ddlDisabler();
             TriggerAankoperEvent();
+            TriggerAfdelingEvent();
         }
 
         public void CreateUI()
@@ -1337,6 +1339,11 @@ namespace MiaClient
             RefreshAankoperDropdown();
         }
 
+        public void FrmBeheerAfdeling_AfdelingChanged(object sender, EventArgs e)
+        {
+            RefreshAfdelingDropdown();
+        }
+
         public void RefreshAankoperDropdown()
         {
 
@@ -1357,6 +1364,37 @@ namespace MiaClient
             else
             {
                 ddlWieKooptHet.SelectedIndex = -1;
+            }
+        }
+
+        public void RefreshAfdelingDropdown()
+        {
+
+            int? geselecteerdeId = ddlAfdeling.SelectedValue as int?;
+
+            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
+
+            ddlAfdeling.DataSource = null;
+            ddlAfdeling.DisplayMember = "Naam";
+            ddlAfdeling.ValueMember = "Id";
+            ddlAfdeling.DataSource = nieuweAfdelingen;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweAfdelingen.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlAfdeling.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlAfdeling.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerAfdelingEvent()
+        {
+            if (AppForms.frmbeheerAfdelingen != null)
+            {
+                AppForms.frmbeheerAfdelingen.AfdelingChanged += FrmBeheerAfdeling_AfdelingChanged;
             }
         }
 
