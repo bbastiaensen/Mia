@@ -39,6 +39,7 @@ namespace MiaClient
         private string hyperlink = string.Empty;
         frmBeheerAankopers frmBeheerAankopers;
         public FrmAanvragen frmAanvragen;
+        public event EventHandler InvesteringsTypeschanged;
         public event EventHandler AanvraagBewaard;
         public event EventHandler AankopersChanged;
         private int aanvraagId = 0;
@@ -1050,6 +1051,8 @@ namespace MiaClient
             CreateUI();
             ddlDisabler();
             TriggerAankoperEvent();
+            TriggerInvesteringsEvent();
+
         }
 
         public void CreateUI()
@@ -1359,7 +1362,37 @@ namespace MiaClient
                 ddlWieKooptHet.SelectedIndex = -1;
             }
         }
+        public void RefreshInvesteringsTypeDropdown()
+        {
 
+            int? geselecteerdeId = ddlInvestering.SelectedValue as int?;
+
+            var nieuweInvesteringsType = InvesteringenManager.GetActiveInvesteringen();
+
+            ddlInvestering.DataSource = null;
+            ddlInvestering.DisplayMember = "Voornaam";
+            ddlInvestering.ValueMember = "Id";
+            ddlInvestering.DataSource = nieuweInvesteringsType;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweInvesteringsType.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlInvestering.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlInvestering.SelectedIndex = -1;
+            }
+        }
+
+
+        public void TriggerInvesteringsEvent()
+        {
+            if (AppForms.frmBeheerInvesteringsType != null)
+            {
+                AppForms.frmBeheerInvesteringsType.InvesteringsTypeschanged += FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+            }
+        }
         public void TriggerAankoperEvent()
         {
             if (AppForms.frmBeheerAankopers != null)
@@ -1367,5 +1400,11 @@ namespace MiaClient
                 AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
             }
         }
-    }
+        public void FrmBeheerInvesteringsType_InvesteringsTypeChanged(object sender, EventArgs e)
+        {
+            RefreshInvesteringsTypeDropdown();
+
+        }
+
+}
 }

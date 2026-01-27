@@ -11,6 +11,7 @@ namespace MiaClient
     {
         private Investering huidige;
         private bool isNew;
+        public event EventHandler InvesteringsTypeschanged;
 
         public frmBeheerInvesteringsType()
         {
@@ -26,7 +27,16 @@ namespace MiaClient
             btnBewaren.Click += btnBewaren_Click;
             btnVerwijderen.Click += btnVerwijderen_Click;
             InvesteringsTypes.SelectedIndexChanged += InvesteringsTypes_SelectedIndexChanged;
+
+            AppForms.frmBeheerInvesteringsType = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.InvesteringsTypeschanged -= AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+                this.InvesteringsTypeschanged += AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+            }
         }
+
 
         private void CreateUI()
         {
@@ -76,12 +86,28 @@ namespace MiaClient
                 return;
             }
 
-            huidige.Naam = txtVoornaam.Text;
-            huidige.Actief = checkActief.Checked;
+            Investering i = new Investering();
 
-            huidige.Id = InvesteringenManager.SaveInvestering(huidige, isNew);
+            if (!isNew && InvesteringsTypes.SelectedItem is Investering selected)
+            {
+                i.Id = selected.Id;
+            }
+
+            i.Naam = txtVoornaam.Text;
+            i.Actief = checkActief.Checked;
+
+            i.Id = InvesteringenManager.SaveInvestering(i, isNew);
+
             LoadList();
+
+            InvesteringsTypeschanged?.Invoke(this, EventArgs.Empty);
+
+            InvesteringsTypes.SelectedItem = i; 
+            isNew = false;
+
+            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
@@ -97,12 +123,17 @@ namespace MiaClient
                 LoadList();
                 btnNieuw_Click(null, null);
             }
+            InvesteringsTypeschanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void frmBeheerInvesteringsType_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
+            if (AppForms.frmBeheerInvesteringsType == this)
+            {
+                AppForms.frmBeheerInvesteringsType = null;
+            }
         }
     }
 }

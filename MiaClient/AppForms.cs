@@ -15,5 +15,13 @@ namespace MiaClient
         public static frmAbout frmAbout { get; set; }
 
         public static frmAanvraagFormulier frmAanvraagFormulier { get; set; }
+
+        public static frmBeheerInvesteringsType frmBeheerInvesteringsType { get; set; }
+
+
+
     }
+
+
+
 }
