@@ -23,7 +23,7 @@ namespace MiaClient
         int yPos = 20;
         int grpHeight = 26;
         bool IsNew = false;
-   
+
         public frmBeheerFinancieringsType()
         {
             InitializeComponent();
@@ -82,75 +82,138 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             checkActief.Checked = false;
 
+            LstFinancieringsTypen.ClearSelected(); // <-- toevoegen
             IsNew = true;
         }
         private void btnBewaren_Click(object sender, EventArgs e)
         {
-            Financiering a = new Financiering();
-            a.Id = Convert.ToInt32(LstFinancieringsTypen.SelectedValue);
-            a.Naam = txtNaam.Text;
-
-            if (checkActief.Checked)
+            // UI-validatie (snel feedback)
+            if (string.IsNullOrWhiteSpace(txtNaam.Text))
             {
-                a.Actief = true;
-            }
-            else
-            {
-                a.Actief = false;
+                MessageBox.Show(
+                    "Naam is een verplicht veld.",
+                    "Validatie",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtNaam.Focus();
+                return;
             }
 
-            a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
-            /// event trigger
-            FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
+            Financiering a = new Financiering
+            {
+                Id = IsNew ? 0 : (int)LstFinancieringsTypen.SelectedValue,
+                Naam = txtNaam.Text.Trim(),
+                Actief = checkActief.Checked
+            };
+
+            // ❗ HIER hoort de try/catch
+            try
+            {
+                a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
+                FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Validatie",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return; // STOP: niets bewaren
+            }
+
+           
 
             BindLstFinancieringsTypen();
-            ClearFields();
             LstFinancieringsTypen.SelectedValue = a.Id;
 
             IsNew = false;
 
+            MessageBox.Show(
+                "De gegevens werden succesvol bewaard.",
+                "MIA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
             
-          
 
-            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
         }
-
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Financiering a = new Financiering();
-            a.Id = Convert.ToInt32(LstFinancieringsTypen.SelectedValue);
-            a.Naam = txtNaam.Text;
-            a.Actief = checkActief.Checked;
-
-            if (MessageBox.Show($"Bent u zeker dat u {LstFinancieringsTypen.Text} wilt verwijderen?",
-                                "Financiering verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            // Zorg dat er iets geselecteerd is
+            if (LstFinancieringsTypen.SelectedItem == null)
             {
-                // Controleer of deze financiering al gebruikt is
-                if (FinancieringenManager.IsFinancieringGebruikt(a.Id))
-                {
-                    // Niet verwijderen, alleen deactiveren
-                    FinancieringenManager.DeactiveerFinanciering(a.Id);
-                    ////event
-                    FinancieringTypeChanged?.Invoke(this, EventArgs.Empty); ///kijk is
-                    MessageBox.Show("Deze financiering is al gekoppeld aan een aanvraag en is daarom op niet-actief gezet.",
-                                    "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    // Kan veilig verwijderen (logisch hier nog steeds via Deactiveer als je geen echte delete wilt)
-                    FinancieringenManager.DeleteFinancier(a);
-                    //event
-                    FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
-                    MessageBox.Show("De financiering is succesvol verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            
-               
+                MessageBox.Show(
+                    "Er is geen financieringstype geselecteerd om te verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
             }
 
-            BindLstFinancieringsTypen();
-            ClearFields();
+            // Actueel geselecteerd record
+            Financiering a = (Financiering)LstFinancieringsTypen.SelectedItem;
+
+            // Vraag bevestiging
+            if (MessageBox.Show(
+                    $"Bent u zeker dat u het financieringstype \"{LstFinancieringsTypen.Text}\" wilt verwijderen?",
+                    "MIA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    // Controleer of het al gebruikt wordt
+                    if (FinancieringenManager.IsFinancieringGebruikt(a.Id))
+                    {
+                        // Alleen deactiveren
+                        FinancieringenManager.DeactiveerFinanciering(a.Id);
+                        FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
+
+                      
+
+                        MessageBox.Show(
+                            "Dit financieringstype is gekoppeld aan een aanvraag en werd op niet-actief gezet.",
+                            "MIA",
+                            MessageBoxButtons.OK,
+                             MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        // Kan veilig verwijderen (of deactiveren)
+                        FinancieringenManager.DeleteFinancier(a);
+
+                        FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
+
+                        MessageBox.Show(
+                            "Het financieringstype werd succesvol verwijderd.",
+                            "MIA",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+
+                    // Lijst vernieuwen en velden leegmaken
+                    BindLstFinancieringsTypen();
+                    ClearFields();
+                }
+                catch (Exception ex)
+                {
+                    // Exception netjes afvangen, geen crash
+                    MessageBox.Show(
+                        "Er is een fout opgetreden bij het verwijderen.\n\n" + ex.Message,
+                        "MIA",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
+
+
+    
 
         public void BindLstFinancieringsTypen()
         {
@@ -165,25 +228,19 @@ namespace MiaClient
 
         private void LstFinancieringsTypen_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Bescherming tegen null / herbinding
+            if (LstFinancieringsTypen.SelectedItem == null)
+                return;
+
             Financiering financier = (Financiering)LstFinancieringsTypen.SelectedItem;
 
+            txtId.Text = financier.Id.ToString();
+            txtNaam.Text = financier.Naam;
+            checkActief.Checked = financier.Actief;
 
-            if (financier != null)
-            {
-                txtId.Text = Convert.ToString(financier.Id);
-                txtNaam.Text = financier.Naam;
-
-                if (financier.Actief)
-                {
-                    checkActief.Checked = true;
-                }
-                else
-                {
-                    checkActief.Checked = false;
-                }
-
-                IsNew = false;
-            }
+            // Zodra iets geselecteerd is, is het GEEN nieuw record
+            IsNew = false;
         }
     }
 }
+
