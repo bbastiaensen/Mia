@@ -40,6 +40,8 @@ namespace MiaClient
         frmBeheerAankopers frmBeheerAankopers;
         public FrmAanvragen frmAanvragen;
         public event EventHandler AanvraagBewaard;
+        public event EventHandler AankopersChanged;
+        public event EventHandler FinancieringTypeChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
@@ -70,13 +72,8 @@ namespace MiaClient
             SetFormStatus(false);
             GetParam();
 
-            if (AppForms.frmBeheerAankopers != null)
-            {
-                AppForms.frmBeheerAankopers.AankopersChanged -= FrmBeheerAankopers_AankopersChanged;
-                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
-            }
-
         }
+
         private void GetParam()
         {
             mainPath = ParameterManager.GetParameterByCode("HoofdMap").Waarde;
@@ -1059,8 +1056,11 @@ namespace MiaClient
 
         private void frmAanvraagFormulier_Load(object sender, EventArgs e)
         {
+            AppForms.frmAanvraagFormulier = this;
             CreateUI();
             ddlDisabler();
+            TriggerAankoperEvent();
+            TriggerFinancieringsTypeEvent();
         }
 
         public void CreateUI()
@@ -1343,19 +1343,61 @@ namespace MiaClient
             //vulFormulier();
         }
 
-        private void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
+        public void FrmBeheerAankopers_AankopersChanged(object sender, EventArgs e)
         {
+            RefreshAankoperDropdown();
+        }
+
+        public void frmBeheerFinancieringsType_financieringTypeChanged(object sender, EventArgs e)
+        {
+            RefreshDropdown_financieringType();
+        }
+        public void RefreshDropdown_financieringType()
+        {
+
+            int? geselecteerdeId = ddlFinanciering.SelectedValue as int?;
+
+            var nieuweType = FinancieringenManager.GetActieveFinancieringen();
+
+            ddlFinanciering.DataSource = null;
+            ddlFinanciering.DisplayMember = "Naam";
+            ddlFinanciering.ValueMember = "Id";
+            ddlFinanciering.DataSource = nieuweType;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweType.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlFinanciering.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlFinanciering.SelectedIndex = -1;
+            }
+        }
+        public void TriggerFinancieringsTypeEvent() {
+
+            if (AppForms.frmBeheerFinancieringsType != null)
+            {
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
+            }
+
+        }
+
+
+        public void RefreshAankoperDropdown()
+        {
+
             int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
 
-            List<Aankoper> nieuweAankopers = AankoperManager.GetActiveAankopers();
+            var nieuweAankopers = AankoperManager.GetActiveAankopers();
 
             ddlWieKooptHet.DataSource = null;
             ddlWieKooptHet.DisplayMember = "FullName";
             ddlWieKooptHet.ValueMember = "Id";
             ddlWieKooptHet.DataSource = nieuweAankopers;
-
-            if (geselecteerdeId.HasValue &&
-                ddlWieKooptHet.Items.Cast<Aankoper>().Any(a => a.Id == geselecteerdeId))
+            
+            if (geselecteerdeId.HasValue && 
+                nieuweAankopers.Any(a => a.Id == geselecteerdeId.Value))
             {
                 ddlWieKooptHet.SelectedValue = geselecteerdeId.Value;
             }
@@ -1368,6 +1410,14 @@ namespace MiaClient
         private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void TriggerAankoperEvent()
+        {
+            if (AppForms.frmBeheerAankopers != null)
+            {
+                AppForms.frmBeheerAankopers.AankopersChanged += FrmBeheerAankopers_AankopersChanged;
+            }
         }
     }
 }

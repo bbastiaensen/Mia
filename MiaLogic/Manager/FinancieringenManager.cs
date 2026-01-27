@@ -172,34 +172,27 @@ namespace MiaLogic.Manager
 
         public static void DeleteFinancier(Financiering financiering)
         {
-            using (SqlConnection objCn = new SqlConnection(ConnectionString))
-            using (SqlCommand objCmd = new SqlCommand(
-                "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id", objCn))
+     
+            using (SqlConnection objCn = new SqlConnection())
             {
-                objCmd.Parameters.AddWithValue("@Id", financiering.Id);
-                objCn.Open();
-                objCmd.ExecuteNonQuery();
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id";
+
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
             }
-            //    using (SqlConnection objCn = new SqlConnection())
-            //    {
-            //        objCn.ConnectionString = ConnectionString;
-
-            //        using (SqlCommand objCmd = new SqlCommand())
-            //        {
-            //            objCmd.Connection = objCn;
-
-            //            objCmd.CommandText = "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id";
-
-            //            objCmd.CommandText += "where Id = @Id;";
-
-            //            objCmd.Parameters.AddWithValue("@Id", financiering.Id);
-
-            //            objCn.Open();
-
-            //            objCmd.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
         }
     }
-}
+    }
+
