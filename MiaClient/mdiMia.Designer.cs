@@ -73,7 +73,6 @@
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.financieringsTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();

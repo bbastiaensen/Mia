@@ -125,7 +125,7 @@ namespace MiaClient
                     avi.Location = new System.Drawing.Point(xPos, yPos);
                     avi.Name = "aanvraagSelection" + n;
                     avi.Size = new System.Drawing.Size(1210, 20);
-                    avi.TabIndex = n + 8;
+                    avi.TabIndex = n +8 ;
                     avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                     avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                     avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
@@ -609,5 +609,12 @@ namespace MiaClient
             }
             EnableFirstPrevious(false);
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+    
     }
 }

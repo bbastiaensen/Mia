@@ -25,6 +25,8 @@ namespace MiaClient.UserControls
         public int AantalStuk { get; set; }
         public int RichtperiodeId { get; set; }
         public string Financieringsjaar { get; set; }
+
+        public string AanvraagStatus {  get; set; } //kijk hier nog is naar
         public Boolean Even { get; set; }
         public Richtperiode R { get; set; }
 
@@ -50,6 +52,7 @@ namespace MiaClient.UserControls
             Financieringsjaar = financieringsjaar;
             Even = even;
             RichtperiodeId = richtId;
+
             Richtperiode r = RichtperiodeManager.GetRichtperiodeById(richtId);
             R = r;
             R.Naam = r.Naam;
@@ -90,6 +93,26 @@ namespace MiaClient.UserControls
             {
                 this.BackColor = StyleParameters.AltListItemColor;
             }
+
+            // --- LOCATIES PER REGEL INSTELLEN (vanaf X = 0) ---
+            int startX = 0;       // begin links
+            int yPos = 2;         // hoogte van de regel
+            int step = 150;       // afstand tussen velden (pas aan afhankelijk van breedte)
+
+            lblTitel.Location = new Point(startX, yPos);
+
+            lblTotaalBedrag.Location = new Point(140, yPos);
+
+            lblAanvrager.Location = new Point(300, yPos);
+            //lblFinancieringsjaar.Location = new Point(startX + step * 2, yPos);
+
+
+
+            lblRichtperiode.Location = new Point(500, yPos);
+            lblFinancieringsjaar.Text = Financieringsjaar; 
+            lblFinancieringsjaar.Location = new Point(630, yPos);
+
+            
         }
     }
 }
