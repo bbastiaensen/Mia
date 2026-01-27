@@ -31,19 +31,19 @@ namespace MiaClient
            
         }
 
-            btnNieuw.Click += btnNieuw_Click;
-            btnBewaren.Click += btnBewaren_Click;
-            btnVerwijderen.Click += btnVerwijderen_Click;
-            InvesteringsTypes.SelectedIndexChanged += InvesteringsTypes_SelectedIndexChanged;
+        //    btnNieuw.Click += btnNieuw_Click;
+        //    btnBewaren.Click += btnBewaren_Click;
+        //    btnVerwijderen.Click += btnVerwijderen_Click;
+        //    InvesteringsTypes.SelectedIndexChanged += InvesteringsTypes_SelectedIndexChanged;
 
-            AppForms.frmBeheerInvesteringsType = this;
+        //    AppForms.frmBeheerInvesteringsType = this;
 
-            if (AppForms.frmAanvraagFormulier != null)
-            {
-                this.InvesteringsTypeschanged -= AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
-                this.InvesteringsTypeschanged += AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
-            }
-        }
+        //    if (AppForms.frmAanvraagFormulier != null)
+        //    {
+        //        this.InvesteringsTypeschanged -= AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+        //        this.InvesteringsTypeschanged += AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+        //    }
+        //}
 
 
         private void CreateUI()
