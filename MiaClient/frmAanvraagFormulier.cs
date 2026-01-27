@@ -46,6 +46,7 @@ namespace MiaClient
         List<Link> links;
         List<Aankoper> aankopers;
         List<Offerte> offertes;
+        List<Prioriteit> prioriteiten = new List<Prioriteit>();
         bool fotoByAanvraagId = true;
         bool linkByAanvraagId = true;
         bool offerteByAanvraagId = true;
@@ -257,7 +258,7 @@ namespace MiaClient
         }
         public void VulPrioriteitDropDown(ComboBox cmbPrioriteit)
         {
-            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetPrioriteiten();
+            List<Prioriteit> prioriteiten = MiaLogic.Manager.PrioriteitManager.GetActivePrioriteiten();
 
             cmbPrioriteit.DataSource = prioriteiten;
             cmbPrioriteit.DisplayMember = "Naam";

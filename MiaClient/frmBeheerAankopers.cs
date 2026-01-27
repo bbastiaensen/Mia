@@ -75,7 +75,7 @@ namespace MiaClient
             aankopers = AankoperManager.GetAankoper();
             LstAankopers.DisplayMember = "FullName";
             
-            LstAankopers.ValueMember = "Id";
+            LstAankopers.ValueMember = "Id";    
             LstAankopers.DataSource= aankopers;
             
         }

@@ -193,6 +193,12 @@
     <Compile Include="frmGoedkeuring.Designer.cs">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPrioriteit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrioriteit.Designer.cs">
+      <DependentUpon>frmPrioriteit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrioriteit.resx">
+      <DependentUpon>frmPrioriteit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrompt.resx">
       <DependentUpon>frmPrompt.cs</DependentUpon>
