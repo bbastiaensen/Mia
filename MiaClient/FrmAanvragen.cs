@@ -205,7 +205,9 @@ namespace MiaClient
             btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
             this.Icon = imgFormIcon;
-            
+
+            VulStatusDropDown();
+
         }
         private void FrmAanvraagFormulier_AanvraagBewaard(object sender, EventArgs e)
         {
@@ -232,6 +234,8 @@ namespace MiaClient
         }
         private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool aanvraagmomentVan, bool aanvraagmomentTot, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool statusAanvraag, bool financieringsjaar, bool bedragVan, bool bedragTot, bool kostenPlaats)
         {
+            int geselecteerdeStatusId = (int)cbStatusAanvraag.SelectedValue;
+
             if (items != null)
             {
                 if (aanvraagmomentVan)
@@ -270,11 +274,17 @@ namespace MiaClient
                 {
                     items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (statusAanvraag)
+                //if (statusAanvraag)
+                //{
+                //    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
+                //}
+                if(geselecteerdeStatusId != -1)
                 {
-                    items = items.Where(av => av.StatusAanvraag.ToLower().Contains(txtStatusAanvraag.Text.ToLower())).ToList();
+                    items = items
+                        .Where(a => a.StatusAanvraagId == geselecteerdeStatusId)
+                        .ToList();
                 }
-                if (financieringsjaar)
+                    if (financieringsjaar)
                 {
                     if (txtFinancieringsjaar.Text != string.Empty)
                     {
@@ -317,7 +327,7 @@ namespace MiaClient
                 {
                     filterFinancieringsjaar = true;
                 }
-                if (txtStatusAanvraag.Text != string.Empty)
+                if (cbStatusAanvraag.Text != string.Empty)
                 {
                     filterStatusAanvraag = true;
                 }
@@ -939,6 +949,21 @@ namespace MiaClient
             {
                 MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public void VulStatusDropDown()
+        {
+            List<StatusAanvraag> StatusAanvragen = MiaLogic.Manager.StatusAanvraagManager.GetStatusAanvragen();
+
+            StatusAanvragen.Insert(0, new StatusAanvraag
+            {
+                Id = -1,
+                Naam = "Geen"
+            });
+
+            cbStatusAanvraag.DataSource = StatusAanvragen;
+            cbStatusAanvraag.DisplayMember = "Naam";
+            cbStatusAanvraag.ValueMember = "Id";
+            cbStatusAanvraag.SelectedIndex = 0;
         }
     }
 }
