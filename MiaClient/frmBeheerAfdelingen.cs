@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace MiaClient
@@ -114,9 +115,16 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNaam?.Text))
+            {
+                MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string naam = txtNaam.Text.Trim();
+
             Afdeling a = new Afdeling();
             a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
-            a.Naam = txtNaam.Text;
+            a.Naam = naam;
             if (checkActief.Checked)
             {
                 a.actief = true;
@@ -140,27 +148,34 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Afdeling a = new Afdeling();
-            a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
-            a.Naam = txtNaam.Text;
-            if (checkActief.Checked)
+            Afdeling a = new Afdeling
             {
-                a.actief = true;
-            }
-            else
-            {
-                a.actief = false;
-            }
+                Id = Convert.ToInt32(LstAfdelingen.SelectedValue),
+                Naam = txtNaam.Text,
+                actief = checkActief.Checked
+            };
 
-            if (MessageBox.Show($"Bent u dat u {LstAfdelingen.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Probeer verwijderen
                 AfdelingenManager.DeleteAfdeling(a);
-                AfdelingChanged?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Als foreign key voorkomt dat verwijderen, zet op inactief
+                MessageBox.Show("Deze afdeling kan niet verwijderd worden omdat er nog gekoppelde records zijn. De afdeling wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                a.actief = false;
+                AfdelingenManager.SaveAfdeling(a, false);
             }
 
+            AfdelingChanged?.Invoke(this, EventArgs.Empty);
             BindLstAfdelingen();
             ClearFields();
         }
+
     }
 }
