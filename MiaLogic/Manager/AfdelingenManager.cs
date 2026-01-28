@@ -122,7 +122,7 @@ namespace MiaLogic.Manager
                     objCmd.Connection = objCn;
                     if (isnew)
                     {
-                        //Nieuw
+                        //Nieuww
                         objCmd.CommandText = "insert into Afdeling(Naam, Actief)";
                         objCmd.CommandText += "values(@Naam, @Actief);";
 
