@@ -117,10 +117,12 @@ namespace MiaClient
         {
             try
             {
-                if (string.IsNullOrWhiteSpace   (txtNaam.Text))
+                if (string.IsNullOrWhiteSpace(txtNaam.Text))
                 {
                     throw new Exception("Gelieve een geldige naam in te vullen.");
                 }
+                txtNaam.Text = txtNaam.Text.Trim();
+
                 Prioriteit p = new Prioriteit();
                 p.Id = Convert.ToInt32(LstPrioriteiten.SelectedValue);
                
