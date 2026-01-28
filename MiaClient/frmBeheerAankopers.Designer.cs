@@ -60,6 +60,7 @@
             this.lblId.Size = new System.Drawing.Size(37, 25);
             this.lblId.TabIndex = 1;
             this.lblId.Text = "Id: ";
+            this.lblId.Click += new System.EventHandler(this.lblId_Click);
             // 
             // lblVoornaam
             // 
@@ -69,6 +70,7 @@
             this.lblVoornaam.Size = new System.Drawing.Size(103, 25);
             this.lblVoornaam.TabIndex = 2;
             this.lblVoornaam.Text = "Voornaam:";
+            this.lblVoornaam.Click += new System.EventHandler(this.lblVoornaam_Click);
             // 
             // lblAchternaam
             // 
@@ -78,6 +80,7 @@
             this.lblAchternaam.Size = new System.Drawing.Size(118, 25);
             this.lblAchternaam.TabIndex = 3;
             this.lblAchternaam.Text = "Achternaam:";
+            this.lblAchternaam.Click += new System.EventHandler(this.lblAchternaam_Click);
             // 
             // lblActief
             // 
@@ -87,6 +90,7 @@
             this.lblActief.Size = new System.Drawing.Size(64, 25);
             this.lblActief.TabIndex = 4;
             this.lblActief.Text = "Actief:";
+            this.lblActief.Click += new System.EventHandler(this.lblActief_Click);
             // 
             // checkActief
             // 
@@ -97,6 +101,7 @@
             this.checkActief.TabIndex = 5;
             this.checkActief.Text = " ";
             this.checkActief.UseVisualStyleBackColor = true;
+            this.checkActief.CheckedChanged += new System.EventHandler(this.checkActief_CheckedChanged);
             // 
             // txtId
             // 
@@ -105,6 +110,7 @@
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(213, 32);
             this.txtId.TabIndex = 6;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // txtAchternaam
             // 
@@ -112,6 +118,7 @@
             this.txtAchternaam.Name = "txtAchternaam";
             this.txtAchternaam.Size = new System.Drawing.Size(213, 32);
             this.txtAchternaam.TabIndex = 7;
+            this.txtAchternaam.TextChanged += new System.EventHandler(this.txtAchternaam_TextChanged);
             // 
             // txtVoornaam
             // 
@@ -119,6 +126,7 @@
             this.txtVoornaam.Name = "txtVoornaam";
             this.txtVoornaam.Size = new System.Drawing.Size(213, 32);
             this.txtVoornaam.TabIndex = 8;
+            this.txtVoornaam.TextChanged += new System.EventHandler(this.txtVoornaam_TextChanged);
             // 
             // btnNieuw
             // 
@@ -171,7 +179,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerAankopers";
-            this.Text = "Beheer Aankopers";
+            this.Text = "z";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerAankopers_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerAankopers_Load);
             this.ResumeLayout(false);

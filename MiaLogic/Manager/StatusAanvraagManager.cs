@@ -100,6 +100,7 @@ namespace MiaLogic.Manager
         //geeft alle statussen terug in een list
         public static List<StatusAanvraag> GetStatusAanvragen()
         {
+
             StatusAanvraag Status = new StatusAanvraag();
 
             using (SqlConnection objCn = new SqlConnection())
@@ -111,7 +112,7 @@ namespace MiaLogic.Manager
                 {
 
                     objCmd.Connection = objCn;
-                    objCmd.CommandText = "select * from StatusAanvraag";
+                    objCmd.CommandText = "select * from StatusAanvraag ORDER BY Naam ASC";
 
                     objCn.Open();
 

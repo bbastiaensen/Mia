@@ -48,7 +48,6 @@
             this.chbxPlaningsdatumTot = new System.Windows.Forms.CheckBox();
             this.chbxAanvraagmomentTot = new System.Windows.Forms.CheckBox();
             this.lblAanvraagmoment = new System.Windows.Forms.Label();
-            this.txtStatusAanvraag = new System.Windows.Forms.TextBox();
             this.txtTitel = new System.Windows.Forms.TextBox();
             this.lblPlanningsdatum = new System.Windows.Forms.Label();
             this.lblStatusAanvraag = new System.Windows.Forms.Label();
@@ -82,11 +81,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnExportToExcel = new System.Windows.Forms.Button();
             this.lblWachtenExcelAanvragen = new System.Windows.Forms.Label();
+            this.cbStatusAanvraag = new System.Windows.Forms.ComboBox();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbxFilterAanvraag
             // 
+            this.grbxFilterAanvraag.Controls.Add(this.cbStatusAanvraag);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
@@ -105,7 +106,6 @@
             this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumTot);
             this.grbxFilterAanvraag.Controls.Add(this.chbxAanvraagmomentTot);
             this.grbxFilterAanvraag.Controls.Add(this.lblAanvraagmoment);
-            this.grbxFilterAanvraag.Controls.Add(this.txtStatusAanvraag);
             this.grbxFilterAanvraag.Controls.Add(this.txtTitel);
             this.grbxFilterAanvraag.Controls.Add(this.lblPlanningsdatum);
             this.grbxFilterAanvraag.Controls.Add(this.lblStatusAanvraag);
@@ -272,13 +272,6 @@
             this.lblAanvraagmoment.Size = new System.Drawing.Size(169, 28);
             this.lblAanvraagmoment.TabIndex = 18;
             this.lblAanvraagmoment.Text = "Aanvraagmoment";
-            // 
-            // txtStatusAanvraag
-            // 
-            this.txtStatusAanvraag.Location = new System.Drawing.Point(651, 58);
-            this.txtStatusAanvraag.Name = "txtStatusAanvraag";
-            this.txtStatusAanvraag.Size = new System.Drawing.Size(272, 34);
-            this.txtStatusAanvraag.TabIndex = 14;
             // 
             // txtTitel
             // 
@@ -657,6 +650,15 @@
             this.lblWachtenExcelAanvragen.TabIndex = 44;
             this.lblWachtenExcelAanvragen.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
+            // cbStatusAanvraag
+            // 
+            this.cbStatusAanvraag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatusAanvraag.FormattingEnabled = true;
+            this.cbStatusAanvraag.Location = new System.Drawing.Point(651, 59);
+            this.cbStatusAanvraag.Name = "cbStatusAanvraag";
+            this.cbStatusAanvraag.Size = new System.Drawing.Size(272, 36);
+            this.cbStatusAanvraag.TabIndex = 27;
+            // 
             // FrmAanvragen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
@@ -724,7 +726,6 @@
         private System.Windows.Forms.TextBox txtBedragVan;
         private System.Windows.Forms.TextBox txtKostenPlaats;
         private System.Windows.Forms.TextBox txtFinancieringsjaar;
-        private System.Windows.Forms.TextBox txtStatusAanvraag;
         private System.Windows.Forms.TextBox txtTitel;
         private System.Windows.Forms.Label lblAanvraagmoment;
         private System.Windows.Forms.DateTimePicker dtpPlanningsdatumTot;
@@ -763,5 +764,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnExportToExcel;
         private System.Windows.Forms.Label lblWachtenExcelAanvragen;
+        private System.Windows.Forms.ComboBox cbStatusAanvraag;
     }
 }
