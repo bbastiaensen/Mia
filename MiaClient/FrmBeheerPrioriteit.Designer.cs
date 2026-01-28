@@ -42,7 +42,8 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(439, 97);
+            this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBewaren.Location = new System.Drawing.Point(431, 139);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 23;
@@ -52,7 +53,8 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(550, 97);
+            this.btnVerwijderen.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerwijderen.Location = new System.Drawing.Point(545, 139);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 22;
@@ -62,7 +64,8 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(328, 97);
+            this.btnNieuw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNieuw.Location = new System.Drawing.Point(320, 139);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 21;
@@ -72,25 +75,28 @@
             // 
             // txtNaam
             // 
-            this.txtNaam.Location = new System.Drawing.Point(428, 42);
+            this.txtNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNaam.Location = new System.Drawing.Point(428, 61);
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(213, 20);
+            this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 20;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(428, 9);
+            this.txtId.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Location = new System.Drawing.Point(428, 23);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(213, 20);
+            this.txtId.Size = new System.Drawing.Size(213, 27);
             this.txtId.TabIndex = 18;
             // 
             // checkActief
             // 
             this.checkActief.AutoSize = true;
-            this.checkActief.Location = new System.Drawing.Point(428, 72);
+            this.checkActief.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkActief.Location = new System.Drawing.Point(428, 94);
             this.checkActief.Name = "checkActief";
-            this.checkActief.Size = new System.Drawing.Size(29, 17);
+            this.checkActief.Size = new System.Drawing.Size(32, 24);
             this.checkActief.TabIndex = 17;
             this.checkActief.Text = " ";
             this.checkActief.UseVisualStyleBackColor = true;
@@ -98,36 +104,41 @@
             // lblActief
             // 
             this.lblActief.AutoSize = true;
-            this.lblActief.Location = new System.Drawing.Point(325, 72);
+            this.lblActief.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActief.Location = new System.Drawing.Point(325, 94);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(37, 13);
+            this.lblActief.Size = new System.Drawing.Size(51, 20);
             this.lblActief.TabIndex = 16;
             this.lblActief.Text = "Actief:";
             // 
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(325, 45);
+            this.lblNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaam.Location = new System.Drawing.Point(325, 64);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(41, 13);
+            this.lblNaam.Size = new System.Drawing.Size(56, 20);
             this.lblNaam.TabIndex = 14;
             this.lblNaam.Text = "Naam: ";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(325, 12);
+            this.lblId.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(325, 26);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(22, 13);
+            this.lblId.Size = new System.Drawing.Size(29, 20);
             this.lblId.TabIndex = 13;
             this.lblId.Text = "Id: ";
             // 
             // LstPrioriteiten
             // 
+            this.LstPrioriteiten.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstPrioriteiten.FormattingEnabled = true;
+            this.LstPrioriteiten.ItemHeight = 20;
             this.LstPrioriteiten.Location = new System.Drawing.Point(12, 12);
             this.LstPrioriteiten.Name = "LstPrioriteiten";
-            this.LstPrioriteiten.Size = new System.Drawing.Size(289, 160);
+            this.LstPrioriteiten.Size = new System.Drawing.Size(289, 144);
             this.LstPrioriteiten.TabIndex = 12;
             this.LstPrioriteiten.SelectedIndexChanged += new System.EventHandler(this.LstPrioriteiten_SelectedIndexChanged);
             // 

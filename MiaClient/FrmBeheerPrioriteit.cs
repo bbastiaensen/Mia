@@ -17,7 +17,7 @@ namespace MiaClient
     {
 
         List<Prioriteit> Prioriteiten;
-        
+        public event EventHandler PrioriteitenChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -34,6 +34,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+
+            if (AppForms.FrmBeheerPrioriteit == this)
+            {
+                AppForms.FrmBeheerPrioriteit = null;
+            }
         }
         public void CreateUI()
         {
@@ -54,6 +59,15 @@ namespace MiaClient
         {
             CreateUI();
             BindLstPrioriteiten();
+
+
+            AppForms.FrmBeheerPrioriteit = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.PrioriteitenChanged -= AppForms.frmAanvraagFormulier.FrmBeheerPrioriteiten_PrioriteitenChanged;
+                this.PrioriteitenChanged += AppForms.frmAanvraagFormulier.FrmBeheerPrioriteiten_PrioriteitenChanged;
+            }
         }
         public void BindLstPrioriteiten()
         {
@@ -101,29 +115,42 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
-            Prioriteit p = new Prioriteit();
-            p.Id = Convert.ToInt32(LstPrioriteiten.SelectedValue);
-            
-            p.Naam = txtNaam.Text;
-            if (checkActief.Checked)
+            try
             {
-                p.actief = true;
+                if (string.IsNullOrWhiteSpace   (txtNaam.Text))
+                {
+                    throw new Exception("Gelieve een geldige naam in te vullen.");
+                }
+                Prioriteit p = new Prioriteit();
+                p.Id = Convert.ToInt32(LstPrioriteiten.SelectedValue);
+               
+                if (checkActief.Checked)
+                {
+                    p.actief = true;
+                }
+                else
+                {
+                    p.actief = false;
+                }
+                p.Naam = txtNaam.Text;
+
+
+
+                p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+                PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+
+                BindLstPrioriteiten();
+
+                LstPrioriteiten.SelectedValue = p.Id;
+                IsNew = false;
+
+                MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
-            else
+            catch (Exception ex)
             {
-                p.actief = false;
+                MessageBox.Show(ex.Message); 
             }
-
-
-            p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
-          
-
-           BindLstPrioriteiten();   
-            ClearFields();
-            LstPrioriteiten.SelectedValue = p.Id.ToString();
-            IsNew = false;
-
-            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
@@ -143,16 +170,20 @@ namespace MiaClient
                 p.actief = false;
             }
 
-            if (MessageBox.Show($"Bent u dat u {LstPrioriteiten.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {LstPrioriteiten.Text} wilt verwijderen?", "Prioriteit verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
                 PrioriteitManager.DeletePrioriteit(p);
-            
+                MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+
             }
 
             BindLstPrioriteiten();
             ClearFields();
         }
+
+
     }
     
 }
