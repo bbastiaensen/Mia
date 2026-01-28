@@ -107,7 +107,7 @@ namespace MiaClient
                 Actief = checkActief.Checked
             };
 
-            // ❗ HIER hoort de try/catch
+            //HIER hoort de try/catch
             try
             {
                 a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
