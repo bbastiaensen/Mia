@@ -187,6 +187,12 @@
     <Compile Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.Designer.cs">
       <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNieuweAankoop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNieuweAankoop.Designer.cs">
+      <DependentUpon>frmNieuweAankoop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,12 @@
     </Compile>
     <Compile Include="frmGoedkeuring.Designer.cs">
       <DependentUpon>frmGoedkeuring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrioriteit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrioriteit.Designer.cs">
+      <DependentUpon>frmPrioriteit.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrompt.cs">
       <SubType>Form</SubType>
@@ -347,8 +359,14 @@
     <EmbeddedResource Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.resx">
       <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNieuweAankoop.resx">
+      <DependentUpon>frmNieuweAankoop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmParameter.resx">
       <DependentUpon>frmParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrioriteit.resx">
+      <DependentUpon>frmPrioriteit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrompt.resx">
       <DependentUpon>frmPrompt.cs</DependentUpon>

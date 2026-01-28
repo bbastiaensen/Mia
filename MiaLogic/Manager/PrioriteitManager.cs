@@ -43,6 +43,37 @@ namespace MiaLogic.Manager
 
             return prioriteiten;
         }
+        public static List<Prioriteit> GetActivePrioriteiten()
+        {
+            List<Prioriteit> prioriteiten = new List<Prioriteit>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id,Actief, Naam FROM Prioriteit where actief = 1 ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Prioriteit prioriteit = new Prioriteit
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString(),
+                                Actief = Convert.ToBoolean(reader["Actief"])
+                            };
+
+                            prioriteiten.Add(prioriteit);
+                        }
+                    }
+                }
+            }
+
+            return prioriteiten;
+        }
         public static Prioriteit GetPrioriteitById(int id)
         {
             Prioriteit prioriteit = null;

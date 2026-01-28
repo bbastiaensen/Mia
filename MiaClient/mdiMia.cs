@@ -234,7 +234,7 @@ namespace MiaClient
                 goedkeuringenToolStripButton.Visible = false;
 
                 //TO DO: Dit is onvoldoende uitgewerkt om al gebruikt te worden.
-                //aankopenToolStripMenuItem.Visible = true;
+                aankopenToolStripMenuItem.Visible = true;
 
                 beheerToolStripMenuItem.Visible = false;
                 gebruiksLogToolStripButton.Visible = false;
@@ -283,8 +283,8 @@ namespace MiaClient
                 gebruikersToolStripButton.Visible = true;
                 aankopersToolStripButton.Visible = true;
                 //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
-                afdelingToolStripButton.Visible = false;
-                afdelingenToolStripMenuItem.Visible = false;
+                afdelingToolStripButton.Visible = true;
+                afdelingenToolStripMenuItem.Visible = true;
                 dienstToolStripButton.Visible = false;
                 dienstenToolStripMenuItem.Visible = false;
                 financieringsTypesToolStripMenuItem.Visible = true;
@@ -298,7 +298,7 @@ namespace MiaClient
                 budgetSpreidingtoolStripButton.Visible = true;
 
                 //TO DO: Dit is onvoldoende uitgewerkt om al gebruikt te worden.
-                //aankopenToolStripMenuItem.Visible = true;
+                aankopenToolStripMenuItem.Visible = true;
             }
         }
 
@@ -624,10 +624,10 @@ namespace MiaClient
         {
             if (frmBeheerFinancieringsType == null)
             {
-                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
-                frmBeheerInvesteringsType.MdiParent = this;
+                frmBeheerFinancieringsType = new frmBeheerFinancieringsType(); /// wees eerst naar investering waardoor het niet werkte
+                frmBeheerFinancieringsType.MdiParent = this;
             }
-            frmBeheerInvesteringsType.Show();
+            frmBeheerFinancieringsType.Show();
         }
 
         private void prioriteitToolStripMenuItem_Click(object sender, EventArgs e)

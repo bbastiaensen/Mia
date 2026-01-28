@@ -461,6 +461,22 @@
             this.prioriteitToolStripMenuItem.Text = "Prioriteit";
             this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
             // 
+            // parameterToolStripButton
+            // 
+            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.parameterToolStripButton.Name = "parameterToolStripButton";
+            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.parameterToolStripButton.Text = "Parameters";
+            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
+            // 
+            // prioriteitToolStripMenuItem
+            // 
+            this.prioriteitToolStripMenuItem.Name = "prioriteitToolStripMenuItem";
+            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.prioriteitToolStripMenuItem.Text = "Prioriteit";
+            this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
+            // 
             // mdiMia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
