@@ -75,6 +75,9 @@ namespace MiaClient
             SetFormStatus(false);
             GetParam();
 
+            ///kijk hie is naar thomas
+            HookEvents();
+
         }
 
         private void GetParam()
@@ -1496,5 +1499,15 @@ namespace MiaClient
 
         }
 
-}
+        //kijk nog is thomas 
+        private void HookEvents()
+        {
+            if (AppForms.frmBeheerFinancieringsType != null)
+            {
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged -= frmBeheerFinancieringsType_financieringTypeChanged;
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
+            }
+        }
+
+    }
 }

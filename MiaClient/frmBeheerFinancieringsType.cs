@@ -50,10 +50,8 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
 
-            if (AppForms.frmBeheerFinancieringsType == this)
-            {
-                AppForms.frmBeheerFinancieringsType = null;
-            }
+          
+
         }
 
         private void CreateUI()
