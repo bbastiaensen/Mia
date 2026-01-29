@@ -160,7 +160,7 @@ namespace MiaClient
             
             if (LstPrioriteiten.SelectedItem== null)
             {
-                MessageBox.Show("Er is geen financieringstype geselecteerd om te verwijderen.","MIA",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Er is geen Prioriteit geselecteerd om te verwijderen.","MIA",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             Prioriteit p = new Prioriteit();
@@ -175,22 +175,30 @@ namespace MiaClient
             {
                 p.actief = false;
             }
-           
-            if (MessageBox.Show($"Bent u zeker dat u {LstPrioriteiten.Text} wilt verwijderen?", "Prioriteit verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-                if (PrioriteitManager.CheckPrioriteitInUse(p.Id))
+                if (MessageBox.Show($"Bent u zeker dat u {LstPrioriteiten.Text} wilt verwijderen?", "Prioriteit verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    PrioriteitManager.DeactivatePrioriteit(p);
-                    PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
-                }
-                else
-                {
-                    PrioriteitManager.DeletePrioriteit(p);
-                    MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+                    if (PrioriteitManager.CheckPrioriteitInUse(p.Id))
+                    {
+                        PrioriteitManager.DeactivatePrioriteit(p);
+                        PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+                        MessageBox.Show("deze prioriteit is geassocieerd met een aanvraag en kan niet verwijderd worden. De prioriteit is wel gedeactiveerd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        PrioriteitManager.DeletePrioriteit(p);
+                        MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
 
+                    }
                 }
             }
+            catch
+            {
+
+            }
+           
                    
 
             BindLstPrioriteiten();
