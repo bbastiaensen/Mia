@@ -34,9 +34,12 @@
             this.lblTotaalBedrag = new System.Windows.Forms.Label();
             this.lblRichtperiode = new System.Windows.Forms.Label();
             this.lblAanvrager = new System.Windows.Forms.Label();
-      
+            this.lblAanvraagStatus = new System.Windows.Forms.Label();
+            this.lblBudgetToegekend = new System.Windows.Forms.Label();
+
             //extra tekst bij aankopers(thomas)
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
+            
             this.SuspendLayout();
             // 
             // btnEdit
@@ -115,25 +118,37 @@
             // 
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(270, 0); // direct na titel
-            this.lblFinancieringsjaar.Name = "lblBedrag";
+            this.lblFinancieringsjaar.Name = " lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(120, 33);
             this.lblFinancieringsjaar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             this.Controls.Add(this.lblFinancieringsjaar);
 
 
-            this.lblAanvraagStatus = new System.Windows.Forms.Label();
+      
 
             // 
-            // lblBedrag
+            //    lblAanvraagStatus
             // 
             this.lblAanvraagStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblAanvraagStatus.Location = new System.Drawing.Point(270, 0); // direct na titel
-            this.lblAanvraagStatus.Name = "lblBedrag";
+            this.lblAanvraagStatus.Name = "lblAanvraagStatus";
             this.lblAanvraagStatus.Size = new System.Drawing.Size(120, 33);
             this.lblAanvraagStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             this.Controls.Add(this.lblAanvraagStatus);
+
+
+            // 
+            ////     lblBudgetToegekend
+            //// 
+            this.lblBudgetToegekend.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblBudgetToegekend.Location = new System.Drawing.Point(270, 0); // direct na titel
+            this.lblBudgetToegekend.Name = "lblAanvraagStatus";
+            this.lblBudgetToegekend.Size = new System.Drawing.Size(120, 33);
+            this.lblBudgetToegekend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
+            this.Controls.Add(this.lblBudgetToegekend);
 
 
         }
@@ -148,7 +163,7 @@
 
         //plus thomas
         private System.Windows.Forms.Label lblFinancieringsjaar;
-        private System.Windows.Forms.Label GoedgekeurdBedrag;
+      
         private System.Windows.Forms.Label lblAanvraagStatus;
        
 

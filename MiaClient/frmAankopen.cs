@@ -49,6 +49,10 @@ namespace MiaClient
         Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
 
+        private Aanvraag _aanvraag;
+
+   
+
         public frmAankopen()
         {
             InitializeComponent();
@@ -98,7 +102,7 @@ namespace MiaClient
             }
             cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
         }
-
+   
         private void frmAankopen_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
@@ -116,16 +120,14 @@ namespace MiaClient
             int n = 0;
             if (items != null)
             {
-
                 foreach (var av in items)
                 {
-
-                    AankopenItem avi = new AankopenItem(av.Id, av.Titel, av.Gebruiker, av.Financieringsjaar, av.PrijsIndicatieStuk, av.AantalStuk, n % 2 == 0, av.RichtperiodeId);
-
+                    AankopenItem avi = new AankopenItem(); // Geen parameters meer
+                    avi.BindAanvraag(av, n % 2 == 0);      // Bind het hele object
                     avi.Location = new System.Drawing.Point(xPos, yPos);
                     avi.Name = "aanvraagSelection" + n;
                     avi.Size = new System.Drawing.Size(1210, 20);
-                    avi.TabIndex = n +8 ;
+                    avi.TabIndex = n + 8;
                     avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
                     avi.AanvraagDeleted += Avi_AanvraagItemChanged;
                     avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
@@ -133,6 +135,23 @@ namespace MiaClient
                     n++;
                     yPos += 21;
                 }
+
+                //foreach (var av in items)
+                //{
+
+                //    AankopenItem avi = new AankopenItem(av.Id, av.Titel, av.Gebruiker, av.Financieringsjaar, av.PrijsIndicatieStuk, av.AantalStuk, n % 2 == 0, av.RichtperiodeId);
+
+                //    avi.Location = new System.Drawing.Point(xPos, yPos);
+                //    avi.Name = "aanvraagSelection" + n;
+                //    avi.Size = new System.Drawing.Size(1210, 20);
+                //    avi.TabIndex = n +8 ;
+                //    avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
+                //    avi.AanvraagDeleted += Avi_AanvraagItemChanged;
+                //    avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
+                //    this.pnlAanvragen.Controls.Add(avi);
+                //    n++;
+                //    yPos += 21;
+                //}
             }
         }
         private void Gli_AanvraagItemSelected(object sender, EventArgs e)

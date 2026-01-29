@@ -26,7 +26,11 @@ namespace MiaClient.UserControls
         public int RichtperiodeId { get; set; }
         public string Financieringsjaar { get; set; }
 
-        public string AanvraagStatus {  get; set; } //kijk hier nog is naar
+        private Label lblBudgetToegekend;
+
+
+        private Aanvraag _aanvraag;
+
         public Boolean Even { get; set; }
         public Richtperiode R { get; set; }
 
@@ -39,6 +43,31 @@ namespace MiaClient.UserControls
         public AankopenItem()
         {
             InitializeComponent();
+
+         
+          
+        }
+        public void BindAanvraag(Aanvraag aanvraag, bool evenRow = false)
+        {
+            if (aanvraag == null)
+                throw new ArgumentNullException(nameof(aanvraag));
+
+            _aanvraag = aanvraag;
+            Even = evenRow;
+
+            // Vul de properties van de control (optioneel, kan ook alleen in SetItemValue)
+            Id = aanvraag.Id;
+            Titel = aanvraag.Titel;
+            Gebruiker = aanvraag.Gebruiker;
+            PrijsIndicatieStuk = aanvraag.PrijsIndicatieStuk;
+            AantalStuk = aanvraag.AantalStuk;
+            Totaal = PrijsIndicatieStuk * AantalStuk;
+            Financieringsjaar = aanvraag.Financieringsjaar;
+
+            R = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
+
+            // Update de UI
+            SetItemValue();
         }
         public AankopenItem(int id, string titel, string gebruiker, string financieringsjaar, decimal p_ind_stuk, int aantals, Boolean even, int richtId)
         {
@@ -53,17 +82,27 @@ namespace MiaClient.UserControls
             Even = even;
             RichtperiodeId = richtId;
 
+            
+
+
             Richtperiode r = RichtperiodeManager.GetRichtperiodeById(richtId);
             R = r;
             R.Naam = r.Naam;
             R.Sorteervolgorde = r.Sorteervolgorde;
             SetItemValue();
         }
+
+
+
+       
+
         private void SetItemValue()
         {
             lblAanvrager.Text = Gebruiker.ToString();
 
             //Limiteren van het aantal characters er in de titel komen te staan
+
+      
             var characters = Titel.ToCharArray();
             if (characters.Length > 20)
             {
@@ -112,7 +151,31 @@ namespace MiaClient.UserControls
             lblFinancieringsjaar.Text = Financieringsjaar; 
             lblFinancieringsjaar.Location = new Point(630, yPos);
 
-            
+
+            //if (aanvraag == null) throw new ArgumentNullException(nameof(aanvraag));
+
+            //_aanvraag = aanvraag;
+
+
+            //lblAanvraagStatus.Text = aanvraag.StatusAanvraag;
+
+
+            //lblAanvraagStatus.Text = AanvraagManager.GetStatusAanvraagDesc() + "";
+
+
+            if (_aanvraag != null)
+            {
+                lblAanvraagStatus.Text = _aanvraag.StatusAanvraag;
+                lblAanvraagStatus.Location = new Point(830, yPos);
+                lblBudgetToegekend.Text = _aanvraag.BudgetToegekend.ToString("c", CultureInfo.CurrentCulture);
+                lblBudgetToegekend.Location = new Point( 930 , yPos);
+            }
+  
+        
+
+
+
+
         }
     }
 }

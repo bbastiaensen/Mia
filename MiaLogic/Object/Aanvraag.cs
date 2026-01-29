@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiaLogic.Manager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace MiaLogic.Object
         public string StatusAanvraag { get; set; }
         public string Kostenplaats { get; set; }
         public int KostenplaatsId { get; set; }
-        public decimal PrijsIndicatieStuk { get; set; }  
+        public decimal PrijsIndicatieStuk { get; set; }
         public int AantalStuk { get; set; }
         public int AankoperId { get; set; }
         public decimal BudgetToegekend { get; set; }
@@ -33,5 +34,15 @@ namespace MiaLogic.Object
 
         public int RichtperiodeId { get; set; }
 
+
+
+   
+
+
+
+
+
+
     }
 }
+

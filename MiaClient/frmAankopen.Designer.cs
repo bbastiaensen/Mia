@@ -75,7 +75,7 @@
             // cmbFinancieringsjaar
             // 
             this.cmbFinancieringsjaar.FormattingEnabled = true;
-            this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 84);
+            this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 87);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
             this.cmbFinancieringsjaar.Size = new System.Drawing.Size(253, 27);
             this.cmbFinancieringsjaar.TabIndex = 2;
