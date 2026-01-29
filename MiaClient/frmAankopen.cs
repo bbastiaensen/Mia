@@ -636,6 +636,9 @@ namespace MiaClient
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
+            lblWachtenExcelAankopen.Visible = true;
+            lblWachtenExcelAankopen.Text = "Data in Excel verwerken...";
+
             try
             {
                 if (aanvragen == null || aanvragen.Count == 0)
@@ -748,7 +751,7 @@ namespace MiaClient
                     FilterIndex = 1
                 };
 
-                //lblWachtenExcelAanvragen.Visible = false;
+                lblWachtenExcelAankopen.Visible = false;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -759,7 +762,7 @@ namespace MiaClient
                     app.Quit();
 
                     MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //lblWachtenExcelAanvragen.Visible = false;
+                    lblWachtenExcelAankopen.Visible = false;
                 }
             }
             catch (Exception ex)
