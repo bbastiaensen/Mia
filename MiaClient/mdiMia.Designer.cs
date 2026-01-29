@@ -53,6 +53,7 @@
             this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leveranciersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -74,7 +75,6 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.leveranciersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -281,6 +281,13 @@
             this.prioriteitToolStripMenuItem.Text = "Prioriteit";
             this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
             // 
+            // leveranciersToolStripMenuItem
+            // 
+            this.leveranciersToolStripMenuItem.Name = "leveranciersToolStripMenuItem";
+            this.leveranciersToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.leveranciersToolStripMenuItem.Text = "Leveranciers";
+            this.leveranciersToolStripMenuItem.Click += new System.EventHandler(this.leveranciersToolStripMenuItem_Click);
+            // 
             // helpMenu
             // 
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -464,12 +471,6 @@
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
-            // leveranciersToolStripMenuItem
-            // 
-            this.leveranciersToolStripMenuItem.Name = "leveranciersToolStripMenuItem";
-            this.leveranciersToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
-            this.leveranciersToolStripMenuItem.Text = "Leveranciers";
-            // 
             // mdiMia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -481,7 +482,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mdiMia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MIA";

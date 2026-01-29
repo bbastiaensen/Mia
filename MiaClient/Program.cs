@@ -62,6 +62,7 @@ namespace MiaClient
                 ParameterManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 RichtperiodeManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
                 AankoopManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
+                LeverancierManager.ConnectionString = ConfigurationManager.ConnectionStrings["MiaCn"].ConnectionString;
             }
 
             catch (SqlException ex)
