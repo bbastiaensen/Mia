@@ -34,7 +34,8 @@
             this.lblTotaalBedrag = new System.Windows.Forms.Label();
             this.lblRichtperiode = new System.Windows.Forms.Label();
             this.lblAanvrager = new System.Windows.Forms.Label();
-      
+            this.lblAanvraagStatus = new System.Windows.Forms.Label();
+
             //extra tekst bij aankopers(thomas)
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -115,21 +116,21 @@
             // 
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(270, 0); // direct na titel
-            this.lblFinancieringsjaar.Name = "lblBedrag";
+            this.lblFinancieringsjaar.Name = " lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(120, 33);
             this.lblFinancieringsjaar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             this.Controls.Add(this.lblFinancieringsjaar);
 
 
-            this.lblAanvraagStatus = new System.Windows.Forms.Label();
+      
 
             // 
-            // lblBedrag
+            //    lblAanvraagStatus
             // 
             this.lblAanvraagStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblAanvraagStatus.Location = new System.Drawing.Point(270, 0); // direct na titel
-            this.lblAanvraagStatus.Name = "lblBedrag";
+            this.lblAanvraagStatus.Name = "lblAanvraagStatus";
             this.lblAanvraagStatus.Size = new System.Drawing.Size(120, 33);
             this.lblAanvraagStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 

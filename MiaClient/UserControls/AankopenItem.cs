@@ -26,7 +26,7 @@ namespace MiaClient.UserControls
         public int RichtperiodeId { get; set; }
         public string Financieringsjaar { get; set; }
 
-        public string AanvraagStatus {  get; set; } //kijk hier nog is naar
+   
         public Boolean Even { get; set; }
         public Richtperiode R { get; set; }
 
