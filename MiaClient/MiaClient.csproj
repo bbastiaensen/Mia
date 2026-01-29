@@ -294,6 +294,7 @@
     </Compile>
     <EmbeddedResource Include="frmAankopen.resx">
       <DependentUpon>frmAankopen.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAanvragen.resx">
       <DependentUpon>FrmAanvragen.cs</DependentUpon>
