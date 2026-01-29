@@ -20,6 +20,18 @@ namespace MiaLogic.Manager
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Aanvraag object</returns>
+        /// 
+        /// Bekrachtigd aanvragen
+        public static List<Aanvraag> GetBekrachtigdeAanvragenZonderAankoop()
+        {
+            return GetAanvragen()
+                .Where(a => a.StatusAanvraag == "Bekrachtigd"
+                         && a.AankoperId == 0)   
+                .ToList();
+        }
+
+
+
         public static Aanvraag GetAanvraagById(int id)
         {
             Aanvraag aanvraag = null;

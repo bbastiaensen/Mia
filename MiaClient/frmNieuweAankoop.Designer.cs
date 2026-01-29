@@ -28,23 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dgvAanvragen = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAanvragen)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dgvAanvragen
+            // 
+            this.dgvAanvragen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAanvragen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAanvragen.Location = new System.Drawing.Point(12, 12);
+            this.dgvAanvragen.Name = "dgvAanvragen";
+            this.dgvAanvragen.RowHeadersWidth = 51;
+            this.dgvAanvragen.RowTemplate.Height = 24;
+            this.dgvAanvragen.Size = new System.Drawing.Size(865, 523);
+            this.dgvAanvragen.TabIndex = 0;
             // 
             // frmNieuweAankoop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 692);
+            this.ClientSize = new System.Drawing.Size(890, 547);
+            this.Controls.Add(this.dgvAanvragen);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmNieuweAankoop";
             this.Text = "Nieuwe aankoop toevoegen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNieuweAankoop_FormClosing);
             this.Load += new System.EventHandler(this.frmNieuweAankoop_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAanvragen)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgvAanvragen;
     }
 }

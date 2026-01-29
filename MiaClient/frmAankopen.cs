@@ -17,8 +17,11 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
+
     public partial class frmAankopen : Form
     {
+        private frmNieuweAankoop frmNieuweAankoop;
+
         bool filterBedragVan = false;
         bool filterBedragTot = false;
         bool filterTitel = false;
@@ -48,6 +51,20 @@ namespace MiaClient
         Image imgFirst = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50.png"));
         Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
+        Image imgNieuweAankoop = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "nieuweAankoop.png"));
+        private void btnNieuweAankoop_Click(object sender, EventArgs e)
+        {
+            // Kijken of het formulier al bestaat
+            if (frmNieuweAankoop == null || frmNieuweAankoop.IsDisposed)
+            {
+                frmNieuweAankoop = new frmNieuweAankoop();
+                frmNieuweAankoop.MdiParent = MdiParent;
+            }
+
+            // Form tonen
+            frmNieuweAankoop.Show();
+            frmNieuweAankoop.BringToFront();
+        }
 
         public frmAankopen()
         {
@@ -80,6 +97,10 @@ namespace MiaClient
             btnFirst.BackgroundImageLayout = ImageLayout.Stretch;
             btnFirst.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
+            btnNieuweAankoop.BackgroundImage = imgNieuweAankoop;
+            btnNieuweAankoop.BackgroundImageLayout = ImageLayout.Stretch;
+            btnNieuweAankoop.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
             btnPrevious.BackgroundImage = imgPrevious;
             btnPrevious.BackgroundImageLayout = ImageLayout.Stretch;
             btnPrevious.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
@@ -98,7 +119,7 @@ namespace MiaClient
             }
             cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
         }
-
+      
         private void frmAankopen_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere

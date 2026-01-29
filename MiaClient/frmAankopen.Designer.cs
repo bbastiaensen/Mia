@@ -32,6 +32,7 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.btnNieuweAankoop = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
@@ -87,6 +88,7 @@
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.btnNieuweAankoop);
             this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
             this.gbxFinancieringsjaar.Controls.Add(this.grbxFilterAanvraag);
@@ -98,6 +100,18 @@
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // btnNieuweAankoop
+            // 
+            this.btnNieuweAankoop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNieuweAankoop.FlatAppearance.BorderSize = 0;
+            this.btnNieuweAankoop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNieuweAankoop.Location = new System.Drawing.Point(294, 26);
+            this.btnNieuweAankoop.Name = "btnNieuweAankoop";
+            this.btnNieuweAankoop.Size = new System.Drawing.Size(40, 40);
+            this.btnNieuweAankoop.TabIndex = 29;
+            this.btnNieuweAankoop.UseVisualStyleBackColor = true;
+            this.btnNieuweAankoop.Click += new System.EventHandler(this.btnNieuweAankoop_Click);
             // 
             // btnFilter
             // 
@@ -500,5 +514,6 @@
         private System.Windows.Forms.Button btnSortTitel;
         private System.Windows.Forms.Button btnBedrag;
         private System.Windows.Forms.Button btnSortRichtperiode;
+        private System.Windows.Forms.Button btnNieuweAankoop;
     }
 }
