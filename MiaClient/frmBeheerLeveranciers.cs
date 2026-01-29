@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -143,7 +144,6 @@ namespace MiaClient
                 return;
             }
 
-
             if (ddlLand.SelectedItem == null)
             {
                 MessageBox.Show("Selecteer een land.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -156,6 +156,26 @@ namespace MiaClient
                 MessageBox.Show("Selecteer een gemeente.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ddlPostcodeGemeente.Focus();
                 return;
+            }
+
+            if(!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                if (!IsValid(txtEmail.Text))
+                {
+                    MessageBox.Show("Vul een geldig e-mailadres in.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return;
+                }
+            }
+
+            if(!string.IsNullOrEmpty(txtWebsite.Text))
+            {
+                if (!IsValidUrl(txtWebsite.Text))
+                {
+                    MessageBox.Show("Vul een geldige website-URL in.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtWebsite.Focus();
+                    return;
+                }
             }
 
             leverancier.Leverancier = txtLeverancier.Text.Trim();
@@ -235,6 +255,28 @@ namespace MiaClient
             {
                 MessageBox.Show( "Deze leverancier kan niet verwijderd worden omdat hij nog gebruikt wordt.", "Fout",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+
+        private static bool IsValid(string email)
+        {
+            var valid = true;
+
+            try
+            {
+                var emailAddress = new MailAddress(email);
+            }
+            catch
+            {
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        private bool IsValidUrl(string url)
+        {
+            return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
+                   && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
     }
 }

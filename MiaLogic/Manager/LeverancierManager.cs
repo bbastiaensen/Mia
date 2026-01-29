@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,10 +33,10 @@ namespace MiaLogic.Manager
                     {
                         leverancier le = new leverancier();
                         le.Id = Convert.ToInt32(objRea["Id"]);
-                        le.Leverancier = objRea["Leverancier"]?.ToString() ?? string.Empty;
+                        le.Leverancier = objRea["Leverancier"].ToString();
                         le.Email = objRea["Email"]?.ToString() ?? string.Empty;
                         le.Adres = objRea["Adres"]?.ToString() ?? string.Empty;
-                        le.GemeenteId = objRea["GemeenteId"] != DBNull.Value ? Convert.ToInt32(objRea["GemeenteId"]) : 0;
+                        le.GemeenteId = Convert.ToInt32(objRea["GemeenteId"]);
                         le.Website = objRea["Website"]?.ToString() ?? string.Empty;
 
                         returnlist.Add(le);
@@ -63,7 +64,6 @@ namespace MiaLogic.Manager
                     }
                     else
                     {
-
                         objCmd.CommandText = "update Leverancier set Leverancier = @Leverancier, EMail = @EMail, Website = @Website, Adres = @Adres, GemeenteId = @GemeenteId WHERE Id = @Id";
                         objCmd.Parameters.AddWithValue("@Id", leverancier.Id);
                     }
@@ -130,13 +130,13 @@ namespace MiaLogic.Manager
                 cmd.CommandText = "SELECT Id, Naam FROM Land";
 
                 cn.Open();
-                SqlDataReader r = cmd.ExecuteReader();
+                SqlDataReader ObjRea = cmd.ExecuteReader();
 
-                while (r.Read())
+                while (ObjRea.Read())
                 {
                     Land l = new Land();
-                    l.Id = Convert.ToInt32(r["Id"]);
-                    l.Naam = r["Naam"].ToString();
+                    l.Id = Convert.ToInt32(ObjRea["Id"]);
+                    l.Naam = ObjRea["Naam"].ToString();
                     lijst.Add(l);
                 }
             }
@@ -152,20 +152,20 @@ namespace MiaLogic.Manager
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Id, Postcode, Naam, LandId FROM GemeenteWHERE LandId = @LandId ORDER BY Postcode";
+                cmd.CommandText = @"SELECT Id, Postcode, Naam, LandId FROM Gemeente WHERE LandId = @LandId ORDER BY Postcode";
 
                 cmd.Parameters.AddWithValue("@LandId", landId);
 
                 cn.Open();
-                SqlDataReader r = cmd.ExecuteReader();
+                SqlDataReader ObjRea = cmd.ExecuteReader();
 
-                while (r.Read())
+                while (ObjRea.Read())
                 {
                     gemeente g = new gemeente();
-                    g.Id = Convert.ToInt32(r["Id"]);
-                    g.Postcode = r["Postcode"].ToString();
-                    g.Naam = r["Naam"].ToString();
-                    g.LandId = Convert.ToInt32(r["LandId"]);
+                    g.Id = Convert.ToInt32(ObjRea["Id"]);
+                    g.Postcode = ObjRea["Postcode"].ToString();
+                    g.Naam = ObjRea["Naam"].ToString();
+                    g.LandId = Convert.ToInt32(ObjRea["LandId"]);
                     lijst.Add(g);
                 }
             }
@@ -198,15 +198,15 @@ namespace MiaLogic.Manager
                 cmd.Parameters.AddWithValue("@Id", gemeenteId);
 
                 cn.Open();
-                SqlDataReader r = cmd.ExecuteReader();
+                SqlDataReader ObjRea = cmd.ExecuteReader();
 
-                if (r.Read())
+                if (ObjRea.Read())
                 {
                     gemeente g = new gemeente();
-                    g.Id = Convert.ToInt32(r["Id"]);
-                    g.Postcode = r["Postcode"].ToString();
-                    g.Naam = r["Naam"].ToString();
-                    g.LandId = Convert.ToInt32(r["LandId"]);
+                    g.Id = Convert.ToInt32(ObjRea["Id"]);
+                    g.Postcode = ObjRea["Postcode"].ToString();
+                    g.Naam = ObjRea["Naam"].ToString();
+                    g.LandId = Convert.ToInt32(ObjRea["LandId"]);
                     return g;
                 }
             }
