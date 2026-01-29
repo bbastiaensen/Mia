@@ -111,6 +111,7 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstAfdelingen.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -140,7 +141,6 @@ namespace MiaClient
 
             BindLstAfdelingen();
             ClearFields();
-            LstAfdelingen.SelectedValue = a.Id;
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -164,7 +164,7 @@ namespace MiaClient
                 AfdelingenManager.DeleteAfdeling(a);
                 MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Als foreign key voorkomt dat verwijderen, zet op inactief
                 MessageBox.Show("Deze afdeling kan niet verwijderd worden omdat er nog gekoppelde records zijn. De afdeling wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -175,6 +175,7 @@ namespace MiaClient
             AfdelingChanged?.Invoke(this, EventArgs.Empty);
             BindLstAfdelingen();
             ClearFields();
+            LstAfdelingen.SelectedValue = 0;
         }
 
     }
