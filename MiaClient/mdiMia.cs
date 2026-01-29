@@ -41,6 +41,7 @@ namespace MiaClient
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
         frmPrioriteit frmPrioriteit;
+        frmBeheerLanden frmBeheerLanden;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -638,6 +639,16 @@ namespace MiaClient
                 frmPrioriteit.MdiParent = this;
             }
             frmPrioriteit.Show();
+        }
+
+        private void landenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerLanden == null)
+            {
+                frmBeheerLanden = new frmBeheerLanden();
+                frmBeheerLanden.MdiParent = this;
+            }
+            frmBeheerLanden.Show();
         }
     }
 }
