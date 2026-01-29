@@ -60,11 +60,6 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden..
             e.Cancel = true;
             ((Form)sender).Hide();
-
-            if (AppForms.frmbeheerAfdelingen == this)
-            {
-                AppForms.frmbeheerAfdelingen = null;
-            }
         }
 
         public void BindLstAfdelingen()
@@ -140,8 +135,9 @@ namespace MiaClient
             AfdelingChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAfdelingen();
-            ClearFields();
+
             IsNew = false;
+            LstAfdelingen.SelectedValue = a.Id;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
