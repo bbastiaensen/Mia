@@ -43,6 +43,7 @@ namespace MiaClient
         public event EventHandler AanvraagBewaard;
         public event EventHandler AankopersChanged;
         public event EventHandler FinancieringTypeChanged;
+        public event EventHandler PrioriteitenChanged;
         public event EventHandler DienstenChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
@@ -1065,6 +1066,7 @@ namespace MiaClient
             ddlDisabler();
             TriggerAankoperEvent();
             TriggerInvesteringsEvent();
+            TriggerPrioriteitEvent();
             TriggerDienstEvent();
             TriggerFinancieringsTypeEvent();
             TriggerAfdelingEvent();
@@ -1531,6 +1533,39 @@ namespace MiaClient
             {
                 AppForms.frmBeheerDiensten.DienstenChanged += FrmBeheerDiensten_DienstenChanged;
             }
+        }
+        public void TriggerPrioriteitEvent()
+        {
+            if (AppForms.FrmBeheerPrioriteit != null)
+            {
+                AppForms.FrmBeheerPrioriteit.PrioriteitenChanged += FrmBeheerPrioriteiten_PrioriteitenChanged;
+            }
+        }
+        public void RefreshPrioriteiteDropdown()
+        {
+
+            int? geselecteerdeId = ddlPrioriteit.SelectedValue as int?;
+
+            var nieuwePrioriteit = PrioriteitManager.GetActivePrioriteiten();
+
+            ddlPrioriteit.DataSource = null;
+            ddlPrioriteit.DisplayMember = "Naam";
+            ddlPrioriteit.ValueMember = "Id";
+            ddlPrioriteit.DataSource = nieuwePrioriteit;
+
+            if (geselecteerdeId.HasValue &&
+                nieuwePrioriteit.Any(p => p.Id == geselecteerdeId.Value))
+            {
+                ddlPrioriteit.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlPrioriteit.SelectedIndex = -1;
+            }
+        }
+        public void FrmBeheerPrioriteiten_PrioriteitenChanged(object sender, EventArgs e)
+        {
+             RefreshPrioriteiteDropdown();
         }
 
     }

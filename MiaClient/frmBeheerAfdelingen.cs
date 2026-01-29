@@ -117,6 +117,7 @@ namespace MiaClient
             Afdeling a = new Afdeling();
             a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
             a.Naam = txtNaam.Text;
+            
             if (checkActief.Checked)
             {
                 a.actief = true;

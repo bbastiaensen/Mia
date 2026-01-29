@@ -19,6 +19,8 @@ namespace MiaClient
 
         public static frmBeheerInvesteringsType frmBeheerInvesteringsType { get; set; }
 
+
+        public static FrmBeheerPrioriteit FrmBeheerPrioriteit { get; set; }
         public static frmBeheerFinancieringsType frmBeheerFinancieringsType { get; set; }
         
         public static frmSaldoOverzetten frmSaldoOverzetten { get; set; }

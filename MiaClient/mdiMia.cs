@@ -40,6 +40,7 @@ namespace MiaClient
         frmBeheerDiensten frmBeheerDiensten;
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
+        FrmBeheerPrioriteit frmBeheerPrioriteit;
         frmPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
 
@@ -633,12 +634,12 @@ namespace MiaClient
 
         private void prioriteitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmPrioriteit == null)
+            if (frmBeheerPrioriteit == null)
             {
-                frmPrioriteit = new frmPrioriteit();
-                frmPrioriteit.MdiParent = this;
+                frmBeheerPrioriteit = new FrmBeheerPrioriteit();
+                frmBeheerPrioriteit.MdiParent = this;
             }
-            frmPrioriteit.Show();
+            frmBeheerPrioriteit.Show();
         }
 
         private void landenToolStripMenuItem_Click(object sender, EventArgs e)

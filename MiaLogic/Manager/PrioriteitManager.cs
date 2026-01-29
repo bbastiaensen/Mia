@@ -11,7 +11,7 @@ namespace MiaLogic.Manager
     public class PrioriteitManager
     {
         public static string ConnectionString { get; set; }
-        public static List<Prioriteit> GetPrioriteiten()
+        public static List<Prioriteit>  GetPrioriteiten()
         {
             List<Prioriteit> prioriteiten = new List<Prioriteit>();
 
@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id,Actief, Naam FROM Prioriteit ORDER BY Naam ASC";
+                string query = "SELECT Id, Actief, Naam FROM Prioriteit ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -31,7 +31,8 @@ namespace MiaLogic.Manager
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 Naam = reader["Naam"].ToString(),
-                                Actief = Convert.ToBoolean(reader["Actief"])
+                                actief = Convert.ToBoolean(reader["Actief"])
+                               
                             };
 
                             prioriteiten.Add(prioriteit);
@@ -62,7 +63,7 @@ namespace MiaLogic.Manager
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 Naam = reader["Naam"].ToString(),
-                                Actief = Convert.ToBoolean(reader["Actief"])
+                                actief = Convert.ToBoolean(reader["Actief"])
                             };
 
                             prioriteiten.Add(prioriteit);
@@ -111,6 +112,7 @@ namespace MiaLogic.Manager
 
             return prioriteit;
         }
+    
         public static int SavePrioriteit(Prioriteit prioriteit, bool isnew)
         {
             using (SqlConnection objCn = new SqlConnection())
@@ -124,19 +126,19 @@ namespace MiaLogic.Manager
                     {
                         //Nieuw
                         objCmd.CommandText = "insert into Prioriteit(Naam, Actief)";
-                        objCmd.CommandText += "values(@Naam , @Actief);";
+                        objCmd.CommandText += "values( @Naam , @Actief);";
 
                     }
                     else
                     {
 
                         objCmd.CommandText = "update Prioriteit set Naam = @Naam, ";
-                        objCmd.CommandText += "Actief = @Actief where Id = @Id";
+                        objCmd.CommandText += " Actief = @Actief where Id = @Id";
                         objCmd.Parameters.AddWithValue("@Id", prioriteit.Id);
                     }
                     objCmd.Parameters.AddWithValue("@Naam", prioriteit.Naam);
                     
-                    objCmd.Parameters.AddWithValue("@Actief", prioriteit.Actief);
+                    objCmd.Parameters.AddWithValue("@Actief", prioriteit.actief);
 
                     objCn.Open();
 
@@ -202,6 +204,34 @@ namespace MiaLogic.Manager
                     objCmd.ExecuteNonQuery();
                 }
             }
+        }   
+        public static bool CheckPrioriteitInUse(int  PrioriteitId)
+        {
+            using (SqlConnection objCn = new SqlConnection(ConnectionString))
+            using (SqlCommand objCmd = new SqlCommand(
+                "SELECT COUNT(*) FROM Aanvraag WHERE PrioriteitId = @Id", objCn))
+            {
+                objCmd.Parameters.AddWithValue("@Id", PrioriteitId);
+                objCn.Open();
+                return (int)objCmd.ExecuteScalar() > 0;
+            }
         }
+        public static void DeactivatePrioriteit(Prioriteit prioriteit) 
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Prioriteit set Actief = 0 ";
+                    objCmd.CommandText += "where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("@Id", prioriteit.Id);
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+        
     }
 }
