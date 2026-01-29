@@ -36,6 +36,7 @@
             this.lblAanvrager = new System.Windows.Forms.Label();
             this.lblAanvraagStatus = new System.Windows.Forms.Label();
             this.lblBudgetToegekend = new System.Windows.Forms.Label();
+            this.lblAankoper =  new System.Windows.Forms.Label();
 
             //extra tekst bij aankopers(thomas)
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -151,6 +152,19 @@
             this.Controls.Add(this.lblBudgetToegekend);
 
 
+            // 
+            ////     lblAankoper
+            //// 
+            this.lblAankoper.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblAankoper.Location = new System.Drawing.Point(270, 0); // direct na titel
+            this.lblAankoper.Name = "lblAanvraagStatus";
+            this.lblAankoper.Size = new System.Drawing.Size(120, 33);
+            this.lblAankoper.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
+            this.Controls.Add(this.lblAankoper);
+
+
+
         }
 
         #endregion
@@ -165,6 +179,7 @@
         private System.Windows.Forms.Label lblFinancieringsjaar;
       
         private System.Windows.Forms.Label lblAanvraagStatus;
+        private System.Windows.Forms.Label lblAankoper;
        
 
 

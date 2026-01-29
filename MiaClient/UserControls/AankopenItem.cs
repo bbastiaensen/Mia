@@ -26,6 +26,8 @@ namespace MiaClient.UserControls
         public int RichtperiodeId { get; set; }
         public string Financieringsjaar { get; set; }
 
+        
+
         private Label lblBudgetToegekend;
 
 
@@ -63,6 +65,8 @@ namespace MiaClient.UserControls
             AantalStuk = aanvraag.AantalStuk;
             Totaal = PrijsIndicatieStuk * AantalStuk;
             Financieringsjaar = aanvraag.Financieringsjaar;
+      
+           
 
             R = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
 
@@ -122,7 +126,7 @@ namespace MiaClient.UserControls
                 lblTitel.Text = Titel.ToString();
             }
 
-            lblTotaalBedrag.Text = Totaal.ToString("c", CultureInfo.CurrentCulture);
+            lblTotaalBedrag.Text = Totaal.ToString("c", CultureInfo.CurrentCulture); 
             lblRichtperiode.Text = R.Naam;
             if (Even)
             {
@@ -169,9 +173,28 @@ namespace MiaClient.UserControls
                 lblAanvraagStatus.Location = new Point(830, yPos);
                 lblBudgetToegekend.Text = _aanvraag.BudgetToegekend.ToString("c", CultureInfo.CurrentCulture);
                 lblBudgetToegekend.Location = new Point( 930 , yPos);
+               
+                
             }
-  
-        
+
+            // Naam van de aankoper ophalen
+            // Aankoper ophalen
+            var aankoop = AankoopManager.GetAankoopByAanvraagId(_aanvraag.Id);
+            Aankoper aankoper = null;
+
+            //if (aankoop != null && aankoop.Id > 0)
+            //{
+            //    aankoper = AankoperManager.GetAankoperById(aankoop.Id);
+            //}
+            //else if (_aanvraag.AankoperId > 0)
+            //{
+            //    aankoper = AankoperManager.GetAankoperById(_aanvraag.Id);
+            //}
+
+            lblAankoper.Text = AankoopManager
+            lblAankoper.Location = new Point(1030, 2);
+
+
 
 
 

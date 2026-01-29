@@ -32,6 +32,7 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.btnExportToExcel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
@@ -93,6 +94,7 @@
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.btnExportToExcel);
             this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
             this.gbxFinancieringsjaar.Controls.Add(this.grbxFilterAanvraag);
@@ -104,6 +106,20 @@
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // btnExportToExcel
+            // 
+            this.btnExportToExcel.BackColor = System.Drawing.SystemColors.Control;
+            this.btnExportToExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExportToExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToExcel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportToExcel.Location = new System.Drawing.Point(930, 0);
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
+            this.btnExportToExcel.TabIndex = 44;
+            this.btnExportToExcel.UseVisualStyleBackColor = true;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
             // btnFilter
             // 
@@ -262,7 +278,7 @@
             // 
             this.pnlAanvragen.Location = new System.Drawing.Point(12, 278);
             this.pnlAanvragen.Name = "pnlAanvragen";
-            this.pnlAanvragen.Size = new System.Drawing.Size(1687, 339);
+            this.pnlAanvragen.Size = new System.Drawing.Size(1855, 339);
             this.pnlAanvragen.TabIndex = 2;
             // 
             // lblPages
@@ -348,9 +364,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(220, 251);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.Size = new System.Drawing.Size(56, 20);
             this.label2.TabIndex = 30;
-            this.label2.Text = "BEDRAG";
+            this.label2.Text = "SALDO";
             // 
             // label3
             // 
@@ -369,7 +385,6 @@
             this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 32;
             this.label4.Text = "RICHTPERIODE";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnSortAanvrager
             // 
@@ -492,7 +507,7 @@
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(1671, 248);
+            this.button3.Location = new System.Drawing.Point(1728, 248);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(27, 27);
             this.button3.TabIndex = 42;
@@ -503,15 +518,16 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(1622, 251);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 20);
+            this.label7.Size = new System.Drawing.Size(84, 20);
             this.label7.TabIndex = 41;
-            this.label7.Text = "leeg";
+            this.label7.Text = "AANKOPER";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // frmAankopen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1711, 663);
+            this.ClientSize = new System.Drawing.Size(1879, 663);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
@@ -591,5 +607,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnExportToExcel;
+        private System.Windows.Forms.Label lblWachtenExcelAankopen;
     }
 }
