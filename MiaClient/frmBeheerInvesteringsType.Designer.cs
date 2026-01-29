@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 141);
+            this.ClientSize = new System.Drawing.Size(653, 202);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
@@ -143,12 +143,11 @@
             this.Controls.Add(this.lblNaam);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.InvesteringsTypes);
-            this.ClientSize = new System.Drawing.Size(653, 202);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerInvesteringsType";
-            this.Text = "Beheer InvesteringsType";
+            this.Text = "Test Beheer InvesteringsType";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerInvesteringsType_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerInvesteringsType_Load);
             this.ResumeLayout(false);
