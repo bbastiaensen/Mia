@@ -85,7 +85,7 @@ namespace MiaClient
         {
             if (string.IsNullOrWhiteSpace(txtNaam.Text))
             {
-                MessageBox.Show("Gelieve een geldige naam in te vullen.");
+                MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
