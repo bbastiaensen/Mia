@@ -152,11 +152,7 @@ namespace MiaLogic.Manager
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = cn;
-                cmd.CommandText = @"
-            SELECT Id, Postcode, Naam, LandId 
-            FROM Gemeente
-            WHERE LandId = @LandId
-            ORDER BY Postcode";
+                cmd.CommandText = @"SELECT Id, Postcode, Naam, LandId FROM GemeenteWHERE LandId = @LandId ORDER BY Postcode";
 
                 cmd.Parameters.AddWithValue("@LandId", landId);
 

@@ -18,6 +18,7 @@ namespace MiaClient
     {
         List<leverancier> leveranciers;
         bool IsNew = false;
+        bool isClearing = false;
 
         public frmBeheerLeveranciers()
         {
@@ -27,8 +28,8 @@ namespace MiaClient
         private void frmBeheerLeveranciers_Load(object sender, EventArgs e)
         {
             CreateUI();
-            BindLstLeveranciers();
             BindLanden();
+            BindLstLeveranciers();
         }
 
         private void frmBeheerAankopers_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,17 +61,20 @@ namespace MiaClient
 
         private void ClearFields()
         {
+            isClearing = true;
+
+            LstLeveranciers.SelectedIndex = -1;
             txtAdres.Text = string.Empty;
             txtId.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtLeverancier.Text = string.Empty;
             txtWebsite.Text = string.Empty;
             
-            // Fix: Dropdowns correct leegmaken
             ddlLand.SelectedIndex = -1;
             ddlPostcodeGemeente.DataSource = null;
             ddlPostcodeGemeente.SelectedIndex = -1;
-            
+
+            isClearing = false;
             IsNew = true;
         }
 
@@ -78,6 +82,8 @@ namespace MiaClient
 
         private void LstLeveranciers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isClearing) return;
+
             leverancier leverancier = (leverancier)LstLeveranciers.SelectedItem;
 
             if (leverancier != null)
@@ -88,7 +94,7 @@ namespace MiaClient
                 txtEmail.Text = leverancier.Email;
                 txtWebsite.Text = leverancier.Website;
 
-                // Fix: Land en Gemeente laden op basis van GemeenteId
+                //Land en Gemeente laden op basis van GemeenteId
                 if (leverancier.GemeenteId > 0)
                 {
                     gemeente gem = LeverancierManager.GetGemeenteById(leverancier.GemeenteId);
@@ -97,7 +103,7 @@ namespace MiaClient
                         // Eerst het land selecteren
                         ddlLand.SelectedValue = gem.LandId;
 
-                        // Dan de gemeente selecteren (ddlPostcodeGemeente wordt gevuld door ddlLand_SelectedIndexChanged)
+                        // Dan de gemeente selecteren
                         ddlPostcodeGemeente.SelectedValue = gem.Id;
                     }
                 }
@@ -129,21 +135,36 @@ namespace MiaClient
                 leverancier = (leverancier)LstLeveranciers.SelectedItem;
             }
 
-            leverancier.Leverancier = txtLeverancier.Text;
-            leverancier.Email = txtEmail.Text;
-            leverancier.Adres = txtAdres.Text;
-            leverancier.Website = txtWebsite.Text;
-
-            if (ddlPostcodeGemeente.SelectedItem != null)
+            // Validatie
+            if (string.IsNullOrWhiteSpace(txtLeverancier.Text))
             {
-                gemeente gem = (gemeente)ddlPostcodeGemeente.SelectedItem;
-                leverancier.GemeenteId = gem.Id;
-            }
-            else
-            {
-                MessageBox.Show("Selecteer een gemeente.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vul een leveranciersnaam in.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLeverancier.Focus();
                 return;
             }
+
+
+            if (ddlLand.SelectedItem == null)
+            {
+                MessageBox.Show("Selecteer een land.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ddlLand.Focus();
+                return;
+            }
+
+            if (ddlPostcodeGemeente.SelectedItem == null)
+            {
+                MessageBox.Show("Selecteer een gemeente.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ddlPostcodeGemeente.Focus();
+                return;
+            }
+
+            leverancier.Leverancier = txtLeverancier.Text.Trim();
+            leverancier.Email = txtEmail.Text.Trim();
+            leverancier.Adres = txtAdres.Text.Trim();
+            leverancier.Website = txtWebsite.Text.Trim();
+
+            gemeente gem = (gemeente)ddlPostcodeGemeente.SelectedItem;
+            leverancier.GemeenteId = gem.Id;
 
             leverancier.Id = LeverancierManager.SaveLeverancier(leverancier, IsNew);
 
@@ -151,8 +172,7 @@ namespace MiaClient
             LstLeveranciers.SelectedValue = leverancier.Id;
             IsNew = false;
 
-            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BindLanden()
@@ -169,16 +189,20 @@ namespace MiaClient
         {
             if (ddlLand.SelectedItem == null)
             {
+                ddlPostcodeGemeente.DataSource = null;
                 return;
             }
 
             Land l = (Land)ddlLand.SelectedItem;
 
-            ddlPostcodeGemeente.DataSource =
-                LeverancierManager.GetGemeentenByLandId(l.Id);
+            // Eerst DataSource clearen om volledige refresh te forceren
+            ddlPostcodeGemeente.DataSource = null;
+            ddlPostcodeGemeente.Items.Clear();
 
             ddlPostcodeGemeente.DisplayMember = "PostcodeNaam";
             ddlPostcodeGemeente.ValueMember = "Id";
+            ddlPostcodeGemeente.DataSource =
+            LeverancierManager.GetGemeentenByLandId(l.Id);
             ddlPostcodeGemeente.SelectedIndex = -1;
         }
 
@@ -202,12 +226,10 @@ namespace MiaClient
             try
             {
                 LeverancierManager.DeleteLeverancier(leverancier.Id);
-
                 BindLstLeveranciers();
                 ClearFields();
 
-                MessageBox.Show("Leverancier werd verwijderd.", "MIA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Leverancier werd verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
