@@ -165,6 +165,7 @@ namespace MiaClient
             if (LstPrioriteiten.SelectedItem== null)
             {
                 MessageBox.Show("Er is geen Prioriteit geselecteerd om te verwijderen.","MIA",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
                 return;
             }
             Prioriteit p = new Prioriteit();
