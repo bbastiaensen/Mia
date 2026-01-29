@@ -1,4 +1,4 @@
-﻿namespace MiaClient
+namespace MiaClient
 {
     partial class frmNieuweAankoop
     {
@@ -42,6 +42,7 @@
             this.dgvAanvragen.RowTemplate.Height = 24;
             this.dgvAanvragen.Size = new System.Drawing.Size(865, 523);
             this.dgvAanvragen.TabIndex = 0;
+            this.dgvAanvragen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAanvragen_CellClick);
             // 
             // frmNieuweAankoop
             // 

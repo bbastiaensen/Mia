@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +32,7 @@ namespace MiaLogic.Object
         public string OpmerkingenResultaat { get; set; }
 
         public int RichtperiodeId { get; set; }
+        public string RichtperiodeNaam { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using MiaClient.UserControls;
+using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
 using Microsoft.Office.Interop.Excel;
@@ -59,11 +59,27 @@ namespace MiaClient
             {
                 frmNieuweAankoop = new frmNieuweAankoop();
                 frmNieuweAankoop.MdiParent = MdiParent;
+                frmNieuweAankoop.AankoopToegevoegd += frmNieuweAankoop_AankoopToegevoegd;
             }
 
             // Form tonen
             frmNieuweAankoop.Show();
             frmNieuweAankoop.BringToFront();
+        }
+
+        private void frmNieuweAankoop_AankoopToegevoegd(object sender, EventArgs e)
+        {
+            // Refresh de lijst met aankopen in frmAankopen
+            try
+            {
+                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
+                huidigePage = 1;
+                StartPaging();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public frmAankopen()

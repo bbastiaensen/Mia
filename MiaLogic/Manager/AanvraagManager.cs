@@ -1,4 +1,4 @@
-﻿using MiaLogic.Object;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -21,13 +21,93 @@ namespace MiaLogic.Manager
         /// <param name="id"></param>
         /// <returns>Aanvraag object</returns>
         /// 
-        /// Bekrachtigd aanvragen
+        /// Bekrachtigde aanvragen die nog niet in een aankoop gezet zijn
         public static List<Aanvraag> GetBekrachtigdeAanvragenZonderAankoop()
         {
-            return GetAanvragen()
-                .Where(a => a.StatusAanvraag == "Bekrachtigd"
-                         && a.AankoperId == 0)   
-                .ToList();
+            List<Aanvraag> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = @"SELECT a.Id, a.Gebruiker, a.Omschrijving, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, 
+                        sa.Naam AS StatusAanvraag, sa.Id AS StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam AS Kostenplaats, 
+                        a.OpmerkingenResultaat, a.RichtperiodeId, r.Naam AS RichtperiodeNaam, a.BudgetToegekend, a.AfdelingId, a.DienstId 
+                        FROM Aanvraag a 
+                        INNER JOIN StatusAanvraag sa ON sa.Id = a.StatusAanvraagId 
+                        INNER JOIN Kostenplaats k ON k.Id = a.KostenplaatsId 
+                        LEFT JOIN Richtperiode r ON r.Id = a.RichtperiodeId 
+                        LEFT JOIN Aankoop ak ON ak.AanvraagId = a.Id 
+                        WHERE sa.Naam = 'Bekrachtigd' AND ak.Id IS NULL 
+                        ORDER BY a.Aanvraagmoment DESC";
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                    Aanvraag a;
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Aanvraag>();
+                        }
+                        a = new Aanvraag();
+                        a.Id = Convert.ToInt32(objRea["Id"]);
+                        a.Gebruiker = objRea["Gebruiker"].ToString();
+                        a.Aanvraagmoment = Convert.ToDateTime(objRea["Aanvraagmoment"]);
+                        a.Titel = objRea["Titel"].ToString();
+                        if (objRea["Omschrijving"] != DBNull.Value)
+                        {
+                            a.Omschrijving = objRea["Omschrijving"].ToString();
+                        }
+                        if (objRea["Financieringsjaar"] != DBNull.Value)
+                        {
+                            a.Financieringsjaar = objRea["Financieringsjaar"].ToString();
+                        }
+                        if (objRea["Planningsdatum"] != DBNull.Value)
+                        {
+                            a.Planningsdatum = Convert.ToDateTime(objRea["Planningsdatum"]);
+                        }
+                        a.StatusAanvraag = objRea["StatusAanvraag"].ToString();
+                        a.StatusAanvraagId = Convert.ToInt32(objRea["StatusAanvraagId"]);
+                        if (objRea["AantalStuk"] != DBNull.Value)
+                        {
+                            a.AantalStuk = Convert.ToInt32(objRea["AantalStuk"]);
+                        }
+                        if (objRea["PrijsIndicatieStuk"] != DBNull.Value)
+                        {
+                            a.PrijsIndicatieStuk = Convert.ToDecimal(objRea["PrijsIndicatieStuk"]);
+                        }
+                        a.Kostenplaats = objRea["Kostenplaats"].ToString();
+                        if (objRea["BudgetToegekend"] != DBNull.Value)
+                        {
+                            a.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
+                        }
+                        if (objRea["OpmerkingenResultaat"] != DBNull.Value)
+                        {
+                            a.OpmerkingenResultaat = objRea["OpmerkingenResultaat"].ToString();
+                        }
+                        if (objRea["AfdelingId"] != DBNull.Value)
+                        {
+                            a.AfdelingId = Convert.ToInt32(objRea["AfdelingId"]);
+                        }
+                        if (objRea["DienstId"] != DBNull.Value)
+                        {
+                            a.DienstId = Convert.ToInt32(objRea["DienstId"]);
+                        }
+                        a.RichtperiodeId = Convert.ToInt32(objRea["RichtperiodeId"]);
+                        if (objRea["RichtperiodeNaam"] != DBNull.Value)
+                        {
+                            a.RichtperiodeNaam = objRea["RichtperiodeNaam"].ToString();
+                        }
+                        returnlist.Add(a);
+                    }
+                }
+            }
+            return returnlist ?? new List<Aanvraag>();
         }
 
 

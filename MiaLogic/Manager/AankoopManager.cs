@@ -1,4 +1,4 @@
-﻿using MiaLogic.Object;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -108,6 +108,30 @@ namespace MiaLogic.Manager
             }
 
             return aankoop;
+        }
+
+        public static void CreateAankoop(Aankoop aankoop)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
+                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
+                    objCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving ?? (object)DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                    objCmd.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
+                    objCmd.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                    objCmd.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                    objCmd.Parameters.AddWithValue("@AanvraagId", aankoop.AanvraagId);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
