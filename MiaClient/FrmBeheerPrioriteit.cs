@@ -119,34 +119,38 @@ namespace MiaClient
             {
                 if (string.IsNullOrWhiteSpace(txtNaam.Text))
                 {
-                    throw new Exception("Gelieve een geldige naam in te vullen.");
-                }
-                txtNaam.Text = txtNaam.Text.Trim();
-
-                Prioriteit p = new Prioriteit();
-                p.Id = Convert.ToInt32(LstPrioriteiten.SelectedValue);
-               
-                if (checkActief.Checked)
-                {
-                    p.actief = true;
+                    MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    p.actief = false;
+                    txtNaam.Text = txtNaam.Text.Trim();
+
+                    Prioriteit p = new Prioriteit();
+                    p.Id = Convert.ToInt32(LstPrioriteiten.SelectedValue);
+
+                    if (checkActief.Checked)
+                    {
+                        p.actief = true;
+                    }
+                    else
+                    {
+                        p.actief = false;
+                    }
+                    p.Naam = txtNaam.Text;
+
+
+
+                    p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+                    PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+
+                    BindLstPrioriteiten();
+
+                    LstPrioriteiten.SelectedValue = p.Id;
+                    IsNew = false;
+
+                    MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
-                p.Naam = txtNaam.Text;
-
-
-
-                p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
-                PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
-
-                BindLstPrioriteiten();
-
-                LstPrioriteiten.SelectedValue = p.Id;
-                IsNew = false;
-
-                MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

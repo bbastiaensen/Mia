@@ -158,7 +158,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstPrioriteiten);
             this.Name = "FrmBeheerPrioriteit";
-            this.Text = "FrmBeheerPrioriteit";
+            this.Text = "Beheer prioriteiten";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBeheerPrioriteit_FormClosing);
             this.Load += new System.EventHandler(this.FrmBeheerPrioriteit_Load);
             this.ResumeLayout(false);
