@@ -1,4 +1,4 @@
-﻿using MiaClient.UserControls;
+using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
 using Microsoft.Office.Interop.Excel;
@@ -1454,8 +1454,8 @@ namespace MiaClient
 
         public void RefreshAfdelingDropdown()
         {
-
-            int? geselecteerdeId = ddlAfdeling.SelectedValue as int?;
+            int? geselecteerdeId = AppForms.LastActiveAfdelingId ?? ddlAfdeling.SelectedValue as int?;
+            AppForms.LastActiveAfdelingId = null;
 
             var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
 

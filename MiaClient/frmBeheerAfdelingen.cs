@@ -1,4 +1,4 @@
-﻿using MiaLogic.Manager;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
@@ -132,6 +132,7 @@ namespace MiaClient
 
 
             a.Id = AfdelingenManager.SaveAfdeling(a, IsNew);
+            if (a.actief) AppForms.LastActiveAfdelingId = a.Id;
             AfdelingChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAfdelingen();

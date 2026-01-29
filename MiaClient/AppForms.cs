@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +22,7 @@ namespace MiaClient
         public static frmBeheerFinancieringsType frmBeheerFinancieringsType { get; set; }
         
         public static frmSaldoOverzetten frmSaldoOverzetten { get; set; }
+
+        public static int? LastActiveAfdelingId { get; set; }
     }
 }
