@@ -118,7 +118,6 @@
             this.txtAchternaam.Name = "txtAchternaam";
             this.txtAchternaam.Size = new System.Drawing.Size(213, 32);
             this.txtAchternaam.TabIndex = 7;
-            this.txtAchternaam.TextChanged += new System.EventHandler(this.txtAchternaam_TextChanged);
             // 
             // txtVoornaam
             // 

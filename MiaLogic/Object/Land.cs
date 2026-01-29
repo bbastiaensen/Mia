@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Object
 {
-    public class Dienst
+    public class Land
     {
-        public int Id { get; set; }
+        public  int Id { get; set; }
         public string Naam { get; set; }
-
-        public bool actief { get; set; }
     }
-
 }
