@@ -1444,7 +1444,7 @@ namespace MiaClient
         {
             if (AppForms.frmBeheerInvesteringsType != null)
             {
-                AppForms.frmBeheerInvesteringsType.InvesteringsTypeschanged += FrmBeheerInvesteringsType_InvesteringsTypeChanged;
+                AppForms.frmBeheerInvesteringsType.InvesteringsTypesChanged += FrmBeheerInvesteringsType_InvesteringsTypeChanged;
             }
         }
         private void ddlFinanciering_SelectedIndexChanged(object sender, EventArgs e)
