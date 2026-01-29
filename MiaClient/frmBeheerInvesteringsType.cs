@@ -3,6 +3,7 @@ using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -136,28 +137,47 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Investering i = new Investering();
-            i.Id = Convert.ToInt32(InvesteringsTypes.SelectedValue);
-            i.Naam = txtNaam.Text;
-            if (checkActief.Checked)
+            try
             {
-                i.Actief = true;
-            }
-            else
-            {
-                i.Actief = false;
+                Investering i = new Investering();
+                i.Id = Convert.ToInt32(InvesteringsTypes.SelectedValue);
+                i.Naam = txtNaam.Text;
+                if (checkActief.Checked)
+                {
+                    i.Actief = true;
+                }
+                else
+                {
+                    i.Actief = false;
+
+                }
+
+                if (MessageBox.Show($"Bent u dat u {InvesteringsTypes.Text} wilt verwijderen?", "InvesteringsType verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    InvesteringenManager.DeleteInvestering(i);
+                    InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
+                }
+
+                BindLstInvesteringsTypes();
+                ClearFields();
 
             }
-
-            if (MessageBox.Show($"Bent u dat u {InvesteringsTypes.Text} wilt verwijderen?", "InvesteringsType verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            catch (SqlException ex)
             {
-                MessageBox.Show("De InvesteringsType is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                InvesteringenManager.DeleteInvestering(i);
-                InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
+                if(ex.Number == 547)
+                {
+                    MessageBox.Show("Dit investeringstype kan niet verwijderd worden aangezien het al in gebruik is", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Er is een onbekende fout opgetreden. - " + ex.Message, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                return;
             }
 
-            BindLstInvesteringsTypes();
-            ClearFields();
+            MessageBox.Show("De InvesteringsType is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
