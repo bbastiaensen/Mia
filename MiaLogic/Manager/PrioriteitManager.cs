@@ -11,7 +11,7 @@ namespace MiaLogic.Manager
     public class PrioriteitManager
     {
         public static string ConnectionString { get; set; }
-        public static List<Prioriteit> GetPrioriteiten()
+        public static List<Prioriteit>  GetPrioriteiten()
         {
             List<Prioriteit> prioriteiten = new List<Prioriteit>();
 
@@ -205,5 +205,6 @@ namespace MiaLogic.Manager
                 }
             }
         }
+       
     }
 }
