@@ -38,6 +38,7 @@
             this.llblTaTu = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.llblIconsByIcon8 = new System.Windows.Forms.LinkLabel();
+            this.btnTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProjectLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -139,11 +140,23 @@
             this.llblIconsByIcon8.Text = "Icons door Icon8";
             this.llblIconsByIcon8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblIconsByIcon8_LinkClicked);
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(37, 399);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(68, 31);
+            this.btnTest.TabIndex = 8;
+            this.btnTest.Text = "test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // frmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 662);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llblTaTu);
             this.Controls.Add(this.llblMuylenberg);
@@ -178,5 +191,6 @@
         private System.Windows.Forms.LinkLabel llblTaTu;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.LinkLabel llblIconsByIcon8;
+        private System.Windows.Forms.Button btnTest;
     }
 }

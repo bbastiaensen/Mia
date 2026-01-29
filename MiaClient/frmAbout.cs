@@ -82,5 +82,15 @@ namespace MiaClient
             frmPrompt.Show();
 
         }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            if (AppForms.frmSaldoOverzetten == null)
+            {
+                AppForms.frmSaldoOverzetten = new frmSaldoOverzetten(0);
+                AppForms.frmSaldoOverzetten.MdiParent = this.MdiParent;
+            }
+            AppForms.frmSaldoOverzetten.Show();
+        }
     }
 }
