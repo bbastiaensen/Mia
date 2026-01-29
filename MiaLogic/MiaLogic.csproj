@@ -60,6 +60,7 @@
     <Compile Include="Manager\RichtperiodeManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Manager\AankoperManager.cs" />
+    <Compile Include="Manager\StatusAankoopManager.cs" />
     <Compile Include="Manager\StatusAanvraagManager.cs" />
     <Compile Include="Object\Aankoop.cs" />
     <Compile Include="Object\Aanvraag.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Object\Richtperiode.cs" />
     <Compile Include="Object\Rol.cs" />
     <Compile Include="Object\Aankoper.cs" />
+    <Compile Include="Object\StatusAankoop.cs" />
     <Compile Include="Object\StatusAanvraag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
