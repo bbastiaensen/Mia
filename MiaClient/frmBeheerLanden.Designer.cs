@@ -133,8 +133,10 @@
             this.Controls.Add(this.lblNaam);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstLanden);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmBeheerLanden";
-            this.Text = "frmBeheerLanden";
+            this.Text = "Beheer Landen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerLanden_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerLanden_Load);
             this.ResumeLayout(false);
