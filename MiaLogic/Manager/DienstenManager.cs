@@ -19,7 +19,7 @@ namespace MiaLogic.Manager
             {
                 connection.Open();
 
-                string query = "SELECT Id, Naam FROM Dienst ORDER BY Naam ASC";
+                string query = "SELECT Id, Naam, Actief FROM Dienst ORDER BY Naam ASC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,7 +30,8 @@ namespace MiaLogic.Manager
                             Dienst dienst = new Dienst
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
-                                Naam = reader["Naam"].ToString()
+                                Naam = reader["Naam"].ToString(),
+                                actief = Convert.ToBoolean(reader["Actief"])
                             };
 
                             diensten.Add(dienst);
@@ -77,6 +78,36 @@ namespace MiaLogic.Manager
             }
             return dienst;
         }
+        public static List<Dienst> GetActiveDiensten()
+        {
+            List<Dienst> diensten = new List<Dienst>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Naam FROM Dienst where Actief = 1 ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dienst dienst = new Dienst
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString()
+                            };
+
+                            diensten.Add(dienst);
+                        }
+                    }
+                }
+            }
+            return diensten;
+        }
+
         public static string GetDienstNaamById(int id) 
         {
             string naam = "Onbekend";
@@ -108,5 +139,130 @@ namespace MiaLogic.Manager
             return naam;
 
         }
+
+        public static int SaveDiensten(Dienst dienst, bool isnew)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    if (isnew)
+                    {
+                        //Nieuw
+                        objCmd.CommandText = "insert into Dienst(Naam, Actief)";
+                        objCmd.CommandText += "values(@Naam , @Actief);";
+
+                    }
+                    else
+                    {
+
+                        objCmd.CommandText = "update Dienst set Naam = @Naam, ";
+                        objCmd.CommandText += " Actief = @Actief where Id = @Id";
+                        objCmd.Parameters.AddWithValue("@Id", dienst.Id);
+                    }
+
+                    objCmd.Parameters.AddWithValue("@Naam", dienst.Naam);
+                    objCmd.Parameters.AddWithValue("@Actief", dienst.actief);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                    if (isnew)
+                    {
+                        return GetHighestDienstID();
+                    }
+                    else
+                    {
+                        return dienst.Id;
+                    }
+
+                }
+            }
+
+        }
+
+        private static int GetHighestDienstID()
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select max(Id) as Highest from Dienst";
+
+
+                    objCn.Open();
+
+                    SqlDataReader ObjRea = objCmd.ExecuteReader();
+                    if (ObjRea.Read())
+                    {
+
+                        return Convert.ToInt32(ObjRea["Highest"]);
+
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+            }
+        }
+        public static void DeleteDienst(Dienst dienst)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+
+                    objCmd.CommandText = "delete from Dienst ";
+                    objCmd.CommandText += "where Id = @Id;";
+
+                    objCmd.Parameters.AddWithValue("@Id", dienst.Id);
+
+                    objCn.Open();
+
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static bool CheckPrioriteitInUse(int DienstId)
+        {
+            using (SqlConnection objCn = new SqlConnection(ConnectionString))
+            using (SqlCommand objCmd = new SqlCommand(
+                "SELECT COUNT(*) FROM Aanvraag WHERE DienstId = @Id", objCn))
+            {
+                objCmd.Parameters.AddWithValue("@Id", DienstId);
+                objCn.Open();
+                return (int)objCmd.ExecuteScalar() > 0;
+            }
+        }
+        public static void DeactivateDienst(Dienst dienst)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "update Dienst set Actief = 0 ";
+                    objCmd.CommandText += "where Id = @Id;";
+                    objCmd.Parameters.AddWithValue("@Id", dienst.Id);
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
     }
 }
