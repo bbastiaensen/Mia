@@ -74,7 +74,6 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.landenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -464,21 +463,6 @@
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
-            // prioriteitToolStripMenuItem
-            // 
-            this.prioriteitToolStripMenuItem.Name = "prioriteitToolStripMenuItem";
-            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
-            this.prioriteitToolStripMenuItem.Text = "Prioriteit";
-            this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
-            // 
-            // parameterToolStripButton
-            // 
-            this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.parameterToolStripButton.Name = "parameterToolStripButton";
-            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.parameterToolStripButton.Text = "Parameters";
-            this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // landenToolStripMenuItem
             // 
             this.landenToolStripMenuItem.Name = "landenToolStripMenuItem";
