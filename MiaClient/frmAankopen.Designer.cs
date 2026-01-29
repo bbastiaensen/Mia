@@ -32,6 +32,7 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.btnExportToExcel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
@@ -93,6 +94,8 @@
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.lblWachtenExcelAankopen);
+            this.gbxFinancieringsjaar.Controls.Add(this.btnExportToExcel);
             this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
             this.gbxFinancieringsjaar.Controls.Add(this.grbxFilterAanvraag);
@@ -104,6 +107,20 @@
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // btnExportToExcel
+            // 
+            this.btnExportToExcel.BackColor = System.Drawing.SystemColors.Control;
+            this.btnExportToExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExportToExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportToExcel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportToExcel.Location = new System.Drawing.Point(930, 0);
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
+            this.btnExportToExcel.TabIndex = 44;
+            this.btnExportToExcel.UseVisualStyleBackColor = true;
+            this.btnExportToExcel.Click += new System.EventHandler(this.btnExportToExcel_Click);
             // 
             // btnFilter
             // 
@@ -591,5 +608,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnExportToExcel;
+        private System.Windows.Forms.Label lblWachtenExcelAankopen;
     }
 }
