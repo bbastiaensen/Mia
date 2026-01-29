@@ -138,6 +138,11 @@
     </Compile>
     <Compile Include="FrmBeheerPrioriteit.Designer.cs">
       <DependentUpon>FrmBeheerPrioriteit.cs</DependentUpon>
+    <Compile Include="frmBeheerLanden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerLanden.Designer.cs">
+      <DependentUpon>frmBeheerLanden.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBudgetSpreiding.cs">
       <SubType>Form</SubType>
@@ -332,6 +337,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmBeheerPrioriteit.resx">
       <DependentUpon>FrmBeheerPrioriteit.cs</DependentUpon>
+    <EmbeddedResource Include="frmBeheerLanden.resx">
+      <DependentUpon>frmBeheerLanden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBudgetspreiding.resx">
       <DependentUpon>frmBudgetSpreiding.cs</DependentUpon>
