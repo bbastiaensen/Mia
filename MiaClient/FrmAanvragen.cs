@@ -865,8 +865,8 @@ namespace MiaClient
 
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 3].Value = a.Aanvraagmoment;
-                        worksheet.Cells[row, 3].NumberFormat = "dd/mm/jjjj";
+                        worksheet.Cells[row, 3].Value = a.Aanvraagmoment.Date;
+                        worksheet.Cells[row, 3].NumberFormat = "dd/mm/yyyy";
                     }
                     else
                     {
@@ -896,8 +896,8 @@ namespace MiaClient
                     
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 10].Value = a.Planningsdatum;
-                        worksheet.Cells[row, 10].NumberFormat = "dd/mm/jjjj";
+                        worksheet.Cells[row, 10].Value = a.Planningsdatum.Date;
+                        worksheet.Cells[row, 10].NumberFormat = "dd/mm/yyyy";
                     }
                     else
                     {
@@ -920,6 +920,8 @@ namespace MiaClient
                 Excel.Range used = worksheet.Range["A1:J" + (row - 1)];
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 used.Borders.Color = textKleurExc;
+
+                used.AutoFilter(1);
 
                 worksheet.Range["A:J"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                 worksheet.Columns[8].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
