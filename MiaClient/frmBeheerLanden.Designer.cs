@@ -78,6 +78,7 @@
             this.txtNaam.Name = "txtNaam";
             this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 19;
+            this.txtNaam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNaam_KeyPress);
             // 
             // txtId
             // 

@@ -140,5 +140,13 @@ namespace MiaClient
             BindLstLanden();
             ClearFields();
         }
+
+        private void txtNaam_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Block the key
+            }
+        }
     }
 }
