@@ -86,6 +86,14 @@ namespace MiaLogic.Manager
 
         public static int SaveFinancieringType(Financiering financiering, bool isnew)
         {
+            
+            if (financiering == null)
+                throw new ArgumentNullException(nameof(financiering));
+
+            if (string.IsNullOrWhiteSpace(financiering.Naam))
+                throw new ArgumentException("Naam is verplicht");
+
+
             using (SqlConnection objCn = new SqlConnection())
             {
                 objCn.ConnectionString = ConnectionString;
@@ -98,6 +106,7 @@ namespace MiaLogic.Manager
                         //Nieuw
                         objCmd.CommandText = "insert into FinancieringsType(naam, Actief)";
                         objCmd.CommandText += "values(@Naam , @Actief);";
+
 
                     }
                     else
@@ -172,26 +181,17 @@ namespace MiaLogic.Manager
 
         public static void DeleteFinancier(Financiering financiering)
         {
-     
-            using (SqlConnection objCn = new SqlConnection())
+
+            using (SqlConnection objCn = new SqlConnection(ConnectionString))
+            using (SqlCommand objCmd = new SqlCommand())
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-                    objCmd.Connection = objCn;
-
-                    objCmd.CommandText = "UPDATE FinancieringsType SET Actief = 0 WHERE Id = @Id";
-
-                    objCmd.CommandText += "where Id = @Id;";
-
-                    objCmd.Parameters.AddWithValue("@Id", financiering.Id);
-
-                    objCn.Open();
-
-                    objCmd.ExecuteNonQuery();
-                }
+                objCmd.Connection = objCn;
+                objCmd.CommandText = "DELETE FROM FinancieringsType WHERE Id = @Id";
+                objCmd.Parameters.AddWithValue("@Id", financiering.Id);
+                objCn.Open();
+                objCmd.ExecuteNonQuery();
             }
+           
         }
     }
     }
