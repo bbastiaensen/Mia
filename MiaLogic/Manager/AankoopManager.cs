@@ -40,6 +40,7 @@ namespace MiaLogic.Manager
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
                         aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
                         {
@@ -89,6 +90,7 @@ namespace MiaLogic.Manager
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
                         aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
                         {
@@ -132,10 +134,11 @@ namespace MiaLogic.Manager
                                 ELSE '' 
                             END AS Aankoper,
                             av.Gebruiker AS Aanvrager,
+                            av.Aanvraagmoment,
                             av.Financieringsjaar,
                             r.Naam AS Richtperiode,
                             av.BudgetToegekend AS GoedgekeurdBedrag,
-                            av.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0)) AS Saldo
+                            av.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0) + ISNULL(a.BedragTransfer, 0)) AS Saldo
                         FROM Aankoop a
                         INNER JOIN Aanvraag av ON a.AanvraagId = av.Id
                         INNER JOIN StatusAankoop sa ON a.StatusAankoopId = sa.Id
@@ -156,9 +159,12 @@ namespace MiaLogic.Manager
                         item.StatusAankoop = objRea["StatusAankoop"] != DBNull.Value ? objRea["StatusAankoop"].ToString() : "";
                         item.Aankoper = objRea["Aankoper"] != DBNull.Value ? objRea["Aankoper"].ToString() : "";
                         item.Aanvrager = objRea["Aanvrager"] != DBNull.Value ? objRea["Aanvrager"].ToString() : "";
+                        item.Aanvraagmoment = objRea["Aanvraagmoment"] != DBNull.Value ? Convert.ToDateTime(objRea["Aanvraagmoment"]) : DateTime.MinValue;
                         item.Financieringsjaar = objRea["Financieringsjaar"] != DBNull.Value ? objRea["Financieringsjaar"].ToString() : "";
                         item.Richtperiode = objRea["Richtperiode"] != DBNull.Value ? objRea["Richtperiode"].ToString() : "";
                         item.GoedgekeurdBedrag = objRea["GoedgekeurdBedrag"] != DBNull.Value ? Convert.ToDecimal(objRea["GoedgekeurdBedrag"]) : 0;
+                        //item.BedragExBtw = objRea["BedragExBtw"]   != DBNull.Value ? Convert.ToInt32(objRea["BedragExBtw"]) : 0;
+                        //item.BTWPercentage = objRea["BTWPercentage"] != DBNull.Value ? Convert.ToInt32(objRea["BTWPercentage"]) : 0;
                         item.Saldo = objRea["Saldo"] != DBNull.Value ? Convert.ToDecimal(objRea["Saldo"]) : 0;
 
                         returnlist.Add(item);

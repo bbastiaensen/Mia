@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +18,15 @@ namespace MiaLogic.Object
 
         public string Aankoper { get; set; }
         public string Aanvrager { get; set; }
+        public DateTime Aanvraagmoment { get; set; }
 
         public string Financieringsjaar { get; set; }
         public string Richtperiode { get; set; }
 
         public decimal GoedgekeurdBedrag { get; set; }
         public decimal Saldo { get; set; }
+       
+
+
     }
 }

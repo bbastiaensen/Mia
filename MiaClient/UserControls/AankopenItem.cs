@@ -2,6 +2,7 @@ using MiaLogic.Manager;
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -25,10 +26,20 @@ namespace MiaClient.UserControls
             InitializeComponent();
             _toolTip.ShowAlways = true;
             _toolTip.AutoPopDelay = 10000;
-            _toolTip.InitialDelay = 300;
+            _toolTip.InitialDelay = 100;   // Sneller tonen (100 ms)
             _toolTip.ReshowDelay = 0;
 
-           
+            // Direct weg bij verlaten titel: tooltip uitzetten zodat hij meteen verdwijnt
+            lblOmschrijving.MouseLeave += (s, ev) =>
+            {
+                _toolTip.Active = false;
+                _toolTip.Active = true;
+            };
+            lblOmschrijving.MouseEnter += (s, ev) =>
+            {
+                if (_aankoopItem != null && !string.IsNullOrEmpty(_aankoopItem.Omschrijving))
+                    _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + _aankoopItem.Omschrijving);
+            };
         }
     
 
@@ -42,6 +53,7 @@ namespace MiaClient.UserControls
             AankoopId = aankoopItem.AankoopId;
             StatusAankoopNaam = aankoopItem.StatusAankoop;
 
+
             SetItemValue();
         }
 
@@ -49,6 +61,15 @@ namespace MiaClient.UserControls
         {
             // Toon titel van aanvraag in het label (niet omschrijving)
             string titel = _aankoopItem.Titel ?? "";
+            lblGoedgekeurdBedrag.TextAlign = ContentAlignment.TopLeft;
+            lblSaldo.TextAlign = ContentAlignment.TopLeft;
+
+            lblGoedgekeurdBedrag.RightToLeft = RightToLeft.No;
+            lblSaldo.RightToLeft = RightToLeft.No;
+
+
+
+
             if (titel.Length > 25)
             {
                 lblOmschrijving.Text = titel.Substring(0, 22) + "...";
@@ -80,6 +101,10 @@ namespace MiaClient.UserControls
             lblGoedgekeurdBedrag.Text = _aankoopItem.GoedgekeurdBedrag.ToString("c", CultureInfo.CurrentCulture);
             lblSaldo.Text = _aankoopItem.Saldo.ToString("c", CultureInfo.CurrentCulture);
 
+
+
+
+
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
@@ -92,6 +117,8 @@ namespace MiaClient.UserControls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+
+            MessageBox.Show("Het u zeker dat deze aankoop wilt verwijderen", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (AankoopItemSelected != null)
             {
                 AankoopItemSelected(this, null);
@@ -100,10 +127,15 @@ namespace MiaClient.UserControls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (AankoopDeleted != null)
+            if (MessageBox.Show("Ben je zeker dat je deze parameter wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                AankoopDeleted(this, null);
+                if (AankoopDeleted != null)
+                {
+                    AankoopDeleted(this, null);
+                }
             }
+
+           
         }
     }
 }

@@ -342,6 +342,7 @@
             this.pnlAanvragen.Name = "pnlAanvragen";
             this.pnlAanvragen.Size = new System.Drawing.Size(1300, 371);
             this.pnlAanvragen.TabIndex = 18;
+            //this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
             // label1
             // 
