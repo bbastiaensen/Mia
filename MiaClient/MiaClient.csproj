@@ -187,6 +187,12 @@
     <Compile Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.Designer.cs">
       <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBeheerLeverancier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerLeverancier.Designer.cs">
+      <DependentUpon>frmBeheerLeverancier.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNieuweAankoop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrafiekStatusAanvraagPerFinancieringsjaar.resx">
       <DependentUpon>frmGrafiekStatusAanvraagPerFinancieringsjaar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerLeverancier.resx">
+      <DependentUpon>frmBeheerLeverancier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNieuweAankoop.resx">
       <DependentUpon>frmNieuweAankoop.cs</DependentUpon>
