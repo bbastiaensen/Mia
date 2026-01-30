@@ -1459,7 +1459,7 @@ namespace MiaClient
         public void RefreshAfdelingDropdown()
         {
 
-            int? geselecteerdeId = ddlAfdeling.SelectedValue as int?;
+            int? teSelecterenId = frmBeheerAfdelingen.LastActiveAfdelingId;
 
             var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
 
@@ -1468,10 +1468,10 @@ namespace MiaClient
             ddlAfdeling.ValueMember = "Id";
             ddlAfdeling.DataSource = nieuweAfdelingen;
 
-            if (geselecteerdeId.HasValue &&
-                nieuweAfdelingen.Any(a => a.Id == geselecteerdeId.Value))
+            if (teSelecterenId.HasValue &&
+                nieuweAfdelingen.Any(a => a.Id == teSelecterenId.Value))
             {
-                ddlAfdeling.SelectedValue = geselecteerdeId.Value;
+                ddlAfdeling.SelectedValue = teSelecterenId.Value;
             }
             else
             {
