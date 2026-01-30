@@ -486,6 +486,7 @@ namespace MiaClient
             if (huidigePage < aantalPages)
             {
                 BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
+                EnableLastNext(true);
             }
             else if (huidigePage == aantalPages)
             {
@@ -493,6 +494,7 @@ namespace MiaClient
                 EnableLastNext(false);
             }
             EnableFirstPrevious(true);
+            RefreshPagingButtonImages();
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -508,6 +510,7 @@ namespace MiaClient
                 EnableFirstPrevious(false);
             }
             EnableLastNext(true);
+            RefreshPagingButtonImages();
         }
         private void btnFirst_Click(object sender, EventArgs e)
         {
@@ -520,6 +523,7 @@ namespace MiaClient
             {
                 EnableLastNext(true);
             }
+            RefreshPagingButtonImages();
         }
         private void btnLast_Click(object sender, EventArgs e)
         {
@@ -532,6 +536,7 @@ namespace MiaClient
             {
                 EnableFirstPrevious(true);
             }
+            RefreshPagingButtonImages();
         }
         private void StartPaging()
         {
@@ -571,6 +576,13 @@ namespace MiaClient
         private void ShowPages()
         {
             lblPages.Text = huidigePage.ToString() + " van " + aantalPages.ToString();
+        }
+        private void RefreshPagingButtonImages()
+        {
+            btnFirst.BackgroundImage = huidigePage == 1 ? imgFirstDisable : imgFirst;
+            btnPrevious.BackgroundImage = huidigePage == 1 ? imgPreviousDisable : imgPrevious;
+            btnNext.BackgroundImage = huidigePage == aantalPages ? imgNextDisable : imgNext;
+            btnLast.BackgroundImage = huidigePage == aantalPages ? imgLastDisable : imgLast;
         }
 
         private void frmAankopen_Shown(object sender, EventArgs e)
@@ -628,6 +640,14 @@ namespace MiaClient
                 "Aankoop toevoegen", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
- 
+        private void btnSortFinancieringsjaar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSortTitel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

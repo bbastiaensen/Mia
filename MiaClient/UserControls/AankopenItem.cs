@@ -25,10 +25,19 @@ namespace MiaClient.UserControls
             InitializeComponent();
             _toolTip.ShowAlways = true;
             _toolTip.AutoPopDelay = 10000;
-            _toolTip.InitialDelay = 300;
+            _toolTip.InitialDelay = 100;   // Sneller tonen (100 ms)
             _toolTip.ReshowDelay = 0;
-
-           
+            // Direct weg bij verlaten titel: tooltip uitzetten zodat hij meteen verdwijnt
+            lblOmschrijving.MouseLeave += (s, ev) =>
+            {
+                _toolTip.Active = false;
+                _toolTip.Active = true;
+            };
+            lblOmschrijving.MouseEnter += (s, ev) =>
+            {
+                if (_aankoopItem != null && !string.IsNullOrEmpty(_aankoopItem.Omschrijving))
+                    _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + _aankoopItem.Omschrijving);
+            };
         }
     
 
