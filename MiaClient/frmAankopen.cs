@@ -1,4 +1,4 @@
-﻿using MiaClient.UserControls;
+using MiaClient.UserControls;
 using MiaLogic.Manager;
 using MiaLogic.Object;
 using Microsoft.Office.Interop.Excel;
@@ -21,22 +21,20 @@ namespace MiaClient
 {
     public partial class frmAankopen : Form
     {
-        bool filterBedragVan = false;
-        bool filterBedragTot = false;
-        bool filterTitel = false;
-        bool filterGebruiker = false;
-        bool filterPlanningsdatumTot = false;
-        bool filterPlanningsdatumVan = false;
-        bool SortTitel = true;
-        bool SortTtlBedr = true;
-        bool SortAanv = true;
-        bool SortRP = true;
-        bool SortJaar = false;
-        bool RSort = false;
+        bool filterOmschrijving = false;
+        bool filterStatusAankoop = false;
+        bool filterAankoper = false;
+        bool filterAanvrager = false;
+        bool filterFinancieringsjaar = false;
+        bool filterRichtperiode = false;
+        bool filterGoedgekeurdBedragVan = false;
+        bool filterGoedgekeurdBedragTot = false;
+        bool filterSaldoVan = false;
+        bool filterSaldoTot = false;
         int aantalItems = 10;
         int huidigePage = 1;
         int aantalPages = 0;
-        List<Aanvraag> aanvragen;
+        List<AankoopOverzichtItem> aankopen;
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
         Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
@@ -51,27 +49,35 @@ namespace MiaClient
         Image imgFirstDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-grey.png"));
         Image imgFirstHover = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-first-50-hover.png"));
         Image imgExportToExcel = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "excelExport.png"));
-
-        private Aanvraag _aanvraag;
+        Image imgAdd = null;
 
    
 
         public frmAankopen()
         {
             InitializeComponent();
+            
+            // Load add icon if available, otherwise use nieuweAanvraag.png
+            string addIconPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "add.png");
+            if (File.Exists(addIconPath))
+            {
+                imgAdd = (Image)new Bitmap(addIconPath);
+            }
+            else
+            {
+                // Fallback to nieuweAanvraag.png if add.png doesn't exist
+                string nieuweAanvraagPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "nieuweAanvraag.png");
+                if (File.Exists(nieuweAanvraagPath))
+                {
+                    imgAdd = (Image)new Bitmap(nieuweAanvraagPath);
+                }
+            }
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
             try
             {
-                if (cmbFinancieringsjaar.SelectedIndex > -1)
-                {
-                    SortJaar = true;
-                }
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-
-                huidigePage = 1;
-                StartPaging();
+                LoadAankopen();
             }
             catch (Exception ex)
             {
@@ -104,12 +110,29 @@ namespace MiaClient
             btnExportToExcel.BackgroundImageLayout = ImageLayout.Stretch;
             btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
+            // Add button (placeholder for future functionality)
+            if (btnAdd != null && imgAdd != null)
+            {
+                btnAdd.BackColor = StyleParameters.Achtergrondkleur;
+                btnAdd.BackgroundImage = imgAdd;
+                btnAdd.BackgroundImageLayout = ImageLayout.Stretch;
+                btnAdd.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+            }
+
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
             cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
+        }
+
+        private void LoadAankopen()
+        {
+            aankopen = AankoopManager.GetAllAankopen();
+            aankopen = FilteredAankoopItems(aankopen);
+            huidigePage = 1;
+            StartPaging();
         }
    
         private void frmAankopen_FormClosing(object sender, FormClosingEventArgs e)
@@ -119,9 +142,9 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-        public void BindAanvraag(List<Aanvraag> items)
+        public void BindAankopen(List<AankoopOverzichtItem> items)
         {
-            //Haalt alle aanvragen uit de databank en zet deze in een lijst die we toonen.
+            //Haalt alle aankopen uit de databank en zet deze in een lijst die we tonen.
             this.pnlAanvragen.Controls.Clear();
 
             int xPos = 0;
@@ -129,167 +152,235 @@ namespace MiaClient
             int n = 0;
             if (items != null)
             {
-                foreach (var av in items)
+                foreach (var ak in items)
                 {
-                    AankopenItem avi = new AankopenItem(); // Geen parameters meer
-                    avi.BindAanvraag(av, n % 2 == 0);      // Bind het hele object
-                    avi.Location = new System.Drawing.Point(xPos, yPos);
-                    avi.Name = "aanvraagSelection" + n;
-                    avi.Size = new System.Drawing.Size(1855, 20);
-                    avi.TabIndex = n + 8;
-                    avi.AanvraagItemSelected += Gli_AanvraagItemSelected;
-                    avi.AanvraagDeleted += Avi_AanvraagItemChanged;
-                    avi.AanvraagItemChanged += Avi_AanvraagItemChanged;
-                    this.pnlAanvragen.Controls.Add(avi);
+                    AankopenItem aki = new AankopenItem();
+                    aki.BindAankoop(ak, n % 2 == 0);
+                    aki.Location = new System.Drawing.Point(xPos, yPos);
+                    aki.Name = "aankoopSelection" + n;
+                    aki.Size = new System.Drawing.Size(1855, 33);
+                    aki.TabIndex = n + 8;
+                    aki.AankoopItemSelected += Aki_AankoopItemSelected;
+                    aki.AankoopDeleted += Aki_AankoopDeleted;
+                    aki.AankoopItemChanged += Aki_AankoopItemChanged;
+                    this.pnlAanvragen.Controls.Add(aki);
                     n++;
-                    yPos += 21;
+                    yPos += 34;
                 }
-
-
             }
         }
-        private void Gli_AanvraagItemSelected(object sender, EventArgs e)
+
+        private void Aki_AankoopItemSelected(object sender, EventArgs e)
         {
             AankopenItem geselecteerd = (AankopenItem)sender;
+            // Open frmAankoopDetail with the purchase ID
+            // This will be implemented in another User Story
+            // frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
+            // detailForm.Show();
         }
-        private void Avi_AanvraagItemChanged(object sender, EventArgs e)
+
+        private void Aki_AankoopDeleted(object sender, EventArgs e)
         {
             try
             {
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
+                AankopenItem item = (AankopenItem)sender;
+                Aankoop aankoop = AankoopManager.GetAankoopById(item.AankoopId);
+                StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
 
-                huidigePage = 1;
-                StartPaging();
-                ShowPages();
-                if (huidigePage < aantalPages)
+                if (status != null && status.Naam != null && status.Naam.Equals("Gepland", StringComparison.OrdinalIgnoreCase))
                 {
-                    BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                    EnableLastNext(true);
+                    if (MessageBox.Show("Ben je zeker dat je deze aankoop wilt verwijderen?", "Aankopen", 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        AankoopManager.DeleteAankoop(item.AankoopId);
+                        MessageBox.Show("De aankoop is succesvol verwijderd.", "Succes", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadAankopen();
+                    }
                 }
-                else if (huidigePage == aantalPages)
+                else
                 {
-                    BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                    EnableLastNext(false);
+                    MessageBox.Show("De aankoop kan niet meer verwijderd worden uit het systeem.", 
+                        "Geen Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                EnableFirstPrevious(false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool bedragVan, bool bedragTot, bool jaar, bool penis)
-        {
-            if (items != null)
-            {
-                if (RSort)
-                {
-                    //items = items.Where(av =>);              
-                }
-                if (planningsdatumVan)
-                {
-                    if (chbxPlaningsdatumVan.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
-                    }
-                }
-                if (planningsdatumTot)
-                {
-                    if (chbxPlaningsdatumTot.Checked == true)
-                    {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
-                    }
-                }
-                if (gebruiker)
-                {
-                    items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
-                }
-                if (titel)
-                {
-                    items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
-                }
-                if (jaar)
-                {
-                    if (cmbFinancieringsjaar.SelectedIndex > -1)
-                    {
-                        items = items.Where(av => av.Financieringsjaar.ToString().Contains(cmbFinancieringsjaar.SelectedItem.ToString())).ToList();
-                    }
-                }
-                if (bedragVan)
-                {
-                    if (cbBedragVan.Checked == true)
-                    {
-                        if (txtBedragVan.Text != string.Empty)
-                        {
-                            items = items.Where(av => (av.PrijsIndicatieStuk * av.AantalStuk) >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
-                        }
-                    }
-                }
-                if (bedragTot)
-                {
-                    if (cbBedragTot.Checked == true)
-                    {
-                        if (txtBedragTot.Text != string.Empty)
-                        {
-                            items = items.Where(av => (av.PrijsIndicatieStuk * av.AantalStuk) <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
-                        }
-                    }
-                }
-            }
-            return items;
-        }
-        private void frmAankopen_AanvraagBewaard(object sender, EventArgs e)
-        {
-            aanvragen = AanvraagManager.Aanvraag_sort_sorteertvologorde_asc();
 
-            huidigePage = 1;
-            StartPaging();
-            ShowPages();
-            if (huidigePage < aantalPages)
+        private void Aki_AankoopItemChanged(object sender, EventArgs e)
+        {
+            try
             {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                EnableLastNext(true);
+                LoadAankopen();
             }
-            else if (huidigePage == aantalPages)
+            catch (Exception ex)
             {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                EnableLastNext(false);
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            EnableFirstPrevious(false);
+        }
+        private List<AankoopOverzichtItem> FilteredAankoopItems(List<AankoopOverzichtItem> items)
+        {
+            if (items == null) return new List<AankoopOverzichtItem>();
+
+            var filtered = items.AsEnumerable();
+
+            // Filter on Omschrijving - can use existing txtTitel if available, or add txtOmschrijving later
+            if (filterOmschrijving)
+            {
+                string filterValue = "";
+                if (txtOmschrijving != null && !string.IsNullOrEmpty(txtOmschrijving.Text))
+                    filterValue = txtOmschrijving.Text;
+                else if (txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text))
+                    filterValue = txtTitel.Text; // Fallback to existing control
+                
+                if (!string.IsNullOrEmpty(filterValue))
+                {
+                    filtered = filtered.Where(ak => ak.Omschrijving != null && 
+                        ak.Omschrijving.ToLower().Contains(filterValue.ToLower()));
+                }
+            }
+
+            // Filter on StatusAankoop
+            if (filterStatusAankoop && txtStatusAankoop != null && !string.IsNullOrEmpty(txtStatusAankoop.Text))
+            {
+                filtered = filtered.Where(ak => ak.StatusAankoop != null && 
+                    ak.StatusAankoop.ToLower().Contains(txtStatusAankoop.Text.ToLower()));
+            }
+
+            // Filter on Aankoper
+            if (filterAankoper && txtAankoper != null && !string.IsNullOrEmpty(txtAankoper.Text))
+            {
+                filtered = filtered.Where(ak => ak.Aankoper != null && 
+                    ak.Aankoper.ToLower().Contains(txtAankoper.Text.ToLower()));
+            }
+
+            // Filter on Aanvrager - can use existing txtGebruiker
+            if (filterAanvrager)
+            {
+                string filterValue = "";
+                if (txtAanvrager != null && !string.IsNullOrEmpty(txtAanvrager.Text))
+                    filterValue = txtAanvrager.Text;
+                else if (txtGebruiker != null && !string.IsNullOrEmpty(txtGebruiker.Text))
+                    filterValue = txtGebruiker.Text; // Fallback to existing control
+                
+                if (!string.IsNullOrEmpty(filterValue))
+                {
+                    filtered = filtered.Where(ak => ak.Aanvrager != null && 
+                        ak.Aanvrager.ToLower().Contains(filterValue.ToLower()));
+                }
+            }
+
+            // Filter on Financieringsjaar
+            if (filterFinancieringsjaar && cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
+            {
+                string selectedJaar = cmbFinancieringsjaar.SelectedItem.ToString();
+                filtered = filtered.Where(ak => ak.Financieringsjaar != null && 
+                    ak.Financieringsjaar.Contains(selectedJaar));
+            }
+
+            // Filter on Richtperiode
+            if (filterRichtperiode && txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+            {
+                filtered = filtered.Where(ak => ak.Richtperiode != null && 
+                    ak.Richtperiode.ToLower().Contains(txtRichtperiode.Text.ToLower()));
+            }
+
+            // Filter on GoedgekeurdBedrag - can use existing txtBedragVan/txtBedragTot
+            if (filterGoedgekeurdBedragVan)
+            {
+                decimal bedragVan = 0;
+                bool hasValue = false;
+                if (txtGoedgekeurdBedragVan != null && decimal.TryParse(txtGoedgekeurdBedragVan.Text, out bedragVan))
+                    hasValue = true;
+                else if (txtBedragVan != null && decimal.TryParse(txtBedragVan.Text, out bedragVan))
+                    hasValue = true; // Fallback to existing control
+                
+                if (hasValue)
+                {
+                    filtered = filtered.Where(ak => ak.GoedgekeurdBedrag >= bedragVan);
+                }
+            }
+
+            if (filterGoedgekeurdBedragTot)
+            {
+                decimal bedragTot = 0;
+                bool hasValue = false;
+                if (txtGoedgekeurdBedragTot != null && decimal.TryParse(txtGoedgekeurdBedragTot.Text, out bedragTot))
+                    hasValue = true;
+                else if (txtBedragTot != null && decimal.TryParse(txtBedragTot.Text, out bedragTot))
+                    hasValue = true; // Fallback to existing control
+                
+                if (hasValue)
+                {
+                    filtered = filtered.Where(ak => ak.GoedgekeurdBedrag <= bedragTot);
+                }
+            }
+
+            // Filter on Saldo
+            if (filterSaldoVan && txtSaldoVan != null && !string.IsNullOrEmpty(txtSaldoVan.Text))
+            {
+                if (decimal.TryParse(txtSaldoVan.Text, out decimal saldoVan))
+                {
+                    filtered = filtered.Where(ak => ak.Saldo >= saldoVan);
+                }
+            }
+
+            if (filterSaldoTot && txtSaldoTot != null && !string.IsNullOrEmpty(txtSaldoTot.Text))
+            {
+                if (decimal.TryParse(txtSaldoTot.Text, out decimal saldoTot))
+                {
+                    filtered = filtered.Where(ak => ak.Saldo <= saldoTot);
+                }
+            }
+
+            return filtered.ToList();
         }
         private void btnFilter_Click(object sender, EventArgs e)
         {
             try
             {
-                if (cbBedragVan.Checked != false)
-                {
-                    filterBedragVan = true;
-                }
-                if (cbBedragTot.Checked != false)
-                {
-                    filterBedragTot = true;
-                }
-                if (txtTitel.Text != string.Empty)
-                {
-                    filterTitel = true;
-                }
-                if (txtGebruiker.Text != string.Empty)
-                {
-                    filterGebruiker = true;
-                }
-                if (chbxPlaningsdatumVan.Checked != false)
-                {
-                    filterPlanningsdatumVan = true;
-                }
-                if (chbxPlaningsdatumTot.Checked != false)
-                {
-                    filterPlanningsdatumTot = true;
-                }
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
+                // Reset filters
+                filterOmschrijving = false;
+                filterStatusAankoop = false;
+                filterAankoper = false;
+                filterAanvrager = false;
+                filterFinancieringsjaar = false;
+                filterRichtperiode = false;
+                filterGoedgekeurdBedragVan = false;
+                filterGoedgekeurdBedragTot = false;
+                filterSaldoVan = false;
+                filterSaldoTot = false;
 
-                huidigePage = 1;
-                StartPaging();
+                // Set active filters based on input
+                if ((txtOmschrijving != null && !string.IsNullOrEmpty(txtOmschrijving.Text)) ||
+                    (txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text)))
+                    filterOmschrijving = true;
+                if (txtStatusAankoop != null && !string.IsNullOrEmpty(txtStatusAankoop.Text))
+                    filterStatusAankoop = true;
+                if (txtAankoper != null && !string.IsNullOrEmpty(txtAankoper.Text))
+                    filterAankoper = true;
+                if ((txtAanvrager != null && !string.IsNullOrEmpty(txtAanvrager.Text)) ||
+                    (txtGebruiker != null && !string.IsNullOrEmpty(txtGebruiker.Text)))
+                    filterAanvrager = true;
+                if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
+                    filterFinancieringsjaar = true;
+                if (txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+                    filterRichtperiode = true;
+                if ((txtGoedgekeurdBedragVan != null && !string.IsNullOrEmpty(txtGoedgekeurdBedragVan.Text)) ||
+                    (txtBedragVan != null && !string.IsNullOrEmpty(txtBedragVan.Text)))
+                    filterGoedgekeurdBedragVan = true;
+                if ((txtGoedgekeurdBedragTot != null && !string.IsNullOrEmpty(txtGoedgekeurdBedragTot.Text)) ||
+                    (txtBedragTot != null && !string.IsNullOrEmpty(txtBedragTot.Text)))
+                    filterGoedgekeurdBedragTot = true;
+                if (txtSaldoVan != null && !string.IsNullOrEmpty(txtSaldoVan.Text))
+                    filterSaldoVan = true;
+                if (txtSaldoTot != null && !string.IsNullOrEmpty(txtSaldoTot.Text))
+                    filterSaldoTot = true;
 
+                LoadAankopen();
             }
             catch (Exception ex)
             {
@@ -389,26 +480,28 @@ namespace MiaClient
         }
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if (aankopen == null) return;
             huidigePage++;
             ShowPages();
             if (huidigePage < aantalPages)
             {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
+                BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
             }
             else if (huidigePage == aantalPages)
             {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
+                BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).ToList());
                 EnableLastNext(false);
             }
             EnableFirstPrevious(true);
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
+            if (aankopen == null) return;
             huidigePage--;
             ShowPages();
             if (huidigePage < aantalPages)
             {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
+                BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
             }
             if (huidigePage == 1)
             {
@@ -418,9 +511,10 @@ namespace MiaClient
         }
         private void btnFirst_Click(object sender, EventArgs e)
         {
+            if (aankopen == null) return;
             huidigePage = 1;
             ShowPages();
-            BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
+            BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
             EnableFirstPrevious(false);
             if (huidigePage < aantalPages)
             {
@@ -429,9 +523,10 @@ namespace MiaClient
         }
         private void btnLast_Click(object sender, EventArgs e)
         {
+            if (aankopen == null) return;
             huidigePage = aantalPages;
             ShowPages();
-            BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
+            BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).ToList());
             EnableLastNext(false);
             if (huidigePage > 1)
             {
@@ -440,11 +535,11 @@ namespace MiaClient
         }
         private void StartPaging()
         {
-            if (aanvragen.Count > aantalItems)
+            if (aankopen != null && aankopen.Count > aantalItems)
             {
                 //Paging is nodig
-                aantalPages = (aanvragen.Count / aantalItems);
-                if ((aanvragen.Count % aantalItems) != 0)
+                aantalPages = (aankopen.Count / aantalItems);
+                if ((aankopen.Count % aantalItems) != 0)
                 {
                     aantalPages++;
                 }
@@ -453,7 +548,7 @@ namespace MiaClient
 
                 if (huidigePage < aantalPages)
                 {
-                    BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
+                    BindAankopen(aankopen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
                     EnableLastNext(true);
                 }
                 if (huidigePage == 1)
@@ -465,7 +560,10 @@ namespace MiaClient
             {
                 aantalPages = 1;
                 ShowPages();
-                BindAanvraag(aanvragen);
+                if (aankopen != null)
+                {
+                    BindAankopen(aankopen);
+                }
                 EnableFirstPrevious(false);
                 EnableLastNext(false);
             }
@@ -479,11 +577,7 @@ namespace MiaClient
         {
             try
             {
-                aanvragen = AanvraagManager.Aanvraag_sort_sorteertvologorde_asc();
-                if (aanvragen != null)
-                {
-                    StartPaging();
-                }
+                LoadAankopen();
             }
             catch (Exception ex)
             {
@@ -495,15 +589,7 @@ namespace MiaClient
         {
             try
             {
-                if (cmbFinancieringsjaar.SelectedIndex > -1)
-                {
-                    SortJaar = true;
-                }
-
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-
-                huidigePage = 1;
-                StartPaging();
+                LoadAankopen();
             }
             catch (Exception ex)
             {
@@ -511,117 +597,7 @@ namespace MiaClient
             }
         }
 
-        private void btnSortTitel_Click(object sender, EventArgs e)
-        {
-            if (SortTitel == true)
-            {
-                SortTitel = false;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_aanvrager_desc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            else
-            {
-                SortTitel = true;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_aanvrager_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            huidigePage = 1;
-            StartPaging();
-            ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
-        }
-
-        private void btnBedrag_Click(object sender, EventArgs e)
-        {
-            if (SortTtlBedr == true)
-            {
-                SortTtlBedr = false;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_bedrag_desc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            else
-            {
-                SortTtlBedr = true;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_bedrag_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            huidigePage = 1;
-            StartPaging();
-            ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
-        }
-
-        private void btnSortAanvrager_Click(object sender, EventArgs e)
-        {
-            if (SortAanv == true)
-            {
-                SortAanv = false;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_aanvrager_desc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            else
-            {
-                SortAanv = true;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aankopen_sort_aanvrager_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            huidigePage = 1;
-            StartPaging();
-            ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
-        }
-
-        private void btnSortRichtperiode_Click(object sender, EventArgs e)
-        {
-            if (SortRP == true)
-            {
-                SortRP = false;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            else
-            {
-                SortRP = true;
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_desc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
-            }
-            huidigePage = 1;
-            StartPaging();
-            ShowPages();
-            if (huidigePage < aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).Take(aantalItems).ToList());
-                EnableLastNext(true);
-            }
-            else if (huidigePage == aantalPages)
-            {
-                BindAanvraag(aanvragen.Skip((huidigePage - 1) * aantalItems).ToList());
-                EnableLastNext(false);
-            }
-            EnableFirstPrevious(false);
-        }
+        // Sort methods removed - can be re-implemented if needed for purchases
 
         public static Color StringToColor(string colorStr)
         {
@@ -640,139 +616,18 @@ namespace MiaClient
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
-            lblWachtenExcelAankopen.Visible = true;
-            lblWachtenExcelAankopen.Text = "Data in Excel verwerken...";
-
-            try
-            {
-                if (aanvragen == null || aanvragen.Count == 0)
-                {
-                    MessageBox.Show("Geen aankopen gevonden om te exporteren.", "Exporteren",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                var app = new Excel.Application();
-                app.Visible = false;
-
-                Excel.Workbook workbook = app.Workbooks.Add(Type.Missing);
-                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
-
-                //Header excel
-                string[] header = {
-                    "Omschrijving",
-                    "Goedgekeurd bedrag",
-                    "Bedrag incl. BTW",
-                    "Saldo",
-                    "Status aankoop",
-                    "Besteldatum",
-                    "Verwachte leverdatum",
-                    "Effectieve leverdatum"
-                };
-
-                //Header opmaak
-                for (int i = 0; i < header.Length; i++)
-                {
-                    var cell = worksheet.Cells[1, i + 1];
-                    cell.Value = header[i];
-                    cell.Font.Bold = true;
-                    cell.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
-                    cell.Font.Size = 11;
-                    cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(DataDonkerExc);
-                    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-
-                }
-
-                int row = 2;
-
-                foreach (var aanvraag in aanvragen)
-                {
-                    Aankoop aankoop = AankoopManager.GetAankoopByAanvraagId(aanvraag.Id);
-
-                    if (aankoop == null) continue;
-
-                    decimal bedragExBtw = aankoop.BedragExBtw;
-                    decimal bedragInclBTW = bedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
-                    decimal saldo = aanvraag.BudgetToegekend - bedragInclBTW;
-
-                    StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
-
-                    worksheet.Cells[row, 1] = aanvraag.Titel;
-
-                    worksheet.Cells[row, 2].Value = aanvraag.BudgetToegekend;
-                    worksheet.Cells[row, 2].NumberFormat = euroFormaat;
-
-                    worksheet.Cells[row, 3].Value = bedragInclBTW;
-                    worksheet.Cells[row, 3].NumberFormat = euroFormaat;
-
-                    worksheet.Cells[row, 4].Value = saldo;
-                    worksheet.Cells[row, 4].NumberFormat = euroFormaat;
-
-                    worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
-
-                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum > DateTime.MinValue ? 
-                        aankoop.BestellingsDatum.Date : (object)"Nog niet besteld";
-
-                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum > DateTime.MinValue ? 
-                        aankoop.VerwachteLeveringsDatum.Date : (object)"Geen verwachte datum";
-
-                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum > DateTime.MinValue ? 
-                        aankoop.EffectieveLeveringsDatum.Date : (object)"Geen effectieve datum";
-
-                    if (aankoop.BestellingsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 6].NumberFormat = "dd/mm/yyyy";
-
-                    if (aankoop.VerwachteLeveringsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/yyyy";
-
-                    if (aankoop.EffectieveLeveringsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 8].NumberFormat = "dd/mm/yyyy";
-
-                    Excel.Range rijRange = worksheet.Range[$"A{row}:H{row}"];
-                    rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
-
-                    if (row % 2 == 0)
-                        rijRange.Interior.Color = ColorTranslator.ToOle(DataLicht2Exc);
-                    else
-                        rijRange.Interior.Color = ColorTranslator.ToOle(DataLicht1Exc);
-
-                    row++;
-                }
-
-                Excel.Range used = worksheet.Range["A1:H" + (row - 1)];
-                used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                used.Borders.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
-                used.AutoFilter(1);
-
-                worksheet.Range["A:H"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-                worksheet.Columns["B:D"].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
-                worksheet.Columns.AutoFit();
-
-                SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    FileName = "AankopenExport",
-                    Filter = "Excel bestanden (*.xlsx)|*.xlsx",
-                    FilterIndex = 1
-                };
-
-                lblWachtenExcelAankopen.Visible = false;
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    worksheet.SaveAs(saveFileDialog.FileName, Excel.XlFileFormat.xlOpenXMLWorkbook);
-                    workbook.Close(false);
-                    Marshal.ReleaseComObject(workbook);
-                    Marshal.ReleaseComObject(worksheet);
-                    app.Quit();
-
-                    MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lblWachtenExcelAankopen.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            // Excel export functionality - to be implemented in User Story #279
+            MessageBox.Show("Excel export functionaliteit wordt uitgewerkt in User Story #279", 
+                "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // Add purchase functionality - to be implemented in User Story #278
+            MessageBox.Show("Aankoop toevoegen functionaliteit wordt uitgewerkt in User Story #278", 
+                "Aankoop toevoegen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+ 
     }
 }

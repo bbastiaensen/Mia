@@ -1,133 +1,85 @@
-﻿using MiaLogic.Manager;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiaClient.UserControls
 {
     public partial class AankopenItem : UserControl
     {
-        public int Id { get; set; }
-        public string Titel { get; set; }
-        public decimal Totaal { get; set; }
-        public string Gebruiker { get; set; }
-        public decimal PrijsIndicatieStuk { get; set; }
-        public int AantalStuk { get; set; }
-        public int RichtperiodeId { get; set; }
-        public string Financieringsjaar { get; set; }
-
-        
-
-        private Label lblBudgetToegekend;
-
-
-        private Aanvraag _aanvraag;
-
+        public int AankoopId { get; set; }
+        public string StatusAankoopNaam { get; set; }
         public Boolean Even { get; set; }
-        public Richtperiode R { get; set; }
 
-        public event EventHandler AanvraagDeleted;
+        private AankoopOverzichtItem _aankoopItem;
+        private ToolTip _toolTip = new ToolTip();
 
-        public event EventHandler AanvraagItemSelected;
+        public event EventHandler AankoopDeleted;
+        public event EventHandler AankoopItemSelected;
+        public event EventHandler AankoopItemChanged;
 
-        public event EventHandler AanvraagItemChanged;
-        //frmAankoop frmAankoop;
         public AankopenItem()
         {
             InitializeComponent();
+            _toolTip.ShowAlways = true;
+            _toolTip.AutoPopDelay = 10000;
+            _toolTip.InitialDelay = 300;
+            _toolTip.ReshowDelay = 0;
 
-         
-          
-        }
-        public void BindAanvraag(Aanvraag aanvraag, bool evenRow = false)
-        {
-            if (aanvraag == null)
-                throw new ArgumentNullException(nameof(aanvraag));
-
-            _aanvraag = aanvraag;
-            Even = evenRow;
-
-            // Vul de properties van de control (optioneel, kan ook alleen in SetItemValue)
-            Id = aanvraag.Id;
-            Titel = aanvraag.Titel;
-            Gebruiker = aanvraag.Gebruiker;
-            PrijsIndicatieStuk = aanvraag.PrijsIndicatieStuk;
-            AantalStuk = aanvraag.AantalStuk;
-            Totaal = PrijsIndicatieStuk * AantalStuk;
-            Financieringsjaar = aanvraag.Financieringsjaar;
-      
            
-
-            R = RichtperiodeManager.GetRichtperiodeById(aanvraag.RichtperiodeId);
-
-            // Update de UI
-            SetItemValue();
         }
-        public AankopenItem(int id, string titel, string gebruiker, string financieringsjaar, decimal p_ind_stuk, int aantals, Boolean even, int richtId)
+    
+
+        public void BindAankoop(AankoopOverzichtItem aankoopItem, bool evenRow = false)
         {
-            InitializeComponent();
-            Id = id;
-            Titel = titel;
-            PrijsIndicatieStuk = p_ind_stuk;
-            AantalStuk = aantals;
-            Totaal = PrijsIndicatieStuk * AantalStuk;
-            Gebruiker = gebruiker;
-            Financieringsjaar = financieringsjaar;
-            Even = even;
-            RichtperiodeId = richtId;
+            if (aankoopItem == null)
+                throw new ArgumentNullException(nameof(aankoopItem));
 
-            
+            _aankoopItem = aankoopItem;
+            Even = evenRow;
+            AankoopId = aankoopItem.AankoopId;
+            StatusAankoopNaam = aankoopItem.StatusAankoop;
 
-
-            Richtperiode r = RichtperiodeManager.GetRichtperiodeById(richtId);
-            R = r;
-            R.Naam = r.Naam;
-            R.Sorteervolgorde = r.Sorteervolgorde;
             SetItemValue();
         }
-
-
-
-       
 
         private void SetItemValue()
         {
-            lblAanvrager.Text = Gebruiker.ToString();
-
-            //Limiteren van het aantal characters er in de titel komen te staan
-
-      
-            var characters = Titel.ToCharArray();
-            if (characters.Length > 20)
+            // Toon titel van aanvraag in het label (niet omschrijving)
+            string titel = _aankoopItem.Titel ?? "";
+            if (titel.Length > 25)
             {
-                string chars = "";
-                string combochars = "";
-
-                for (int i = 0; i < 17; i++)
-                {
-                    chars = characters[i].ToString();
-                    combochars = combochars + chars;
-                }
-                combochars = combochars + "...";
-                lblTitel.Text = combochars;
+                lblOmschrijving.Text = titel.Substring(0, 22) + "...";
             }
             else
             {
-                lblTitel.Text = Titel.ToString();
+                lblOmschrijving.Text = titel;
             }
 
-            lblTotaalBedrag.Text = Totaal.ToString("c", CultureInfo.CurrentCulture); 
-            lblRichtperiode.Text = R.Naam;
+            // Tooltip: omschrijving tonen bij hover over titel (zoals in frmBeheerParameters)
+            string omschrijving = _aankoopItem.Omschrijving ?? "";
+            _toolTip.RemoveAll();
+            _toolTip.Active = true;
+            _toolTip.ShowAlways = true;
+            if (!string.IsNullOrEmpty(omschrijving))
+            {
+                _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + omschrijving);
+            }
+            else
+            {
+                _toolTip.SetToolTip(lblOmschrijving, null);
+            }
+
+            lblStatusAankoop.Text = _aankoopItem.StatusAankoop ?? "";
+            lblAankoper.Text = _aankoopItem.Aankoper ?? "";
+            lblAanvrager.Text = _aankoopItem.Aanvrager ?? "";
+            lblFinancieringsjaar.Text = _aankoopItem.Financieringsjaar ?? "";
+            lblRichtperiode.Text = _aankoopItem.Richtperiode ?? "";
+            lblGoedgekeurdBedrag.Text = _aankoopItem.GoedgekeurdBedrag.ToString("c", CultureInfo.CurrentCulture);
+            lblSaldo.Text = _aankoopItem.Saldo.ToString("c", CultureInfo.CurrentCulture);
+
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
@@ -136,69 +88,22 @@ namespace MiaClient.UserControls
             {
                 this.BackColor = StyleParameters.AltListItemColor;
             }
+        }
 
-            // --- LOCATIES PER REGEL INSTELLEN (vanaf X = 0) ---
-            int startX = 0;       // begin links
-            int yPos = 2;         // hoogte van de regel
-            int step = 150;       // afstand tussen velden (pas aan afhankelijk van breedte)
-
-            lblTitel.Location = new Point(startX, yPos);
-
-            lblTotaalBedrag.Location = new Point(140, yPos);
-
-            lblAanvrager.Location = new Point(300, yPos);
-            //lblFinancieringsjaar.Location = new Point(startX + step * 2, yPos);
-
-
-
-            lblRichtperiode.Location = new Point(500, yPos);
-            lblFinancieringsjaar.Text = Financieringsjaar; 
-            lblFinancieringsjaar.Location = new Point(630, yPos);
-
-
-            //if (aanvraag == null) throw new ArgumentNullException(nameof(aanvraag));
-
-            //_aanvraag = aanvraag;
-
-
-            //lblAanvraagStatus.Text = aanvraag.StatusAanvraag;
-
-
-            //lblAanvraagStatus.Text = AanvraagManager.GetStatusAanvraagDesc() + "";
-
-
-            if (_aanvraag != null)
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (AankoopItemSelected != null)
             {
-                lblAanvraagStatus.Text = _aanvraag.StatusAanvraag;
-                lblAanvraagStatus.Location = new Point(830, yPos);
-                lblBudgetToegekend.Text = _aanvraag.BudgetToegekend.ToString("c", CultureInfo.CurrentCulture);
-                lblBudgetToegekend.Location = new Point( 930 , yPos);
-               
-                
+                AankoopItemSelected(this, null);
             }
+        }
 
-            // Naam van de aankoper ophalen
-            // Aankoper ophalen
-            var aankoop = AankoopManager.GetAankoopByAanvraagId(_aanvraag.Id);
-            Aankoper aankoper = null;
-
-            //if (aankoop != null && aankoop.Id > 0)
-            //{
-            //    aankoper = AankoperManager.GetAankoperById(aankoop.Id);
-            //}
-            //else if (_aanvraag.AankoperId > 0)
-            //{
-            //    aankoper = AankoperManager.GetAankoperById(_aanvraag.Id);
-            //}
-
-            lblAankoper.Text = AankoopManager
-            lblAankoper.Location = new Point(1030, 2);
-
-
-
-
-
-
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (AankoopDeleted != null)
+            {
+                AankoopDeleted(this, null);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MiaLogic.Object;
+using MiaLogic.Object;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -108,6 +108,83 @@ namespace MiaLogic.Manager
             }
 
             return aankoop;
+        }
+
+        public static List<AankoopOverzichtItem> GetAllAankopen()
+        {
+            List<AankoopOverzichtItem> returnlist = new List<AankoopOverzichtItem>();
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = @"
+                        SELECT 
+                            a.Id AS AankoopId,
+                            a.Omschrijving,
+                            av.Titel,
+                            sa.Naam AS StatusAankoop,
+                            CASE 
+                                WHEN ak.Id IS NOT NULL THEN ak.Voornaam + ' ' + ak.Achternaam 
+                                ELSE '' 
+                            END AS Aankoper,
+                            av.Gebruiker AS Aanvrager,
+                            av.Financieringsjaar,
+                            r.Naam AS Richtperiode,
+                            av.BudgetToegekend AS GoedgekeurdBedrag,
+                            av.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0)) AS Saldo
+                        FROM Aankoop a
+                        INNER JOIN Aanvraag av ON a.AanvraagId = av.Id
+                        INNER JOIN StatusAankoop sa ON a.StatusAankoopId = sa.Id
+                        LEFT JOIN Aankoper ak ON av.AankoperId = ak.Id
+                        LEFT JOIN Richtperiode r ON av.RichtperiodeId = r.Id
+                        ORDER BY a.Id DESC";
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    while (objRea.Read())
+                    {
+                        AankoopOverzichtItem item = new AankoopOverzichtItem();
+                        item.AankoopId = Convert.ToInt32(objRea["AankoopId"]);
+                        item.Omschrijving = objRea["Omschrijving"] != DBNull.Value ? objRea["Omschrijving"].ToString() : "";
+                        item.Titel = objRea["Titel"] != DBNull.Value ? objRea["Titel"].ToString() : "";
+                        item.StatusAankoop = objRea["StatusAankoop"] != DBNull.Value ? objRea["StatusAankoop"].ToString() : "";
+                        item.Aankoper = objRea["Aankoper"] != DBNull.Value ? objRea["Aankoper"].ToString() : "";
+                        item.Aanvrager = objRea["Aanvrager"] != DBNull.Value ? objRea["Aanvrager"].ToString() : "";
+                        item.Financieringsjaar = objRea["Financieringsjaar"] != DBNull.Value ? objRea["Financieringsjaar"].ToString() : "";
+                        item.Richtperiode = objRea["Richtperiode"] != DBNull.Value ? objRea["Richtperiode"].ToString() : "";
+                        item.GoedgekeurdBedrag = objRea["GoedgekeurdBedrag"] != DBNull.Value ? Convert.ToDecimal(objRea["GoedgekeurdBedrag"]) : 0;
+                        item.Saldo = objRea["Saldo"] != DBNull.Value ? Convert.ToDecimal(objRea["Saldo"]) : 0;
+
+                        returnlist.Add(item);
+                    }
+                }
+            }
+
+            return returnlist;
+        }
+
+        public static void DeleteAankoop(int aankoopId)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "DELETE FROM Aankoop WHERE Id = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", aankoopId);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
