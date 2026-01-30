@@ -774,10 +774,5 @@ namespace MiaClient
                 MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
