@@ -21,7 +21,8 @@ namespace MiaLogic.Manager
         /// <param name="id"></param>
         /// <returns>Aanvraag object</returns>
         /// 
-        /// Bekrachtigde aanvragen die nog niet in een aankoop gezet zijn
+        /// Bekrachtigde aanvragen die nog niet in een aankoop gezet zijn.
+        /// Filter op AanvraagId: alleen aanvragen waarvoor geen Aankoop-record bestaat met AanvraagId = Aanvraag.Id
         public static List<Aanvraag> GetBekrachtigdeAanvragenZonderAankoop()
         {
             List<Aanvraag> returnlist = null;
@@ -33,6 +34,7 @@ namespace MiaLogic.Manager
                 using (SqlCommand objCmd = new SqlCommand())
                 {
                     objCmd.Connection = objCn;
+
                     objCmd.CommandText = @"SELECT a.Id, a.Gebruiker, a.Omschrijving, a.Aanvraagmoment, a.Titel, a.Financieringsjaar, a.PlanningsDatum, 
                         sa.Naam AS StatusAanvraag, sa.Id AS StatusAanvraagId, a.AantalStuk, a.PrijsIndicatieStuk, k.Naam AS Kostenplaats, 
                         a.OpmerkingenResultaat, a.RichtperiodeId, r.Naam AS RichtperiodeNaam, a.BudgetToegekend, a.AfdelingId, a.DienstId 
@@ -40,8 +42,8 @@ namespace MiaLogic.Manager
                         INNER JOIN StatusAanvraag sa ON sa.Id = a.StatusAanvraagId 
                         INNER JOIN Kostenplaats k ON k.Id = a.KostenplaatsId 
                         LEFT JOIN Richtperiode r ON r.Id = a.RichtperiodeId 
-                        LEFT JOIN Aankoop ak ON ak.AanvraagId = a.Id 
-                        WHERE sa.Naam = 'Bekrachtigd' AND ak.Id IS NULL 
+                        WHERE sa.Naam = 'Bekrachtigd' 
+                        AND NOT EXISTS (SELECT 1 FROM Aankoop ak WHERE ak.AanvraagId = a.Id)
                         ORDER BY a.Aanvraagmoment DESC";
                     objCn.Open();
 

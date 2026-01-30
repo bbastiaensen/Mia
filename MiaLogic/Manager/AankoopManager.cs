@@ -110,27 +110,37 @@ namespace MiaLogic.Manager
             return aankoop;
         }
 
+        /// Aankoop aanmaken - patroon zoals SaveAanvraag in AanvraagManager.
+        /// Waarden: Omschrijving (uit aanvraag), BTWPercentage 21, BedragExBTW 0, StatusAankoopId 1, LeverancierId 1, AanvraagId (uit aanvraag).
+        /// Overige velden: NULL of default.
         public static void CreateAankoop(Aankoop aankoop)
         {
-            using (SqlConnection objCn = new SqlConnection())
+            try
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
-                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
-                    objCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving ?? (object)DBNull.Value);
-                    objCmd.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
-                    objCmd.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
-                    objCmd.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
-                    objCmd.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
-                    objCmd.Parameters.AddWithValue("@AanvraagId", aankoop.AanvraagId);
+                    connection.Open();
 
-                    objCn.Open();
-                    objCmd.ExecuteNonQuery();
+                    string query = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
+                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                        command.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
+                        command.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                        command.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                        command.Parameters.AddWithValue("@AanvraagId", aankoop.AanvraagId);
+
+                        command.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Er is een fout opgetreden bij het aanmaken van de Aankoop, probeer het nog eens.");
+                throw;
             }
         }
     }

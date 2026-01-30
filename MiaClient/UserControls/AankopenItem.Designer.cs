@@ -102,7 +102,7 @@
             this.Controls.Add(this.btnEdit);
             this.Name = "AankopenItem";
             this.Size = new System.Drawing.Size(1231, 33);
-            this.ResumeLayout(false);
+            this.ResumeLayout(false);   
 
         }
 

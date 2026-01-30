@@ -1,10 +1,10 @@
-using MiaLogic.Manager;
+﻿using MiaLogic.Manager;
 using MiaLogic.Object;
+using MiaClient.UserControls;
 using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,6 +18,10 @@ namespace MiaClient
         public frmNieuweAankoop()
         {
             InitializeComponent();
+            pnlAanvragen.Resize += pnlAanvragen_Resize;
+            pnlAanvragen.AutoScrollMinSize = System.Drawing.Size.Empty;
+
+            pnlAanvragen.Resize += pnlAanvragen_Resize;
         }
 
         private void frmNieuweAankoop_Load(object sender, EventArgs e)
@@ -26,75 +30,81 @@ namespace MiaClient
             LaadBekrachtigdeAanvragen();
         }
 
+        public void RefreshBekrachtigdeAanvragen()
+        {
+            LaadBekrachtigdeAanvragen();
+        }
+
         private void LaadBekrachtigdeAanvragen()
         {
             _bekrachtigdeAanvragen = AanvraagManager.GetBekrachtigdeAanvragenZonderAankoop();
+            BindAanvragen(_bekrachtigdeAanvragen);
+        }
 
-            dgvAanvragen.DataSource = null;
-            dgvAanvragen.Columns.Clear();
+        // Bind items
+        public void BindAanvragen(List<Aanvraag> items)
+        {
+            pnlAanvragen.SuspendLayout();
+            pnlAanvragen.Controls.Clear();
 
-            if (_bekrachtigdeAanvragen != null && _bekrachtigdeAanvragen.Any())
+            if (items == null) return;
+
+            int yPos = 0;
+            int rowHeight = 23; // zelfde hoogte als header
+            int n = 0;
+
+            foreach (var av in items)
             {
-                // Data kolommen eerst (via DataSource)
-                var dgvData = _bekrachtigdeAanvragen.Select(a => new
-                {
-                    Id = a.Id,
-                    Omschrijving = a.Omschrijving ?? "",
-                    Aanvrager = a.Gebruiker ?? "",
-                    StatusAanvraag = a.StatusAanvraag ?? "",
-                    Financieringsjaar = a.Financieringsjaar ?? "",
-                    Richtperiode = a.RichtperiodeNaam ?? ""
-                }).ToList();
+                var item = new NieuweAankoopItem(
+                    av.Id,
+                    av.Omschrijving,
+                    av.Gebruiker,
+                    av.StatusAanvraag,
+                    av.Financieringsjaar,
+                    av.RichtperiodeNaam,
+                    n % 2 == 0
+                );
 
-                dgvAanvragen.DataSource = dgvData;
+                item.Location = new Point(0, yPos);
+                item.Width = pnlAanvragen.ClientSize.Width;
+                item.Height = rowHeight;
+                item.AdjustLabelHeights(rowHeight);
 
-                // € kolom links - als icoon (toevoegen na DataSource)
-                var euroIconPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50.png");
-                Image euroIcon = File.Exists(euroIconPath) ? Image.FromFile(euroIconPath) : null;
+                item.EuroClicked += NieuweAankoopItem_EuroClicked;
 
-                var colEuro = new DataGridViewImageColumn
-                {
-                    Name = "colEuro",
-                    HeaderText = "",
-                    Width = 40,
-                    ReadOnly = true,
-                    ImageLayout = DataGridViewImageCellLayout.Zoom
-                };
-                if (euroIcon != null)
-                {
-                    colEuro.Image = euroIcon;
-                }
-                dgvAanvragen.Columns.Insert(0, colEuro);
+                pnlAanvragen.Controls.Add(item);
 
-                // Kolomnamen en zichtbaarheid
-                dgvAanvragen.Columns["Id"].Visible = false;
-                dgvAanvragen.Columns["Omschrijving"].HeaderText = "Omschrijving";
-                dgvAanvragen.Columns["Aanvrager"].HeaderText = "Aanvrager";
-                dgvAanvragen.Columns["StatusAanvraag"].HeaderText = "Status aanvraag";
-                dgvAanvragen.Columns["Financieringsjaar"].HeaderText = "Financieringsjaar";
-                dgvAanvragen.Columns["Richtperiode"].HeaderText = "Richtperiode";
+                yPos += rowHeight;
+                n++;
+            }
+
+            pnlAanvragen.ResumeLayout();
+        }
+
+        // resize handler
+        private void pnlAanvragen_Resize(object sender, EventArgs e)
+        {
+            foreach (NieuweAankoopItem item in pnlAanvragen.Controls)
+            {
+                item.Width = pnlAanvragen.ClientSize.Width;
             }
         }
 
-        private void dgvAanvragen_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Negeer klik op rijheader of kolomheader (ColumnIndex of RowIndex is -1)
-            if (e.RowIndex < 0 || e.ColumnIndex < 0 || _bekrachtigdeAanvragen == null) return;
 
-            // Alleen reageren op klik op de € kolom
-            if (dgvAanvragen.Columns[e.ColumnIndex].Name == "colEuro")
+
+
+        private void NieuweAankoopItem_EuroClicked(object sender, EventArgs e)
+        {
+            var item = (NieuweAankoopItem)sender;
+            var aanvraag = _bekrachtigdeAanvragen?.FirstOrDefault(a => a.Id == item.AanvraagId);
+            if (aanvraag != null)
             {
-                VoegAanvraagToeAanAankopen(e.RowIndex);
+                VoegAanvraagToeAanAankopen(aanvraag);
             }
         }
 
-        private void VoegAanvraagToeAanAankopen(int rowIndex)
+        private void VoegAanvraagToeAanAankopen(Aanvraag aanvraag)
         {
-            if (_bekrachtigdeAanvragen == null || rowIndex < 0 || rowIndex >= _bekrachtigdeAanvragen.Count)
-                return;
-
-            var aanvraag = _bekrachtigdeAanvragen[rowIndex];
-
             try
             {
                 var aankoop = new Aankoop
@@ -109,25 +119,23 @@ namespace MiaClient
 
                 AankoopManager.CreateAankoop(aankoop);
 
-                // Refresh beide lijsten
                 LaadBekrachtigdeAanvragen();
                 AankoopToegevoegd?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Fout bij toevoegen aankoop", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    ex.Message,
+                    "Fout bij toevoegen aankoop",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
-
 
         public void CreateUI()
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
-
-            // Rijnummers zichtbaar maken in de DataGridView
-            dgvAanvragen.RowHeadersVisible = true;
-            dgvAanvragen.RowHeadersDefaultCellStyle.BackColor = SystemColors.Control;
-            dgvAanvragen.RowHeadersDefaultCellStyle.ForeColor = SystemColors.ControlText;
 
             foreach (var btn in this.Controls.OfType<Button>())
             {
@@ -143,7 +151,5 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-
-  
     }
 }

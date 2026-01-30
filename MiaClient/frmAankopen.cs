@@ -62,7 +62,8 @@ namespace MiaClient
                 frmNieuweAankoop.AankoopToegevoegd += frmNieuweAankoop_AankoopToegevoegd;
             }
 
-            // Form tonen
+            // Form tonen en altijd de nieuwste data laden
+            frmNieuweAankoop.RefreshBekrachtigdeAanvragen();
             frmNieuweAankoop.Show();
             frmNieuweAankoop.BringToFront();
         }
