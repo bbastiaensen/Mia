@@ -157,7 +157,7 @@ namespace MiaClient
 
             try
             {
-                // Probeer verwijderen
+                // Probeer verwijderenn
                 AfdelingenManager.DeleteAfdeling(a);
                 MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
