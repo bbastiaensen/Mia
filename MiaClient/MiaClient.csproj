@@ -133,6 +133,12 @@
     <Compile Include="frmBeheerKostenplaatsen.Designer.cs">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBeheerLanden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerLanden.Designer.cs">
+      <DependentUpon>frmBeheerLanden.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBeheerLeveranciers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerKostenplaatsen.resx">
       <DependentUpon>frmBeheerKostenplaatsen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerLanden.resx">
+      <DependentUpon>frmBeheerLanden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerLeveranciers.resx">
       <DependentUpon>frmBeheerLeveranciers.cs</DependentUpon>

@@ -8,7 +8,7 @@ namespace MiaLogic.Object
 {
     public class Land
     {
-        public int Id { get; set; }
+        public  int Id { get; set; }
         public string Naam { get; set; }
     }
 }

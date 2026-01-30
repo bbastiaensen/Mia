@@ -43,6 +43,7 @@ namespace MiaClient
         public event EventHandler AanvraagBewaard;
         public event EventHandler AankopersChanged;
         public event EventHandler FinancieringTypeChanged;
+        public event EventHandler DienstenChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
@@ -74,6 +75,9 @@ namespace MiaClient
 
             SetFormStatus(false);
             GetParam();
+
+            ///kijk hie is naar thomas
+            HookEvents();
 
         }
 
@@ -1064,7 +1068,7 @@ namespace MiaClient
             ddlDisabler();
             TriggerAankoperEvent();
             TriggerInvesteringsEvent();
-
+            TriggerDienstEvent();
             TriggerFinancieringsTypeEvent();
             TriggerAfdelingEvent();
         }
@@ -1494,7 +1498,53 @@ namespace MiaClient
         {
             RefreshInvesteringsTypeDropdown();
 
+
+        }
+        public void RefreshDienstDropdown()
+        {
+
+            int? geselecteerdeId = ddlDienst.SelectedValue as int?;
+
+            var nieuweDienst = DienstenManager.GetActiveDiensten();
+
+            ddlDienst.DataSource = null;
+            ddlDienst.DisplayMember = "Naam";
+            ddlDienst.ValueMember = "Id";
+            ddlDienst.DataSource = nieuweDienst;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweDienst.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlDienst.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlDienst.SelectedIndex = -1;
+            }
+        }
+        public void FrmBeheerDiensten_DienstenChanged(object sender, EventArgs e)
+        {
+            RefreshDienstDropdown();
+
+
+        }
+         public void TriggerDienstEvent()
+        {
+            if (AppForms.frmBeheerDiensten != null)
+            {
+                AppForms.frmBeheerDiensten.DienstenChanged += FrmBeheerDiensten_DienstenChanged;
+            }
         }
 
-}
+        //kijk nog is thomas 
+        private void HookEvents()
+        {
+            if (AppForms.frmBeheerFinancieringsType != null)
+            {
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged -= frmBeheerFinancieringsType_financieringTypeChanged;
+                AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
+            }
+        }
+
+    }
 }

@@ -52,7 +52,7 @@
     <Compile Include="Manager\GebruiksLogManager.cs" />
     <Compile Include="Manager\InvesteringenManager.cs" />
     <Compile Include="Manager\KostenplaatsManager.cs" />
-    <Compile Include="Manager\LeverancierManager.cs" />
+    <Compile Include="Manager\LandenManager.cs" />
     <Compile Include="Manager\LinkManager.cs" />
     <Compile Include="Manager\OfferteManager.cs" />
     <Compile Include="Manager\ParameterManager.cs" />
@@ -72,11 +72,9 @@
     <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
-    <Compile Include="Object\Gemeente.cs" />
     <Compile Include="Object\Investering.cs" />
     <Compile Include="Object\Kostenplaats.cs" />
     <Compile Include="Object\Land.cs" />
-    <Compile Include="Object\leverancier.cs" />
     <Compile Include="Object\Link.cs" />
     <Compile Include="Object\Offerte.cs" />
     <Compile Include="Object\Parameter.cs" />
