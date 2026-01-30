@@ -169,6 +169,7 @@ namespace MiaClient
             ddlInvestering.SelectedItem = null;
             ddlStatus.SelectedIndex = 0;
             ddlStatus.Enabled = false;
+            txtExtraBudget.Text = "0,00";
             //Bijlagen
             LeegLinken();
             LeegFoto();
@@ -223,7 +224,8 @@ namespace MiaClient
                 ddlRichtperiode.Enabled = true;
                 txtGoedgekeurdeBedrag.Text = aanvraag.BudgetToegekend.ToString();
                 txtGoedgekeurdeBedrag.ReadOnly = false;
-                
+                txtExtraBudget.Text = aanvraag.ExtraBudget.ToString();
+
             }
         }
 
@@ -1545,6 +1547,5 @@ namespace MiaClient
                 AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
             }
         }
-
     }
 }
