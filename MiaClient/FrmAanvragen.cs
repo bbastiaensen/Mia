@@ -865,8 +865,9 @@ namespace MiaClient
 
                     if (a.Aanvraagmoment != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 3].Value = a.Aanvraagmoment.Date;
-                        worksheet.Cells[row, 3].NumberFormat = "dd/mm/yyyy";
+                        worksheet.Cells[row, 3].NumberFormat = "@";
+                        worksheet.Cells[row, 3].Value = a.Aanvraagmoment.ToString("dd/MM/yyyy", new CultureInfo("nl-BE")); ;
+                        
                     }
                     else
                     {
@@ -896,8 +897,8 @@ namespace MiaClient
                     
                     if (a.Planningsdatum != DateTime.MinValue)
                     {
-                        worksheet.Cells[row, 10].Value = a.Planningsdatum.Date;
-                        worksheet.Cells[row, 10].NumberFormat = "dd/mm/yyyy";
+                        worksheet.Cells[row, 10].NumberFormat = "@";
+                        worksheet.Cells[row, 10].Value = a.Planningsdatum.ToString("dd/MM/yyyy", new CultureInfo("nl-BE"));
                     }
                     else
                     {
