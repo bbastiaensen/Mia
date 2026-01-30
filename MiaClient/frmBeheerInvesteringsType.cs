@@ -29,10 +29,10 @@ namespace MiaClient
             e.Cancel = true;
             ((Form)sender).Hide();
 
-            if (AppForms.frmBeheerInvesteringsType == this)
-            {
-                AppForms.frmBeheerInvesteringsType = null;
-            }
+            //if (AppForms.frmBeheerInvesteringsType == this)
+            //{
+            //    AppForms.frmBeheerInvesteringsType = null;
+            //}
         }
 
         private void frmBeheerInvesteringsType_Load(object sender, EventArgs e)
