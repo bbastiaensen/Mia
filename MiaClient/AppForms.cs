@@ -24,5 +24,7 @@ namespace MiaClient
         public static frmSaldoOverzetten frmSaldoOverzetten { get; set; }
 
         public static int? LastActiveAfdelingId { get; set; }
+
+        public static frmBeheerDiensten frmBeheerDiensten { get; set; }
     }
 }
