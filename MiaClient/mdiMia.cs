@@ -42,6 +42,7 @@ namespace MiaClient
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
         frmPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
+        frmBeheerGemeente frmBeheerGemeente;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -649,6 +650,16 @@ namespace MiaClient
                 frmBeheerLanden.MdiParent = this;
             }
             frmBeheerLanden.Show();
+        }
+
+        private void gemeenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerGemeente == null)
+            {
+                frmBeheerGemeente = new frmBeheerGemeente();
+                frmBeheerGemeente.MdiParent = this;
+            }
+            frmBeheerGemeente.Show();
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Manager\FotoManager.cs" />
     <Compile Include="Manager\GebruikerManager.cs" />
     <Compile Include="Manager\GebruiksLogManager.cs" />
+    <Compile Include="Manager\GemeenteManager.cs" />
     <Compile Include="Manager\InvesteringenManager.cs" />
     <Compile Include="Manager\KostenplaatsManager.cs" />
     <Compile Include="Manager\LandenManager.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
+    <Compile Include="Object\Gemeente.cs" />
     <Compile Include="Object\Investering.cs" />
     <Compile Include="Object\Kostenplaats.cs" />
     <Compile Include="Object\Land.cs" />

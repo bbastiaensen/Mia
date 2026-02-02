@@ -121,6 +121,12 @@
     <Compile Include="frmBeheerFinancieringsType.Designer.cs">
       <DependentUpon>frmBeheerFinancieringsType.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBeheerGemeente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBeheerGemeente.Designer.cs">
+      <DependentUpon>frmBeheerGemeente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBeheerInvesteringsType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerFinancieringsType.resx">
       <DependentUpon>frmBeheerFinancieringsType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBeheerGemeente.resx">
+      <DependentUpon>frmBeheerGemeente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBeheerInvesteringsType.resx">
       <DependentUpon>frmBeheerInvesteringsType.cs</DependentUpon>

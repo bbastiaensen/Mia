@@ -53,6 +53,7 @@
             this.kostenplaatsenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.landenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -74,7 +75,7 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.landenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gemeenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -197,7 +198,8 @@
             this.kostenplaatsenToolStripMenuItem,
             this.parametersToolStripMenuItem,
             this.prioriteitToolStripMenuItem,
-            this.landenToolStripMenuItem});
+            this.landenToolStripMenuItem,
+            this.gemeenteToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
             this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
             this.beheerToolStripMenuItem.Text = "&Beheer";
@@ -280,6 +282,13 @@
             this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.prioriteitToolStripMenuItem.Text = "Prioriteit";
             this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
+            // 
+            // landenToolStripMenuItem
+            // 
+            this.landenToolStripMenuItem.Name = "landenToolStripMenuItem";
+            this.landenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.landenToolStripMenuItem.Text = "Landen";
+            this.landenToolStripMenuItem.Click += new System.EventHandler(this.landenToolStripMenuItem_Click);
             // 
             // helpMenu
             // 
@@ -463,12 +472,12 @@
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
-            // landenToolStripMenuItem
+            // gemeenteToolStripMenuItem
             // 
-            this.landenToolStripMenuItem.Name = "landenToolStripMenuItem";
-            this.landenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
-            this.landenToolStripMenuItem.Text = "Landen";
-            this.landenToolStripMenuItem.Click += new System.EventHandler(this.landenToolStripMenuItem_Click);
+            this.gemeenteToolStripMenuItem.Name = "gemeenteToolStripMenuItem";
+            this.gemeenteToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.gemeenteToolStripMenuItem.Text = "Gemeente";
+            this.gemeenteToolStripMenuItem.Click += new System.EventHandler(this.gemeenteToolStripMenuItem_Click);
             // 
             // mdiMia
             // 
@@ -544,6 +553,7 @@
         private System.Windows.Forms.ToolStripMenuItem financieringsTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prioriteitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem landenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gemeenteToolStripMenuItem;
     }
 }
 
