@@ -1,4 +1,4 @@
-using MiaLogic.Manager;
+﻿using MiaLogic.Manager;
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace MiaClient
 {
@@ -56,9 +57,22 @@ namespace MiaClient
         Image imgDiensten;
         Image imgKostenplaats;
 
+
+
+        private const int GWL_STYLE = -16;
+        private const int WS_HSCROLL = 0x00100000;
+        private const int WS_VSCROLL = 0x00200000;
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+
         public mdiMia()
         {
-          
+
             try
             {
                 GetRollen();
@@ -76,7 +90,7 @@ namespace MiaClient
             {
                 ErrorHandler("Laden van grafische parameters", ex, "mdiMia");
             }
-       
+
             this.DoubleBuffered = true;
         }
 
@@ -84,12 +98,20 @@ namespace MiaClient
         {
             MessageBox.Show($"Error: {customMessage} - {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
- 
+
         protected override void OnResize(EventArgs e)
         {
+            //base.OnResize(e);
+
+            //mdiClient?.Invalidate();
             base.OnResize(e);
-           
-            mdiClient?.Invalidate();
+
+            if (mdiClient != null)
+            {
+
+
+                mdiClient.Invalidate();
+            }
         }
 
 
@@ -151,17 +173,42 @@ namespace MiaClient
 
         private void MdiClient_Paint(object sender, PaintEventArgs e)
         {
-            if (StyleParameters.LogoG == null)
-                return;
+            var client = (MdiClient)sender;
 
-            Image logo = StyleParameters.LogoG;
-            MdiClient client = (MdiClient)sender;
+            int x = (client.ClientSize.Width - StyleParameters.LogoG.Width) / 2;
+            int y = (client.ClientSize.Height - StyleParameters.LogoG.Height) / 2;
 
-            int x = (client.ClientSize.Width - logo.Width) / 2;
-            int y = (client.ClientSize.Height - logo.Height) / 2;
+            e.Graphics.DrawImage(StyleParameters.LogoG, x, y);
+            //if (StyleParameters.LogoG == null)
+            //    return;
 
-            e.Graphics.DrawImage(logo, x, y);
+            //Image logo = StyleParameters.LogoG;
+            //MdiClient client = (MdiClient)sender;
+
+            //int x = (client.ClientSize.Width - logo.Width) / 2;
+            //int y = (client.ClientSize.Height - logo.Height) / 2;
+
+            //e.Graphics.DrawImage(logo, x, y);
+
         }
+        private void DisableScrollBars(MdiClient client)
+        {
+            const int GWL_STYLE = -16;
+            const int WS_HSCROLL = 0x00100000;
+            const int WS_VSCROLL = 0x00200000;
+
+            if (client == null || !client.IsHandleCreated) return;
+
+            int style = GetWindowLong(client.Handle, GWL_STYLE);
+            style &= ~WS_HSCROLL;
+            style &= ~WS_VSCROLL;
+            SetWindowLong(client.Handle, GWL_STYLE, style);
+
+            // Forceer hertekenen
+            //client.Invalidate();
+        }
+
+
         public void CreateUI()
         {
             this.BackColor = StyleParameters.Achtergrondkleur;
@@ -172,19 +219,99 @@ namespace MiaClient
 
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
-
-         
-
             foreach (Control c in this.Controls)
             {
                 if (c is MdiClient client)
                 {
                     mdiClient = client;
                     mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+                    typeof(MdiClient)
+                        .GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+                        ?.SetValue(mdiClient, true, null);
+
+                    // Forceer permanent geen scrollbars
+                    int style = GetWindowLong(client.Handle, GWL_STYLE);
+                    style &= ~WS_HSCROLL; // horizontale scrollbar uit
+                    style &= ~WS_VSCROLL; // verticale scrollbar uit
+                    SetWindowLong(client.Handle, GWL_STYLE, style);
+
+                    // Paint event
                     mdiClient.Paint += MdiClient_Paint;
-                    mdiClient.Resize += (s, e) => mdiClient.Invalidate();
+
+                    // Herhaal bij resize zodat scrollbars nooit terugkomen
+                    mdiClient.Resize += (s, e) =>
+                    {
+                        int s2 = GetWindowLong(client.Handle, GWL_STYLE);
+                        s2 &= ~WS_HSCROLL;
+                        s2 &= ~WS_VSCROLL;
+                        SetWindowLong(client.Handle, GWL_STYLE, s2);
+                        mdiClient.Invalidate();
+                    };
                 }
             }
+
+            //            foreach (Control c in this.Controls)
+            //            {
+            //                if (c is MdiClient client)
+            //                {
+            //                    mdiClient = client;
+            //mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+            //mdiClient.Paint += MdiClient_Paint;
+
+            //// meteen scrollbars uitschakelen
+            //DisableScrollBars(mdiClient);
+
+            //// opnieuw uitschakelen bij resize/handle created
+            //mdiClient.SizeChanged += (s, e) => DisableScrollBars(mdiClient);
+            //mdiClient.Resize += (s, e) => DisableScrollBars(mdiClient);
+            //mdiClient.HandleCreated += (s, e) => DisableScrollBars(mdiClient);
+            //                    //mdiClient = client;
+            //                    //mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+            //                    //mdiClient.Paint += MdiClient_Paint;
+
+            //                    //int style = GetWindowLong(client.Handle, GWL_STYLE);
+            //                    //style &= ~WS_HSCROLL;
+            //                    //style &= ~WS_VSCROLL;
+            //                    ////SetWindowLong(client.Handle, GWL_STYLE, style);
+            //                    //mdiClient.SizeChanged += (s, e) => DisableScrollBars(mdiClient);
+            //                    //mdiClient.Resize += (s, e) => DisableScrollBars(mdiClient);
+            //                    //mdiClient.HandleCreated += (s, e) => DisableScrollBars(mdiClient);
+            //                }
+            //            }
+
+            typeof(MdiClient)
+                .GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+                ?.SetValue(mdiClient, true, null);
+
+            mdiClient.SizeChanged += (s, e) => mdiClient.Invalidate();
+            mdiClient.Resize += (s, e) => mdiClient.Invalidate();
+            //        foreach (Control c in this.Controls)
+            //        {
+            //            if (c is MdiClient client)
+            //            {
+            //                mdiClient = client;
+            //                mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+            //                mdiClient.Paint += MdiClient_Paint;
+            //                //mdiClient.Resize += (s, e) => mdiClient.Invalidate();
+            //                mdiClient = client;
+            //                mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+
+            //                int style = GetWindowLong(client.Handle, GWL_STYLE);
+            //                style &= ~WS_HSCROLL;
+            //                style &= ~WS_VSCROLL;
+
+            //                //SetWindowLong(client.Handle, GWL_STYLE, style);
+
+            //                mdiClient.Paint += MdiClient_Paint;
+            //               //mdiClient.Resize += (s, e) => mdiClient.Invalidate();
+            //            }
+            //        }
+            //        typeof(MdiClient)
+            //.GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+            //?.SetValue(mdiClient, true, null);
+
+
+
 
             helpMenu.DropDown.BackColor = StyleParameters.AccentKleur;
             helpMenu.DropDown.ForeColor = StyleParameters.Buttontext;
@@ -226,6 +353,9 @@ namespace MiaClient
             afdelingToolStripButton.Image = imgAfdelingen;
             dienstToolStripButton.Image = imgDiensten;
             kostenplaatsToolStripButton.Image = imgKostenplaats;
+            mdiClient.SizeChanged += (s, e) => mdiClient.Invalidate();
+            mdiClient.Resize += (s, e) => mdiClient.Invalidate();
+
         }
         private void MenubalkSamenstellen()
         {
@@ -405,10 +535,26 @@ namespace MiaClient
 
         }
 
+
+
+        private void mdiMia_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (ActiveMdiChild == null)
+                return;
+
+            Form child = ActiveMdiChild;
+
+            child.StartPosition = FormStartPosition.Manual;
+
+
+        }
+
+
         private void mdiMia_Load(object sender, EventArgs e)
         {
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
+            this.MdiChildActivate += mdiMia_MdiChildActivate;
 
             MenubalkSamenstellen();
             CreateUI();
@@ -679,6 +825,50 @@ namespace MiaClient
             }
             frmBeheerLanden.Show();
         }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_EXITSIZEMOVE = 0x0232;
+
+            base.WndProc(ref m);
+
+            if (m.Msg == WM_EXITSIZEMOVE)
+            {
+                foreach (Form child in this.MdiChildren)
+                {
+                    ClampToMdiBounds(child);
+                }
+            }
+        }
+        private void ClampToMdiBounds(Form child)
+        {
+            if (child == null)
+                return;
+
+            if (child.MdiParent == null)
+                return;
+
+            var mdiClient = child.MdiParent
+                .Controls
+                .OfType<MdiClient>()
+                .FirstOrDefault();
+
+            if (mdiClient == null)
+                return;
+
+            int x = Math.Max(0, Math.Min(child.Left, mdiClient.ClientSize.Width - child.Width));
+            int y = Math.Max(0, Math.Min(child.Top, mdiClient.ClientSize.Height - child.Height));
+
+            child.Location = new Point(x, y);
+        }
+
     }
-}
+  
+
+
+    }
+
+
+
+
 

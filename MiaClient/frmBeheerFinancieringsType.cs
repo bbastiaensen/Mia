@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace MiaClient
 {
     public partial class frmBeheerFinancieringsType : Form
@@ -53,6 +55,8 @@ namespace MiaClient
           
 
         }
+       
+        
 
         private void CreateUI()
         {
