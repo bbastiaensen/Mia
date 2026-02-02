@@ -726,16 +726,12 @@ namespace MiaClient
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
-            // Excel export functionality - to be implemented in User Story #279
-            MessageBox.Show("Excel export functionaliteit wordt uitgewerkt in User Story #279", 
-                "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Add purchase functionality - to be implemented in User Story #278
-            MessageBox.Show("Aankoop toevoegen functionaliteit wordt uitgewerkt in User Story #278", 
-                "Aankoop toevoegen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
         private void btnSortSatusaanvraag_Click(object sender, EventArgs e)

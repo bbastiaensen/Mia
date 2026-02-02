@@ -28,7 +28,8 @@ namespace MiaClient.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AankopenItem));
+        
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkItem));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblOmschrijving = new System.Windows.Forms.Label();
@@ -66,7 +67,10 @@ namespace MiaClient.UserControls
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-       
+            //this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+           
+
+
             this.btnDelete.Location = new System.Drawing.Point(33, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(27, 27);

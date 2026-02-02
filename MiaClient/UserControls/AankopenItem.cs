@@ -18,7 +18,9 @@ namespace MiaClient.UserControls
         private ToolTip _toolTip = new ToolTip();
 
         public event EventHandler AankoopDeleted;
+
         public event EventHandler AankoopItemSelected;
+
         public event EventHandler AankoopItemChanged;
 
         public AankopenItem()
@@ -118,7 +120,6 @@ namespace MiaClient.UserControls
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Het u zeker dat deze aankoop wilt verwijderen", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (AankoopItemSelected != null)
             {
                 AankoopItemSelected(this, null);
@@ -127,15 +128,18 @@ namespace MiaClient.UserControls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Ben je zeker dat je deze parameter wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                if (AankoopDeleted != null)
-                {
-                    AankoopDeleted(this, null);
-                }
+           
+
+           
+                    if (AankoopDeleted != null)
+                    {
+                        AankoopDeleted(this, null);
+                    }
+
+                    
             }
 
            
         }
     }
-}
+
