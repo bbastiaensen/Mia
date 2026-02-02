@@ -18,8 +18,10 @@ namespace MiaClient
         public frmNieuweAankoop()
         {
             InitializeComponent();
-            pnlAanvragen.Resize += pnlAanvragen_Resize;
-            pnlAanvragen.AutoScrollMinSize = System.Drawing.Size.Empty;
+
+            pnlAanvragen.AutoScroll = true;
+            pnlAanvragen.HorizontalScroll.Enabled = false;
+            pnlAanvragen.HorizontalScroll.Visible = false;
 
             pnlAanvragen.Resize += pnlAanvragen_Resize;
         }
@@ -29,6 +31,18 @@ namespace MiaClient
             CreateUI();
             LaadBekrachtigdeAanvragen();
         }
+        public void LaadtAanvraag(Aanvraag aanvraag)
+        {
+            if (aanvraag == null) return;
+
+            // ⬇️ VERVANG door jouw echte controls
+            lblOmschrijving.Text = aanvraag.Omschrijving;
+            lblAanvrager.Text = aanvraag.Gebruiker;
+            lblFinancieringsjaar.Text = aanvraag.Financieringsjaar;
+            lblRichtperiode.Text = aanvraag.RichtperiodeNaam;
+            lblStatusAanvraag.Text = aanvraag.StatusAanvraag;
+        }
+
 
         public void RefreshBekrachtigdeAanvragen()
         {
@@ -37,11 +51,12 @@ namespace MiaClient
 
         private void LaadBekrachtigdeAanvragen()
         {
-            _bekrachtigdeAanvragen = AanvraagManager.GetBekrachtigdeAanvragenZonderAankoop();
+            _bekrachtigdeAanvragen =
+                AanvraagManager.GetBekrachtigdeAanvragenZonderAankoop();
+
             BindAanvragen(_bekrachtigdeAanvragen);
         }
 
-        // Bind items
         public void BindAanvragen(List<Aanvraag> items)
         {
             pnlAanvragen.SuspendLayout();
@@ -50,25 +65,19 @@ namespace MiaClient
             if (items == null) return;
 
             int yPos = 0;
-            int rowHeight = 23; // zelfde hoogte als header
+            int rowHeight = 33;
             int n = 0;
 
-            foreach (var av in items)
+            foreach (var aanvraag in items)
             {
                 var item = new NieuweAankoopItem(
-                    av.Id,
-                    av.Omschrijving,
-                    av.Gebruiker,
-                    av.StatusAanvraag,
-                    av.Financieringsjaar,
-                    av.RichtperiodeNaam,
+                    aanvraag,
                     n % 2 == 0
                 );
 
                 item.Location = new Point(0, yPos);
                 item.Width = pnlAanvragen.ClientSize.Width;
                 item.Height = rowHeight;
-                item.AdjustLabelHeights(rowHeight);
 
                 item.EuroClicked += NieuweAankoopItem_EuroClicked;
 
@@ -81,7 +90,6 @@ namespace MiaClient
             pnlAanvragen.ResumeLayout();
         }
 
-        // resize handler
         private void pnlAanvragen_Resize(object sender, EventArgs e)
         {
             foreach (NieuweAankoopItem item in pnlAanvragen.Controls)
@@ -90,16 +98,13 @@ namespace MiaClient
             }
         }
 
-
-
-
         private void NieuweAankoopItem_EuroClicked(object sender, EventArgs e)
         {
             var item = (NieuweAankoopItem)sender;
-            var aanvraag = _bekrachtigdeAanvragen?.FirstOrDefault(a => a.Id == item.AanvraagId);
-            if (aanvraag != null)
+
+            if (item.Aanvraag != null)
             {
-                VoegAanvraagToeAanAankopen(aanvraag);
+                VoegAanvraagToeAanAankopen(item.Aanvraag);
             }
         }
 
@@ -149,7 +154,7 @@ namespace MiaClient
         private void frmNieuweAankoop_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            ((Form)sender).Hide();
+            Hide();
         }
     }
 }

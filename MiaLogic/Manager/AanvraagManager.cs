@@ -2522,6 +2522,45 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
+        private static Aanvraag MapAanvraag(SqlDataReader r)
+        {
+            return new Aanvraag
+            {
+                Id = r.GetInt32(r.GetOrdinal("Id")),
+                Omschrijving = r["Omschrijving"]?.ToString() ?? "",
+                Gebruiker = r["Gebruiker"]?.ToString() ?? "",
+                StatusAanvraag = r["StatusAanvraag"]?.ToString() ?? "",
+                Financieringsjaar = r["Financieringsjaar"]?.ToString() ?? "",
+                RichtperiodeNaam = r["RichtperiodeNaam"]?.ToString() ?? ""
+            };
+        }
+
+
+        public static List<Aanvraag> GetAanvragenMetAankoop()
+        {
+            var list = new List<Aanvraag>();
+
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            {
+                string sql = @"
+            SELECT DISTINCT a.*
+            FROM Aanvraag a
+            INNER JOIN Aankoop ak ON ak.AanvraagId = a.Id";
+
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cn.Open();
+
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    while (r.Read())
+                    {
+                        list.Add(MapAanvraag(r));
+                    }
+                }
+            }
+            return list;
+        }
+
 
         public static decimal GetTotaalPrijsPerRichtperiodeEnFinancieringsjaar(int richtperiodeId, string financieringsjaar)
         {

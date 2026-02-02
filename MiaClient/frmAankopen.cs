@@ -70,10 +70,20 @@ namespace MiaClient
 
         private void frmNieuweAankoop_AankoopToegevoegd(object sender, EventArgs e)
         {
-            // Refresh de lijst met aankopen in frmAankopen
             try
             {
-                aanvragen = FilteredAanvraagItems(AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(), filterPlanningsdatumVan, filterPlanningsdatumTot, filterGebruiker, filterTitel, filterBedragVan, filterBedragTot, SortJaar, RSort);
+                aanvragen = FilteredAanvraagItems(
+                    AanvraagManager.Aanvraag_sort_sorteertvologorde_asc(),
+                    filterPlanningsdatumVan,
+                    filterPlanningsdatumTot,
+                    filterGebruiker,
+                    filterTitel,
+                    filterBedragVan,
+                    filterBedragTot,
+                    SortJaar,
+                    RSort
+                );
+
                 huidigePage = 1;
                 StartPaging();
             }
@@ -82,6 +92,7 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         public frmAankopen()
         {
@@ -646,6 +657,11 @@ namespace MiaClient
                 EnableLastNext(false);
             }
             EnableFirstPrevious(false);
+        }
+
+        private void pnlAanvragen_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

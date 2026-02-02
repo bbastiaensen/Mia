@@ -272,6 +272,7 @@
             this.pnlAanvragen.Name = "pnlAanvragen";
             this.pnlAanvragen.Size = new System.Drawing.Size(1043, 339);
             this.pnlAanvragen.TabIndex = 2;
+            this.pnlAanvragen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAanvragen_Paint);
             // 
             // lblPages
             // 

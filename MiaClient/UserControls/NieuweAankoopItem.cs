@@ -3,17 +3,15 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MiaLogic.Object;
 
 namespace MiaClient.UserControls
 {
     public partial class NieuweAankoopItem : UserControl
     {
-        public int AanvraagId { get; set; }
-        public string Omschrijving { get; set; }
-        public string Aanvrager { get; set; }
-        public string StatusAanvraag { get; set; }
-        public string Financieringsjaar { get; set; }
-        public string Richtperiode { get; set; }
+        // 👉 Belangrijk: volledige Aanvraag bewaren
+        public Aanvraag Aanvraag { get; set; }
+
         public bool Even { get; set; }
 
         public event EventHandler EuroClicked;
@@ -21,82 +19,93 @@ namespace MiaClient.UserControls
         public NieuweAankoopItem()
         {
             InitializeComponent();
+            SetupLabels();
         }
 
-        public NieuweAankoopItem(int aanvraagId, string omschrijving, string aanvrager, string statusAanvraag, string financieringsjaar, string richtperiode, bool even)
+        public NieuweAankoopItem(
+            Aanvraag aanvraag,
+            bool even)
         {
             InitializeComponent();
-            AanvraagId = aanvraagId;
-            Aanvrager = aanvrager ?? "";
-            StatusAanvraag = statusAanvraag ?? "";
-            Financieringsjaar = financieringsjaar ?? "";
-            Omschrijving = omschrijving ?? "";
-            Richtperiode = richtperiode ?? "";
+
+            Aanvraag = aanvraag;
             Even = even;
+
+            SetupLabels();
             SetItemValue();
             LoadEuroIcon();
         }
-        public void AdjustLabelHeights(int height)
+
+        private void SetupLabels()
         {
-            lblOmschrijving.Height = height;
-            lblAanvrager.Height = height;
-            lblStatusAanvraag.Height = height;
-            lblFinancieringsjaar.Height = height;
-            lblRichtperiode.Height = height;
+            lblOmschrijving.AutoSize = false;
+            lblOmschrijving.AutoEllipsis = true;
 
-            // Optioneel: centreren van de tekst verticaal
-            lblOmschrijving.TextAlign = ContentAlignment.MiddleLeft;
-            lblAanvrager.TextAlign = ContentAlignment.MiddleLeft;
-            lblStatusAanvraag.TextAlign = ContentAlignment.MiddleLeft;
-            lblFinancieringsjaar.TextAlign = ContentAlignment.MiddleLeft;
-            lblRichtperiode.TextAlign = ContentAlignment.MiddleLeft;
-        }
+            lblAanvrager.AutoSize = false;
+            lblAanvrager.AutoEllipsis = true;
 
-        private void LoadEuroIcon()
-        {
-            var euroIconPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-euro-50.png");
-            if (File.Exists(euroIconPath))
-            {
-                btnEuro.Image = Image.FromFile(euroIconPath);
-                btnEuro.ImageAlign = ContentAlignment.MiddleCenter;
-            }
-            else
-            {
-                btnEuro.Text = "€";
-            }
-            btnEuro.Size = new Size(20, 20);
-            btnEuro.ImageAlign = ContentAlignment.MiddleCenter;
-            btnEuro.Text = "";
+            lblStatusAanvraag.AutoSize = false;
+            lblStatusAanvraag.AutoEllipsis = true;
 
+            lblFinancieringsjaar.AutoSize = false;
+            lblFinancieringsjaar.AutoEllipsis = true;
+
+            lblRichtperiode.AutoSize = false;
+            lblRichtperiode.AutoEllipsis = true;
         }
 
         private void SetItemValue()
         {
-            lblOmschrijving.Text = TruncateText(Omschrijving, 25);
-            lblAanvrager.Text = Aanvrager;
-            lblStatusAanvraag.Text = StatusAanvraag;
-            lblFinancieringsjaar.Text = Financieringsjaar;
-            lblRichtperiode.Text = Richtperiode;
+            if (Aanvraag == null) return;
 
-            if (Even)
+            lblOmschrijving.Text = Aanvraag.Omschrijving ?? "";
+            lblAanvrager.Text = Aanvraag.Gebruiker ?? "";
+            lblStatusAanvraag.Text = Aanvraag.StatusAanvraag ?? "";
+            lblFinancieringsjaar.Text = Aanvraag.Financieringsjaar ?? "";
+            lblRichtperiode.Text = Aanvraag.RichtperiodeNaam ?? "";
+
+            BackColor = Even
+                ? StyleParameters.ListItemColor
+                : StyleParameters.AltListItemColor;
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            int padding = 10;
+            int height = Height;
+
+            lblOmschrijving.SetBounds(49, 0, 150, height);
+            lblAanvrager.SetBounds(250, 0, 140, height);
+            lblStatusAanvraag.SetBounds(415, 0, 120, height);
+            lblFinancieringsjaar.SetBounds(615, 0, 120, height);
+            lblRichtperiode.SetBounds(800, 0, Math.Max(0, Width - 845 - padding), height);
+        }
+
+        private void LoadEuroIcon()
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "icons",
+                "icons8-euro-50.png"
+            );
+
+            if (File.Exists(path))
             {
-                this.BackColor = StyleParameters.ListItemColor;
+                using (var img = Image.FromFile(path))
+                    btnEuro.Image = new Bitmap(img, new Size(20, 20));
             }
             else
             {
-                this.BackColor = StyleParameters.AltListItemColor;
+                btnEuro.Text = "€";
+                btnEuro.Font = new Font("Segoe UI", 20, FontStyle.Bold);
             }
-        }
-
-        private static string TruncateText(string text, int maxLength)
-        {
-            if (string.IsNullOrEmpty(text)) return "";
-            if (text.Length <= maxLength) return text;
-            return text.Substring(0, maxLength - 3) + "...";
         }
 
         private void btnEuro_Click(object sender, EventArgs e)
         {
+            // 👉 altijd het item zelf doorgeven
             EuroClicked?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace MiaClient.UserControls
+namespace MiaClient.UserControls
 {
     partial class AankopenItem
     {
