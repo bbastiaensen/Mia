@@ -26,7 +26,7 @@ namespace MiaClient
         private void frmBeheerKostenplaatsen_FormClosing(object sender, FormClosingEventArgs e)
         {
             //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
-            //keren naast elkaar kan geopend worden.
+            //keren naast elkaar kan geopend worden..
             e.Cancel = true;
             ((Form)sender).Hide();
         }
