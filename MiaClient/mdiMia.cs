@@ -24,6 +24,8 @@ namespace MiaClient
     {
         private int childFormNumber = 0;
 
+        private MdiClient mdiClient;
+
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAanvraagFormulier frmAanvraagFormulier;
@@ -57,6 +59,7 @@ namespace MiaClient
 
         public mdiMia()
         {
+          
             try
             {
                 GetRollen();
@@ -74,12 +77,22 @@ namespace MiaClient
             {
                 ErrorHandler("Laden van grafische parameters", ex, "mdiMia");
             }
+       
+            this.DoubleBuffered = true;
         }
 
         private static void ErrorHandler(string customMessage, Exception ex, string location)
         {
             MessageBox.Show($"Error: {customMessage} - {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+ 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+           
+            mdiClient?.Invalidate();
+        }
+
 
         private string GetRollen()
         {
@@ -136,9 +149,23 @@ namespace MiaClient
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
             StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
+
+        private void MdiClient_Paint(object sender, PaintEventArgs e)
+        {
+            if (StyleParameters.LogoG == null)
+                return;
+
+            Image logo = StyleParameters.LogoG;
+            MdiClient client = (MdiClient)sender;
+
+            int x = (client.ClientSize.Width - logo.Width) / 2;
+            int y = (client.ClientSize.Height - logo.Height) / 2;
+
+            e.Graphics.DrawImage(logo, x, y);
+        }
         public void CreateUI()
         {
-
+            this.BackColor = StyleParameters.Achtergrondkleur;
             toolStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.ForeColor = StyleParameters.Buttontext;
@@ -147,14 +174,16 @@ namespace MiaClient
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
-            this.BackgroundImage = StyleParameters.LogoG;
-            this.BackgroundImageLayout = ImageLayout.Center;
+         
 
             foreach (Control c in this.Controls)
             {
-                if (c is MdiClient)
+                if (c is MdiClient client)
                 {
-                    c.BackColor = StyleParameters.Achtergrondkleur;
+                    mdiClient = client;
+                    mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+                    mdiClient.Paint += MdiClient_Paint;
+                    mdiClient.Resize += (s, e) => mdiClient.Invalidate();
                 }
             }
 
