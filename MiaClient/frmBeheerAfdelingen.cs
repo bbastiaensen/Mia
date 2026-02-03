@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace MiaClient
@@ -18,7 +19,7 @@ namespace MiaClient
         List<Afdeling> afdelingen;
         bool IsNew = false;
         public event EventHandler AfdelingChanged;
-
+        public static int? LastActiveAfdelingId { get; set; }
 
         public frmBeheerAfdelingen()
         {
@@ -59,11 +60,6 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
-
-            if (AppForms.frmbeheerAfdelingen == this)
-            {
-                AppForms.frmbeheerAfdelingen = null;
-            }
         }
 
         public void BindLstAfdelingen()
@@ -110,13 +106,21 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstAfdelingen.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNaam?.Text))
+            {
+                MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string naam = txtNaam.Text.Trim();
+
             Afdeling a = new Afdeling();
             a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
-            a.Naam = txtNaam.Text;
+            a.Naam = naam;
             if (checkActief.Checked)
             {
                 a.actief = true;
@@ -128,39 +132,50 @@ namespace MiaClient
 
 
             a.Id = AfdelingenManager.SaveAfdeling(a, IsNew);
+            if (a.actief)
+            {
+                LastActiveAfdelingId = a.Id;
+            }
             AfdelingChanged?.Invoke(this, EventArgs.Empty);
 
+        
+
             BindLstAfdelingen();
-            ClearFields();
-            LstAfdelingen.SelectedValue = a.Id;
             IsNew = false;
+            LstAfdelingen.SelectedValue = a.Id;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Afdeling a = new Afdeling();
-            a.Id = Convert.ToInt32(LstAfdelingen.SelectedValue);
-            a.Naam = txtNaam.Text;
-            if (checkActief.Checked)
+            Afdeling a = new Afdeling
             {
-                a.actief = true;
-            }
-            else
-            {
-                a.actief = false;
-            }
+                Id = Convert.ToInt32(LstAfdelingen.SelectedValue),
+                Naam = txtNaam.Text,
+                actief = checkActief.Checked
+            };
 
-            if (MessageBox.Show($"Bent u dat u {LstAfdelingen.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AfdelingenManager.DeleteAfdeling(a);
-                AfdelingChanged?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Deze afdeling kan niet verwijderd worden omdat er nog gekoppelde records zijn. De afdeling wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                a.actief = false;
+                AfdelingenManager.SaveAfdeling(a, false);
             }
 
+            AfdelingChanged?.Invoke(this, EventArgs.Empty);
             BindLstAfdelingen();
             ClearFields();
+            LstAfdelingen.SelectedValue = 0;
         }
+
     }
 }
