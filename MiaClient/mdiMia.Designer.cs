@@ -54,6 +54,7 @@
             this.parametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prioriteitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.landenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leverancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -75,7 +76,6 @@
             this.gebruiksLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.kostenplaatsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.parameterToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.leverancierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -94,15 +94,15 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(1564, 36);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(1173, 29);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
             // aanvragenToolStripMenuItem
             // 
             this.aanvragenToolStripMenuItem.Name = "aanvragenToolStripMenuItem";
-            this.aanvragenToolStripMenuItem.Size = new System.Drawing.Size(120, 32);
+            this.aanvragenToolStripMenuItem.Size = new System.Drawing.Size(97, 25);
             this.aanvragenToolStripMenuItem.Text = "&Aanvragen";
             this.aanvragenToolStripMenuItem.Click += new System.EventHandler(this.aanvragenToolStripMenuItem_Click);
             this.aanvragenToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -111,7 +111,7 @@
             // goedkeuringenToolStripMenuItem
             // 
             this.goedkeuringenToolStripMenuItem.Name = "goedkeuringenToolStripMenuItem";
-            this.goedkeuringenToolStripMenuItem.Size = new System.Drawing.Size(161, 32);
+            this.goedkeuringenToolStripMenuItem.Size = new System.Drawing.Size(129, 25);
             this.goedkeuringenToolStripMenuItem.Text = "Goedkeuringen";
             this.goedkeuringenToolStripMenuItem.Click += new System.EventHandler(this.goedkeuringenToolStripMenuItem_Click);
             // 
@@ -123,27 +123,27 @@
             this.geplandeAanvragenToolStripMenuItem,
             this.grafiekenToolStripMenuItem});
             this.overzichtenToolStripMenuItem.Name = "overzichtenToolStripMenuItem";
-            this.overzichtenToolStripMenuItem.Size = new System.Drawing.Size(130, 32);
+            this.overzichtenToolStripMenuItem.Size = new System.Drawing.Size(105, 25);
             this.overzichtenToolStripMenuItem.Text = "Overzichten";
             // 
             // budgetoverzichtToolStripMenuItem
             // 
             this.budgetoverzichtToolStripMenuItem.Name = "budgetoverzichtToolStripMenuItem";
-            this.budgetoverzichtToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
+            this.budgetoverzichtToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.budgetoverzichtToolStripMenuItem.Text = "Budgetspreiding";
             this.budgetoverzichtToolStripMenuItem.Click += new System.EventHandler(this.budgetoverzichtToolStripMenuItem_Click);
             // 
             // geweigerdeAanvragenToolStripMenuItem
             // 
             this.geweigerdeAanvragenToolStripMenuItem.Name = "geweigerdeAanvragenToolStripMenuItem";
-            this.geweigerdeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
+            this.geweigerdeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.geweigerdeAanvragenToolStripMenuItem.Text = "Geweigerde Aanvragen";
             this.geweigerdeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geweigerdeAanvragenToolStripMenuItem_Click);
             // 
             // geplandeAanvragenToolStripMenuItem
             // 
             this.geplandeAanvragenToolStripMenuItem.Name = "geplandeAanvragenToolStripMenuItem";
-            this.geplandeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
+            this.geplandeAanvragenToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.geplandeAanvragenToolStripMenuItem.Text = "Geplande Aankopen";
             this.geplandeAanvragenToolStripMenuItem.Click += new System.EventHandler(this.geplandeAanvragenToolStripMenuItem_Click);
             // 
@@ -154,34 +154,34 @@
             this.statusAanvragenToolStripMenuItem,
             this.evolutieBudgettenToolStripMenuItem});
             this.grafiekenToolStripMenuItem.Name = "grafiekenToolStripMenuItem";
-            this.grafiekenToolStripMenuItem.Size = new System.Drawing.Size(301, 32);
+            this.grafiekenToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.grafiekenToolStripMenuItem.Text = "Grafieken";
             // 
             // budgetSpreidingToolStripMenuItem
             // 
             this.budgetSpreidingToolStripMenuItem.Name = "budgetSpreidingToolStripMenuItem";
-            this.budgetSpreidingToolStripMenuItem.Size = new System.Drawing.Size(265, 32);
+            this.budgetSpreidingToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.budgetSpreidingToolStripMenuItem.Text = "Budgetspreiding";
             this.budgetSpreidingToolStripMenuItem.Click += new System.EventHandler(this.budgetSpreidingToolStripMenuItem_Click);
             // 
             // statusAanvragenToolStripMenuItem
             // 
             this.statusAanvragenToolStripMenuItem.Name = "statusAanvragenToolStripMenuItem";
-            this.statusAanvragenToolStripMenuItem.Size = new System.Drawing.Size(265, 32);
+            this.statusAanvragenToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.statusAanvragenToolStripMenuItem.Text = "Status aanvragen";
             this.statusAanvragenToolStripMenuItem.Click += new System.EventHandler(this.statusAanvragenToolStripMenuItem_Click);
             // 
             // evolutieBudgettenToolStripMenuItem
             // 
             this.evolutieBudgettenToolStripMenuItem.Name = "evolutieBudgettenToolStripMenuItem";
-            this.evolutieBudgettenToolStripMenuItem.Size = new System.Drawing.Size(265, 32);
+            this.evolutieBudgettenToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.evolutieBudgettenToolStripMenuItem.Text = "Evolutie budgetten";
             this.evolutieBudgettenToolStripMenuItem.Click += new System.EventHandler(this.evolutieBudgettenToolStripMenuItem_Click);
             // 
             // aankopenToolStripMenuItem
             // 
             this.aankopenToolStripMenuItem.Name = "aankopenToolStripMenuItem";
-            this.aankopenToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
+            this.aankopenToolStripMenuItem.Size = new System.Drawing.Size(92, 25);
             this.aankopenToolStripMenuItem.Text = "Aankopen";
             this.aankopenToolStripMenuItem.Click += new System.EventHandler(this.aankopenToolStripMenuItem_Click);
             // 
@@ -201,7 +201,7 @@
             this.landenToolStripMenuItem,
             this.leverancierToolStripMenuItem});
             this.beheerToolStripMenuItem.Name = "beheerToolStripMenuItem";
-            this.beheerToolStripMenuItem.Size = new System.Drawing.Size(85, 32);
+            this.beheerToolStripMenuItem.Size = new System.Drawing.Size(70, 25);
             this.beheerToolStripMenuItem.Text = "&Beheer";
             this.beheerToolStripMenuItem.Click += new System.EventHandler(this.beheerToolStripMenuItem_Click);
             this.beheerToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -210,35 +210,35 @@
             // aankopersToolStripMenuItem
             // 
             this.aankopersToolStripMenuItem.Name = "aankopersToolStripMenuItem";
-            this.aankopersToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.aankopersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.aankopersToolStripMenuItem.Text = "Aankopers";
             this.aankopersToolStripMenuItem.Click += new System.EventHandler(this.aankopersToolStripMenuItem_Click);
             // 
             // afdelingenToolStripMenuItem
             // 
             this.afdelingenToolStripMenuItem.Name = "afdelingenToolStripMenuItem";
-            this.afdelingenToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.afdelingenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.afdelingenToolStripMenuItem.Text = "Afdelingen";
             this.afdelingenToolStripMenuItem.Click += new System.EventHandler(this.afdelingenToolStripMenuItem_Click);
             // 
             // dienstenToolStripMenuItem
             // 
             this.dienstenToolStripMenuItem.Name = "dienstenToolStripMenuItem";
-            this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.dienstenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.dienstenToolStripMenuItem.Text = "Diensten";
             this.dienstenToolStripMenuItem.Click += new System.EventHandler(this.dienstenToolStripMenuItem_Click);
             // 
             // financieringsTypesToolStripMenuItem
             // 
             this.financieringsTypesToolStripMenuItem.Name = "financieringsTypesToolStripMenuItem";
-            this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.financieringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.financieringsTypesToolStripMenuItem.Text = "FinancieringsTypes";
             this.financieringsTypesToolStripMenuItem.Click += new System.EventHandler(this.financieringsTypesToolStripButton_Click);
             // 
             // gebruikersToolStripMenuItem
             // 
             this.gebruikersToolStripMenuItem.Name = "gebruikersToolStripMenuItem";
-            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.gebruikersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gebruikersToolStripMenuItem.Text = "Gebruikers";
             this.gebruikersToolStripMenuItem.Click += new System.EventHandler(this.gebruikersToolStripMenuItem_Click);
             this.gebruikersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -247,7 +247,7 @@
             // gebruikslogToolStripMenuItem
             // 
             this.gebruikslogToolStripMenuItem.Name = "gebruikslogToolStripMenuItem";
-            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.gebruikslogToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gebruikslogToolStripMenuItem.Text = "Gebruikslog";
             this.gebruikslogToolStripMenuItem.Click += new System.EventHandler(this.gebruikslogToolStripMenuItem_Click);
             this.gebruikslogToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -256,21 +256,21 @@
             // investeringsTypesToolStripMenuItem
             // 
             this.investeringsTypesToolStripMenuItem.Name = "investeringsTypesToolStripMenuItem";
-            this.investeringsTypesToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.investeringsTypesToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.investeringsTypesToolStripMenuItem.Text = "InvesteringsTypes";
             this.investeringsTypesToolStripMenuItem.Click += new System.EventHandler(this.investeringsTypesToolStripButton_Click);
             // 
             // kostenplaatsenToolStripMenuItem
             // 
             this.kostenplaatsenToolStripMenuItem.Name = "kostenplaatsenToolStripMenuItem";
-            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.kostenplaatsenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.kostenplaatsenToolStripMenuItem.Text = "Kostenplaatsen";
             this.kostenplaatsenToolStripMenuItem.Click += new System.EventHandler(this.kostenplaatsenToolStripMenuItem_Click);
             // 
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
             this.parametersToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
@@ -279,16 +279,23 @@
             // prioriteitToolStripMenuItem
             // 
             this.prioriteitToolStripMenuItem.Name = "prioriteitToolStripMenuItem";
-            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.prioriteitToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.prioriteitToolStripMenuItem.Text = "Prioriteit";
             this.prioriteitToolStripMenuItem.Click += new System.EventHandler(this.prioriteitToolStripMenuItem_Click);
             // 
             // landenToolStripMenuItem
             // 
             this.landenToolStripMenuItem.Name = "landenToolStripMenuItem";
-            this.landenToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
+            this.landenToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.landenToolStripMenuItem.Text = "Landen";
             this.landenToolStripMenuItem.Click += new System.EventHandler(this.landenToolStripMenuItem_Click);
+            // 
+            // leverancierToolStripMenuItem
+            // 
+            this.leverancierToolStripMenuItem.Name = "leverancierToolStripMenuItem";
+            this.leverancierToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.leverancierToolStripMenuItem.Text = "Leverancier";
+            this.leverancierToolStripMenuItem.Click += new System.EventHandler(this.leverancierToolStripMenuItem_Click);
             // 
             // helpMenu
             // 
@@ -297,7 +304,7 @@
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(67, 32);
+            this.helpMenu.Size = new System.Drawing.Size(54, 25);
             this.helpMenu.Text = "&Help";
             this.helpMenu.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.helpMenu.MouseLeave += new System.EventHandler(this.kleuronleave);
@@ -307,7 +314,7 @@
             this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
             this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(181, 32);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.indexToolStripMenuItem.Text = "&Index";
             this.indexToolStripMenuItem.MouseEnter += new System.EventHandler(this.kleuronhover);
             this.indexToolStripMenuItem.MouseLeave += new System.EventHandler(this.kleuronleave);
@@ -315,12 +322,12 @@
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(147, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(181, 32);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.aboutToolStripMenuItem.Text = "&Over MIA";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -330,17 +337,16 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 780);
+            this.statusStrip.Location = new System.Drawing.Point(0, 635);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1564, 29);
+            this.statusStrip.Size = new System.Drawing.Size(1173, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(56, 23);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(43, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
             // toolStrip
@@ -360,9 +366,9 @@
             this.gebruiksLogToolStripButton,
             this.kostenplaatsToolStripButton,
             this.parameterToolStripButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 36);
+            this.toolStrip.Location = new System.Drawing.Point(0, 29);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1564, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1173, 25);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "Knoppenbalk";
             // 
@@ -371,7 +377,7 @@
             this.aanvragenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.aanvragenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.aanvragenToolStripButton.Name = "aanvragenToolStripButton";
-            this.aanvragenToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.aanvragenToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.aanvragenToolStripButton.Text = "Aanvragen";
             this.aanvragenToolStripButton.Click += new System.EventHandler(this.aanvragenToolStripButton_Click);
             // 
@@ -386,7 +392,7 @@
             this.goedkeuringenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.goedkeuringenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.goedkeuringenToolStripButton.Name = "goedkeuringenToolStripButton";
-            this.goedkeuringenToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.goedkeuringenToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.goedkeuringenToolStripButton.Text = "Goedkeuringen";
             this.goedkeuringenToolStripButton.Click += new System.EventHandler(this.goedkeuringenToolStripButton_Click);
             // 
@@ -401,7 +407,7 @@
             this.budgetSpreidingtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.budgetSpreidingtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.budgetSpreidingtoolStripButton.Name = "budgetSpreidingtoolStripButton";
-            this.budgetSpreidingtoolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.budgetSpreidingtoolStripButton.Size = new System.Drawing.Size(23, 22);
             this.budgetSpreidingtoolStripButton.Click += new System.EventHandler(this.budgetSpreidingtoolStripButton_Click);
             // 
             // tss3
@@ -415,7 +421,7 @@
             this.aankopersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.aankopersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.aankopersToolStripButton.Name = "aankopersToolStripButton";
-            this.aankopersToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.aankopersToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.aankopersToolStripButton.Text = "Aankopers";
             this.aankopersToolStripButton.Click += new System.EventHandler(this.aankopersToolStripButton_Click);
             // 
@@ -424,7 +430,7 @@
             this.afdelingToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.afdelingToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.afdelingToolStripButton.Name = "afdelingToolStripButton";
-            this.afdelingToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.afdelingToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.afdelingToolStripButton.Text = "Afdelingen";
             this.afdelingToolStripButton.Click += new System.EventHandler(this.afdelingenToolStripButton_Click);
             // 
@@ -433,7 +439,7 @@
             this.dienstToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.dienstToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.dienstToolStripButton.Name = "dienstToolStripButton";
-            this.dienstToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.dienstToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.dienstToolStripButton.Text = "Dienst";
             this.dienstToolStripButton.Click += new System.EventHandler(this.dienstToolStripButton_Click);
             // 
@@ -442,7 +448,7 @@
             this.gebruikersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.gebruikersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.gebruikersToolStripButton.Name = "gebruikersToolStripButton";
-            this.gebruikersToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.gebruikersToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.gebruikersToolStripButton.Text = "Gebruikersbeheer";
             this.gebruikersToolStripButton.Click += new System.EventHandler(this.gebruikersToolStripButton_Click);
             // 
@@ -451,7 +457,7 @@
             this.gebruiksLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.gebruiksLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.gebruiksLogToolStripButton.Name = "gebruiksLogToolStripButton";
-            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.gebruiksLogToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.gebruiksLogToolStripButton.Text = "GebruiksLog";
             this.gebruiksLogToolStripButton.Click += new System.EventHandler(this.gebruiksLogToolStripButton_Click);
             // 
@@ -460,7 +466,7 @@
             this.kostenplaatsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.kostenplaatsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.kostenplaatsToolStripButton.Name = "kostenplaatsToolStripButton";
-            this.kostenplaatsToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.kostenplaatsToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.kostenplaatsToolStripButton.Text = "Kostenplaats";
             this.kostenplaatsToolStripButton.Click += new System.EventHandler(this.kostenplaatsToolStripButton_Click);
             // 
@@ -469,29 +475,21 @@
             this.parameterToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.parameterToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.parameterToolStripButton.Name = "parameterToolStripButton";
-            this.parameterToolStripButton.Size = new System.Drawing.Size(29, 22);
+            this.parameterToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.parameterToolStripButton.Text = "Parameters";
             this.parameterToolStripButton.Click += new System.EventHandler(this.parameterToolStripButton_Click);
             // 
-            // leverancierToolStripMenuItem
-            // 
-            this.leverancierToolStripMenuItem.Name = "leverancierToolStripMenuItem";
-            this.leverancierToolStripMenuItem.Size = new System.Drawing.Size(261, 32);
-            this.leverancierToolStripMenuItem.Text = "Leverancier";
-            this.leverancierToolStripMenuItem.Click += new System.EventHandler(this.leverancierToolStripMenuItem_Click);
-            // 
             // mdiMia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1564, 809);
+            this.ClientSize = new System.Drawing.Size(1173, 657);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "mdiMia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MIA";
