@@ -21,6 +21,7 @@ namespace MiaClient
 {
     public partial class frmAankopen : Form
     {
+        frmAankoopDetail frmAankoopDetail;
         bool filterBedragVan = false;
         bool filterBedragTot = false;
         bool filterTitel = false;
@@ -769,6 +770,17 @@ namespace MiaClient
             {
                 MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnTesten_Click(object sender, EventArgs e)
+        {
+            if (frmAankoopDetail == null)
+            {
+                frmAankoopDetail = new frmAankoopDetail(122);
+                frmAankoopDetail.MdiParent = MdiParent;
+            }
+            // We openen een nieuw aanvraagformulier
+            frmAankoopDetail.Show();
         }
     }
 }

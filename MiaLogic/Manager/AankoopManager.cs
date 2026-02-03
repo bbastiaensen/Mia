@@ -39,8 +39,12 @@ namespace MiaLogic.Manager
                         aankoop.Id = Convert.ToInt32(objRea["Id"]);
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
-                        aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+                        aankoop.BedragExBtw = Convert.ToDecimal(objRea["BedragExBTW"]);
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
+                        aankoop.BestelbonNummer = objRea["BestelbonNummer"].ToString();
+                        aankoop.Factuur = Convert.ToBoolean(objRea["Factuur"]);
+                        aankoop.FactuurNummer = objRea["FactuurNummer"].ToString();
+                        aankoop.InternNummer = objRea["InternNummer"].ToString();
                         if (objRea["BestellingsDatum"] != DBNull.Value)
                         {
                             aankoop.BestellingsDatum = Convert.ToDateTime(objRea["BestellingsDatum"].ToString());
@@ -88,7 +92,7 @@ namespace MiaLogic.Manager
                         aankoop.Id = Convert.ToInt32(objRea["Id"]);
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
-                        aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+                        aankoop.BedragExBtw = Convert.ToDecimal(objRea["BedragExBTW"]);
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
                         {

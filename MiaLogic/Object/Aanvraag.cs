@@ -30,7 +30,7 @@ namespace MiaLogic.Object
         public decimal BudgetToegekend { get; set; }
 
         public string OpmerkingenResultaat { get; set; }
-
+        public int ExtraBudget { get; set; }
         public int RichtperiodeId { get; set; }
 
     }

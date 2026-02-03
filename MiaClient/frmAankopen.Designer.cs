@@ -32,6 +32,7 @@
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.lblWachtenExcelAankopen = new System.Windows.Forms.Label();
             this.btnExportToExcel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
@@ -63,7 +64,7 @@
             this.btnSortTitel = new System.Windows.Forms.Button();
             this.btnBedrag = new System.Windows.Forms.Button();
             this.btnSortRichtperiode = new System.Windows.Forms.Button();
-            this.lblWachtenExcelAankopen = new System.Windows.Forms.Label();
+            this.btnTesten = new System.Windows.Forms.Button();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.btnTesten);
             this.gbxFinancieringsjaar.Controls.Add(this.lblWachtenExcelAankopen);
             this.gbxFinancieringsjaar.Controls.Add(this.btnExportToExcel);
             this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
@@ -102,6 +104,14 @@
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // lblWachtenExcelAankopen
+            // 
+            this.lblWachtenExcelAankopen.AutoSize = true;
+            this.lblWachtenExcelAankopen.Location = new System.Drawing.Point(755, 8);
+            this.lblWachtenExcelAankopen.Name = "lblWachtenExcelAankopen";
+            this.lblWachtenExcelAankopen.Size = new System.Drawing.Size(0, 25);
+            this.lblWachtenExcelAankopen.TabIndex = 45;
             // 
             // btnExportToExcel
             // 
@@ -446,13 +456,15 @@
             this.btnSortRichtperiode.UseVisualStyleBackColor = false;
             this.btnSortRichtperiode.Click += new System.EventHandler(this.btnSortRichtperiode_Click);
             // 
-            // lblWachtenExcelAankopen
+            // btnTesten
             // 
-            this.lblWachtenExcelAankopen.AutoSize = true;
-            this.lblWachtenExcelAankopen.Location = new System.Drawing.Point(755, 8);
-            this.lblWachtenExcelAankopen.Name = "lblWachtenExcelAankopen";
-            this.lblWachtenExcelAankopen.Size = new System.Drawing.Size(0, 25);
-            this.lblWachtenExcelAankopen.TabIndex = 45;
+            this.btnTesten.Location = new System.Drawing.Point(732, -18);
+            this.btnTesten.Name = "btnTesten";
+            this.btnTesten.Size = new System.Drawing.Size(95, 51);
+            this.btnTesten.TabIndex = 46;
+            this.btnTesten.Text = "TESTEN";
+            this.btnTesten.UseVisualStyleBackColor = true;
+            this.btnTesten.Click += new System.EventHandler(this.btnTesten_Click);
             // 
             // frmAankopen
             // 
@@ -528,5 +540,6 @@
         private System.Windows.Forms.Button btnSortRichtperiode;
         private System.Windows.Forms.Button btnExportToExcel;
         private System.Windows.Forms.Label lblWachtenExcelAankopen;
+        private System.Windows.Forms.Button btnTesten;
     }
 }

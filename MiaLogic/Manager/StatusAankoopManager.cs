@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,39 @@ namespace MiaLogic.Manager
                 }
             }
             return Statusaankoop;
+        }
+
+        public static List<StatusAankoop> GetStatusAankopen()
+        {
+            List<StatusAankoop> statusAankopen = new List<StatusAankoop>();
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select * from StatusAankoop;";
+
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+
+                    while (objRea.Read())
+                    {
+                        StatusAankoop status = new StatusAankoop
+                        {
+                            Id = Convert.ToInt32(objRea["Id"]),
+                            Naam = objRea["Naam"].ToString()
+                        };
+                        statusAankopen.Add(status);
+                    }
+                    
+                }
+            }
+            return statusAankopen;
         }
     }
 }
