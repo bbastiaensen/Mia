@@ -76,6 +76,7 @@ namespace MiaClient
             this.btnRichtperiode = new System.Windows.Forms.Button();
             this.btnSortGoedgekeurdbedrag = new System.Windows.Forms.Button();
             this.btnSaldo = new System.Windows.Forms.Button();
+            this.testtest = new System.Windows.Forms.Button();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -157,6 +158,7 @@ namespace MiaClient
             // 
             // grbxFilterAanvraag
             // 
+            this.grbxFilterAanvraag.Controls.Add(this.testtest);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
@@ -372,35 +374,6 @@ namespace MiaClient
             this.btnPrevious.MouseLeave += new System.EventHandler(this.btnPrevious_MouseLeave);
             this.btnPrevious.MouseHover += new System.EventHandler(this.btnPrevious_MouseHover);
             // 
-<<<<<<<<< Temporary merge branch 1
-            // btnSortAanvrager
-            // 
-            this.btnSortAanvrager.Location = new System.Drawing.Point(0, 0);
-            this.btnSortAanvrager.Name = "btnSortAanvrager";
-            this.btnSortAanvrager.Size = new System.Drawing.Size(75, 23);
-            this.btnSortAanvrager.TabIndex = 46;
-            // 
-            // btnSortTitel
-            // 
-            this.btnSortTitel.Location = new System.Drawing.Point(0, 0);
-            this.btnSortTitel.Name = "btnSortTitel";
-            this.btnSortTitel.Size = new System.Drawing.Size(75, 23);
-            this.btnSortTitel.TabIndex = 45;
-            // 
-            // btnBedrag
-            // 
-            this.btnBedrag.Location = new System.Drawing.Point(0, 0);
-            this.btnBedrag.Name = "btnBedrag";
-            this.btnBedrag.Size = new System.Drawing.Size(75, 23);
-            this.btnBedrag.TabIndex = 44;
-            // 
-            // btnSortRichtperiode
-            // 
-            this.btnSortRichtperiode.Location = new System.Drawing.Point(0, 0);
-            this.btnSortRichtperiode.Name = "btnSortRichtperiode";
-            this.btnSortRichtperiode.Size = new System.Drawing.Size(75, 23);
-            this.btnSortRichtperiode.TabIndex = 43;
-            // 
             // label9
             // 
             this.label9.Location = new System.Drawing.Point(739, 248);
@@ -409,8 +382,6 @@ namespace MiaClient
             this.label9.TabIndex = 63;
             this.label9.Text = "ingsjaar";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-=========
-            // label9
             // 
             // btnSortSaldo
             // 
@@ -441,164 +412,6 @@ namespace MiaClient
             this.btnSortTitel.TabIndex = 57;
             this.btnSortTitel.UseVisualStyleBackColor = false;
             this.btnSortTitel.Click += new System.EventHandler(this.btnSortGebruiker_Click);
->>>>>>>>> Temporary merge branch 2
-            // 
-            // btnPlanningsdatum
-            // 
-<<<<<<<<< Temporary merge branch 1
-            this.btnPlanningsdatum.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlanningsdatum.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPlanningsdatum.FlatAppearance.BorderSize = 0;
-            this.btnPlanningsdatum.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnPlanningsdatum.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnPlanningsdatum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlanningsdatum.Image = ((System.Drawing.Image)(resources.GetObject("btnPlanningsdatum.Image")));
-            this.btnPlanningsdatum.Location = new System.Drawing.Point(1310, 242);
-            this.btnPlanningsdatum.Name = "btnPlanningsdatum";
-            this.btnPlanningsdatum.Size = new System.Drawing.Size(27, 27);
-            this.btnPlanningsdatum.TabIndex = 62;
-            this.btnPlanningsdatum.UseVisualStyleBackColor = false;
-=========
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(600, 248);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 20);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "Aanvrager";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 248);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "Aankoper";
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(737, 226);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 25);
-            this.label4.TabIndex = 50;
-            this.label4.Text = "Financier-";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
->>>>>>>>> Temporary merge branch 2
-            // 
-            // btnKostenplaats
-            // 
-<<<<<<<<< Temporary merge branch 1
-            this.btnKostenplaats.BackColor = System.Drawing.Color.Transparent;
-            this.btnKostenplaats.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnKostenplaats.FlatAppearance.BorderSize = 0;
-            this.btnKostenplaats.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnKostenplaats.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnKostenplaats.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKostenplaats.Image = ((System.Drawing.Image)(resources.GetObject("btnKostenplaats.Image")));
-            this.btnKostenplaats.Location = new System.Drawing.Point(1217, 242);
-            this.btnKostenplaats.Name = "btnKostenplaats";
-            this.btnKostenplaats.Size = new System.Drawing.Size(27, 27);
-            this.btnKostenplaats.TabIndex = 61;
-            this.btnKostenplaats.UseVisualStyleBackColor = false;
-=========
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(845, 248);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 20);
-            this.label6.TabIndex = 52;
-            this.label6.Text = "Richtperiode";
->>>>>>>>> Temporary merge branch 2
-            // 
-            // label8
-            // 
-<<<<<<<<< Temporary merge branch 1
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(939, 242);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 27);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // btnSortStatusAanvraag
-            // 
-            this.btnSortStatusAanvraag.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortStatusAanvraag.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortStatusAanvraag.FlatAppearance.BorderSize = 0;
-            this.btnSortStatusAanvraag.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortStatusAanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortStatusAanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortStatusAanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortStatusAanvraag.Image")));
-            this.btnSortStatusAanvraag.Location = new System.Drawing.Point(671, 242);
-            this.btnSortStatusAanvraag.Name = "btnSortStatusAanvraag";
-            this.btnSortStatusAanvraag.Size = new System.Drawing.Size(27, 27);
-            this.btnSortStatusAanvraag.TabIndex = 59;
-            this.btnSortStatusAanvraag.UseVisualStyleBackColor = false;
-            // 
-            // btnSortFinancieringsjaar
-            // 
-            this.btnSortFinancieringsjaar.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortFinancieringsjaar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortFinancieringsjaar.FlatAppearance.BorderSize = 0;
-            this.btnSortFinancieringsjaar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortFinancieringsjaar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortFinancieringsjaar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortFinancieringsjaar.Image = ((System.Drawing.Image)(resources.GetObject("btnSortFinancieringsjaar.Image")));
-            this.btnSortFinancieringsjaar.Location = new System.Drawing.Point(812, 245);
-            this.btnSortFinancieringsjaar.Name = "btnSortFinancieringsjaar";
-            this.btnSortFinancieringsjaar.Size = new System.Drawing.Size(27, 27);
-            this.btnSortFinancieringsjaar.TabIndex = 58;
-            this.btnSortFinancieringsjaar.UseVisualStyleBackColor = false;
-            // 
-            // btnSortGebruiker
-            // 
-            this.btnSortGebruiker.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortGebruiker.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortGebruiker.FlatAppearance.BorderSize = 0;
-            this.btnSortGebruiker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGebruiker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortGebruiker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortGebruiker.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGebruiker.Image")));
-            this.btnSortGebruiker.Location = new System.Drawing.Point(123, 245);
-            this.btnSortGebruiker.Name = "btnSortGebruiker";
-            this.btnSortGebruiker.Size = new System.Drawing.Size(27, 27);
-            this.btnSortGebruiker.TabIndex = 57;
-            this.btnSortGebruiker.UseVisualStyleBackColor = false;
-            // 
-            // btnSortAanvraagmoment
-            // 
-            this.btnSortAanvraagmoment.BackColor = System.Drawing.Color.Transparent;
-            this.btnSortAanvraagmoment.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSortAanvraagmoment.FlatAppearance.BorderSize = 0;
-            this.btnSortAanvraagmoment.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSortAanvraagmoment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSortAanvraagmoment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSortAanvraagmoment.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvraagmoment.Image")));
-            this.btnSortAanvraagmoment.Location = new System.Drawing.Point(525, 242);
-            this.btnSortAanvraagmoment.Name = "btnSortAanvraagmoment";
-            this.btnSortAanvraagmoment.Size = new System.Drawing.Size(27, 27);
-            this.btnSortAanvraagmoment.TabIndex = 56;
-            this.btnSortAanvraagmoment.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(374, 245);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(27, 27);
-            this.button2.TabIndex = 55;
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -638,25 +451,6 @@ namespace MiaClient
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1261, 248);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 20);
-            this.label8.TabIndex = 54;
-            this.label8.Text = "Saldo";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1071, 248);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 20);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "GoedgekeurdBedrag";
-            // 
-            // label2
-            // 
-=========
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(1171, 248);
             this.label8.Name = "label8";
@@ -818,7 +612,6 @@ namespace MiaClient
             this.testtest.Size = new System.Drawing.Size(20, 22);
             this.testtest.TabIndex = 27;
             this.testtest.UseVisualStyleBackColor = false;
->>>>>>>>> Temporary merge branch 2
             // 
             // frmAankopen
             // 
@@ -926,6 +719,5 @@ namespace MiaClient
         private System.Windows.Forms.Button btnSortGoedgekeurdbedrag;
         private System.Windows.Forms.Button btnSaldo;
         private System.Windows.Forms.Button testtest;
->>>>>>>>> Temporary merge branch 2
     }
 }

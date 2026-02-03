@@ -24,6 +24,8 @@ namespace MiaClient
     {
         private int childFormNumber = 0;
 
+        private MdiClient mdiClient;
+
         FrmGebruiksLog frmGebruiksLog;
         frmParameter frmParameter;
         frmAanvraagFormulier frmAanvraagFormulier;
@@ -42,6 +44,7 @@ namespace MiaClient
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
         frmPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
+        frmBeheerLeverancier frmBeheerLeverancier;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -54,8 +57,12 @@ namespace MiaClient
         Image imgDiensten;
         Image imgKostenplaats;
 
+
+
+
         public mdiMia()
         {
+          
             try
             {
                 GetRollen();
@@ -73,12 +80,53 @@ namespace MiaClient
             {
                 ErrorHandler("Laden van grafische parameters", ex, "mdiMia");
             }
+       
+            this.DoubleBuffered = true;
+        }
+
+
+        private void DisableMdiScrollBars()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is MdiClient client)
+                {
+                    client.Dock = DockStyle.Fill;
+
+                    // Schakel scrollbars uit via de Windows stijl
+                    const int WS_HSCROLL = 0x00100000;
+                    const int WS_VSCROLL = 0x00200000;
+
+                    int style = (int)NativeMethods.GetWindowLong(client.Handle, NativeMethods.GWL_STYLE);
+                    style &= ~WS_HSCROLL;
+                    style &= ~WS_VSCROLL;
+                    NativeMethods.SetWindowLong(client.Handle, NativeMethods.GWL_STYLE, (IntPtr)style);
+                }
+            }
+        }
+        internal static class NativeMethods
+        {
+            public const int GWL_STYLE = -16;
+
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            public static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
+
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
         }
 
         private static void ErrorHandler(string customMessage, Exception ex, string location)
         {
             MessageBox.Show($"Error: {customMessage} - {ex.Message} in {location}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+ 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+           
+            mdiClient?.Invalidate();
+        }
+
 
         private string GetRollen()
         {
@@ -135,9 +183,23 @@ namespace MiaClient
             StyleParameters.AltListItemColor = System.Drawing.ColorTranslator.FromHtml(ParameterManager.GetParameterByCode("AltListItemColor").Waarde);
             StyleParameters.AltButtons = Convert.ToBoolean(ParameterManager.GetParameterByCode("AltButtons").Waarde);
         }
+
+        private void MdiClient_Paint(object sender, PaintEventArgs e)
+        {
+            if (StyleParameters.LogoG == null)
+                return;
+
+            Image logo = StyleParameters.LogoG;
+            MdiClient client = (MdiClient)sender;
+
+            int x = (client.ClientSize.Width - logo.Width) / 2;
+            int y = (client.ClientSize.Height - logo.Height) / 2;
+
+            e.Graphics.DrawImage(logo, x, y);
+        }
         public void CreateUI()
         {
-
+            this.BackColor = StyleParameters.Achtergrondkleur;
             toolStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.BackColor = StyleParameters.AccentKleur;
             menuStrip.ForeColor = StyleParameters.Buttontext;
@@ -146,14 +208,16 @@ namespace MiaClient
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
-            this.BackgroundImage = StyleParameters.LogoG;
-            this.BackgroundImageLayout = ImageLayout.Center;
+         
 
             foreach (Control c in this.Controls)
             {
-                if (c is MdiClient)
+                if (c is MdiClient client)
                 {
-                    c.BackColor = StyleParameters.Achtergrondkleur;
+                    mdiClient = client;
+                    mdiClient.BackColor = StyleParameters.Achtergrondkleur;
+                    mdiClient.Paint += MdiClient_Paint;
+                    mdiClient.Resize += (s, e) => mdiClient.Invalidate();
                 }
             }
 
@@ -378,8 +442,13 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
+
+            DisableMdiScrollBars();
+
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
+
+          
 
             MenubalkSamenstellen();
             CreateUI();
@@ -411,6 +480,10 @@ namespace MiaClient
             {
                 AppForms.frmAanvragen = new FrmAanvragen();
                 AppForms.frmAanvragen.MdiParent = this;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.Dock = DockStyle.Fill;
+                this.StartPosition = FormStartPosition.Manual;
+                this.AutoScroll = false;
             }
             AppForms.frmAanvragen.Show();
 
@@ -649,6 +722,16 @@ namespace MiaClient
                 frmBeheerLanden.MdiParent = this;
             }
             frmBeheerLanden.Show();
+        }
+
+        private void leverancierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerLeverancier == null)
+            {
+                frmBeheerLeverancier = new frmBeheerLeverancier();
+                frmBeheerLeverancier.MdiParent = this;
+            }
+            frmBeheerLeverancier.Show();
         }
     }
 }
