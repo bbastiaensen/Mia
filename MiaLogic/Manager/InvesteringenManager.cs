@@ -11,162 +11,105 @@ namespace MiaLogic.Manager
 
         public static List<Investering> GetInvesteringen()
         {
-            List<Investering> returnlist = null;
+            List<Investering> list = new List<Investering>();
 
-            using (SqlConnection objCn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT Id, Naam, Actief FROM InvesteringsType ORDER BY Naam", cn))
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
+                cn.Open();
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "SELECT Id, Naam, Actief FROM InvesteringsType ORDER BY Naam";
-
-                    objCn.Open();
-                    SqlDataReader objRea = objCmd.ExecuteReader();
-
-                    Investering inv;
-
-                    while (objRea.Read())
+                    while (r.Read())
                     {
-                        if (returnlist == null)
+                        list.Add(new Investering
                         {
-                            returnlist = new List<Investering>();
-                        }
-
-                        inv = new Investering();
-                        inv.Id = Convert.ToInt32(objRea["Id"]);
-                        inv.Naam = objRea["Naam"].ToString();
-                        inv.Actief = Convert.ToBoolean(objRea["Actief"]);
-
-                        returnlist.Add(inv);
+                            Id = Convert.ToInt32(r["Id"]),
+                            Naam = r["Naam"].ToString(),
+                            Actief = Convert.ToBoolean(r["Actief"])
+                        });
                     }
                 }
             }
-            return returnlist;
+            return list;
         }
 
         public static List<Investering> GetActiveInvesteringen()
         {
-            List<Investering> returnlist = null;
+            List<Investering> list = new List<Investering>();
 
-            using (SqlConnection objCn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT Id, Naam, Actief FROM InvesteringsType WHERE Actief = 1 ORDER BY Naam", cn))
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
+                cn.Open();
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "SELECT Id, Naam, Actief FROM InvesteringsType WHERE Actief = 1 ORDER BY Naam";
-
-                    objCn.Open();
-                    SqlDataReader objRea = objCmd.ExecuteReader();
-
-                    Investering inv;
-
-                    while (objRea.Read())
+                    while (r.Read())
                     {
-                        if (returnlist == null)
+                        list.Add(new Investering
                         {
-                            returnlist = new List<Investering>();
-                        }
-
-                        inv = new Investering();
-                        inv.Id = Convert.ToInt32(objRea["Id"]);
-                        inv.Naam = objRea["Naam"].ToString();
-                        inv.Actief = Convert.ToBoolean(objRea["Actief"]);
-
-                        returnlist.Add(inv);
+                            Id = Convert.ToInt32(r["Id"]),
+                            Naam = r["Naam"].ToString(),
+                            Actief = Convert.ToBoolean(r["Actief"])
+                        });
                     }
                 }
             }
-            return returnlist;
+            return list;
         }
 
-        public static int SaveInvestering(Investering investering, bool isnew)
+        public static int SaveInvestering(Investering investering, bool isNew)
         {
-            using (SqlConnection objCn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand())
             {
-                objCn.ConnectionString = ConnectionString;
+                cmd.Connection = cn;
 
-                using (SqlCommand objCmd = new SqlCommand())
+                if (isNew)
                 {
-                    objCmd.Connection = objCn;
+                    cmd.CommandText =
+                        @"INSERT INTO InvesteringsType (Naam, Actief)
+                          OUTPUT INSERTED.Id
+                          VALUES (@Naam, @Actief)";
+                }
+                else
+                {
+                    cmd.CommandText =
+                        @"UPDATE InvesteringsType
+                          SET Naam = @Naam,
+                              Actief = @Actief
+                          WHERE Id = @Id";
 
-                    if (isnew)
-                    {
-                        objCmd.CommandText = "insert into InvesteringsType(Naam, Actief) ";
-                        objCmd.CommandText += "values(@Naam, @Actief);";
-                    }
-                    else
-                    {
-                        objCmd.CommandText = "update InvesteringsType set Naam = @Naam, ";
-                        objCmd.CommandText += "Actief = @Actief where Id = @Id";
-                        objCmd.Parameters.AddWithValue("@Id", investering.Id);
-                    }
+                    cmd.Parameters.AddWithValue("@Id", investering.Id);
+                }
 
-                    objCmd.Parameters.AddWithValue("@Naam", investering.Naam);
-                    objCmd.Parameters.AddWithValue("@Actief", investering.Actief);
+                cmd.Parameters.AddWithValue("@Naam", investering.Naam);
+                cmd.Parameters.AddWithValue("@Actief", investering.Actief);
 
-                    objCn.Open();
-                    objCmd.ExecuteNonQuery();
+                cn.Open();
 
-                    if (isnew)
-                    {
-                        return GetHighestId();
-                    }
-                    else
-                    {
-                        return investering.Id;
-                    }
+                if (isNew)
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                    return investering.Id;
                 }
             }
         }
 
         public static void DeleteInvestering(Investering investering)
         {
-            using (SqlConnection objCn = new SqlConnection())
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "DELETE FROM InvesteringsType WHERE Id = @Id", cn))
             {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-                    objCmd.Connection = objCn;
-
-                    objCmd.CommandText = "delete from InvesteringsType ";
-                    objCmd.CommandText += "where Id = @Id;";
-
-                    objCmd.Parameters.AddWithValue("@Id", investering.Id);
-
-                    objCn.Open();
-                    objCmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        private static int GetHighestId()
-        {
-            using (SqlConnection objCn = new SqlConnection())
-            {
-                objCn.ConnectionString = ConnectionString;
-
-                using (SqlCommand objCmd = new SqlCommand())
-                {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "select max(Id) as Highest from InvesteringsType";
-
-                    objCn.Open();
-                    SqlDataReader objRea = objCmd.ExecuteReader();
-
-                    if (objRea.Read())
-                    {
-                        return Convert.ToInt32(objRea["Highest"]);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
+                cmd.Parameters.AddWithValue("@Id", investering.Id);
+                cn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }
