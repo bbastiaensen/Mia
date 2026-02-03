@@ -15,7 +15,7 @@ namespace MiaClient
 {
     public partial class frmBeheerGemeente : Form
     {
-
+        public event EventHandler LandenChanged;
         List<Gemeente> gemeentes;
       
 
@@ -26,6 +26,7 @@ namespace MiaClient
         public frmBeheerGemeente()
         {
             InitializeComponent();
+            VulLandDropDown(ddlLand);
 
         }
         private void frmBeheerGemeente_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,11 +60,21 @@ namespace MiaClient
             lstGemeente.DataSource = gemeentes;
 
         }
-        
+        //public void GetLanden()
+        //{
+        //    List<Land> landen = LandenManager.GetLanden();
+        //    ddlLand.Items.Clear();
+        //    foreach (Land land in landen)
+        //    {
+        //        ddlLand.Items.Add(land.Naam);
+        //    }
+        //}
+
         private void frmBeheerGemeente_Load(object sender, EventArgs e)
         {
             CreateUI();
-          
+            TriggerLandEvent();
+            
             BindLstGemeentes();
         }
 
@@ -86,7 +97,7 @@ namespace MiaClient
             
 
             BindLstGemeentes();
-           
+            VulLandDropDown(ddlLand);
             ClearFields();
             lstGemeente.SelectedValue = g.Id.ToString();
             IsNew = false;
@@ -111,7 +122,7 @@ namespace MiaClient
             }
 
             BindLstGemeentes();
-
+            VulLandDropDown(ddlLand);
             ClearFields();
         }
 
@@ -126,7 +137,6 @@ namespace MiaClient
                 txtNaam.Text = gemeente.Naam;
                 txtLandId.Text = Convert.ToString(gemeente.LandId);
                 txtPostcode.Text = Convert.ToString(gemeente.Postcode);
-                ddlLand.Items.Add(gemeente.LandNaam);
                 IsNew = false;
             }
         }
@@ -138,6 +148,50 @@ namespace MiaClient
             txtPostcode.Text = string.Empty;
             ddlLand.Text = string.Empty;
             IsNew = true;
+        }
+        public void FrmBeheerLanden_LandenChanged(object sender, EventArgs e)
+        {
+            RefreshLandDropdown();
+
+
+        }
+        public void TriggerLandEvent()
+        {
+            if (AppForms.frmBeheerLanden != null)
+            {
+                AppForms.frmBeheerLanden.LandenChanged += FrmBeheerLanden_LandenChanged;
+            }
+        }
+        public void RefreshLandDropdown()
+        {
+
+            int? geselecteerdeId = ddlLand.SelectedValue as int?;
+
+            var nieuwLand = LandenManager.GetLanden();
+
+                ddlLand.DataSource = null;
+            ddlLand.DisplayMember = "Naam";
+            ddlLand.ValueMember = "Id";
+            ddlLand.DataSource = nieuwLand;
+
+            if (geselecteerdeId.HasValue &&
+                nieuwLand.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlLand.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlLand.SelectedIndex = -1;
+            }
+        }
+        public void VulLandDropDown(ComboBox cmbLand)
+        {
+            List<Land> landen = MiaLogic.Manager.LandenManager.GetLanden();
+
+            cmbLand.DataSource = landen;
+            cmbLand.DisplayMember = "Naam";
+            cmbLand.ValueMember = "Id";
+            cmbLand.SelectedIndex = -1;
         }
 
 

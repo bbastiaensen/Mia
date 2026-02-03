@@ -48,6 +48,7 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
+     
         public static int SaveLanden(Land land, bool isnew)
         {
             using (SqlConnection objCn = new SqlConnection())
