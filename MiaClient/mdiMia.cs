@@ -68,6 +68,7 @@ namespace MiaClient
             try
             {
                 laadGrafischeParameters();
+                InitMdiLogo();
             }
             catch (Exception ex)
             {
@@ -146,8 +147,6 @@ namespace MiaClient
             beheerToolStripMenuItem.DropDown.BackColor = StyleParameters.AccentKleur;
             beheerToolStripMenuItem.DropDown.ForeColor = StyleParameters.Buttontext;
 
-            this.BackgroundImage = StyleParameters.LogoG;
-            this.BackgroundImageLayout = ImageLayout.Center;
 
             foreach (Control c in this.Controls)
             {
@@ -650,6 +649,32 @@ namespace MiaClient
             }
             frmBeheerLanden.Show();
         }
+
+        private MdiClient _mdiClient;
+
+        private void InitMdiLogo()
+        {
+            _mdiClient = this.Controls.OfType<MdiClient>().FirstOrDefault();
+            if (_mdiClient == null || StyleParameters.LogoG == null) return;
+
+            _mdiClient.Paint += MdiClient_Paint;
+            _mdiClient.Resize += (s, e) => _mdiClient.Invalidate();
+        }
+
+        private void MdiClient_Paint(object sender, PaintEventArgs e)
+        {
+            if (StyleParameters.LogoG == null) return;
+
+            var client = (MdiClient)sender;
+            var img = StyleParameters.LogoG;
+
+            // Altijd centreren in het zichtbare client-gebied
+            int x = (client.ClientSize.Width - img.Width) / 2;
+            int y = (client.ClientSize.Height - img.Height) / 2;
+
+            e.Graphics.DrawImage(img, x, y);
+        }
+
     }
 }
 
