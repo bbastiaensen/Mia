@@ -18,7 +18,7 @@ namespace MiaClient
 
         private void InitializeComponent()
         {
-            this.pnlAanvragen = new System.Windows.Forms.Panel();
+            this.pnlBekrachtigdeAanvragen = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblStatusAanvraag = new System.Windows.Forms.Label();
             this.lblOmschrijving = new System.Windows.Forms.Label();
@@ -28,15 +28,15 @@ namespace MiaClient
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlAanvragen
+            // pnlBekrachtigdeAanvragen
             // 
-            this.pnlAanvragen.AutoScroll = true;
-            this.pnlAanvragen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAanvragen.Location = new System.Drawing.Point(0, 46);
-            this.pnlAanvragen.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlAanvragen.Name = "pnlAanvragen";
-            this.pnlAanvragen.Size = new System.Drawing.Size(973, 495);
-            this.pnlAanvragen.TabIndex = 5;
+            this.pnlBekrachtigdeAanvragen.AutoScroll = true;
+            this.pnlBekrachtigdeAanvragen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBekrachtigdeAanvragen.Location = new System.Drawing.Point(0, 46);
+            this.pnlBekrachtigdeAanvragen.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlBekrachtigdeAanvragen.Name = "pnlBekrachtigdeAanvragen";
+            this.pnlBekrachtigdeAanvragen.Size = new System.Drawing.Size(973, 495);
+            this.pnlBekrachtigdeAanvragen.TabIndex = 5;
             // 
             // pnlHeader
             // 
@@ -51,24 +51,6 @@ namespace MiaClient
             this.pnlHeader.Size = new System.Drawing.Size(973, 46);
             this.pnlHeader.TabIndex = 6;
             // 
-            // lblOmschrijving
-            // 
-            this.lblOmschrijving.Location = new System.Drawing.Point(50, 11);
-            this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(145, 25);
-            this.lblOmschrijving.TabIndex = 5;
-            this.lblOmschrijving.Text = "OMSCHRIJVING";
-            
-            // 
-            // lblAanvrager
-            // 
-            this.lblAanvrager.Location = new System.Drawing.Point(250, 11);
-            this.lblAanvrager.Name = "lblAanvrager";
-            this.lblAanvrager.Size = new System.Drawing.Size(119, 25);
-            this.lblAanvrager.TabIndex = 6;
-            this.lblAanvrager.Text = "AANVRAGER";
-
-            // 
             // lblStatusAanvraag
             // 
             this.lblStatusAanvraag.Location = new System.Drawing.Point(415, 9);
@@ -77,13 +59,13 @@ namespace MiaClient
             this.lblStatusAanvraag.TabIndex = 7;
             this.lblStatusAanvraag.Text = "STATUS AANVRAG";
             // 
-            // lblFinancieringsjaar
+            // lblOmschrijving
             // 
-            this.lblFinancieringsjaar.Location = new System.Drawing.Point(615, 9);
-            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(188, 25);
-            this.lblFinancieringsjaar.TabIndex = 8;
-            this.lblFinancieringsjaar.Text = "FINANCIERINGSJAAR";
+            this.lblOmschrijving.Location = new System.Drawing.Point(50, 11);
+            this.lblOmschrijving.Name = "lblOmschrijving";
+            this.lblOmschrijving.Size = new System.Drawing.Size(145, 25);
+            this.lblOmschrijving.TabIndex = 5;
+            this.lblOmschrijving.Text = "OMSCHRIJVING";
             // 
             // lblRichtperiode
             // 
@@ -93,12 +75,28 @@ namespace MiaClient
             this.lblRichtperiode.TabIndex = 9;
             this.lblRichtperiode.Text = "RICHTPERIODE";
             // 
+            // lblAanvrager
+            // 
+            this.lblAanvrager.Location = new System.Drawing.Point(250, 11);
+            this.lblAanvrager.Name = "lblAanvrager";
+            this.lblAanvrager.Size = new System.Drawing.Size(119, 25);
+            this.lblAanvrager.TabIndex = 6;
+            this.lblAanvrager.Text = "AANVRAGER";
+            // 
+            // lblFinancieringsjaar
+            // 
+            this.lblFinancieringsjaar.Location = new System.Drawing.Point(615, 9);
+            this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(188, 25);
+            this.lblFinancieringsjaar.TabIndex = 8;
+            this.lblFinancieringsjaar.Text = "FINANCIERINGSJAAR";
+            // 
             // frmNieuweAankoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 541);
-            this.Controls.Add(this.pnlAanvragen);
+            this.Controls.Add(this.pnlBekrachtigdeAanvragen);
             this.Controls.Add(this.pnlHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -113,7 +111,7 @@ namespace MiaClient
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlAanvragen;
+        private System.Windows.Forms.Panel pnlBekrachtigdeAanvragen;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblOmschrijving;
         private System.Windows.Forms.Label lblRichtperiode;

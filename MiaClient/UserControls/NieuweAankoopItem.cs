@@ -53,6 +53,27 @@ namespace MiaClient.UserControls
             lblRichtperiode.AutoSize = false;
             lblRichtperiode.AutoEllipsis = true;
         }
+        private void lblOmschrijving_Paint(object sender, PaintEventArgs e)
+        {
+            var lbl = (Label)sender;
+
+            TextFormatFlags flags =
+                TextFormatFlags.Left |
+                TextFormatFlags.Bottom |
+                TextFormatFlags.EndEllipsis;
+
+            e.Graphics.Clear(lbl.BackColor);
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                lbl.Text,
+                lbl.Font,
+                lbl.ClientRectangle,
+                lbl.ForeColor,
+                flags
+            );
+        }
+
 
         private void SetItemValue()
         {
@@ -105,7 +126,6 @@ namespace MiaClient.UserControls
 
         private void btnEuro_Click(object sender, EventArgs e)
         {
-            // 👉 altijd het item zelf doorgeven
             EuroClicked?.Invoke(this, EventArgs.Empty);
         }
     }
