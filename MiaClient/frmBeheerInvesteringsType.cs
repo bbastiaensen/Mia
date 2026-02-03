@@ -22,6 +22,10 @@ namespace MiaClient
         public frmBeheerInvesteringsType()
         {
             InitializeComponent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = true; // mag ook false als je wil
         }
 
         private void frmBeheerInvesteringsType_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,6 +44,10 @@ namespace MiaClient
             CreateUI();
             BindLstInvesteringsTypes();
 
+            // ⬇️ altijd leeg starten
+            ClearFields();
+            InvesteringsTypes.SelectedIndex = -1;
+
             AppForms.frmBeheerInvesteringsType = this;
 
             if (AppForms.frmAanvraagFormulier != null)
@@ -51,6 +59,7 @@ namespace MiaClient
                     AppForms.frmAanvraagFormulier.FrmBeheerInvesteringsType_InvesteringsTypeChanged;
             }
         }
+
 
         public void CreateUI()
         {
@@ -72,6 +81,7 @@ namespace MiaClient
             InvesteringsTypes.DisplayMember = "Naam";
             InvesteringsTypes.ValueMember = "Id";
             InvesteringsTypes.DataSource = investeringen;
+            InvesteringsTypes.SelectedIndex = -1;
         }
 
         private void InvesteringsTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +109,9 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+
+            // ⬇️ niets geselecteerd in de lijst
+            InvesteringsTypes.SelectedIndex = -1;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -137,47 +150,67 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            try
+            // 1. Niets geselecteerd → stoppen
+            if (InvesteringsTypes.SelectedValue == null || InvesteringsTypes.SelectedIndex == -1)
             {
-                Investering i = new Investering();
-                i.Id = Convert.ToInt32(InvesteringsTypes.SelectedValue);
-                i.Naam = txtNaam.Text;
-                if (checkActief.Checked)
-                {
-                    i.Actief = true;
-                }
-                else
-                {
-                    i.Actief = false;
-
-                }
-
-                if (MessageBox.Show($"Bent u dat u {InvesteringsTypes.Text} wilt verwijderen?", "InvesteringsType verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    InvesteringenManager.DeleteInvestering(i);
-                    InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
-                }
-
-                BindLstInvesteringsTypes();
-                ClearFields();
-
-            }
-            catch (SqlException ex)
-            {
-                if(ex.Number == 547)
-                {
-                    MessageBox.Show("Dit investeringstype kan niet verwijderd worden aangezien het al in gebruik is", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Er is een onbekende fout opgetreden. - " + ex.Message, "MIA", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show(
+                    "Selecteer eerst een investeringstype om te verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            MessageBox.Show("De InvesteringsType is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 2. Bevestiging vragen
+            DialogResult result = MessageBox.Show(
+                $"Bent u zeker dat u '{InvesteringsTypes.Text}' wilt verwijderen?",
+                "InvesteringsType verwijderen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
+            if (result != DialogResult.Yes)
+            {
+                // Nee → niets doen
+                return;
+            }
+
+            try
+            {
+                Investering i = new Investering
+                {
+                    Id = Convert.ToInt32(InvesteringsTypes.SelectedValue),
+                    Naam = txtNaam.Text,
+                    Actief = checkActief.Checked
+                };
+
+                InvesteringenManager.DeleteInvestering(i);
+
+                InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
+                BindLstInvesteringsTypes();
+                ClearFields();
+
+                MessageBox.Show(
+                    "Het investeringstype is succesvol verwijderd.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (SqlException ex) when (ex.Number == 547)
+            {
+                MessageBox.Show(
+                    "Dit investeringstype kan niet verwijderd worden aangezien het al in gebruik is.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Er is een onbekende fout opgetreden.\n" + ex.Message,
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
