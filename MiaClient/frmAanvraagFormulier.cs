@@ -1071,6 +1071,7 @@ namespace MiaClient
             TriggerDienstEvent();
             TriggerFinancieringsTypeEvent();
             TriggerAfdelingEvent();
+            TriggerKostenplaatsenEvent();
         }
 
         public void CreateUI()
@@ -1543,6 +1544,50 @@ namespace MiaClient
             {
                 AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged -= frmBeheerFinancieringsType_financieringTypeChanged;
                 AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
+            }
+        }
+
+        public void FrmBeheerKostenplaatsen_KostenplaatsChanged(object sender, EventArgs e)
+        {
+            RefreshKostenplaatsDropdown();
+        }
+
+        public void RefreshKostenplaatsDropdown()
+        {
+            int? geselecteerdeId = frmBeheerKostenplaatsen.LastActiveKostenplaatsId;
+
+            var nieuweKostenplaatsen = KostenplaatsManager.GetActiveKostenplaatsen();
+
+            ddlKostenplaats.DataSource = null;
+            ddlKostenplaats.DisplayMember = "Naam";
+            ddlKostenplaats.ValueMember = "Id";
+            ddlKostenplaats.DataSource = nieuweKostenplaatsen;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweKostenplaatsen.Any(k => k.Id == geselecteerdeId.Value))
+            {
+                ddlKostenplaats.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlKostenplaats.SelectedIndex = -1;
+            }
+
+            int? teSelecterenId = frmBeheerAfdelingen.LastActiveAfdelingId;
+
+            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
+
+            ddlAfdeling.DataSource = null;
+            ddlAfdeling.DisplayMember = "Naam";
+            ddlAfdeling.ValueMember = "Id";
+            ddlAfdeling.DataSource = nieuweAfdelingen;
+        }
+
+        public void TriggerKostenplaatsenEvent()
+        {
+            if (AppForms.frmBeheerKostenplaatsen != null)
+            {
+                AppForms.frmBeheerKostenplaatsen.KostenplaatsChanged += FrmBeheerKostenplaatsen_KostenplaatsChanged;
             }
         }
 
