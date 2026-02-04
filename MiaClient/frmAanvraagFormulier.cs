@@ -170,7 +170,7 @@ namespace MiaClient
             ddlStatus.SelectedIndex = 0;
             ddlStatus.Enabled = false;
             txtExtraBudget.Text = "0,00";
-            //Bijlagen
+            //Bijlagen 
             LeegLinken();
             LeegFoto();
             LeegOffertes();
