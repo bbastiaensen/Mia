@@ -100,6 +100,9 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = true;
             try
             {
                 if (cmbFinancieringsjaar.SelectedIndex > -1)
