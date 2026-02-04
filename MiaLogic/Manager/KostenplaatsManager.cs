@@ -166,5 +166,41 @@ namespace MiaLogic.Manager
                 }
             }
         }
+
+        public static List<Kostenplaats> GetActiveKostenplaatsen()
+        {
+            var kostenplaatsen = new List<Kostenplaats>();
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                const string query = "SELECT Id, Naam, Code, Actief FROM Kostenplaats WHERE Actief = 1 ORDER BY Naam ASC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var kostenplaats = new Kostenplaats
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Naam = reader["Naam"].ToString(),
+                                Actief = Convert.ToBoolean(reader["Actief"])
+                            };
+
+                            if (reader["Code"] != DBNull.Value)
+                            {
+                                kostenplaats.Code = Convert.ToInt32(reader["Code"]);
+                            }
+
+                            kostenplaatsen.Add(kostenplaats);
+                        }
+                    }
+                }
+            }
+            return kostenplaatsen;
+        }
+        }
     }
-}

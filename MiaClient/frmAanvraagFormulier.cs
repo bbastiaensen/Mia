@@ -1547,5 +1547,33 @@ namespace MiaClient
                 AppForms.frmBeheerFinancieringsType.FinancieringTypeChanged += frmBeheerFinancieringsType_financieringTypeChanged;
             }
         }
+
+        public void FrmBeheerKostenplaatsen_KostenplaatsChanged(object sender, EventArgs e)
+        {
+            RefreshKostenplaatsDropdown();
+        }
+
+        public void RefreshKostenplaatsDropdown()
+        {
+            int? geselecteerdeId = ddlKostenplaats.SelectedValue as int?;
+
+            var nieuweKostenplaatsen = KostenplaatsManager.GetActiveKostenplaatsen();
+
+            ddlKostenplaats.DataSource = null;
+            ddlKostenplaats.DisplayMember = "Naam";
+            ddlKostenplaats.ValueMember = "Id";
+            ddlKostenplaats.DataSource = nieuweKostenplaatsen;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweKostenplaatsen.Any(k => k.Id == geselecteerdeId.Value))
+            {
+                ddlKostenplaats.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlKostenplaats.SelectedIndex = -1;
+            }
+        }
+
     }
 }
