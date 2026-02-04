@@ -43,7 +43,7 @@ namespace MiaClient
         {
             CreateUI();
             BindLstInvesteringsTypes();
-
+            txtNaam.MaxLength = 100;
             // ⬇️ altijd leeg starten
             ClearFields();
             InvesteringsTypes.SelectedIndex = -1;
@@ -116,7 +116,9 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNaam.Text))
+            string naam = txtNaam.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(naam))
             {
                 MessageBox.Show("Naam is verplicht");
                 return;
@@ -129,7 +131,7 @@ namespace MiaClient
                 i.Id = Convert.ToInt32(InvesteringsTypes.SelectedValue);
             }
 
-            i.Naam = txtNaam.Text;
+            i.Naam = naam; // getrimde waarde
             i.Actief = checkActief.Checked;
 
             i.Id = InvesteringenManager.SaveInvestering(i, IsNew);
