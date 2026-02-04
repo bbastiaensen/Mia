@@ -45,6 +45,7 @@ namespace MiaClient
         frmPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
         frmBeheerLeverancier frmBeheerLeverancier;
+        frmBeheerGemeente frmBeheerGemeente;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -689,6 +690,16 @@ namespace MiaClient
                 frmBeheerLeverancier.MdiParent = this;
             }
             frmBeheerLeverancier.Show();
+        }
+
+        private void gemeenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerGemeente == null)
+            {
+                frmBeheerGemeente = new frmBeheerGemeente();
+                frmBeheerGemeente.MdiParent = this;
+            }
+            frmBeheerGemeente.Show();
         }
     }
 }
