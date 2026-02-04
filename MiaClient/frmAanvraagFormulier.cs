@@ -44,6 +44,7 @@ namespace MiaClient
         public event EventHandler AankopersChanged;
         public event EventHandler FinancieringTypeChanged;
         public event EventHandler DienstenChanged;
+        public event EventHandler PrioriteitenChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
@@ -1535,6 +1536,45 @@ namespace MiaClient
                 AppForms.frmBeheerDiensten.DienstenChanged += FrmBeheerDiensten_DienstenChanged;
             }
         }
+
+
+
+        public void RefreshPrioriteitDropdown()
+        {
+
+            int? geselecteerdeId = ddlDienst.SelectedValue as int?;
+
+            var nieuwePrioriteit = PrioriteitManager.GetActivePrioriteiten();
+
+            ddlPrioriteit.DataSource = null;
+            ddlPrioriteit.DisplayMember = "Naam";
+            ddlPrioriteit.ValueMember = "Id";
+            ddlPrioriteit.DataSource = nieuwePrioriteit;
+
+            if (geselecteerdeId.HasValue &&
+                nieuwePrioriteit.Any(a => a.Id == geselecteerdeId.Value))
+            {
+                ddlPrioriteit.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlPrioriteit.SelectedIndex = -1;
+            }
+        }
+        public void FrmBeheerPrioriteiten_PrioriteitenChanged(object sender, EventArgs e)
+        {
+            RefreshPrioriteitDropdown();
+
+
+        }
+        public void TriggerPrioriteitEvent()
+        {
+            if (AppForms.frmBeheerPrioriteit != null)
+            {
+                AppForms.frmBeheerPrioriteit.PrioriteitenChanged += FrmBeheerPrioriteiten_PrioriteitenChanged;
+            }
+        }
+
 
         //kijk nog is thomas 
         private void HookEvents()
