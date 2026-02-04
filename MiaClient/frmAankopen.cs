@@ -146,10 +146,7 @@ namespace MiaClient
             btnLast.BackgroundImageLayout = ImageLayout.Stretch;
             btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
-            btnExportToExcel.BackColor = StyleParameters.Achtergrondkleur;
-            btnExportToExcel.BackgroundImage = imgExportToExcel;
-            btnExportToExcel.BackgroundImageLayout = ImageLayout.Stretch;
-            btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+            
 
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
