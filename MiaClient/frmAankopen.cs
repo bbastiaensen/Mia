@@ -325,7 +325,7 @@ namespace MiaClient
         #region Filter & Sort Logica
         private List<Aanvraag> GetFilteredEnSortedAanvragen()
         {
-            var items = AanvraagManager.Aanvraag_sort_sorteertvologorde_asc();
+            var items = AanvraagManager.GetAanvragenMetAankoopStatus(1);
 
             if (filterPlanningsdatumVan && chbxPlaningsdatumVan.Checked)
                 items = items.Where(av => av.Planningsdatum >= dtpPlanningsdatumVan.Value).ToList();
