@@ -132,8 +132,7 @@ namespace MiaLogic.Manager
                     INNER JOIN StatusAanvraag sa ON sa.Id = a.StatusAanvraagId
                     INNER JOIN Kostenplaats k ON k.Id = a.KostenplaatsId
                     INNER JOIN Richtperiode r ON r.Id = a.RichtperiodeId
-                    WHERE a.StatusAanvraagId = 4
-                      AND ak.StatusAankoopId = 1
+                    WHERE  ak.StatusAankoopId = 1
                     ORDER BY r.Sorteervolgorde ASC";
 
                     objCmd.Parameters.AddWithValue("@status", statusAankoopId);
