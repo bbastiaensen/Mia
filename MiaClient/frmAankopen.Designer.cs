@@ -38,6 +38,7 @@ namespace MiaClient
             this.btnExportToExcel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.grbxFilterAanvraag = new System.Windows.Forms.GroupBox();
+            this.testtest = new System.Windows.Forms.Button();
             this.cbBedragTot = new System.Windows.Forms.CheckBox();
             this.txtBedragTot = new System.Windows.Forms.TextBox();
             this.cbBedragVan = new System.Windows.Forms.CheckBox();
@@ -76,7 +77,6 @@ namespace MiaClient
             this.btnRichtperiode = new System.Windows.Forms.Button();
             this.btnSortGoedgekeurdbedrag = new System.Windows.Forms.Button();
             this.btnSaldo = new System.Windows.Forms.Button();
-            this.testtest = new System.Windows.Forms.Button();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -179,6 +179,21 @@ namespace MiaClient
             this.grbxFilterAanvraag.TabIndex = 2;
             this.grbxFilterAanvraag.TabStop = false;
             this.grbxFilterAanvraag.Text = "Filter";
+            // 
+            // testtest
+            // 
+            this.testtest.BackColor = System.Drawing.Color.Transparent;
+            this.testtest.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.testtest.FlatAppearance.BorderSize = 0;
+            this.testtest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.testtest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.testtest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.testtest.Location = new System.Drawing.Point(728, 95);
+            this.testtest.Margin = new System.Windows.Forms.Padding(2);
+            this.testtest.Name = "testtest";
+            this.testtest.Size = new System.Drawing.Size(20, 22);
+            this.testtest.TabIndex = 27;
+            this.testtest.UseVisualStyleBackColor = false;
             // 
             // cbBedragTot
             // 
@@ -470,7 +485,7 @@ namespace MiaClient
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(259, 249);
+            this.label2.Location = new System.Drawing.Point(287, 249);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 20);
             this.label2.TabIndex = 48;
@@ -494,7 +509,7 @@ namespace MiaClient
             this.btnSortSatusaanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSortSatusaanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortSatusaanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortSatusaanvraag.Image")));
-            this.btnSortSatusaanvraag.Location = new System.Drawing.Point(368, 246);
+            this.btnSortSatusaanvraag.Location = new System.Drawing.Point(401, 246);
             this.btnSortSatusaanvraag.Name = "btnSortSatusaanvraag";
             this.btnSortSatusaanvraag.Size = new System.Drawing.Size(27, 27);
             this.btnSortSatusaanvraag.TabIndex = 64;
@@ -596,22 +611,6 @@ namespace MiaClient
             this.btnSaldo.TabIndex = 74;
             this.btnSaldo.UseVisualStyleBackColor = false;
             this.btnSaldo.Click += new System.EventHandler(this.btnSaldo_Click);
-            // 
-            // testtest
-            // 
-            this.testtest.BackColor = System.Drawing.Color.Transparent;
-            this.testtest.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.testtest.FlatAppearance.BorderSize = 0;
-            this.testtest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.testtest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.testtest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testtest.Image = ((System.Drawing.Image)(resources.GetObject("testtest.Image")));
-            this.testtest.Location = new System.Drawing.Point(728, 95);
-            this.testtest.Margin = new System.Windows.Forms.Padding(2);
-            this.testtest.Name = "testtest";
-            this.testtest.Size = new System.Drawing.Size(20, 22);
-            this.testtest.TabIndex = 27;
-            this.testtest.UseVisualStyleBackColor = false;
             // 
             // frmAankopen
             // 

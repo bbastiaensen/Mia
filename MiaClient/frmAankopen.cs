@@ -227,6 +227,67 @@ namespace MiaClient
             }
         }
 
+        private List<Aanvraag> FilteredAanvraagItems(List<Aanvraag> items, bool planningsdatumVan, bool planningsdatumTot, bool gebruiker, bool titel, bool bedragVan, bool bedragTot, bool jaar, bool on)
+        {
+            if (items != null)
+            {
+                //if (RSort)
+                //{
+                //    //items = items.Where(av =>);              
+                //}
+                if (planningsdatumVan)
+                {
+                    if (chbxPlaningsdatumVan.Checked == true)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                    }
+                }
+                if (planningsdatumTot)
+                {
+                    if (chbxPlaningsdatumTot.Checked == true)
+                    {
+                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                    }
+                }
+                if (gebruiker)
+                {
+                    items = items.Where(av => av.Gebruiker.ToLower().Contains(txtGebruiker.Text.ToLower())).ToList();
+                }
+                if (titel)
+                {
+                    items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
+                }
+                if (jaar)
+                {
+                    if (cmbFinancieringsjaar.SelectedIndex > -1)
+                    {
+                        items = items.Where(av => av.Financieringsjaar.ToString().Contains(cmbFinancieringsjaar.SelectedItem.ToString())).ToList();
+                    }
+                }
+                if (bedragVan)
+                {
+                    if (cbBedragVan.Checked == true)
+                    {
+                        if (txtBedragVan.Text != string.Empty)
+                        {
+                            items = items.Where(av => (av.PrijsIndicatieStuk * av.AantalStuk) >= Convert.ToDecimal(txtBedragVan.Text)).ToList();
+                        }
+                    }
+                }
+                if (bedragTot)
+                {
+                    if (cbBedragTot.Checked == true)
+                    {
+                        if (txtBedragTot.Text != string.Empty)
+                        {
+                            items = items.Where(av => (av.PrijsIndicatieStuk * av.AantalStuk) <= Convert.ToDecimal(txtBedragTot.Text)).ToList();
+                        }
+                    }
+                }
+            }
+            return items;
+        }
+
         private void Aki_AankoopItemChanged(object sender, EventArgs e)
         {
             try
