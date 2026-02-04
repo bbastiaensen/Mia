@@ -79,7 +79,7 @@ namespace MiaClient
                 foreach (string jaar in jaren)
                     cmbFinancieringsjaar.Items.Add(jaar);
 
-                cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
+                cmbFinancieringsjaar.SelectedIndex = -1; // geen filter
 
                 // Buttons images
                 btnFilter.BackgroundImage = imgFilter;
