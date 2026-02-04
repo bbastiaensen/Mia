@@ -19,11 +19,11 @@ namespace MiaClient
         {
             InitializeComponent();
 
-            pnlAanvragen.AutoScroll = true;
-            pnlAanvragen.HorizontalScroll.Enabled = false;
-            pnlAanvragen.HorizontalScroll.Visible = false;
+            pnlBekrachtigdeAanvragen.AutoScroll = true;
+            pnlBekrachtigdeAanvragen.HorizontalScroll.Enabled = false;
+            pnlBekrachtigdeAanvragen.HorizontalScroll.Visible = false;
 
-            pnlAanvragen.Resize += pnlAanvragen_Resize;
+            pnlBekrachtigdeAanvragen.Resize += pnlAanvragen_Resize;
         }
 
         private void frmNieuweAankoop_Load(object sender, EventArgs e)
@@ -59,8 +59,8 @@ namespace MiaClient
 
         public void BindAanvragen(List<Aanvraag> items)
         {
-            pnlAanvragen.SuspendLayout();
-            pnlAanvragen.Controls.Clear();
+            pnlBekrachtigdeAanvragen.SuspendLayout();
+            pnlBekrachtigdeAanvragen.Controls.Clear();
 
             if (items == null) return;
 
@@ -76,25 +76,25 @@ namespace MiaClient
                 );
 
                 item.Location = new Point(0, yPos);
-                item.Width = pnlAanvragen.ClientSize.Width;
+                item.Width = pnlBekrachtigdeAanvragen.ClientSize.Width;
                 item.Height = rowHeight;
 
                 item.EuroClicked += NieuweAankoopItem_EuroClicked;
 
-                pnlAanvragen.Controls.Add(item);
+                pnlBekrachtigdeAanvragen.Controls.Add(item);
 
                 yPos += rowHeight;
                 n++;
             }
 
-            pnlAanvragen.ResumeLayout();
+            pnlBekrachtigdeAanvragen.ResumeLayout();
         }
 
         private void pnlAanvragen_Resize(object sender, EventArgs e)
         {
-            foreach (NieuweAankoopItem item in pnlAanvragen.Controls)
+            foreach (NieuweAankoopItem item in pnlBekrachtigdeAanvragen.Controls)
             {
-                item.Width = pnlAanvragen.ClientSize.Width;
+                item.Width = pnlBekrachtigdeAanvragen.ClientSize.Width;
             }
         }
 

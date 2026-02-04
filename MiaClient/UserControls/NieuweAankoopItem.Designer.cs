@@ -46,13 +46,8 @@ namespace MiaClient.UserControls
             this.lblOmschrijving.Padding = new Padding(0);
 
             // Paint event om linksonder + EndEllipsis correct te tekenen
-            this.lblOmschrijving.Paint += (s, e) =>
-            {
-                var lbl = (Label)s;
-                TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Bottom | TextFormatFlags.EndEllipsis;
-                e.Graphics.Clear(lbl.BackColor);
-                TextRenderer.DrawText(e.Graphics, lbl.Text, lbl.Font, lbl.ClientRectangle, lbl.ForeColor, flags);
-            };
+            this.lblOmschrijving.Paint += new System.Windows.Forms.PaintEventHandler(this.lblOmschrijving_Paint);
+
 
             // 
             // lblAanvrager
