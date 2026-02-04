@@ -67,6 +67,7 @@ namespace MiaClient
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = true;
+
             try
             {
                 huidigePage = 1;
@@ -101,18 +102,17 @@ namespace MiaClient
                 btnNext.BackgroundImageLayout = ImageLayout.Stretch;
                 btnNext.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
 
-            btnLast.BackgroundImage = imgLast;
-            btnLast.BackgroundImageLayout = ImageLayout.Stretch;
-            btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
-
-            
-
-            List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
-            foreach (string jaar in jaren)
+                btnLast.BackgroundImage = imgLast;
+                btnLast.BackgroundImageLayout = ImageLayout.Stretch;
+                btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void frmAankopen_Shown(object sender, EventArgs e)
         {
