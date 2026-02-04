@@ -31,7 +31,7 @@
             this.btnBewaren = new System.Windows.Forms.Button();
             this.btnVerwijderen = new System.Windows.Forms.Button();
             this.btnNieuw = new System.Windows.Forms.Button();
-            this.txtVoornaam = new System.Windows.Forms.TextBox();
+            this.txtNaam = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.checkActief = new System.Windows.Forms.CheckBox();
             this.lblActief = new System.Windows.Forms.Label();
@@ -42,41 +42,44 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(416, 97);
+            this.btnBewaren.Location = new System.Drawing.Point(424, 128);
             this.btnBewaren.Name = "btnBewaren";
-            this.btnBewaren.Size = new System.Drawing.Size(105, 33);
+            this.btnBewaren.Size = new System.Drawing.Size(105, 39);
             this.btnBewaren.TabIndex = 23;
             this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
+            this.btnBewaren.Click += new System.EventHandler(this.btnBewaren_Click);
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(527, 97);
+            this.btnVerwijderen.Location = new System.Drawing.Point(535, 128);
             this.btnVerwijderen.Name = "btnVerwijderen";
-            this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
+            this.btnVerwijderen.Size = new System.Drawing.Size(105, 39);
             this.btnVerwijderen.TabIndex = 22;
             this.btnVerwijderen.Text = "Verwijderen";
             this.btnVerwijderen.UseVisualStyleBackColor = true;
+            this.btnVerwijderen.Click += new System.EventHandler(this.btnVerwijderen_Click);
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(305, 97);
+            this.btnNieuw.Location = new System.Drawing.Point(313, 128);
             this.btnNieuw.Name = "btnNieuw";
-            this.btnNieuw.Size = new System.Drawing.Size(105, 33);
+            this.btnNieuw.Size = new System.Drawing.Size(105, 39);
             this.btnNieuw.TabIndex = 21;
             this.btnNieuw.Text = "Nieuw";
             this.btnNieuw.UseVisualStyleBackColor = true;
+            this.btnNieuw.Click += new System.EventHandler(this.btnNieuw_Click);
             // 
-            // txtVoornaam
+            // txtNaam
             // 
-            this.txtVoornaam.Location = new System.Drawing.Point(419, 33);
-            this.txtVoornaam.Name = "txtVoornaam";
-            this.txtVoornaam.Size = new System.Drawing.Size(213, 32);
-            this.txtVoornaam.TabIndex = 20;
+            this.txtNaam.Location = new System.Drawing.Point(427, 52);
+            this.txtNaam.Name = "txtNaam";
+            this.txtNaam.Size = new System.Drawing.Size(213, 32);
+            this.txtNaam.TabIndex = 20;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(419, 0);
+            this.txtId.Location = new System.Drawing.Point(427, 9);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(213, 32);
@@ -85,7 +88,7 @@
             // checkActief
             // 
             this.checkActief.AutoSize = true;
-            this.checkActief.Location = new System.Drawing.Point(419, 69);
+            this.checkActief.Location = new System.Drawing.Point(427, 89);
             this.checkActief.Name = "checkActief";
             this.checkActief.Size = new System.Drawing.Size(39, 29);
             this.checkActief.TabIndex = 17;
@@ -95,7 +98,7 @@
             // lblActief
             // 
             this.lblActief.AutoSize = true;
-            this.lblActief.Location = new System.Drawing.Point(316, 69);
+            this.lblActief.Location = new System.Drawing.Point(324, 89);
             this.lblActief.Name = "lblActief";
             this.lblActief.Size = new System.Drawing.Size(64, 25);
             this.lblActief.TabIndex = 16;
@@ -104,7 +107,7 @@
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(316, 36);
+            this.lblNaam.Location = new System.Drawing.Point(324, 55);
             this.lblNaam.Name = "lblNaam";
             this.lblNaam.Size = new System.Drawing.Size(66, 25);
             this.lblNaam.TabIndex = 14;
@@ -113,7 +116,7 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(316, 3);
+            this.lblId.Location = new System.Drawing.Point(324, 12);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(37, 25);
             this.lblId.TabIndex = 13;
@@ -123,10 +126,11 @@
             // 
             this.InvesteringsTypes.FormattingEnabled = true;
             this.InvesteringsTypes.ItemHeight = 25;
-            this.InvesteringsTypes.Location = new System.Drawing.Point(3, 3);
+            this.InvesteringsTypes.Location = new System.Drawing.Point(11, 12);
             this.InvesteringsTypes.Name = "InvesteringsTypes";
-            this.InvesteringsTypes.Size = new System.Drawing.Size(289, 129);
+            this.InvesteringsTypes.Size = new System.Drawing.Size(289, 154);
             this.InvesteringsTypes.TabIndex = 12;
+            this.InvesteringsTypes.SelectedIndexChanged += new System.EventHandler(this.InvesteringsTypes_SelectedIndexChanged);
             // 
             // frmBeheerInvesteringsType
             // 
@@ -136,7 +140,7 @@
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
-            this.Controls.Add(this.txtVoornaam);
+            this.Controls.Add(this.txtNaam);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.checkActief);
             this.Controls.Add(this.lblActief);
@@ -160,7 +164,7 @@
         private System.Windows.Forms.Button btnBewaren;
         private System.Windows.Forms.Button btnVerwijderen;
         private System.Windows.Forms.Button btnNieuw;
-        private System.Windows.Forms.TextBox txtVoornaam;
+        private System.Windows.Forms.TextBox txtNaam;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.CheckBox checkActief;
         private System.Windows.Forms.Label lblActief;

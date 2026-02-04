@@ -63,6 +63,7 @@
             this.btnSortTitel = new System.Windows.Forms.Button();
             this.btnBedrag = new System.Windows.Forms.Button();
             this.btnSortRichtperiode = new System.Windows.Forms.Button();
+            this.lblWachtenExcelAankopen = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -442,6 +443,14 @@
             this.btnSortRichtperiode.TabIndex = 36;
             this.btnSortRichtperiode.UseVisualStyleBackColor = false;
             this.btnSortRichtperiode.Click += new System.EventHandler(this.btnSortRichtperiode_Click);
+            // 
+            // lblWachtenExcelAankopen
+            // 
+            this.lblWachtenExcelAankopen.AutoSize = true;
+            this.lblWachtenExcelAankopen.Location = new System.Drawing.Point(755, 8);
+            this.lblWachtenExcelAankopen.Name = "lblWachtenExcelAankopen";
+            this.lblWachtenExcelAankopen.Size = new System.Drawing.Size(0, 25);
+            this.lblWachtenExcelAankopen.TabIndex = 45;
             // 
             // frmAankopen
             // 

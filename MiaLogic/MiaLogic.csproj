@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +46,8 @@
     <Compile Include="Manager\AankoopManager.cs" />
     <Compile Include="Manager\AanvraagManager.cs" />
     <Compile Include="Manager\AfdelingenManager.cs" />
+    <Compile Include="Manager\GemeenteManager.cs" />
+    <Compile Include="Manager\LeverancierManager.cs" />
     <Compile Include="Manager\DienstenManager.cs" />
     <Compile Include="Manager\FinancieringenManager.cs" />
     <Compile Include="Manager\FinancieringsjaarManager.cs" />
@@ -52,6 +56,7 @@
     <Compile Include="Manager\GebruiksLogManager.cs" />
     <Compile Include="Manager\InvesteringenManager.cs" />
     <Compile Include="Manager\KostenplaatsManager.cs" />
+    <Compile Include="Manager\LandenManager.cs" />
     <Compile Include="Manager\LinkManager.cs" />
     <Compile Include="Manager\OfferteManager.cs" />
     <Compile Include="Manager\ParameterManager.cs" />
@@ -59,6 +64,7 @@
     <Compile Include="Manager\RichtperiodeManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Manager\AankoperManager.cs" />
+    <Compile Include="Manager\StatusAankoopManager.cs" />
     <Compile Include="Manager\StatusAanvraagManager.cs" />
     <Compile Include="Object\Aankoop.cs" />
     <Compile Include="Object\Aanvraag.cs" />
@@ -70,8 +76,11 @@
     <Compile Include="Object\Foto.cs" />
     <Compile Include="Object\Gebruiker.cs" />
     <Compile Include="Object\GebruiksLog.cs" />
+    <Compile Include="Object\Gemeente.cs" />
     <Compile Include="Object\Investering.cs" />
     <Compile Include="Object\Kostenplaats.cs" />
+    <Compile Include="Object\Land.cs" />
+    <Compile Include="Object\leverancier.cs" />
     <Compile Include="Object\Link.cs" />
     <Compile Include="Object\Offerte.cs" />
     <Compile Include="Object\Parameter.cs" />
@@ -79,6 +88,7 @@
     <Compile Include="Object\Richtperiode.cs" />
     <Compile Include="Object\Rol.cs" />
     <Compile Include="Object\Aankoper.cs" />
+    <Compile Include="Object\StatusAankoop.cs" />
     <Compile Include="Object\StatusAanvraag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace MiaLogic.Object
 {
-    public class Dienst
+    public class Gemeente
     {
         public int Id { get; set; }
         public string Naam { get; set; }
+        public int LandId { get; set; }
+        public int Postcode { get; set; }
 
-        public bool actief { get; set; }
+        public string PostcodeNaam
+        {
+            get { return Postcode + " - " + Naam; }
+        }
     }
-
 }

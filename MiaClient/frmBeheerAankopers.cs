@@ -160,8 +160,9 @@ namespace MiaClient
             
             if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
             {
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
                 AankoperManager.DeleteAankoper(a);
+                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AankopersChanged?.Invoke(this, EventArgs.Empty);
             }
 

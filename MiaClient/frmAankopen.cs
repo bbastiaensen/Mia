@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -143,6 +145,12 @@ namespace MiaClient
             btnLast.BackgroundImage = imgLast;
             btnLast.BackgroundImageLayout = ImageLayout.Stretch;
             btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
+            btnExportToExcel.BackColor = StyleParameters.Achtergrondkleur;
+            btnExportToExcel.BackgroundImage = imgExportToExcel;
+            btnExportToExcel.BackgroundImageLayout = ImageLayout.Stretch;
+            btnExportToExcel.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
