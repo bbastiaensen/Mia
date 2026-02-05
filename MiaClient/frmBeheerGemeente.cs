@@ -17,7 +17,7 @@ namespace MiaClient
     {
         public event EventHandler LandenChanged;
         List<Gemeente> gemeentes;
-
+        public event EventHandler GemeentesChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -38,6 +38,14 @@ namespace MiaClient
             TriggerLandEvent();
             _isLoaded = true;
             BindLstGemeentes();
+
+             
+
+            if (AppForms.frmBeheerLeverancier != null)
+            {
+                this.GemeentesChanged -= AppForms.frmBeheerLeverancier.FrmBeheerGemeentes_GemeentesChanged;
+                this.GemeentesChanged += AppForms.frmBeheerLeverancier.FrmBeheerGemeentes_GemeentesChanged;
+            }
 
         }
 
@@ -108,8 +116,9 @@ namespace MiaClient
 
 
             g.Id = GemeenteManager.SaveGemeente(g, IsNew);
-           
-            
+            GemeentesChanged?.Invoke(this, EventArgs.Empty);
+
+
                 BindLstGemeentes();
                 VulLandDropDown(ddlLand);
                 ClearFields();
@@ -138,6 +147,7 @@ namespace MiaClient
             {
 
                 GemeenteManager.DeleteGemeente(g);
+                GemeentesChanged?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("De Gemeente is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }

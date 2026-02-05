@@ -45,6 +45,7 @@ namespace MiaClient
         public event EventHandler FinancieringTypeChanged;
         public event EventHandler DienstenChanged;
         public event EventHandler PrioriteitenChanged;
+        public event EventHandler GemeentesChanged;
         private int aanvraagId = 0;
         List<Foto> fotos;
         List<Link> links;
@@ -1632,6 +1633,7 @@ namespace MiaClient
                 AppForms.frmBeheerKostenplaatsen.KostenplaatsChanged += FrmBeheerKostenplaatsen_KostenplaatsChanged;
             }
         }
+
 
     }
 }

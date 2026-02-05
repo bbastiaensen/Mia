@@ -27,6 +27,8 @@ namespace MiaClient
 
         private void frmLeverancier_Load(object sender, EventArgs e)
         {
+            AppForms.frmBeheerLeverancier = this;
+            TriggerGemeentesEvent();
             CreateUI();
             BindLanden();
             BindLstLeveranciers();
@@ -286,6 +288,40 @@ namespace MiaClient
         {
             return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+        }
+        public void FrmBeheerGemeentes_GemeentesChanged(object sender, EventArgs e)
+        {
+            RefreshGemeenteDropdown();
+        }
+
+        public void RefreshGemeenteDropdown()
+        {
+            int? geselecteerdeId = frmBeheerKostenplaatsen.LastActiveKostenplaatsId;
+
+            var nieuweGemeentes = GemeenteManager.GetGemeentes();
+
+            ddlPostcodeGemeente.DataSource = null;
+            ddlPostcodeGemeente.DisplayMember = "Naam";
+            ddlPostcodeGemeente.ValueMember = "Id";
+            ddlPostcodeGemeente.DataSource = nieuweGemeentes;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweGemeentes.Any(k => k.Id == geselecteerdeId.Value))
+            {
+                ddlPostcodeGemeente.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlPostcodeGemeente.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerGemeentesEvent()
+        {
+            if (AppForms.frmBeheerGemeente != null)
+            {
+                AppForms.frmBeheerGemeente.GemeentesChanged += FrmBeheerGemeentes_GemeentesChanged;
+            }
         }
     }
 }
