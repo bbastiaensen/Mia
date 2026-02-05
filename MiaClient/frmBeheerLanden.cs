@@ -16,7 +16,7 @@ namespace MiaClient
     public partial class frmBeheerLanden : Form
     {
         List<Land> landen;
-
+        public event EventHandler LandenChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -46,6 +46,13 @@ namespace MiaClient
         {
             CreateUI();
             BindLstLanden();
+            AppForms.frmBeheerLanden = this;
+
+            if (AppForms.frmBeheerGemeente != null)
+            {
+                this.LandenChanged -= AppForms.frmBeheerGemeente.FrmBeheerLanden_LandenChanged;
+                this.LandenChanged += AppForms.frmBeheerGemeente.FrmBeheerLanden_LandenChanged;
+            }
         }
 
         private void frmBeheerLanden_FormClosing(object sender, FormClosingEventArgs e)
@@ -54,6 +61,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+
+            //if (AppForms.frmBeheerLanden == this)
+            //{
+            //    AppForms.frmBeheerLanden = null;
+            //}
         }
         public void BindLstLanden()
         {
@@ -109,6 +121,7 @@ namespace MiaClient
             l.Id = Convert.ToInt32(LstLanden.SelectedValue);
             l.Naam = txtNaam.Text;
             l.Id = LandenManager.SaveLanden(l, IsNew);
+            LandenChanged?.Invoke(this, EventArgs.Empty);
             BindLstLanden();
            
             LstLanden.SelectedValue = l.Id;
@@ -173,6 +186,63 @@ namespace MiaClient
                     MessageBoxIcon.Error
                 );
             }
+            if (IsNew)
+            {
+                MessageBox.Show(
+                    "U kunt geen nieuw (onbewaard) land verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            if (LstLanden.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Gelieve eerst een land te selecteren.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            Land l = (Land)LstLanden.SelectedItem;
+
+            if (MessageBox.Show(
+                $"Bent u zeker dat u {l.Naam} wilt verwijderen?",
+                "Land verwijderen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                LandenManager.DeleteLand(l);
+                LandenChanged?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("Het Land is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show(
+                    "Het land is succesvol verwijderd.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+        }
+                BindLstLanden();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Fout bij verwijderen van het land: {ex.Message}",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
 
         }
 
@@ -183,5 +253,6 @@ namespace MiaClient
                 e.Handled = true; // Block the key
             }
         }
+
     }
 }
