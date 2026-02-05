@@ -16,7 +16,7 @@ namespace MiaClient
     public partial class frmBeheerLanden : Form
     {
         List<Land> landen;
-
+        public event EventHandler LandenChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -46,6 +46,13 @@ namespace MiaClient
         {
             CreateUI();
             BindLstLanden();
+            AppForms.frmBeheerLanden = this;
+
+            if (AppForms.frmBeheerGemeente != null)
+            {
+                this.LandenChanged -= AppForms.frmBeheerGemeente.FrmBeheerLanden_LandenChanged;
+                this.LandenChanged += AppForms.frmBeheerGemeente.FrmBeheerLanden_LandenChanged;
+            }
         }
 
         private void frmBeheerLanden_FormClosing(object sender, FormClosingEventArgs e)
@@ -54,6 +61,11 @@ namespace MiaClient
             //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
+
+            //if (AppForms.frmBeheerLanden == this)
+            //{
+            //    AppForms.frmBeheerLanden = null;
+            //}
         }
         public void BindLstLanden()
         {
@@ -105,6 +117,7 @@ namespace MiaClient
             l.Id = Convert.ToInt32(LstLanden.SelectedValue);
             l.Naam = txtNaam.Text;
             l.Id = LandenManager.SaveLanden(l, IsNew);
+            LandenChanged?.Invoke(this, EventArgs.Empty);
             BindLstLanden();
            
             LstLanden.SelectedValue = l.Id;
@@ -133,6 +146,7 @@ namespace MiaClient
                       return;
                 }
                 LandenManager.DeleteLand(l);
+                LandenChanged?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Het Land is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -148,5 +162,6 @@ namespace MiaClient
                 e.Handled = true; // Block the key
             }
         }
+
     }
 }

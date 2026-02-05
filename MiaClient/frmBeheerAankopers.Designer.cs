@@ -180,7 +180,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerAankopers";
-            this.Text = "z";
+            this.Text = "Beheer Aankopers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerAankopers_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerAankopers_Load);
             this.ResumeLayout(false);
