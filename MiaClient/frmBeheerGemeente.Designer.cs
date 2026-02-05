@@ -81,6 +81,7 @@
             // 
             this.txtNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNaam.Location = new System.Drawing.Point(428, 42);
+            this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
             this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 20;
@@ -141,9 +142,8 @@
             this.ddlLand.FormattingEnabled = true;
             this.ddlLand.Location = new System.Drawing.Point(428, 116);
             this.ddlLand.Name = "ddlLand";
-            this.ddlLand.Size = new System.Drawing.Size(121, 28);
+            this.ddlLand.Size = new System.Drawing.Size(213, 28);
             this.ddlLand.TabIndex = 24;
-          
             // 
             // txtLandId
             // 
@@ -168,9 +168,11 @@
             // 
             this.txtPostcode.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPostcode.Location = new System.Drawing.Point(428, 82);
+            this.txtPostcode.MaxLength = 9;
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.Size = new System.Drawing.Size(213, 27);
             this.txtPostcode.TabIndex = 28;
+            this.txtPostcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPostcode_KeyPress);
             // 
             // lblPostcode
             // 
@@ -202,7 +204,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstGemeente);
             this.Name = "frmBeheerGemeente";
-            this.Text = "frmBeheerGemeente";
+            this.Text = "Beheer Gemeente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerGemeente_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerGemeente_Load);
             this.ResumeLayout(false);

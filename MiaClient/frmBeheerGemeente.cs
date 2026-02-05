@@ -98,6 +98,7 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            try { 
             Gemeente g = new Gemeente();
             g.Id = Convert.ToInt32(LstGemeente.SelectedValue);
             g.Naam = txtNaam.Text;
@@ -107,15 +108,21 @@ namespace MiaClient
 
 
             g.Id = GemeenteManager.SaveGemeente(g, IsNew);
+           
+            
+                BindLstGemeentes();
+                VulLandDropDown(ddlLand);
+                ClearFields();
+                LstGemeente.SelectedValue = g.Id.ToString();
+                IsNew = false;
 
-
-            BindLstGemeentes();
-            VulLandDropDown(ddlLand);
-            ClearFields();
-            LstGemeente.SelectedValue = g.Id.ToString();
-            IsNew = false;
-
-            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Er is een fout opgetreden bij het bewaren van de gegevens. Gelieve alle velden correct in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+          
 
         }
 
@@ -192,6 +199,12 @@ namespace MiaClient
             cmbLand.SelectedIndex = -1;
         }
 
-        
+        private void txtPostcode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
     }
 }
