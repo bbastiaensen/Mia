@@ -205,7 +205,7 @@ namespace MiaLogic.Manager
             }
         }
 
-
+        //
         public static void DeleteAankoop(int aankoopId)
         {
             using (SqlConnection objCn = new SqlConnection())
