@@ -90,6 +90,10 @@ namespace MiaLogic.Manager
                         {
                             aanvraag.BudgetToegekend = Convert.ToDecimal(objRea["BudgetToegekend"]);
                         }
+                        if (objRea["ExtraBudget"] != DBNull.Value)
+                        {
+                            aanvraag.ExtraBudget = Convert.ToDecimal(objRea["ExtraBudget"]);
+                        }
                     }
                 }
             }

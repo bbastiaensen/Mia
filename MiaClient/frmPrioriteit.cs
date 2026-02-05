@@ -17,10 +17,11 @@ namespace MiaClient
     public partial class frmPrioriteit : Form
     {
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
+        public event EventHandler PrioriteitenChanged;
 
         bool IsNew = false;
 
-        public event EventHandler PrioriteitenGewijzigd;
+     
 
         public frmPrioriteit()
         {
@@ -53,6 +54,14 @@ namespace MiaClient
         {
             CreateUI();
             BindlstPrioriteiten();
+
+            AppForms.frmBeheerPrioriteit = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.PrioriteitenChanged -= AppForms.frmAanvraagFormulier.FrmBeheerPrioriteiten_PrioriteitenChanged;
+                this.PrioriteitenChanged += AppForms.frmAanvraagFormulier.FrmBeheerPrioriteiten_PrioriteitenChanged;
+            }
         }
         public void BindlstPrioriteiten()
         {
@@ -104,11 +113,11 @@ namespace MiaClient
                 p.Actief = false;
             }
             p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
-            PrioriteitenGewijzigd?.Invoke(this, EventArgs.Empty);
+            PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
 
             BindlstPrioriteiten();
-            ClearFields();
-            lstPrioriteiten.SelectedValue = p.Id.ToString();
+            
+            lstPrioriteiten.SelectedValue = p.Id;
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -116,6 +125,16 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
+
+            if (lstPrioriteiten.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Er is geen financieringstype geselecteerd om te verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
             Prioriteit p = new Prioriteit();
             p.Id = Convert.ToInt32(lstPrioriteiten.SelectedValue);
             p.Naam = txtNaam.Text;
@@ -128,17 +147,47 @@ namespace MiaClient
                 p.Actief = false;
             }
 
-            if (MessageBox.Show($"Bent u dat u {lstPrioriteiten.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {lstPrioriteiten.Text} wilt verwijderen?", "Prioteit verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                
-                PrioriteitManager.DeletePrioriteit(p);
-                PrioriteitenGewijzigd?.Invoke(this, EventArgs.Empty); 
-                MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               
-            }
-            IsNew = false;
-            BindlstPrioriteiten();
+                try
+                {
 
+                    if (PrioriteitManager.PrioriteitGebruikt(p.Id))
+                    {
+
+                        PrioriteitManager.DeactiveerPrioriteit(p.Id);
+                        PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+
+
+
+                        MessageBox.Show(
+                            "Deze Prioriteit is gekoppeld aan een aanvraag en werd op niet-actief gezet.",
+                            "MIA",
+                            MessageBoxButtons.OK,
+                             MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        PrioriteitManager.DeletePrioriteit(p);
+                        PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
+                        MessageBox.Show("De Prioriteit is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Het systeem kon de Prioriteit niet verwijderen, maar is wel gedeactiveerd" + ex.Message,
+                        "MIA",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                IsNew = false;
+                BindlstPrioriteiten();
+
+            }
         }
         public void ClearFields()
         {

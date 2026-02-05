@@ -1,87 +1,112 @@
-﻿using MiaLogic.Manager;
+using MiaLogic.Manager;
 using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiaClient.UserControls
 {
     public partial class AankopenItem : UserControl
     {
-        public int Id { get; set; }
-        public string Titel { get; set; }
-        public decimal Totaal { get; set; }
-        public string Gebruiker { get; set; }
-        public decimal PrijsIndicatieStuk { get; set; }
-        public int AantalStuk { get; set; }
-        public int RichtperiodeId { get; set; }
-        public string Financieringsjaar { get; set; }
+        public int AankoopId { get; set; }
+        public string StatusAankoopNaam { get; set; }
         public Boolean Even { get; set; }
-        public Richtperiode R { get; set; }
 
-        public event EventHandler AanvraagDeleted;
+        private AankoopOverzichtItem _aankoopItem;
+        private ToolTip _toolTip = new ToolTip();
 
-        public event EventHandler AanvraagItemSelected;
+        public event EventHandler AankoopDeleted;
 
-        public event EventHandler AanvraagItemChanged;
-        //frmAankoop frmAankoop;
+        public event EventHandler AankoopItemSelected;
+
+        public event EventHandler AankoopItemChanged;
+
         public AankopenItem()
         {
             InitializeComponent();
+            _toolTip.ShowAlways = true;
+            _toolTip.AutoPopDelay = 10000;
+            _toolTip.InitialDelay = 100;   // Sneller tonen (100 ms)
+            _toolTip.ReshowDelay = 0;
+
+            // Direct weg bij verlaten titel: tooltip uitzetten zodat hij meteen verdwijnt
+            lblOmschrijving.MouseLeave += (s, ev) =>
+            {
+                _toolTip.Active = false;
+                _toolTip.Active = true;
+            };
+            lblOmschrijving.MouseEnter += (s, ev) =>
+            {
+                if (_aankoopItem != null && !string.IsNullOrEmpty(_aankoopItem.Omschrijving))
+                    _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + _aankoopItem.Omschrijving);
+            };
         }
-        public AankopenItem(int id, string titel, string gebruiker, string financieringsjaar, decimal p_ind_stuk, int aantals, Boolean even, int richtId)
+    
+
+        public void BindAankoop(AankoopOverzichtItem aankoopItem, bool evenRow = false)
         {
-            InitializeComponent();
-            Id = id;
-            Titel = titel;
-            PrijsIndicatieStuk = p_ind_stuk;
-            AantalStuk = aantals;
-            Totaal = PrijsIndicatieStuk * AantalStuk;
-            Gebruiker = gebruiker;
-            Financieringsjaar = financieringsjaar;
-            Even = even;
-            RichtperiodeId = richtId;
-            Richtperiode r = RichtperiodeManager.GetRichtperiodeById(richtId);
-            R = r;
-            R.Naam = r.Naam;
-            R.Sorteervolgorde = r.Sorteervolgorde;
+            if (aankoopItem == null)
+                throw new ArgumentNullException(nameof(aankoopItem));
+
+            _aankoopItem = aankoopItem;
+            Even = evenRow;
+            AankoopId = aankoopItem.AankoopId;
+            StatusAankoopNaam = aankoopItem.StatusAankoop;
+
+
             SetItemValue();
         }
+
         private void SetItemValue()
         {
-            lblAanvrager.Text = Gebruiker.ToString();
+            // Toon titel van aanvraag in het label (niet omschrijving)
+            string titel = _aankoopItem.Titel ?? "";
+            lblGoedgekeurdBedrag.TextAlign = ContentAlignment.TopLeft;
+            lblSaldo.TextAlign = ContentAlignment.TopLeft;
 
-            //Limiteren van het aantal characters er in de titel komen te staan
-            var characters = Titel.ToCharArray();
-            if (characters.Length > 20)
+            lblGoedgekeurdBedrag.RightToLeft = RightToLeft.No;
+            lblSaldo.RightToLeft = RightToLeft.No;
+
+
+
+
+            if (titel.Length > 25)
             {
-                string chars = "";
-                string combochars = "";
-
-                for (int i = 0; i < 17; i++)
-                {
-                    chars = characters[i].ToString();
-                    combochars = combochars + chars;
-                }
-                combochars = combochars + "...";
-                lblTitel.Text = combochars;
+                lblOmschrijving.Text = titel.Substring(0, 22) + "...";
             }
             else
             {
-                lblTitel.Text = Titel.ToString();
+                lblOmschrijving.Text = titel;
             }
 
-            lblTotaalBedrag.Text = Totaal.ToString("c", CultureInfo.CurrentCulture);
-            lblRichtperiode.Text = R.Naam;
+            // Tooltip: omschrijving tonen bij hover over titel (zoals in frmBeheerParameters)
+            string omschrijving = _aankoopItem.Omschrijving ?? "";
+            _toolTip.RemoveAll();
+            _toolTip.Active = true;
+            _toolTip.ShowAlways = true;
+            if (!string.IsNullOrEmpty(omschrijving))
+            {
+                _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + omschrijving);
+            }
+            else
+            {
+                _toolTip.SetToolTip(lblOmschrijving, null);
+            }
+
+            lblStatusAankoop.Text = _aankoopItem.StatusAankoop ?? "";
+            lblAankoper.Text = _aankoopItem.Aankoper ?? "";
+            lblAanvrager.Text = _aankoopItem.Aanvrager ?? "";
+            lblFinancieringsjaar.Text = _aankoopItem.Financieringsjaar ?? "";
+            lblRichtperiode.Text = _aankoopItem.Richtperiode ?? "";
+            lblGoedgekeurdBedrag.Text = _aankoopItem.GoedgekeurdBedrag.ToString("c", CultureInfo.CurrentCulture);
+            lblSaldo.Text = _aankoopItem.Saldo.ToString("c", CultureInfo.CurrentCulture);
+
+
+
+
+
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
@@ -91,6 +116,30 @@ namespace MiaClient.UserControls
                 this.BackColor = StyleParameters.AltListItemColor;
             }
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+            if (AankoopItemSelected != null)
+            {
+                AankoopItemSelected(this, null);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+           
+
+           
+                    if (AankoopDeleted != null)
+                    {
+                        AankoopDeleted(this, null);
+                    }
+
+                    
+            }
+
+           
+        }
     }
-}
 
