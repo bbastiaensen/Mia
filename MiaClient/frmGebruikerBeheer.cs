@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmGebruikerBeheer : Form
+    public partial class frmGebruikerBeheer : MdiChildBoundedForm
     {
         List<Gebruiker> gebruikers;
 

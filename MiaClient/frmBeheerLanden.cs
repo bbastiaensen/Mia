@@ -13,7 +13,7 @@ using MiaLogic.Object;
 
 namespace MiaClient
 {
-    public partial class frmBeheerLanden : Form
+    public partial class frmBeheerLanden : MdiChildBoundedForm
     {
         List<Land> landen;
         public event EventHandler LandenChanged;

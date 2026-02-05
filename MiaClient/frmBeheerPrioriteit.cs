@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerPrioriteit : Form
+    public partial class frmBeheerPrioriteit : MdiChildBoundedForm
     {
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
         public event EventHandler PrioriteitenChanged;

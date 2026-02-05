@@ -1,4 +1,6 @@
-﻿namespace MiaClient
+﻿using System.Windows.Forms;
+
+namespace MiaClient
 {
     partial class frmBeheerFinancieringsType
     {
@@ -28,6 +30,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.StartPosition = FormStartPosition.Manual;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.DoubleBuffered = true;
+
+
             this.btnBewaren = new System.Windows.Forms.Button();
             this.btnVerwijderen = new System.Windows.Forms.Button();
             this.btnNieuw = new System.Windows.Forms.Button();

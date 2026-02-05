@@ -19,7 +19,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmAankopen : Form
+    public partial class frmAankopen : MdiChildBoundedForm
     {
         bool filterOmschrijving = false;
         bool filterStatusAankoop = false;

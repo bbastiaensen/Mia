@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerAankopers : Form
+    public partial class frmBeheerAankopers : MdiChildBoundedForm
     {
         List<Aankoper> aankopers;
         public event EventHandler AankopersChanged;

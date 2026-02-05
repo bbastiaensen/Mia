@@ -11,7 +11,7 @@ using MiaClient.UserControls;
 
 namespace MiaClient
 {
-    public partial class frmAbout : Form
+    public partial class frmAbout : MdiChildBoundedForm
     {
         frmPrompt frmPrompt;
 

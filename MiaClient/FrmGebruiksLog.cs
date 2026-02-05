@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class FrmGebruiksLog : Form
+    public partial class FrmGebruiksLog : MdiChildBoundedForm
     {
         List<GebruiksLog> gebruiksLogs;
 

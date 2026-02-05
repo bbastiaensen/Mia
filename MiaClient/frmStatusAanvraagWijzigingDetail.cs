@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmStatusAanvraagWijzigingDetail : Form
+    public partial class frmStatusAanvraagWijzigingDetail : MdiChildBoundedForm
     {
         public event EventHandler StatusAanvraagDetailGewijzigd;
 

@@ -15,7 +15,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
 {
-    public partial class frmGeplandeAankopen : Form
+    public partial class frmGeplandeAankopen : MdiChildBoundedForm
     {
         public frmGeplandeAankopen()
         {

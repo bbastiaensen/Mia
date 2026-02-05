@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerDiensten : Form
+    public partial class frmBeheerDiensten : MdiChildBoundedForm
     {
         List<Dienst> diensten;
         bool IsNew = false;
