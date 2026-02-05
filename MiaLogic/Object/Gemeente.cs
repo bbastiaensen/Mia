@@ -12,6 +12,7 @@ namespace MiaLogic.Object
         public string Naam { get; set; }
         public int LandId { get; set; }
         public int Postcode { get; set; }
+        public string LandNaam { get; set; }
 
         public string PostcodeNaam
         {
