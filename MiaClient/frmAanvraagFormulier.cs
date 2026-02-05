@@ -1405,7 +1405,7 @@ namespace MiaClient
         public void RefreshAankoperDropdown()
         {
 
-            int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerAankopers.LastActiveAankoperId;
 
             var nieuweAankopers = AankoperManager.GetActiveAankopers();
 
@@ -1614,15 +1614,6 @@ namespace MiaClient
             {
                 ddlKostenplaats.SelectedIndex = -1;
             }
-
-            int? teSelecterenId = frmBeheerAfdelingen.LastActiveAfdelingId;
-
-            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
-
-            ddlAfdeling.DataSource = null;
-            ddlAfdeling.DisplayMember = "Naam";
-            ddlAfdeling.ValueMember = "Id";
-            ddlAfdeling.DataSource = nieuweAfdelingen;
         }
 
         public void TriggerKostenplaatsenEvent()

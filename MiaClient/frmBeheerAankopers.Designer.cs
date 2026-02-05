@@ -115,6 +115,7 @@
             // txtAchternaam
             // 
             this.txtAchternaam.Location = new System.Drawing.Point(428, 75);
+            this.txtAchternaam.MaxLength = 50;
             this.txtAchternaam.Name = "txtAchternaam";
             this.txtAchternaam.Size = new System.Drawing.Size(213, 32);
             this.txtAchternaam.TabIndex = 7;
@@ -122,6 +123,7 @@
             // txtVoornaam
             // 
             this.txtVoornaam.Location = new System.Drawing.Point(428, 42);
+            this.txtVoornaam.MaxLength = 50;
             this.txtVoornaam.Name = "txtVoornaam";
             this.txtVoornaam.Size = new System.Drawing.Size(213, 32);
             this.txtVoornaam.TabIndex = 8;
@@ -175,10 +177,11 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstAankopers);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerAankopers";
-            this.Text = "z";
+            this.Text = "Beheer Aankopers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerAankopers_FormClosing);
             this.Load += new System.EventHandler(this.frmBeheerAankopers_Load);
             this.ResumeLayout(false);
