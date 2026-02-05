@@ -84,26 +84,22 @@ namespace MiaClient
 
         private void LstAankopers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Aankoper aankoper  = (Aankoper)LstAankopers.SelectedItem;
+            Aankoper aankoper = (Aankoper)LstAankopers.SelectedItem;
 
-           
-            if (aankoper != null) 
+            if (aankoper != null)
             {
                 txtId.Text = Convert.ToString(aankoper.Id);
                 txtVoornaam.Text = aankoper.Voornaam;
                 txtAchternaam.Text = aankoper.Achternaam;
-                if (aankoper.actief)
-                {
-                    checkActief.Checked = true;
-                }
-                else
-                {
-                    checkActief.Checked = false;
-                }
+                checkActief.Checked = aankoper.actief;
 
-                    IsNew = false;
+                IsNew = false;
+
+                // Verwijderen-knop inschakelen
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack; // terug naar normale kleur
             }
-           
+
         }
         private void ClearFields()
         {
@@ -112,6 +108,10 @@ namespace MiaClient
             txtVoornaam.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray; // visueel uitgeschakeld
         }
         private void btnNieuw_Click(object sender, EventArgs e)
         {
@@ -161,23 +161,40 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Aankoper a = new Aankoper();
-            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
-            a.Voornaam= txtVoornaam.Text;
-            a.Achternaam= txtAchternaam.Text;
-            if (checkActief.Checked) 
+            if (IsNew)
             {
-                a.actief = true;
+                MessageBox.Show(
+                    "Er is geen leverancier geselecteerd om te verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
             }
-            else
+
+            if (LstAankopers.SelectedItem == null)
             {
-                a.actief= false;
+                MessageBox.Show(
+                    "Gelieve eerst een aankoper te selecteren.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
             }
 
             if (MessageBox.Show($"Bent u zeker dat u {LstAankopers.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
             try
+
+            Aankoper a = (Aankoper)LstAankopers.SelectedItem;
+
+            if (MessageBox.Show(
+                $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
+                "Aankoper verwijderen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 AankoperManager.DeleteAankoper(a);
                 MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -189,7 +206,21 @@ namespace MiaClient
                 AankoperManager.SaveAankoper(a, IsNew);
             }
             AankopersChanged?.Invoke(this, EventArgs.Empty);
+                AankoperManager.DeleteAankoper(a);
 
+                MessageBox.Show(
+                    "De aankoper is succesvol verwijderd.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                AankopersChanged?.Invoke(this, EventArgs.Empty);
+
+                BindLstAankopers();
+                ClearFields();
+            }
+        }
             BindLstAankopers();
             ClearFields();  
             LstAankopers.SelectedIndex = -1;
