@@ -78,6 +78,8 @@ namespace MiaClient
               
 
                 IsNew = false;
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
         private void ClearFields()
@@ -86,6 +88,8 @@ namespace MiaClient
             txtId.Text = string.Empty;
            
             IsNew = true;
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
@@ -115,30 +119,61 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Land l = new Land();
-            l.Id = Convert.ToInt32(LstLanden.SelectedValue);
-            l.Naam = txtNaam.Text;
-           
-
-            if (MessageBox.Show($"Bent u zeker dat u {LstLanden.Text} wilt verwijderen?", "Land verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (IsNew)
             {
-                try 
-                {
-                    
-                    LandenManager.DeleteLand(l);
-                }
-                  catch (Exception ex)
-                  {
-                      MessageBox.Show($"Fout bij verwijderen van het land: {ex.Message}", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                      return;
-                }
-                LandenManager.DeleteLand(l);
-                MessageBox.Show("Het Land is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show(
+                    "U kunt geen nieuw (onbewaard) land verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
             }
 
-            BindLstLanden();
-            ClearFields();
+            if (LstLanden.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Gelieve eerst een land te selecteren.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            Land l = (Land)LstLanden.SelectedItem;
+
+            if (MessageBox.Show(
+                $"Bent u zeker dat u {l.Naam} wilt verwijderen?",
+                "Land verwijderen",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                LandenManager.DeleteLand(l);
+
+                MessageBox.Show(
+                    "Het land is succesvol verwijderd.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                BindLstLanden();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Fout bij verwijderen van het land: {ex.Message}",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
         }
 
         private void txtNaam_KeyPress(object sender, KeyPressEventArgs e)

@@ -202,6 +202,10 @@ namespace MiaClient
                 }
 
                 IsNew = false;
+
+                // Verwijderen-knop inschakelen en terug naar normale kleur
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
 
         }
@@ -211,6 +215,10 @@ namespace MiaClient
             txtId.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
     }
 }

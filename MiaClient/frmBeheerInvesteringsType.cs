@@ -4,6 +4,7 @@ using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -95,6 +96,9 @@ namespace MiaClient
                 checkActief.Checked = investering.Actief;
 
                 IsNew = false;
+                // Verwijderen-knop inschakelen en normale kleur
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -104,6 +108,10 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
