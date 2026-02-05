@@ -42,7 +42,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(425, 138);
+            this.btnBewaren.Location = new System.Drawing.Point(425, 140);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 23;
@@ -52,7 +52,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(536, 138);
+            this.btnVerwijderen.Location = new System.Drawing.Point(536, 140);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 22;
@@ -62,7 +62,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(314, 136);
+            this.btnNieuw.Location = new System.Drawing.Point(314, 140);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 21;
@@ -73,6 +73,7 @@
             // txtNaam
             // 
             this.txtNaam.Location = new System.Drawing.Point(412, 56);
+            this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
             this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 20;

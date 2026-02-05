@@ -76,6 +76,8 @@ namespace MiaClient
 
             isClearing = false;
             IsNew = true;
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void LstLeveranciers_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,6 +114,9 @@ namespace MiaClient
                 }
 
                 IsNew = false;
+
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -194,6 +199,13 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
+            if (IsNew)
+            {
+                // Nieuw record, er is niets om te verwijderen
+                MessageBox.Show("Er is geen leverancier geselecteerd om te verwijderen.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (LstLeveranciers.SelectedItem == null)
             {
                 MessageBox.Show("Selecteer een leverancier.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);

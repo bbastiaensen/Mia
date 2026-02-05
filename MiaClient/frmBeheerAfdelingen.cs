@@ -78,20 +78,19 @@ namespace MiaClient
             Afdeling afdeling = (Afdeling)LstAfdelingen.SelectedItem;
 
 
+            
+
             if (afdeling != null)
             {
                 txtId.Text = Convert.ToString(afdeling.Id);
                 txtNaam.Text = afdeling.Naam;
-                if (afdeling.actief)
-                {
-                    checkActief.Checked = true;
-                }
-                else
-                {
-                    checkActief.Checked = false;
-                }
+                checkActief.Checked = afdeling.actief;
 
                 IsNew = false;
+
+                // Verwijderen-knop inschakelen en terug naar normale kleur
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -101,6 +100,10 @@ namespace MiaClient
             txtId.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
@@ -149,32 +152,36 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Afdeling a = new Afdeling
+            if (IsNew || LstAfdelingen.SelectedItem == null)
             {
-                Id = Convert.ToInt32(LstAfdelingen.SelectedValue),
-                Naam = txtNaam.Text,
-                actief = checkActief.Checked
-            };
+                MessageBox.Show("Er is geen leverancier geselecteerd om te verwijderen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            if (MessageBox.Show($"Bent u zeker dat u {LstAfdelingen.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            Afdeling a = (Afdeling)LstAfdelingen.SelectedItem;
+
+            if (MessageBox.Show(
+                $"Bent u zeker dat u {a.Naam} wilt verwijderen?",
+                "MIA",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
             try
             {
                 AfdelingenManager.DeleteAfdeling(a);
-                MessageBox.Show("De Afdeling is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("De afdeling is succesvol verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception)
+            catch
             {
-                MessageBox.Show("Deze afdeling kan niet verwijderd worden omdat er nog gekoppelde records zijn. De afdeling wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 a.actief = false;
                 AfdelingenManager.SaveAfdeling(a, false);
+                MessageBox.Show("De afdeling kon niet verwijderd worden en werd inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             AfdelingChanged?.Invoke(this, EventArgs.Empty);
             BindLstAfdelingen();
             ClearFields();
-            LstAfdelingen.SelectedValue = 0;
         }
 
     }

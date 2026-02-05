@@ -88,6 +88,8 @@ namespace MiaClient
                 if (k != null)
                 {
                     SetFields(k);
+                    btnVerwijderen.Enabled = true;
+                    btnVerwijderen.BackColor = StyleParameters.ButtonBack;
                 }
             }
             catch (Exception ex)
@@ -114,10 +116,14 @@ namespace MiaClient
             txtNaam.Text = string.Empty; 
             txtCode.Text = string.Empty;
             chkActief.Checked = false;
-            btnVerwijderen.Enabled = false;
+     
             isNew = true;
-        }
 
+            // Verwijderen-knop inschakelen en normale kleur
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
+        }
+       
         private void btnBewaren_Click(object sender, EventArgs e)
         {
             try
