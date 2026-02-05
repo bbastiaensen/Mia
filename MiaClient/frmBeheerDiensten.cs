@@ -19,6 +19,8 @@ namespace MiaClient
         bool IsNew = false;
 
         public event EventHandler DienstenChanged;
+        public static int? LastActiveDienstId { get; set; }
+
 
         public frmBeheerDiensten()
         {
@@ -105,6 +107,10 @@ namespace MiaClient
 
 
                 d.Id = DienstenManager.SaveDiensten(d, IsNew);
+                if (d.actief)
+                {
+                    LastActiveDienstId = d.Id;
+                }
                 DienstenChanged?.Invoke(this, EventArgs.Empty);
 
                 BindlstDiensten();
@@ -142,17 +148,8 @@ namespace MiaClient
             {
                 d.actief = false;
             }
-            try
-            {
 
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Fout bij verwijderen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (MessageBox.Show($"Bent u zeker dat u {lstDiensten.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {lstDiensten.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (DienstenManager.CheckPrioriteitInUse(d.Id))
                 {
@@ -173,13 +170,14 @@ namespace MiaClient
 
             BindlstDiensten();
             ClearFields();
+            lstDiensten.SelectedValue = 0;
 
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
-
+            lstDiensten.SelectedValue = 0;
         }
 
         private void lstDiensten_SelectedIndexChanged(object sender, EventArgs e)

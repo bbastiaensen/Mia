@@ -18,6 +18,8 @@ namespace MiaClient
 
         public event EventHandler FinancieringTypeChanged;
         List<Financiering> financierings;
+        public static int? LastActiveFinancieringsId { get; set; }
+
 
         int xPos = 10;
         int yPos = 20;
@@ -109,6 +111,10 @@ namespace MiaClient
             try
             {
                 a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
+                if (a.Actief)
+                {
+                    LastActiveFinancieringsId = a.Id;
+                }
                 FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (ArgumentException ex)

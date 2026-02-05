@@ -51,7 +51,7 @@ namespace MiaLogic.Manager
         }
         public static List<Aankoper> GetActiveAankopers()
         {
-            List<Aankoper> returnlist = null;
+            List<Aankoper> aankopers = new List<Aankoper>();
 
             using (SqlConnection objCn = new SqlConnection())
             {
@@ -59,33 +59,26 @@ namespace MiaLogic.Manager
 
                 using (SqlCommand objCmd = new SqlCommand())
                 {
-                    objCmd.Connection = objCn;
-                    objCmd.CommandText = "SELECT Id,Voornaam, Achternaam, Voornaam + ' ' + Achternaam AS FullName FROM Aankoper WHERE actief = 1 ORDER BY FullName ASC";
-                    objCn.Open();
+                        objCmd.Connection = objCn;
+                        objCmd.CommandText = "SELECT Id,Voornaam, Achternaam, Voornaam + ' ' + Achternaam AS FullName FROM Aankoper WHERE actief = 1 ORDER BY FullName ASC";
+                        objCn.Open();
 
-                    SqlDataReader objRea = objCmd.ExecuteReader();
+                        SqlDataReader objRea = objCmd.ExecuteReader();
 
-                    Aankoper ak;
-
-                    while (objRea.Read())
-                    {
-                        if (returnlist == null)
+                        while (objRea.Read())
                         {
-                            returnlist = new List<Aankoper>();
-                        }
-
-                        ak = new Aankoper();
-                        ak.Id = Convert.ToInt32(objRea["Id"]);
-                        ak.Voornaam = objRea["Voornaam"].ToString();
-                        ak.Achternaam = objRea["Achternaam"].ToString();
-                        ak.FullName = objRea["FullName"].ToString();
-
-
-                        returnlist.Add(ak);
+                            Aankoper aankoper = new Aankoper
+                            {
+                                Id = Convert.ToInt32(objRea["Id"]),
+                                Voornaam = objRea["Voornaam"].ToString(),
+                                Achternaam = objRea["Achternaam"].ToString(),
+                                FullName = objRea["FullName"].ToString()
+                            };
+                            aankopers.Add(aankoper);
                     }
                 }
             }
-            return returnlist;
+            return aankopers;
         }
         // Get...ById
         public static Aankoper GetAankoperById(int id)

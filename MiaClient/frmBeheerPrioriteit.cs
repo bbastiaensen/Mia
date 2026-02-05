@@ -14,16 +14,17 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmPrioriteit : Form
+    public partial class frmBeheerPrioriteit : Form
     {
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
         public event EventHandler PrioriteitenChanged;
+        public static int? LastActivePrioriteitId { get; set; }
 
         bool IsNew = false;
 
      
 
-        public frmPrioriteit()
+        public frmBeheerPrioriteit()
         {
             InitializeComponent();
         }
@@ -95,8 +96,8 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
-             IsNew = true;
-
+            IsNew = true;
+            lstPrioriteiten.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -113,10 +114,14 @@ namespace MiaClient
                 p.Actief = false;
             }
             p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+            if (p.Actief)
+            {
+                LastActivePrioriteitId = p.Id;
+            }
             PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
 
             BindlstPrioriteiten();
-            
+
             lstPrioriteiten.SelectedValue = p.Id;
             IsNew = false;
 
@@ -186,7 +191,7 @@ namespace MiaClient
                 }
                 IsNew = false;
                 BindlstPrioriteiten();
-
+                lstPrioriteiten.SelectedValue = 0;
             }
         }
         public void ClearFields()

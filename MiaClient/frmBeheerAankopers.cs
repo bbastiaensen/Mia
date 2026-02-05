@@ -161,11 +161,6 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            if (LstAankopers.SelectedValue == null || LstAankopers.SelectedIndex == -1)
-            {
-                MessageBox.Show("Selecteer eerst een investeringstype om te verwijderen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             Aankoper a = new Aankoper();
             a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam= txtVoornaam.Text;
