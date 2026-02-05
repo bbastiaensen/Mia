@@ -1075,6 +1075,7 @@ namespace MiaClient
             TriggerFinancieringsTypeEvent();
             TriggerAfdelingEvent();
             TriggerKostenplaatsenEvent();
+            TriggerPrioriteitEvent();
         }
 
         public void CreateUI()

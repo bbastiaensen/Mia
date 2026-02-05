@@ -152,7 +152,7 @@ namespace MiaClient
                 p.Actief = false;
             }
 
-            if (MessageBox.Show($"Bent u zeker dat u {lstPrioriteiten.Text} wilt verwijderen?", "Prioteit verwijderen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {lstPrioriteiten.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {

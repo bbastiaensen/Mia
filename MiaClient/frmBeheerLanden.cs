@@ -91,6 +91,7 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstLanden.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -139,6 +140,7 @@ namespace MiaClient
 
             BindLstLanden();
             ClearFields();
+            LstLanden.SelectedValue = 0;
         }
 
         private void txtNaam_KeyPress(object sender, KeyPressEventArgs e)
