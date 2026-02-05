@@ -42,7 +42,7 @@
             // 
             this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBewaren.Location = new System.Drawing.Point(567, 127);
-            this.btnBewaren.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBewaren.Margin = new System.Windows.Forms.Padding(4);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(140, 41);
             this.btnBewaren.TabIndex = 23;
@@ -54,7 +54,7 @@
             // 
             this.btnVerwijderen.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerwijderen.Location = new System.Drawing.Point(715, 127);
-            this.btnVerwijderen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVerwijderen.Margin = new System.Windows.Forms.Padding(4);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(140, 41);
             this.btnVerwijderen.TabIndex = 22;
@@ -66,7 +66,7 @@
             // 
             this.btnNieuw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNieuw.Location = new System.Drawing.Point(419, 127);
-            this.btnNieuw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNieuw.Margin = new System.Windows.Forms.Padding(4);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(140, 41);
             this.btnNieuw.TabIndex = 21;
@@ -78,8 +78,8 @@
             // 
             this.txtNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNaam.Location = new System.Drawing.Point(571, 80);
-            this.txtNaam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtNaam.MaxLength = 50;
+            this.txtNaam.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNaam.MaxLength = 30;
             this.txtNaam.Name = "txtNaam";
             this.txtNaam.Size = new System.Drawing.Size(283, 32);
             this.txtNaam.TabIndex = 19;
@@ -89,7 +89,7 @@
             // 
             this.txtId.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(571, 32);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(283, 32);
@@ -123,7 +123,7 @@
             this.LstLanden.FormattingEnabled = true;
             this.LstLanden.ItemHeight = 25;
             this.LstLanden.Location = new System.Drawing.Point(16, 15);
-            this.LstLanden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LstLanden.Margin = new System.Windows.Forms.Padding(4);
             this.LstLanden.Name = "LstLanden";
             this.LstLanden.Size = new System.Drawing.Size(384, 129);
             this.LstLanden.TabIndex = 12;
@@ -143,7 +143,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstLanden);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmBeheerLanden";
             this.Text = "Beheer Landen";

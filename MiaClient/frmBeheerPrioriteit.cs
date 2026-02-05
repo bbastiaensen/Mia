@@ -154,7 +154,7 @@ namespace MiaClient
 
             if (MessageBox.Show(
                     $"Bent u zeker dat u {p.Naam} wilt verwijderen?",
-                    "Prioriteit verwijderen",
+                    "MIA",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) != DialogResult.Yes)
             {

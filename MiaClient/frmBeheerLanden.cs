@@ -159,7 +159,7 @@ namespace MiaClient
 
             if (MessageBox.Show(
                 $"Bent u zeker dat u {l.Naam} wilt verwijderen?",
-                "Land verwijderen",
+                "MIA",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
@@ -182,6 +182,7 @@ namespace MiaClient
                     MessageBoxIcon.Error
                 );
             }
+            LstLanden.SelectedValue = 0;
 
         }
  
