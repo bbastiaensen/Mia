@@ -191,10 +191,8 @@ namespace MiaClient
             }
 
         }
-            BindLstLanden();
-            ClearFields();
-            LstLanden.SelectedValue = 0;
-        }
+ 
+        
 
         private void txtNaam_KeyPress(object sender, KeyPressEventArgs e)
         {

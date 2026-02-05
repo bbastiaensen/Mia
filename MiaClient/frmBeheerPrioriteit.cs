@@ -236,7 +236,7 @@ namespace MiaClient
                 BindlstPrioriteiten();
                 lstPrioriteiten.SelectedValue = 0;
             }
-        }
+        
         public void ClearFields()
         {
             txtId.Text = string.Empty;

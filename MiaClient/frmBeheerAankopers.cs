@@ -187,28 +187,27 @@ namespace MiaClient
                 return;
 
             try
-
-            Aankoper a = (Aankoper)LstAankopers.SelectedItem;
-
-            if (MessageBox.Show(
-                $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
-                "Aankoper verwijderen",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                AankoperManager.DeleteAankoper(a);
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Aankoper a = (Aankoper)LstAankopers.SelectedItem;
+
+                if (MessageBox.Show(
+                    $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
+                    "Aankoper verwijderen",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    AankoperManager.DeleteAankoper(a);
+                    MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("Deze Aankoper kan niet verwijderd worden omdat er nog gekoppelde records zijn. De Aankoper wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                a.actief = false;
-                AankoperManager.SaveAankoper(a, IsNew);
             }
-            AankopersChanged?.Invoke(this, EventArgs.Empty);
-                AankoperManager.DeleteAankoper(a);
 
-                MessageBox.Show(
+            AankopersChanged?.Invoke(this, EventArgs.Empty);
+            MessageBox.Show(
                     "De aankoper is succesvol verwijderd.",
                     "MIA",
                     MessageBoxButtons.OK,
@@ -220,11 +219,9 @@ namespace MiaClient
                 BindLstAankopers();
                 ClearFields();
             }
-        }
-            BindLstAankopers();
-            ClearFields();  
-            LstAankopers.SelectedIndex = -1;
-        }
+        
+
+        
 
         private void txtVoornaam_TextChanged(object sender, EventArgs e)
         {
