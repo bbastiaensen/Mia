@@ -24,5 +24,8 @@ namespace MiaClient
         public static frmSaldoOverzetten frmSaldoOverzetten { get; set; }
 
         public static frmBeheerDiensten frmBeheerDiensten { get; set; }
+
+        public static frmAankopen frmAankopen { get; set; }
+        public static frmAankoopDetail frmAankoopDetail { get; set; }
     }
 }

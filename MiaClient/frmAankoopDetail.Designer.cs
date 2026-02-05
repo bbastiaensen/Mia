@@ -30,7 +30,7 @@
         {
             this.lblAankoopDetail = new System.Windows.Forms.Label();
             this.lblAankoopId = new System.Windows.Forms.Label();
-            this.txtAanvraagId = new System.Windows.Forms.TextBox();
+            this.txtAankoopId = new System.Windows.Forms.TextBox();
             this.btn_Verwijderen = new System.Windows.Forms.Button();
             this.btn_Bewaren = new System.Windows.Forms.Button();
             this.rtxtOmschrijving = new System.Windows.Forms.RichTextBox();
@@ -64,6 +64,9 @@
             this.txtInternNummer = new System.Windows.Forms.TextBox();
             this.lblInternnummer = new System.Windows.Forms.Label();
             this.lblFactuurNummer = new System.Windows.Forms.Label();
+            this.lblAanvraagId = new System.Windows.Forms.Label();
+            this.txtAanvraagId = new System.Windows.Forms.TextBox();
+            this.btnBeheerLeveranciers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAankoopDetail
@@ -86,15 +89,15 @@
             this.lblAankoopId.TabIndex = 12;
             this.lblAankoopId.Text = "Aankoopnummer:";
             // 
-            // txtAanvraagId
+            // txtAankoopId
             // 
-            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAanvraagId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAanvraagId.Location = new System.Drawing.Point(250, 60);
-            this.txtAanvraagId.Name = "txtAanvraagId";
-            this.txtAanvraagId.ReadOnly = true;
-            this.txtAanvraagId.Size = new System.Drawing.Size(71, 34);
-            this.txtAanvraagId.TabIndex = 13;
+            this.txtAankoopId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAankoopId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAankoopId.Location = new System.Drawing.Point(250, 60);
+            this.txtAankoopId.Name = "txtAankoopId";
+            this.txtAankoopId.ReadOnly = true;
+            this.txtAankoopId.Size = new System.Drawing.Size(71, 34);
+            this.txtAankoopId.TabIndex = 13;
             // 
             // btn_Verwijderen
             // 
@@ -376,7 +379,7 @@
             // txtBestelBonNummer
             // 
             this.txtBestelBonNummer.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtBestelBonNummer.Location = new System.Drawing.Point(1000, 350);
+            this.txtBestelBonNummer.Location = new System.Drawing.Point(1000, 400);
             this.txtBestelBonNummer.Name = "txtBestelBonNummer";
             this.txtBestelBonNummer.Size = new System.Drawing.Size(100, 32);
             this.txtBestelBonNummer.TabIndex = 83;
@@ -385,7 +388,7 @@
             // 
             this.lblBestelbonnummer.AutoSize = true;
             this.lblBestelbonnummer.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblBestelbonnummer.Location = new System.Drawing.Point(800, 350);
+            this.lblBestelbonnummer.Location = new System.Drawing.Point(800, 400);
             this.lblBestelbonnummer.Name = "lblBestelbonnummer";
             this.lblBestelbonnummer.Size = new System.Drawing.Size(170, 25);
             this.lblBestelbonnummer.TabIndex = 84;
@@ -395,7 +398,7 @@
             // 
             this.ckbFactuur.AutoSize = true;
             this.ckbFactuur.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.ckbFactuur.Location = new System.Drawing.Point(1000, 400);
+            this.ckbFactuur.Location = new System.Drawing.Point(1127, 453);
             this.ckbFactuur.Name = "ckbFactuur";
             this.ckbFactuur.Size = new System.Drawing.Size(96, 29);
             this.ckbFactuur.TabIndex = 85;
@@ -438,11 +441,45 @@
             this.lblFactuurNummer.TabIndex = 89;
             this.lblFactuurNummer.Text = "Factuur nummer:";
             // 
+            // lblAanvraagId
+            // 
+            this.lblAanvraagId.AutoSize = true;
+            this.lblAanvraagId.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblAanvraagId.Location = new System.Drawing.Point(800, 350);
+            this.lblAanvraagId.Name = "lblAanvraagId";
+            this.lblAanvraagId.Size = new System.Drawing.Size(117, 25);
+            this.lblAanvraagId.TabIndex = 90;
+            this.lblAanvraagId.Text = "Aanvraag Id:";
+            // 
+            // txtAanvraagId
+            // 
+            this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAanvraagId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAanvraagId.Location = new System.Drawing.Point(1000, 350);
+            this.txtAanvraagId.Name = "txtAanvraagId";
+            this.txtAanvraagId.ReadOnly = true;
+            this.txtAanvraagId.Size = new System.Drawing.Size(71, 34);
+            this.txtAanvraagId.TabIndex = 91;
+            // 
+            // btnBeheerLeveranciers
+            // 
+            this.btnBeheerLeveranciers.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnBeheerLeveranciers.Location = new System.Drawing.Point(1307, 300);
+            this.btnBeheerLeveranciers.Name = "btnBeheerLeveranciers";
+            this.btnBeheerLeveranciers.Size = new System.Drawing.Size(76, 33);
+            this.btnBeheerLeveranciers.TabIndex = 92;
+            this.btnBeheerLeveranciers.Text = "+ / -";
+            this.btnBeheerLeveranciers.UseVisualStyleBackColor = true;
+            this.btnBeheerLeveranciers.Click += new System.EventHandler(this.btnBeheerLeveranciers_Click);
+            // 
             // frmAankoopDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1395, 581);
+            this.Controls.Add(this.btnBeheerLeveranciers);
+            this.Controls.Add(this.txtAanvraagId);
+            this.Controls.Add(this.lblAanvraagId);
             this.Controls.Add(this.lblFactuurNummer);
             this.Controls.Add(this.lblInternnummer);
             this.Controls.Add(this.txtInternNummer);
@@ -476,7 +513,7 @@
             this.Controls.Add(this.lblOmschrijving);
             this.Controls.Add(this.btn_Bewaren);
             this.Controls.Add(this.btn_Verwijderen);
-            this.Controls.Add(this.txtAanvraagId);
+            this.Controls.Add(this.txtAankoopId);
             this.Controls.Add(this.lblAankoopId);
             this.Controls.Add(this.lblAankoopDetail);
             this.MaximizeBox = false;
@@ -492,7 +529,7 @@
 
         private System.Windows.Forms.Label lblAankoopDetail;
         private System.Windows.Forms.Label lblAankoopId;
-        private System.Windows.Forms.TextBox txtAanvraagId;
+        private System.Windows.Forms.TextBox txtAankoopId;
         private System.Windows.Forms.Button btn_Verwijderen;
         private System.Windows.Forms.Button btn_Bewaren;
         private System.Windows.Forms.RichTextBox rtxtOmschrijving;
@@ -526,5 +563,8 @@
         private System.Windows.Forms.TextBox txtInternNummer;
         private System.Windows.Forms.Label lblInternnummer;
         private System.Windows.Forms.Label lblFactuurNummer;
+        private System.Windows.Forms.Label lblAanvraagId;
+        private System.Windows.Forms.TextBox txtAanvraagId;
+        private System.Windows.Forms.Button btnBeheerLeveranciers;
     }
 }

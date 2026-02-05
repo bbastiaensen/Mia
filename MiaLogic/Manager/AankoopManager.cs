@@ -38,6 +38,7 @@ namespace MiaLogic.Manager
                         aankoop = new Aankoop();
                         aankoop.Id = Convert.ToInt32(objRea["Id"]);
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
+                        aankoop.BudgetToegekend = Convert.ToInt32(objRea["BudgetToegekend"]);
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
                         aankoop.BedragExBtw = Convert.ToDecimal(objRea["BedragExBTW"]);
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
@@ -113,5 +114,70 @@ namespace MiaLogic.Manager
 
             return aankoop;
         }
+        public static void UpdateAankoop(Aankoop aankoop)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand ObjCmd = new SqlCommand())
+                {
+                    ObjCmd.Connection = objCn;
+                    ObjCmd.CommandText = @"UPDATE Aankoop SET
+                Omschrijving = @Omschrijving,
+                StatusAankoopId = @StatusAankoopId,
+                BedragExBTW = @BedragExBTW,
+                BTWPercentage = @BTWPercentage,
+                BedragTransfer = @BedragTransfer,
+                BestellingsDatum = @BestellingsDatum,
+                VerwachteLeveringsDatum = @VerwachteLeveringsDatum,
+                EffectieveLeveringsDatum = @EffectieveLeveringsDatum,
+                LeverancierId = @LeverancierId,
+                BestelbonNummer = @BestelbonNummer,
+                Factuur = @Factuur,
+                FactuurNummer = @FactuurNummer,
+                InternNummer = @InternNummer
+                WHERE Id = @Id";
+                    objCn.Open();
+
+                    ObjCmd.Parameters.AddWithValue("@Id", aankoop.Id);
+                    ObjCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving);
+                    ObjCmd.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                    ObjCmd.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
+                    ObjCmd.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                    ObjCmd.Parameters.AddWithValue("@BedragTransfer", aankoop.BedragTransfer);
+                    ObjCmd.Parameters.AddWithValue("@BestellingsDatum", (object)aankoop.BestellingsDatum ?? DBNull.Value);
+                    ObjCmd.Parameters.AddWithValue("@VerwachteLeveringsDatum", (object)aankoop.VerwachteLeveringsDatum ?? DBNull.Value);
+                    ObjCmd.Parameters.AddWithValue("@EffectieveLeveringsDatum", (object)aankoop.EffectieveLeveringsDatum ?? DBNull.Value);
+                    ObjCmd.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                    ObjCmd.Parameters.AddWithValue("@BestelbonNummer", aankoop.BestelbonNummer);
+                    ObjCmd.Parameters.AddWithValue("@Factuur", aankoop.Factuur);
+                    ObjCmd.Parameters.AddWithValue("@FactuurNummer", aankoop.FactuurNummer);
+                    ObjCmd.Parameters.AddWithValue("@InternNummer", aankoop.InternNummer);
+
+                    ObjCmd.ExecuteNonQuery();
+                }
+            }
+            
+        }
+        public static void DeleteAankoop(int aankoopId)
+        {
+            using (SqlConnection ObjCn = new SqlConnection())
+            {
+                ObjCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand ObjCmd = new SqlCommand())
+                {
+                    ObjCmd.Connection = ObjCn;
+                    ObjCmd.CommandText = "DELETE FROM Aankoop WHERE Id = @Id";
+                    ObjCmd.Parameters.AddWithValue("@Id", aankoopId);
+
+                    ObjCn.Open();
+                    ObjCmd.ExecuteNonQuery();
+                }
+            }
+            
+        }
+
     }
 }

@@ -59,6 +59,9 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
+            AppForms.frmAankopen = this;
+            RefreshAankopen();
+
             try
             {
                 if (cmbFinancieringsjaar.SelectedIndex > -1)
@@ -707,14 +710,18 @@ namespace MiaClient
 
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
-                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum > DateTime.MinValue ? 
-                        aankoop.BestellingsDatum.Date : (object)"Nog niet besteld";
+                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
+                        ? (object)aankoop.BestellingsDatum.Value.Date
+                        : "Nog niet besteld";
 
-                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum > DateTime.MinValue ? 
-                        aankoop.VerwachteLeveringsDatum.Date : (object)"Geen verwachte datum";
+                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
+                        ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
+                        : "Geen verwachte datum";
 
-                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum > DateTime.MinValue ? 
-                        aankoop.EffectieveLeveringsDatum.Date : (object)"Geen effectieve datum";
+                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
+                        ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
+                        : "Geen effectieve datum";
+
 
                     if (aankoop.BestellingsDatum > DateTime.MinValue)
                         worksheet.Cells[row, 6].NumberFormat = "dd/mm/yyyy";
@@ -776,11 +783,18 @@ namespace MiaClient
         {
             if (frmAankoopDetail == null)
             {
-                frmAankoopDetail = new frmAankoopDetail(122);
+                frmAankoopDetail = new frmAankoopDetail(240);
                 frmAankoopDetail.MdiParent = MdiParent;
             }
             // We openen een nieuw aanvraagformulier
             frmAankoopDetail.Show();
+        }
+
+        public void RefreshAankopen()
+        {
+            aanvragen = AanvraagManager.Aanvraag_sort_sorteertvologorde_asc();
+            huidigePage = 1;
+            StartPaging();
         }
     }
 }
