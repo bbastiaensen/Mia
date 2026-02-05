@@ -17,6 +17,8 @@ namespace MiaClient
     {
         List<Aankoper> aankopers;
         public event EventHandler AankopersChanged;
+        public static int? LastActiveAankoperId { get; set; }
+
 
         int xPos = 10;
         int yPos = 20;
@@ -114,10 +116,21 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstAankopers.SelectedIndex = -1;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            string voornaam = txtVoornaam.Text.Trim();
+            string achternaam = txtAchternaam.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(voornaam) || string.IsNullOrWhiteSpace(achternaam))
+            {
+                MessageBox.Show("Voornaam en achternaam zijn verplicht", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Aankoper a = new Aankoper();
             a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam = txtVoornaam.Text;
@@ -130,14 +143,17 @@ namespace MiaClient
             {
                 a.actief= false;
             }
-          
 
+          
             a.Id = AankoperManager.SaveAankoper(a, IsNew);
+            if (a.actief)
+            {
+                LastActiveAankoperId = a.Id;
+            }
             AankopersChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAankopers();
-            ClearFields();
-            LstAankopers.SelectedValue = a.Id.ToString();
+            LstAankopers.SelectedValue = a.Id;
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -148,7 +164,7 @@ namespace MiaClient
             if (IsNew)
             {
                 MessageBox.Show(
-                    "Er is geen leverancier geselecteerd om te verwijderen.",
+                    "Er is geen aankoper geselecteerd om te verwijderen.",
                     "MIA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -167,29 +183,37 @@ namespace MiaClient
                 return;
             }
 
-            Aankoper a = (Aankoper)LstAankopers.SelectedItem;
-
-            if (MessageBox.Show(
-                $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
-                "Aankoper verwijderen",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                AankoperManager.DeleteAankoper(a);
 
-                MessageBox.Show(
-                    "De aankoper is succesvol verwijderd.",
+                Aankoper a = (Aankoper)LstAankopers.SelectedItem;
+
+                if (MessageBox.Show(
+                    $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
                     "MIA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                AankopersChanged?.Invoke(this, EventArgs.Empty);
-
-                BindLstAankopers();
-                ClearFields();
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    AankoperManager.DeleteAankoper(a);
+                    MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Deze Aankoper kan niet verwijderd worden omdat er nog gekoppelde records zijn. De Aankoper wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            AankopersChanged?.Invoke(this, EventArgs.Empty);
+
+
+
+            BindLstAankopers();
+            ClearFields();
+            LstAankopers.SelectedValue = 0;
         }
+        
+
+        
 
         private void txtVoornaam_TextChanged(object sender, EventArgs e)
         {

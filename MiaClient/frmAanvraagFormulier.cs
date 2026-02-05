@@ -1076,6 +1076,7 @@ namespace MiaClient
             TriggerFinancieringsTypeEvent();
             TriggerAfdelingEvent();
             TriggerKostenplaatsenEvent();
+            TriggerPrioriteitEvent();
         }
 
         public void CreateUI()
@@ -1370,7 +1371,7 @@ namespace MiaClient
         public void RefreshDropdown_financieringType()
         {
 
-            int? geselecteerdeId = ddlFinanciering.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerFinancieringsType.LastActiveFinancieringsId;
 
             var nieuweType = FinancieringenManager.GetActieveFinancieringen();
 
@@ -1406,7 +1407,7 @@ namespace MiaClient
         public void RefreshAankoperDropdown()
         {
 
-            int? geselecteerdeId = ddlWieKooptHet.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerAankopers.LastActiveAankoperId;
 
             var nieuweAankopers = AankoperManager.GetActiveAankopers();
 
@@ -1428,7 +1429,7 @@ namespace MiaClient
         public void RefreshInvesteringsTypeDropdown()
         {
 
-            int? geselecteerdeId = ddlInvestering.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerInvesteringsType.LastActiveInvesteringId;
 
             var nieuweInvesteringsType = InvesteringenManager.GetActiveInvesteringen();
 
@@ -1508,7 +1509,7 @@ namespace MiaClient
         public void RefreshDienstDropdown()
         {
 
-            int? geselecteerdeId = ddlDienst.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerDiensten.LastActiveDienstId;
 
             var nieuweDienst = DienstenManager.GetActiveDiensten();
 
@@ -1530,8 +1531,6 @@ namespace MiaClient
         public void FrmBeheerDiensten_DienstenChanged(object sender, EventArgs e)
         {
             RefreshDienstDropdown();
-
-
         }
          public void TriggerDienstEvent()
         {
@@ -1546,7 +1545,7 @@ namespace MiaClient
         public void RefreshPrioriteitDropdown()
         {
 
-            int? geselecteerdeId = ddlDienst.SelectedValue as int?;
+            int? geselecteerdeId = frmBeheerPrioriteit.LastActivePrioriteitId;
 
             var nieuwePrioriteit = PrioriteitManager.GetActivePrioriteiten();
 
@@ -1568,8 +1567,6 @@ namespace MiaClient
         public void FrmBeheerPrioriteiten_PrioriteitenChanged(object sender, EventArgs e)
         {
             RefreshPrioriteitDropdown();
-
-
         }
         public void TriggerPrioriteitEvent()
         {
@@ -1615,15 +1612,6 @@ namespace MiaClient
             {
                 ddlKostenplaats.SelectedIndex = -1;
             }
-
-            int? teSelecterenId = frmBeheerAfdelingen.LastActiveAfdelingId;
-
-            var nieuweAfdelingen = AfdelingenManager.GetActiveAfdeling();
-
-            ddlAfdeling.DataSource = null;
-            ddlAfdeling.DisplayMember = "Naam";
-            ddlAfdeling.ValueMember = "Id";
-            ddlAfdeling.DataSource = nieuweAfdelingen;
         }
 
         public void TriggerKostenplaatsenEvent()

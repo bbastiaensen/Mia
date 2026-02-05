@@ -42,7 +42,7 @@ namespace MiaClient
         frmBeheerDiensten frmBeheerDiensten;
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
-        frmPrioriteit frmPrioriteit;
+        frmBeheerPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
         frmBeheerLeverancier frmBeheerLeverancier;
         frmBeheerGemeente frmBeheerGemeente;
@@ -709,7 +709,7 @@ namespace MiaClient
         {
             if (frmPrioriteit == null)
             {
-                frmPrioriteit = new frmPrioriteit();
+                frmPrioriteit = new frmBeheerPrioriteit();
                 frmPrioriteit.MdiParent = this;
             }
             frmPrioriteit.Show();

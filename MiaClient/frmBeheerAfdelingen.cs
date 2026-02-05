@@ -154,7 +154,7 @@ namespace MiaClient
         {
             if (IsNew || LstAfdelingen.SelectedItem == null)
             {
-                MessageBox.Show("Er is geen leverancier geselecteerd om te verwijderen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Er is geen afdeling geselecteerd om te verwijderen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

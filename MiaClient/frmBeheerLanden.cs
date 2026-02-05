@@ -107,6 +107,7 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstLanden.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -158,7 +159,7 @@ namespace MiaClient
 
             if (MessageBox.Show(
                 $"Bent u zeker dat u {l.Naam} wilt verwijderen?",
-                "Land verwijderen",
+                "MIA",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
@@ -168,13 +169,6 @@ namespace MiaClient
                 LandenManager.DeleteLand(l);
                 LandenChanged?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Het Land is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                MessageBox.Show(
-                    "Het land is succesvol verwijderd.",
-                    "MIA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
 
                 BindLstLanden();
                 ClearFields();
@@ -188,8 +182,11 @@ namespace MiaClient
                     MessageBoxIcon.Error
                 );
             }
+            LstLanden.SelectedValue = 0;
 
         }
+ 
+        
 
         private void txtNaam_KeyPress(object sender, KeyPressEventArgs e)
         {

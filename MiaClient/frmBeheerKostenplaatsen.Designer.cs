@@ -47,7 +47,7 @@
             this.txtId.Location = new System.Drawing.Point(314, 18);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(248, 27);
+            this.txtId.Size = new System.Drawing.Size(248, 32);
             this.txtId.TabIndex = 0;
             this.txtId.TabStop = false;
             // 
@@ -56,14 +56,15 @@
             this.txtNaam.Location = new System.Drawing.Point(314, 84);
             this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(248, 27);
+            this.txtNaam.Size = new System.Drawing.Size(248, 32);
             this.txtNaam.TabIndex = 2;
             // 
             // txtCode
             // 
             this.txtCode.Location = new System.Drawing.Point(314, 51);
+            this.txtCode.MaxLength = 6;
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(248, 27);
+            this.txtCode.Size = new System.Drawing.Size(248, 32);
             this.txtCode.TabIndex = 1;
             // 
             // lblCode
@@ -71,7 +72,7 @@
             this.lblCode.AutoSize = true;
             this.lblCode.Location = new System.Drawing.Point(232, 54);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(47, 20);
+            this.lblCode.Size = new System.Drawing.Size(60, 25);
             this.lblCode.TabIndex = 3;
             this.lblCode.Text = "Code:";
             // 
@@ -80,7 +81,7 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(232, 21);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(25, 20);
+            this.lblId.Size = new System.Drawing.Size(32, 25);
             this.lblId.TabIndex = 4;
             this.lblId.Text = "Id:";
             // 
@@ -89,7 +90,7 @@
             this.lblNaam.AutoSize = true;
             this.lblNaam.Location = new System.Drawing.Point(232, 87);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(52, 20);
+            this.lblNaam.Size = new System.Drawing.Size(66, 25);
             this.lblNaam.TabIndex = 5;
             this.lblNaam.Text = "Naam:";
             // 
@@ -98,7 +99,7 @@
             this.chkActief.AutoSize = true;
             this.chkActief.Location = new System.Drawing.Point(314, 125);
             this.chkActief.Name = "chkActief";
-            this.chkActief.Size = new System.Drawing.Size(15, 14);
+            this.chkActief.Size = new System.Drawing.Size(18, 17);
             this.chkActief.TabIndex = 3;
             this.chkActief.UseVisualStyleBackColor = true;
             // 
@@ -107,7 +108,7 @@
             this.lblActief.AutoSize = true;
             this.lblActief.Location = new System.Drawing.Point(232, 121);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(51, 20);
+            this.lblActief.Size = new System.Drawing.Size(64, 25);
             this.lblActief.TabIndex = 7;
             this.lblActief.Text = "Actief:";
             // 
@@ -144,16 +145,16 @@
             // lsbKostenplaatsen
             // 
             this.lsbKostenplaatsen.FormattingEnabled = true;
-            this.lsbKostenplaatsen.ItemHeight = 20;
+            this.lsbKostenplaatsen.ItemHeight = 25;
             this.lsbKostenplaatsen.Location = new System.Drawing.Point(12, 12);
             this.lsbKostenplaatsen.Name = "lsbKostenplaatsen";
-            this.lsbKostenplaatsen.Size = new System.Drawing.Size(203, 184);
+            this.lsbKostenplaatsen.Size = new System.Drawing.Size(203, 179);
             this.lsbKostenplaatsen.TabIndex = 0;
             this.lsbKostenplaatsen.SelectedIndexChanged += new System.EventHandler(this.lsbKostenplaatsen_SelectedIndexChanged);
             // 
             // frmBeheerKostenplaatsen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 212);
             this.Controls.Add(this.lsbKostenplaatsen);
