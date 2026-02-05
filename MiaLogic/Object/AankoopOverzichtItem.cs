@@ -19,14 +19,12 @@ namespace MiaLogic.Object
         public string Aankoper { get; set; }
         public string Aanvrager { get; set; }
         public DateTime Aanvraagmoment { get; set; }
-
+        public int Id { get; set; }
         public string Financieringsjaar { get; set; }
         public string Richtperiode { get; set; }
-
         public decimal GoedgekeurdBedrag { get; set; }
         public decimal Saldo { get; set; }
-       
-
+        public decimal BudgetToegekend { get; set; }
 
     }
 }
