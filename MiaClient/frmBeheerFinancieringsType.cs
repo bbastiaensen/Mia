@@ -80,8 +80,13 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             checkActief.Checked = false;
 
+
             LstFinancieringsTypen.ClearSelected(); // <-- toevoegen
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
         private void btnBewaren_Click(object sender, EventArgs e)
         {
@@ -238,6 +243,8 @@ namespace MiaClient
 
             // Zodra iets geselecteerd is, is het GEEN nieuw record
             IsNew = false;
+            btnVerwijderen.Enabled = true;
+            btnVerwijderen.BackColor = StyleParameters.ButtonBack;
         }
     }
 }
