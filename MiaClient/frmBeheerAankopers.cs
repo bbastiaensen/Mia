@@ -183,9 +183,6 @@ namespace MiaClient
                 return;
             }
 
-            if (MessageBox.Show($"Bent u zeker dat u {LstAankopers.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-
             try
             {
 
@@ -193,7 +190,7 @@ namespace MiaClient
 
                 if (MessageBox.Show(
                     $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
-                    "Aankoper verwijderen",
+                    "MIA",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -207,18 +204,13 @@ namespace MiaClient
             }
 
             AankopersChanged?.Invoke(this, EventArgs.Empty);
-            MessageBox.Show(
-                    "De aankoper is succesvol verwijderd.",
-                    "MIA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
 
-                AankopersChanged?.Invoke(this, EventArgs.Empty);
 
-                BindLstAankopers();
-                ClearFields();
-            }
+
+            BindLstAankopers();
+            ClearFields();
+            LstAankopers.SelectedValue = 0;
+        }
         
 
         

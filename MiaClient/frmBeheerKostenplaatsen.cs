@@ -122,7 +122,6 @@ namespace MiaClient
             // Verwijderen-knop inschakelen en normale kleur
             btnVerwijderen.Enabled = false;
             btnVerwijderen.BackColor = Color.Gray;
-            isNew = true;
             lsbKostenplaatsen.SelectedValue = 0;
         }
        

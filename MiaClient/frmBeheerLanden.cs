@@ -170,13 +170,6 @@ namespace MiaClient
                 LandenChanged?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Het Land is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show(
-                    "Het land is succesvol verwijderd.",
-                    "MIA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
                 BindLstLanden();
                 ClearFields();
             }

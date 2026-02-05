@@ -77,8 +77,6 @@
             // txtNaam
             // 
             this.txtNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNaam.Location = new System.Drawing.Point(428, 65);
-            this.txtNaam.MaxLength = 30;
             this.txtNaam.Location = new System.Drawing.Point(571, 80);
             this.txtNaam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNaam.MaxLength = 50;
