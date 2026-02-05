@@ -30,5 +30,5 @@ namespace MiaClient
    
         public static frmBeheerGemeente frmBeheerGemeente { get; set; }
         public static frmBeheerLanden frmBeheerLanden { get; set; }
-        }
+    }
 }

@@ -33,6 +33,7 @@ namespace MiaClient
 
         private void frmBeheerGemeente_Load(object sender, EventArgs e)
         {
+            AppForms.frmBeheerGemeente = this;
             CreateUI();
             TriggerLandEvent();
             _isLoaded = true;
@@ -151,12 +152,9 @@ namespace MiaClient
         public void FrmBeheerLanden_LandenChanged(object sender, EventArgs e)
         {
             RefreshLandDropdown();
-
-
         }
         public void TriggerLandEvent()
-        {
-           
+        {   
             if (AppForms.frmBeheerLanden != null)
             {
                 AppForms.frmBeheerLanden.LandenChanged += FrmBeheerLanden_LandenChanged;
