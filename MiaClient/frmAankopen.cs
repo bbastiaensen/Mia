@@ -21,6 +21,8 @@ namespace MiaClient
 {
     public partial class frmAankopen : Form
     {
+        private frmNieuweAankoop frmNieuweAankoop;
+
         bool filterOmschrijving = false;
         bool filterStatusAankoop = false;
         bool filterAankoper = false;
@@ -124,6 +126,7 @@ namespace MiaClient
             // Add button (placeholder for future functionality)
             if (btnAdd != null && imgAdd != null)
             {
+
                 btnAdd.BackColor = StyleParameters.Achtergrondkleur;
                 btnAdd.BackgroundImage = imgAdd;
                 btnAdd.BackgroundImageLayout = ImageLayout.Stretch;
@@ -792,8 +795,39 @@ namespace MiaClient
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            // Bestaat het formulier al?
+            if (frmNieuweAankoop == null || frmNieuweAankoop.IsDisposed)
+            {
+                frmNieuweAankoop = new frmNieuweAankoop();
+                frmNieuweAankoop.MdiParent = this.MdiParent;
+
+                // Event koppelen: aankoop toegevoegd
+                frmNieuweAankoop.AankoopToegevoegd += FrmNieuweAankoop_AankoopToegevoegd;
+            }
+
+            // Altijd verse data tonen
+            frmNieuweAankoop.RefreshBekrachtigdeAanvragen();
+            frmNieuweAankoop.Show();
+            frmNieuweAankoop.BringToFront();
         }
+        private void FrmNieuweAankoop_AankoopToegevoegd(object sender, EventArgs e)
+        {
+            try
+            {
+                // Aankopen opnieuw ophalen + filters toepassen
+                aankopen = GetFilteredAankopen();
+
+                huidigePage = 1;
+                StartPaging();
+                RefreshPagingButtonImages();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void btnSortSatusaanvraag_Click(object sender, EventArgs e)
         {

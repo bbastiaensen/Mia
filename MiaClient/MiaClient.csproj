@@ -298,6 +298,12 @@
     <Compile Include="UserControls\LinkItem.Designer.cs">
       <DependentUpon>LinkItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\NieuweAankoopItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\NieuweAankoopItem.Designer.cs">
+      <DependentUpon>NieuweAankoopItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\OffertesAanvraagFrm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -436,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LinkItem.resx">
       <DependentUpon>LinkItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\NieuweAankoopItem.resx">
+      <DependentUpon>NieuweAankoopItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OffertesAanvraagFrm.resx">
       <DependentUpon>OffertesAanvraagFrm.cs</DependentUpon>

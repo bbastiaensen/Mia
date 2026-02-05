@@ -1,9 +1,10 @@
+﻿using MiaLogic.Object;
 using ProofOfConceptDesign;
 using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using MiaLogic.Object;
 
 namespace MiaClient.UserControls
 {
@@ -11,6 +12,7 @@ namespace MiaClient.UserControls
     {
         // 👉 Belangrijk: volledige Aanvraag bewaren
         public Aanvraag Aanvraag { get; set; }
+        public static string ConnectionString { get; set; }
 
         public bool Even { get; set; }
 
@@ -102,10 +104,39 @@ namespace MiaClient.UserControls
                 btnEuro.Font = new Font("Segoe UI", 20, FontStyle.Bold);
             }
         }
+        public static void CreateAankoop(Aankoop aankoop)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
+                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                        command.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
+                        command.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                        command.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                        command.Parameters.AddWithValue("@AanvraagId", aankoop.AanvraagId);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Er is een fout opgetreden bij het aanmaken van de Aankoop, probeer het nog eens.");
+                throw;
+            }
+        }
 
         private void btnEuro_Click(object sender, EventArgs e)
         {
-            // 👉 altijd het item zelf doorgeven
             EuroClicked?.Invoke(this, EventArgs.Empty);
         }
     }
