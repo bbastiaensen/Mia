@@ -103,6 +103,7 @@ namespace MiaClient
             // 
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(78, 54);
+            this.txtCode.MaxLength = 20;
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(198, 29);
             this.txtCode.TabIndex = 0;
@@ -128,7 +129,8 @@ namespace MiaClient
             // txtEenheid
             // 
             this.txtEenheid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEenheid.Location = new System.Drawing.Point(530, 54);
+            this.txtEenheid.Location = new System.Drawing.Point(536, 54);
+            this.txtEenheid.MaxLength = 25;
             this.txtEenheid.Name = "txtEenheid";
             this.txtEenheid.Size = new System.Drawing.Size(349, 29);
             this.txtEenheid.TabIndex = 2;
@@ -164,6 +166,7 @@ namespace MiaClient
             // 
             this.txtCodeDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodeDetail.Location = new System.Drawing.Point(149, 527);
+            this.txtCodeDetail.MaxLength = 20;
             this.txtCodeDetail.Name = "txtCodeDetail";
             this.txtCodeDetail.Size = new System.Drawing.Size(743, 29);
             this.txtCodeDetail.TabIndex = 1;
@@ -181,6 +184,7 @@ namespace MiaClient
             // 
             this.txtEenheidDetail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEenheidDetail.Location = new System.Drawing.Point(148, 597);
+            this.txtEenheidDetail.MaxLength = 25;
             this.txtEenheidDetail.Name = "txtEenheidDetail";
             this.txtEenheidDetail.Size = new System.Drawing.Size(744, 29);
             this.txtEenheidDetail.TabIndex = 3;
