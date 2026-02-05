@@ -162,7 +162,7 @@ namespace MiaClient
                 {
                     DienstenManager.DeleteDienst(d);
 
-                    MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("De Dienst is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DienstenChanged?.Invoke(this, EventArgs.Empty);
                 }
 

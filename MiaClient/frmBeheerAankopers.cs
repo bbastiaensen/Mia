@@ -164,7 +164,7 @@ namespace MiaClient
             if (IsNew)
             {
                 MessageBox.Show(
-                    "Er is geen leverancier geselecteerd om te verwijderen.",
+                    "Er is geen aankoper geselecteerd om te verwijderen.",
                     "MIA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
