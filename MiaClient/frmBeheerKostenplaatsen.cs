@@ -122,6 +122,7 @@ namespace MiaClient
             // Verwijderen-knop inschakelen en normale kleur
             btnVerwijderen.Enabled = false;
             btnVerwijderen.BackColor = Color.Gray;
+            lsbKostenplaatsen.SelectedValue = 0;
         }
        
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -244,6 +245,7 @@ namespace MiaClient
             MessageBox.Show("De gegevens zijn verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             KostenplaatsChanged?.Invoke(this, EventArgs.Empty);
+            lsbKostenplaatsen.SelectedValue = 0;
         }
 
         private Kostenplaats CreateObjectFromFields()
