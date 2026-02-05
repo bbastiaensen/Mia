@@ -203,5 +203,27 @@ namespace MiaLogic.Manager
                 }
             }
         }
+        public static bool PrioriteitGebruikt(int prioriteitId)
+        {
+            using (SqlConnection Objcn = new SqlConnection(ConnectionString))
+            using (SqlCommand Objcmd = new SqlCommand(
+                "SELECT COUNT(*) FROM Aanvraag WHERE PrioriteitId = @Id", Objcn))
+            {
+                Objcmd.Parameters.AddWithValue("@Id", prioriteitId);
+                Objcn.Open();
+                return (int)Objcmd.ExecuteScalar() > 0;
+            }
+        }
+        public static void DeactiveerPrioriteit(int id)
+        {
+            using (SqlConnection Objcn = new SqlConnection(ConnectionString))
+            using (SqlCommand Objcmd = new SqlCommand(
+                "UPDATE Prioriteit SET Actief = 0 WHERE Id = @Id", Objcn))
+            {
+                Objcmd.Parameters.AddWithValue("@Id", id);
+                Objcn.Open();
+                Objcmd.ExecuteNonQuery();
+            }
+        }
     }
 }

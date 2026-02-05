@@ -17,6 +17,8 @@ namespace MiaClient
     public partial class frmBeheerKostenplaatsen : Form
     {
         Boolean isNew = false;
+        public event EventHandler KostenplaatsChanged;
+        public static int? LastActiveKostenplaatsId { get; set; }
 
         public frmBeheerKostenplaatsen()
         {
@@ -34,6 +36,15 @@ namespace MiaClient
         private void frmBeheerKostenplaatsen_Load(object sender, EventArgs e)
         {
             CreateUI();
+            BindLsbKostenplaatsen();
+
+            AppForms.frmBeheerKostenplaatsen = this;
+
+            if (AppForms.frmAanvraagFormulier != null)
+            {
+                this.KostenplaatsChanged -= AppForms.frmAanvraagFormulier.FrmBeheerKostenplaatsen_KostenplaatsChanged;
+                this.KostenplaatsChanged += AppForms.frmAanvraagFormulier.FrmBeheerKostenplaatsen_KostenplaatsChanged;
+            }
         }
 
         public void CreateUI()
@@ -131,6 +142,14 @@ namespace MiaClient
 
                 k = KostenplaatsManager.SaveKostenplaats(isNew, CreateObjectFromFields());
 
+                if (k.Actief)
+                {
+                    LastActiveKostenplaatsId = k.Id;
+                }
+
+                // Event naar frmAanvraagFormulier sturen
+                KostenplaatsChanged?.Invoke(this, EventArgs.Empty);
+
                 SetFields(k);
 
                 BindLsbKostenplaatsen();
@@ -217,6 +236,8 @@ namespace MiaClient
             }
 
             MessageBox.Show("De gegevens zijn verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            KostenplaatsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private Kostenplaats CreateObjectFromFields()
@@ -245,5 +266,7 @@ namespace MiaClient
 
             return k;
         }
+
+
     }
 }

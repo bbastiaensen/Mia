@@ -47,14 +47,14 @@
             this.lstPrioriteiten.Location = new System.Drawing.Point(16, 18);
             this.lstPrioriteiten.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstPrioriteiten.Name = "lstPrioriteiten";
-            this.lstPrioriteiten.Size = new System.Drawing.Size(305, 244);
+            this.lstPrioriteiten.Size = new System.Drawing.Size(305, 184);
             this.lstPrioriteiten.TabIndex = 0;
             this.lstPrioriteiten.SelectedIndexChanged += new System.EventHandler(this.lstPrioriteiten_SelectedIndexChanged);
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(404, 18);
+            this.lblId.Location = new System.Drawing.Point(349, 18);
             this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(22, 20);
@@ -64,7 +64,7 @@
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(404, 76);
+            this.lblNaam.Location = new System.Drawing.Point(329, 79);
             this.lblNaam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNaam.Name = "lblNaam";
             this.lblNaam.Size = new System.Drawing.Size(49, 20);
@@ -74,7 +74,7 @@
             // lblActief
             // 
             this.lblActief.AutoSize = true;
-            this.lblActief.Location = new System.Drawing.Point(404, 143);
+            this.lblActief.Location = new System.Drawing.Point(330, 141);
             this.lblActief.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblActief.Name = "lblActief";
             this.lblActief.Size = new System.Drawing.Size(48, 20);
@@ -83,7 +83,7 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(485, 18);
+            this.txtId.Location = new System.Drawing.Point(388, 18);
             this.txtId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
@@ -92,7 +92,7 @@
             // 
             // txtNaam
             // 
-            this.txtNaam.Location = new System.Drawing.Point(485, 76);
+            this.txtNaam.Location = new System.Drawing.Point(386, 76);
             this.txtNaam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNaam.Name = "txtNaam";
             this.txtNaam.Size = new System.Drawing.Size(132, 27);
@@ -101,7 +101,7 @@
             // chkActief
             // 
             this.chkActief.AutoSize = true;
-            this.chkActief.Location = new System.Drawing.Point(485, 147);
+            this.chkActief.Location = new System.Drawing.Point(388, 148);
             this.chkActief.Name = "chkActief";
             this.chkActief.Size = new System.Drawing.Size(15, 14);
             this.chkActief.TabIndex = 6;
@@ -109,7 +109,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(363, 174);
+            this.btnNieuw.Location = new System.Drawing.Point(333, 174);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(116, 33);
             this.btnNieuw.TabIndex = 7;
@@ -119,7 +119,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(591, 174);
+            this.btnVerwijderen.Location = new System.Drawing.Point(561, 174);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(100, 33);
             this.btnVerwijderen.TabIndex = 8;
@@ -129,7 +129,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(485, 174);
+            this.btnBewaren.Location = new System.Drawing.Point(455, 174);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(100, 33);
             this.btnBewaren.TabIndex = 9;
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 289);
+            this.ClientSize = new System.Drawing.Size(662, 215);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
@@ -155,7 +155,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmPrioriteit";
-            this.Text = "frmPrioriteit";
+            this.Text = "Beheer Prioriteit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrioriteit_FormClosing);
             this.Load += new System.EventHandler(this.frmPrioriteit_Load);
             this.ResumeLayout(false);

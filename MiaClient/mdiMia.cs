@@ -58,6 +58,9 @@ namespace MiaClient
         Image imgDiensten;
         Image imgKostenplaats;
 
+
+
+
         public mdiMia()
         {
           
@@ -80,6 +83,37 @@ namespace MiaClient
             }
        
             this.DoubleBuffered = true;
+        }
+
+
+        private void DisableMdiScrollBars()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is MdiClient client)
+                {
+                    client.Dock = DockStyle.Fill;
+
+                    // Schakel scrollbars uit via de Windows stijl
+                    const int WS_HSCROLL = 0x00100000;
+                    const int WS_VSCROLL = 0x00200000;
+
+                    int style = (int)NativeMethods.GetWindowLong(client.Handle, NativeMethods.GWL_STYLE);
+                    style &= ~WS_HSCROLL;
+                    style &= ~WS_VSCROLL;
+                    NativeMethods.SetWindowLong(client.Handle, NativeMethods.GWL_STYLE, (IntPtr)style);
+                }
+            }
+        }
+        internal static class NativeMethods
+        {
+            public const int GWL_STYLE = -16;
+
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            public static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
+
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
         }
 
         private static void ErrorHandler(string customMessage, Exception ex, string location)
@@ -253,7 +287,7 @@ namespace MiaClient
                 aankopenToolStripMenuItem.Visible = false;
             }
 
-            //Aankoper - items voor aankoper worden extra bij aangezet
+            //Aankoper - items voor aankoper worden extra bij aangezett
             if (Program.IsAankoper)
             {
                 tss3.Visible = true;
@@ -409,8 +443,13 @@ namespace MiaClient
 
         private void mdiMia_Load(object sender, EventArgs e)
         {
+
+            DisableMdiScrollBars();
+
             string rollen = GetRollen();
             toolStripStatusLabel.Text = $"Gebruiker: {Program.Gebruiker} Rollen: {rollen}";
+
+          
 
             MenubalkSamenstellen();
             CreateUI();
@@ -442,6 +481,10 @@ namespace MiaClient
             {
                 AppForms.frmAanvragen = new FrmAanvragen();
                 AppForms.frmAanvragen.MdiParent = this;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.Dock = DockStyle.Fill;
+                this.StartPosition = FormStartPosition.Manual;
+                this.AutoScroll = false;
             }
             AppForms.frmAanvragen.Show();
 
