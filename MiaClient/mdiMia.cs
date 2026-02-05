@@ -286,7 +286,7 @@ namespace MiaClient
                 aankopenToolStripMenuItem.Visible = false;
             }
 
-            //Aankoper - items voor aankoper worden extra bij aangezet
+            //Aankoper - items voor aankoper worden extra bij aangezett
             if (Program.IsAankoper)
             {
                 tss3.Visible = true;
