@@ -17,7 +17,7 @@ namespace MiaClient
     {
         public event EventHandler LandenChanged;
         List<Gemeente> gemeentes;
-
+        public event EventHandler GemeentesChanged;
 
         int xPos = 10;
         int yPos = 20;
@@ -38,6 +38,14 @@ namespace MiaClient
             TriggerLandEvent();
             _isLoaded = true;
             BindLstGemeentes();
+
+             
+
+            if (AppForms.frmBeheerLeverancier != null)
+            {
+                this.GemeentesChanged -= AppForms.frmBeheerLeverancier.FrmBeheerGemeentes_GemeentesChanged;
+                this.GemeentesChanged += AppForms.frmBeheerLeverancier.FrmBeheerGemeentes_GemeentesChanged;
+            }
 
         }
 
@@ -94,6 +102,7 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstGemeente.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -108,12 +117,12 @@ namespace MiaClient
 
 
             g.Id = GemeenteManager.SaveGemeente(g, IsNew);
-           
-            
+            GemeentesChanged?.Invoke(this, EventArgs.Empty);
+
+
                 BindLstGemeentes();
                 VulLandDropDown(ddlLand);
-                ClearFields();
-                LstGemeente.SelectedValue = g.Id.ToString();
+                LstGemeente.SelectedValue = g.Id;
                 IsNew = false;
 
                 MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -122,7 +131,7 @@ namespace MiaClient
             {
                 MessageBox.Show("Er is een fout opgetreden bij het bewaren van de gegevens. Gelieve alle velden correct in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-          
+           
 
         }
 
@@ -134,10 +143,11 @@ namespace MiaClient
             g.LandId = Convert.ToInt32(txtLandId.Text);
             g.Postcode = Convert.ToInt32(txtPostcode.Text);
 
-            if (MessageBox.Show($"Bent u zeker dat u {LstGemeente.Text} wilt verwijderen?", "Gemeente verwijderen", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show($"Bent u zeker dat u {LstGemeente.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
 
                 GemeenteManager.DeleteGemeente(g);
+                GemeentesChanged?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("De Gemeente is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -145,6 +155,7 @@ namespace MiaClient
             BindLstGemeentes();
             VulLandDropDown(ddlLand);
             ClearFields();
+            LstGemeente.SelectedValue = 0;
 
         }
         private void ClearFields()
@@ -153,7 +164,7 @@ namespace MiaClient
             txtId.Text = string.Empty;
             txtLandId.Text = string.Empty;
             txtPostcode.Text = string.Empty;
-            ddlLand.Text = string.Empty;
+            ddlLand.SelectedValue = 0;
             IsNew = true;
         }
         public void FrmBeheerLanden_LandenChanged(object sender, EventArgs e)

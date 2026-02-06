@@ -14,16 +14,17 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmPrioriteit : Form
+    public partial class frmBeheerPrioriteit : Form
     {
         List<Prioriteit> prioriteiten = new List<Prioriteit>();
         public event EventHandler PrioriteitenChanged;
+        public static int? LastActivePrioriteitId { get; set; }
 
         bool IsNew = false;
 
      
 
-        public frmPrioriteit()
+        public frmBeheerPrioriteit()
         {
             InitializeComponent();
         }
@@ -95,8 +96,8 @@ namespace MiaClient
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
-             IsNew = true;
-
+            IsNew = true;
+            lstPrioriteiten.SelectedValue = 0;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
@@ -113,10 +114,14 @@ namespace MiaClient
                 p.Actief = false;
             }
             p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+            if (p.Actief)
+            {
+                LastActivePrioriteitId = p.Id;
+            }
             PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
 
             BindlstPrioriteiten();
-            
+
             lstPrioriteiten.SelectedValue = p.Id;
             IsNew = false;
 
@@ -125,11 +130,10 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-
             if (IsNew)
             {
                 MessageBox.Show(
-                    "Er is geen leverancier geselecteerd om te verwijderen.",
+                    "Er is geen prioriteit geselecteerd om te verwijderen.",
                     "MIA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -149,11 +153,13 @@ namespace MiaClient
             Prioriteit p = (Prioriteit)lstPrioriteiten.SelectedItem;
 
             if (MessageBox.Show(
-                $"Bent u zeker dat u {p.Naam} wilt verwijderen?",
-                "Prioriteit verwijderen",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) != DialogResult.Yes)
+                    $"Bent u zeker dat u {p.Naam} wilt verwijderen?",
+                    "MIA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) != DialogResult.Yes)
+            {
                 return;
+            }
 
             try
             {
@@ -161,7 +167,7 @@ namespace MiaClient
                 {
                     PrioriteitManager.DeactiveerPrioriteit(p.Id);
                     MessageBox.Show(
-                        "Deze prioriteit is gekoppeld aan een aanvraag en werd inactief gezet.",
+                        "Deze prioriteit is gekoppeld aan een aanvraag en werd op niet-actief gezet.",
                         "MIA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -190,7 +196,8 @@ namespace MiaClient
                     MessageBoxIcon.Error);
             }
         }
-        
+
+
         public void ClearFields()
         {
             txtId.Text = string.Empty;
