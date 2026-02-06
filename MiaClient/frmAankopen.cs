@@ -86,6 +86,8 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 LoadAankopen();

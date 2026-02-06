@@ -55,6 +55,9 @@ namespace MiaClient
         {
             CreateUI();
             BindlstPrioriteiten();
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
 
             AppForms.frmBeheerPrioriteit = this;
 
@@ -89,6 +92,7 @@ namespace MiaClient
                     chkActief.Checked = false;
                 }
                  IsNew = false;
+
 
             }
         }
