@@ -46,6 +46,7 @@ namespace MiaClient
         int huidigePage = 1;
         int aantalPages = 0;
         List<AankoopOverzichtItem> aankopen;
+        List<Aanvraag> aanvragen;
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
         Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
@@ -749,11 +750,6 @@ namespace MiaClient
         //    ApplySortAndRefresh();
         //}
 
-
-
-
-
-
         //private void btnSortSaldo_Click(object sender, EventArgs e)
         //{
         //    aankopen = GetFilteredAankopen();
@@ -789,10 +785,9 @@ namespace MiaClient
         {
             try
             {
-                List<Aankopen> aankopen = AankoopManager.GetAllAankopen();
-                if (aankopen == null || aankopen.Count == 0)
+                if (aanvragen == null || aanvragen.Count == 0)
                 {
-                    MessageBox.Show("Geen aankopen gevonden om te exporteren.", "Mia",
+                    MessageBox.Show("Geen aankopen gevonden om te exporteren.", "Exporteren",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
@@ -830,22 +825,21 @@ namespace MiaClient
 
                 int row = 2;
 
-                foreach (var a in aankopen)
+                foreach (var aanvraag in aanvragen)
                 {
-                    Aankoop aankoop = AankoopManager.GetAankoopByAanvraagId(a.Id);
+                    Aankoop aankoop = AankoopManager.GetAankoopByAanvraagId(aanvraag.Id);
 
                     if (aankoop == null) continue;
 
-
                     decimal bedragExBtw = aankoop.BedragExBtw;
                     decimal bedragInclBTW = bedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
-                    decimal saldo = a.BudgetToegekend - bedragInclBTW;
+                    decimal saldo = aanvraag.BudgetToegekend - bedragInclBTW;
 
                     StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
 
-                    worksheet.Cells[row, 1] = a.Titel;
+                    worksheet.Cells[row, 1] = aanvraag.Titel;
 
-                    worksheet.Cells[row, 2].Value = a.GoedgekeurdBedrag;
+                    worksheet.Cells[row, 2].Value = aanvraag.BudgetToegekend;
                     worksheet.Cells[row, 2].NumberFormat = euroFormaat;
 
                     worksheet.Cells[row, 3].Value = bedragInclBTW;
@@ -856,18 +850,14 @@ namespace MiaClient
 
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
-                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
-                        ? (object)aankoop.BestellingsDatum.Value.Date
-                        : "Nog niet besteld";
+                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum > DateTime.MinValue ?
+                        aankoop.BestellingsDatum.ToString() : (object)"Nog niet besteld";
 
-                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
-                        ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
-                        : "Geen verwachte datum";
+                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum > DateTime.MinValue ?
+                        aankoop.VerwachteLeveringsDatum.ToString() : (object)"Geen verwachte datum";
 
-                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
-                        ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
-                        : "Geen effectieve datum";
-
+                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum > DateTime.MinValue ?
+                        aankoop.EffectieveLeveringsDatum.ToString() : (object)"Geen effectieve datum";
 
                     if (aankoop.BestellingsDatum > DateTime.MinValue)
                         worksheet.Cells[row, 6].NumberFormat = "dd/mm/yyyy";
@@ -891,13 +881,11 @@ namespace MiaClient
 
                 Excel.Range used = worksheet.Range["A1:H" + (row - 1)];
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                used.Borders.Color = textKleurExc;
+                used.Borders.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
                 used.AutoFilter(1);
 
                 worksheet.Range["A:H"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-                worksheet.Columns[2].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
-                worksheet.Columns[3].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
-                worksheet.Columns[4].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                worksheet.Columns["B:D"].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
                 worksheet.Columns.AutoFit();
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -905,28 +893,24 @@ namespace MiaClient
                     FileName = "AankopenExport",
                     Filter = "Excel bestanden (*.xlsx)|*.xlsx",
                     FilterIndex = 1
-                };
+                };  
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    workbook.SaveAs(saveFileDialog.FileName);
+                    worksheet.SaveAs(saveFileDialog.FileName, Excel.XlFileFormat.xlOpenXMLWorkbook);
                     workbook.Close(false);
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(worksheet);
                     app.Quit();
 
-                    Marshal.ReleaseComObject(worksheet);
-                    Marshal.ReleaseComObject(workbook);
-                    Marshal.ReleaseComObject(app);
-
-                    MessageBox.Show("Het Excel bestand staat klaar.",
-                        "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

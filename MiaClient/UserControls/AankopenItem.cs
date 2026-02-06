@@ -22,7 +22,6 @@ namespace MiaClient.UserControls
         public event EventHandler AankoopItemSelected;
 
         public event EventHandler AankoopItemChanged;
-
         public AankopenItem()
         {
             InitializeComponent();
@@ -43,8 +42,6 @@ namespace MiaClient.UserControls
                     _toolTip.SetToolTip(lblOmschrijving, "Omschrijving: " + _aankoopItem.Omschrijving);
             };
         }
-    
-
         public void BindAankoop(AankoopOverzichtItem aankoopItem, bool evenRow = false)
         {
             if (aankoopItem == null)
@@ -54,7 +51,6 @@ namespace MiaClient.UserControls
             Even = evenRow;
             AankoopId = aankoopItem.AankoopId;
             StatusAankoopNaam = aankoopItem.StatusAankoop;
-
 
             SetItemValue();
         }
@@ -68,9 +64,6 @@ namespace MiaClient.UserControls
 
             lblGoedgekeurdBedrag.RightToLeft = RightToLeft.No;
             lblSaldo.RightToLeft = RightToLeft.No;
-
-
-
 
             if (titel.Length > 25)
             {
@@ -103,10 +96,6 @@ namespace MiaClient.UserControls
             lblGoedgekeurdBedrag.Text = _aankoopItem.GoedgekeurdBedrag.ToString("c", CultureInfo.CurrentCulture);
             lblSaldo.Text = _aankoopItem.Saldo.ToString("c", CultureInfo.CurrentCulture);
 
-
-
-
-
             if (Even)
             {
                 this.BackColor = StyleParameters.ListItemColor;
@@ -128,18 +117,12 @@ namespace MiaClient.UserControls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-           
-
-           
-                    if (AankoopDeleted != null)
-                    {
-                        AankoopDeleted(this, null);
-                    }
-
-                    
+            if (AankoopDeleted != null)
+            {
+                AankoopDeleted(this, null);
             }
 
-           
         }
     }
+}
 
