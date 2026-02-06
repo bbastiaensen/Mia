@@ -83,10 +83,11 @@ namespace MiaClient
             // 
             // cmbFinancieringsjaar
             // 
+            this.cmbFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFinancieringsjaar.FormattingEnabled = true;
             this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 87);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
-            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(253, 27);
+            this.cmbFinancieringsjaar.Size = new System.Drawing.Size(253, 33);
             this.cmbFinancieringsjaar.TabIndex = 2;
             this.cmbFinancieringsjaar.SelectedIndexChanged += new System.EventHandler(this.cmbFinancieringsjaar_SelectedIndexChanged);
             // 
@@ -96,7 +97,7 @@ namespace MiaClient
             this.lblFinancieringsjaar.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(6, 87);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(131, 20);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(156, 25);
             this.lblFinancieringsjaar.TabIndex = 1;
             this.lblFinancieringsjaar.Text = "Financieringsjaar : ";
             // 
@@ -198,26 +199,27 @@ namespace MiaClient
             // cbBedragTot
             // 
             this.cbBedragTot.AutoSize = true;
-            this.cbBedragTot.Location = new System.Drawing.Point(337, 168);
+            this.cbBedragTot.Location = new System.Drawing.Point(355, 168);
             this.cbBedragTot.Name = "cbBedragTot";
-            this.cbBedragTot.Size = new System.Drawing.Size(49, 24);
+            this.cbBedragTot.Size = new System.Drawing.Size(58, 29);
             this.cbBedragTot.TabIndex = 21;
             this.cbBedragTot.Text = "Tot";
             this.cbBedragTot.UseVisualStyleBackColor = true;
             // 
             // txtBedragTot
             // 
-            this.txtBedragTot.Location = new System.Drawing.Point(409, 167);
+            this.txtBedragTot.Location = new System.Drawing.Point(427, 167);
+            this.txtBedragTot.MaxLength = 20;
             this.txtBedragTot.Name = "txtBedragTot";
-            this.txtBedragTot.Size = new System.Drawing.Size(200, 27);
+            this.txtBedragTot.Size = new System.Drawing.Size(200, 31);
             this.txtBedragTot.TabIndex = 26;
             // 
             // cbBedragVan
             // 
             this.cbBedragVan.AutoSize = true;
-            this.cbBedragVan.Location = new System.Drawing.Point(337, 130);
+            this.cbBedragVan.Location = new System.Drawing.Point(355, 130);
             this.cbBedragVan.Name = "cbBedragVan";
-            this.cbBedragVan.Size = new System.Drawing.Size(52, 24);
+            this.cbBedragVan.Size = new System.Drawing.Size(63, 29);
             this.cbBedragVan.TabIndex = 5;
             this.cbBedragVan.Text = "Van";
             this.cbBedragVan.UseVisualStyleBackColor = true;
@@ -225,37 +227,39 @@ namespace MiaClient
             // txtGebruiker
             // 
             this.txtGebruiker.Location = new System.Drawing.Point(11, 58);
+            this.txtGebruiker.MaxLength = 50;
             this.txtGebruiker.Name = "txtGebruiker";
-            this.txtGebruiker.Size = new System.Drawing.Size(272, 27);
+            this.txtGebruiker.Size = new System.Drawing.Size(272, 31);
             this.txtGebruiker.TabIndex = 25;
             // 
             // txtBedragVan
             // 
-            this.txtBedragVan.Location = new System.Drawing.Point(409, 128);
+            this.txtBedragVan.Location = new System.Drawing.Point(427, 128);
+            this.txtBedragVan.MaxLength = 20;
             this.txtBedragVan.Name = "txtBedragVan";
-            this.txtBedragVan.Size = new System.Drawing.Size(200, 27);
+            this.txtBedragVan.Size = new System.Drawing.Size(200, 31);
             this.txtBedragVan.TabIndex = 17;
             // 
             // dtpPlanningsdatumTot
             // 
             this.dtpPlanningsdatumTot.Location = new System.Drawing.Point(88, 169);
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
-            this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 27);
+            this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(216, 31);
             this.dtpPlanningsdatumTot.TabIndex = 24;
             // 
             // dtpPlanningsdatumVan
             // 
             this.dtpPlanningsdatumVan.Location = new System.Drawing.Point(88, 128);
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
-            this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 27);
+            this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(216, 31);
             this.dtpPlanningsdatumVan.TabIndex = 23;
             // 
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(337, 97);
+            this.lblBedrag.Location = new System.Drawing.Point(355, 97);
             this.lblBedrag.Name = "lblBedrag";
-            this.lblBedrag.Size = new System.Drawing.Size(57, 20);
+            this.lblBedrag.Size = new System.Drawing.Size(68, 25);
             this.lblBedrag.TabIndex = 8;
             this.lblBedrag.Text = "Bedrag";
             // 
@@ -264,7 +268,7 @@ namespace MiaClient
             this.chbxPlaningsdatumVan.AutoSize = true;
             this.chbxPlaningsdatumVan.Location = new System.Drawing.Point(11, 132);
             this.chbxPlaningsdatumVan.Name = "chbxPlaningsdatumVan";
-            this.chbxPlaningsdatumVan.Size = new System.Drawing.Size(52, 24);
+            this.chbxPlaningsdatumVan.Size = new System.Drawing.Size(63, 29);
             this.chbxPlaningsdatumVan.TabIndex = 4;
             this.chbxPlaningsdatumVan.Text = "Van";
             this.chbxPlaningsdatumVan.UseVisualStyleBackColor = true;
@@ -274,16 +278,17 @@ namespace MiaClient
             this.chbxPlaningsdatumTot.AutoSize = true;
             this.chbxPlaningsdatumTot.Location = new System.Drawing.Point(11, 174);
             this.chbxPlaningsdatumTot.Name = "chbxPlaningsdatumTot";
-            this.chbxPlaningsdatumTot.Size = new System.Drawing.Size(49, 24);
+            this.chbxPlaningsdatumTot.Size = new System.Drawing.Size(58, 29);
             this.chbxPlaningsdatumTot.TabIndex = 20;
             this.chbxPlaningsdatumTot.Text = "Tot";
             this.chbxPlaningsdatumTot.UseVisualStyleBackColor = true;
             // 
             // txtTitel
             // 
-            this.txtTitel.Location = new System.Drawing.Point(337, 58);
+            this.txtTitel.Location = new System.Drawing.Point(355, 58);
+            this.txtTitel.MaxLength = 50;
             this.txtTitel.Name = "txtTitel";
-            this.txtTitel.Size = new System.Drawing.Size(272, 27);
+            this.txtTitel.Size = new System.Drawing.Size(272, 31);
             this.txtTitel.TabIndex = 13;
             // 
             // lblPlanningsdatum
@@ -291,16 +296,16 @@ namespace MiaClient
             this.lblPlanningsdatum.AutoSize = true;
             this.lblPlanningsdatum.Location = new System.Drawing.Point(11, 97);
             this.lblPlanningsdatum.Name = "lblPlanningsdatum";
-            this.lblPlanningsdatum.Size = new System.Drawing.Size(115, 20);
+            this.lblPlanningsdatum.Size = new System.Drawing.Size(140, 25);
             this.lblPlanningsdatum.TabIndex = 11;
             this.lblPlanningsdatum.Text = "Planningsdatum";
             // 
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(333, 30);
+            this.lblTitel.Location = new System.Drawing.Point(351, 30);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(38, 20);
+            this.lblTitel.Size = new System.Drawing.Size(44, 25);
             this.lblTitel.TabIndex = 9;
             this.lblTitel.Text = "Titel";
             // 
@@ -309,7 +314,7 @@ namespace MiaClient
             this.lblAanvrager.AutoSize = true;
             this.lblAanvrager.Location = new System.Drawing.Point(7, 30);
             this.lblAanvrager.Name = "lblAanvrager";
-            this.lblAanvrager.Size = new System.Drawing.Size(77, 20);
+            this.lblAanvrager.Size = new System.Drawing.Size(93, 25);
             this.lblAanvrager.TabIndex = 1;
             this.lblAanvrager.Text = "Aanvrager";
             // 
@@ -433,7 +438,7 @@ namespace MiaClient
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(600, 248);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 20);
+            this.label5.Size = new System.Drawing.Size(99, 25);
             this.label5.TabIndex = 51;
             this.label5.Text = "Aanvrager";
             // 
@@ -442,7 +447,7 @@ namespace MiaClient
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(441, 248);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.Size = new System.Drawing.Size(93, 25);
             this.label3.TabIndex = 49;
             this.label3.Text = "Aankoper";
             // 
@@ -460,7 +465,7 @@ namespace MiaClient
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(845, 248);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 20);
+            this.label6.Size = new System.Drawing.Size(119, 25);
             this.label6.TabIndex = 52;
             this.label6.Text = "Richtperiode";
             // 
@@ -469,7 +474,7 @@ namespace MiaClient
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(1171, 248);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 20);
+            this.label8.Size = new System.Drawing.Size(59, 25);
             this.label8.TabIndex = 54;
             this.label8.Text = "Saldo";
             // 
@@ -478,7 +483,7 @@ namespace MiaClient
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(981, 248);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 20);
+            this.label1.Size = new System.Drawing.Size(186, 25);
             this.label1.TabIndex = 53;
             this.label1.Text = "GoedgekeurdBedrag";
             // 
@@ -487,7 +492,7 @@ namespace MiaClient
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(287, 249);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
+            this.label2.Size = new System.Drawing.Size(147, 25);
             this.label2.TabIndex = 48;
             this.label2.Text = "Status Aanvraag";
             // 
@@ -496,7 +501,7 @@ namespace MiaClient
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(85, 251);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 20);
+            this.label10.Size = new System.Drawing.Size(48, 25);
             this.label10.TabIndex = 47;
             this.label10.Text = "Titel";
             // 
@@ -614,7 +619,7 @@ namespace MiaClient
             // 
             // frmAankopen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1290, 663);
             this.Controls.Add(this.btnSaldo);
@@ -646,7 +651,7 @@ namespace MiaClient
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmAankopen";
-            this.Text = "jaar";
+            this.Text = "Aankopen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAankopen_FormClosing);
             this.Load += new System.EventHandler(this.frmAankopen_Load);
             this.Shown += new System.EventHandler(this.frmAankopen_Shown);

@@ -52,7 +52,7 @@
             this.lblWacht.Location = new System.Drawing.Point(13, 204);
             this.lblWacht.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWacht.Name = "lblWacht";
-            this.lblWacht.Size = new System.Drawing.Size(142, 20);
+            this.lblWacht.Size = new System.Drawing.Size(183, 25);
             this.lblWacht.TabIndex = 4;
             this.lblWacht.Text = "Dit kan even duren...";
             this.lblWacht.Visible = false;
@@ -62,16 +62,17 @@
             this.lblLaad1.AutoSize = true;
             this.lblLaad1.Location = new System.Drawing.Point(13, 179);
             this.lblLaad1.Name = "lblLaad1";
-            this.lblLaad1.Size = new System.Drawing.Size(321, 20);
+            this.lblLaad1.Size = new System.Drawing.Size(402, 25);
             this.lblLaad1.TabIndex = 5;
             this.lblLaad1.Text = "                                                                              ";
             this.lblLaad1.Visible = false;
             // 
             // cmbJaar
             // 
+            this.cmbJaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbJaar.Location = new System.Drawing.Point(289, 31);
             this.cmbJaar.Name = "cmbJaar";
-            this.cmbJaar.Size = new System.Drawing.Size(126, 28);
+            this.cmbJaar.Size = new System.Drawing.Size(126, 33);
             this.cmbJaar.TabIndex = 12;
             this.cmbJaar.SelectedIndexChanged += new System.EventHandler(this.cmbJaar_SelectedIndexChanged);
             // 
@@ -80,13 +81,13 @@
             this.lblFinancieringsjaar.AutoSize = true;
             this.lblFinancieringsjaar.Location = new System.Drawing.Point(8, 31);
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
-            this.lblFinancieringsjaar.Size = new System.Drawing.Size(214, 20);
+            this.lblFinancieringsjaar.Size = new System.Drawing.Size(275, 25);
             this.lblFinancieringsjaar.TabIndex = 11;
             this.lblFinancieringsjaar.Text = "Selecteer een financieringsjaar:";
             // 
             // frmGeweigerdeAanvragen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 271);
             this.Controls.Add(this.lblFinancieringsjaar);
