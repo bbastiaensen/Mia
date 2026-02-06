@@ -123,7 +123,7 @@ namespace MiaClient
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdd.Location = new System.Drawing.Point(880, 0);
+            this.btnAdd.Location = new System.Drawing.Point(294, 26);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(40, 40);
             this.btnAdd.TabIndex = 45;
@@ -137,7 +137,7 @@ namespace MiaClient
             this.btnExportToExcel.FlatAppearance.BorderSize = 0;
             this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportToExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportToExcel.Location = new System.Drawing.Point(930, 0);
+            this.btnExportToExcel.Location = new System.Drawing.Point(225, 26);
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
             this.btnExportToExcel.TabIndex = 44;
@@ -341,7 +341,7 @@ namespace MiaClient
             this.btnNext.TabIndex = 3;
             this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            this.btnNext.MouseLeave += new System.EventHandler(this.btnLast_MouseLeave);
+            this.btnNext.MouseLeave += new System.EventHandler(this.btnNext_MouseLeave);
             this.btnNext.MouseHover += new System.EventHandler(this.btnNext_MouseHover);
             // 
             // btnLast

@@ -92,8 +92,8 @@ namespace MiaClient
                     chkActief.Checked = false;
                 }
                  IsNew = false;
-
-
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -207,6 +207,9 @@ namespace MiaClient
             txtId.Text = string.Empty;
             txtNaam.Text = string.Empty;
             chkActief.Checked = false;
+
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
         
     }
