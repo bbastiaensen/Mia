@@ -1,17 +1,15 @@
-﻿using ProofOfConceptDesign;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿    using MiaClient.UserControls;
+    using MiaLogic.Manager;
+    using MiaLogic.Object;
+    using ProofOfConceptDesign;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
 
-namespace MiaClient
-{
-    public partial class frmNieuweAankoop : MdiChildBoundedForm
+    namespace MiaClient
     {
         public partial class frmNieuweAankoop : Form
         {

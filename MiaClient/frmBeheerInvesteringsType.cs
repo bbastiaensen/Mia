@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerInvesteringsType : MdiChildBoundedForm
+    public partial class frmBeheerInvesteringsType : Form
     {
         List<Investering> investeringen;
         public event EventHandler InvesteringsTypesChanged;

@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmGoedkeuring : MdiChildBoundedForm
+    public partial class frmGoedkeuring : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         FrmAanvragen frmAanvragen;

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmPrompt : MdiChildBoundedForm
+    public partial class frmPrompt : Form
     {
         frmGebruikerBeheer frmGebruikerBeheer;
 

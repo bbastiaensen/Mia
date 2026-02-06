@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerAfdelingen : MdiChildBoundedForm
+    public partial class frmBeheerAfdelingen : Form
     {
         List<Afdeling> afdelingen;
         bool IsNew = false;

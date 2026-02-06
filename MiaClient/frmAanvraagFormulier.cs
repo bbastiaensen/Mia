@@ -28,7 +28,7 @@ namespace MiaClient
     //Soms wordt er alleen een vermoedelijke prijs ingevuld. Niet altijd offerte of afbeelding.
     //Wat gebeurt er met de bestanden als de map verplaatst word? Moeten de bestanden mee verplaatst worden of : ja deze worden mee verplaatst
     
-    public partial class frmAanvraagFormulier : MdiChildBoundedForm
+    public partial class frmAanvraagFormulier : Form
     {
         //Variables
         private string selectedPath;

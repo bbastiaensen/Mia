@@ -19,7 +19,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmAankopen : MdiChildBoundedForm
+    public partial class frmAankopen : Form
     {
         private frmNieuweAankoop frmNieuweAankoop;
 
