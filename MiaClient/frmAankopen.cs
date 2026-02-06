@@ -528,6 +528,9 @@ namespace MiaClient
             {
                 btnNext.BackgroundImage = imgNext;
             }
+
+            btnNext.Invalidate(); // force redraw
+            btnNext.Refresh();
         }
         private void btnPrevious_MouseHover(object sender, EventArgs e)
         {
