@@ -10,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace MiaClient
 {
-    public partial class frmBeheerFinancieringsType : Form
+    public partial class frmBeheerFinancieringsType : MdiChildBoundedForm
     {
 
         public event EventHandler FinancieringTypeChanged;
@@ -30,6 +31,8 @@ namespace MiaClient
         {
             InitializeComponent();
         }
+
+
 
         private void frmBeheerFinancieringsType_Load(object sender, EventArgs e)
         {

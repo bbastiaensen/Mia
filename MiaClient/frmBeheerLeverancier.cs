@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerLeverancier : Form
+    public partial class frmBeheerLeverancier : MdiChildBoundedForm
     {
         List<leverancier> leveranciers;
         bool IsNew = false;

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerKostenplaatsen : Form
+    public partial class frmBeheerKostenplaatsen : MdiChildBoundedForm
     {
         Boolean isNew = false;
         public event EventHandler KostenplaatsChanged;

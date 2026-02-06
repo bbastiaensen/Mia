@@ -19,7 +19,7 @@ using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace MiaClient
 {
-    public partial class frmParameter : Form
+    public partial class frmParameter : MdiChildBoundedForm
     {
         List<Parameter> parameters;
 
