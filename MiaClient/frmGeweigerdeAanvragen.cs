@@ -16,7 +16,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MiaClient
 {
-    public partial class frmGeweigerdeAanvragen : MdiChildBoundedForm
+    public partial class frmGeweigerdeAanvragen : Form
     {
         public frmGeweigerdeAanvragen()
         {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmSaldoOverzetten : MdiChildBoundedForm
+    public partial class frmSaldoOverzetten : Form
     {
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         int aankoopId = 0;

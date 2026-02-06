@@ -15,7 +15,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MiaClient
 {
-    public partial class frmGrafiekEvolutieBudgetten : MdiChildBoundedForm
+    public partial class frmGrafiekEvolutieBudgetten : Form
     {
         Icon imgFormIcon = Icon.FromHandle((new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-pie-chart-48.png")).GetHicon()));
 

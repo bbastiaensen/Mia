@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class frmBeheerGemeente : MdiChildBoundedForm
+    public partial class frmBeheerGemeente : Form
     {
         public event EventHandler LandenChanged;
         List<Gemeente> gemeentes;

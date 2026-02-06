@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 namespace MiaClient
 {
-    public partial class FrmAanvragen : MdiChildBoundedForm
+    public partial class FrmAanvragen : Form
     {
         frmAanvraagFormulier frmAanvraagFormulier;
         List<Aanvraag> aanvragen;

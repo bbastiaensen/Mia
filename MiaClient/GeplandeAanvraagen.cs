@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-    public partial class GeplandeAanvraagen : MdiChildBoundedForm
+    public partial class GeplandeAanvraagen : Form
     {
         public GeplandeAanvraagen()
         {
