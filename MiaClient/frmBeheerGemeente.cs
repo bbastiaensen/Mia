@@ -107,6 +107,7 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            txtNaam.Text = txtNaam.Text.Trim();
             try { 
             Gemeente g = new Gemeente();
             g.Id = Convert.ToInt32(LstGemeente.SelectedValue);

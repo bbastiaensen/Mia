@@ -156,6 +156,7 @@ namespace MiaClient
                     DienstenManager.DeactivateDienst(d);
                     DienstenChanged?.Invoke(this, EventArgs.Empty);
                     MessageBox.Show("De Dienst kan niet verwijderd worden omdat deze in gebruik is.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    BindlstDiensten();
                     return;
                 }
                 else

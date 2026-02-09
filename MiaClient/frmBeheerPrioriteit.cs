@@ -102,6 +102,12 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNaam.Text))
+            {
+                MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            txtNaam.Text = txtNaam.Text.Trim();
             Prioriteit p = new Prioriteit();
             p.Id = Convert.ToInt32(lstPrioriteiten.SelectedValue);
             p.Naam = txtNaam.Text;
