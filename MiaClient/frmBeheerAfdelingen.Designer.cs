@@ -42,7 +42,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(420, 116);
+            this.btnBewaren.Location = new System.Drawing.Point(420, 109);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 23;
@@ -52,7 +52,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(531, 116);
+            this.btnVerwijderen.Location = new System.Drawing.Point(531, 109);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 22;
@@ -62,7 +62,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(309, 116);
+            this.btnNieuw.Location = new System.Drawing.Point(309, 109);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 21;
@@ -89,7 +89,7 @@
             // checkActief
             // 
             this.checkActief.AutoSize = true;
-            this.checkActief.Location = new System.Drawing.Point(423, 88);
+            this.checkActief.Location = new System.Drawing.Point(423, 85);
             this.checkActief.Name = "checkActief";
             this.checkActief.Size = new System.Drawing.Size(32, 24);
             this.checkActief.TabIndex = 17;
@@ -99,7 +99,7 @@
             // lblActief
             // 
             this.lblActief.AutoSize = true;
-            this.lblActief.Location = new System.Drawing.Point(320, 88);
+            this.lblActief.Location = new System.Drawing.Point(320, 86);
             this.lblActief.Name = "lblActief";
             this.lblActief.Size = new System.Drawing.Size(51, 20);
             this.lblActief.TabIndex = 16;
