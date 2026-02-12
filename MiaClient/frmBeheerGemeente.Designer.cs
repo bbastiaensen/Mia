@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 219);
+            this.ClientSize = new System.Drawing.Size(667, 213);
             this.Controls.Add(this.txtPostcode);
             this.Controls.Add(this.lblPostcode);
             this.Controls.Add(this.ddlLand);

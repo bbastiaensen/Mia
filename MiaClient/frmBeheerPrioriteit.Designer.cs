@@ -142,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 202);
+            this.ClientSize = new System.Drawing.Size(670, 195);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);

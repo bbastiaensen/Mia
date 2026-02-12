@@ -46,9 +46,9 @@
             // 
             this.LstAankopers.FormattingEnabled = true;
             this.LstAankopers.ItemHeight = 20;
-            this.LstAankopers.Location = new System.Drawing.Point(12, 12);
+            this.LstAankopers.Location = new System.Drawing.Point(12, 5);
             this.LstAankopers.Name = "LstAankopers";
-            this.LstAankopers.Size = new System.Drawing.Size(289, 144);
+            this.LstAankopers.Size = new System.Drawing.Size(289, 164);
             this.LstAankopers.TabIndex = 0;
             this.LstAankopers.SelectedIndexChanged += new System.EventHandler(this.LstAankopers_SelectedIndexChanged);
             // 
