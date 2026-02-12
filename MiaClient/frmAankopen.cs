@@ -21,6 +21,8 @@ namespace MiaClient
 {
     public partial class frmAankopen : Form
     {
+        private frmNieuweAankoop frmNieuweAankoop;
+
         bool filterOmschrijving = false;
         bool filterStatusAankoop = false;
         bool filterAankoper = false;
@@ -68,7 +70,7 @@ namespace MiaClient
         {
             InitializeComponent();
             
-            // Load add icon if available, otherwise use nieuweAanvraag.png
+            // Load add icon if available, otherwise use nieuweAanvraag.pngg
             string addIconPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "add.png");
             if (File.Exists(addIconPath))
             {
@@ -86,6 +88,8 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 LoadAankopen();
@@ -124,6 +128,7 @@ namespace MiaClient
             // Add button (placeholder for future functionality)
             if (btnAdd != null && imgAdd != null)
             {
+
                 btnAdd.BackColor = StyleParameters.Achtergrondkleur;
                 btnAdd.BackgroundImage = imgAdd;
                 btnAdd.BackgroundImageLayout = ImageLayout.Stretch;
@@ -525,6 +530,9 @@ namespace MiaClient
             {
                 btnNext.BackgroundImage = imgNext;
             }
+
+            btnNext.Invalidate(); // force redraw
+            btnNext.Refresh();
         }
         private void btnPrevious_MouseHover(object sender, EventArgs e)
         {
@@ -700,75 +708,17 @@ namespace MiaClient
             if (SortGebruiker)
             {
                 SortGebruiker = false;
-                aankopen = aankopen.OrderByDescending(ak => ak.Aanvrager ?? "").ToList();
+                aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
             }
             else
             {
                 SortGebruiker = true;
-                aankopen = aankopen.OrderBy(ak => ak.Aanvrager ?? "").ToList();
+                aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
             }
             ApplySortAndRefresh();
         }
 
-        //private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
-        //{
- 
-        //}
-
-
-
-        //private void btnSortTitel_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortTitel)
-        //    {
-        //        SortTitel = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
-        //    }
-        //    else
-        //    {
-        //        SortTitel = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
-
-        //private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortAanvraagmoment)
-        //    {
-        //        SortAanvraagmoment = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Aanvraagmoment).ToList();
-        //    }
-        //    else
-        //    {
-        //        SortAanvraagmoment = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Aanvraagmoment).ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
-
-
-
-
-
-
-        //private void btnSortSaldo_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortSaldo)
-        //    {
-        //        SortSaldo = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Saldo).ToList();
-        //    }
-        //    else
-        //    {
-        //        SortSaldo = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Saldo).ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
+       
 
         public static Color StringToColor(string colorStr)
         {
@@ -792,8 +742,40 @@ namespace MiaClient
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+            // Bestaat het formulier al?
+            if (frmNieuweAankoop == null || frmNieuweAankoop.IsDisposed)
+            {
+                frmNieuweAankoop = new frmNieuweAankoop();
+                frmNieuweAankoop.MdiParent = this.MdiParent;
+
+                // Event koppelen: aankoop toegevoegd
+                frmNieuweAankoop.AankoopToegevoegd += FrmNieuweAankoop_AankoopToegevoegd;
+            }
+
+            // Altijd verse data tonen
+            frmNieuweAankoop.RefreshBekrachtigdeAanvragen();
+            frmNieuweAankoop.Show();
+            frmNieuweAankoop.BringToFront();
         }
+        private void FrmNieuweAankoop_AankoopToegevoegd(object sender, EventArgs e)
+        {
+            try
+            {
+                // Aankopen opnieuw ophalen + filters toepassen
+                aankopen = GetFilteredAankopen();
+
+                huidigePage = 1;
+                StartPaging();
+                RefreshPagingButtonImages();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
         private void btnSortSatusaanvraag_Click(object sender, EventArgs e)
         {

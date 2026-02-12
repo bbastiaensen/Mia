@@ -73,8 +73,9 @@
             // txtNaam
             // 
             this.txtNaam.Location = new System.Drawing.Point(423, 48);
+            this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(213, 32);
+            this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 20;
             // 
             // txtId
@@ -82,7 +83,7 @@
             this.txtId.Location = new System.Drawing.Point(423, 15);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(213, 32);
+            this.txtId.Size = new System.Drawing.Size(213, 27);
             this.txtId.TabIndex = 18;
             // 
             // checkActief
@@ -90,7 +91,7 @@
             this.checkActief.AutoSize = true;
             this.checkActief.Location = new System.Drawing.Point(423, 88);
             this.checkActief.Name = "checkActief";
-            this.checkActief.Size = new System.Drawing.Size(39, 29);
+            this.checkActief.Size = new System.Drawing.Size(32, 24);
             this.checkActief.TabIndex = 17;
             this.checkActief.Text = " ";
             this.checkActief.UseVisualStyleBackColor = true;
@@ -100,7 +101,7 @@
             this.lblActief.AutoSize = true;
             this.lblActief.Location = new System.Drawing.Point(320, 88);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(64, 25);
+            this.lblActief.Size = new System.Drawing.Size(51, 20);
             this.lblActief.TabIndex = 16;
             this.lblActief.Text = "Actief:";
             // 
@@ -109,7 +110,7 @@
             this.lblNaam.AutoSize = true;
             this.lblNaam.Location = new System.Drawing.Point(320, 51);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(66, 25);
+            this.lblNaam.Size = new System.Drawing.Size(52, 20);
             this.lblNaam.TabIndex = 14;
             this.lblNaam.Text = "Naam:";
             // 
@@ -118,23 +119,23 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(320, 18);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(37, 25);
+            this.lblId.Size = new System.Drawing.Size(29, 20);
             this.lblId.TabIndex = 13;
             this.lblId.Text = "Id: ";
             // 
             // LstAfdelingen
             // 
             this.LstAfdelingen.FormattingEnabled = true;
-            this.LstAfdelingen.ItemHeight = 25;
+            this.LstAfdelingen.ItemHeight = 20;
             this.LstAfdelingen.Location = new System.Drawing.Point(7, 18);
             this.LstAfdelingen.Name = "LstAfdelingen";
-            this.LstAfdelingen.Size = new System.Drawing.Size(289, 129);
+            this.LstAfdelingen.Size = new System.Drawing.Size(289, 124);
             this.LstAfdelingen.TabIndex = 12;
             this.LstAfdelingen.SelectedIndexChanged += new System.EventHandler(this.LstAfdelingen_SelectedIndexChanged);
             // 
             // frmBeheerAfdelingen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 163);
             this.Controls.Add(this.btnBewaren);
@@ -148,6 +149,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstAfdelingen);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerAfdelingen";
