@@ -83,6 +83,7 @@ namespace MiaClient
             // 
             // cmbFinancieringsjaar
             // 
+            this.cmbFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFinancieringsjaar.FormattingEnabled = true;
             this.cmbFinancieringsjaar.Location = new System.Drawing.Point(143, 87);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";
@@ -198,7 +199,7 @@ namespace MiaClient
             // cbBedragTot
             // 
             this.cbBedragTot.AutoSize = true;
-            this.cbBedragTot.Location = new System.Drawing.Point(337, 168);
+            this.cbBedragTot.Location = new System.Drawing.Point(355, 168);
             this.cbBedragTot.Name = "cbBedragTot";
             this.cbBedragTot.Size = new System.Drawing.Size(58, 29);
             this.cbBedragTot.TabIndex = 21;
@@ -207,7 +208,8 @@ namespace MiaClient
             // 
             // txtBedragTot
             // 
-            this.txtBedragTot.Location = new System.Drawing.Point(409, 167);
+            this.txtBedragTot.Location = new System.Drawing.Point(427, 167);
+            this.txtBedragTot.MaxLength = 20;
             this.txtBedragTot.Name = "txtBedragTot";
             this.txtBedragTot.Size = new System.Drawing.Size(200, 31);
             this.txtBedragTot.TabIndex = 26;
@@ -215,7 +217,7 @@ namespace MiaClient
             // cbBedragVan
             // 
             this.cbBedragVan.AutoSize = true;
-            this.cbBedragVan.Location = new System.Drawing.Point(337, 130);
+            this.cbBedragVan.Location = new System.Drawing.Point(355, 130);
             this.cbBedragVan.Name = "cbBedragVan";
             this.cbBedragVan.Size = new System.Drawing.Size(63, 29);
             this.cbBedragVan.TabIndex = 5;
@@ -225,13 +227,15 @@ namespace MiaClient
             // txtGebruiker
             // 
             this.txtGebruiker.Location = new System.Drawing.Point(11, 58);
+            this.txtGebruiker.MaxLength = 50;
             this.txtGebruiker.Name = "txtGebruiker";
             this.txtGebruiker.Size = new System.Drawing.Size(272, 31);
             this.txtGebruiker.TabIndex = 25;
             // 
             // txtBedragVan
             // 
-            this.txtBedragVan.Location = new System.Drawing.Point(409, 128);
+            this.txtBedragVan.Location = new System.Drawing.Point(427, 128);
+            this.txtBedragVan.MaxLength = 20;
             this.txtBedragVan.Name = "txtBedragVan";
             this.txtBedragVan.Size = new System.Drawing.Size(200, 31);
             this.txtBedragVan.TabIndex = 17;
@@ -240,20 +244,20 @@ namespace MiaClient
             // 
             this.dtpPlanningsdatumTot.Location = new System.Drawing.Point(88, 169);
             this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
-            this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(200, 31);
+            this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(216, 31);
             this.dtpPlanningsdatumTot.TabIndex = 24;
             // 
             // dtpPlanningsdatumVan
             // 
             this.dtpPlanningsdatumVan.Location = new System.Drawing.Point(88, 128);
             this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
-            this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(200, 31);
+            this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(216, 31);
             this.dtpPlanningsdatumVan.TabIndex = 23;
             // 
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
-            this.lblBedrag.Location = new System.Drawing.Point(337, 97);
+            this.lblBedrag.Location = new System.Drawing.Point(355, 97);
             this.lblBedrag.Name = "lblBedrag";
             this.lblBedrag.Size = new System.Drawing.Size(68, 25);
             this.lblBedrag.TabIndex = 8;
@@ -281,7 +285,8 @@ namespace MiaClient
             // 
             // txtTitel
             // 
-            this.txtTitel.Location = new System.Drawing.Point(337, 58);
+            this.txtTitel.Location = new System.Drawing.Point(355, 58);
+            this.txtTitel.MaxLength = 50;
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(272, 31);
             this.txtTitel.TabIndex = 13;
@@ -298,7 +303,7 @@ namespace MiaClient
             // lblTitel
             // 
             this.lblTitel.AutoSize = true;
-            this.lblTitel.Location = new System.Drawing.Point(333, 30);
+            this.lblTitel.Location = new System.Drawing.Point(351, 30);
             this.lblTitel.Name = "lblTitel";
             this.lblTitel.Size = new System.Drawing.Size(44, 25);
             this.lblTitel.TabIndex = 9;
@@ -323,7 +328,7 @@ namespace MiaClient
             // lblPages
             // 
             this.lblPages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPages.Location = new System.Drawing.Point(258, 620);
+            this.lblPages.Location = new System.Drawing.Point(381, 621);
             this.lblPages.Name = "lblPages";
             this.lblPages.Size = new System.Drawing.Size(551, 47);
             this.lblPages.TabIndex = 0;
@@ -335,7 +340,7 @@ namespace MiaClient
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.ForeColor = System.Drawing.Color.Transparent;
-            this.btnNext.Location = new System.Drawing.Point(942, 629);
+            this.btnNext.Location = new System.Drawing.Point(1065, 625);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 3;
@@ -349,7 +354,7 @@ namespace MiaClient
             this.btnLast.BackColor = System.Drawing.Color.Transparent;
             this.btnLast.FlatAppearance.BorderSize = 0;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLast.Location = new System.Drawing.Point(991, 629);
+            this.btnLast.Location = new System.Drawing.Point(1114, 625);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(30, 30);
             this.btnLast.TabIndex = 4;
@@ -365,7 +370,7 @@ namespace MiaClient
             this.btnFirst.FlatAppearance.BorderSize = 0;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirst.ForeColor = System.Drawing.Color.Transparent;
-            this.btnFirst.Location = new System.Drawing.Point(34, 629);
+            this.btnFirst.Location = new System.Drawing.Point(157, 625);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(30, 30);
             this.btnFirst.TabIndex = 5;
@@ -380,7 +385,7 @@ namespace MiaClient
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPrevious.Location = new System.Drawing.Point(81, 629);
+            this.btnPrevious.Location = new System.Drawing.Point(204, 625);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 6;
@@ -646,7 +651,7 @@ namespace MiaClient
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmAankopen";
-            this.Text = "jaar";
+            this.Text = "Aankopen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAankopen_FormClosing);
             this.Load += new System.EventHandler(this.frmAankopen_Load);
             this.Shown += new System.EventHandler(this.frmAankopen_Shown);

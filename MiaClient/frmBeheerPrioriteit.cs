@@ -55,6 +55,9 @@ namespace MiaClient
         {
             CreateUI();
             BindlstPrioriteiten();
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
 
             AppForms.frmBeheerPrioriteit = this;
 
@@ -89,6 +92,8 @@ namespace MiaClient
                     chkActief.Checked = false;
                 }
                  IsNew = false;
+
+
                 btnVerwijderen.Enabled = true;
                 btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
@@ -105,26 +110,34 @@ namespace MiaClient
         {
             if (string.IsNullOrWhiteSpace(txtNaam.Text))
             {
-                MessageBox.Show("Gelieve een geldige naam in te vullen.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Naam is verplicht.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
-            txtNaam.Text = txtNaam.Text.Trim();
-            Prioriteit p = new Prioriteit();
-            p.Id = Convert.ToInt32(lstPrioriteiten.SelectedValue);
-            p.Naam = txtNaam.Text;
-            if (chkActief.Checked)
+
+            Prioriteit p = new Prioriteit
             {
-                p.Actief = true;
-            }
-            else
+                Naam = txtNaam.Text.Trim(),
+                Actief = chkActief.Checked
+            };
+
+            // Alleen ID zetten bij bewerken
+            if (!IsNew && lstPrioriteiten.SelectedValue != null)
             {
-                p.Actief = false;
+                p.Id = Convert.ToInt32(lstPrioriteiten.SelectedValue);
             }
+
             p.Id = PrioriteitManager.SavePrioriteit(p, IsNew);
+
             if (p.Actief)
             {
                 LastActivePrioriteitId = p.Id;
             }
+
             PrioriteitenChanged?.Invoke(this, EventArgs.Empty);
 
             BindlstPrioriteiten();
@@ -132,7 +145,12 @@ namespace MiaClient
             lstPrioriteiten.SelectedValue = p.Id;
             IsNew = false;
 
-            MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "De gegevens werden succesvol bewaard.",
+                "MIA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)

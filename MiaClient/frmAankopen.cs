@@ -70,7 +70,7 @@ namespace MiaClient
         {
             InitializeComponent();
             
-            // Load add icon if available, otherwise use nieuweAanvraag.png
+            // Load add icon if available, otherwise use nieuweAanvraag.pngg
             string addIconPath = Path.Combine(Directory.GetCurrentDirectory(), "icons", "add.png");
             if (File.Exists(addIconPath))
             {
@@ -88,6 +88,8 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 LoadAankopen();
