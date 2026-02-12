@@ -9,7 +9,7 @@ namespace MiaLogic.Object
     public class Aankoop
     {
         public int Id {  get; set; }
-        public  string Omschrijving { get; set; }
+        public  string Titel { get; set; }
         public int BTWPercentage { get; set; }
         public int BedragExBtw { get; set; }
         public int StatusAankoopId { get; set; }

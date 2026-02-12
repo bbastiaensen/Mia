@@ -23,7 +23,7 @@ namespace MiaClient
     {
         private frmNieuweAankoop frmNieuweAankoop;
 
-        bool filterOmschrijving = false;
+        bool filterTitel = false;
         bool filterStatusAankoop = false;
         bool filterAankoper = false;
         bool filterAanvrager = false;
@@ -159,8 +159,6 @@ namespace MiaClient
    
         private void frmAankopen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //We sluiten het formulier niet, maar verbergen het. Zo voorkomen we dat het formulier meerdere
-            //keren naast elkaar kan geopend worden.
             e.Cancel = true;
             ((Form)sender).Hide();
         }
@@ -195,10 +193,6 @@ namespace MiaClient
         private void Aki_AankoopItemSelected(object sender, EventArgs e)
         {
             AankopenItem geselecteerd = (AankopenItem)sender;
-            // Open frmAankoopDetail with the purchase ID
-            // This will be implemented in another User Story
-            // frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
-            // detailForm.Show();
         }
 
         private void Aki_AankoopDeleted(object sender, EventArgs e)
@@ -311,18 +305,18 @@ namespace MiaClient
             var filtered = items.AsEnumerable();
 
             // Filter on Omschrijving - can use existing txtTitel if available, or add txtOmschrijving later
-            if (filterOmschrijving)
+            if (filterTitel)
             {
                 string filterValue = "";
-                if (txtOmschrijving != null && !string.IsNullOrEmpty(txtOmschrijving.Text))
-                    filterValue = txtOmschrijving.Text;
+                if (txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text))
+                    filterValue = txtTitel.Text;
                 else if (txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text))
                     filterValue = txtTitel.Text; // Fallback to existing control
                 
                 if (!string.IsNullOrEmpty(filterValue))
                 {
-                    filtered = filtered.Where(ak => ak.Omschrijving != null && 
-                        ak.Omschrijving.ToLower().Contains(filterValue.ToLower()));
+                    filtered = filtered.Where(ak => ak.Titel != null && 
+                        ak.Titel.ToLower().Contains(filterValue.ToLower()));
                 }
             }
 
@@ -426,7 +420,7 @@ namespace MiaClient
             try
             {
                 // Reset filters
-                filterOmschrijving = false;
+                filterTitel = false;
                 filterStatusAankoop = false;
                 filterAankoper = false;
                 filterAanvrager = false;
@@ -438,9 +432,9 @@ namespace MiaClient
                 filterSaldoTot = false;
 
                 // Set active filters based on input
-                if ((txtOmschrijving != null && !string.IsNullOrEmpty(txtOmschrijving.Text)) ||
+                if ((txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text)) ||
                     (txtTitel != null && !string.IsNullOrEmpty(txtTitel.Text)))
-                    filterOmschrijving = true;
+                    filterTitel = true;
                 if (txtStatusAankoop != null && !string.IsNullOrEmpty(txtStatusAankoop.Text))
                     filterStatusAankoop = true;
                 if (txtAankoper != null && !string.IsNullOrEmpty(txtAankoper.Text))

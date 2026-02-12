@@ -21,7 +21,7 @@ namespace MiaClient
             this.pnlAanvragen = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblStatusAanvraag = new System.Windows.Forms.Label();
-            this.lblOmschrijving = new System.Windows.Forms.Label();
+            this.lblTitel = new System.Windows.Forms.Label();
             this.lblRichtperiode = new System.Windows.Forms.Label();
             this.lblAanvrager = new System.Windows.Forms.Label();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@ namespace MiaClient
             // pnlHeader
             // 
             this.pnlHeader.Controls.Add(this.lblStatusAanvraag);
-            this.pnlHeader.Controls.Add(this.lblOmschrijving);
+            this.pnlHeader.Controls.Add(this.lblTitel);
             this.pnlHeader.Controls.Add(this.lblRichtperiode);
             this.pnlHeader.Controls.Add(this.lblAanvrager);
             this.pnlHeader.Controls.Add(this.lblFinancieringsjaar);
@@ -62,13 +62,13 @@ namespace MiaClient
             this.lblStatusAanvraag.TabIndex = 7;
             this.lblStatusAanvraag.Text = "STATUS AANVRAG";
             // 
-            // lblOmschrijving
+            // lblTitel
             // 
-            this.lblOmschrijving.Location = new System.Drawing.Point(50, 15);
-            this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(145, 25);
-            this.lblOmschrijving.TabIndex = 5;
-            this.lblOmschrijving.Text = "OMSCHRIJVING";
+            this.lblTitel.Location = new System.Drawing.Point(50, 15);
+            this.lblTitel.Name = "lblTitel";
+            this.lblTitel.Size = new System.Drawing.Size(145, 25);
+            this.lblTitel.TabIndex = 5;
+            this.lblTitel.Text = "Titel";
             // 
             // lblRichtperiode
             // 
@@ -195,7 +195,7 @@ namespace MiaClient
 
         private System.Windows.Forms.Panel pnlAanvragen;
         private System.Windows.Forms.Panel pnlHeader;
-        private System.Windows.Forms.Label lblOmschrijving;
+        private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label lblRichtperiode;
         private System.Windows.Forms.Label lblAanvrager;
         private System.Windows.Forms.Label lblFinancieringsjaar;

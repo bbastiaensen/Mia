@@ -10,8 +10,9 @@ namespace MiaClient.UserControls
 {
     public partial class NieuweAankoopItem : UserControl
     {
-        // 👉 Belangrijk: volledige Aanvraag bewaren
+        // Volledige Aanvraag bewaren
         public Aanvraag Aanvraag { get; set; }
+
         public static string ConnectionString { get; set; }
 
         public bool Even { get; set; }
@@ -24,9 +25,7 @@ namespace MiaClient.UserControls
             SetupLabels();
         }
 
-        public NieuweAankoopItem(
-            Aanvraag aanvraag,
-            bool even)
+        public NieuweAankoopItem(Aanvraag aanvraag, bool even)
         {
             InitializeComponent();
 
@@ -40,8 +39,8 @@ namespace MiaClient.UserControls
 
         private void SetupLabels()
         {
-            lblOmschrijving.AutoSize = false;
-            lblOmschrijving.AutoEllipsis = true;
+            lblTitel.AutoSize = false;
+            lblTitel.AutoEllipsis = true;
 
             lblAanvrager.AutoSize = false;
             lblAanvrager.AutoEllipsis = true;
@@ -60,7 +59,8 @@ namespace MiaClient.UserControls
         {
             if (Aanvraag == null) return;
 
-            lblOmschrijving.Text = Aanvraag.Omschrijving ?? "";
+            // Omschrijving vervangen door Titel
+            lblTitel.Text = Aanvraag.Titel ?? "";
             lblAanvrager.Text = Aanvraag.Gebruiker ?? "";
             lblStatusAanvraag.Text = Aanvraag.StatusAanvraag ?? "";
             lblFinancieringsjaar.Text = Aanvraag.Financieringsjaar ?? "";
@@ -78,7 +78,7 @@ namespace MiaClient.UserControls
             int padding = 10;
             int height = Height;
 
-            lblOmschrijving.SetBounds(49, 0, 150, height);
+            lblTitel.SetBounds(49, 0, 150, height);
             lblAanvrager.SetBounds(250, 0, 140, height);
             lblStatusAanvraag.SetBounds(415, 0, 120, height);
             lblFinancieringsjaar.SetBounds(615, 0, 120, height);
@@ -104,6 +104,8 @@ namespace MiaClient.UserControls
                 btnEuro.Font = new Font("Segoe UI", 20, FontStyle.Bold);
             }
         }
+
+        // Aankoop aanmaken met Titel
         public static void CreateAankoop(Aankoop aankoop)
         {
             try
@@ -112,12 +114,15 @@ namespace MiaClient.UserControls
                 {
                     connection.Open();
 
-                    string query = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
-                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
+                    string query = @"
+                        INSERT INTO Aankoop 
+                        (Titel, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
+                        VALUES 
+                        (@Titel, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Titel", aankoop.Titel ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
                         command.Parameters.AddWithValue("@BedragExBTW", aankoop.BedragExBtw);
                         command.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
@@ -130,7 +135,7 @@ namespace MiaClient.UserControls
             }
             catch (Exception)
             {
-                Console.WriteLine("Er is een fout opgetreden bij het aanmaken van de Aankoop, probeer het nog eens.");
+                Console.WriteLine("Er is een fout opgetreden bij het aanmaken van de Aankoop.");
                 throw;
             }
         }
