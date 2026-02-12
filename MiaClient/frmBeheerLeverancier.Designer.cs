@@ -271,6 +271,7 @@
             this.Controls.Add(this.LstLeveranciers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmBeheerLeverancier";
             this.Text = "frmLeverancier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerLeverancier_FormClosing);
