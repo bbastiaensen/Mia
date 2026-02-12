@@ -476,67 +476,7 @@ namespace MiaClient
             btnLast.Enabled = enable;
             btnNext.Enabled = enable;
         }
-        private void btnLast_MouseHover(object sender, EventArgs e)
-        {
-            btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
-            btnLast.BackgroundImage = imgLastHover;
-        }
-        private void btnLast_MouseLeave(object sender, EventArgs e)
-        {
-            if (huidigePage == aantalPages)
-            {
-                btnLast.BackgroundImage = imgLastDisable;
-            }
-            else
-            {
-                btnLast.BackgroundImage = imgLast;
-            }
-        }
-        private void btnNext_MouseHover(object sender, EventArgs e)
-        {
-            btnNext.BackgroundImage = imgNextHover;
-        }
-        private void btnNext_MouseLeave(object sender, EventArgs e)
-        {
-            if (huidigePage == aantalPages)
-            {
-                btnNext.BackgroundImage = imgNextDisable;
-            }
-            else
-            {
-                btnNext.BackgroundImage = imgNext;
-            }
-        }
-        private void btnPrevious_MouseHover(object sender, EventArgs e)
-        {
-            btnPrevious.BackgroundImage = imgPreviousHover;
-        }
-        private void btnPrevious_MouseLeave(object sender, EventArgs e)
-        {
-            if (huidigePage == 1)
-            {
-                btnPrevious.BackgroundImage = imgPreviousDisable;
-            }
-            else
-            {
-                btnPrevious.BackgroundImage = imgPrevious;
-            }
-        }
-        private void btnFirst_MouseHover(object sender, EventArgs e)
-        {
-            btnFirst.BackgroundImage = imgFirstHover;
-        }
-        private void btnFirst_MouseLeave(object sender, EventArgs e)
-        {
-            if (huidigePage == 1)
-            {
-                btnFirst.BackgroundImage = imgFirstDisable;
-            }
-            else
-            {
-                btnFirst.BackgroundImage = imgFirst;
-            }
-        }
+        
         private void btnNext_Click(object sender, EventArgs e)
         {
             huidigePage++;
@@ -643,5 +583,74 @@ namespace MiaClient
 
             GebruiksLogManager.SaveGebruiksLog(gebruiksLog1, true);
         }
+
+        private void btnFirst_MouseHover_1(object sender, EventArgs e)
+        {
+            btnFirst.BackgroundImage = imgFirstHover;
+        }
+
+        private void btnFirst_MouseLeave_1(object sender, EventArgs e)
+        {
+            if (huidigePage == 1)
+            {
+                btnFirst.BackgroundImage = imgFirstDisable;
+            }
+            else
+            {
+                btnFirst.BackgroundImage = imgFirst;
+            }
+        }
+
+        private void btnPrevious_MouseHover_1(object sender, EventArgs e)
+        {
+            btnPrevious.BackgroundImage = imgPreviousHover;
+        }
+
+        private void btnPrevious_MouseLeave_1(object sender, EventArgs e)
+        {
+            if (huidigePage == 1)
+            {
+                btnPrevious.BackgroundImage = imgPreviousDisable;
+            }
+            else
+            {
+                btnPrevious.BackgroundImage = imgPrevious;
+            }
+        }
+
+        private void btnNext_MouseLeave_1(object sender, EventArgs e)
+        {
+            if (huidigePage == aantalPages)
+            {
+                btnNext.BackgroundImage = imgNextDisable;
+            }
+            else
+            {
+                btnNext.BackgroundImage = imgNext;
+            }
+        }
+
+        private void btnNext_MouseHover_1(object sender, EventArgs e)
+        {
+            btnNext.BackgroundImage = imgNextHover;
+        }
+
+        private void btnLast_MouseHover_1(object sender, EventArgs e)
+        {
+            btnLast.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+            btnLast.BackgroundImage = imgLastHover;
+        }
+
+        private void btnLast_MouseLeave_1(object sender, EventArgs e)
+        {
+            if (huidigePage == aantalPages)
+            {
+                btnLast.BackgroundImage = imgLastDisable;
+            }
+            else
+            {
+                btnLast.BackgroundImage = imgLast;
+            }
+        } 
     }
 }

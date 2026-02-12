@@ -549,7 +549,7 @@ namespace MiaClient
             // 
             this.txtPrijsindicatie.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrijsindicatie.Location = new System.Drawing.Point(156, 215);
-            this.txtPrijsindicatie.MaxLength = 999;
+            this.txtPrijsindicatie.MaxLength = 20;
             this.txtPrijsindicatie.Name = "txtPrijsindicatie";
             this.txtPrijsindicatie.Size = new System.Drawing.Size(282, 34);
             this.txtPrijsindicatie.TabIndex = 3;
@@ -589,6 +589,7 @@ namespace MiaClient
             // 
             this.txtTitel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTitel.Location = new System.Drawing.Point(156, 30);
+            this.txtTitel.MaxLength = 50;
             this.txtTitel.Name = "txtTitel";
             this.txtTitel.Size = new System.Drawing.Size(533, 34);
             this.txtTitel.TabIndex = 0;

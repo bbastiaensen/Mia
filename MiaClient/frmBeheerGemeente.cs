@@ -62,6 +62,8 @@ namespace MiaClient
                 txtPostcode.Text = Convert.ToString(gemeente.Postcode);
                 ddlLand.Text = gemeente.LandNaam;
                 IsNew = false;
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
 
         }
@@ -166,6 +168,8 @@ namespace MiaClient
             txtPostcode.Text = string.Empty;
             ddlLand.SelectedValue = 0;
             IsNew = true;
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
         public void FrmBeheerLanden_LandenChanged(object sender, EventArgs e)
         {
