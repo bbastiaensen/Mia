@@ -192,5 +192,53 @@ namespace MiaLogic.Manager
                 }
             }
         }
+
+        public static void UpdateAankoop(Aankoop aankoop)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = @" UPDATE Aankoop SET
+                Omschrijving = @Omschrijving,
+                StatusAankoopId = @StatusAankoopId,
+                BedragExBtw = @BedragExBtw,
+                BTWPercentage = @BTWPercentage,
+                BedragTransfer = @BedragTransfer,
+                BestellingsDatum = @BestellingsDatum,
+                VerwachteLeveringsDatum = @VerwachteLeveringsDatum,
+                EffectieveLeveringsDatum = @EffectieveLeveringsDatum,
+                LeverancierId = @LeverancierId,
+                BestelbonNummer = @BestelbonNummer,
+                Factuur = @Factuur,
+                FactuurNummer = @FactuurNummer,
+                InternNummer = @InternNummer
+                WHERE Id = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", aankoop.Id);
+                    objCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving);
+                    objCmd.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                    objCmd.Parameters.AddWithValue("@BedragExBtw", aankoop.BedragExBtw);
+                    objCmd.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                    objCmd.Parameters.AddWithValue("@BedragTransfer", aankoop.BedragTransfer);
+                    objCmd.Parameters.AddWithValue("@BestellingsDatum",
+                        (object)aankoop.BestellingsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@VerwachteLeveringsDatum",
+                        (object)aankoop.VerwachteLeveringsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@EffectieveLeveringsDatum",
+                        (object)aankoop.EffectieveLeveringsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                    objCmd.Parameters.AddWithValue("@BestelbonNummer", aankoop.BestelbonNummer);
+                    objCmd.Parameters.AddWithValue("@Factuur", aankoop.Factuur);
+                    objCmd.Parameters.AddWithValue("@FactuurNummer", aankoop.FactuurNummer);
+                    objCmd.Parameters.AddWithValue("@InternNummer", aankoop.InternNummer);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -91,6 +91,14 @@ namespace MiaClient
                 object Nothing = System.Reflection.Missing.Value;
                 Excel.Workbook workBook = app.Workbooks.Add(Nothing);
                 Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Sheets[1];
+
+                worksheet.Cells[2, 2] = "Titel";
+                worksheet.Cells[2, 3] = "Goedgekeurd bedrag";
+                worksheet.Cells[2, 4] = "Extra bedrag";
+                worksheet.Cells[2, 5] = "Totaal";
+
+                worksheet.get_Range("B2", "E2").Font.Bold = true;
+
                 // Getting data
                 List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
                 List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
@@ -165,12 +173,15 @@ namespace MiaClient
                         add = ri + j + 1;
                         rs += j;
                         //calculates the price
-                        decimal prijs = InPer[j].BudgetToegekend;
+                        decimal goedgekeurd = InPer[j].BudgetToegekend;
+                        decimal extra = InPer[j].ExtraBedrag;
+                        decimal totaal = goedgekeurd + extra;
                         //puts data on the right position (based on add)
                         worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
-                        worksheet.get_Range("C" + add, "C" + add).Value = (prijs);
+                        worksheet.get_Range("C" + add, "C" + add).Value = (goedgekeurd);
+                        worksheet.get_Range("D" + add, "D" + add).Value = extra;
                         //total for the month
-                        tot += prijs;
+                        tot += totaal;
                         //background color for data in Excel file
                         ColorExcel(add, m, worksheet, even, meh);
                         //voor opmaak
@@ -191,8 +202,8 @@ namespace MiaClient
                     rs++;
                     ColorExcel((m + rs), m, worksheet, even, meh);
                     //puts total of month on it's spot, makes it bold
-                    worksheet.get_Range("C" + ri, "C" + ri).Value = tot;
-                    worksheet.get_Range("C" + ri, "C" + ri).Font.Bold = true;
+                    worksheet.get_Range("E" + ri, "E" + ri).Value = tot;
+                    worksheet.get_Range("E" + ri, "E" + ri).Font.Bold = true;
                 }
                 //===============just layout=================
                 //title
@@ -205,6 +216,9 @@ namespace MiaClient
                 //layout data
                 worksheet.get_Range("B1", "B200").ColumnWidth = 55;
                 worksheet.get_Range("C2", "C200").NumberFormat = "0.00 €";
+                worksheet.get_Range("C2", "E200").NumberFormat = "0.00 €";
+                worksheet.get_Range("C1", "E1").ColumnWidth = 18;
+
                 //=============testing charts======
                 Excel.Range chartRange;
 
@@ -277,7 +291,7 @@ namespace MiaClient
             //if the data is the richtperiode
             c = text;
 
-            ws.get_Range("A" + pos, "C" + pos).Font.Color = c;
+            ws.get_Range("A" + pos, "E" + pos).Font.Color = c;
             if (m)
             {
                 ws.get_Range("A" + pos, "A" + pos).Font.Bold = true;
@@ -285,13 +299,13 @@ namespace MiaClient
                 if (month % 2 == 0)
                 {
                     c = MaandL;
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                 }
                 //month is uneven
                 else
                 {
                     c = MaandD;
-                    ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                    ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                 }
             }
             //if the data isnt' the richtperiode
@@ -304,12 +318,12 @@ namespace MiaClient
                     if (even)
                     {
                         c = DataL1;
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                     }
                     else
                     {
                         c = DataL2;
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                     }
 
                 }
@@ -320,12 +334,12 @@ namespace MiaClient
                     if (even)
                     {
                         c = DataD1;
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                     }
                     else
                     {
                         c = DataD2;
-                        ws.get_Range("A" + pos, "C" + pos).Interior.Color = c;
+                        ws.get_Range("A" + pos, "E" + pos).Interior.Color = c;
                     }
                 }
             }

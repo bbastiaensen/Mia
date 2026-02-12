@@ -193,8 +193,8 @@ namespace MiaClient
             AankopenItem geselecteerd = (AankopenItem)sender;
             // Open frmAankoopDetail with the purchase ID
             // This will be implemented in another User Story
-            // frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
-            // detailForm.Show();
+            frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
+            detailForm.Show();
         }
 
         private void Aki_AankoopDeleted(object sender, EventArgs e)

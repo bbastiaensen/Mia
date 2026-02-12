@@ -27,9 +27,12 @@ namespace MiaClient
         public static frmBeheerDiensten frmBeheerDiensten { get; set; }
         public static frmBeheerKostenplaatsen frmBeheerKostenplaatsen { get; set; }
 
-   
+
         public static frmBeheerGemeente frmBeheerGemeente { get; set; }
         public static frmBeheerLanden frmBeheerLanden { get; set; }
         public static frmBeheerLeverancier frmBeheerLeverancier { get; set; }
-        }
+
+        public static frmAankoopDetail frmAankoopDetail { get; set; }
+        public static frmAankopen frmAankopen { get; set; }
+    }
 }
