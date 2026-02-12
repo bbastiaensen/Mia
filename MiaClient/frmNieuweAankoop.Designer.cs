@@ -21,7 +21,7 @@ namespace MiaClient
             this.pnlAanvragen = new System.Windows.Forms.Panel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblStatusAanvraag = new System.Windows.Forms.Label();
-            this.lblOmschrijving = new System.Windows.Forms.Label();
+            this.lblTitel = new System.Windows.Forms.Label();
             this.lblRichtperiode = new System.Windows.Forms.Label();
             this.lblAanvrager = new System.Windows.Forms.Label();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@ namespace MiaClient
             // pnlHeader
             // 
             this.pnlHeader.Controls.Add(this.lblStatusAanvraag);
-            this.pnlHeader.Controls.Add(this.lblOmschrijving);
+            this.pnlHeader.Controls.Add(this.lblTitel);
             this.pnlHeader.Controls.Add(this.lblRichtperiode);
             this.pnlHeader.Controls.Add(this.lblAanvrager);
             this.pnlHeader.Controls.Add(this.lblFinancieringsjaar);
@@ -60,15 +60,15 @@ namespace MiaClient
             this.lblStatusAanvraag.Name = "lblStatusAanvraag";
             this.lblStatusAanvraag.Size = new System.Drawing.Size(166, 35);
             this.lblStatusAanvraag.TabIndex = 7;
-            this.lblStatusAanvraag.Text = "STATUS AANVRAG";
+            this.lblStatusAanvraag.Text = "Status aanvraag";
             // 
-            // lblOmschrijving
+            // lblTitel
             // 
-            this.lblOmschrijving.Location = new System.Drawing.Point(50, 15);
-            this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(145, 25);
-            this.lblOmschrijving.TabIndex = 5;
-            this.lblOmschrijving.Text = "OMSCHRIJVING";
+            this.lblTitel.Location = new System.Drawing.Point(50, 15);
+            this.lblTitel.Name = "lblTitel";
+            this.lblTitel.Size = new System.Drawing.Size(145, 25);
+            this.lblTitel.TabIndex = 5;
+            this.lblTitel.Text = "Titel";
             // 
             // lblRichtperiode
             // 
@@ -76,7 +76,7 @@ namespace MiaClient
             this.lblRichtperiode.Name = "lblRichtperiode";
             this.lblRichtperiode.Size = new System.Drawing.Size(137, 25);
             this.lblRichtperiode.TabIndex = 9;
-            this.lblRichtperiode.Text = "RICHTPERIODE";
+            this.lblRichtperiode.Text = "Richtperiode";
             // 
             // lblAanvrager
             // 
@@ -84,7 +84,7 @@ namespace MiaClient
             this.lblAanvrager.Name = "lblAanvrager";
             this.lblAanvrager.Size = new System.Drawing.Size(119, 25);
             this.lblAanvrager.TabIndex = 6;
-            this.lblAanvrager.Text = "AANVRAGER";
+            this.lblAanvrager.Text = "Aanvrager";
             // 
             // lblFinancieringsjaar
             // 
@@ -92,7 +92,7 @@ namespace MiaClient
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(188, 25);
             this.lblFinancieringsjaar.TabIndex = 8;
-            this.lblFinancieringsjaar.Text = "FINANCIERINGSJAAR";
+            this.lblFinancieringsjaar.Text = "Finacieringsjaar";
             // 
             // lblPages
             // 
@@ -100,7 +100,6 @@ namespace MiaClient
             this.lblPages.Name = "lblPages";
             this.lblPages.Size = new System.Drawing.Size(280, 28);
             this.lblPages.TabIndex = 7;
-            this.lblPages.Text = "lable";
             this.lblPages.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLast
@@ -195,7 +194,7 @@ namespace MiaClient
 
         private System.Windows.Forms.Panel pnlAanvragen;
         private System.Windows.Forms.Panel pnlHeader;
-        private System.Windows.Forms.Label lblOmschrijving;
+        private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label lblRichtperiode;
         private System.Windows.Forms.Label lblAanvrager;
         private System.Windows.Forms.Label lblFinancieringsjaar;
