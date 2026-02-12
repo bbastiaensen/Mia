@@ -42,6 +42,10 @@ namespace MiaClient
             cmbFinancieringsjaar.DataSource = finJaren;
 
 
+            if (string.IsNullOrEmpty(cmbFinancieringsjaar.SelectedValue.ToString()))
+            {
+                btnExporteer.Enabled = false;
+            }
         }
 
         private void frmBudgetSpreiding_FormClosing(object sender, FormClosingEventArgs e)

@@ -27,6 +27,8 @@ namespace MiaClient
 
         private void frmLeverancier_Load(object sender, EventArgs e)
         {
+            AppForms.frmBeheerLeverancier = this;
+            TriggerGemeentesEvent();
             CreateUI();
             BindLanden();
             BindLstLeveranciers();
@@ -76,6 +78,8 @@ namespace MiaClient
 
             isClearing = false;
             IsNew = true;
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void LstLeveranciers_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,6 +116,9 @@ namespace MiaClient
                 }
 
                 IsNew = false;
+
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -194,6 +201,13 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
+            if (IsNew)
+            {
+                // Nieuw record, er is niets om te verwijderen
+                MessageBox.Show("Er is geen leverancier geselecteerd om te verwijderen.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (LstLeveranciers.SelectedItem == null)
             {
                 MessageBox.Show("Selecteer een leverancier.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -274,6 +288,40 @@ namespace MiaClient
         {
             return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+        }
+        public void FrmBeheerGemeentes_GemeentesChanged(object sender, EventArgs e)
+        {
+            RefreshGemeenteDropdown();
+        }
+
+        public void RefreshGemeenteDropdown()
+        {
+            int? geselecteerdeId = frmBeheerKostenplaatsen.LastActiveKostenplaatsId;
+
+            var nieuweGemeentes = GemeenteManager.GetGemeentes();
+
+            ddlPostcodeGemeente.DataSource = null;
+            ddlPostcodeGemeente.DisplayMember = "Naam";
+            ddlPostcodeGemeente.ValueMember = "Id";
+            ddlPostcodeGemeente.DataSource = nieuweGemeentes;
+
+            if (geselecteerdeId.HasValue &&
+                nieuweGemeentes.Any(k => k.Id == geselecteerdeId.Value))
+            {
+                ddlPostcodeGemeente.SelectedValue = geselecteerdeId.Value;
+            }
+            else
+            {
+                ddlPostcodeGemeente.SelectedIndex = -1;
+            }
+        }
+
+        public void TriggerGemeentesEvent()
+        {
+            if (AppForms.frmBeheerGemeente != null)
+            {
+                AppForms.frmBeheerGemeente.GemeentesChanged += FrmBeheerGemeentes_GemeentesChanged;
+            }
         }
     }
 }

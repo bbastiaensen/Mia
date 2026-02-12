@@ -73,8 +73,9 @@
             // txtNaam
             // 
             this.txtNaam.Location = new System.Drawing.Point(428, 42);
+            this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(213, 27);
+            this.txtNaam.Size = new System.Drawing.Size(213, 32);
             this.txtNaam.TabIndex = 30;
             // 
             // txtId
@@ -82,7 +83,7 @@
             this.txtId.Location = new System.Drawing.Point(428, 9);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(213, 27);
+            this.txtId.Size = new System.Drawing.Size(213, 32);
             this.txtId.TabIndex = 29;
             // 
             // checkActief
@@ -90,7 +91,7 @@
             this.checkActief.AutoSize = true;
             this.checkActief.Location = new System.Drawing.Point(428, 79);
             this.checkActief.Name = "checkActief";
-            this.checkActief.Size = new System.Drawing.Size(32, 24);
+            this.checkActief.Size = new System.Drawing.Size(39, 29);
             this.checkActief.TabIndex = 28;
             this.checkActief.Text = " ";
             this.checkActief.UseVisualStyleBackColor = true;
@@ -100,7 +101,7 @@
             this.lblActief.AutoSize = true;
             this.lblActief.Location = new System.Drawing.Point(326, 83);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(51, 20);
+            this.lblActief.Size = new System.Drawing.Size(64, 25);
             this.lblActief.TabIndex = 27;
             this.lblActief.Text = "Actief:";
             // 
@@ -109,7 +110,7 @@
             this.lblNaam.AutoSize = true;
             this.lblNaam.Location = new System.Drawing.Point(325, 45);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(52, 20);
+            this.lblNaam.Size = new System.Drawing.Size(66, 25);
             this.lblNaam.TabIndex = 26;
             this.lblNaam.Text = "Naam:";
             // 
@@ -118,23 +119,23 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(325, 12);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(29, 20);
+            this.lblId.Size = new System.Drawing.Size(37, 25);
             this.lblId.TabIndex = 25;
             this.lblId.Text = "Id: ";
             // 
             // LstFinancieringsTypen
             // 
             this.LstFinancieringsTypen.FormattingEnabled = true;
-            this.LstFinancieringsTypen.ItemHeight = 20;
+            this.LstFinancieringsTypen.ItemHeight = 25;
             this.LstFinancieringsTypen.Location = new System.Drawing.Point(12, 12);
             this.LstFinancieringsTypen.Name = "LstFinancieringsTypen";
-            this.LstFinancieringsTypen.Size = new System.Drawing.Size(289, 164);
+            this.LstFinancieringsTypen.Size = new System.Drawing.Size(289, 154);
             this.LstFinancieringsTypen.TabIndex = 24;
             this.LstFinancieringsTypen.SelectedIndexChanged += new System.EventHandler(this.LstFinancieringsTypen_SelectedIndexChanged);
             // 
             // frmBeheerFinancieringsType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 188);
             this.Controls.Add(this.btnBewaren);
@@ -148,6 +149,7 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstFinancieringsTypen);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmBeheerFinancieringsType";

@@ -38,6 +38,7 @@
             // 
             // cmbFinancieringsjaar
             // 
+            this.cmbFinancieringsjaar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFinancieringsjaar.FormattingEnabled = true;
             this.cmbFinancieringsjaar.Location = new System.Drawing.Point(204, 48);
             this.cmbFinancieringsjaar.Name = "cmbFinancieringsjaar";

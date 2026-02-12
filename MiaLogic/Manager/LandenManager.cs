@@ -48,6 +48,7 @@ namespace MiaLogic.Manager
             }
             return returnlist;
         }
+        
         public static int SaveLanden(Land land, bool isnew)
         {
             using (SqlConnection objCn = new SqlConnection())
@@ -139,6 +140,44 @@ namespace MiaLogic.Manager
                     objCmd.ExecuteNonQuery();
                 }
             }
+        }
+        public static List<Gemeente> LandIdByLandNaam(Land land)
+        {
+            List<Gemeente> returnlist = null;
+
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = "select g.LandId  from Land l ";
+                    objCmd.CommandText = "join Gemeente g  on l.Id = g.LandId where g.LandId = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", land.Id);
+                    objCn.Open();
+
+                    SqlDataReader objRea = objCmd.ExecuteReader();
+                    Gemeente g;
+
+
+                    while (objRea.Read())
+                    {
+                        if (returnlist == null)
+                        {
+                            returnlist = new List<Gemeente>();
+                        }
+
+                        g = new Gemeente();
+                        g.LandId = Convert.ToInt32(objRea["Id"]);
+
+
+
+                        returnlist.Add(g);
+                    }
+                }
+            }
+            return returnlist;
         }
     }
 }

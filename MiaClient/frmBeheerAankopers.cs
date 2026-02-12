@@ -17,6 +17,8 @@ namespace MiaClient
     {
         List<Aankoper> aankopers;
         public event EventHandler AankopersChanged;
+        public static int? LastActiveAankoperId { get; set; }
+
 
         int xPos = 10;
         int yPos = 20;
@@ -82,26 +84,22 @@ namespace MiaClient
 
         private void LstAankopers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Aankoper aankoper  = (Aankoper)LstAankopers.SelectedItem;
+            Aankoper aankoper = (Aankoper)LstAankopers.SelectedItem;
 
-           
-            if (aankoper != null) 
+            if (aankoper != null)
             {
                 txtId.Text = Convert.ToString(aankoper.Id);
                 txtVoornaam.Text = aankoper.Voornaam;
                 txtAchternaam.Text = aankoper.Achternaam;
-                if (aankoper.actief)
-                {
-                    checkActief.Checked = true;
-                }
-                else
-                {
-                    checkActief.Checked = false;
-                }
+                checkActief.Checked = aankoper.actief;
 
-                    IsNew = false;
+                IsNew = false;
+
+                // Verwijderen-knop inschakelen
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack; // terug naar normale kleur
             }
-           
+
         }
         private void ClearFields()
         {
@@ -110,14 +108,29 @@ namespace MiaClient
             txtVoornaam.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray; // visueel uitgeschakeld
         }
         private void btnNieuw_Click(object sender, EventArgs e)
         {
             ClearFields();
+            LstAankopers.SelectedIndex = -1;
         }
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            string voornaam = txtVoornaam.Text.Trim();
+            string achternaam = txtAchternaam.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(voornaam) || string.IsNullOrWhiteSpace(achternaam))
+            {
+                MessageBox.Show("Voornaam en achternaam zijn verplicht", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Aankoper a = new Aankoper();
             a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
             a.Voornaam = txtVoornaam.Text;
@@ -130,14 +143,17 @@ namespace MiaClient
             {
                 a.actief= false;
             }
-          
 
+          
             a.Id = AankoperManager.SaveAankoper(a, IsNew);
+            if (a.actief)
+            {
+                LastActiveAankoperId = a.Id;
+            }
             AankopersChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstAankopers();
-            ClearFields();
-            LstAankopers.SelectedValue = a.Id.ToString();
+            LstAankopers.SelectedValue = a.Id;
             IsNew = false;
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -145,30 +161,59 @@ namespace MiaClient
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            Aankoper a = new Aankoper();
-            a.Id = Convert.ToInt32(LstAankopers.SelectedValue);
-            a.Voornaam= txtVoornaam.Text;
-            a.Achternaam= txtAchternaam.Text;
-            if (checkActief.Checked) 
+            if (IsNew)
             {
-                a.actief = true;
-            }
-            else
-            {
-                a.actief= false;
-            }
-            
-            if (MessageBox.Show($"Bent u dat u {LstAankopers.Text} wilt verwijderen?", "Aankoper verwijderen", MessageBoxButtons.YesNo)== DialogResult.Yes)
-            {
-               
-                AankoperManager.DeleteAankoper(a);
-                MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                AankopersChanged?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show(
+                    "Er is geen aankoper geselecteerd om te verwijderen.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
             }
 
+            if (LstAankopers.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Gelieve eerst een aankoper te selecteren.",
+                    "MIA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            try
+            {
+
+                Aankoper a = (Aankoper)LstAankopers.SelectedItem;
+
+                if (MessageBox.Show(
+                    $"Bent u zeker dat u {a.FullName} wilt verwijderen?",
+                    "MIA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    AankoperManager.DeleteAankoper(a);
+                    MessageBox.Show("De Aankoper is succesvol verwijderd", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Deze Aankoper kan niet verwijderd worden omdat er nog gekoppelde records zijn. De Aankoper wordt op inactief gezet.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            AankopersChanged?.Invoke(this, EventArgs.Empty);
+
+
+
             BindLstAankopers();
-            ClearFields();  
+            ClearFields();
+            LstAankopers.SelectedValue = 0;
         }
+        
+
+        
 
         private void txtVoornaam_TextChanged(object sender, EventArgs e)
         {

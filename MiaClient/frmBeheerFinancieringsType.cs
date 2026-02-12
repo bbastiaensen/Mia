@@ -18,6 +18,8 @@ namespace MiaClient
 
         public event EventHandler FinancieringTypeChanged;
         List<Financiering> financierings;
+        public static int? LastActiveFinancieringsId { get; set; }
+
 
         int xPos = 10;
         int yPos = 20;
@@ -80,8 +82,13 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             checkActief.Checked = false;
 
+
             LstFinancieringsTypen.ClearSelected(); // <-- toevoegen
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
         private void btnBewaren_Click(object sender, EventArgs e)
         {
@@ -109,6 +116,10 @@ namespace MiaClient
             try
             {
                 a.Id = FinancieringenManager.SaveFinancieringType(a, IsNew);
+                if (a.Actief)
+                {
+                    LastActiveFinancieringsId = a.Id;
+                }
                 FinancieringTypeChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (ArgumentException ex)
@@ -238,6 +249,8 @@ namespace MiaClient
 
             // Zodra iets geselecteerd is, is het GEEN nieuw record
             IsNew = false;
+            btnVerwijderen.Enabled = true;
+            btnVerwijderen.BackColor = StyleParameters.ButtonBack;
         }
     }
 }

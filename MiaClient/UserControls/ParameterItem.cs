@@ -81,7 +81,7 @@ namespace MiaClient.UserControls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Ben je zeker dat je deze parameter wilt verwijderen?", "Aanvragen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Ben je zeker dat je deze parameter wilt verwijderen?", "Parameter", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (ParameterDeleted != null)
                 {

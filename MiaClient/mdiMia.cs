@@ -42,9 +42,10 @@ namespace MiaClient
         frmBeheerDiensten frmBeheerDiensten;
         frmBeheerInvesteringsType frmBeheerInvesteringsType;
         frmBeheerFinancieringsType frmBeheerFinancieringsType;
-        frmPrioriteit frmPrioriteit;
+        frmBeheerPrioriteit frmPrioriteit;
         frmBeheerLanden frmBeheerLanden;
         frmBeheerLeverancier frmBeheerLeverancier;
+        frmBeheerGemeente frmBeheerGemeente;
 
         Image imgGebruikersbeheer;
         Image imgGoedkeuringen;
@@ -708,7 +709,7 @@ namespace MiaClient
         {
             if (frmPrioriteit == null)
             {
-                frmPrioriteit = new frmPrioriteit();
+                frmPrioriteit = new frmBeheerPrioriteit();
                 frmPrioriteit.MdiParent = this;
             }
             frmPrioriteit.Show();
@@ -732,6 +733,16 @@ namespace MiaClient
                 frmBeheerLeverancier.MdiParent = this;
             }
             frmBeheerLeverancier.Show();
+        }
+
+        private void gemeenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerGemeente == null)
+            {
+                frmBeheerGemeente = new frmBeheerGemeente();
+                frmBeheerGemeente.MdiParent = this;
+            }
+            frmBeheerGemeente.Show();
         }
     }
 }

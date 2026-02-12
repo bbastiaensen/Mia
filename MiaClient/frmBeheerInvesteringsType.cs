@@ -4,6 +4,7 @@ using ProofOfConceptDesign;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace MiaClient
     {
         List<Investering> investeringen;
         public event EventHandler InvesteringsTypesChanged;
+        public static int? LastActiveInvesteringId { get; set; }
+
 
         int xPos = 10;
         int yPos = 20;
@@ -95,6 +98,9 @@ namespace MiaClient
                 checkActief.Checked = investering.Actief;
 
                 IsNew = false;
+                // Verwijderen-knop inschakelen en normale kleur
+                btnVerwijderen.Enabled = true;
+                btnVerwijderen.BackColor = StyleParameters.ButtonBack;
             }
         }
 
@@ -104,6 +110,10 @@ namespace MiaClient
             txtNaam.Text = string.Empty;
             checkActief.Checked = false;
             IsNew = true;
+
+            // Verwijderen-knop uitschakelen en grijs maken
+            btnVerwijderen.Enabled = false;
+            btnVerwijderen.BackColor = Color.Gray;
         }
 
         private void btnNieuw_Click(object sender, EventArgs e)
@@ -120,7 +130,7 @@ namespace MiaClient
 
             if (string.IsNullOrWhiteSpace(naam))
             {
-                MessageBox.Show("Naam is verplicht");
+                MessageBox.Show("Naam is verplicht", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -135,6 +145,10 @@ namespace MiaClient
             i.Actief = checkActief.Checked;
 
             i.Id = InvesteringenManager.SaveInvestering(i, IsNew);
+            if (i.Actief)
+            {
+                LastActiveInvesteringId = i.Id;
+            }
             InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
 
             BindLstInvesteringsTypes();
@@ -166,7 +180,7 @@ namespace MiaClient
             // 2. Bevestiging vragen
             DialogResult result = MessageBox.Show(
                 $"Bent u zeker dat u '{InvesteringsTypes.Text}' wilt verwijderen?",
-                "InvesteringsType verwijderen",
+                "MIA",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -186,7 +200,6 @@ namespace MiaClient
                 };
 
                 InvesteringenManager.DeleteInvestering(i);
-
                 InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
                 BindLstInvesteringsTypes();
                 ClearFields();
