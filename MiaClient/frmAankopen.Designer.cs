@@ -328,7 +328,7 @@ namespace MiaClient
             // lblPages
             // 
             this.lblPages.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPages.Location = new System.Drawing.Point(258, 620);
+            this.lblPages.Location = new System.Drawing.Point(381, 621);
             this.lblPages.Name = "lblPages";
             this.lblPages.Size = new System.Drawing.Size(551, 47);
             this.lblPages.TabIndex = 0;
@@ -340,7 +340,7 @@ namespace MiaClient
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.ForeColor = System.Drawing.Color.Transparent;
-            this.btnNext.Location = new System.Drawing.Point(942, 629);
+            this.btnNext.Location = new System.Drawing.Point(1065, 625);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 3;
@@ -354,7 +354,7 @@ namespace MiaClient
             this.btnLast.BackColor = System.Drawing.Color.Transparent;
             this.btnLast.FlatAppearance.BorderSize = 0;
             this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLast.Location = new System.Drawing.Point(991, 629);
+            this.btnLast.Location = new System.Drawing.Point(1114, 625);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(30, 30);
             this.btnLast.TabIndex = 4;
@@ -370,7 +370,7 @@ namespace MiaClient
             this.btnFirst.FlatAppearance.BorderSize = 0;
             this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirst.ForeColor = System.Drawing.Color.Transparent;
-            this.btnFirst.Location = new System.Drawing.Point(34, 629);
+            this.btnFirst.Location = new System.Drawing.Point(157, 625);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(30, 30);
             this.btnFirst.TabIndex = 5;
@@ -385,7 +385,7 @@ namespace MiaClient
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPrevious.Location = new System.Drawing.Point(81, 629);
+            this.btnPrevious.Location = new System.Drawing.Point(204, 625);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 6;

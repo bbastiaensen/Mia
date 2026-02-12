@@ -32,6 +32,8 @@ namespace MiaClient
             CreateUI();
             BindlstDiensten();
             AppForms.frmBeheerDiensten = this;
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
 
 
             if (AppForms.frmAanvraagFormulier != null)
