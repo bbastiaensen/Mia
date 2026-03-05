@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MiaClient
 {
@@ -19,6 +20,7 @@ namespace MiaClient
         private int _aankoopId;
         private Aankoop _aankoop;
         private Aanvraag _aanvraag;
+        private static readonly CultureInfo cultuur = new CultureInfo("nl-BE");
 
         public frmAankoopDetail(int aankoopId)
         {
@@ -33,7 +35,7 @@ namespace MiaClient
             vulDropdowns();
             LaadAankoop();
             BerekenBedragen();
-            AfgeslotenStatusRegels();
+            ButtonLogica();
         }
 
         private void CreateUI()
@@ -61,6 +63,8 @@ namespace MiaClient
 
         private void LaadAankoop()
         {
+            
+
             try
             {
                 _aankoop = AankoopManager.GetAankoopById(_aankoopId);
@@ -70,10 +74,10 @@ namespace MiaClient
                 rtxtOmschrijving.Text = _aankoop.Omschrijving;
                 ddlStatus.SelectedValue = _aankoop.StatusAankoopId;
 
-                txtGoedgekeurdBedrag.Text = _aankoop.BudgetToegekend.ToString("0.00");
-                txtExBtw.Text = _aankoop.BedragExBtw.ToString("0.00");
-                txtBtwPercentage.Text = _aankoop.BTWPercentage.ToString("0.00");
-                txtBedragTransfer.Text = _aankoop.BedragTransfer.ToString("0.00");
+                txtGoedgekeurdBedrag.Text = _aankoop.BudgetToegekend.ToString("N2", cultuur);
+                txtExBtw.Text = _aankoop.BedragExBtw.ToString("N2", cultuur);
+                txtBtwPercentage.Text = _aankoop.BTWPercentage.ToString("N2", cultuur);
+                txtBedragTransfer.Text = _aankoop.BedragTransfer.ToString("N2", cultuur);
 
                 dtpBestelDatum.Value = _aankoop.BestellingsDatum ?? OnbekendeDatum;
                 dtpVerwachteDatum.Value = _aankoop.VerwachteLeveringsDatum ?? OnbekendeDatum;
@@ -100,49 +104,52 @@ namespace MiaClient
             decimal goedgekeurd = ParseDecimal(txtGoedgekeurdBedrag.Text);
 
             decimal bedragInBTW = exBTW * (1 + (btw / 100));
-            txtIncBtw.Text = bedragInBTW.ToString("0.00");
+            txtIncBtw.Text = bedragInBTW.ToString("N2", cultuur);
 
             decimal saldo = goedgekeurd - (bedragInBTW + transfer);
-            lblSaldo.Text = saldo.ToString("0.00");
+            lblBedragSaldo.Size = new Size(150,31);
+            lblBedragSaldo.Text = saldo.ToString("N2", cultuur);
 
             if (saldo >= 0)
             {
-                lblSaldo.BackColor = Color.LightGreen;
-                lblSaldo.ForeColor = Color.Black;
-                lblSaldo.Font = new Font(lblSaldo.Font, FontStyle.Bold);
+                lblBedragSaldo.BackColor = Color.LightGreen;
+                lblBedragSaldo.ForeColor = Color.Black;
+                lblBedragSaldo.Font = new Font(lblBedragSaldo.Font, FontStyle.Bold);
             }
             else
             {
-                lblSaldo.BackColor = Color.Red;
-                lblSaldo.ForeColor = Color.White;
-                lblSaldo.Font = new Font(lblSaldo.Font, FontStyle.Bold);
+                lblBedragSaldo.BackColor = Color.Red;
+                lblBedragSaldo.ForeColor = Color.White;
+                lblBedragSaldo.Font = new Font(lblBedragSaldo.Font, FontStyle.Bold);
             }
         }
         private decimal ParseDecimal(string value)
         {
-            return decimal.TryParse(value, out decimal result) ? result : 0;
+            return decimal.TryParse(value, NumberStyles.Any, new CultureInfo("nl-BE"), out decimal result) ? result : 0;
         }
 
-        private void AfgeslotenStatusRegels()
+        private void ButtonLogica()
         {
-            bool afgesloten = _aankoop.StatusAankoopId == 4;
-
+            bool afgesloten = ddlStatus.Text == "Afgesloten";
+            bool gepland = ddlStatus.Text == "Gepland";
+            
             rtxtOmschrijving.ReadOnly = afgesloten;
-
+            
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox tb && tb.ReadOnly == false)
                     tb.ReadOnly = afgesloten;
-
+                
                 if (c is ComboBox cb)
                     cb.Enabled = !afgesloten;
-
+                
                 if (c is DateTimePicker dp)
                     dp.Enabled = !afgesloten;
             }
 
-           btnVerwijder.Enabled = !afgesloten;
-           btnBewaren.Enabled = !afgesloten && _aankoop.StatusAankoopId == 1;
+            btnBewaren.Enabled = !afgesloten;
+            btnVerwijder.Enabled = gepland && !afgesloten;
+
         }
         private void btnBewaren_Click(object sender, EventArgs e)
         {
@@ -175,7 +182,7 @@ namespace MiaClient
                 _aankoop.InternNummer = txtInternNummer.Text;
 
                 AankoopManager.UpdateAankoop(_aankoop);
-                //AppForms.frmAankopen?.RefreshAankopen();
+                AppForms.frmAankopen?.RefreshAankopen();
 
                 MessageBox.Show("Aankoop is succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
@@ -195,17 +202,31 @@ namespace MiaClient
             if (result == DialogResult.Yes)
             {
                 AankoopManager.DeleteAankoop(_aankoop.Id);
-                //AppForms.frmAankopen?.RefreshAankopen();
+                AppForms.frmAankopen?.RefreshAankopen();
                 this.Close();
             }
         }
 
         private void btnLeveranciers_Click(object sender, EventArgs e)
         {
+            int? vorigeLeverancierId = ddlLeverancier.SelectedValue as int?;
+
             using (var frm = new frmBeheerLeverancier())
             {
                 frm.ShowDialog();
-                ddlLeverancier.DataSource = LeverancierManager.GetAllLeveranciers();
+            }
+
+            ddlLeverancier.DataSource = LeverancierManager.GetAllLeveranciers();
+            ddlLeverancier.DisplayMember = "Leverancier";
+            ddlLeverancier.ValueMember = "Id";
+
+            if (vorigeLeverancierId.HasValue)
+            {
+                ddlLeverancier.SelectedValue = vorigeLeverancierId.Value;
+            }
+            else
+            {
+                ddlLeverancier.SelectedIndex = 0;
             }
         }
         private bool Checks()
@@ -268,5 +289,36 @@ namespace MiaClient
             }
             return true;
         }
+
+        private void txtExBtw_Leave(object sender, EventArgs e)
+        {
+            decimal waarde = ParseDecimal(txtExBtw.Text);
+
+            txtExBtw.Text = waarde.ToString("N2", cultuur);
+
+            LeegGeldVak(txtExBtw);
+            BerekenBedragen();
+        }
+
+        private void txtBtwPercentage_Leave(object sender, EventArgs e)
+        {
+            decimal waarde = ParseDecimal(txtBtwPercentage.Text);
+
+            txtBtwPercentage.Text = waarde.ToString("N2", cultuur);
+
+            if (string.IsNullOrWhiteSpace(txtBtwPercentage.Text))
+                txtBtwPercentage.Text = "0";
+
+            BerekenBedragen();
+        }
+
+        private void LeegGeldVak(TextBox tb)
+        {
+            if (string.IsNullOrWhiteSpace(tb.Text))
+                tb.Text = 0m.ToString("N2", cultuur);
+            else
+                tb.Text = ParseDecimal(tb.Text).ToString("N2", cultuur);
+        }
+
     }
 }

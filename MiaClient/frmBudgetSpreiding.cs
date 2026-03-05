@@ -102,6 +102,9 @@ namespace MiaClient
                 worksheet.Cells[2, 5] = "Totaal";
 
                 worksheet.get_Range("B2", "E2").Font.Bold = true;
+                worksheet.Application.ActiveWindow.SplitRow = 2;
+                worksheet.Application.ActiveWindow.FreezePanes = true;
+
 
                 // Getting data
                 List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
@@ -184,6 +187,7 @@ namespace MiaClient
                         worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
                         worksheet.get_Range("C" + add, "C" + add).Value = (goedgekeurd);
                         worksheet.get_Range("D" + add, "D" + add).Value = extra;
+                        worksheet.get_Range("E" + add, "E" + add).Value = totaal;
                         //total for the month
                         tot += totaal;
                         //background color for data in Excel file
@@ -226,8 +230,13 @@ namespace MiaClient
                 //=============testing charts======
                 Excel.Range chartRange;
 
+                Excel.Range usedRange = worksheet.UsedRange;
+
+                double left = usedRange.Left + usedRange.Width + 20;
+                double top = usedRange.Top;
+
                 Excel.ChartObjects xlCharts = (Excel.ChartObjects)worksheet.ChartObjects(Type.Missing);
-                Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(468, 160, 348, 268);
+                Excel.ChartObject chartObj = (Excel.ChartObject)xlCharts.Add(left, 200, 350, 350);
                 Excel.Chart chart = chartObj.Chart;
 
 
@@ -247,6 +256,8 @@ namespace MiaClient
                     worksheet.get_Range("F" + p, "F" + p).Value = stt;
                     worksheet.get_Range("G" + p, "G" + p).Value = hStatus[i].ToString();
                 }
+
+                worksheet.Columns["F:F"].AutoFit();
 
                 //=================================
                 // Show save file dialog
@@ -354,6 +365,7 @@ namespace MiaClient
             {
                 if (!string.IsNullOrEmpty(cmbFinancieringsjaar.SelectedValue.ToString()))
                 {
+                    btnExporteer.Enabled = true;
                     pnlRichtperiode.Controls.Clear();
                     pnlMaand.Controls.Clear();
                     int xPos = 150;

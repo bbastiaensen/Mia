@@ -40,6 +40,7 @@ namespace MiaLogic.Manager
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
                         aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
                         aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+                        aankoop.BudgetToegekend = Convert.ToInt32(objRea["BudgetToegekend"]);
 
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
@@ -56,6 +57,16 @@ namespace MiaLogic.Manager
                         }
                         aankoop.LeverancierId = Convert.ToInt32(objRea["LeverancierId"]);
                         aankoop.AanvraagId = Convert.ToInt32(objRea["AanvraagId"]);
+
+                        aankoop.BestelbonNummer = objRea["BestelbonNummer"].ToString();
+                        aankoop.FactuurNummer = objRea["FactuurNummer"].ToString();
+                        aankoop.Factuur = objRea["Factuur"] != DBNull.Value
+                            ? Convert.ToBoolean(objRea["Factuur"])
+                            : false;
+
+                        aankoop.InternNummer = objRea["InternNummer"].ToString();
+                        aankoop.BedragTransfer = Convert.ToInt32(objRea["BedragTransfer"]);
+
                     }
                 }
             }

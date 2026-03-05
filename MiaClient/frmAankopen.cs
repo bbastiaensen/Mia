@@ -93,6 +93,7 @@ namespace MiaClient
             FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
+                AppForms.frmAankopen = this;
                 LoadAankopen();
             }
             catch (Exception ex)
@@ -199,6 +200,7 @@ namespace MiaClient
             // Open frmAankoopDetail with the purchase ID
             // This will be implemented in another User Story
             frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
+            detailForm.MdiParent = this.MdiParent;
             detailForm.Show();
         }
 
@@ -1069,6 +1071,13 @@ namespace MiaClient
             ApplySortAndRefresh();
         }
 
-  
+        public void RefreshAankopen()
+        {
+            aankopen = GetFilteredAankopen(); // filters toepassen
+            huidigePage = 1;
+            StartPaging(); // bindt de aankopen aan pnlAanvragen
+        }
+
+
     }
 }
