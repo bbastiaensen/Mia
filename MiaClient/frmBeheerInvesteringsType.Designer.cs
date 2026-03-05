@@ -42,7 +42,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(424, 128);
+            this.btnBewaren.Location = new System.Drawing.Point(424, 119);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(105, 39);
             this.btnBewaren.TabIndex = 23;
@@ -52,7 +52,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(535, 128);
+            this.btnVerwijderen.Location = new System.Drawing.Point(535, 117);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 39);
             this.btnVerwijderen.TabIndex = 22;
@@ -62,7 +62,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(313, 128);
+            this.btnNieuw.Location = new System.Drawing.Point(313, 117);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 39);
             this.btnNieuw.TabIndex = 21;
@@ -137,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 181);
+            this.ClientSize = new System.Drawing.Size(653, 174);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);
