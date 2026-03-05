@@ -42,7 +42,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(425, 136);
+            this.btnBewaren.Location = new System.Drawing.Point(425, 123);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 33;
@@ -52,7 +52,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(536, 136);
+            this.btnVerwijderen.Location = new System.Drawing.Point(536, 123);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 32;
@@ -62,7 +62,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(314, 136);
+            this.btnNieuw.Location = new System.Drawing.Point(314, 123);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 31;
@@ -75,7 +75,7 @@
             this.txtNaam.Location = new System.Drawing.Point(428, 42);
             this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(213, 32);
+            this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 30;
             // 
             // txtId
@@ -83,7 +83,7 @@
             this.txtId.Location = new System.Drawing.Point(428, 9);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(213, 32);
+            this.txtId.Size = new System.Drawing.Size(213, 27);
             this.txtId.TabIndex = 29;
             // 
             // checkActief
@@ -91,7 +91,7 @@
             this.checkActief.AutoSize = true;
             this.checkActief.Location = new System.Drawing.Point(428, 79);
             this.checkActief.Name = "checkActief";
-            this.checkActief.Size = new System.Drawing.Size(39, 29);
+            this.checkActief.Size = new System.Drawing.Size(32, 24);
             this.checkActief.TabIndex = 28;
             this.checkActief.Text = " ";
             this.checkActief.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.lblActief.AutoSize = true;
             this.lblActief.Location = new System.Drawing.Point(326, 83);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(64, 25);
+            this.lblActief.Size = new System.Drawing.Size(51, 20);
             this.lblActief.TabIndex = 27;
             this.lblActief.Text = "Actief:";
             // 
@@ -110,7 +110,7 @@
             this.lblNaam.AutoSize = true;
             this.lblNaam.Location = new System.Drawing.Point(325, 45);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(66, 25);
+            this.lblNaam.Size = new System.Drawing.Size(52, 20);
             this.lblNaam.TabIndex = 26;
             this.lblNaam.Text = "Naam:";
             // 
@@ -119,25 +119,25 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(325, 12);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(37, 25);
+            this.lblId.Size = new System.Drawing.Size(29, 20);
             this.lblId.TabIndex = 25;
             this.lblId.Text = "Id: ";
             // 
             // LstFinancieringsTypen
             // 
             this.LstFinancieringsTypen.FormattingEnabled = true;
-            this.LstFinancieringsTypen.ItemHeight = 25;
+            this.LstFinancieringsTypen.ItemHeight = 20;
             this.LstFinancieringsTypen.Location = new System.Drawing.Point(12, 12);
             this.LstFinancieringsTypen.Name = "LstFinancieringsTypen";
-            this.LstFinancieringsTypen.Size = new System.Drawing.Size(289, 154);
+            this.LstFinancieringsTypen.Size = new System.Drawing.Size(289, 144);
             this.LstFinancieringsTypen.TabIndex = 24;
             this.LstFinancieringsTypen.SelectedIndexChanged += new System.EventHandler(this.LstFinancieringsTypen_SelectedIndexChanged);
             // 
             // frmBeheerFinancieringsType
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 188);
+            this.ClientSize = new System.Drawing.Size(650, 176);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);

@@ -58,7 +58,7 @@ namespace MiaClient
             {
                 txtId.Text = Convert.ToString(gemeente.Id);
                 txtNaam.Text = gemeente.Naam;
-                txtLandId.Text = Convert.ToString(gemeente.LandId);
+              
                 txtPostcode.Text = Convert.ToString(gemeente.Postcode);
                 ddlLand.Text = gemeente.LandNaam;
                 IsNew = false;
@@ -109,6 +109,7 @@ namespace MiaClient
 
         private void btnBewaren_Click(object sender, EventArgs e)
         {
+            txtNaam.Text = txtNaam.Text.Trim();
             try { 
             Gemeente g = new Gemeente();
             g.Id = Convert.ToInt32(LstGemeente.SelectedValue);
@@ -142,7 +143,7 @@ namespace MiaClient
             Gemeente g = new Gemeente();
             g.Id = Convert.ToInt32(LstGemeente.SelectedValue);
             g.Naam = txtNaam.Text;
-            g.LandId = Convert.ToInt32(txtLandId.Text);
+         
             g.Postcode = Convert.ToInt32(txtPostcode.Text);
 
             if (MessageBox.Show($"Bent u zeker dat u {LstGemeente.Text} wilt verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
@@ -164,7 +165,7 @@ namespace MiaClient
         {
             txtNaam.Text = string.Empty;
             txtId.Text = string.Empty;
-            txtLandId.Text = string.Empty;
+           
             txtPostcode.Text = string.Empty;
             ddlLand.SelectedValue = 0;
             IsNew = true;

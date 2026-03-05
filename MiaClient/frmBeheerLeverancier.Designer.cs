@@ -159,7 +159,7 @@
             // btnBewaren
             // 
             this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBewaren.Location = new System.Drawing.Point(525, 330);
+            this.btnBewaren.Location = new System.Drawing.Point(525, 337);
             this.btnBewaren.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(131, 50);
@@ -171,7 +171,7 @@
             // btnVerwijderen
             // 
             this.btnVerwijderen.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerwijderen.Location = new System.Drawing.Point(665, 330);
+            this.btnVerwijderen.Location = new System.Drawing.Point(664, 337);
             this.btnVerwijderen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(131, 50);
@@ -183,7 +183,7 @@
             // btnNieuw
             // 
             this.btnNieuw.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNieuw.Location = new System.Drawing.Point(387, 330);
+            this.btnNieuw.Location = new System.Drawing.Point(387, 337);
             this.btnNieuw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(131, 50);
@@ -242,7 +242,7 @@
             this.LstLeveranciers.Location = new System.Drawing.Point(9, 9);
             this.LstLeveranciers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LstLeveranciers.Name = "LstLeveranciers";
-            this.LstLeveranciers.Size = new System.Drawing.Size(360, 254);
+            this.LstLeveranciers.Size = new System.Drawing.Size(360, 354);
             this.LstLeveranciers.TabIndex = 36;
             this.LstLeveranciers.SelectedIndexChanged += new System.EventHandler(this.LstLeveranciers_SelectedIndexChanged);
             // 
@@ -271,8 +271,9 @@
             this.Controls.Add(this.LstLeveranciers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmBeheerLeverancier";
-            this.Text = "frmLeverancier";
+            this.Text = "Beheer Leverancier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBeheerLeverancier_FormClosing);
             this.Load += new System.EventHandler(this.frmLeverancier_Load);
             this.ResumeLayout(false);
