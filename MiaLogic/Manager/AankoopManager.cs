@@ -137,8 +137,8 @@ namespace MiaLogic.Manager
                             av.Aanvraagmoment,
                             av.Financieringsjaar,
                             r.Naam AS Richtperiode,
-                            av.BudgetToegekend AS GoedgekeurdBedrag,
-                            av.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0) + ISNULL(a.BedragTransfer, 0)) AS Saldo
+                            a.BudgetToegekend AS GoedgekeurdBedrag,
+                            a.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0) + ISNULL(a.BedragTransfer, 0)) AS Saldo
                         FROM Aankoop a
                         INNER JOIN Aanvraag av ON a.AanvraagId = av.Id
                         INNER JOIN StatusAankoop sa ON a.StatusAankoopId = sa.Id

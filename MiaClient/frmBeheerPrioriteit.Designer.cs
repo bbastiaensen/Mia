@@ -43,11 +43,11 @@
             // lstPrioriteiten
             // 
             this.lstPrioriteiten.FormattingEnabled = true;
-            this.lstPrioriteiten.ItemHeight = 25;
+            this.lstPrioriteiten.ItemHeight = 20;
             this.lstPrioriteiten.Location = new System.Drawing.Point(16, 18);
             this.lstPrioriteiten.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstPrioriteiten.Name = "lstPrioriteiten";
-            this.lstPrioriteiten.Size = new System.Drawing.Size(305, 179);
+            this.lstPrioriteiten.Size = new System.Drawing.Size(310, 164);
             this.lstPrioriteiten.TabIndex = 0;
             this.lstPrioriteiten.SelectedIndexChanged += new System.EventHandler(this.lstPrioriteiten_SelectedIndexChanged);
             // 
@@ -57,27 +57,27 @@
             this.lblId.Location = new System.Drawing.Point(349, 18);
             this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(37, 25);
+            this.lblId.Size = new System.Drawing.Size(29, 20);
             this.lblId.TabIndex = 1;
             this.lblId.Text = "Id: ";
             // 
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(349, 72);
+            this.lblNaam.Location = new System.Drawing.Point(349, 62);
             this.lblNaam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(71, 25);
+            this.lblNaam.Size = new System.Drawing.Size(56, 20);
             this.lblNaam.TabIndex = 2;
             this.lblNaam.Text = "Naam: ";
             // 
             // lblActief
             // 
             this.lblActief.AutoSize = true;
-            this.lblActief.Location = new System.Drawing.Point(349, 120);
+            this.lblActief.Location = new System.Drawing.Point(350, 100);
             this.lblActief.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblActief.Name = "lblActief";
-            this.lblActief.Size = new System.Drawing.Size(69, 25);
+            this.lblActief.Size = new System.Drawing.Size(55, 20);
             this.lblActief.TabIndex = 3;
             this.lblActief.Text = "Actief: ";
             // 
@@ -87,30 +87,30 @@
             this.txtId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(219, 32);
+            this.txtId.Size = new System.Drawing.Size(219, 27);
             this.txtId.TabIndex = 4;
             // 
             // txtNaam
             // 
-            this.txtNaam.Location = new System.Drawing.Point(428, 72);
+            this.txtNaam.Location = new System.Drawing.Point(428, 62);
             this.txtNaam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(219, 32);
+            this.txtNaam.Size = new System.Drawing.Size(219, 27);
             this.txtNaam.TabIndex = 5;
             // 
             // chkActief
             // 
             this.chkActief.AutoSize = true;
-            this.chkActief.Location = new System.Drawing.Point(428, 125);
+            this.chkActief.Location = new System.Drawing.Point(428, 106);
             this.chkActief.Name = "chkActief";
-            this.chkActief.Size = new System.Drawing.Size(18, 17);
+            this.chkActief.Size = new System.Drawing.Size(15, 14);
             this.chkActief.TabIndex = 6;
             this.chkActief.UseVisualStyleBackColor = true;
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(333, 174);
+            this.btnNieuw.Location = new System.Drawing.Point(333, 149);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(116, 33);
             this.btnNieuw.TabIndex = 7;
@@ -120,7 +120,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(561, 174);
+            this.btnVerwijderen.Location = new System.Drawing.Point(561, 149);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(100, 33);
             this.btnVerwijderen.TabIndex = 8;
@@ -130,7 +130,7 @@
             // 
             // btnBewaren
             // 
-            this.btnBewaren.Location = new System.Drawing.Point(455, 174);
+            this.btnBewaren.Location = new System.Drawing.Point(455, 149);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(100, 33);
             this.btnBewaren.TabIndex = 9;
@@ -140,9 +140,9 @@
             // 
             // frmBeheerPrioriteit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 215);
+            this.ClientSize = new System.Drawing.Size(670, 195);
             this.Controls.Add(this.btnBewaren);
             this.Controls.Add(this.btnVerwijderen);
             this.Controls.Add(this.btnNieuw);

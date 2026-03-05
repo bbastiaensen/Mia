@@ -102,6 +102,10 @@ namespace MiaClient.UserControls
             lblRichtperiode.Text = _aankoopItem.Richtperiode ?? "";
             lblGoedgekeurdBedrag.Text = _aankoopItem.GoedgekeurdBedrag.ToString("c", CultureInfo.CurrentCulture);
             lblSaldo.Text = _aankoopItem.Saldo.ToString("c", CultureInfo.CurrentCulture);
+            //decimal saldo = _aankoopItem.GoedgekeurdBedrag -
+            //   (_aankoopItem.BedragExBtw * (1 + (_aankoopItem.BTWPercentage / 100m)));
+
+            //lblSaldo.Text = saldo.ToString("C", CultureInfo.CurrentCulture);
 
 
 

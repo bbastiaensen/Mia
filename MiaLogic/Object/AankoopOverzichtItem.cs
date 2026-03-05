@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,10 @@ namespace MiaLogic.Object
 
         public decimal GoedgekeurdBedrag { get; set; }
         public decimal Saldo { get; set; }
-       
+
+        public int BedragExBtw { get; set; }
+        public int BTWPercentage { get; set; }
+
 
 
     }
