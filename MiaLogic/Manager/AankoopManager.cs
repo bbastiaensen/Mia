@@ -127,6 +127,7 @@ namespace MiaLogic.Manager
                         SELECT 
                             a.Id AS AankoopId,
                             a.Omschrijving,
+                            
                             av.Titel,
                             sa.Naam AS StatusAankoop,
                             CASE 
@@ -137,6 +138,8 @@ namespace MiaLogic.Manager
                             av.Aanvraagmoment,
                             av.Financieringsjaar,
                             r.Naam AS Richtperiode,
+                            a.BTWPercentage,
+                            a.BedragExBTW,
                             a.BudgetToegekend AS GoedgekeurdBedrag,
                             a.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0) + ISNULL(a.BedragTransfer, 0)) AS Saldo
                         FROM Aankoop a
@@ -163,8 +166,8 @@ namespace MiaLogic.Manager
                         item.Financieringsjaar = objRea["Financieringsjaar"] != DBNull.Value ? objRea["Financieringsjaar"].ToString() : "";
                         item.Richtperiode = objRea["Richtperiode"] != DBNull.Value ? objRea["Richtperiode"].ToString() : "";
                         item.GoedgekeurdBedrag = objRea["GoedgekeurdBedrag"] != DBNull.Value ? Convert.ToDecimal(objRea["GoedgekeurdBedrag"]) : 0;
-                        //item.BedragExBtw = objRea["BedragExBtw"]   != DBNull.Value ? Convert.ToInt32(objRea["BedragExBtw"]) : 0;
-                        //item.BTWPercentage = objRea["BTWPercentage"] != DBNull.Value ? Convert.ToInt32(objRea["BTWPercentage"]) : 0;
+                        item.BedragExBtw = objRea["BedragExBtw"] != DBNull.Value ? Convert.ToInt32(objRea["BedragExBtw"]) : 0;
+                        item.BTWPercentage = objRea["BTWPercentage"] != DBNull.Value ? Convert.ToInt32(objRea["BTWPercentage"]) : 0;
                         item.Saldo = objRea["Saldo"] != DBNull.Value ? Convert.ToDecimal(objRea["Saldo"]) : 0;
 
                         returnlist.Add(item);
