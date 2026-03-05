@@ -105,7 +105,6 @@ namespace MiaClient
                 worksheet.Application.ActiveWindow.SplitRow = 2;
                 worksheet.Application.ActiveWindow.FreezePanes = true;
 
-
                 // Getting data
                 List<Richtperiode> rp = RichtperiodeManager.GetRichtperiodes();
                 List<Aanvraag> aanvragen = AanvraagManager.GetAanvragenByRichtPeriodeAsc();
