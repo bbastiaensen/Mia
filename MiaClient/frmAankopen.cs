@@ -708,75 +708,17 @@ namespace MiaClient
             if (SortGebruiker)
             {
                 SortGebruiker = false;
-                aankopen = aankopen.OrderByDescending(ak => ak.Aanvrager ?? "").ToList();
+                aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
             }
             else
             {
                 SortGebruiker = true;
-                aankopen = aankopen.OrderBy(ak => ak.Aanvrager ?? "").ToList();
+                aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
             }
             ApplySortAndRefresh();
         }
 
-        //private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
-        //{
- 
-        //}
-
-
-
-        //private void btnSortTitel_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortTitel)
-        //    {
-        //        SortTitel = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
-        //    }
-        //    else
-        //    {
-        //        SortTitel = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
-
-        //private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortAanvraagmoment)
-        //    {
-        //        SortAanvraagmoment = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Aanvraagmoment).ToList();
-        //    }
-        //    else
-        //    {
-        //        SortAanvraagmoment = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Aanvraagmoment).ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
-
-
-
-
-
-
-        //private void btnSortSaldo_Click(object sender, EventArgs e)
-        //{
-        //    aankopen = GetFilteredAankopen();
-        //    if (SortSaldo)
-        //    {
-        //        SortSaldo = false;
-        //        aankopen = aankopen.OrderByDescending(ak => ak.Saldo).ToList();
-        //    }
-        //    else
-        //    {
-        //        SortSaldo = true;
-        //        aankopen = aankopen.OrderBy(ak => ak.Saldo).ToList();
-        //    }
-        //    ApplySortAndRefresh();
-        //}
+       
 
         public static Color StringToColor(string colorStr)
         {
@@ -831,6 +773,7 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
