@@ -15,7 +15,7 @@ namespace MiaLogic.Manager
 
             // Adding financial years based on the current year
             int currentYear = DateTime.Now.Year;
-            for (int i = 0; i < 5; i++)
+            for (int i = -2; i < 5; i++)
             {
                 string startingYear = (currentYear + i).ToString();
                 financieringsjaren.Add(startingYear);

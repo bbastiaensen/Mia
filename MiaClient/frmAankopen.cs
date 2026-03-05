@@ -88,8 +88,6 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
-            MaximizeBox = false;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 LoadAankopen();
@@ -98,6 +96,10 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.BackColor = StyleParameters.Achtergrondkleur;
 
             btnFilter.BackgroundImage = imgFilter;
@@ -135,12 +137,14 @@ namespace MiaClient
                 btnAdd.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
             }
 
+            cmbFinancieringsjaar.Items.Add("geen financieringsjaar");
+            cmbFinancieringsjaar.SelectedIndex = 0;
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
-            cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
+             
         }
 
         private void LoadAankopen()
@@ -262,12 +266,9 @@ namespace MiaClient
                 {
                     items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (jaar)
+                if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1 && cmbFinancieringsjaar.SelectedItem.ToString() != "geen financieringsjaar")
                 {
-                    if (cmbFinancieringsjaar.SelectedIndex > -1)
-                    {
-                        items = items.Where(av => av.Financieringsjaar.ToString().Contains(cmbFinancieringsjaar.SelectedItem.ToString())).ToList();
-                    }
+                    filterFinancieringsjaar = true;
                 }
                 if (bedragVan)
                 {
@@ -357,11 +358,11 @@ namespace MiaClient
             }
 
             // Filter on Financieringsjaar
-            if (filterFinancieringsjaar && cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
+            if (filterFinancieringsjaar && cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1 && cmbFinancieringsjaar.SelectedItem.ToString() != "geen financieringsjaar")
             {
                 string selectedJaar = cmbFinancieringsjaar.SelectedItem.ToString();
-                filtered = filtered.Where(ak => ak.Financieringsjaar != null && 
-                    ak.Financieringsjaar.Contains(selectedJaar));
+
+                filtered = filtered.Where(ak => !string.IsNullOrEmpty(ak.Financieringsjaar) && ak.Financieringsjaar == selectedJaar);
             }
 
             // Filter on Richtperiode
@@ -671,28 +672,19 @@ namespace MiaClient
             btnLast.BackgroundImage = huidigePage == aantalPages ? imgLastDisable : imgLast;
         }
 
-        private void frmAankopen_Shown(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadAankopen();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+   
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                LoadAankopen();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    int jaar = Convert.ToInt32(cmbFinancieringsjaar.SelectedItem);
+            //    AankoopManager.LoadFinancieringAankopen(jaar);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void ApplySortAndRefresh()
