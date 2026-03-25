@@ -34,5 +34,7 @@ namespace MiaClient
 
         public static frmAankoopDetail frmAankoopDetail { get; set; }
         public static frmAankopen frmAankopen { get; set; }
+
+        public static frmNieuweAankoop frmNieuweAankoop { get; set; }
     }
 }

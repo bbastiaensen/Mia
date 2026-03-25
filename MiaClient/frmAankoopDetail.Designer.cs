@@ -214,9 +214,9 @@
             this.lblAankoopId.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAankoopId.Location = new System.Drawing.Point(25, 70);
             this.lblAankoopId.Name = "lblAankoopId";
-            this.lblAankoopId.Size = new System.Drawing.Size(154, 25);
+            this.lblAankoopId.Size = new System.Drawing.Size(152, 25);
             this.lblAankoopId.TabIndex = 36;
-            this.lblAankoopId.Text = "Aanvraagnummer";
+            this.lblAankoopId.Text = "Aankoopnummer";
             // 
             // lblAankoopDetail
             // 
@@ -344,7 +344,7 @@
             this.txtBestelbonNummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBestelbonNummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBestelbonNummer.Location = new System.Drawing.Point(975, 425);
-            this.txtBestelbonNummer.MaxLength = 999;
+            this.txtBestelbonNummer.MaxLength = 50;
             this.txtBestelbonNummer.Name = "txtBestelbonNummer";
             this.txtBestelbonNummer.Size = new System.Drawing.Size(100, 31);
             this.txtBestelbonNummer.TabIndex = 49;
@@ -354,7 +354,7 @@
             this.txtFactuurnummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFactuurnummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFactuurnummer.Location = new System.Drawing.Point(975, 475);
-            this.txtFactuurnummer.MaxLength = 999;
+            this.txtFactuurnummer.MaxLength = 50;
             this.txtFactuurnummer.Name = "txtFactuurnummer";
             this.txtFactuurnummer.Size = new System.Drawing.Size(100, 31);
             this.txtFactuurnummer.TabIndex = 50;
@@ -364,7 +364,7 @@
             this.txtInternNummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInternNummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInternNummer.Location = new System.Drawing.Point(975, 525);
-            this.txtInternNummer.MaxLength = 999;
+            this.txtInternNummer.MaxLength = 50;
             this.txtInternNummer.Name = "txtInternNummer";
             this.txtInternNummer.Size = new System.Drawing.Size(100, 31);
             this.txtInternNummer.TabIndex = 51;
@@ -425,18 +425,18 @@
             // btnBewaren
             // 
             this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBewaren.Location = new System.Drawing.Point(1023, 70);
+            this.btnBewaren.Location = new System.Drawing.Point(995, 70);
             this.btnBewaren.Name = "btnBewaren";
             this.btnBewaren.Size = new System.Drawing.Size(103, 37);
             this.btnBewaren.TabIndex = 57;
-            this.btnBewaren.Text = "Bewaar";
+            this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
             this.btnBewaren.Click += new System.EventHandler(this.btnBewaren_Click);
             // 
             // btnVerwijder
             // 
             this.btnVerwijder.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerwijder.Location = new System.Drawing.Point(1156, 70);
+            this.btnVerwijder.Location = new System.Drawing.Point(1135, 70);
             this.btnVerwijder.Name = "btnVerwijder";
             this.btnVerwijder.Size = new System.Drawing.Size(108, 37);
             this.btnVerwijder.TabIndex = 58;
@@ -520,6 +520,7 @@
             this.Controls.Add(this.lblGbedrag);
             this.Controls.Add(this.rtxtOmschrijving);
             this.Controls.Add(this.lblOmschrijving);
+            this.MaximizeBox = false;
             this.Name = "frmAankoopDetail";
             this.Text = "frmAankoopDetail";
             this.Load += new System.EventHandler(this.frmAankoopDetail_Load);

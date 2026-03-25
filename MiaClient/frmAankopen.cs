@@ -793,9 +793,14 @@ namespace MiaClient
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
+            lblWachtenOpExcel.Visible = true;
+            lblWachtenOpExcel.Text = "Data in Excel verwerken...";
+
             try
             {
-                if (aanvragen == null || aanvragen.Count == 0)
+                List<AankoopOverzichtItem> gefilterdeAankopen = aankopen;
+
+                if (gefilterdeAankopen == null || gefilterdeAankopen.Count == 0)
                 {
                     MessageBox.Show("Geen aankopen gevonden om te exporteren.", "Exporteren",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -804,8 +809,9 @@ namespace MiaClient
 
                 var app = new Excel.Application();
                 app.Visible = false;
+                object Nothing = Type.Missing;
 
-                Excel.Workbook workbook = app.Workbooks.Add(Type.Missing);
+                Excel.Workbook workbook = app.Workbooks.Add(Nothing);
                 Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
 
                 //Header excel
@@ -835,21 +841,22 @@ namespace MiaClient
 
                 int row = 2;
 
-                foreach (var aanvraag in aanvragen)
+                foreach (var item in gefilterdeAankopen)
                 {
-                    Aankoop aankoop = AankoopManager.GetAankoopByAanvraagId(aanvraag.Id);
+                    Aankoop aankoop = AankoopManager.GetAankoopById(item.AankoopId);
 
                     if (aankoop == null) continue;
 
-                    decimal bedragExBtw = aankoop.BedragExBtw;
-                    decimal bedragInclBTW = bedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
-                    decimal saldo = aanvraag.BudgetToegekend - bedragInclBTW;
+
+                    decimal goedgekeurdBedrag = aankoop.BudgetToegekend ?? 0m;
+                    decimal bedragInclBTW = aankoop.BedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
+                    decimal saldo = goedgekeurdBedrag - (bedragInclBTW + aankoop.BedragTransfer);
 
                     StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
 
-                    worksheet.Cells[row, 1] = aanvraag.Titel;
+                    worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
 
-                    worksheet.Cells[row, 2].Value = aanvraag.BudgetToegekend;
+                    worksheet.Cells[row, 2].Value = goedgekeurdBedrag;
                     worksheet.Cells[row, 2].NumberFormat = euroFormaat;
 
                     worksheet.Cells[row, 3].Value = bedragInclBTW;
@@ -860,23 +867,26 @@ namespace MiaClient
 
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
-                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum > DateTime.MinValue ?
-                        aankoop.BestellingsDatum.ToString() : (object)"Nog niet besteld";
+                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
+                        ? (object)aankoop.BestellingsDatum.Value.Date
+                        : "Nog niet gekend";
 
-                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum > DateTime.MinValue ?
-                        aankoop.VerwachteLeveringsDatum.ToString() : (object)"Geen verwachte datum";
+                    if (aankoop.BestellingsDatum.HasValue)
+                        worksheet.Cells[row, 6].NumberFormat = "dd/mm/jjjj";
 
-                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum > DateTime.MinValue ?
-                        aankoop.EffectieveLeveringsDatum.ToString() : (object)"Geen effectieve datum";
+                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
+                        ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
+                        : "Nog niet gekend";
 
-                    if (aankoop.BestellingsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 6].NumberFormat = "dd/mm/yyyy";
+                    if (aankoop.VerwachteLeveringsDatum.HasValue)
+                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";
 
-                    if (aankoop.VerwachteLeveringsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/yyyy";
+                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
+                        ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
+                        : "Nog niet gekend";
 
-                    if (aankoop.EffectieveLeveringsDatum > DateTime.MinValue)
-                        worksheet.Cells[row, 8].NumberFormat = "dd/mm/yyyy";
+                    if (aankoop.EffectieveLeveringsDatum.HasValue)
+                        worksheet.Cells[row, 8].NumberFormat = "dd/mm/jjjj";
 
                     Excel.Range rijRange = worksheet.Range[$"A{row}:H{row}"];
                     rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
@@ -897,6 +907,8 @@ namespace MiaClient
                 worksheet.Range["A:H"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
                 worksheet.Columns["B:D"].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
                 worksheet.Columns.AutoFit();
+
+                lblWachtenOpExcel.Visible = false;
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog
                 {

@@ -22,6 +22,8 @@ namespace MiaClient
         private Aanvraag _aanvraag;
         private static readonly CultureInfo cultuur = new CultureInfo("nl-BE");
 
+        public frmBeheerLeverancier frmBeheerLeverancier { get; set; }
+
         public frmAankoopDetail(int aankoopId)
         {
             InitializeComponent();
@@ -36,6 +38,36 @@ namespace MiaClient
             LaadAankoop();
             BerekenBedragen();
             ButtonLogica();
+        }
+
+        private void RefreshLeverancierDropdown()
+        {
+            int? geselecteerdeLeverancierId = null;
+
+            if (ddlLeverancier.SelectedValue != null &&
+                int.TryParse(ddlLeverancier.SelectedValue.ToString(), out int leverancierId))
+            {
+                geselecteerdeLeverancierId = leverancierId;
+            }
+
+            ddlLeverancier.DataSource = null;
+            ddlLeverancier.DataSource = LeverancierManager.GetAllLeveranciers();
+            ddlLeverancier.DisplayMember = "Leverancier";
+            ddlLeverancier.ValueMember = "Id";
+
+            if (geselecteerdeLeverancierId.HasValue)
+            {
+                ddlLeverancier.SelectedValue = geselecteerdeLeverancierId.Value;
+            }
+            else if (ddlLeverancier.Items.Count > 0)
+            {
+                ddlLeverancier.SelectedIndex = 0;
+            }
+        }
+
+        private void FrmBeheerLeverancier_LeveranciersChanged(object sender, EventArgs e)
+        {
+            RefreshLeverancierDropdown();
         }
 
         private void CreateUI()
@@ -63,8 +95,6 @@ namespace MiaClient
 
         private void LaadAankoop()
         {
-            
-
             try
             {
                 _aankoop = AankoopManager.GetAankoopById(_aankoopId);
@@ -74,7 +104,7 @@ namespace MiaClient
                 rtxtOmschrijving.Text = _aankoop.Omschrijving;
                 ddlStatus.SelectedValue = _aankoop.StatusAankoopId;
 
-                txtGoedgekeurdBedrag.Text = _aankoop.BudgetToegekend.ToString("N2", cultuur);
+                txtGoedgekeurdBedrag.Text = (_aankoop.BudgetToegekend ?? 0).ToString("N2", cultuur);
                 txtExBtw.Text = _aankoop.BedragExBtw.ToString("N2", cultuur);
                 txtBtwPercentage.Text = _aankoop.BTWPercentage.ToString("N2", cultuur);
                 txtBedragTransfer.Text = _aankoop.BedragTransfer.ToString("N2", cultuur);
@@ -147,6 +177,8 @@ namespace MiaClient
                     dp.Enabled = !afgesloten;
             }
 
+            chBFactuur.Enabled = !afgesloten;
+            btnLeveranciers.Enabled = !afgesloten;
             btnBewaren.Enabled = !afgesloten;
             btnVerwijder.Enabled = gepland && !afgesloten;
 
@@ -195,7 +227,10 @@ namespace MiaClient
 
         private void btnVerwijder_Click(object sender, EventArgs e)
         {
-            if (_aankoop.StatusAankoopId != 1) return;
+            if (ddlStatus.Text != "Gepland")
+            {
+                return;
+            }
 
             var result = MessageBox.Show("Ben je zeker dat je deze aankoop wil verwijderen?", "MIA", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -203,31 +238,27 @@ namespace MiaClient
             {
                 AankoopManager.DeleteAankoop(_aankoop.Id);
                 AppForms.frmAankopen?.RefreshAankopen();
+                AppForms.frmNieuweAankoop?.RefreshBekrachtigdeAanvragen();
+
                 this.Close();
             }
         }
 
         private void btnLeveranciers_Click(object sender, EventArgs e)
         {
-            int? vorigeLeverancierId = ddlLeverancier.SelectedValue as int?;
-
-            using (var frm = new frmBeheerLeverancier())
+            if (frmBeheerLeverancier == null || frmBeheerLeverancier.IsDisposed)
             {
-                frm.ShowDialog();
+                frmBeheerLeverancier = new frmBeheerLeverancier();
+                frmBeheerLeverancier.MdiParent = this.MdiParent;
             }
 
-            ddlLeverancier.DataSource = LeverancierManager.GetAllLeveranciers();
-            ddlLeverancier.DisplayMember = "Leverancier";
-            ddlLeverancier.ValueMember = "Id";
+            frmBeheerLeverancier.LeveranciersChanged -= FrmBeheerLeverancier_LeveranciersChanged;
+            frmBeheerLeverancier.LeveranciersChanged += FrmBeheerLeverancier_LeveranciersChanged;
 
-            if (vorigeLeverancierId.HasValue)
-            {
-                ddlLeverancier.SelectedValue = vorigeLeverancierId.Value;
-            }
-            else
-            {
-                ddlLeverancier.SelectedIndex = 0;
-            }
+            frmBeheerLeverancier.Show();
+            frmBeheerLeverancier.BringToFront();
+
+            RefreshLeverancierDropdown();
         }
         private bool Checks()
         {
@@ -238,7 +269,7 @@ namespace MiaClient
                 return false;
             }
 
-            if (_aankoop.StatusAankoopId == 4) // Afgesloten
+            if (ddlStatus.Text == "Afgesloten") // Afgesloten
             {
                 MessageBox.Show("Een afgesloten aankoop kan niet gewijzigd worden.", "MIA",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -319,6 +350,5 @@ namespace MiaClient
             else
                 tb.Text = ParseDecimal(tb.Text).ToString("N2", cultuur);
         }
-
     }
 }

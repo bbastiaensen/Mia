@@ -38,9 +38,10 @@ namespace MiaLogic.Manager
                         aankoop = new Aankoop();
                         aankoop.Id = Convert.ToInt32(objRea["Id"]);
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
-                        aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
-                        aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
-                        aankoop.BudgetToegekend = Convert.ToInt32(objRea["BudgetToegekend"]);
+
+                        aankoop.BTWPercentage = objRea["BTWPercentage"] != DBNull.Value ? Convert.ToInt32(objRea["BTWPercentage"]) : 0;
+                        aankoop.BedragExBtw = objRea["BedragExBTW"] != DBNull.Value ? Convert.ToDecimal(objRea["BedragExBTW"]) : 0;
+                        aankoop.BudgetToegekend = objRea["BudgetToegekend"] != DBNull.Value ? Convert.ToInt32(objRea["BudgetToegekend"]) : 0;
 
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
@@ -55,7 +56,7 @@ namespace MiaLogic.Manager
                         {
                             aankoop.EffectieveLeveringsDatum = Convert.ToDateTime(objRea["EffectieveLeveringsDatum"].ToString());
                         }
-                        aankoop.LeverancierId = Convert.ToInt32(objRea["LeverancierId"]);
+                        aankoop.LeverancierId = objRea["LeverancierId"] != DBNull.Value ? Convert.ToInt32(objRea["LeverancierId"]) : 0;
                         aankoop.AanvraagId = Convert.ToInt32(objRea["AanvraagId"]);
 
                         aankoop.BestelbonNummer = objRea["BestelbonNummer"].ToString();
@@ -65,7 +66,7 @@ namespace MiaLogic.Manager
                             : false;
 
                         aankoop.InternNummer = objRea["InternNummer"].ToString();
-                        aankoop.BedragTransfer = Convert.ToInt32(objRea["BedragTransfer"]);
+                        aankoop.BedragTransfer = objRea["BedragTransfer"] != DBNull.Value ? Convert.ToDecimal(objRea["BedragTransfer"]) : 0;
 
                     }
                 }

@@ -18,7 +18,7 @@ namespace MiaLogic.Object
         public DateTime? EffectieveLeveringsDatum { get; set; }
         public int LeverancierId { get; set; }
         public int AanvraagId { get; set; }
-        public int BudgetToegekend { get; set; }
+        public int? BudgetToegekend { get; set; }
         public string BestelbonNummer { get; set; }
         public bool Factuur { get; set; }   
         public string FactuurNummer { get; set; }
