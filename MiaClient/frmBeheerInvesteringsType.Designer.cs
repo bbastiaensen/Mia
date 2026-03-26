@@ -52,7 +52,7 @@
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(535, 117);
+            this.btnVerwijderen.Location = new System.Drawing.Point(535, 119);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 9;
@@ -62,7 +62,7 @@
             // 
             // btnNieuw
             // 
-            this.btnNieuw.Location = new System.Drawing.Point(313, 117);
+            this.btnNieuw.Location = new System.Drawing.Point(313, 119);
             this.btnNieuw.Name = "btnNieuw";
             this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 9;
@@ -129,7 +129,7 @@
             this.InvesteringsTypes.ItemHeight = 25;
             this.InvesteringsTypes.Location = new System.Drawing.Point(12, 12);
             this.InvesteringsTypes.Name = "InvesteringsTypes";
-            this.InvesteringsTypes.Size = new System.Drawing.Size(288, 150);
+            this.InvesteringsTypes.Size = new System.Drawing.Size(288, 129);
             this.InvesteringsTypes.TabIndex = 9;
             this.InvesteringsTypes.TabStop = false;
             this.InvesteringsTypes.SelectedIndexChanged += new System.EventHandler(this.InvesteringsTypes_SelectedIndexChanged);
