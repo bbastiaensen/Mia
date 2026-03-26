@@ -126,7 +126,7 @@ namespace MiaClient
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdd.Location = new System.Drawing.Point(294, 26);
+            this.btnAdd.Location = new System.Drawing.Point(674, 22);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(40, 40);
             this.btnAdd.TabIndex = 45;
@@ -140,7 +140,7 @@ namespace MiaClient
             this.btnExportToExcel.FlatAppearance.BorderSize = 0;
             this.btnExportToExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportToExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportToExcel.Location = new System.Drawing.Point(225, 26);
+            this.btnExportToExcel.Location = new System.Drawing.Point(740, 22);
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.Size = new System.Drawing.Size(40, 40);
             this.btnExportToExcel.TabIndex = 44;
@@ -152,7 +152,7 @@ namespace MiaClient
             this.btnFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFilter.FlatAppearance.BorderSize = 0;
             this.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilter.Location = new System.Drawing.Point(356, 26);
+            this.btnFilter.Location = new System.Drawing.Point(806, 22);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(40, 40);
             this.btnFilter.TabIndex = 28;
@@ -161,8 +161,11 @@ namespace MiaClient
             // 
             // grbxFilterAanvraag
             // 
+            this.grbxFilterAanvraag.Controls.Add(this.btnAdd);
             this.grbxFilterAanvraag.Controls.Add(this.testtest);
+            this.grbxFilterAanvraag.Controls.Add(this.btnExportToExcel);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
+            this.grbxFilterAanvraag.Controls.Add(this.btnFilter);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
             this.grbxFilterAanvraag.Controls.Add(this.txtGebruiker);

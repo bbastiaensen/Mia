@@ -105,7 +105,7 @@
                 if (aanvraag == null) return;
 
                 // ⬇️ VERVANG door jouw echte controls
-                lblOmschrijving.Text = aanvraag.Omschrijving;
+                lblTitel.Text = aanvraag.Omschrijving;
                 lblAanvrager.Text = aanvraag.Gebruiker;
                 lblFinancieringsjaar.Text = aanvraag.Financieringsjaar;
                 lblRichtperiode.Text = aanvraag.RichtperiodeNaam;
@@ -398,6 +398,7 @@
                 {
                     var aankoop = new Aankoop
                     {
+                       
                         Omschrijving = aanvraag.Omschrijving ?? "",
                         BTWPercentage = 21,
                         BedragExBtw = 0,

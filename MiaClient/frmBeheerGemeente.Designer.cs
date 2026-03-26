@@ -45,10 +45,9 @@
             // btnBewaren
             // 
             this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBewaren.Location = new System.Drawing.Point(587, 201);
-            this.btnBewaren.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBewaren.Location = new System.Drawing.Point(440, 163);
             this.btnBewaren.Name = "btnBewaren";
-            this.btnBewaren.Size = new System.Drawing.Size(140, 41);
+            this.btnBewaren.Size = new System.Drawing.Size(105, 33);
             this.btnBewaren.TabIndex = 23;
             this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
@@ -57,10 +56,9 @@
             // btnVerwijderen
             // 
             this.btnVerwijderen.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerwijderen.Location = new System.Drawing.Point(735, 201);
-            this.btnVerwijderen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVerwijderen.Location = new System.Drawing.Point(551, 163);
             this.btnVerwijderen.Name = "btnVerwijderen";
-            this.btnVerwijderen.Size = new System.Drawing.Size(140, 41);
+            this.btnVerwijderen.Size = new System.Drawing.Size(105, 33);
             this.btnVerwijderen.TabIndex = 22;
             this.btnVerwijderen.Text = "Verwijderen";
             this.btnVerwijderen.UseVisualStyleBackColor = true;
@@ -69,10 +67,9 @@
             // btnNieuw
             // 
             this.btnNieuw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNieuw.Location = new System.Drawing.Point(439, 201);
-            this.btnNieuw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNieuw.Location = new System.Drawing.Point(329, 163);
             this.btnNieuw.Name = "btnNieuw";
-            this.btnNieuw.Size = new System.Drawing.Size(140, 41);
+            this.btnNieuw.Size = new System.Drawing.Size(105, 33);
             this.btnNieuw.TabIndex = 21;
             this.btnNieuw.Text = "Nieuw";
             this.btnNieuw.UseVisualStyleBackColor = true;
@@ -81,31 +78,28 @@
             // txtNaam
             // 
             this.txtNaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNaam.Location = new System.Drawing.Point(571, 52);
-            this.txtNaam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNaam.Location = new System.Drawing.Point(428, 42);
             this.txtNaam.MaxLength = 50;
             this.txtNaam.Name = "txtNaam";
-            this.txtNaam.Size = new System.Drawing.Size(283, 32);
+            this.txtNaam.Size = new System.Drawing.Size(213, 27);
             this.txtNaam.TabIndex = 20;
             // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(571, 11);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Location = new System.Drawing.Point(428, 9);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(283, 32);
+            this.txtId.Size = new System.Drawing.Size(213, 27);
             this.txtId.TabIndex = 18;
             // 
             // lblLanden
             // 
             this.lblLanden.AutoSize = true;
             this.lblLanden.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLanden.Location = new System.Drawing.Point(433, 144);
-            this.lblLanden.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLanden.Location = new System.Drawing.Point(325, 117);
             this.lblLanden.Name = "lblLanden";
-            this.lblLanden.Size = new System.Drawing.Size(78, 25);
+            this.lblLanden.Size = new System.Drawing.Size(60, 20);
             this.lblLanden.TabIndex = 15;
             this.lblLanden.Text = "Landen:";
             // 
@@ -113,10 +107,9 @@
             // 
             this.lblVoornaam.AutoSize = true;
             this.lblVoornaam.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVoornaam.Location = new System.Drawing.Point(433, 55);
-            this.lblVoornaam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVoornaam.Location = new System.Drawing.Point(325, 45);
             this.lblVoornaam.Name = "lblVoornaam";
-            this.lblVoornaam.Size = new System.Drawing.Size(66, 25);
+            this.lblVoornaam.Size = new System.Drawing.Size(52, 20);
             this.lblVoornaam.TabIndex = 14;
             this.lblVoornaam.Text = "Naam:";
             // 
@@ -124,10 +117,9 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(433, 15);
-            this.lblId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblId.Location = new System.Drawing.Point(325, 12);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(37, 25);
+            this.lblId.Size = new System.Drawing.Size(29, 20);
             this.lblId.TabIndex = 13;
             this.lblId.Text = "Id: ";
             // 
@@ -135,11 +127,10 @@
             // 
             this.LstGemeente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstGemeente.FormattingEnabled = true;
-            this.LstGemeente.ItemHeight = 25;
-            this.LstGemeente.Location = new System.Drawing.Point(16, 15);
-            this.LstGemeente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LstGemeente.ItemHeight = 20;
+            this.LstGemeente.Location = new System.Drawing.Point(12, 12);
             this.LstGemeente.Name = "LstGemeente";
-            this.LstGemeente.Size = new System.Drawing.Size(384, 204);
+            this.LstGemeente.Size = new System.Drawing.Size(289, 184);
             this.LstGemeente.TabIndex = 12;
             this.LstGemeente.SelectedIndexChanged += new System.EventHandler(this.LstGemeente_SelectedIndexChanged);
             // 
@@ -148,20 +139,18 @@
             this.ddlLand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlLand.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlLand.FormattingEnabled = true;
-            this.ddlLand.Location = new System.Drawing.Point(571, 143);
-            this.ddlLand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ddlLand.Location = new System.Drawing.Point(428, 116);
             this.ddlLand.Name = "ddlLand";
-            this.ddlLand.Size = new System.Drawing.Size(283, 33);
+            this.ddlLand.Size = new System.Drawing.Size(213, 28);
             this.ddlLand.TabIndex = 24;
             // 
             // txtPostcode
             // 
             this.txtPostcode.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPostcode.Location = new System.Drawing.Point(571, 101);
-            this.txtPostcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPostcode.Location = new System.Drawing.Point(428, 82);
             this.txtPostcode.MaxLength = 9;
             this.txtPostcode.Name = "txtPostcode";
-            this.txtPostcode.Size = new System.Drawing.Size(283, 32);
+            this.txtPostcode.Size = new System.Drawing.Size(213, 27);
             this.txtPostcode.TabIndex = 28;
             this.txtPostcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPostcode_KeyPress);
             // 
@@ -169,18 +158,17 @@
             // 
             this.lblPostcode.AutoSize = true;
             this.lblPostcode.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPostcode.Location = new System.Drawing.Point(433, 101);
-            this.lblPostcode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPostcode.Location = new System.Drawing.Point(325, 82);
             this.lblPostcode.Name = "lblPostcode";
-            this.lblPostcode.Size = new System.Drawing.Size(92, 25);
+            this.lblPostcode.Size = new System.Drawing.Size(72, 20);
             this.lblPostcode.TabIndex = 27;
             this.lblPostcode.Text = "Postcode:";
             // 
             // frmBeheerGemeente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 262);
+            this.ClientSize = new System.Drawing.Size(667, 213);
             this.Controls.Add(this.txtPostcode);
             this.Controls.Add(this.lblPostcode);
             this.Controls.Add(this.ddlLand);
@@ -194,7 +182,6 @@
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.LstGemeente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmBeheerGemeente";
             this.Text = "Beheer Gemeente";
