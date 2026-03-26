@@ -201,7 +201,8 @@ namespace MiaClient
             {
                 InvesteringenManager.DeleteInvestering(i);
                 InvesteringsTypesChanged?.Invoke(this, EventArgs.Empty);
-
+                BindLstInvesteringsTypes();
+                ClearFields();
                 MessageBox.Show(
                     "Het investeringstype is succesvol verwijderd.",
                     "MIA",
@@ -209,8 +210,7 @@ namespace MiaClient
                     MessageBoxIcon.Information
                 );
 
-                BindLstInvesteringsTypes();
-                ClearFields();
+                
             }
             catch (SqlException ex) when (ex.Number == 547)
             {
