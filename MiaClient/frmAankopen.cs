@@ -789,8 +789,7 @@ namespace MiaClient
         Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
         Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
 
-        //niet juist
-        const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
+        //const string euroFormaat = "€ #.##0,00;-€ #.##0,00;€ 0,00";
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
@@ -857,14 +856,15 @@ namespace MiaClient
 
                     worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
 
-                    worksheet.Cells[row, 2].Value = goedgekeurdBedrag;
-                    worksheet.Cells[row, 2].NumberFormat = euroFormaat;
+                    worksheet.Cells[row, 2].Value2 = Convert.ToDouble(goedgekeurdBedrag);
+                    worksheet.Cells[row, 2].NumberFormat = "€ #.##,00;;";
 
-                    worksheet.Cells[row, 3].Value = bedragInclBTW;
-                    worksheet.Cells[row, 3].NumberFormat = euroFormaat;
+                    worksheet.Cells[row, 3].Value2 = Convert.ToDouble(bedragInclBTW);
+                    worksheet.Cells[row, 3].NumberFormat = "€ #.##,00;;";
 
-                    worksheet.Cells[row, 4].Value = saldo;
-                    worksheet.Cells[row, 4].NumberFormat = euroFormaat;
+                    worksheet.Cells[row, 4].Value2 = Convert.ToDouble(saldo);
+                    worksheet.Cells[row, 4].NumberFormat = "€ #.##,00;;";
+
 
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
