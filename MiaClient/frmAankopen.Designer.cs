@@ -34,6 +34,7 @@ namespace MiaClient
             this.cmbFinancieringsjaar = new System.Windows.Forms.ComboBox();
             this.lblFinancieringsjaar = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar = new System.Windows.Forms.GroupBox();
+            this.lblWachtenOpExcel = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnExportToExcel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -44,8 +45,6 @@ namespace MiaClient
             this.cbBedragVan = new System.Windows.Forms.CheckBox();
             this.txtGebruiker = new System.Windows.Forms.TextBox();
             this.txtBedragVan = new System.Windows.Forms.TextBox();
-            this.dtpPlanningsdatumTot = new System.Windows.Forms.DateTimePicker();
-            this.dtpPlanningsdatumVan = new System.Windows.Forms.DateTimePicker();
             this.lblBedrag = new System.Windows.Forms.Label();
             this.chbxPlaningsdatumVan = new System.Windows.Forms.CheckBox();
             this.chbxPlaningsdatumTot = new System.Windows.Forms.CheckBox();
@@ -77,7 +76,8 @@ namespace MiaClient
             this.btnRichtperiode = new System.Windows.Forms.Button();
             this.btnSortGoedgekeurdbedrag = new System.Windows.Forms.Button();
             this.btnSaldo = new System.Windows.Forms.Button();
-            this.lblWachtenOpExcel = new System.Windows.Forms.Label();
+            this.txtRichtperiodeVan = new System.Windows.Forms.TextBox();
+            this.txtRichtperiodeTot = new System.Windows.Forms.TextBox();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +117,14 @@ namespace MiaClient
             this.gbxFinancieringsjaar.TabIndex = 1;
             this.gbxFinancieringsjaar.TabStop = false;
             this.gbxFinancieringsjaar.Text = "selecteer een richtperiode";
+            // 
+            // lblWachtenOpExcel
+            // 
+            this.lblWachtenOpExcel.AutoSize = true;
+            this.lblWachtenOpExcel.Location = new System.Drawing.Point(6, 41);
+            this.lblWachtenOpExcel.Name = "lblWachtenOpExcel";
+            this.lblWachtenOpExcel.Size = new System.Drawing.Size(0, 25);
+            this.lblWachtenOpExcel.TabIndex = 46;
             // 
             // btnAdd
             // 
@@ -160,14 +168,14 @@ namespace MiaClient
             // 
             // grbxFilterAanvraag
             // 
+            this.grbxFilterAanvraag.Controls.Add(this.txtRichtperiodeTot);
+            this.grbxFilterAanvraag.Controls.Add(this.txtRichtperiodeVan);
             this.grbxFilterAanvraag.Controls.Add(this.testtest);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragTot);
             this.grbxFilterAanvraag.Controls.Add(this.cbBedragVan);
             this.grbxFilterAanvraag.Controls.Add(this.txtGebruiker);
             this.grbxFilterAanvraag.Controls.Add(this.txtBedragVan);
-            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumTot);
-            this.grbxFilterAanvraag.Controls.Add(this.dtpPlanningsdatumVan);
             this.grbxFilterAanvraag.Controls.Add(this.lblBedrag);
             this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumVan);
             this.grbxFilterAanvraag.Controls.Add(this.chbxPlaningsdatumTot);
@@ -241,20 +249,6 @@ namespace MiaClient
             this.txtBedragVan.Size = new System.Drawing.Size(200, 31);
             this.txtBedragVan.TabIndex = 17;
             // 
-            // dtpPlanningsdatumTot
-            // 
-            this.dtpPlanningsdatumTot.Location = new System.Drawing.Point(88, 169);
-            this.dtpPlanningsdatumTot.Name = "dtpPlanningsdatumTot";
-            this.dtpPlanningsdatumTot.Size = new System.Drawing.Size(216, 31);
-            this.dtpPlanningsdatumTot.TabIndex = 24;
-            // 
-            // dtpPlanningsdatumVan
-            // 
-            this.dtpPlanningsdatumVan.Location = new System.Drawing.Point(88, 128);
-            this.dtpPlanningsdatumVan.Name = "dtpPlanningsdatumVan";
-            this.dtpPlanningsdatumVan.Size = new System.Drawing.Size(216, 31);
-            this.dtpPlanningsdatumVan.TabIndex = 23;
-            // 
             // lblBedrag
             // 
             this.lblBedrag.AutoSize = true;
@@ -297,9 +291,9 @@ namespace MiaClient
             this.lblPlanningsdatum.AutoSize = true;
             this.lblPlanningsdatum.Location = new System.Drawing.Point(11, 97);
             this.lblPlanningsdatum.Name = "lblPlanningsdatum";
-            this.lblPlanningsdatum.Size = new System.Drawing.Size(140, 25);
+            this.lblPlanningsdatum.Size = new System.Drawing.Size(112, 25);
             this.lblPlanningsdatum.TabIndex = 11;
-            this.lblPlanningsdatum.Text = "Planningsdatum";
+            this.lblPlanningsdatum.Text = "Richtperiode";
             // 
             // lblTitel
             // 
@@ -618,13 +612,21 @@ namespace MiaClient
             this.btnSaldo.UseVisualStyleBackColor = false;
             this.btnSaldo.Click += new System.EventHandler(this.btnSaldo_Click);
             // 
-            // lblWachtenOpExcel
+            // txtRichtperiodeVan
             // 
-            this.lblWachtenOpExcel.AutoSize = true;
-            this.lblWachtenOpExcel.Location = new System.Drawing.Point(6, 41);
-            this.lblWachtenOpExcel.Name = "lblWachtenOpExcel";
-            this.lblWachtenOpExcel.Size = new System.Drawing.Size(0, 25);
-            this.lblWachtenOpExcel.TabIndex = 46;
+            this.txtRichtperiodeVan.Location = new System.Drawing.Point(83, 132);
+            this.txtRichtperiodeVan.MaxLength = 20;
+            this.txtRichtperiodeVan.Name = "txtRichtperiodeVan";
+            this.txtRichtperiodeVan.Size = new System.Drawing.Size(200, 31);
+            this.txtRichtperiodeVan.TabIndex = 29;
+            // 
+            // txtRichtperiodeTot
+            // 
+            this.txtRichtperiodeTot.Location = new System.Drawing.Point(83, 173);
+            this.txtRichtperiodeTot.MaxLength = 20;
+            this.txtRichtperiodeTot.Name = "txtRichtperiodeTot";
+            this.txtRichtperiodeTot.Size = new System.Drawing.Size(200, 31);
+            this.txtRichtperiodeTot.TabIndex = 30;
             // 
             // frmAankopen
             // 
@@ -682,8 +684,6 @@ namespace MiaClient
         private System.Windows.Forms.CheckBox cbBedragVan;
         private System.Windows.Forms.TextBox txtGebruiker;
         private System.Windows.Forms.TextBox txtBedragVan;
-        private System.Windows.Forms.DateTimePicker dtpPlanningsdatumTot;
-        private System.Windows.Forms.DateTimePicker dtpPlanningsdatumVan;
         private System.Windows.Forms.Label lblBedrag;
         private System.Windows.Forms.CheckBox chbxPlaningsdatumVan;
         private System.Windows.Forms.CheckBox chbxPlaningsdatumTot;
@@ -732,5 +732,7 @@ namespace MiaClient
         private System.Windows.Forms.Button btnSaldo;
         private System.Windows.Forms.Button testtest;
         private System.Windows.Forms.Label lblWachtenOpExcel;
+        private System.Windows.Forms.TextBox txtRichtperiodeTot;
+        private System.Windows.Forms.TextBox txtRichtperiodeVan;
     }
 }

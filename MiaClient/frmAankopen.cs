@@ -16,6 +16,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MiaClient
 {
@@ -243,22 +244,20 @@ namespace MiaClient
         {
             if (items != null)
             {
-                //if (RSort)
-                //{
-                //    //items = items.Where(av =>);              
-                //}
                 if (planningsdatumVan)
                 {
-                    if (chbxPlaningsdatumVan.Checked == true)
+                    int richtperiodeVan = GetRichtPeriode(txtRichtperiodeVan.Text);
+                    if (chbxPlaningsdatumVan.Checked == true && richtperiodeVan > 0)
                     {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                        items = items.Where(av => av.RichtperiodeId >= richtperiodeVan).ToList();
                     }
                 }
                 if (planningsdatumTot)
                 {
-                    if (chbxPlaningsdatumTot.Checked == true)
+                    int richtperiodeTot = GetRichtPeriode(txtRichtperiodeTot.Text);
+                    if (chbxPlaningsdatumTot.Checked == true && richtperiodeTot > 0)
                     {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                        items = items.Where(av => av.RichtperiodeId <= richtperiodeTot).ToList();
                     }
                 }
                 if (gebruiker)
@@ -369,10 +368,28 @@ namespace MiaClient
             }
 
             // Filter on Richtperiode
-            if (filterRichtperiode && txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+            if (filterRichtperiode)
             {
-                filtered = filtered.Where(ak => ak.Richtperiode != null && 
-                    ak.Richtperiode.ToLower().Contains(txtRichtperiode.Text.ToLower()));
+                int richtperiodeVan = GetRichtPeriode(txtRichtperiodeVan?.Text);
+                int richtperiodeTot = GetRichtPeriode(txtRichtperiodeTot?.Text);
+
+                if (chbxPlaningsdatumVan.Checked && richtperiodeVan > 0)
+                {
+                    filtered = filtered.Where(ak =>
+                    {
+                        int richtperiode = GetRichtPeriode(ak.Richtperiode);
+                        return richtperiode > 0 && richtperiode >= richtperiodeVan;
+                    });
+                }
+
+                if (chbxPlaningsdatumTot.Checked && richtperiodeTot > 0)
+                {
+                    filtered = filtered.Where(ak =>
+                    {
+                        int richtperiode = GetRichtPeriode(ak.Richtperiode);
+                        return richtperiode > 0 && richtperiode <= richtperiodeTot;
+                    });
+                }
             }
 
             // Filter on GoedgekeurdBedrag - can use existing txtBedragVan/txtBedragTot
@@ -454,7 +471,8 @@ namespace MiaClient
                     filterAanvrager = true;
                 if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
                     filterFinancieringsjaar = true;
-                if (txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+                if ((chbxPlaningsdatumVan.Checked && !string.IsNullOrWhiteSpace(txtRichtperiodeVan?.Text)) ||
+                    (chbxPlaningsdatumTot.Checked && !string.IsNullOrWhiteSpace(txtRichtperiodeTot?.Text)))
                     filterRichtperiode = true;
                 if ((txtGoedgekeurdBedragVan != null && !string.IsNullOrEmpty(txtGoedgekeurdBedragVan.Text)) ||
                     (txtBedragVan != null && !string.IsNullOrEmpty(txtBedragVan.Text)))
@@ -1082,6 +1100,55 @@ namespace MiaClient
             StartPaging(); // bindt de aankopen aan pnlAanvragen
         }
 
+        private int GetRichtPeriode(string waarde)
+        {
+            if (string.IsNullOrWhiteSpace(waarde))
+            {
+                return 0;
+            }
+
+            string richtperiodeTekst = waarde.Trim().ToLowerInvariant();
+
+            if (int.TryParse(richtperiodeTekst, out int maandNummer) && maandNummer >= 1 && maandNummer <= 12)
+            {
+                return maandNummer;
+            }
+
+            switch (richtperiodeTekst)
+            {
+                case "januari":
+                    return 1;
+                case "februari":
+                    return 2;
+                case "maart":
+                    return 3;
+                case "april":
+                    return 4;
+                case "mei":
+                    return 5;
+                case "juni":
+                    return 6;
+                case "juli":
+                    return 7;
+                case "augustus":
+                    return 8;
+                case "september":
+                    return 9;
+                case "oktober":
+                    return 10;
+                case "november":
+                    return 11;
+                case "december":
+                    return 12;
+            }
+
+            if (DateTime.TryParseExact(richtperiodeTekst, "MMMM", new CultureInfo("nl-BE"), DateTimeStyles.None, out DateTime maand))
+            {
+                return maand.Month;
+            }
+
+            return 0;
+        }
 
     }
 }
