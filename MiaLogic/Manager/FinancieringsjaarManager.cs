@@ -13,9 +13,8 @@ namespace MiaLogic.Manager
         {
             List<string> financieringsjaren = new List<string>();
 
-            // Adding financial years based on the current year
             int currentYear = DateTime.Now.Year;
-            for (int i = -2; i < 5; i++)
+            for (int i = -2; i < 4; i++)
             {
                 string startingYear = (currentYear + i).ToString();
                 financieringsjaren.Add(startingYear);
@@ -23,4 +22,5 @@ namespace MiaLogic.Manager
             return financieringsjaren;
         }
     }
-}
+
+    }
