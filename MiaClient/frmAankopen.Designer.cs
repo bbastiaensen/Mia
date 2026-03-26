@@ -77,6 +77,7 @@ namespace MiaClient
             this.btnRichtperiode = new System.Windows.Forms.Button();
             this.btnSortGoedgekeurdbedrag = new System.Windows.Forms.Button();
             this.btnSaldo = new System.Windows.Forms.Button();
+            this.lblWachtenOpExcel = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +104,10 @@ namespace MiaClient
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.lblWachtenOpExcel);
+            this.gbxFinancieringsjaar.Controls.Add(this.btnAdd);
+            this.gbxFinancieringsjaar.Controls.Add(this.btnExportToExcel);
+            this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
             this.gbxFinancieringsjaar.Controls.Add(this.cmbFinancieringsjaar);
             this.gbxFinancieringsjaar.Controls.Add(this.grbxFilterAanvraag);
             this.gbxFinancieringsjaar.Controls.Add(this.lblFinancieringsjaar);
@@ -396,7 +401,7 @@ namespace MiaClient
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(739, 248);
+            this.label9.Location = new System.Drawing.Point(739, 254);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(80, 22);
             this.label9.TabIndex = 63;
@@ -426,7 +431,7 @@ namespace MiaClient
             this.btnSortTitel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSortTitel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortTitel.Image = ((System.Drawing.Image)(resources.GetObject("btnSortTitel.Image")));
-            this.btnSortTitel.Location = new System.Drawing.Point(123, 248);
+            this.btnSortTitel.Location = new System.Drawing.Point(122, 248);
             this.btnSortTitel.Name = "btnSortTitel";
             this.btnSortTitel.Size = new System.Drawing.Size(27, 27);
             this.btnSortTitel.TabIndex = 57;
@@ -436,7 +441,7 @@ namespace MiaClient
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(600, 248);
+            this.label5.Location = new System.Drawing.Point(600, 250);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(99, 25);
             this.label5.TabIndex = 51;
@@ -445,7 +450,7 @@ namespace MiaClient
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 248);
+            this.label3.Location = new System.Drawing.Point(441, 249);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 25);
             this.label3.TabIndex = 49;
@@ -453,7 +458,7 @@ namespace MiaClient
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(737, 226);
+            this.label4.Location = new System.Drawing.Point(737, 232);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 25);
             this.label4.TabIndex = 50;
@@ -463,7 +468,7 @@ namespace MiaClient
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(845, 248);
+            this.label6.Location = new System.Drawing.Point(845, 250);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 25);
             this.label6.TabIndex = 52;
@@ -472,7 +477,7 @@ namespace MiaClient
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1171, 248);
+            this.label8.Location = new System.Drawing.Point(1171, 250);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 25);
             this.label8.TabIndex = 54;
@@ -481,7 +486,7 @@ namespace MiaClient
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(981, 248);
+            this.label1.Location = new System.Drawing.Point(981, 250);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(186, 25);
             this.label1.TabIndex = 53;
@@ -490,7 +495,7 @@ namespace MiaClient
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 249);
+            this.label2.Location = new System.Drawing.Point(287, 250);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 25);
             this.label2.TabIndex = 48;
@@ -499,7 +504,7 @@ namespace MiaClient
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(85, 251);
+            this.label10.Location = new System.Drawing.Point(83, 250);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 25);
             this.label10.TabIndex = 47;
@@ -514,7 +519,7 @@ namespace MiaClient
             this.btnSortSatusaanvraag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSortSatusaanvraag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortSatusaanvraag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortSatusaanvraag.Image")));
-            this.btnSortSatusaanvraag.Location = new System.Drawing.Point(401, 246);
+            this.btnSortSatusaanvraag.Location = new System.Drawing.Point(398, 247);
             this.btnSortSatusaanvraag.Name = "btnSortSatusaanvraag";
             this.btnSortSatusaanvraag.Size = new System.Drawing.Size(27, 27);
             this.btnSortSatusaanvraag.TabIndex = 64;
@@ -546,7 +551,7 @@ namespace MiaClient
             this.btnSortAanvrager.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSortAanvrager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortAanvrager.Image = ((System.Drawing.Image)(resources.GetObject("btnSortAanvrager.Image")));
-            this.btnSortAanvrager.Location = new System.Drawing.Point(683, 248);
+            this.btnSortAanvrager.Location = new System.Drawing.Point(678, 248);
             this.btnSortAanvrager.Name = "btnSortAanvrager";
             this.btnSortAanvrager.Size = new System.Drawing.Size(27, 27);
             this.btnSortAanvrager.TabIndex = 66;
@@ -578,7 +583,7 @@ namespace MiaClient
             this.btnRichtperiode.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRichtperiode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRichtperiode.Image = ((System.Drawing.Image)(resources.GetObject("btnRichtperiode.Image")));
-            this.btnRichtperiode.Location = new System.Drawing.Point(942, 247);
+            this.btnRichtperiode.Location = new System.Drawing.Point(938, 247);
             this.btnRichtperiode.Name = "btnRichtperiode";
             this.btnRichtperiode.Size = new System.Drawing.Size(27, 27);
             this.btnRichtperiode.TabIndex = 72;
@@ -594,7 +599,7 @@ namespace MiaClient
             this.btnSortGoedgekeurdbedrag.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSortGoedgekeurdbedrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSortGoedgekeurdbedrag.Image = ((System.Drawing.Image)(resources.GetObject("btnSortGoedgekeurdbedrag.Image")));
-            this.btnSortGoedgekeurdbedrag.Location = new System.Drawing.Point(1124, 248);
+            this.btnSortGoedgekeurdbedrag.Location = new System.Drawing.Point(1129, 248);
             this.btnSortGoedgekeurdbedrag.Name = "btnSortGoedgekeurdbedrag";
             this.btnSortGoedgekeurdbedrag.Size = new System.Drawing.Size(27, 27);
             this.btnSortGoedgekeurdbedrag.TabIndex = 73;
@@ -610,12 +615,20 @@ namespace MiaClient
             this.btnSaldo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSaldo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaldo.Image = ((System.Drawing.Image)(resources.GetObject("btnSaldo.Image")));
-            this.btnSaldo.Location = new System.Drawing.Point(1224, 248);
+            this.btnSaldo.Location = new System.Drawing.Point(1216, 248);
             this.btnSaldo.Name = "btnSaldo";
             this.btnSaldo.Size = new System.Drawing.Size(27, 27);
             this.btnSaldo.TabIndex = 74;
             this.btnSaldo.UseVisualStyleBackColor = false;
             this.btnSaldo.Click += new System.EventHandler(this.btnSaldo_Click);
+            // 
+            // lblWachtenOpExcel
+            // 
+            this.lblWachtenOpExcel.AutoSize = true;
+            this.lblWachtenOpExcel.Location = new System.Drawing.Point(6, 41);
+            this.lblWachtenOpExcel.Name = "lblWachtenOpExcel";
+            this.lblWachtenOpExcel.Size = new System.Drawing.Size(0, 25);
+            this.lblWachtenOpExcel.TabIndex = 46;
             // 
             // frmAankopen
             // 
@@ -723,5 +736,6 @@ namespace MiaClient
         private System.Windows.Forms.Button btnSortGoedgekeurdbedrag;
         private System.Windows.Forms.Button btnSaldo;
         private System.Windows.Forms.Button testtest;
+        private System.Windows.Forms.Label lblWachtenOpExcel;
     }
 }
