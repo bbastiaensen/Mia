@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace MiaClient
 {
+   
     public partial class frmAankoopDetail : Form
     {
+        Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "images.png"));
         private static readonly DateTime OnbekendeDatum = new DateTime(2000, 1, 1);
         private int _aankoopId;
         private Aankoop _aankoop;
@@ -31,6 +34,7 @@ namespace MiaClient
         }
         private void frmAankoopDetail_Load(object sender, EventArgs e)
         {
+            
             AppForms.frmAankoopDetail = this;
 
             CreateUI();
@@ -38,6 +42,9 @@ namespace MiaClient
             LaadAankoop();
             BerekenBedragen();
             ButtonLogica();
+            btnEuro.BackgroundImage = imgFilter;
+            btnEuro.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEuro.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
         }
 
         private void RefreshLeverancierDropdown()
@@ -349,6 +356,11 @@ namespace MiaClient
                 tb.Text = 0m.ToString("N2", cultuur);
             else
                 tb.Text = ParseDecimal(tb.Text).ToString("N2", cultuur);
+        }
+
+        private void btnEuro_Click(object sender, EventArgs e)
+        { 
+            
         }
     }
 }

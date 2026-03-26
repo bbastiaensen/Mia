@@ -67,6 +67,7 @@
             this.btnLeveranciers = new System.Windows.Forms.Button();
             this.lblTransferBedrag = new System.Windows.Forms.Label();
             this.txtBedragTransfer = new System.Windows.Forms.TextBox();
+            this.btnEuro = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ddlStatus
@@ -74,9 +75,10 @@
             this.ddlStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlStatus.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlStatus.FormattingEnabled = true;
-            this.ddlStatus.Location = new System.Drawing.Point(250, 250);
+            this.ddlStatus.Location = new System.Drawing.Point(188, 203);
+            this.ddlStatus.Margin = new System.Windows.Forms.Padding(2);
             this.ddlStatus.Name = "ddlStatus";
-            this.ddlStatus.Size = new System.Drawing.Size(200, 33);
+            this.ddlStatus.Size = new System.Drawing.Size(151, 27);
             this.ddlStatus.TabIndex = 21;
             // 
             // lblStatus
@@ -84,9 +86,10 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblStatus.Location = new System.Drawing.Point(20, 250);
+            this.lblStatus.Location = new System.Drawing.Point(15, 203);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(141, 25);
+            this.lblStatus.Size = new System.Drawing.Size(114, 20);
             this.lblStatus.TabIndex = 34;
             this.lblStatus.Text = "Aankoop status:";
             // 
@@ -95,9 +98,10 @@
             this.lblSaldo.AutoSize = true;
             this.lblSaldo.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSaldo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSaldo.Location = new System.Drawing.Point(20, 550);
+            this.lblSaldo.Location = new System.Drawing.Point(15, 447);
+            this.lblSaldo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSaldo.Name = "lblSaldo";
-            this.lblSaldo.Size = new System.Drawing.Size(61, 25);
+            this.lblSaldo.Size = new System.Drawing.Size(50, 20);
             this.lblSaldo.TabIndex = 33;
             this.lblSaldo.Text = "Saldo:";
             // 
@@ -106,9 +110,10 @@
             this.lblBedragIncBtw.AutoSize = true;
             this.lblBedragIncBtw.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBedragIncBtw.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBedragIncBtw.Location = new System.Drawing.Point(20, 450);
+            this.lblBedragIncBtw.Location = new System.Drawing.Point(15, 366);
+            this.lblBedragIncBtw.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBedragIncBtw.Name = "lblBedragIncBtw";
-            this.lblBedragIncBtw.Size = new System.Drawing.Size(134, 25);
+            this.lblBedragIncBtw.Size = new System.Drawing.Size(112, 20);
             this.lblBedragIncBtw.TabIndex = 32;
             this.lblBedragIncBtw.Text = "Bedrag Inc Btw:";
             // 
@@ -116,9 +121,10 @@
             // 
             this.txtBtwPercentage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBtwPercentage.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBtwPercentage.Location = new System.Drawing.Point(250, 400);
+            this.txtBtwPercentage.Location = new System.Drawing.Point(188, 325);
+            this.txtBtwPercentage.Margin = new System.Windows.Forms.Padding(2);
             this.txtBtwPercentage.Name = "txtBtwPercentage";
-            this.txtBtwPercentage.Size = new System.Drawing.Size(150, 31);
+            this.txtBtwPercentage.Size = new System.Drawing.Size(113, 27);
             this.txtBtwPercentage.TabIndex = 25;
             this.txtBtwPercentage.Leave += new System.EventHandler(this.txtBtwPercentage_Leave);
             // 
@@ -127,9 +133,10 @@
             this.lblBtwPer.AutoSize = true;
             this.lblBtwPer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBtwPer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBtwPer.Location = new System.Drawing.Point(20, 400);
+            this.lblBtwPer.Location = new System.Drawing.Point(15, 325);
+            this.lblBtwPer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBtwPer.Name = "lblBtwPer";
-            this.lblBtwPer.Size = new System.Drawing.Size(138, 25);
+            this.lblBtwPer.Size = new System.Drawing.Size(116, 20);
             this.lblBtwPer.TabIndex = 31;
             this.lblBtwPer.Text = "Btw percentage:";
             // 
@@ -137,10 +144,11 @@
             // 
             this.txtExBtw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtExBtw.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExBtw.Location = new System.Drawing.Point(250, 350);
+            this.txtExBtw.Location = new System.Drawing.Point(188, 284);
+            this.txtExBtw.Margin = new System.Windows.Forms.Padding(2);
             this.txtExBtw.MaxLength = 999;
             this.txtExBtw.Name = "txtExBtw";
-            this.txtExBtw.Size = new System.Drawing.Size(150, 31);
+            this.txtExBtw.Size = new System.Drawing.Size(113, 27);
             this.txtExBtw.TabIndex = 23;
             this.txtExBtw.Leave += new System.EventHandler(this.txtExBtw_Leave);
             // 
@@ -149,9 +157,10 @@
             this.lblExBtw.AutoSize = true;
             this.lblExBtw.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExBtw.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblExBtw.Location = new System.Drawing.Point(20, 350);
+            this.lblExBtw.Location = new System.Drawing.Point(15, 284);
+            this.lblExBtw.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExBtw.Name = "lblExBtw";
-            this.lblExBtw.Size = new System.Drawing.Size(128, 25);
+            this.lblExBtw.Size = new System.Drawing.Size(108, 20);
             this.lblExBtw.TabIndex = 30;
             this.lblExBtw.Text = "Bedrag Ex Btw:";
             // 
@@ -159,11 +168,12 @@
             // 
             this.txtGoedgekeurdBedrag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGoedgekeurdBedrag.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGoedgekeurdBedrag.Location = new System.Drawing.Point(250, 300);
+            this.txtGoedgekeurdBedrag.Location = new System.Drawing.Point(188, 244);
+            this.txtGoedgekeurdBedrag.Margin = new System.Windows.Forms.Padding(2);
             this.txtGoedgekeurdBedrag.MaxLength = 999;
             this.txtGoedgekeurdBedrag.Name = "txtGoedgekeurdBedrag";
             this.txtGoedgekeurdBedrag.ReadOnly = true;
-            this.txtGoedgekeurdBedrag.Size = new System.Drawing.Size(150, 31);
+            this.txtGoedgekeurdBedrag.Size = new System.Drawing.Size(113, 27);
             this.txtGoedgekeurdBedrag.TabIndex = 22;
             // 
             // lblGbedrag
@@ -171,9 +181,10 @@
             this.lblGbedrag.AutoSize = true;
             this.lblGbedrag.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGbedrag.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblGbedrag.Location = new System.Drawing.Point(20, 300);
+            this.lblGbedrag.Location = new System.Drawing.Point(15, 244);
+            this.lblGbedrag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGbedrag.Name = "lblGbedrag";
-            this.lblGbedrag.Size = new System.Drawing.Size(182, 25);
+            this.lblGbedrag.Size = new System.Drawing.Size(151, 20);
             this.lblGbedrag.TabIndex = 29;
             this.lblGbedrag.Text = "Goedgekeurd bedrag";
             // 
@@ -181,9 +192,10 @@
             // 
             this.rtxtOmschrijving.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtxtOmschrijving.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtOmschrijving.Location = new System.Drawing.Point(250, 125);
+            this.rtxtOmschrijving.Location = new System.Drawing.Point(188, 102);
+            this.rtxtOmschrijving.Margin = new System.Windows.Forms.Padding(2);
             this.rtxtOmschrijving.Name = "rtxtOmschrijving";
-            this.rtxtOmschrijving.Size = new System.Drawing.Size(500, 109);
+            this.rtxtOmschrijving.Size = new System.Drawing.Size(376, 89);
             this.rtxtOmschrijving.TabIndex = 20;
             this.rtxtOmschrijving.Text = "";
             // 
@@ -192,9 +204,10 @@
             this.lblOmschrijving.AutoSize = true;
             this.lblOmschrijving.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOmschrijving.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblOmschrijving.Location = new System.Drawing.Point(25, 125);
+            this.lblOmschrijving.Location = new System.Drawing.Point(19, 102);
+            this.lblOmschrijving.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOmschrijving.Name = "lblOmschrijving";
-            this.lblOmschrijving.Size = new System.Drawing.Size(120, 25);
+            this.lblOmschrijving.Size = new System.Drawing.Size(98, 20);
             this.lblOmschrijving.TabIndex = 27;
             this.lblOmschrijving.Text = "Omschrijving:";
             // 
@@ -202,19 +215,21 @@
             // 
             this.txtAankoopId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAankoopId.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtAankoopId.Location = new System.Drawing.Point(250, 70);
+            this.txtAankoopId.Location = new System.Drawing.Point(188, 57);
+            this.txtAankoopId.Margin = new System.Windows.Forms.Padding(2);
             this.txtAankoopId.Name = "txtAankoopId";
             this.txtAankoopId.ReadOnly = true;
-            this.txtAankoopId.Size = new System.Drawing.Size(75, 32);
+            this.txtAankoopId.Size = new System.Drawing.Size(57, 27);
             this.txtAankoopId.TabIndex = 37;
             // 
             // lblAankoopId
             // 
             this.lblAankoopId.AutoSize = true;
             this.lblAankoopId.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAankoopId.Location = new System.Drawing.Point(25, 70);
+            this.lblAankoopId.Location = new System.Drawing.Point(19, 57);
+            this.lblAankoopId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAankoopId.Name = "lblAankoopId";
-            this.lblAankoopId.Size = new System.Drawing.Size(152, 25);
+            this.lblAankoopId.Size = new System.Drawing.Size(124, 20);
             this.lblAankoopId.TabIndex = 36;
             this.lblAankoopId.Text = "Aankoopnummer";
             // 
@@ -222,9 +237,10 @@
             // 
             this.lblAankoopDetail.AutoSize = true;
             this.lblAankoopDetail.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.lblAankoopDetail.Location = new System.Drawing.Point(10, 10);
+            this.lblAankoopDetail.Location = new System.Drawing.Point(8, 8);
+            this.lblAankoopDetail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAankoopDetail.Name = "lblAankoopDetail";
-            this.lblAankoopDetail.Size = new System.Drawing.Size(268, 46);
+            this.lblAankoopDetail.Size = new System.Drawing.Size(217, 37);
             this.lblAankoopDetail.TabIndex = 35;
             this.lblAankoopDetail.Text = "Aankoop Detail";
             this.lblAankoopDetail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,25 +248,28 @@
             // dtpBestelDatum
             // 
             this.dtpBestelDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBestelDatum.Location = new System.Drawing.Point(975, 125);
+            this.dtpBestelDatum.Location = new System.Drawing.Point(731, 102);
+            this.dtpBestelDatum.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBestelDatum.Name = "dtpBestelDatum";
-            this.dtpBestelDatum.Size = new System.Drawing.Size(288, 31);
+            this.dtpBestelDatum.Size = new System.Drawing.Size(217, 27);
             this.dtpBestelDatum.TabIndex = 38;
             // 
             // dtpVerwachteDatum
             // 
             this.dtpVerwachteDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpVerwachteDatum.Location = new System.Drawing.Point(975, 175);
+            this.dtpVerwachteDatum.Location = new System.Drawing.Point(731, 142);
+            this.dtpVerwachteDatum.Margin = new System.Windows.Forms.Padding(2);
             this.dtpVerwachteDatum.Name = "dtpVerwachteDatum";
-            this.dtpVerwachteDatum.Size = new System.Drawing.Size(288, 31);
+            this.dtpVerwachteDatum.Size = new System.Drawing.Size(217, 27);
             this.dtpVerwachteDatum.TabIndex = 39;
             // 
             // dtpEffectieveDatum
             // 
             this.dtpEffectieveDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEffectieveDatum.Location = new System.Drawing.Point(975, 225);
+            this.dtpEffectieveDatum.Location = new System.Drawing.Point(731, 183);
+            this.dtpEffectieveDatum.Margin = new System.Windows.Forms.Padding(2);
             this.dtpEffectieveDatum.Name = "dtpEffectieveDatum";
-            this.dtpEffectieveDatum.Size = new System.Drawing.Size(288, 31);
+            this.dtpEffectieveDatum.Size = new System.Drawing.Size(217, 27);
             this.dtpEffectieveDatum.TabIndex = 40;
             // 
             // lblBestelDatum
@@ -258,9 +277,10 @@
             this.lblBestelDatum.AutoSize = true;
             this.lblBestelDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBestelDatum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBestelDatum.Location = new System.Drawing.Point(775, 125);
+            this.lblBestelDatum.Location = new System.Drawing.Point(581, 102);
+            this.lblBestelDatum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBestelDatum.Name = "lblBestelDatum";
-            this.lblBestelDatum.Size = new System.Drawing.Size(119, 25);
+            this.lblBestelDatum.Size = new System.Drawing.Size(99, 20);
             this.lblBestelDatum.TabIndex = 41;
             this.lblBestelDatum.Text = "Bestel datum:";
             // 
@@ -269,9 +289,10 @@
             this.lblVerwachteDatum.AutoSize = true;
             this.lblVerwachteDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerwachteDatum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblVerwachteDatum.Location = new System.Drawing.Point(775, 175);
+            this.lblVerwachteDatum.Location = new System.Drawing.Point(581, 142);
+            this.lblVerwachteDatum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVerwachteDatum.Name = "lblVerwachteDatum";
-            this.lblVerwachteDatum.Size = new System.Drawing.Size(153, 25);
+            this.lblVerwachteDatum.Size = new System.Drawing.Size(127, 20);
             this.lblVerwachteDatum.TabIndex = 42;
             this.lblVerwachteDatum.Text = "Verwachte datum:";
             // 
@@ -280,9 +301,10 @@
             this.lblEffectieveDatum.AutoSize = true;
             this.lblEffectieveDatum.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEffectieveDatum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblEffectieveDatum.Location = new System.Drawing.Point(775, 225);
+            this.lblEffectieveDatum.Location = new System.Drawing.Point(581, 183);
+            this.lblEffectieveDatum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEffectieveDatum.Name = "lblEffectieveDatum";
-            this.lblEffectieveDatum.Size = new System.Drawing.Size(148, 25);
+            this.lblEffectieveDatum.Size = new System.Drawing.Size(124, 20);
             this.lblEffectieveDatum.TabIndex = 43;
             this.lblEffectieveDatum.Text = "Effectieve datum:";
             // 
@@ -291,9 +313,10 @@
             this.ddlLeverancier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ddlLeverancier.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlLeverancier.FormattingEnabled = true;
-            this.ddlLeverancier.Location = new System.Drawing.Point(975, 325);
+            this.ddlLeverancier.Location = new System.Drawing.Point(731, 264);
+            this.ddlLeverancier.Margin = new System.Windows.Forms.Padding(2);
             this.ddlLeverancier.Name = "ddlLeverancier";
-            this.ddlLeverancier.Size = new System.Drawing.Size(200, 33);
+            this.ddlLeverancier.Size = new System.Drawing.Size(151, 27);
             this.ddlLeverancier.TabIndex = 44;
             // 
             // lblLeveranciers
@@ -301,9 +324,10 @@
             this.lblLeveranciers.AutoSize = true;
             this.lblLeveranciers.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeveranciers.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLeveranciers.Location = new System.Drawing.Point(775, 325);
+            this.lblLeveranciers.Location = new System.Drawing.Point(581, 264);
+            this.lblLeveranciers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLeveranciers.Name = "lblLeveranciers";
-            this.lblLeveranciers.Size = new System.Drawing.Size(111, 25);
+            this.lblLeveranciers.Size = new System.Drawing.Size(93, 20);
             this.lblLeveranciers.TabIndex = 45;
             this.lblLeveranciers.Text = "Leveranciers:";
             // 
@@ -312,9 +336,10 @@
             this.lblAanvraagId.AutoSize = true;
             this.lblAanvraagId.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAanvraagId.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblAanvraagId.Location = new System.Drawing.Point(775, 375);
+            this.lblAanvraagId.Location = new System.Drawing.Point(581, 305);
+            this.lblAanvraagId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAanvraagId.Name = "lblAanvraagId";
-            this.lblAanvraagId.Size = new System.Drawing.Size(103, 25);
+            this.lblAanvraagId.Size = new System.Drawing.Size(85, 20);
             this.lblAanvraagId.TabIndex = 46;
             this.lblAanvraagId.Text = "AanvraagId";
             // 
@@ -322,10 +347,11 @@
             // 
             this.txtAanvraagId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAanvraagId.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAanvraagId.Location = new System.Drawing.Point(975, 375);
+            this.txtAanvraagId.Location = new System.Drawing.Point(731, 305);
+            this.txtAanvraagId.Margin = new System.Windows.Forms.Padding(2);
             this.txtAanvraagId.Name = "txtAanvraagId";
             this.txtAanvraagId.ReadOnly = true;
-            this.txtAanvraagId.Size = new System.Drawing.Size(100, 31);
+            this.txtAanvraagId.Size = new System.Drawing.Size(76, 27);
             this.txtAanvraagId.TabIndex = 47;
             // 
             // lblBestelbon
@@ -333,9 +359,10 @@
             this.lblBestelbon.AutoSize = true;
             this.lblBestelbon.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBestelbon.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBestelbon.Location = new System.Drawing.Point(775, 425);
+            this.lblBestelbon.Location = new System.Drawing.Point(581, 345);
+            this.lblBestelbon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBestelbon.Name = "lblBestelbon";
-            this.lblBestelbon.Size = new System.Drawing.Size(166, 25);
+            this.lblBestelbon.Size = new System.Drawing.Size(137, 20);
             this.lblBestelbon.TabIndex = 48;
             this.lblBestelbon.Text = "Bestelbon nummer:";
             // 
@@ -343,30 +370,33 @@
             // 
             this.txtBestelbonNummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBestelbonNummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBestelbonNummer.Location = new System.Drawing.Point(975, 425);
+            this.txtBestelbonNummer.Location = new System.Drawing.Point(731, 345);
+            this.txtBestelbonNummer.Margin = new System.Windows.Forms.Padding(2);
             this.txtBestelbonNummer.MaxLength = 50;
             this.txtBestelbonNummer.Name = "txtBestelbonNummer";
-            this.txtBestelbonNummer.Size = new System.Drawing.Size(100, 31);
+            this.txtBestelbonNummer.Size = new System.Drawing.Size(76, 27);
             this.txtBestelbonNummer.TabIndex = 49;
             // 
             // txtFactuurnummer
             // 
             this.txtFactuurnummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFactuurnummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactuurnummer.Location = new System.Drawing.Point(975, 475);
+            this.txtFactuurnummer.Location = new System.Drawing.Point(731, 386);
+            this.txtFactuurnummer.Margin = new System.Windows.Forms.Padding(2);
             this.txtFactuurnummer.MaxLength = 50;
             this.txtFactuurnummer.Name = "txtFactuurnummer";
-            this.txtFactuurnummer.Size = new System.Drawing.Size(100, 31);
+            this.txtFactuurnummer.Size = new System.Drawing.Size(76, 27);
             this.txtFactuurnummer.TabIndex = 50;
             // 
             // txtInternNummer
             // 
             this.txtInternNummer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInternNummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInternNummer.Location = new System.Drawing.Point(975, 525);
+            this.txtInternNummer.Location = new System.Drawing.Point(731, 427);
+            this.txtInternNummer.Margin = new System.Windows.Forms.Padding(2);
             this.txtInternNummer.MaxLength = 50;
             this.txtInternNummer.Name = "txtInternNummer";
-            this.txtInternNummer.Size = new System.Drawing.Size(100, 31);
+            this.txtInternNummer.Size = new System.Drawing.Size(76, 27);
             this.txtInternNummer.TabIndex = 51;
             // 
             // lblFactuurNummer
@@ -374,9 +404,10 @@
             this.lblFactuurNummer.AutoSize = true;
             this.lblFactuurNummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFactuurNummer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFactuurNummer.Location = new System.Drawing.Point(775, 475);
+            this.lblFactuurNummer.Location = new System.Drawing.Point(581, 386);
+            this.lblFactuurNummer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFactuurNummer.Name = "lblFactuurNummer";
-            this.lblFactuurNummer.Size = new System.Drawing.Size(145, 25);
+            this.lblFactuurNummer.Size = new System.Drawing.Size(118, 20);
             this.lblFactuurNummer.TabIndex = 52;
             this.lblFactuurNummer.Text = "Factuur nummer:";
             // 
@@ -385,9 +416,10 @@
             this.lblInternnummer.AutoSize = true;
             this.lblInternnummer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInternnummer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInternnummer.Location = new System.Drawing.Point(775, 525);
+            this.lblInternnummer.Location = new System.Drawing.Point(581, 427);
+            this.lblInternnummer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInternnummer.Name = "lblInternnummer";
-            this.lblInternnummer.Size = new System.Drawing.Size(134, 25);
+            this.lblInternnummer.Size = new System.Drawing.Size(109, 20);
             this.lblInternnummer.TabIndex = 53;
             this.lblInternnummer.Text = "Intern nummer:";
             // 
@@ -395,9 +427,10 @@
             // 
             this.chBFactuur.AutoSize = true;
             this.chBFactuur.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBFactuur.Location = new System.Drawing.Point(1100, 475);
+            this.chBFactuur.Location = new System.Drawing.Point(825, 386);
+            this.chBFactuur.Margin = new System.Windows.Forms.Padding(2);
             this.chBFactuur.Name = "chBFactuur";
-            this.chBFactuur.Size = new System.Drawing.Size(91, 29);
+            this.chBFactuur.Size = new System.Drawing.Size(75, 24);
             this.chBFactuur.TabIndex = 54;
             this.chBFactuur.Text = "Factuur";
             this.chBFactuur.UseVisualStyleBackColor = true;
@@ -406,10 +439,11 @@
             // 
             this.txtIncBtw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIncBtw.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIncBtw.Location = new System.Drawing.Point(250, 450);
+            this.txtIncBtw.Location = new System.Drawing.Point(188, 366);
+            this.txtIncBtw.Margin = new System.Windows.Forms.Padding(2);
             this.txtIncBtw.Name = "txtIncBtw";
             this.txtIncBtw.ReadOnly = true;
-            this.txtIncBtw.Size = new System.Drawing.Size(150, 31);
+            this.txtIncBtw.Size = new System.Drawing.Size(113, 27);
             this.txtIncBtw.TabIndex = 55;
             // 
             // lblBedragSaldo
@@ -417,17 +451,19 @@
             this.lblBedragSaldo.AutoSize = true;
             this.lblBedragSaldo.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBedragSaldo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBedragSaldo.Location = new System.Drawing.Point(250, 550);
+            this.lblBedragSaldo.Location = new System.Drawing.Point(184, 447);
+            this.lblBedragSaldo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBedragSaldo.Name = "lblBedragSaldo";
-            this.lblBedragSaldo.Size = new System.Drawing.Size(0, 25);
+            this.lblBedragSaldo.Size = new System.Drawing.Size(0, 20);
             this.lblBedragSaldo.TabIndex = 56;
             // 
             // btnBewaren
             // 
             this.btnBewaren.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBewaren.Location = new System.Drawing.Point(995, 70);
+            this.btnBewaren.Location = new System.Drawing.Point(746, 57);
+            this.btnBewaren.Margin = new System.Windows.Forms.Padding(2);
             this.btnBewaren.Name = "btnBewaren";
-            this.btnBewaren.Size = new System.Drawing.Size(103, 37);
+            this.btnBewaren.Size = new System.Drawing.Size(77, 30);
             this.btnBewaren.TabIndex = 57;
             this.btnBewaren.Text = "Bewaren";
             this.btnBewaren.UseVisualStyleBackColor = true;
@@ -436,9 +472,10 @@
             // btnVerwijder
             // 
             this.btnVerwijder.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerwijder.Location = new System.Drawing.Point(1135, 70);
+            this.btnVerwijder.Location = new System.Drawing.Point(851, 57);
+            this.btnVerwijder.Margin = new System.Windows.Forms.Padding(2);
             this.btnVerwijder.Name = "btnVerwijder";
-            this.btnVerwijder.Size = new System.Drawing.Size(108, 37);
+            this.btnVerwijder.Size = new System.Drawing.Size(81, 30);
             this.btnVerwijder.TabIndex = 58;
             this.btnVerwijder.Text = "Verwijder";
             this.btnVerwijder.UseVisualStyleBackColor = true;
@@ -447,9 +484,10 @@
             // btnLeveranciers
             // 
             this.btnLeveranciers.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeveranciers.Location = new System.Drawing.Point(1182, 324);
+            this.btnLeveranciers.Location = new System.Drawing.Point(886, 263);
+            this.btnLeveranciers.Margin = new System.Windows.Forms.Padding(2);
             this.btnLeveranciers.Name = "btnLeveranciers";
-            this.btnLeveranciers.Size = new System.Drawing.Size(69, 33);
+            this.btnLeveranciers.Size = new System.Drawing.Size(52, 27);
             this.btnLeveranciers.TabIndex = 59;
             this.btnLeveranciers.Text = "+ / -";
             this.btnLeveranciers.UseVisualStyleBackColor = true;
@@ -460,9 +498,10 @@
             this.lblTransferBedrag.AutoSize = true;
             this.lblTransferBedrag.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTransferBedrag.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTransferBedrag.Location = new System.Drawing.Point(20, 500);
+            this.lblTransferBedrag.Location = new System.Drawing.Point(15, 406);
+            this.lblTransferBedrag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTransferBedrag.Name = "lblTransferBedrag";
-            this.lblTransferBedrag.Size = new System.Drawing.Size(139, 25);
+            this.lblTransferBedrag.Size = new System.Drawing.Size(116, 20);
             this.lblTransferBedrag.TabIndex = 60;
             this.lblTransferBedrag.Text = "Transfer bedrag:";
             // 
@@ -470,17 +509,31 @@
             // 
             this.txtBedragTransfer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBedragTransfer.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBedragTransfer.Location = new System.Drawing.Point(250, 500);
+            this.txtBedragTransfer.Location = new System.Drawing.Point(188, 406);
+            this.txtBedragTransfer.Margin = new System.Windows.Forms.Padding(2);
             this.txtBedragTransfer.Name = "txtBedragTransfer";
             this.txtBedragTransfer.ReadOnly = true;
-            this.txtBedragTransfer.Size = new System.Drawing.Size(150, 31);
+            this.txtBedragTransfer.Size = new System.Drawing.Size(113, 27);
             this.txtBedragTransfer.TabIndex = 61;
+            // 
+            // btnEuro
+            // 
+            this.btnEuro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEuro.FlatAppearance.BorderSize = 0;
+            this.btnEuro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEuro.Location = new System.Drawing.Point(299, 447);
+            this.btnEuro.Name = "btnEuro";
+            this.btnEuro.Size = new System.Drawing.Size(40, 40);
+            this.btnEuro.TabIndex = 62;
+            this.btnEuro.UseVisualStyleBackColor = true;
+            this.btnEuro.Click += new System.EventHandler(this.btnEuro_Click);
             // 
             // frmAankoopDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 614);
+            this.ClientSize = new System.Drawing.Size(990, 499);
+            this.Controls.Add(this.btnEuro);
             this.Controls.Add(this.txtBedragTransfer);
             this.Controls.Add(this.lblTransferBedrag);
             this.Controls.Add(this.btnLeveranciers);
@@ -520,6 +573,7 @@
             this.Controls.Add(this.lblGbedrag);
             this.Controls.Add(this.rtxtOmschrijving);
             this.Controls.Add(this.lblOmschrijving);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmAankoopDetail";
             this.Text = "frmAankoopDetail";
@@ -570,5 +624,6 @@
         private System.Windows.Forms.Button btnLeveranciers;
         private System.Windows.Forms.Label lblTransferBedrag;
         private System.Windows.Forms.TextBox txtBedragTransfer;
+        private System.Windows.Forms.Button btnEuro;
     }
 }
