@@ -20,6 +20,8 @@ namespace MiaClient
         bool IsNew = false;
         bool isClearing = false;
 
+        public event EventHandler LeveranciersChanged;
+
         public frmBeheerLeverancier()
         {
             InitializeComponent();
@@ -195,6 +197,7 @@ namespace MiaClient
             BindLstLeveranciers();
             LstLeveranciers.SelectedValue = leverancier.Id;
             IsNew = false;
+            LeveranciersChanged?.Invoke(this, EventArgs.Empty);
 
             MessageBox.Show("De gegevens werden succesvol bewaard.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -228,6 +231,7 @@ namespace MiaClient
                 LeverancierManager.DeleteLeverancier(leverancier.Id);
                 BindLstLeveranciers();
                 ClearFields();
+                LeveranciersChanged?.Invoke(this, EventArgs.Empty);
 
                 MessageBox.Show("Leverancier werd verwijderd.", "MIA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
