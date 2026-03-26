@@ -95,7 +95,7 @@ namespace MiaClient
                         worksheet.get_Range("E" + add, "E" + add).Value = InPer[p - 1].BudgetToegekend;
                         worksheet.get_Range("F" + add, "F" + add).Value = prijs;
                         worksheet.get_Range("G" + add, "G" + add).Formula = ("=E" + add + "-" + "F" + add);
-                        worksheet.get_Range("I" + add, "I" + add).Value = InPer[p-1].ExtraBudget    ;
+                        worksheet.get_Range("I" + add, "I" + add).Value = InPer[p-1].ExtraBudget;
                         worksheet.get_Range("J" + add, "J" + add).Formula = ("=E" + add + "+" + "I" + add);
                         if ((InPer[p - 1].BudgetToegekend - prijs) >= 0)
                         {
@@ -106,6 +106,7 @@ namespace MiaClient
                             c = StringToColor("#B61638");
                         }
                         worksheet.get_Range("G" + add, "G" + add).Font.Color = c;
+                        
                         DateTime pl = new DateTime();
                         if (InPer[p - 1].Planningsdatum != pl)
                         {
@@ -234,7 +235,7 @@ namespace MiaClient
             c = text;
             
             ws.get_Range("A" + pos, "F" + pos).Font.Color = c;
-            ws.get_Range("J" + pos, "J" + pos).Font.Color = c;
+            ws.get_Range("I" + pos, "J" + pos).Font.Color = c;
             if (m)
             {
                 ws.get_Range("A" + pos, "A" + pos).Font.Bold = true;
