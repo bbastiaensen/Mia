@@ -40,8 +40,8 @@ namespace MiaClient.UserControls
 
         private void SetupLabels()
         {
-            lblOmschrijving.AutoSize = false;
-            lblOmschrijving.AutoEllipsis = true;
+            lblTitel.AutoSize = false;
+            lblTitel.AutoEllipsis = true;
 
             lblAanvrager.AutoSize = false;
             lblAanvrager.AutoEllipsis = true;
@@ -60,7 +60,7 @@ namespace MiaClient.UserControls
         {
             if (Aanvraag == null) return;
 
-            lblOmschrijving.Text = Aanvraag.Omschrijving ?? "";
+            lblTitel.Text = Aanvraag.Titel ?? "";
             lblAanvrager.Text = Aanvraag.Gebruiker ?? "";
             lblStatusAanvraag.Text = Aanvraag.StatusAanvraag ?? "";
             lblFinancieringsjaar.Text = Aanvraag.Financieringsjaar ?? "";
@@ -78,7 +78,7 @@ namespace MiaClient.UserControls
             int padding = 10;
             int height = Height;
 
-            lblOmschrijving.SetBounds(49, 0, 150, height);
+            lblTitel.SetBounds(49, 0, 150, height);
             lblAanvrager.SetBounds(250, 0, 140, height);
             lblStatusAanvraag.SetBounds(415, 0, 120, height);
             lblFinancieringsjaar.SetBounds(615, 0, 120, height);
