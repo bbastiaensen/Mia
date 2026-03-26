@@ -789,6 +789,7 @@ namespace MiaClient
         Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
         Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
 
+        //niet juist
         const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
