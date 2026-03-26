@@ -151,8 +151,6 @@ namespace MiaClient
                     ri = m + rs;
                     //the name of the month
                     worksheet.get_Range("A" + ri, "A" + ri).Value = rp[m - 1].Naam;
-                    //total of the month
-                    decimal tot = 0;
                     //background color for months in Excel file
                     ColorExcel(ri, m, worksheet, even, meh);
                     //Making sure the data in the right month
@@ -172,25 +170,32 @@ namespace MiaClient
                             }
                         }
                     }
+
+                    int startRow = ri + 1;
+                    int endRow = ri;
+
                     //going over the data
                     for (int j = 0; j < InPer.Count; j++)
                     {
                         //add = position of data, rs=offset by the data
                         add = ri + j + 1;
-                        rs += j;
+
+                        endRow = add;
                         //calculates the price
                         decimal goedgekeurd = InPer[j].BudgetToegekend;
                         decimal extra = InPer[j].ExtraBedrag;
-                        decimal totaal = goedgekeurd + extra;
+                        
                         //puts data on the right position (based on add)
                         worksheet.get_Range("B" + add, "B" + add).Value = InPer[j].Titel;
                         worksheet.get_Range("C" + add, "C" + add).Value = (goedgekeurd);
                         worksheet.get_Range("D" + add, "D" + add).Value = extra;
-                        worksheet.get_Range("E" + add, "E" + add).Value = totaal;
-                        //total for the month
-                        tot += totaal;
+
+                        //worksheet.get_Range("E" + add, "E" + add).Value = totaal;
+                        worksheet.get_Range("E" + add, "E" + add).Formula = $"=C{add}+D{add}";
+
                         //background color for data in Excel file
                         ColorExcel(add, m, worksheet, even, meh);
+
                         //voor opmaak
                         if (even)
                         {
@@ -206,11 +211,14 @@ namespace MiaClient
                         hStatus[statusId] += 1;
                         //==================
                     }
-                    rs++;
+                    rs += InPer.Count;
                     ColorExcel((m + rs), m, worksheet, even, meh);
-                    //puts total of month on it's spot, makes it bold
-                    worksheet.get_Range("E" + ri, "E" + ri).Value = tot;
-                    worksheet.get_Range("E" + ri, "E" + ri).Font.Bold = true;
+                    
+                    if (endRow >= startRow)
+                    {
+                        worksheet.get_Range("E" + ri).Formula = $"=SUM(E{startRow}:E{endRow})";
+                        worksheet.get_Range("E" + ri).Font.Bold = true;
+                    }
                 }
                 //===============just layout=================
                 //title
