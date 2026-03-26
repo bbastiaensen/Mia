@@ -857,13 +857,16 @@ namespace MiaClient
                     worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
 
                     worksheet.Cells[row, 2].Value2 = Convert.ToDouble(goedgekeurdBedrag);
-                    worksheet.Cells[row, 2].NumberFormat = "€ #.##,00;;";
+                    worksheet.get_Range("B2", "B200").NumberFormat = "0,00";
+                    //worksheet.Cells[row, 2].NumberFormat = "€ #.##,00;;";
 
                     worksheet.Cells[row, 3].Value2 = Convert.ToDouble(bedragInclBTW);
-                    worksheet.Cells[row, 3].NumberFormat = "€ #.##,00;;";
+                    worksheet.get_Range("C2", "C200").NumberFormat = "0,00";
+                    //worksheet.Cells[row, 3].NumberFormat = "€ #.##,00;;";
 
                     worksheet.Cells[row, 4].Value2 = Convert.ToDouble(saldo);
-                    worksheet.Cells[row, 4].NumberFormat = "€ #.##,00;;";
+                    worksheet.get_Range("D2", "D200").NumberFormat = "0,00";
+//                    worksheet.Cells[row, 4].NumberFormat = "€ #.##,00;;";
 
 
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
