@@ -11,6 +11,7 @@ namespace MiaClient.UserControls
         {
             if (disposing && (components != null))
                 components.Dispose();
+
             base.Dispose(disposing);
         }
 
@@ -19,11 +20,12 @@ namespace MiaClient.UserControls
         private void InitializeComponent()
         {
             this.btnEuro = new Button();
-            this.lblOmschrijving = new Label();
+            this.lblTitel = new Label();
             this.lblAanvrager = new Label();
             this.lblStatusAanvraag = new Label();
             this.lblFinancieringsjaar = new Label();
             this.lblRichtperiode = new Label();
+
             this.SuspendLayout();
 
             // 
@@ -36,22 +38,33 @@ namespace MiaClient.UserControls
             this.btnEuro.Click += new System.EventHandler(this.btnEuro_Click);
 
             // 
-            // lblOmschrijving
+            // lblTitel
             // 
-            this.lblOmschrijving.AutoSize = false; // Belangrijk!
-            this.lblOmschrijving.AutoEllipsis = false; // eigen Paint
-            this.lblOmschrijving.Font = new Font("Segoe UI", 12F);
-            this.lblOmschrijving.Location = new Point(59, 0);
-            this.lblOmschrijving.Size = new Size(170, 32);
-            this.lblOmschrijving.Padding = new Padding(0);
+            this.lblTitel.AutoSize = false; // Belangrijk!
+            this.lblTitel.AutoEllipsis = false; // eigen Paint
+            this.lblTitel.Font = new Font("Segoe UI", 12F);
+            this.lblTitel.Location = new Point(59, 0);
+            this.lblTitel.Size = new Size(170, 32);
+            this.lblTitel.Padding = new Padding(0);
 
             // Paint event om linksonder + EndEllipsis correct te tekenen
-            this.lblOmschrijving.Paint += (s, e) =>
+            this.lblTitel.Paint += (s, e) =>
             {
                 var lbl = (Label)s;
-                TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.Bottom | TextFormatFlags.EndEllipsis;
+                TextFormatFlags flags =
+                    TextFormatFlags.Left |
+                    TextFormatFlags.Bottom |
+                    TextFormatFlags.EndEllipsis;
+
                 e.Graphics.Clear(lbl.BackColor);
-                TextRenderer.DrawText(e.Graphics, lbl.Text, lbl.Font, lbl.ClientRectangle, lbl.ForeColor, flags);
+
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    lbl.Text,
+                    lbl.Font,
+                    lbl.ClientRectangle,
+                    lbl.ForeColor,
+                    flags);
             };
 
             // 
@@ -98,19 +111,21 @@ namespace MiaClient.UserControls
             // NieuweAankoopItem
             // 
             this.Controls.Add(this.btnEuro);
-            this.Controls.Add(this.lblOmschrijving);
+            this.Controls.Add(this.lblTitel);
             this.Controls.Add(this.lblAanvrager);
             this.Controls.Add(this.lblStatusAanvraag);
             this.Controls.Add(this.lblFinancieringsjaar);
             this.Controls.Add(this.lblRichtperiode);
+
             this.Size = new Size(950, 32);
+
             this.ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnEuro;
-        private Label lblOmschrijving;
+        private Label lblTitel;
         private Label lblAanvrager;
         private Label lblStatusAanvraag;
         private Label lblFinancieringsjaar;
