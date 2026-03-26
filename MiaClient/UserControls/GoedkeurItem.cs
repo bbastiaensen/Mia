@@ -59,11 +59,22 @@ namespace MiaClient.UserControls
         public GoedkeurItem()
         {
             InitializeComponent();
+            InitTooltips();
+        }
+        private void InitTooltips()
+        {
+            ToolTip toolTip = new ToolTip();
+
+            toolTip.SetToolTip(btnInAanvraag, "In aanvraag");
+            toolTip.SetToolTip(btnNietGoedgekeurd, "Niet goedgekeurd");
+            toolTip.SetToolTip(btnGoedgekeurd, "Goedgekeurd");
+            toolTip.SetToolTip(btnNietBekrachtigd, "Niet bekrachtigd");
+            toolTip.SetToolTip(btnBekrachtigd, "Bekrachtigd");
         }
         public GoedkeurItem(int id, string aanvrager, DateTime aanvraagmoment, string titel, string financieringsjaar, decimal PrijsIndicatiePerStuk, int AantalStuk, string Statusaanvraag, string opmerkingenResultaat, decimal budgetToegekend, Boolean even)
         {
             InitializeComponent();
-            
+            InitTooltips();
             Id = id;
             StatusAanvraag = Statusaanvraag;
             Aanvrager = aanvrager;
