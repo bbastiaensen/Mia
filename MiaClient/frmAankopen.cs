@@ -48,6 +48,7 @@ namespace MiaClient
         int huidigePage = 1;
         int aantalPages = 0;
         List<AankoopOverzichtItem> aankopen;
+        List<Aanvraag> aanvragen;
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         Image imgLast = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50.png"));
         Image imgLastDisable = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-last-50-grey.png"));
@@ -90,6 +91,7 @@ namespace MiaClient
         {
             try
             {
+                AppForms.frmAankopen = this;
                 LoadAankopen();
             }
             catch (Exception ex)
@@ -201,8 +203,9 @@ namespace MiaClient
             AankopenItem geselecteerd = (AankopenItem)sender;
             // Open frmAankoopDetail with the purchase ID
             // This will be implemented in another User Story
-            // frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
-            // detailForm.Show();
+            frmAankoopDetail detailForm = new frmAankoopDetail(geselecteerd.AankoopId);
+            detailForm.MdiParent = this.MdiParent;
+            detailForm.Show();
         }
 
         private void Aki_AankoopDeleted(object sender, EventArgs e)
@@ -700,17 +703,70 @@ namespace MiaClient
             if (SortGebruiker)
             {
                 SortGebruiker = false;
-                aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
+                aankopen = aankopen.OrderByDescending(ak => ak.Aanvrager ?? "").ToList();
             }
             else
             {
                 SortGebruiker = true;
-                aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
+                aankopen = aankopen.OrderBy(ak => ak.Aanvrager ?? "").ToList();
             }
             ApplySortAndRefresh();
         }
 
-       
+        //private void btnSortStatusAanvraag_Click(object sender, EventArgs e)
+        //{
+ 
+        //}
+
+
+
+        //private void btnSortTitel_Click(object sender, EventArgs e)
+        //{
+        //    aankopen = GetFilteredAankopen();
+        //    if (SortTitel)
+        //    {
+        //        SortTitel = false;
+        //        aankopen = aankopen.OrderByDescending(ak => ak.Titel ?? "").ToList();
+        //    }
+        //    else
+        //    {
+        //        SortTitel = true;
+        //        aankopen = aankopen.OrderBy(ak => ak.Titel ?? "").ToList();
+        //    }
+        //    ApplySortAndRefresh();
+        //}
+
+        //private void btnSortAanvraagmoment_Click(object sender, EventArgs e)
+        //{
+        //    aankopen = GetFilteredAankopen();
+        //    if (SortAanvraagmoment)
+        //    {
+        //        SortAanvraagmoment = false;
+        //        aankopen = aankopen.OrderByDescending(ak => ak.Aanvraagmoment).ToList();
+        //    }
+        //    else
+        //    {
+        //        SortAanvraagmoment = true;
+        //        aankopen = aankopen.OrderBy(ak => ak.Aanvraagmoment).ToList();
+        //    }
+        //    ApplySortAndRefresh();
+        //}
+
+        //private void btnSortSaldo_Click(object sender, EventArgs e)
+        //{
+        //    aankopen = GetFilteredAankopen();
+        //    if (SortSaldo)
+        //    {
+        //        SortSaldo = false;
+        //        aankopen = aankopen.OrderByDescending(ak => ak.Saldo).ToList();
+        //    }
+        //    else
+        //    {
+        //        SortSaldo = true;
+        //        aankopen = aankopen.OrderBy(ak => ak.Saldo).ToList();
+        //    }
+        //    ApplySortAndRefresh();
+        //}
 
         public static Color StringToColor(string colorStr)
         {
@@ -729,7 +785,146 @@ namespace MiaClient
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
-            
+            lblWachtenOpExcel.Visible = true;
+            lblWachtenOpExcel.Text = "Data in Excel verwerken...";
+
+            try
+            {
+                List<AankoopOverzichtItem> gefilterdeAankopen = aankopen;
+
+                if (gefilterdeAankopen == null || gefilterdeAankopen.Count == 0)
+                {
+                    MessageBox.Show("Geen aankopen gevonden om te exporteren.", "Exporteren",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var app = new Excel.Application();
+                app.Visible = false;
+                object Nothing = Type.Missing;
+
+                Excel.Workbook workbook = app.Workbooks.Add(Nothing);
+                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Sheets[1];
+
+                //Header excel
+                string[] header = {
+                    "Omschrijving",
+                    "Goedgekeurd bedrag",
+                    "Bedrag incl. BTW",
+                    "Saldo",
+                    "Status aankoop",
+                    "Besteldatum",
+                    "Verwachte leverdatum",
+                    "Effectieve leverdatum"
+                };
+
+                //Header opmaak
+                for (int i = 0; i < header.Length; i++)
+                {
+                    var cell = worksheet.Cells[1, i + 1];
+                    cell.Value = header[i];
+                    cell.Font.Bold = true;
+                    cell.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
+                    cell.Font.Size = 11;
+                    cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(DataDonkerExc);
+                    cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+                }
+
+                int row = 2;
+
+                foreach (var item in gefilterdeAankopen)
+                {
+                    Aankoop aankoop = AankoopManager.GetAankoopById(item.AankoopId);
+
+                    if (aankoop == null) continue;
+
+
+                    decimal goedgekeurdBedrag = aankoop.BudgetToegekend ?? 0m;
+                    decimal bedragInclBTW = aankoop.BedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
+                    decimal saldo = goedgekeurdBedrag - (bedragInclBTW + aankoop.BedragTransfer);
+
+                    StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
+
+                    worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
+
+                    worksheet.Cells[row, 2].Value = goedgekeurdBedrag;
+                    worksheet.Cells[row, 2].NumberFormat = euroFormaat;
+
+                    worksheet.Cells[row, 3].Value = bedragInclBTW;
+                    worksheet.Cells[row, 3].NumberFormat = euroFormaat;
+
+                    worksheet.Cells[row, 4].Value = saldo;
+                    worksheet.Cells[row, 4].NumberFormat = euroFormaat;
+
+                    worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
+
+                    worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
+                        ? (object)aankoop.BestellingsDatum.Value.Date
+                        : "Nog niet gekend";
+
+                    if (aankoop.BestellingsDatum.HasValue)
+                        worksheet.Cells[row, 6].NumberFormat = "dd/mm/jjjj";
+
+                    worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
+                        ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
+                        : "Nog niet gekend";
+
+                    if (aankoop.VerwachteLeveringsDatum.HasValue)
+                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";
+
+                    worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
+                        ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
+                        : "Nog niet gekend";
+
+                    if (aankoop.EffectieveLeveringsDatum.HasValue)
+                        worksheet.Cells[row, 8].NumberFormat = "dd/mm/jjjj";
+
+                    Excel.Range rijRange = worksheet.Range[$"A{row}:H{row}"];
+                    rijRange.Font.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
+
+                    if (row % 2 == 0)
+                        rijRange.Interior.Color = ColorTranslator.ToOle(DataLicht2Exc);
+                    else
+                        rijRange.Interior.Color = ColorTranslator.ToOle(DataLicht1Exc);
+
+                    row++;
+                }
+
+                Excel.Range used = worksheet.Range["A1:H" + (row - 1)];
+                used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                used.Borders.Color = System.Drawing.ColorTranslator.ToOle(textKleurExc);
+                used.AutoFilter(1);
+
+                worksheet.Range["A:H"].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
+                worksheet.Columns["B:D"].HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                worksheet.Columns.AutoFit();
+
+                lblWachtenOpExcel.Visible = false;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    FileName = "AankopenExport",
+                    Filter = "Excel bestanden (*.xlsx)|*.xlsx",
+                    FilterIndex = 1
+                };  
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    worksheet.SaveAs(saveFileDialog.FileName, Excel.XlFileFormat.xlOpenXMLWorkbook);
+                    workbook.Close(false);
+                    Marshal.ReleaseComObject(workbook);
+                    Marshal.ReleaseComObject(worksheet);
+                    app.Quit();
+
+                    MessageBox.Show("Het Excel bestand staat klaar.", "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fout bij export: " + ex.Message, "Exporteren", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -765,7 +960,6 @@ namespace MiaClient
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
 
 
@@ -881,6 +1075,13 @@ namespace MiaClient
             ApplySortAndRefresh();
         }
 
-  
+        public void RefreshAankopen()
+        {
+            aankopen = GetFilteredAankopen(); // filters toepassen
+            huidigePage = 1;
+            StartPaging(); // bindt de aankopen aan pnlAanvragen
+        }
+
+
     }
 }

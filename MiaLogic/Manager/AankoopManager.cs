@@ -39,8 +39,10 @@ namespace MiaLogic.Manager
                         aankoop = new Aankoop();
                         aankoop.Id = Convert.ToInt32(objRea["Id"]);
                         aankoop.Omschrijving = objRea["Omschrijving"].ToString();
-                        aankoop.BTWPercentage = Convert.ToInt32(objRea["BTWPercentage"]);
-                        aankoop.BedragExBtw = Convert.ToInt32(objRea["BedragExBTW"]);
+
+                        aankoop.BTWPercentage = objRea["BTWPercentage"] != DBNull.Value ? Convert.ToInt32(objRea["BTWPercentage"]) : 0;
+                        aankoop.BedragExBtw = objRea["BedragExBTW"] != DBNull.Value ? Convert.ToDecimal(objRea["BedragExBTW"]) : 0;
+                        aankoop.BudgetToegekend = objRea["BudgetToegekend"] != DBNull.Value ? Convert.ToInt32(objRea["BudgetToegekend"]) : 0;
 
                         aankoop.StatusAankoopId = Convert.ToInt32(objRea["StatusAankoopId"]);
                         if (objRea["BestellingsDatum"] != DBNull.Value)
@@ -55,8 +57,18 @@ namespace MiaLogic.Manager
                         {
                             aankoop.EffectieveLeveringsDatum = Convert.ToDateTime(objRea["EffectieveLeveringsDatum"].ToString());
                         }
-                        aankoop.LeverancierId = Convert.ToInt32(objRea["LeverancierId"]);
+                        aankoop.LeverancierId = objRea["LeverancierId"] != DBNull.Value ? Convert.ToInt32(objRea["LeverancierId"]) : 0;
                         aankoop.AanvraagId = Convert.ToInt32(objRea["AanvraagId"]);
+
+                        aankoop.BestelbonNummer = objRea["BestelbonNummer"].ToString();
+                        aankoop.FactuurNummer = objRea["FactuurNummer"].ToString();
+                        aankoop.Factuur = objRea["Factuur"] != DBNull.Value
+                            ? Convert.ToBoolean(objRea["Factuur"])
+                            : false;
+
+                        aankoop.InternNummer = objRea["InternNummer"].ToString();
+                        aankoop.BedragTransfer = objRea["BedragTransfer"] != DBNull.Value ? Convert.ToDecimal(objRea["BedragTransfer"]) : 0;
+
                     }
                 }
             }
@@ -218,6 +230,54 @@ namespace MiaLogic.Manager
                     objCmd.Connection = objCn;
                     objCmd.CommandText = "DELETE FROM Aankoop WHERE Id = @Id";
                     objCmd.Parameters.AddWithValue("@Id", aankoopId);
+
+                    objCn.Open();
+                    objCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateAankoop(Aankoop aankoop)
+        {
+            using (SqlConnection objCn = new SqlConnection())
+            {
+                objCn.ConnectionString = ConnectionString;
+
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = objCn;
+                    objCmd.CommandText = @" UPDATE Aankoop SET
+                Omschrijving = @Omschrijving,
+                StatusAankoopId = @StatusAankoopId,
+                BedragExBtw = @BedragExBtw,
+                BTWPercentage = @BTWPercentage,
+                BedragTransfer = @BedragTransfer,
+                BestellingsDatum = @BestellingsDatum,
+                VerwachteLeveringsDatum = @VerwachteLeveringsDatum,
+                EffectieveLeveringsDatum = @EffectieveLeveringsDatum,
+                LeverancierId = @LeverancierId,
+                BestelbonNummer = @BestelbonNummer,
+                Factuur = @Factuur,
+                FactuurNummer = @FactuurNummer,
+                InternNummer = @InternNummer
+                WHERE Id = @Id";
+                    objCmd.Parameters.AddWithValue("@Id", aankoop.Id);
+                    objCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving);
+                    objCmd.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
+                    objCmd.Parameters.AddWithValue("@BedragExBtw", aankoop.BedragExBtw);
+                    objCmd.Parameters.AddWithValue("@BTWPercentage", aankoop.BTWPercentage);
+                    objCmd.Parameters.AddWithValue("@BedragTransfer", aankoop.BedragTransfer);
+                    objCmd.Parameters.AddWithValue("@BestellingsDatum",
+                        (object)aankoop.BestellingsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@VerwachteLeveringsDatum",
+                        (object)aankoop.VerwachteLeveringsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@EffectieveLeveringsDatum",
+                        (object)aankoop.EffectieveLeveringsDatum ?? DBNull.Value);
+                    objCmd.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
+                    objCmd.Parameters.AddWithValue("@BestelbonNummer", aankoop.BestelbonNummer);
+                    objCmd.Parameters.AddWithValue("@Factuur", aankoop.Factuur);
+                    objCmd.Parameters.AddWithValue("@FactuurNummer", aankoop.FactuurNummer);
+                    objCmd.Parameters.AddWithValue("@InternNummer", aankoop.InternNummer);
 
                     objCn.Open();
                     objCmd.ExecuteNonQuery();

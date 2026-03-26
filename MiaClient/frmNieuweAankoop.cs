@@ -53,7 +53,8 @@
 
             private void frmNieuweAankoop_Load(object sender, EventArgs e)
             {
-            CreateUI();
+                AppForms.frmNieuweAankoop = this;
+                CreateUI();
                 btnFirst.BringToFront();
                 btnPrevious.BringToFront();
                 btnNext.BringToFront();
@@ -452,6 +453,5 @@
                 e.Cancel = true;
                 Hide();
             }
-
-        }
+    }
     }

@@ -77,6 +77,7 @@ namespace MiaClient
             this.btnRichtperiode = new System.Windows.Forms.Button();
             this.btnSortGoedgekeurdbedrag = new System.Windows.Forms.Button();
             this.btnSaldo = new System.Windows.Forms.Button();
+            this.lblWachtenOpExcel = new System.Windows.Forms.Label();
             this.gbxFinancieringsjaar.SuspendLayout();
             this.grbxFilterAanvraag.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +103,7 @@ namespace MiaClient
             // 
             // gbxFinancieringsjaar
             // 
+            this.gbxFinancieringsjaar.Controls.Add(this.lblWachtenOpExcel);
             this.gbxFinancieringsjaar.Controls.Add(this.btnAdd);
             this.gbxFinancieringsjaar.Controls.Add(this.btnExportToExcel);
             this.gbxFinancieringsjaar.Controls.Add(this.btnFilter);
@@ -616,6 +618,14 @@ namespace MiaClient
             this.btnSaldo.UseVisualStyleBackColor = false;
             this.btnSaldo.Click += new System.EventHandler(this.btnSaldo_Click);
             // 
+            // lblWachtenOpExcel
+            // 
+            this.lblWachtenOpExcel.AutoSize = true;
+            this.lblWachtenOpExcel.Location = new System.Drawing.Point(6, 41);
+            this.lblWachtenOpExcel.Name = "lblWachtenOpExcel";
+            this.lblWachtenOpExcel.Size = new System.Drawing.Size(0, 25);
+            this.lblWachtenOpExcel.TabIndex = 46;
+            // 
             // frmAankopen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -721,5 +731,6 @@ namespace MiaClient
         private System.Windows.Forms.Button btnSortGoedgekeurdbedrag;
         private System.Windows.Forms.Button btnSaldo;
         private System.Windows.Forms.Button testtest;
+        private System.Windows.Forms.Label lblWachtenOpExcel;
     }
 }
