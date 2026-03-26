@@ -1117,28 +1117,50 @@ namespace MiaClient
             switch (richtperiodeTekst)
             {
                 case "januari":
+                case "jan":
                     return 1;
+
                 case "februari":
+                case "feb":
                     return 2;
+
                 case "maart":
+                case "mrt":
                     return 3;
+
                 case "april":
+                case "apr":
                     return 4;
+
                 case "mei":
                     return 5;
+
                 case "juni":
+                case "jun":
                     return 6;
+
                 case "juli":
+                case "jul":
                     return 7;
+
                 case "augustus":
+                case "aug":
                     return 8;
+
                 case "september":
+                case "sep":
                     return 9;
+
                 case "oktober":
+                case "okt":
                     return 10;
+
                 case "november":
+                case "nov":
                     return 11;
+
                 case "december":
+                case "dec":
                     return 12;
             }
 
