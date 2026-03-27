@@ -16,17 +16,17 @@ namespace MiaLogic.Manager
         public static List<string> GetFinancieringsjaren()
         {
             List<AankoopOverzichtItem> jaren2 = AankoopManager.GetAllAankopen();
-            HashSet<string> a = new HashSet<string>();
+            HashSet<string> jaren = new HashSet<string>();
 
             foreach (var z in jaren2)
             {
                 if (z.Financieringsjaar != "")
                 {
-                    a.Add(z.Financieringsjaar);
+                    jaren.Add(z.Financieringsjaar);
                 }
             }
 
-            List<string> financieringsjaren = new List<string>(a);
+            List<string> financieringsjaren = new List<string>(jaren);
             financieringsjaren.Sort();
 
             return financieringsjaren;

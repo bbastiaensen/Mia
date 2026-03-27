@@ -370,11 +370,15 @@ namespace MiaClient
             // Filter on Richtperiode
             if (filterRichtperiode)
             {
+                string richtperiodeVanTekst = txtRichtperiodeVan?.Text?.Trim() ?? "";
+                string richtperiodeTotTekst = txtRichtperiodeTot?.Text?.Trim() ?? "";
                 int richtperiodeVan = GetRichtPeriode(txtRichtperiodeVan?.Text);
                 int richtperiodeTot = GetRichtPeriode(txtRichtperiodeTot?.Text);
+                bool heeftMaandBereikFilter = false;
 
                 if (chbxPlaningsdatumVan.Checked && richtperiodeVan > 0)
                 {
+                    heeftMaandBereikFilter = true;
                     filtered = filtered.Where(ak =>
                     {
                         int richtperiode = GetRichtPeriode(ak.Richtperiode);
@@ -384,11 +388,29 @@ namespace MiaClient
 
                 if (chbxPlaningsdatumTot.Checked && richtperiodeTot > 0)
                 {
+                    heeftMaandBereikFilter = true;
                     filtered = filtered.Where(ak =>
                     {
                         int richtperiode = GetRichtPeriode(ak.Richtperiode);
                         return richtperiode > 0 && richtperiode <= richtperiodeTot;
                     });
+                }
+
+                if (!heeftMaandBereikFilter)
+                {
+                    if (!string.IsNullOrWhiteSpace(richtperiodeVanTekst))
+                    {
+                        filtered = filtered.Where(ak =>
+                            !string.IsNullOrWhiteSpace(ak.Richtperiode) &&
+                            ak.Richtperiode.IndexOf(richtperiodeVanTekst, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(richtperiodeTotTekst))
+                    {
+                        filtered = filtered.Where(ak =>
+                            !string.IsNullOrWhiteSpace(ak.Richtperiode) &&
+                            ak.Richtperiode.IndexOf(richtperiodeTotTekst, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
                 }
             }
 
@@ -471,8 +493,8 @@ namespace MiaClient
                     filterAanvrager = true;
                 if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
                     filterFinancieringsjaar = true;
-                if ((chbxPlaningsdatumVan.Checked && !string.IsNullOrWhiteSpace(txtRichtperiodeVan?.Text)) ||
-                    (chbxPlaningsdatumTot.Checked && !string.IsNullOrWhiteSpace(txtRichtperiodeTot?.Text)))
+                if (!string.IsNullOrWhiteSpace(txtRichtperiodeVan?.Text) ||
+                    !string.IsNullOrWhiteSpace(txtRichtperiodeTot?.Text))
                     filterRichtperiode = true;
                 if ((txtGoedgekeurdBedragVan != null && !string.IsNullOrEmpty(txtGoedgekeurdBedragVan.Text)) ||
                     (txtBedragVan != null && !string.IsNullOrEmpty(txtBedragVan.Text)))
@@ -706,7 +728,7 @@ namespace MiaClient
             //{
             //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
-        }
+        } 
 
         private void ApplySortAndRefresh()
         {
