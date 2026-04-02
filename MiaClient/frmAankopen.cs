@@ -395,23 +395,6 @@ namespace MiaClient
                         return richtperiode > 0 && richtperiode <= richtperiodeTot;
                     });
                 }
-
-                if (!heeftMaandBereikFilter)
-                {
-                    if (!string.IsNullOrWhiteSpace(richtperiodeVanTekst))
-                    {
-                        filtered = filtered.Where(ak =>
-                            !string.IsNullOrWhiteSpace(ak.Richtperiode) &&
-                            ak.Richtperiode.IndexOf(richtperiodeVanTekst, StringComparison.OrdinalIgnoreCase) >= 0);
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(richtperiodeTotTekst))
-                    {
-                        filtered = filtered.Where(ak =>
-                            !string.IsNullOrWhiteSpace(ak.Richtperiode) &&
-                            ak.Richtperiode.IndexOf(richtperiodeTotTekst, StringComparison.OrdinalIgnoreCase) >= 0);
-                    }
-                }
             }
 
             // Filter on GoedgekeurdBedrag - can use existing txtBedragVan/txtBedragTot
@@ -821,7 +804,8 @@ namespace MiaClient
         Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
         Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
 
-        const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
+        //const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
+        string euroFormaat = "#,##0.00 [$€-nl-BE];-#,##0.00 [$€-nl-BE]";
 
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
