@@ -1,8 +1,12 @@
-﻿using System;
+﻿using MiaLogic.Object;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MiaLogic.Manager
 {
@@ -11,16 +15,22 @@ namespace MiaLogic.Manager
         public static string ConnectionString { get; set; }
         public static List<string> GetFinancieringsjaren()
         {
-            List<string> financieringsjaren = new List<string>();
+            List<AankoopOverzichtItem> jaren2 = AankoopManager.GetAllAankopen();
+            HashSet<string> jaren = new HashSet<string>();
 
-            // Adding financial years based on the current year
-            int currentYear = DateTime.Now.Year;
-            for (int i = 0; i < 5; i++)
+            foreach (var z in jaren2)
             {
-                string startingYear = (currentYear + i).ToString();
-                financieringsjaren.Add(startingYear);
+                if (z.Financieringsjaar != "")
+                {
+                    jaren.Add(z.Financieringsjaar);
+                }
             }
+
+            List<string> financieringsjaren = new List<string>(jaren);
+            financieringsjaren.Sort();
+
             return financieringsjaren;
         }
+
     }
 }
