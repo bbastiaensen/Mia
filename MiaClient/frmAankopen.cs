@@ -16,6 +16,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MiaClient
 {
@@ -89,8 +90,6 @@ namespace MiaClient
         }
         private void frmAankopen_Load(object sender, EventArgs e)
         {
-            MaximizeBox = false;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             try
             {
                 AppForms.frmAankopen = this;
@@ -100,6 +99,10 @@ namespace MiaClient
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.BackColor = StyleParameters.Achtergrondkleur;
 
             btnFilter.BackgroundImage = imgFilter;
@@ -137,12 +140,14 @@ namespace MiaClient
                 btnAdd.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
             }
 
+            cmbFinancieringsjaar.Items.Add("geen financieringsjaar");
+            cmbFinancieringsjaar.SelectedIndex = 0;
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
             foreach (string jaar in jaren)
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
-            cmbFinancieringsjaar.SelectedItem = DateTime.Now.Year.ToString();
+             
         }
 
         private void LoadAankopen()
@@ -239,22 +244,20 @@ namespace MiaClient
         {
             if (items != null)
             {
-                //if (RSort)
-                //{
-                //    //items = items.Where(av =>);              
-                //}
                 if (planningsdatumVan)
                 {
-                    if (chbxPlaningsdatumVan.Checked == true)
+                    int richtperiodeVan = GetRichtPeriode(txtRichtperiodeVan.Text);
+                    if (chbxPlaningsdatumVan.Checked == true && richtperiodeVan > 0)
                     {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum >= Convert.ToDateTime(dtpPlanningsdatumVan.Text)).ToList();
+                        items = items.Where(av => av.RichtperiodeId >= richtperiodeVan).ToList();
                     }
                 }
                 if (planningsdatumTot)
                 {
-                    if (chbxPlaningsdatumTot.Checked == true)
+                    int richtperiodeTot = GetRichtPeriode(txtRichtperiodeTot.Text);
+                    if (chbxPlaningsdatumTot.Checked == true && richtperiodeTot > 0)
                     {
-                        items = items.Where(av => av.Planningsdatum != null && av.Planningsdatum <= (Convert.ToDateTime(dtpPlanningsdatumTot.Text)).Add(new TimeSpan(23, 59, 59))).ToList();
+                        items = items.Where(av => av.RichtperiodeId <= richtperiodeTot).ToList();
                     }
                 }
                 if (gebruiker)
@@ -265,12 +268,9 @@ namespace MiaClient
                 {
                     items = items.Where(av => av.Titel.ToLower().Contains(txtTitel.Text.ToLower())).ToList();
                 }
-                if (jaar)
+                if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1 && cmbFinancieringsjaar.SelectedItem.ToString() != "geen financieringsjaar")
                 {
-                    if (cmbFinancieringsjaar.SelectedIndex > -1)
-                    {
-                        items = items.Where(av => av.Financieringsjaar.ToString().Contains(cmbFinancieringsjaar.SelectedItem.ToString())).ToList();
-                    }
+                    filterFinancieringsjaar = true;
                 }
                 if (bedragVan)
                 {
@@ -360,18 +360,41 @@ namespace MiaClient
             }
 
             // Filter on Financieringsjaar
-            if (filterFinancieringsjaar && cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
+            if (filterFinancieringsjaar && cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1 && cmbFinancieringsjaar.SelectedItem.ToString() != "geen financieringsjaar")
             {
                 string selectedJaar = cmbFinancieringsjaar.SelectedItem.ToString();
-                filtered = filtered.Where(ak => ak.Financieringsjaar != null && 
-                    ak.Financieringsjaar.Contains(selectedJaar));
+
+                filtered = filtered.Where(ak => !string.IsNullOrEmpty(ak.Financieringsjaar) && ak.Financieringsjaar == selectedJaar);
             }
 
             // Filter on Richtperiode
-            if (filterRichtperiode && txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+            if (filterRichtperiode)
             {
-                filtered = filtered.Where(ak => ak.Richtperiode != null && 
-                    ak.Richtperiode.ToLower().Contains(txtRichtperiode.Text.ToLower()));
+                string richtperiodeVanTekst = txtRichtperiodeVan?.Text?.Trim() ?? "";
+                string richtperiodeTotTekst = txtRichtperiodeTot?.Text?.Trim() ?? "";
+                int richtperiodeVan = GetRichtPeriode(txtRichtperiodeVan?.Text);
+                int richtperiodeTot = GetRichtPeriode(txtRichtperiodeTot?.Text);
+                bool heeftMaandBereikFilter = false;
+
+                if (chbxPlaningsdatumVan.Checked && richtperiodeVan > 0)
+                {
+                    heeftMaandBereikFilter = true;
+                    filtered = filtered.Where(ak =>
+                    {
+                        int richtperiode = GetRichtPeriode(ak.Richtperiode);
+                        return richtperiode > 0 && richtperiode >= richtperiodeVan;
+                    });
+                }
+
+                if (chbxPlaningsdatumTot.Checked && richtperiodeTot > 0)
+                {
+                    heeftMaandBereikFilter = true;
+                    filtered = filtered.Where(ak =>
+                    {
+                        int richtperiode = GetRichtPeriode(ak.Richtperiode);
+                        return richtperiode > 0 && richtperiode <= richtperiodeTot;
+                    });
+                }
             }
 
             // Filter on GoedgekeurdBedrag - can use existing txtBedragVan/txtBedragTot
@@ -453,7 +476,8 @@ namespace MiaClient
                     filterAanvrager = true;
                 if (cmbFinancieringsjaar != null && cmbFinancieringsjaar.SelectedIndex > -1)
                     filterFinancieringsjaar = true;
-                if (txtRichtperiode != null && !string.IsNullOrEmpty(txtRichtperiode.Text))
+                if (!string.IsNullOrWhiteSpace(txtRichtperiodeVan?.Text) ||
+                    !string.IsNullOrWhiteSpace(txtRichtperiodeTot?.Text))
                     filterRichtperiode = true;
                 if ((txtGoedgekeurdBedragVan != null && !string.IsNullOrEmpty(txtGoedgekeurdBedragVan.Text)) ||
                     (txtBedragVan != null && !string.IsNullOrEmpty(txtBedragVan.Text)))
@@ -674,29 +698,20 @@ namespace MiaClient
             btnLast.BackgroundImage = huidigePage == aantalPages ? imgLastDisable : imgLast;
         }
 
-        private void frmAankopen_Shown(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadAankopen();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+   
 
         private void cmbFinancieringsjaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                LoadAankopen();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+            //try
+            //{
+            //    int jaar = Convert.ToInt32(cmbFinancieringsjaar.SelectedItem);
+            //    AankoopManager.LoadFinancieringAankopen(jaar);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+        } 
 
         private void ApplySortAndRefresh()
         {
@@ -789,8 +804,6 @@ namespace MiaClient
         Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
         Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
 
-        const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
-
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
             lblWachtenOpExcel.Visible = true;
@@ -847,7 +860,6 @@ namespace MiaClient
 
                     if (aankoop == null) continue;
 
-
                     decimal goedgekeurdBedrag = aankoop.BudgetToegekend ?? 0m;
                     decimal bedragInclBTW = aankoop.BedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
                     decimal saldo = goedgekeurdBedrag - (bedragInclBTW + aankoop.BedragTransfer);
@@ -855,35 +867,28 @@ namespace MiaClient
                     StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
 
                     worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
-
                     worksheet.Cells[row, 2].Value = goedgekeurdBedrag;
-                    worksheet.Cells[row, 2].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 3].Value = bedragInclBTW;
-                    worksheet.Cells[row, 3].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 4].Value = saldo;
-                    worksheet.Cells[row, 4].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
                     worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
                         ? (object)aankoop.BestellingsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.BestellingsDatum.HasValue)
                         worksheet.Cells[row, 6].NumberFormat = "dd/mm/jjjj";
 
                     worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
                         ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.VerwachteLeveringsDatum.HasValue)
                         worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";
 
                     worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
                         ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.EffectieveLeveringsDatum.HasValue)
                         worksheet.Cells[row, 8].NumberFormat = "dd/mm/jjjj";
@@ -898,6 +903,9 @@ namespace MiaClient
 
                     row++;
                 }
+
+                string euroFormaat = "[$€-nl-BE] #,##0.00";
+                worksheet.Range[$"B2:D{row - 1}"].NumberFormat = euroFormaat;
 
                 Excel.Range used = worksheet.Range["A1:H" + (row - 1)];
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -1090,6 +1098,77 @@ namespace MiaClient
             StartPaging(); // bindt de aankopen aan pnlAanvragen
         }
 
+        private int GetRichtPeriode(string waarde)
+        {
+            if (string.IsNullOrWhiteSpace(waarde))
+            {
+                return 0;
+            }
+
+            string richtperiodeTekst = waarde.Trim().ToLowerInvariant();
+
+            if (int.TryParse(richtperiodeTekst, out int maandNummer) && maandNummer >= 1 && maandNummer <= 12)
+            {
+                return maandNummer;
+            }
+
+            switch (richtperiodeTekst)
+            {
+                case "januari":
+                case "jan":
+                    return 1;
+
+                case "februari":
+                case "feb":
+                    return 2;
+
+                case "maart":
+                case "mrt":
+                    return 3;
+
+                case "april":
+                case "apr":
+                    return 4;
+
+                case "mei":
+                    return 5;
+
+                case "juni":
+                case "jun":
+                    return 6;
+
+                case "juli":
+                case "jul":
+                    return 7;
+
+                case "augustus":
+                case "aug":
+                    return 8;
+
+                case "september":
+                case "sep":
+                    return 9;
+
+                case "oktober":
+                case "okt":
+                    return 10;
+
+                case "november":
+                case "nov":
+                    return 11;
+
+                case "december":
+                case "dec":
+                    return 12;
+            }
+
+            if (DateTime.TryParseExact(richtperiodeTekst, "MMMM", new CultureInfo("nl-BE"), DateTimeStyles.None, out DateTime maand))
+            {
+                return maand.Month;
+            }
+            //a
+            return 0;
+        }
 
     }
 }
