@@ -36,6 +36,7 @@ namespace MiaClient
         }
         private void frmAankoopDetail_Load(object sender, EventArgs e)
         {
+            btnEuro.Visible = false;
             this.BackColor = StyleParameters.Achtergrondkleur;
             AppForms.frmAankoopDetail = this;
 
@@ -139,7 +140,7 @@ namespace MiaClient
 
         private void BerekenBedragen()
         {
-            _aankoop = AankoopManager.GetAankoopById(_aankoopId);
+          
             decimal exBTW = ParseDecimal(txtExBtw.Text);
             decimal btw = ParseDecimal(txtBtwPercentage.Text);
             decimal transfer = ParseDecimal(txtBedragTransfer.Text);
@@ -162,18 +163,12 @@ namespace MiaClient
                 {
                     if (_aankoop.StatusAankoopId == 3 || _aankoop.StatusAankoopId == 4)
                     {
-                        btnEuro.Enabled = true;
+                        btnEuro.Visible = true;
                     }
                    
                 }
 
-                if (Program.IsSysteem == true || Program.IsGoedkeurder == true || Program.IsAankoper == true || Program.IsAanvrager == true)
-                {
-                    if (_aankoop.StatusAankoopId == 3 || _aankoop.StatusAankoopId == 4)
-                    {
-                        btnEuro.Enabled = true;
-                    }
-                }
+                    
             }
             else
             {
@@ -382,13 +377,15 @@ namespace MiaClient
 
         private void btnEuro_Click(object sender, EventArgs e)
         {
-
+            if (frmSaldoOverzetten == null)
+            {
+                frmSaldoOverzetten = new frmSaldoOverzetten(_aankoopId);
+                frmSaldoOverzetten.MdiParent = MdiParent;
+               
+            }
 
             frmSaldoOverzetten.Show();
         }
-        private void btnEuroDisablen(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

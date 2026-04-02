@@ -1,4 +1,6 @@
-﻿using ProofOfConceptDesign;
+﻿using MiaLogic.Manager;
+using MiaLogic.Object;
+using ProofOfConceptDesign;
 using System;
 using System.Drawing;
 using System.IO;
@@ -11,6 +13,7 @@ namespace MiaClient
     {
         Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "Filter.png"));
         int aankoopId = 0;
+        Aanvraag aanvraag= new Aanvraag();
 
         public frmSaldoOverzetten(int aankoopId)
         {
@@ -57,9 +60,18 @@ namespace MiaClient
 
         private void btnZoeken_Click(object sender, EventArgs e)
         {
-
-            btnSaldoOverzetten.Text = "Saldo van aankoop #" + aankoopId + " overzetten naar aanvraag #" + txtAanvraagId.Text;
-            btnSaldoOverzetten.Enabled = true;
+            aanvraag = AanvraagManager.GetAanvraagById(Convert.ToInt32(txtAanvraagId.Text));
+            if(aanvraag.StatusAanvraagId != 4)
+            {
+                MessageBox.Show("De aanvraag moet in status 'Bekrachtigd' staan om saldo te kunnen overzetten."); 
+            }
+            else
+            {
+                btnSaldoOverzetten.Text = "Saldo van aankoop #" + aankoopId + " overzetten naar aanvraag #" + txtAanvraagId.Text;
+                btnSaldoOverzetten.Enabled = true;
+            }
+                
+            
         }
 
         private void btnSaldoOverzetten_Click(object sender, EventArgs e)

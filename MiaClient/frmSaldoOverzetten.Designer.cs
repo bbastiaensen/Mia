@@ -146,7 +146,7 @@
             this.btnSaldoOverzetten.Name = "btnSaldoOverzetten";
             this.btnSaldoOverzetten.Size = new System.Drawing.Size(467, 50);
             this.btnSaldoOverzetten.TabIndex = 37;
-            this.btnSaldoOverzetten.Text = "button1";
+            this.btnSaldoOverzetten.Text = "Saldo Overzetten";
             this.btnSaldoOverzetten.UseVisualStyleBackColor = true;
             this.btnSaldoOverzetten.Click += new System.EventHandler(this.btnSaldoOverzetten_Click);
             // 
