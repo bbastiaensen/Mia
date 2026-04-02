@@ -57,9 +57,13 @@ namespace MiaClient
         Image imgAfdelingen;
         Image imgDiensten;
         Image imgKostenplaats;
-
-
-
+        Image imgFinancieringsType;
+        Image imgInvesteringsType;
+        Image imgPrioriteit;
+        Image imgLanden;
+        Image imgLeverancier;   
+        Image imgGemeente;
+        Image imgAankopen;
 
         public mdiMia()
         {
@@ -237,6 +241,13 @@ namespace MiaClient
                 imgAfdelingen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-department-50-alt.png"));
                 imgDiensten = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-dienst-50-alt.png"));
                 imgKostenplaats = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-cost-euro-50-alt.png"));
+                imgFinancieringsType = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-finance-50-alt.png"));
+                imgInvesteringsType = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-investment-50-alt.png"));
+                imgPrioriteit = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-priority-50-alt.png"));
+                imgLanden = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-country-50-alt.png"));
+                imgLeverancier = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-supplier-50-alt.png"));
+                imgGemeente = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-city-50-alt.png"));
+                imgAankopen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-buy-50-alt.png"));
             }
             else
             {
@@ -250,6 +261,13 @@ namespace MiaClient
                 imgAfdelingen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-department-50.png"));
                 imgDiensten = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-dienst-50.png"));
                 imgKostenplaats = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-cost-euro-50.png"));
+                imgFinancieringsType = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-finance-50.png"));
+                imgInvesteringsType = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-investment-50.png"));
+                imgPrioriteit = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-priority-50.png"));
+                imgLanden = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-country-50.png"));
+                imgLeverancier = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-supplier-50.png"));
+                imgGemeente = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-city-50.png"));
+                imgAankopen = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "icons8-buy-50.png"));
             }
 
             gebruikersToolStripButton.Image = imgGebruikersbeheer;
@@ -262,6 +280,13 @@ namespace MiaClient
             afdelingToolStripButton.Image = imgAfdelingen;
             dienstToolStripButton.Image = imgDiensten;
             kostenplaatsToolStripButton.Image = imgKostenplaats;
+            financieringsTypeToolStripButton.Image = imgFinancieringsType;
+            investeringsTypeToolStripButton.Image = imgInvesteringsType;
+            prioriteitToolStripButton.Image = imgPrioriteit;
+            landenToolStripButton.Image = imgLanden;
+            leverancierToolStripButton.Image = imgLeverancier;
+            gemeenteToolStripButton.Image = imgGemeente;
+            aankopenToolStripButton.Image = imgAankopen;
         }
         private void MenubalkSamenstellen()
         {
@@ -279,6 +304,12 @@ namespace MiaClient
                 afdelingToolStripButton.Visible = false;
                 dienstToolStripButton.Visible = false;
                 kostenplaatsToolStripButton.Visible = false;
+                financieringsTypeToolStripButton.Visible = false;
+                investeringsTypeToolStripButton.Visible = false;
+                prioriteitToolStripButton.Visible = false;
+                landenToolStripButton.Visible = false;
+                leverancierToolStripButton.Visible = false;
+                gemeenteToolStripButton.Visible = false;
                 helpMenu.Visible = true;
                 goedkeuringenToolStripMenuItem.Visible = false;
                 overzichtenToolStripMenuItem.Visible = false;
@@ -293,7 +324,8 @@ namespace MiaClient
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
-                budgetSpreidingtoolStripButton.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = false;
+                aankopenToolStripButton.Visible = true;
 
                 tss1.Visible = false;
                 goedkeuringenToolStripMenuItem.Visible = false;
@@ -310,6 +342,12 @@ namespace MiaClient
                 afdelingToolStripButton.Visible = false;
                 dienstToolStripButton.Visible = false;
                 kostenplaatsToolStripButton.Visible = false;
+                financieringsTypeToolStripButton.Visible = false;
+                investeringsTypeToolStripButton.Visible = false;
+                prioriteitToolStripButton.Visible = false;
+                landenToolStripButton.Visible = false;
+                leverancierToolStripButton.Visible = false;
+                gemeenteToolStripButton.Visible = false;
             }
 
             //Goedkeurder - items voor goedkeurder worden extra bij aangezet
@@ -322,7 +360,8 @@ namespace MiaClient
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
-                budgetSpreidingtoolStripButton.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = false;
+                aankopenToolStripButton.Visible = true;
 
                 beheerToolStripMenuItem.Visible = false;
                 gebruiksLogToolStripButton.Visible = false;
@@ -332,6 +371,12 @@ namespace MiaClient
                 afdelingToolStripButton.Visible = false;
                 dienstToolStripButton.Visible = false;
                 kostenplaatsToolStripButton.Visible = false;
+                financieringsTypeToolStripButton.Visible = false;
+                investeringsTypeToolStripButton.Visible = false;
+                prioriteitToolStripButton.Visible = false;
+                landenToolStripButton.Visible = false;
+                leverancierToolStripButton.Visible = false;
+                gemeenteToolStripButton.Visible = false;
 
                 aankopenToolStripMenuItem.Visible = false;
             }
@@ -348,7 +393,6 @@ namespace MiaClient
                 parameterToolStripButton.Visible = true;
                 gebruikersToolStripButton.Visible = true;
                 aankopersToolStripButton.Visible = true;
-                //TODO: Afdelingen en diensten tijdelijk uitgezet tot items klaar zijn.
                 afdelingToolStripButton.Visible = true;
                 afdelingenToolStripMenuItem.Visible = true;
                 dienstToolStripButton.Visible = true;
@@ -357,13 +401,19 @@ namespace MiaClient
                 investeringsTypesToolStripMenuItem.Visible = true;
 
                 kostenplaatsToolStripButton.Visible = true;
+                financieringsTypeToolStripButton.Visible = true;
+                investeringsTypeToolStripButton.Visible = true;
+                prioriteitToolStripButton.Visible = true;
+                landenToolStripButton.Visible = true;
+                leverancierToolStripButton.Visible = true;
+                gemeenteToolStripButton.Visible = true;
 
                 tss3.Visible = true;
                 overzichtenToolStripMenuItem.Visible = true;
                 budgetoverzichtToolStripMenuItem.Visible = true;
-                budgetSpreidingtoolStripButton.Visible = true;
+                budgetSpreidingtoolStripButton.Visible = false;
+                aankopenToolStripButton.Visible = true;
 
-                //TO DO: Dit is onvoldoende uitgewerkt om al gebruikt te worden.
                 aankopenToolStripMenuItem.Visible = true;
             }
         }
@@ -743,6 +793,76 @@ namespace MiaClient
                 frmBeheerGemeente.MdiParent = this;
             }
             frmBeheerGemeente.Show();
+        }
+
+        private void aankopenToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmAankopen == null)
+            {
+                frmAankopen = new frmAankopen();
+                frmAankopen.MdiParent = this;
+            }
+            frmAankopen.Show();
+        }
+
+        private void financieringsTypeToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerFinancieringsType == null)
+            {
+                frmBeheerFinancieringsType = new frmBeheerFinancieringsType();
+                frmBeheerFinancieringsType.MdiParent = this;
+            }
+            frmBeheerFinancieringsType.Show();
+        }
+
+        private void gemeenteToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerGemeente == null)
+            {
+                frmBeheerGemeente = new frmBeheerGemeente();
+                frmBeheerGemeente.MdiParent = this;
+            }
+            frmBeheerGemeente.Show();
+        }
+
+        private void investeringsTypeToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerInvesteringsType == null)
+            {
+                frmBeheerInvesteringsType = new frmBeheerInvesteringsType();
+                frmBeheerInvesteringsType.MdiParent = this;
+            }
+            frmBeheerInvesteringsType.Show();
+        }
+
+        private void landenToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerLanden == null)
+            {
+                frmBeheerLanden = new frmBeheerLanden();
+                frmBeheerLanden.MdiParent = this;
+            }
+            frmBeheerLanden.Show();
+        }
+
+        private void leverancierToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmBeheerLeverancier == null)
+            {
+                frmBeheerLeverancier = new frmBeheerLeverancier();
+                frmBeheerLeverancier.MdiParent = this;
+            }
+            frmBeheerLeverancier.Show();
+        }
+
+        private void prioriteitToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmPrioriteit == null)
+            {
+                frmPrioriteit = new frmBeheerPrioriteit();
+                frmPrioriteit.MdiParent = this;
+            }
+            frmPrioriteit.Show();
         }
     }
 }
