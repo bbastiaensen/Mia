@@ -869,7 +869,7 @@ namespace MiaClient
                         : "Niet gekend";
 
                     if (aankoop.VerwachteLeveringsDatum.HasValue)
-                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";2
+                        worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";
 
                     worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
                         ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
