@@ -804,8 +804,6 @@ namespace MiaClient
         Color DataLicht1Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL1").Waarde);
         Color DataLicht2Exc = StringToColor(ParameterManager.GetParameterByCode("DataExcelL2").Waarde);
 
-        const string euroFormaat = "€ #.##,00; - € #.##,00 ; € 0,00";
-
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
             lblWachtenOpExcel.Visible = true;
@@ -862,7 +860,6 @@ namespace MiaClient
 
                     if (aankoop == null) continue;
 
-
                     decimal goedgekeurdBedrag = aankoop.BudgetToegekend ?? 0m;
                     decimal bedragInclBTW = aankoop.BedragExBtw * (1 + (aankoop.BTWPercentage / 100m));
                     decimal saldo = goedgekeurdBedrag - (bedragInclBTW + aankoop.BedragTransfer);
@@ -870,35 +867,28 @@ namespace MiaClient
                     StatusAankoop status = StatusAankoopManager.GetStatusAankoopById(aankoop.StatusAankoopId);
 
                     worksheet.Cells[row, 1] = item.Omschrijving ?? "Geen omschrijving";
-
                     worksheet.Cells[row, 2].Value = goedgekeurdBedrag;
-                    worksheet.Cells[row, 2].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 3].Value = bedragInclBTW;
-                    worksheet.Cells[row, 3].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 4].Value = saldo;
-                    worksheet.Cells[row, 4].NumberFormat = euroFormaat;
-
                     worksheet.Cells[row, 5] = status?.Naam ?? "Geen status";
 
                     worksheet.Cells[row, 6].Value = aankoop.BestellingsDatum.HasValue
                         ? (object)aankoop.BestellingsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.BestellingsDatum.HasValue)
                         worksheet.Cells[row, 6].NumberFormat = "dd/mm/jjjj";
 
                     worksheet.Cells[row, 7].Value = aankoop.VerwachteLeveringsDatum.HasValue
                         ? (object)aankoop.VerwachteLeveringsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.VerwachteLeveringsDatum.HasValue)
                         worksheet.Cells[row, 7].NumberFormat = "dd/mm/jjjj";
 
                     worksheet.Cells[row, 8].Value = aankoop.EffectieveLeveringsDatum.HasValue
                         ? (object)aankoop.EffectieveLeveringsDatum.Value.Date
-                        : "Nog niet gekend";
+                        : "Niet gekend";
 
                     if (aankoop.EffectieveLeveringsDatum.HasValue)
                         worksheet.Cells[row, 8].NumberFormat = "dd/mm/jjjj";
@@ -913,6 +903,9 @@ namespace MiaClient
 
                     row++;
                 }
+
+                string euroFormaat = "[$€-nl-BE] #,##0.00";
+                worksheet.Range[$"B2:D{row - 1}"].NumberFormat = euroFormaat;
 
                 Excel.Range used = worksheet.Range["A1:H" + (row - 1)];
                 used.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
