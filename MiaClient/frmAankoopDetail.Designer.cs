@@ -521,7 +521,7 @@
             this.btnEuro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEuro.FlatAppearance.BorderSize = 0;
             this.btnEuro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEuro.Location = new System.Drawing.Point(299, 447);
+            this.btnEuro.Location = new System.Drawing.Point(261, 447);
             this.btnEuro.Name = "btnEuro";
             this.btnEuro.Size = new System.Drawing.Size(40, 40);
             this.btnEuro.TabIndex = 62;

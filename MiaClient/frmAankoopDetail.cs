@@ -15,10 +15,12 @@ using System.Windows.Forms;
 
 namespace MiaClient
 {
-   
+
     public partial class frmAankoopDetail : Form
     {
-        Image imgFilter = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "images.png"));
+        frmSaldoOverzetten frmSaldoOverzetten;
+        Image imgGeld = (Image)new Bitmap(Path.Combine(Directory.GetCurrentDirectory(), "icons", "images.png"));
+
         private static readonly DateTime OnbekendeDatum = new DateTime(2000, 1, 1);
         private int _aankoopId;
         private Aankoop _aankoop;
@@ -34,7 +36,7 @@ namespace MiaClient
         }
         private void frmAankoopDetail_Load(object sender, EventArgs e)
         {
-            
+            this.BackColor = StyleParameters.Achtergrondkleur;
             AppForms.frmAankoopDetail = this;
 
             CreateUI();
@@ -42,9 +44,10 @@ namespace MiaClient
             LaadAankoop();
             BerekenBedragen();
             ButtonLogica();
-            btnEuro.BackgroundImage = imgFilter;
+            btnEuro.BackgroundImage = imgGeld;
             btnEuro.BackgroundImageLayout = ImageLayout.Stretch;
             btnEuro.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
+
         }
 
         private void RefreshLeverancierDropdown()
@@ -107,6 +110,7 @@ namespace MiaClient
                 _aankoop = AankoopManager.GetAankoopById(_aankoopId);
                 _aanvraag = AanvraagManager.GetAanvraagById(_aankoop.AanvraagId);
 
+
                 txtAankoopId.Text = _aankoop.Id.ToString();
                 rtxtOmschrijving.Text = _aankoop.Omschrijving;
                 ddlStatus.SelectedValue = _aankoop.StatusAankoopId;
@@ -135,6 +139,7 @@ namespace MiaClient
 
         private void BerekenBedragen()
         {
+            _aankoop = AankoopManager.GetAankoopById(_aankoopId);
             decimal exBTW = ParseDecimal(txtExBtw.Text);
             decimal btw = ParseDecimal(txtBtwPercentage.Text);
             decimal transfer = ParseDecimal(txtBedragTransfer.Text);
@@ -144,7 +149,7 @@ namespace MiaClient
             txtIncBtw.Text = bedragInBTW.ToString("N2", cultuur);
 
             decimal saldo = goedgekeurd - (bedragInBTW + transfer);
-            lblBedragSaldo.Size = new Size(150,31);
+            lblBedragSaldo.Size = new Size(150, 31);
             lblBedragSaldo.Text = saldo.ToString("N2", cultuur);
 
             if (saldo >= 0)
@@ -152,6 +157,23 @@ namespace MiaClient
                 lblBedragSaldo.BackColor = Color.LightGreen;
                 lblBedragSaldo.ForeColor = Color.Black;
                 lblBedragSaldo.Font = new Font(lblBedragSaldo.Font, FontStyle.Bold);
+                // alleen kunnen zien als de aanvrager zijn eigen aankop bekijkt
+                if (Program.Gebruiker == _aanvraag.Gebruiker)
+                {
+                    if (_aankoop.StatusAankoopId == 3 || _aankoop.StatusAankoopId == 4)
+                    {
+                        btnEuro.Enabled = true;
+                    }
+                   
+                }
+
+                if (Program.IsSysteem == true || Program.IsGoedkeurder == true || Program.IsAankoper == true || Program.IsAanvrager == true)
+                {
+                    if (_aankoop.StatusAankoopId == 3 || _aankoop.StatusAankoopId == 4)
+                    {
+                        btnEuro.Enabled = true;
+                    }
+                }
             }
             else
             {
@@ -169,17 +191,17 @@ namespace MiaClient
         {
             bool afgesloten = ddlStatus.Text == "Afgesloten";
             bool gepland = ddlStatus.Text == "Gepland";
-            
+
             rtxtOmschrijving.ReadOnly = afgesloten;
-            
+
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox tb && tb.ReadOnly == false)
                     tb.ReadOnly = afgesloten;
-                
+
                 if (c is ComboBox cb)
                     cb.Enabled = !afgesloten;
-                
+
                 if (c is DateTimePicker dp)
                     dp.Enabled = !afgesloten;
             }
@@ -359,8 +381,14 @@ namespace MiaClient
         }
 
         private void btnEuro_Click(object sender, EventArgs e)
-        { 
-            
+        {
+
+
+            frmSaldoOverzetten.Show();
+        }
+        private void btnEuroDisablen(object sender, EventArgs e)
+        {
+
         }
     }
 }
