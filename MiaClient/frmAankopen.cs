@@ -140,6 +140,13 @@ namespace MiaClient
                 btnAdd.FlatAppearance.MouseOverBackColor = StyleParameters.Achtergrondkleur;
             }
 
+            BindFinancieringsjaren();
+
+        }
+
+        private void BindFinancieringsjaren()
+        {
+            cmbFinancieringsjaar.Items.Clear();
             cmbFinancieringsjaar.Items.Add("geen financieringsjaar");
             cmbFinancieringsjaar.SelectedIndex = 0;
             List<string> jaren = FinancieringsjaarManager.GetFinancieringsjaren();
@@ -147,7 +154,6 @@ namespace MiaClient
             {
                 cmbFinancieringsjaar.Items.Add(jaar);
             }
-             
         }
 
         private void LoadAankopen()
@@ -225,6 +231,7 @@ namespace MiaClient
                         AankoopManager.DeleteAankoop(item.AankoopId);
                         MessageBox.Show("De aankoop is succesvol verwijderd.", "Succes", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        BindFinancieringsjaren();
                         LoadAankopen();
                     }
                 }
@@ -965,6 +972,7 @@ namespace MiaClient
             try
             {
                 // Aankopen opnieuw ophalen + filters toepassen
+                BindFinancieringsjaren();
                 aankopen = GetFilteredAankopen();
 
                 huidigePage = 1;
