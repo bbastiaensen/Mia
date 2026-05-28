@@ -807,7 +807,7 @@ namespace MiaClient
         private void btnExportToExcel_Click(object sender, EventArgs e)
         {
             lblWachtenOpExcel.Visible = true;
-            lblWachtenOpExcel.Text = "Data in Excel verwerken...";
+            lblWachtenOpExcel.Text = "Data in Excel verwerken. Even geduld...";
 
             try
             {

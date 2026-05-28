@@ -24,5 +24,6 @@ namespace MiaLogic.Object
         public string FactuurNummer { get; set; }
         public string InternNummer { get; set; }
         public decimal BedragTransfer { get; set; }
+        public string Financieringsjaar { get; set; }
     }
 }

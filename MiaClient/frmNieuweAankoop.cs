@@ -400,6 +400,7 @@
                     {
                        
                         Omschrijving = aanvraag.Omschrijving ?? "",
+                        Financieringsjaar = aanvraag.Financieringsjaar ?? "",
                         BTWPercentage = 21,
                         BedragExBtw = 0,
                         StatusAankoopId = 1,

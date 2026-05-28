@@ -119,6 +119,7 @@ namespace MiaClient
                 chBFactuur.Checked = _aankoop.Factuur;
                 txtFactuurnummer.Text = _aankoop.FactuurNummer;
                 txtInternNummer.Text = _aankoop.InternNummer;
+                txtFinancieringsjaar.Text = _aankoop.Financieringsjaar;
             }
             catch (Exception ex)
             {
@@ -212,6 +213,7 @@ namespace MiaClient
                 _aankoop.Factuur = chBFactuur.Checked;
                 _aankoop.FactuurNummer = txtFactuurnummer.Text;
                 _aankoop.InternNummer = txtInternNummer.Text;
+                _aankoop.Financieringsjaar = txtFinancieringsjaar.Text;
 
                 AankoopManager.UpdateAankoop(_aankoop);
                 AppForms.frmAankopen?.RefreshAankopen();

@@ -59,17 +59,17 @@ namespace MiaClient
             this.btnLast = new System.Windows.Forms.Button();
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblFianncieringsjaar2 = new System.Windows.Forms.Label();
             this.btnSortSaldo = new System.Windows.Forms.Button();
             this.btnSortTitel = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lalAanvragerAankoop = new System.Windows.Forms.Label();
+            this.lblAankoper = new System.Windows.Forms.Label();
+            this.lblFinancieringsjaar1 = new System.Windows.Forms.Label();
+            this.lblRichtperiodeAankoop = new System.Windows.Forms.Label();
+            this.lblSaldo = new System.Windows.Forms.Label();
+            this.lblGoedgekeurdBedrag = new System.Windows.Forms.Label();
+            this.lblStatusAankoop = new System.Windows.Forms.Label();
+            this.lblTitelAankoop = new System.Windows.Forms.Label();
             this.btnSortSatusaanvraag = new System.Windows.Forms.Button();
             this.btnSortAankoperr = new System.Windows.Forms.Button();
             this.btnSortAanvrager = new System.Windows.Forms.Button();
@@ -102,7 +102,7 @@ namespace MiaClient
             // lblWachtenOpExcel
             // 
             this.lblWachtenOpExcel.AutoSize = true;
-            this.lblWachtenOpExcel.Location = new System.Drawing.Point(-21, 281);
+            this.lblWachtenOpExcel.Location = new System.Drawing.Point(965, 116);
             this.lblWachtenOpExcel.Name = "lblWachtenOpExcel";
             this.lblWachtenOpExcel.Size = new System.Drawing.Size(0, 20);
             this.lblWachtenOpExcel.TabIndex = 46;
@@ -388,14 +388,14 @@ namespace MiaClient
             this.btnPrevious.MouseLeave += new System.EventHandler(this.btnPrevious_MouseLeave);
             this.btnPrevious.MouseHover += new System.EventHandler(this.btnPrevious_MouseHover);
             // 
-            // label9
+            // lblFianncieringsjaar2
             // 
-            this.label9.Location = new System.Drawing.Point(711, 294);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 22);
-            this.label9.TabIndex = 63;
-            this.label9.Text = "ingsjaar";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFianncieringsjaar2.Location = new System.Drawing.Point(711, 294);
+            this.lblFianncieringsjaar2.Name = "lblFianncieringsjaar2";
+            this.lblFianncieringsjaar2.Size = new System.Drawing.Size(108, 22);
+            this.lblFianncieringsjaar2.TabIndex = 63;
+            this.lblFianncieringsjaar2.Text = "ingsjaar";
+            this.lblFianncieringsjaar2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSortSaldo
             // 
@@ -427,77 +427,77 @@ namespace MiaClient
             this.btnSortTitel.UseVisualStyleBackColor = false;
             this.btnSortTitel.Click += new System.EventHandler(this.btnSortGebruiker_Click);
             // 
-            // label5
+            // lalAanvragerAankoop
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(600, 290);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 20);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "Aanvrager";
+            this.lalAanvragerAankoop.AutoSize = true;
+            this.lalAanvragerAankoop.Location = new System.Drawing.Point(600, 290);
+            this.lalAanvragerAankoop.Name = "lalAanvragerAankoop";
+            this.lalAanvragerAankoop.Size = new System.Drawing.Size(77, 20);
+            this.lalAanvragerAankoop.TabIndex = 51;
+            this.lalAanvragerAankoop.Text = "Aanvrager";
             // 
-            // label3
+            // lblAankoper
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 289);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "Aankoper";
+            this.lblAankoper.AutoSize = true;
+            this.lblAankoper.Location = new System.Drawing.Point(441, 289);
+            this.lblAankoper.Name = "lblAankoper";
+            this.lblAankoper.Size = new System.Drawing.Size(73, 20);
+            this.lblAankoper.TabIndex = 49;
+            this.lblAankoper.Text = "Aankoper";
             // 
-            // label4
+            // lblFinancieringsjaar1
             // 
-            this.label4.Location = new System.Drawing.Point(702, 272);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 25);
-            this.label4.TabIndex = 50;
-            this.label4.Text = "Financier-";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFinancieringsjaar1.Location = new System.Drawing.Point(702, 272);
+            this.lblFinancieringsjaar1.Name = "lblFinancieringsjaar1";
+            this.lblFinancieringsjaar1.Size = new System.Drawing.Size(124, 25);
+            this.lblFinancieringsjaar1.TabIndex = 50;
+            this.lblFinancieringsjaar1.Text = "Financier-";
+            this.lblFinancieringsjaar1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // lblRichtperiodeAankoop
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(845, 290);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 20);
-            this.label6.TabIndex = 52;
-            this.label6.Text = "Richtperiode";
+            this.lblRichtperiodeAankoop.AutoSize = true;
+            this.lblRichtperiodeAankoop.Location = new System.Drawing.Point(845, 290);
+            this.lblRichtperiodeAankoop.Name = "lblRichtperiodeAankoop";
+            this.lblRichtperiodeAankoop.Size = new System.Drawing.Size(94, 20);
+            this.lblRichtperiodeAankoop.TabIndex = 52;
+            this.lblRichtperiodeAankoop.Text = "Richtperiode";
             // 
-            // label8
+            // lblSaldo
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1171, 290);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 20);
-            this.label8.TabIndex = 54;
-            this.label8.Text = "Saldo";
+            this.lblSaldo.AutoSize = true;
+            this.lblSaldo.Location = new System.Drawing.Point(1171, 290);
+            this.lblSaldo.Name = "lblSaldo";
+            this.lblSaldo.Size = new System.Drawing.Size(47, 20);
+            this.lblSaldo.TabIndex = 54;
+            this.lblSaldo.Text = "Saldo";
             // 
-            // label1
+            // lblGoedgekeurdBedrag
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(981, 290);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 20);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "GoedgekeurdBedrag";
+            this.lblGoedgekeurdBedrag.AutoSize = true;
+            this.lblGoedgekeurdBedrag.Location = new System.Drawing.Point(981, 290);
+            this.lblGoedgekeurdBedrag.Name = "lblGoedgekeurdBedrag";
+            this.lblGoedgekeurdBedrag.Size = new System.Drawing.Size(147, 20);
+            this.lblGoedgekeurdBedrag.TabIndex = 53;
+            this.lblGoedgekeurdBedrag.Text = "GoedgekeurdBedrag";
             // 
-            // label2
+            // lblStatusAankoop
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 290);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Status Aanvraag";
+            this.lblStatusAankoop.AutoSize = true;
+            this.lblStatusAankoop.Location = new System.Drawing.Point(287, 290);
+            this.lblStatusAankoop.Name = "lblStatusAankoop";
+            this.lblStatusAankoop.Size = new System.Drawing.Size(111, 20);
+            this.lblStatusAankoop.TabIndex = 48;
+            this.lblStatusAankoop.Text = "Status aankoop";
             // 
-            // label10
+            // lblTitelAankoop
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(83, 290);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 20);
-            this.label10.TabIndex = 47;
-            this.label10.Text = "Titel";
+            this.lblTitelAankoop.AutoSize = true;
+            this.lblTitelAankoop.Location = new System.Drawing.Point(83, 290);
+            this.lblTitelAankoop.Name = "lblTitelAankoop";
+            this.lblTitelAankoop.Size = new System.Drawing.Size(38, 20);
+            this.lblTitelAankoop.TabIndex = 47;
+            this.lblTitelAankoop.Text = "Titel";
             // 
             // btnSortSatusaanvraag
             // 
@@ -628,17 +628,17 @@ namespace MiaClient
             this.Controls.Add(this.btnSortAankoperr);
             this.Controls.Add(this.btnSortAanvrager);
             this.Controls.Add(this.btnSortSatusaanvraag);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblFianncieringsjaar2);
             this.Controls.Add(this.btnSortSaldo);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblFinancieringsjaar1);
             this.Controls.Add(this.btnSortTitel);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lalAanvragerAankoop);
+            this.Controls.Add(this.lblAankoper);
+            this.Controls.Add(this.lblRichtperiodeAankoop);
+            this.Controls.Add(this.lblSaldo);
+            this.Controls.Add(this.lblGoedgekeurdBedrag);
+            this.Controls.Add(this.lblStatusAankoop);
+            this.Controls.Add(this.lblTitelAankoop);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnLast);
@@ -696,17 +696,17 @@ namespace MiaClient
         private System.Windows.Forms.TextBox txtGoedgekeurdBedragTot;
         private System.Windows.Forms.TextBox txtSaldoVan;
         private System.Windows.Forms.TextBox txtSaldoTot;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblFianncieringsjaar2;
         private System.Windows.Forms.Button btnSortSaldo;
         private System.Windows.Forms.Button btnSortTitel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lalAanvragerAankoop;
+        private System.Windows.Forms.Label lblAankoper;
+        private System.Windows.Forms.Label lblFinancieringsjaar1;
+        private System.Windows.Forms.Label lblRichtperiodeAankoop;
+        private System.Windows.Forms.Label lblSaldo;
+        private System.Windows.Forms.Label lblGoedgekeurdBedrag;
+        private System.Windows.Forms.Label lblStatusAankoop;
+        private System.Windows.Forms.Label lblTitelAankoop;
         private System.Windows.Forms.Button btnSortSatusaanvraag;
         private System.Windows.Forms.Button btnSortAankoperr;
         private System.Windows.Forms.Button btnSortAanvrager;

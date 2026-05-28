@@ -68,7 +68,7 @@ namespace MiaLogic.Manager
 
                         aankoop.InternNummer = objRea["InternNummer"].ToString();
                         aankoop.BedragTransfer = objRea["BedragTransfer"] != DBNull.Value ? Convert.ToDecimal(objRea["BedragTransfer"]) : 0;
-
+                        aankoop.Financieringsjaar = objRea["Financieringsjaar"].ToString();
                     }
                 }
             }
@@ -148,15 +148,15 @@ namespace MiaLogic.Manager
                             END AS Aankoper,
                             av.Gebruiker AS Aanvrager,
                             av.Aanvraagmoment,
-                            av.Financieringsjaar,
+                            a.Financieringsjaar,
                             r.Naam AS Richtperiode,
                             av.BudgetToegekend AS GoedgekeurdBedrag,
                             av.BudgetToegekend - (a.BedragExBTW * (1 + a.BTWPercentage / 100.0) + ISNULL(a.BedragTransfer, 0)) AS Saldo
                         FROM Aankoop a
                         INNER JOIN Aanvraag av ON a.AanvraagId = av.Id
                         INNER JOIN StatusAankoop sa ON a.StatusAankoopId = sa.Id
-                        LEFT JOIN Aankoper ak ON av.AankoperId = ak.Id
-                        LEFT JOIN Richtperiode r ON av.RichtperiodeId = r.Id
+                        INNER JOIN Aankoper ak ON av.AankoperId = ak.Id
+                        INNER JOIN Richtperiode r ON av.RichtperiodeId = r.Id
                         ORDER BY a.Id DESC";
 
                     objCn.Open();
@@ -195,8 +195,8 @@ namespace MiaLogic.Manager
                 {
                     connection.Open();
 
-                    string query = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId) 
-                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId);";
+                    string query = @"INSERT INTO Aankoop (Omschrijving, BTWPercentage, BedragExBTW, StatusAankoopId, LeverancierId, AanvraagId, Financieringsjaar) 
+                        VALUES (@Omschrijving, @BTWPercentage, @BedragExBTW, @StatusAankoopId, @LeverancierId, @AanvraagId, @Financieringsjaar);";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -206,6 +206,7 @@ namespace MiaLogic.Manager
                         command.Parameters.AddWithValue("@StatusAankoopId", aankoop.StatusAankoopId);
                         command.Parameters.AddWithValue("@LeverancierId", aankoop.LeverancierId);
                         command.Parameters.AddWithValue("@AanvraagId", aankoop.AanvraagId);
+                        command.Parameters.AddWithValue("@Financieringsjaar", aankoop.Financieringsjaar ?? (object)DBNull.Value);
 
                         command.ExecuteNonQuery();
                     }
@@ -259,7 +260,8 @@ namespace MiaLogic.Manager
                 BestelbonNummer = @BestelbonNummer,
                 Factuur = @Factuur,
                 FactuurNummer = @FactuurNummer,
-                InternNummer = @InternNummer
+                InternNummer = @InternNummer,
+                Financieringsjaar = @Financieringsjaar
                 WHERE Id = @Id";
                     objCmd.Parameters.AddWithValue("@Id", aankoop.Id);
                     objCmd.Parameters.AddWithValue("@Omschrijving", aankoop.Omschrijving);
@@ -278,6 +280,7 @@ namespace MiaLogic.Manager
                     objCmd.Parameters.AddWithValue("@Factuur", aankoop.Factuur);
                     objCmd.Parameters.AddWithValue("@FactuurNummer", aankoop.FactuurNummer);
                     objCmd.Parameters.AddWithValue("@InternNummer", aankoop.InternNummer);
+                    objCmd.Parameters.AddWithValue("@Financieringsjaar", aankoop.Financieringsjaar);
 
                     objCn.Open();
                     objCmd.ExecuteNonQuery();
