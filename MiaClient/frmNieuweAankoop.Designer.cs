@@ -92,7 +92,7 @@ namespace MiaClient
             this.lblFinancieringsjaar.Name = "lblFinancieringsjaar";
             this.lblFinancieringsjaar.Size = new System.Drawing.Size(188, 25);
             this.lblFinancieringsjaar.TabIndex = 8;
-            this.lblFinancieringsjaar.Text = "Finacieringsjaar";
+            this.lblFinancieringsjaar.Text = "Financieringsjaar";
             // 
             // lblPages
             // 
@@ -168,7 +168,7 @@ namespace MiaClient
             // 
             // frmNieuweAankoop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 503);
             this.Controls.Add(this.btnPrevious);
